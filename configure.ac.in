@@ -5,8 +5,9 @@ dnl
 dnl Copyright (c) 2007 Brian Tarricone <bjt23@cornell.edu>
 dnl
 
-m4_define([xfconf_version_version], [0.1.0svn])
+m4_define([xfconf_version], [0.1.0svn])
 m4_define([libxfconf_verinfo], [0:0:0])
+m4_define([libxfconf_version_api], [0])
 
 dnl init autoconf
 AC_INIT([xfconf], [xfconf_version], [bjt23@cornell.edu])
@@ -53,6 +54,12 @@ fi
 AC_DEFINE_UNQUOTED([SVN_REVISION], "$REVISION", [subversion revision number])
 AC_SUBST([SVN_REVISION])
 
+dnl version information
+LIBXFCONF_VERSION_API=libxfconf_version_api
+LIBXFCONF_VERINFO=libxfconf_verinfo
+AC_SUBST(LIBXFCONF_VERSION_API)
+AC_SUBST(LIBXFCONF_VERINFO)
+
 dnl Check for i18n support
 XDT_I18N([@LINGUAS@])
 
@@ -60,12 +67,23 @@ dnl Check for X11 installed
 dnl XDT_CHECK_LIBX11_REQUIRE
 
 dnl required
-XDT_CHECK_PACKAGE([GLIB], [glib-2.0 gobject-2.0], [2.8.0])
+XDT_CHECK_PACKAGE([GLIB], [gobject-2.0], [2.8.0])
 dnl XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.10.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.4.0])
 dnl XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.4.0])
 XDT_CHECK_PACKAGE([DBUS], [dbus-1], [1.0.0])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.72])
+
+dnl backends
+
+dnl always build the perchannel-xml backend
+xfconf_backend_perchannel_xml=yes
+AM_CONDITIONAL([BUILD_XFCONF_BACKEND_PERCHANNEL_XML],
+               [test "x$xfconf_backend_perchannel_xml" = "xyes"])
+if test "x$xfconf_backend_perchannel_xml" = "xyes"; then
+    AC_DEFINE([BUILD_XFCONF_BACKEND_PERCHANNEL_XML], [1],
+              [Define if the perchannel-xml backend should be built])
+fi
 
 dnl check for debugging support
 XDT_FEATURE_DEBUG
@@ -77,6 +95,7 @@ dnl fi
 
 AC_OUTPUT([
 Makefile
+common/Makefile
 xfconf/Makefile
 xfconf/libxfconf-0.pc
 xfconfd/Makefile
