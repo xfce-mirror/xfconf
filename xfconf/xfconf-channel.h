@@ -1,7 +1,7 @@
 /*
- *  AppName
+ *  xfconf
  *
- *  Copyright (c) YEAR Your Name <your@email>
+ *  Copyright (c) 2007 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -35,7 +35,62 @@ typedef struct _XfconfChannel         XfconfChannel;
 
 GType xfconf_channel_get_type() G_GNUC_CONST;
 
-/* insert member function declarations here */
+XfconfChannel *xfconf_channel_new(const gchar *channel_name);
+
+gboolean xfconf_channel_get_string(XfconfChannel *channel,
+                                   const gchar *property,
+                                   gchar **value);
+
+gboolean xfconf_channel_get_string_list(XfconfChannel *channel,
+                                        const gchar *property,
+                                        gchar ***value);
+
+gboolean xfconf_channel_get_int(XfconfChannel *channel,
+                                const gchar *property,
+                                gint *value);
+
+gboolean xfconf_channel_get_int64(XfconfChannel *channel,
+                                  const gchar *property,
+                                  gint64 *value);
+
+gboolean xfconf_channel_get_double(XfconfChannel *channel,
+                                   const gchar *property,
+                                   gdouble *value);
+
+gboolean xfconf_channel_get_bool(XfconfChannel *channel,
+                                 const gchar *property,
+                                 gboolean *value);
+
+gboolean xfconf_channel_set_string(XfconfChannel *channel,
+                                   const gchar *property,
+                                   const gchar *value);
+
+gboolean xfconf_channel_set_string_list(XfconfChannel *channel,
+                                        const gchar *property,
+                                        const gchar **value);
+
+gboolean xfconf_channel_set_int(XfconfChannel *channel,
+                                const gchar *property,
+                                gint value);
+
+gboolean xfconf_channel_set_int64(XfconfChannel *channel,
+                                  const gchar *property,
+                                  gint64 value);
+
+gboolean xfconf_channel_set_double(XfconfChannel *channel,
+                                   const gchar *property,
+                                   gdouble value);
+
+gboolean xfconf_channel_set_bool(XfconfChannel *channel,
+                                 const gchar *property,
+                                 gboolean value);
+
+#if 0  /* future */
+
+gboolean xfconf_channel_begin_transaction(XfconfChannel *channel);
+gboolean xfconf_channel_commit_transaction(XfconfChannel *channel);
+
+#endif
 
 G_END_DECLS
 
