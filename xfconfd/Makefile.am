@@ -29,6 +29,7 @@ xfconfd_CFLAGS = \
 	$(LIBXFCE4UTIL_CFLAGS)
 
 xfconfd_LDADD = \
+	$(top_builddir)/common/libxfconf-common.la \
 	$(GLIB_LIBS) \
 	$(DBUS_LIBS) \
 	$(DBUS_GLIB_LIBS) \

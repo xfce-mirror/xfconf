@@ -27,6 +27,7 @@
 #include "xfconf-daemon.h"
 #include "xfconf-backend-factory.h"
 #include "xfconf-backend.h"
+#include "xfconf-marshal.h"
 
 
 static gboolean xfconfd_set(XfconfDaemon *xfconfd,
@@ -78,6 +79,10 @@ xfconf_daemon_class_init(XfconfDaemonClass *klass)
     GObjectClass *object_class = (GObjectClass *)klass;
     
     object_class->finalize = xfconf_daemon_finalize;
+    
+    g_signal_new("changed", XFCONF_TYPE_DAEMON, G_SIGNAL_RUN_LAST, 0, NULL,
+                 NULL, xfconf_marshal_VOID__STRING_STRING, G_TYPE_NONE, 2,
+                 G_TYPE_STRING, G_TYPE_STRING);
     
     dbus_g_object_type_install_info(G_TYPE_FROM_CLASS(klass),
                                     &dbus_glib_xfconfd_object_info);
