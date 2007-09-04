@@ -184,9 +184,10 @@ xfconf_daemon_start(XfconfDaemon *xfconfd,
 
 static gboolean
 xfconf_daemon_load_config(XfconfDaemon *xfconfd,
+                          const gchar *backend_id,
                           GError **error)
 {
-    xfconfd->backend = xfconf_backend_factory_get_backend(NULL, error);
+    xfconfd->backend = xfconf_backend_factory_get_backend(backend_id, error);
     if(!xfconfd->backend)
         return FALSE;
     
@@ -196,12 +197,17 @@ xfconf_daemon_load_config(XfconfDaemon *xfconfd,
 
 
 XfconfDaemon *
-xfconf_daemon_new_unique(GError **error)
+xfconf_daemon_new_unique(const gchar *backend_id,
+                         GError **error)
 {
-    XfconfDaemon *xfconfd = g_object_new(XFCONF_TYPE_DAEMON, NULL);
+    XfconfDaemon *xfconfd;
+    
+    g_return_val_if_fail(backend_id && *backend_id, NULL);
+    
+    xfconfd = g_object_new(XFCONF_TYPE_DAEMON, NULL);
     
     if(!xfconf_daemon_start(xfconfd, error)
-       || !xfconf_daemon_load_config(xfconfd, error))
+       || !xfconf_daemon_load_config(xfconfd, backend_id, error))
     {
         g_object_unref(G_OBJECT(xfconfd));
         return NULL;

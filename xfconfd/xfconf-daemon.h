@@ -35,7 +35,8 @@ typedef struct _XfconfDaemon         XfconfDaemon;
 
 GType xfconf_daemon_get_type() G_GNUC_CONST;
 
-XfconfDaemon *xfconf_daemon_new_unique(GError **error);
+XfconfDaemon *xfconf_daemon_new_unique(const gchar *backend_id,
+                                       GError **error);
 
 G_END_DECLS
 

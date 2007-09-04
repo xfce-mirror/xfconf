@@ -27,6 +27,8 @@
 
 #include "xfconf-daemon.h"
 
+#define DEFAULT_BACKEND  "xfce-perchannel-xml"
+
 int
 main(int argc,
      char **argv)
@@ -41,7 +43,7 @@ main(int argc,
     
     mloop = g_main_loop_new(NULL, FALSE);
     
-    xfconfd = xfconf_daemon_new_unique(&error);
+    xfconfd = xfconf_daemon_new_unique(DEFAULT_BACKEND, &error);
     if(!xfconfd) {
         g_printerr("Xfconfd failed to start: %s\n", error->message);
         return 1;
