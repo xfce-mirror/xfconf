@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<node name="/org/xfce/Xfconf">
+    <interface name="org.xfce.Xfconf">
+    
+        <!--
+             void org.xfce.Xfconf.Set(String channel,
+                                      String property,
+                                      Variant value)
+             
+             @channel: A channel/application/namespace name.
+             @property: A property name.
+             @value: A value to set for @property.  Valid variant
+                     types supported so far: [FIXME]
+             
+             Sets a property value.
+        -->
+        <method name="Set">
+            <arg direction="in" name="channel" type="s"/>
+            <arg direction="in" name="property" type="s"/>
+            <arg direction="in" name="value" type="v"/>
+        </method>
+        
+        <!--
+             Variant org.xfce.Xfconf.Get(String channel,
+                                         String property)
+             
+             @channel: A channel/application/namespace name.
+             @propert: A property name.
+             
+             Gets a property value, returned as a variant type.
+        -->
+        <method name="Get">
+            <arg direction="in" name="channel" type="s"/>
+            <arg direction="in" name="property" type="s"/>
+            <arg direction="out" name="value" type="v"/>
+        </method>
+        
+        <!--
+             void org.xfce.Xfconf.Changed(String channel,
+                                          String property)
+             
+             @channel: A channel/application/namespace name.
+             @property: A property name.
+             
+             Emitted when a property changes.
+        -->
+        <signal name="Changed">
+            <arg name="channel" type="s"/>
+            <arg name="property" type="s"/>
+            <!-- FIXME: do we want to report the property value too? -->
+            <!-- <arg name="value" type="v"/> -->
+        </signal>
+    </interface>
+    
+    <interface name="org.xfce.Xfconf.GUI">
+        <!--
+             void org.xfce.Xfconf.GUI.ShowList(String display)
+             
+             @display: A display name, or the empty string.
+             
+             Instructs the Xfconf daemon to display some type
+             of GUI element that contains a selectable list of
+             settings GUI plugins.  The @display parameter should
+             be an X11-style display string on which the GUI
+             element should be displayed.  If @display is the
+             empty string (not recommended), the GUI will be
+             shown on the default display.
+        -->
+        <method name="ShowList">
+            <arg direction="in" name="display" type="s"/>
+        </method>
+        
+        <!--
+             void org.xfce.Xfconf.ShowPlugin(String display,
+                                             String name)
+             
+             @display: A display name, or the empty string.
+             @name: A plugin name.
+             
+             Instructs the Xfconf daemon to show the settings
+             dialog associated with the plugin identified by
+             @name.  The @display parameter should be an
+             X11-style display string on which the GUI element
+             should be displayed.  If @display is the empty
+             string (not recommended), the GUI will be shown
+             on the default display.
+        -->
+        <method name="ShowPlugin">
+            <arg direction="in" name="display" type="s"/>
+            <arg direction="in" name="name" type="s"/>
+        </method>
+    </interface>
+</node>

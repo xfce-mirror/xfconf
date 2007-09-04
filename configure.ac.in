@@ -1,0 +1,84 @@
+dnl configure.ac
+dnl
+dnl xfconf - dbus-based configuration daemon and library for xfce
+dnl
+dnl Copyright (c) 2007 Brian Tarricone <bjt23@cornell.edu>
+dnl
+
+m4_define([xfconf_version_version], [0.1.0svn])
+m4_define([libxfconf_verinfo], [0:0:0])
+
+dnl init autoconf
+AC_INIT([xfconf], [xfconf_version], [bjt23@cornell.edu])
+AC_PREREQ([2.50])
+
+dnl init automake
+XFCONF_VERSION=xfconf_version
+AM_INIT_AUTOMAKE()
+AM_CONFIG_HEADER([config.h])
+dnl AC_DEFINE([WEBSITE], ["http://spuriousinterrupt.org/projects/xfconf"],
+dnl           [Location of the xfconf website])
+AM_MAINTAINER_MODE
+
+dnl check for UNIX variants
+AC_AIX
+AC_ISC_POSIX
+AC_MINIX
+
+dnl check for basic programs
+AC_PROG_CC
+AM_PROG_CC_C_O
+AC_PROG_INSTALL
+AC_PROG_LIBTOOL
+dnl AC_PROG_INTLTOOL([0.31], [no-xml])
+dnl AC_PROG_MAKE_SET
+
+dnl check for standard header files
+AC_HEADER_STDC
+AC_CHECK_HEADERS([errno.h fcntl.h  \
+                  signal.h stdlib.h string.h \
+                  sys/stat.h sys/time.h sys/types.h \
+                  unistd.h])
+dnl AC_CHECK_FUNCS([fdwalk getdtablesize setsid sysconf])
+
+dnl get svn revision
+SVN=`which svn`
+if test "$SVN" -a -x "$SVN"; then
+    dir="`dirname $0`"
+    SVN_REVISION=`LC_ALL=C svn info "$dir" | awk '/^Revision: / {printf "%05d\n", $2}'`
+fi
+if test -z "$SVN_REVISION"; then
+    SVN_REVISION="@REVISION@"
+fi
+AC_DEFINE_UNQUOTED([SVN_REVISION], "$REVISION", [subversion revision number])
+AC_SUBST([SVN_REVISION])
+
+dnl Check for i18n support
+XDT_I18N([@LINGUAS@])
+
+dnl Check for X11 installed
+dnl XDT_CHECK_LIBX11_REQUIRE
+
+dnl required
+XDT_CHECK_PACKAGE([GLIB], [glib-2.0 gobject-2.0], [2.8.0])
+dnl XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.10.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.4.0])
+dnl XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.4.0])
+XDT_CHECK_PACKAGE([DBUS], [dbus-1], [1.0.0])
+XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.72])
+
+dnl check for debugging support
+XDT_FEATURE_DEBUG
+dnl if test "x$enable_debug" = "xfull"; then
+dnl     if test "x$CC" = "xgcc"; then
+dnl         CFLAGS="$CFLAGS -fno-strict-aliasing"
+dnl     fi
+dnl fi
+
+AC_OUTPUT([
+Makefile
+xfconf/Makefile
+xfconf/libxfconf-0.pc
+xfconfd/Makefile
+po/Makefile.in
+])
