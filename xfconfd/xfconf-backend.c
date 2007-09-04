@@ -23,6 +23,17 @@
 
 #include "xfconf-backend.h"
 
+static GQuark error_quark = 0;
+
+GQuark
+xfconf_backend_get_error_quark()
+{
+    if(!error_quark)
+        error_quark = g_quark_from_static_string("xfconf-backend-error-quark");
+    
+    return error_quark;
+}
+
 GType
 xfconf_backend_get_type()
 {
@@ -41,8 +52,8 @@ xfconf_backend_get_type()
             NULL,
         };
         
-        backend_type = g_type_register_static(G_TYPE_INTERFACE,
-                                              "XfconfBackend");
+        backend_type = g_type_register_static(G_TYPE_INTERFACE,"XfconfBackend",
+                                              &backend_info, 0);
         g_type_interface_add_prerequisite(backend_type, G_TYPE_OBJECT);
     }
     
@@ -89,4 +100,15 @@ xfconf_backend_get(XfconfBackend *backend,
                          && (!error || *error), FALSE);
     
     return iface->get(backend, channel, property, value, error);
+}
+
+gboolean
+xfconf_backend_flush(XfconfBackend *backend,
+                     GError **error)
+{
+    XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
+    
+    g_return_val_if_fail(iface && iface->flush && (!error || *error), FALSE);
+    
+    return iface->flush(backend, error);
 }

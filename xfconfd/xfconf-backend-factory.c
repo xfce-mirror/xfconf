@@ -21,6 +21,11 @@
 #include <config.h>
 #endif
 
+#include <libxfce4util/libxfce4util.h>
+
+#include "xfconf-backend-factory.h"
+#include "xfconf-backend.h"
+
 /* i'm not sure i like this method.  perhaps each backend could be a
  * GTypeModule.  i also want the ability to multiplex multiple backends.
  * for example, i'd like to write a MCS backend that can read the old MCS
@@ -28,11 +33,10 @@
  * backend should be the one that gets written to all the time.
  */
 
-#ifdef XFCONF_BACKEND_PERCHANNEL_XML
+#ifdef BUILD_XFCONF_BACKEND_PERCHANNEL_XML
 #include "xfconf-backend-perchannel-xml.h"
 #endif
 
-static GQuark error_quark = 0;
 static GHashTable *backends = NULL;
 
 static void
@@ -43,9 +47,9 @@ xfconf_backend_factory_ensure_backends()
     
     backends = g_hash_table_new(g_str_hash, g_str_equal);
     
-#ifdef XFCONF_BACKEND_PERCHANNEL_XML
+#ifdef BUILD_XFCONF_BACKEND_PERCHANNEL_XML
     g_hash_table_insert(backends, XFCONF_BACKEND_PERCHANNEL_XML_TYPE_ID,
-                        XFCONF_TYPE_BACKEND_PERCHANNEL_XML);
+                        GUINT_TO_POINTER(XFCONF_TYPE_BACKEND_PERCHANNEL_XML));
 #endif
 }
 
@@ -59,8 +63,8 @@ xfconf_backend_factory_get_backend(const gchar *type,
     
     xfconf_backend_factory_ensure_backends();
     
-    backend_gtype = g_hash_table_lookup(backends, type);
-    if(G_TYPE_NONE == backend_type) {
+    backend_gtype = GPOINTER_TO_UINT(g_hash_table_lookup(backends, type));
+    if(0 == backend_gtype) {
         if(error) {
             g_set_error(error, XFCONF_BACKEND_ERROR, 0,
                         _("Unable to find Xfconf backend of type \"%s\""),

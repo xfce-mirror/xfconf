@@ -22,11 +22,32 @@
 #endif
 
 #include <dbus/dbus-glib-lowlevel.h>
+#include <libxfce4util/libxfce4util.h>
 
 #include "xfconf-daemon.h"
-#include "xfconfd-dbus-server.h"
 #include "xfconf-backend-factory.h"
 #include "xfconf-backend.h"
+
+
+static gboolean xfconfd_set(XfconfDaemon *xfconfd,
+                            const gchar *channel,
+                            const gchar *property,
+                            const GValue *value,
+                            GError **error);
+static gboolean xfconfd_get(XfconfDaemon *xfconfd,
+                            const gchar *channel,
+                            const gchar *property,
+                            GValue *value,
+                            GError **error);
+static gboolean xfconfd_show_list(XfconfDaemon *xfconfd,
+                                  const gchar *display,
+                                  GError **error);
+static gboolean xfconfd_show_plugin(XfconfDaemon *xfconfd,
+                                    const gchar *display,
+                                    const gchar *name,
+                                    GError **error);
+
+#include "xfconfd-dbus-server.h"
 
 struct _XfconfDaemon
 {
@@ -74,7 +95,7 @@ xfconf_daemon_finalize(GObject *obj)
     XfconfDaemon *xfconfd = XFCONF_DAEMON(obj);
     
     if(xfconfd->backend) {
-        xfconf_backend_flush(xfconfd->backend);
+        xfconf_backend_flush(xfconfd->backend, NULL);
         g_object_unref(G_OBJECT(xfconfd->backend));
     }
     
@@ -82,6 +103,45 @@ xfconf_daemon_finalize(GObject *obj)
         dbus_g_connection_unref(xfconfd->dbus_conn);
     
     G_OBJECT_CLASS(xfconf_daemon_parent_class)->finalize(obj);
+}
+
+
+
+static gboolean
+xfconfd_set(XfconfDaemon *xfconfd,
+            const gchar *channel,
+            const gchar *property,
+            const GValue *value,
+            GError **error)
+{
+    return xfconf_backend_set(xfconfd->backend, channel, property, value, error);
+}
+
+static gboolean
+xfconfd_get(XfconfDaemon *xfconfd,
+            const gchar *channel,
+            const gchar *property,
+            GValue *value,
+            GError **error)
+{
+    return xfconf_backend_get(xfconfd->backend, channel, property, value, error);
+}
+
+static gboolean
+xfconfd_show_list(XfconfDaemon *xfconfd,
+                  const gchar *display,
+                  GError **error)
+{
+    return TRUE;
+}
+
+static gboolean
+xfconfd_show_plugin(XfconfDaemon *xfconfd,
+                    const gchar *display,
+                    const gchar *name,
+                    GError **error)
+{
+    return TRUE;
 }
 
 
@@ -112,7 +172,7 @@ xfconf_daemon_start(XfconfDaemon *xfconfd,
                 dbus_set_g_error(error, &derror);
             dbus_error_free(&derror);
         } else if(error) {
-            g_error_set(error, DBUS_GERROR, DBUS_GERROR_FAILED,
+            g_set_error(error, DBUS_GERROR, DBUS_GERROR_FAILED,
                         _("Another Xfconf daemon is already running"));
         }
         

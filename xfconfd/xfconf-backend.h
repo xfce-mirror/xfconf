@@ -22,10 +22,12 @@
 
 #include <glib-object.h>
 
-#define XFCONF_TYPE_BACKEND                 (xfconf_backend_get_type())
-#define XFCONF_BACKEND(obj)                 (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_TYPE_BACKEND, XfconfBackend))
-#define XFCONF_IS_BACKEND(obj)              (G_TYPE_CHECK_INSTANCE_TYPE((obj), XFCONF_TYPE_BACKEND))
-#define XFCONFF_BACKEND_GET_INTERFACE(obj)  (G_TYPE_INSTANCE_GET_INTERFACE((obj), XFCONF_TYPE_BACKEND, XfconfBackend))
+#define XFCONF_TYPE_BACKEND                (xfconf_backend_get_type())
+#define XFCONF_BACKEND(obj)                (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_TYPE_BACKEND, XfconfBackend))
+#define XFCONF_IS_BACKEND(obj)             (G_TYPE_CHECK_INSTANCE_TYPE((obj), XFCONF_TYPE_BACKEND))
+#define XFCONF_BACKEND_GET_INTERFACE(obj)  (G_TYPE_INSTANCE_GET_INTERFACE((obj), XFCONF_TYPE_BACKEND, XfconfBackendInterface))
+
+#define XFCONF_BACKEND_ERROR               (xfconf_backend_get_error_quark())
 
 G_BEGIN_DECLS
 
@@ -51,14 +53,18 @@ struct _XfconfBackendInterface
                     GValue *value,
                     GError **error);
     
+    gboolean (*flush)(XfconfBackend *backend,
+                      GError **error);
+    
     void (*_xb_reserved0)();
     void (*_xb_reserved1)();
     void (*_xb_reserved2)();
     void (*_xb_reserved3)();
 };
 
+GQuark xfconf_backend_get_error_quark();
 
-GType xfconf_backed_get_type() G_GNUC_CONST;
+GType xfconf_backend_get_type() G_GNUC_CONST;
 
 gboolean xfconf_backend_initialize(XfconfBackend *backend,
                                    GError **error);
@@ -74,6 +80,9 @@ gboolean xfconf_backend_get(XfconfBackend *backend,
                             const gchar *property,
                             GValue *value,
                             GError **error);
+
+gboolean xfconf_backend_flush(XfconfBackend *backend,
+                              GError **error);
 
 G_END_DECLS
 

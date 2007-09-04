@@ -25,6 +25,8 @@
 
 #include <libxfce4util/libxfce4util.h>
 
+#include "xfconf-daemon.h"
+
 int
 main(int argc,
      char **argv)

@@ -3,7 +3,7 @@ bin_PROGRAMS = xfconfd
 
 xfconf_backend_sources =
 
-if XFCONF_BACKEND_PERCHANNEL_XML
+if BUILD_XFCONF_BACKEND_PERCHANNEL_XML
 xfconf_backend_sources += \
 	xfconf-backend-perchannel-xml.c \
 	xfconf-backend-perchannel-xml.h
@@ -21,14 +21,17 @@ xfconfd_SOURCES = \
 	$(xfconf_backend_sources)
 
 xfconfd_CFLAGS = \
+	-DLOCALEDIR=\"$(localedir)\" \
 	-I$(top_srcdir)/common \
 	$(GLIB_CFLAGS) \
 	$(DBUS_CFLAGS) \
+	$(DBUS_GLIB_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS)
 
-xfconfd_LIBADD = \
+xfconfd_LDADD = \
 	$(GLIB_LIBS) \
 	$(DBUS_LIBS) \
+	$(DBUS_GLIB_LIBS) \
 	$(LIBXFCE4UTIL_LIBS)
 
 
