@@ -1,2 +1,3 @@
-../xfconfd/xfconf-backend-factory.c
-../xfconfd/xfconf-daemon.c
+xfconfd/xfconf-backend-factory.c
+xfconfd/xfconf-backend-perchannel-xml.c
+xfconfd/xfconf-daemon.c
