@@ -39,6 +39,8 @@ main(int argc,
     
     xfce_textdomain(PACKAGE, LOCALEDIR, "UTF-8");
     
+    g_set_application_name("Xfce Configuration Daemon");
+    g_set_prgname("xfconfd");
     g_type_init();
     
     mloop = g_main_loop_new(NULL, FALSE);
