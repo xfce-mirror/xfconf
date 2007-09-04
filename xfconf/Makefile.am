@@ -3,10 +3,13 @@ lib_LTLIBRARIES = libxfconf-0.la
 
 libxfconfincludedir = $(includedir)/xfce4/xfconf-$(LIBXFCONF_VERSION_API)/xfconf
 libxfconfinclude_HEADERS = \
+	xfconf-channel.h \
 	xfconf.h
 
 libxfconf_0_la_SOURCES = \
 	$(libxfconfinclude_HEADERS) \
+	xfconf-channel.c \
+	xfconf-private.h \
 	xfconf.c \
 	xfconf-dbus-bindings.h
 
@@ -15,7 +18,8 @@ libxfconf_0_la_CFLAGS = \
 	-DLIBXFCONF_COMPILATION \
 	-DG_LOG_DOMAIN=\"xfconf\" \
 	$(GLIB_CFLAGS) \
-	$(DBUS_CFLAGS)
+	$(DBUS_CFLAGS) \
+	$(DBUS_GLIB_CFLAGS)
 
 libxfconf_0_la_LDFLAGS = \
 	-export-dynamic \
@@ -25,7 +29,8 @@ libxfconf_0_la_LDFLAGS = \
 
 libxfconf_0_la_LIBADD = \
 	$(GLIB_LIBS) \
-	$(DBUS_LIBS)
+	$(DBUS_LIBS) \
+	$(DBUS_GLIB_LIBS)
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libxfconf-0.pc
