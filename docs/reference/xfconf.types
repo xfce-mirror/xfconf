@@ -1,0 +1,5 @@
+#include <xfconf/xfconf.h>
+#include <xfconfd/xfconf-backend.h>
+
+xfconf_channel_get_type
+xfconf_backend_get_type

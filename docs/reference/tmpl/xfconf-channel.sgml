@@ -1,0 +1,210 @@
+<!-- ##### SECTION Title ##### -->
+XfconfChannel
+
+<!-- ##### SECTION Short_Description ##### -->
+An application-defined domain for storing configuration settings
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+An XfconfChannel is a representation of a restricted domain or
+namespace that an application can define to store configuration
+settings.  This is to ensure that different applications do not store
+configuration keys with the same names.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT XfconfChannel ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL XfconfChannel::property-changed ##### -->
+<para>
+
+</para>
+
+@xfconfchannel: the object which received the signal.
+@arg1: 
+
+<!-- ##### ARG XfconfChannel:channel-name ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION xfconf_channel_new ##### -->
+<para>
+
+</para>
+
+@channel_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_has_property ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_remove_property ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_all ##### -->
+<para>
+
+</para>
+
+@channel: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_string ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@default_value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_string_list ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@default_value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_int ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@default_value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_int64 ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@default_value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_double ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@default_value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_bool ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@default_value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_set_string ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_set_string_list ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_set_int ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_set_int64 ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_set_double ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_set_bool ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value: 
+@Returns: 
+
+

@@ -96,8 +96,6 @@
         <signal name="Changed">
             <arg name="channel" type="s"/>
             <arg name="property" type="s"/>
-            <!-- FIXME: do we want to report the property value too? -->
-            <!-- <arg name="value" type="v"/> -->
         </signal>
     </interface>
     

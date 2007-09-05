@@ -1,0 +1,130 @@
+<!-- ##### SECTION Title ##### -->
+XfconfBackend
+
+<!-- ##### SECTION Short_Description ##### -->
+Interface for configuration store backends
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+XfconfBackend is an abstract interface that allows the Xfconf Daemon
+to use different backends for storing configuration data.  These backends
+can be flat text or binary files, a database, or just about anything
+one could think of to store data.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO XFCONF_BACKEND_ERROR ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### STRUCT XfconfBackendInterface ##### -->
+<para>
+
+</para>
+
+@parent: GObject interface parent.
+@initialize: See xfconf_backend_initialize().
+@set: See xfconf_backend_set().
+@get: See xfconf_backend_get().
+@get_all: See xfconf_backend_get_all().
+@exists: See xfconf_backend_exists().
+@remove: See xfconf_backend_remove().
+@flush: See xfconf_backend_flush().
+@_xb_reserved0: Reserved for future expansion.
+@_xb_reserved1: Reserved for future expansion.
+@_xb_reserved2: Reserved for future expansion.
+@_xb_reserved3: Reserved for future expansion.
+
+<!-- ##### FUNCTION xfconf_backend_initialize ##### -->
+<para>
+
+</para>
+
+@backend: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_backend_set ##### -->
+<para>
+
+</para>
+
+@backend: 
+@channel: 
+@property: 
+@value: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_backend_get ##### -->
+<para>
+
+</para>
+
+@backend: 
+@channel: 
+@property: 
+@value: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_backend_get_all ##### -->
+<para>
+
+</para>
+
+@backend: 
+@channel: 
+@properties: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_backend_exists ##### -->
+<para>
+
+</para>
+
+@backend: 
+@channel: 
+@property: 
+@exists: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_backend_remove ##### -->
+<para>
+
+</para>
+
+@backend: 
+@channel: 
+@property: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_backend_flush ##### -->
+<para>
+
+</para>
+
+@backend: 
+@error: 
+@Returns: 
+
+

@@ -1,0 +1,40 @@
+<!-- ##### SECTION Title ##### -->
+Xfconf Library Initialization
+
+<!-- ##### SECTION Short_Description ##### -->
+Init routines for libxfconf
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+Before libxfconf can be used, it must be initialized by calling
+xfconf_init().  To free resources used by the library, call
+xfconf_shutdown().  These calls are "recursive": multiple calls to
+xfconf_init() are allowed, but each call must be matched by a
+separate call to xfconf_shutdown() to really free the library's
+resources.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION xfconf_init ##### -->
+<para>
+
+</para>
+
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_shutdown ##### -->
+<para>
+
+</para>
+
+
+

@@ -14,7 +14,6 @@ AC_INIT([xfconf], [xfconf_version], [bjt23@cornell.edu])
 AC_PREREQ([2.50])
 
 dnl init automake
-XFCONF_VERSION=xfconf_version
 AM_INIT_AUTOMAKE()
 AM_CONFIG_HEADER([config.h])
 dnl AC_DEFINE([WEBSITE], ["http://spuriousinterrupt.org/projects/xfconf"],
@@ -55,8 +54,10 @@ AC_DEFINE_UNQUOTED([SVN_REVISION], "$REVISION", [subversion revision number])
 AC_SUBST([SVN_REVISION])
 
 dnl version information
+XFCONF_VERSION=xfconf_version
 LIBXFCONF_VERSION_API=libxfconf_version_api
 LIBXFCONF_VERINFO=libxfconf_verinfo
+AC_SUBST(XFCONF_VERSION)
 AC_SUBST(LIBXFCONF_VERSION_API)
 AC_SUBST(LIBXFCONF_VERINFO)
 
@@ -73,6 +74,9 @@ XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.4.0])
 dnl XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.4.0])
 XDT_CHECK_PACKAGE([DBUS], [dbus-1], [1.0.0])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.72])
+
+dnl gtk-doc
+GTK_DOC_CHECK([1.0])
 
 dnl backends
 
@@ -96,6 +100,9 @@ dnl fi
 AC_OUTPUT([
 Makefile
 common/Makefile
+docs/Makefile
+docs/reference/Makefile
+docs/reference/version.xml
 xfconf/Makefile
 xfconf/libxfconf-0.pc
 xfconfd/Makefile

@@ -1,0 +1,91 @@
+<!-- ##### SECTION ./tmpl/config.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/config.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/config.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/config.sgml:Stability_Level ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/config.sgml:Title ##### -->
+config
+
+
+<!-- ##### SECTION ./tmpl/stamp-xfconf-marshal.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/stamp-xfconf-marshal.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/stamp-xfconf-marshal.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/stamp-xfconf-marshal.sgml:Stability_Level ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/stamp-xfconf-marshal.sgml:Title ##### -->
+stamp-xfconf-marshal
+
+
+<!-- ##### MACRO XFCONF_BACKEND_GET_INTERFACE ##### -->
+<para>
+
+</para>
+
+@obj: 
+
+<!-- ##### STRUCT XfconfBackend ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION xfconf_backend_get_error_quark ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+<!-- ##### FUNCTION xfconf_channel_begin_transaction ##### -->
+<para>
+
+</para>
+
+@channel: 
+@Returns: 
+
+<!-- ##### FUNCTION xfconf_channel_cancel_transaction ##### -->
+<para>
+
+</para>
+
+@channel: 
+
+<!-- ##### FUNCTION xfconf_channel_commit_transaction ##### -->
+<para>
+
+</para>
+
+@channel: 
+@Returns: 
+

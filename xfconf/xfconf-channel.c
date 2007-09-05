@@ -30,6 +30,11 @@
 #include "xfconf-private.h"
 #include "xfconf-marshal.h"
 
+/**
+ * XfconfChannel:
+ *
+ * An opaque structure that holds state about a channel.
+ **/
 struct _XfconfChannel
 {
     GObject parent;
@@ -95,7 +100,6 @@ xfconf_channel_class_init(XfconfChannelClass *klass)
      * XfconfChannel::property-changed:
      * @channel: An #XfconfChannel.
      * @property: A property name.
-     * @user_data: The user_data passed to g_signal_connect().
      *
      * Emitted when a property on @channel has changed.
      **/

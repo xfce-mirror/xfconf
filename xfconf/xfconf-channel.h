@@ -85,9 +85,9 @@ gboolean xfconf_channel_set_bool(XfconfChannel *channel,
 
 #if 0  /* future (maybe) */
 
-gboolean xfconf_channel_begin_transaction(XfconfChannel *channel);
-gboolean xfconf_channel_commit_transaction(XfconfChannel *channel);
-void xfconf_channel_cancel_transaction(XfconfChannel *channel);
+//gboolean xfconf_channel_begin_transaction(XfconfChannel *channel);
+//gboolean xfconf_channel_commit_transaction(XfconfChannel *channel);
+//void xfconf_channel_cancel_transaction(XfconfChannel *channel);
 
 #endif
 
