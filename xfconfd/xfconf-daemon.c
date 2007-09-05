@@ -192,7 +192,20 @@ xfconfd_show_list(XfconfDaemon *xfconfd,
                   const gchar *display,
                   GError **error)
 {
-    return TRUE;
+    gchar *command;
+    gboolean ret;
+    
+    if(display)
+        command = g_strdup_printf("env DISPLAY='%s' %s/xfconf-settings-show",
+                                  display, BINDIR);
+    else
+        command = g_strdup(BINDIR "/xfconf-settings-show");
+    
+    ret = g_spawn_command_line_async(command, error);
+    
+    g_free(command);
+    
+    return ret;
 }
 
 static gboolean
@@ -201,7 +214,22 @@ xfconfd_show_plugin(XfconfDaemon *xfconfd,
                     const gchar *name,
                     GError **error)
 {
-    return TRUE;
+    gchar *command;
+    gboolean ret;
+    
+    g_return_val_if_fail(name, FALSE);
+    
+    if(display)
+        command = g_strdup_printf("env DISPLAY='%s' %s/xfconf-settings-show '%s'",
+                                  display, BINDIR, name);
+    else
+        command = g_strdup_printf("%s/xfconf-settings-show '%s'", BINDIR, name);
+    
+    ret = g_spawn_command_line_async(command, error);
+    
+    g_free(command);
+    
+    return ret;
 }
 
 
