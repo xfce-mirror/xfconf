@@ -1,7 +1,7 @@
 /*
- *  AppName
+ *  xfconf
  *
- *  Copyright (c) YEAR Your Name <your@email>
+ *  Copyright (c) 2007 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -248,6 +248,15 @@ xfconf_channel_new(const gchar *channel_name)
     return channel;
 }
 
+/**
+ * xfconf_channel_has_property:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ *
+ * Checks to see if @property exists on @channel.
+ *
+ * Returns: %TRUE if @property exists, %FALSE otherwise.
+ **/
 gboolean
 xfconf_channel_has_property(XfconfChannel *channel,
                             const gchar *property)
@@ -264,6 +273,13 @@ xfconf_channel_has_property(XfconfChannel *channel,
     return exists;
 }
 
+/**
+ * xfconf_channel_remove_property:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ *
+ * Removes @property from @channel in the configuration store.
+ **/
 void
 xfconf_channel_remove_property(XfconfChannel *channel,
                                const gchar *property)
@@ -273,6 +289,18 @@ xfconf_channel_remove_property(XfconfChannel *channel,
     xfconf_client_remove(proxy, channel->channel_name, property, NULL);
 }
 
+/**
+ * xfconf_channel_get_all:
+ * @channel: An #XfconfChannel.
+ *
+ * Retrieves all properties from @channel and stores them in a #GHashTable
+ * in which the keys correspond to the string (gchar *) properties, and
+ * the values correspond to variant (GValue *) values.  The keys and values
+ * are owned by the hash table and should be copied if needed.
+ *
+ * Returns: A newly-allocated #GHashTable, which should be freed with
+ *          g_hash_table_destroy() when no longer needed.
+ **/
 GHashTable *
 xfconf_channel_get_all(XfconfChannel *channel)
 {
@@ -285,6 +313,18 @@ xfconf_channel_get_all(XfconfChannel *channel)
     return properties;
 }
 
+/**
+ * xfconf_channel_get_string:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ * @default_value: A fallback value.
+ *
+ * Retrieves the string value associated with @property on @channel.
+ *
+ * Returns: A newly-allocated string which should be freed with g_free()
+ *          when no longer needed.  If @property is not in @channel,
+ *          a g_strdup()ed copy of @default_value is returned.
+ **/
 gchar *
 xfconf_channel_get_string(XfconfChannel *channel,
                           const gchar *property,
@@ -304,6 +344,19 @@ xfconf_channel_get_string(XfconfChannel *channel,
     return value;
 }
 
+/**
+ * xfconf_channel_get_string_list:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ * @default_value: A fallback value.
+ *
+ * Retrieves the string list value associated with @property on @channel.
+ *
+ * Returns: A newly-allocated string list which should be freed with
+ *          g_strfreev() when no longer needed.  If @property is not in 
+ *          @channel, a g_malloc()ed and g_strdup()ed copy of the strings in
+ *          @default_value is returned.
+ **/
 gchar **
 xfconf_channel_get_string_list(XfconfChannel *channel,
                                const gchar *property,
@@ -337,6 +390,17 @@ xfconf_channel_get_string_list(XfconfChannel *channel,
     return value;
 }
 
+/**
+ * xfconf_channel_get_int:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ * @default_value: A fallback value.
+ *
+ * Retrieves the int value associated with @property on @channel.
+ *
+ * Returns: The int value, or, if @property is not in @channel,
+ *          @default_value is returned.
+ **/
 gint
 xfconf_channel_get_int(XfconfChannel *channel,
                        const gchar *property,
@@ -355,6 +419,17 @@ xfconf_channel_get_int(XfconfChannel *channel,
     return value;
 }
 
+/**
+ * xfconf_channel_get_int64:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ * @default_value: A fallback value.
+ *
+ * Retrieves the 64-bit int value associated with @property on @channel.
+ *
+ * Returns: The int64 value, or, if @property is not in @channel,
+ *          @default_value is returned.
+ **/
 gint64
 xfconf_channel_get_int64(XfconfChannel *channel,
                          const gchar *property,
@@ -373,6 +448,17 @@ xfconf_channel_get_int64(XfconfChannel *channel,
     return value;
 }
 
+/**
+ * xfconf_channel_get_double:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ * @default_value: A fallback value.
+ *
+ * Retrieves the double value associated with @property on @channel.
+ *
+ * Returns: The double value, or, if @property is not in @channel,
+ *          @default_value is returned.
+ **/
 gdouble
 xfconf_channel_get_double(XfconfChannel *channel,
                           const gchar *property,
@@ -391,6 +477,17 @@ xfconf_channel_get_double(XfconfChannel *channel,
     return value;
 }
 
+/**
+ * xfconf_channel_get_bool:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ * @default_value: A fallback value.
+ *
+ * Retrieves the boolean value associated with @property on @channel.
+ *
+ * Returns: The boolean value, or, if @property is not in @channel,
+ *          @default_value is returned.
+ **/
 gboolean
 xfconf_channel_get_bool(XfconfChannel *channel,
                         const gchar *property,
@@ -409,6 +506,16 @@ xfconf_channel_get_bool(XfconfChannel *channel,
     return value;
 }
 
+/**
+ * xfconf_channel_set_string:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ * @value: The value to set.
+ *
+ * Sets @value for @property on @channel in the configuration store.
+ *
+ * Returns: %TRUE on success, %FALSE if an error occured.
+ **/
 gboolean
 xfconf_channel_set_string(XfconfChannel *channel,
                           const gchar *property,
@@ -430,6 +537,16 @@ xfconf_channel_set_string(XfconfChannel *channel,
     return ret;
 }
 
+/**
+ * xfconf_channel_set_string_list:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ * @value: The value to set.
+ *
+ * Sets @value for @property on @channel in the configuration store.
+ *
+ * Returns: %TRUE on success, %FALSE if an error occured.
+ **/
 gboolean
 xfconf_channel_set_string_list(XfconfChannel *channel,
                                const gchar *property,
@@ -461,6 +578,16 @@ xfconf_channel_set_string_list(XfconfChannel *channel,
     return ret;
 }
 
+/**
+ * xfconf_channel_set_int:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ * @value: The value to set.
+ *
+ * Sets @value for @property on @channel in the configuration store.
+ *
+ * Returns: %TRUE on success, %FALSE if an error occured.
+ **/
 gboolean
 xfconf_channel_set_int(XfconfChannel *channel,
                        const gchar *property,
@@ -482,6 +609,16 @@ xfconf_channel_set_int(XfconfChannel *channel,
     return ret;
 }
 
+/**
+ * xfconf_channel_set_int64:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ * @value: The value to set.
+ *
+ * Sets @value for @property on @channel in the configuration store.
+ *
+ * Returns: %TRUE on success, %FALSE if an error occured.
+ **/
 gboolean
 xfconf_channel_set_int64(XfconfChannel *channel,
                          const gchar *property,
@@ -503,6 +640,16 @@ xfconf_channel_set_int64(XfconfChannel *channel,
     return ret;
 }
 
+/**
+ * xfconf_channel_set_double:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ * @value: The value to set.
+ *
+ * Sets @value for @property on @channel in the configuration store.
+ *
+ * Returns: %TRUE on success, %FALSE if an error occured.
+ **/
 gboolean
 xfconf_channel_set_double(XfconfChannel *channel,
                           const gchar *property,
@@ -524,6 +671,16 @@ xfconf_channel_set_double(XfconfChannel *channel,
     return ret;
 }
 
+/**
+ * xfconf_channel_set_bool:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ * @value: The value to set.
+ *
+ * Sets @value for @property on @channel in the configuration store.
+ *
+ * Returns: %TRUE on success, %FALSE if an error occured.
+ **/
 gboolean
 xfconf_channel_set_bool(XfconfChannel *channel,
                         const gchar *property,

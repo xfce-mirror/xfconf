@@ -1,5 +1,5 @@
 /*
- *  xfce-power-manager
+ *  xfconf
  *
  *  Copyright (c) 2007 Brian Tarricone <bjt23@cornell.edu>
  *

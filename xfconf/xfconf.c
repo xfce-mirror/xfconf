@@ -1,5 +1,5 @@
 /*
- *  xfce-power-manager
+ *  xfconf
  *
  *  Copyright (c) 2007 Brian Tarricone <bjt23@cornell.edu>
  *
@@ -65,6 +65,16 @@ _xfconf_get_gui_dbus_g_proxy()
     return gui_dbus_proxy;
 }
 
+/**
+ * xfconf_init:
+ * @error: An error return.
+ *
+ * Initializes the Xfconf library.  Can be called multiple times with no
+ * adverse effects.
+ *
+ * Returns: %TRUE if the library was initialized succesfully, %FALSE on
+ *          error.  If there is an error @error will be set.
+ **/
 gboolean
 xfconf_init(GError **error)
 {
@@ -91,6 +101,13 @@ xfconf_init(GError **error)
     return TRUE;
 }
 
+/**
+ * xfconf_shutdown:
+ *
+ * Shuts down and frees any resources consumed by the Xfconf library.
+ * If xfconf_init() is called multiple times, xfconf_shutdown() must be
+ * called an equal number of times to shut down the library.
+ **/
 void
 xfconf_shutdown()
 {
