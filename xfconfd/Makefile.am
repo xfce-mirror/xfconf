@@ -37,6 +37,13 @@ xfconfd_LDADD = \
 	$(LIBXFCE4UTIL_LIBS)
 
 
+servicedir = $(datadir)/dbus-1/services
+service_in_files = org.xfce.Xfconf.service.in
+service_DATA = $(service_in_files:.service.in=.service)
+
+%.service: %.service.in
+	sed -e "s,\@bindir\@,$(bindir),g" < $< > $@
+
 if MAINTAINER_MODE
 
 xfconfd-dbus-server.h: $(top_srcdir)/common/xfconf-dbus.xml
@@ -47,4 +54,8 @@ endif
 
 EXTRA_DIST = \
 	xfconf-backend-perchannel-xml.c \
-	xfconf-backend-perchannel-xml.h
+	xfconf-backend-perchannel-xml.h \
+	$(service_in_files)
+
+DISTCLEANFILES = \
+	$(service_DATA)

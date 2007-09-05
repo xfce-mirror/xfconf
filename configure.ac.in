@@ -103,8 +103,8 @@ common/Makefile
 docs/Makefile
 docs/reference/Makefile
 docs/reference/version.xml
+po/Makefile.in
 xfconf/Makefile
 xfconf/libxfconf-0.pc
 xfconfd/Makefile
-po/Makefile.in
 ])
