@@ -142,6 +142,8 @@ xfconfd_get(XfconfDaemon *xfconfd,
             GValue *value,
             GError **error)
 {
+    /* FIXME: presumably, |value| leaks.  how do we fix this?  perhaps
+     * using the org.freedesktop.DBus.GLib.Async annotation? */
     return xfconf_backend_get(xfconfd->backend, channel, property, value, error);
 }
 
@@ -164,6 +166,9 @@ xfconfd_get_all(XfconfDaemon *xfconfd,
         g_hash_table_destroy(*properties);
         *properties = NULL;
     }
+    
+    /* FIXME: presumably, |*properties| leaks.  how do we fix this?  perhaps
+     * using the org.freedesktop.DBus.GLib.Async annotation? */
     
     return ret;
 }
