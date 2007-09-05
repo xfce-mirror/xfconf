@@ -40,6 +40,19 @@ static gboolean xfconfd_get(XfconfDaemon *xfconfd,
                             const gchar *property,
                             GValue *value,
                             GError **error);
+static gboolean xfconfd_get_all(XfconfDaemon *xfconfd,
+                                const gchar *channel,
+                                GHashTable **properties,
+                                GError **error);
+static gboolean xfconfd_exists(XfconfDaemon *xfconfd,
+                               const gchar *channel,
+                               const gchar *property,
+                               gboolean *exists,
+                               GError **error);
+static gboolean xfconfd_remove(XfconfDaemon *xfconfd,
+                               const gchar *channel,
+                               const gchar *property,
+                               GError **error);
 static gboolean xfconfd_show_list(XfconfDaemon *xfconfd,
                                   const gchar *display,
                                   GError **error);
@@ -130,6 +143,34 @@ xfconfd_get(XfconfDaemon *xfconfd,
             GError **error)
 {
     return xfconf_backend_get(xfconfd->backend, channel, property, value, error);
+}
+
+static gboolean
+xfconfd_get_all(XfconfDaemon *xfconfd,
+                const gchar *channel,
+                GHashTable **properties,
+                GError **error)
+{
+    return xfconf_backend_get_all(xfconfd->backend, channel, properties, error);
+}
+
+static gboolean
+xfconfd_exists(XfconfDaemon *xfconfd,
+               const gchar *channel,
+               const gchar *property,
+               gboolean *exists,
+               GError **error)
+{
+    return xfconf_backend_exists(xfconfd->backend, channel, property, exists, error);
+}
+
+static gboolean
+xfconfd_remove(XfconfDaemon *xfconfd,
+               const gchar *channel,
+               const gchar *property,
+               GError **error)
+{
+    return xfconf_backend_remove(xfconfd->backend, channel, property, error);
 }
 
 static gboolean

@@ -103,6 +103,49 @@ xfconf_backend_get(XfconfBackend *backend,
 }
 
 gboolean
+xfconf_backend_get_all(XfconfBackend *backend,
+                       const gchar *channel,
+                       GHashTable **properties,
+                       GError **error)
+{
+    XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
+    
+    g_return_val_if_fail(iface && iface->get_all && channel && properties
+                         && (!error || *error), FALSE);
+    
+    return iface->get_all(backend, channel, properties, error);
+}
+
+gboolean
+xfconf_backend_exists(XfconfBackend *backend,
+                      const gchar *channel,
+                      const gchar *property,
+                      gboolean *exists,
+                      GError **error)
+{
+    XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
+    
+    g_return_val_if_fail(iface && iface->exists && channel && property && exists
+                         && (!error || *error), FALSE);
+    
+    return iface->exists(backend, channel, property, exists, error);
+}
+
+gboolean
+xfconf_backend_remove(XfconfBackend *backend,
+                      const gchar *channel,
+                      const gchar *property,
+                      GError **error)
+{
+    XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
+    
+    g_return_val_if_fail(iface && iface->remove && channel && property
+                         && (!error || *error), FALSE);
+    
+    return iface->remove(backend, channel, property, error);
+}
+
+gboolean
 xfconf_backend_flush(XfconfBackend *backend,
                      GError **error)
 {

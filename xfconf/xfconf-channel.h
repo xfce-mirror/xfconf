@@ -37,50 +37,48 @@ GType xfconf_channel_get_type() G_GNUC_CONST;
 
 XfconfChannel *xfconf_channel_new(const gchar *channel_name);
 
-gboolean xfconf_channel_get_string(XfconfChannel *channel,
-                                   const gchar *property,
-                                   gchar **value);
+gboolean xfconf_channel_has_property(XfconfChannel *channel,
+                                     const gchar *property);
 
-gboolean xfconf_channel_get_string_list(XfconfChannel *channel,
-                                        const gchar *property,
-                                        gchar ***value);
+void xfconf_channel_remove_property(XfconfChannel *channel,
+                                    const gchar *property);
 
-gboolean xfconf_channel_get_int(XfconfChannel *channel,
+GHashTable *xfconf_channel_get_all(XfconfChannel *channel);
+
+gchar *xfconf_channel_get_string(XfconfChannel *channel,
+                                 const gchar *property,
+                                 const gchar *default_value);
+gchar **xfconf_channel_get_string_list(XfconfChannel *channel,
+                                       const gchar *property,
+                                       const gchar **default_value);
+gint xfconf_channel_get_int(XfconfChannel *channel,
+                            const gchar *property,
+                            gint default_value);
+gint64 xfconf_channel_get_int64(XfconfChannel *channel,
                                 const gchar *property,
-                                gint *value);
-
-gboolean xfconf_channel_get_int64(XfconfChannel *channel,
+                                gint64 default_value);
+gdouble xfconf_channel_get_double(XfconfChannel *channel,
                                   const gchar *property,
-                                  gint64 *value);
-
-gboolean xfconf_channel_get_double(XfconfChannel *channel,
-                                   const gchar *property,
-                                   gdouble *value);
-
+                                  gdouble default_value);
 gboolean xfconf_channel_get_bool(XfconfChannel *channel,
                                  const gchar *property,
-                                 gboolean *value);
+                                 gboolean default_value);
 
 gboolean xfconf_channel_set_string(XfconfChannel *channel,
                                    const gchar *property,
                                    const gchar *value);
-
 gboolean xfconf_channel_set_string_list(XfconfChannel *channel,
                                         const gchar *property,
                                         const gchar **value);
-
 gboolean xfconf_channel_set_int(XfconfChannel *channel,
                                 const gchar *property,
                                 gint value);
-
 gboolean xfconf_channel_set_int64(XfconfChannel *channel,
                                   const gchar *property,
                                   gint64 value);
-
 gboolean xfconf_channel_set_double(XfconfChannel *channel,
                                    const gchar *property,
                                    gdouble value);
-
 gboolean xfconf_channel_set_bool(XfconfChannel *channel,
                                  const gchar *property,
                                  gboolean value);

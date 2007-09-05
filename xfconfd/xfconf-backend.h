@@ -53,6 +53,22 @@ struct _XfconfBackendInterface
                     GValue *value,
                     GError **error);
     
+    gboolean (*get_all)(XfconfBackend *backend,
+                        const gchar *channel,
+                        GHashTable **properties,
+                        GError **error);
+    
+    gboolean (*exists)(XfconfBackend *backend,
+                       const gchar *channel,
+                       const gchar *property,
+                       gboolean *exists,
+                       GError **error);
+    
+    gboolean (*remove)(XfconfBackend *backend,
+                       const gchar *channel,
+                       const gchar *property,
+                       GError **error);
+    
     gboolean (*flush)(XfconfBackend *backend,
                       GError **error);
     
@@ -74,12 +90,28 @@ gboolean xfconf_backend_set(XfconfBackend *backend,
                             const gchar *property,
                             const GValue *value,
                             GError **error);
-    
+
 gboolean xfconf_backend_get(XfconfBackend *backend,
                             const gchar *channel,
                             const gchar *property,
                             GValue *value,
                             GError **error);
+
+gboolean xfconf_backend_get_all(XfconfBackend *backend,
+                                const gchar *channel,
+                                GHashTable **properties,
+                                GError **error);
+
+gboolean xfconf_backend_exists(XfconfBackend *backend,
+                               const gchar *channel,
+                               const gchar *property,
+                               gboolean *exists,
+                               GError **error);
+
+gboolean xfconf_backend_remove(XfconfBackend *backend,
+                               const gchar *channel,
+                               const gchar *property,
+                               GError **error);
 
 gboolean xfconf_backend_flush(XfconfBackend *backend,
                               GError **error);

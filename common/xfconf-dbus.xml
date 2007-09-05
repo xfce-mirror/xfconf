@@ -37,6 +37,54 @@
         </method>
         
         <!--
+             Array{String,Variant} org.xfce.Xfconf.GetAll(String channel)
+             
+             @channel: A channel/application/namespace name.
+             
+             Gets all the properties and values that exist in
+             @channel.
+             
+             Returns: An array of properties and values; the
+                      properties are strings, and the values are 
+                      variants.
+        -->
+        <method name="GetAll">
+            <arg direction="in" name="channel" type="s"/>
+            <arg direction="out" name="properties" type="a{sv}"/>
+        </method>
+        
+        <!--
+             Boolean org.xfce.Xfconf.Exists(String channel,
+                                            String property)
+             
+             @channel: A channel/application/namespace name.
+             @property: A property name.
+             
+             Checks to see if @property exists in @channel.
+             
+             Returns: %TRUE if @property exists, %FALSE if not.
+        -->
+        <method name="Exists">
+            <arg direction="in" name="channel" type="s"/>
+            <arg direction="in" name="property" type="s"/>
+            <arg direction="out" name="exists" type="b"/>
+        </method>
+        
+        <!--
+             void org.xfce.Xfconf.Remove(String channel,
+                                         String property)
+             
+             @channel: A channel/application/namespace name.
+             @property: A property name.
+             
+             Removes @property and its value from @channel.
+        -->
+        <method name="Remove">
+            <arg direction="in" name="channel" type="s"/>
+            <arg direction="in" name="property" type="s"/>
+        </method>
+        
+        <!--
              void org.xfce.Xfconf.Changed(String channel,
                                           String property)
              

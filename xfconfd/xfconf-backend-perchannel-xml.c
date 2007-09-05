@@ -57,6 +57,19 @@ static gboolean xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
                                                   const gchar *property,
                                                   GValue *value,
                                                   GError **error);
+static gboolean xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
+                                                      const gchar *channel,
+                                                      GHashTable **properties,
+                                                      GError **error);
+static gboolean xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
+                                                     const gchar *channel,
+                                                     const gchar *property,
+                                                     gboolean *exists,
+                                                     GError **error);
+static gboolean xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
+                                                     const gchar *channel,
+                                                     const gchar *property,
+                                                     GError **error);
 static gboolean xfconf_backend_perchannel_xml_flush(XfconfBackend *backend,
                                                     GError **error);
 
@@ -92,6 +105,9 @@ xfconf_backend_perchannel_xml_backend_init(XfconfBackendInterface *iface)
     iface->initialize = xfconf_backend_perchannel_xml_initialize;
     iface->set = xfconf_backend_perchannel_xml_set;
     iface->get = xfconf_backend_perchannel_xml_get;
+    iface->get_all = xfconf_backend_perchannel_xml_get_all;
+    iface->exists = xfconf_backend_perchannel_xml_exists;
+    iface->remove = xfconf_backend_perchannel_xml_remove;
     iface->flush = xfconf_backend_perchannel_xml_flush;
 }
 
@@ -134,6 +150,34 @@ xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
                                   const gchar *property,
                                   GValue *value,
                                   GError **error)
+{
+    return FALSE;
+}
+
+static gboolean
+xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
+                                      const gchar *channel,
+                                      GHashTable **properties,
+                                      GError **error)
+{
+    return FALSE;
+}
+
+static gboolean
+xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
+                                     const gchar *channel,
+                                     const gchar *property,
+                                     gboolean *exists,
+                                     GError **error)
+{
+    return FALSE;
+}
+
+static gboolean
+xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
+                                     const gchar *channel,
+                                     const gchar *property,
+                                     GError **error)
 {
     return FALSE;
 }
