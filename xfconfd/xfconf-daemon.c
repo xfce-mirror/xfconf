@@ -151,7 +151,21 @@ xfconfd_get_all(XfconfDaemon *xfconfd,
                 GHashTable **properties,
                 GError **error)
 {
-    return xfconf_backend_get_all(xfconfd->backend, channel, properties, error);
+    gboolean ret;
+    
+    g_return_val_if_fail(properties && !*properties, FALSE);
+    
+    *properties = g_hash_table_new_full(g_str_hash, g_str_equal,
+                                        (GDestroyNotify)g_free,
+                                        (GDestroyNotify)g_value_unset);
+    
+    ret = xfconf_backend_get_all(xfconfd->backend, channel, *properties, error);
+    if(!ret) {
+        g_hash_table_destroy(*properties);
+        *properties = NULL;
+    }
+    
+    return ret;
 }
 
 static gboolean

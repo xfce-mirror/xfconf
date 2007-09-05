@@ -59,7 +59,7 @@ static gboolean xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
                                                   GError **error);
 static gboolean xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
                                                       const gchar *channel,
-                                                      GHashTable **properties,
+                                                      GHashTable *properties,
                                                       GError **error);
 static gboolean xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
                                                      const gchar *channel,
@@ -157,7 +157,7 @@ xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
 static gboolean
 xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
                                       const gchar *channel,
-                                      GHashTable **properties,
+                                      GHashTable *properties,
                                       GError **error)
 {
     return FALSE;

@@ -105,7 +105,7 @@ xfconf_backend_get(XfconfBackend *backend,
 gboolean
 xfconf_backend_get_all(XfconfBackend *backend,
                        const gchar *channel,
-                       GHashTable **properties,
+                       GHashTable *properties,
                        GError **error)
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);

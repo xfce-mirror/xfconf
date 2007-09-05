@@ -38,40 +38,135 @@ struct _XfconfBackendInterface
 {
     GTypeInterface parent;
     
+    /**
+     * XfconfBackendInterface::initialize:
+     * @backend: The #XfconfBackend.
+     * @error: An error return.
+     *
+     * Does any pre-initialization that the backend needs to function.
+     *
+     * Return value: The backend should return %TRUE if initialization
+     *               was successful, or %FALSE otherwise.  On %FALSE,
+     *               @error should be set to a description of the failure.
+     **/
     gboolean (*initialize)(XfconfBackend *backend,
                            GError **error);
     
+    /**
+     * XfconfBackendInterface::set:
+     * @backend: The #XfconfBackend.
+     * @channel: A channel name.
+     * @property: A property name.
+     * @value: A value.
+     * @error: An error return.
+     *
+     * Sets the variant @value for @property on @channel.
+     *
+     * Return value: The backend should return %TRUE if the operation
+     *               was successful, or %FALSE otherwise.  On %FALSE,
+     *               @error should be set to a description of the failure.
+     **/
     gboolean (*set)(XfconfBackend *backend,
                     const gchar *channel,
                     const gchar *property,
                     const GValue *value,
                     GError **error);
     
+    /**
+     * XfconfBackendInterface::get:
+     * @backend: The #XfconfBackend.
+     * @channel: A channel name.
+     * @property: A property name.
+     * @value: A #GValue return.
+     * @error: An error return.
+     *
+     * Gets the value of @property on @channel and stores it in @value.
+     *
+     * Return value: The backend should return %TRUE if the operation
+     *               was successful, or %FALSE otherwise.  On %FALSE,
+     *               @error should be set to a description of the failure.
+     **/
     gboolean (*get)(XfconfBackend *backend,
                     const gchar *channel,
                     const gchar *property,
                     GValue *value,
                     GError **error);
     
+    /**
+     * XfconfBackendInterface::get_all:
+     * @backend: The #XfconfBackend.
+     * @channel: A channel name.
+     * @properties: A #GHashTable.
+     * @error: An error return.
+     *
+     * Gets all properties and values on @channel and stores them in
+     * @properties, which is already initialized to hold #gchar* keys and
+     * #GValue<!-- -->* values.
+     *
+     * Return value: The backend should return %TRUE if the operation
+     *               was successful, or %FALSE otherwise.  On %FALSE,
+     *               @error should be set to a description of the failure.
+     **/
     gboolean (*get_all)(XfconfBackend *backend,
                         const gchar *channel,
-                        GHashTable **properties,
+                        GHashTable *properties,
                         GError **error);
     
+    /**
+     * XfconfBackendInterface::exists:
+     * @backend: The #XfconfBackend.
+     * @channel: A channel name.
+     * @property: A property name.
+     * @exists: A boolean return.
+     * @error: An error return.
+     *
+     * Checks to see if @property exists on @channel, and stores %TRUE or
+     * %FALSE in @exists.
+     *
+     * Return value: The backend should return %TRUE if the operation
+     *               was successful, or %FALSE otherwise.  On %FALSE,
+     *               @error should be set to a description of the failure.
+     **/
     gboolean (*exists)(XfconfBackend *backend,
                        const gchar *channel,
                        const gchar *property,
                        gboolean *exists,
                        GError **error);
     
+    /**
+     * XfconfBackendInterface::remove:
+     * @backend: The #XfconfBackend.
+     * @channel: A channel name.
+     * @property: A property name.
+     * @error: An error return.
+     *
+     * Removes the property identified by @property from @channel.
+     *
+     * Return value: The backend should return %TRUE if the operation
+     *               was successful, or %FALSE otherwise.  On %FALSE,
+     *               @error should be set to a description of the failure.
+     **/
     gboolean (*remove)(XfconfBackend *backend,
                        const gchar *channel,
                        const gchar *property,
                        GError **error);
     
+    /**
+     * XfconfBackendInterface::flush
+     * @backend: The #XfconfBackend.
+     * @error: An error return.
+     *
+     * For backends that support persistent storage, ensures that all
+     * configuration data stored in memory is saved to persistent storage.
+     *
+     * Return value: The backend should return %TRUE if the operation
+     *               was successful, or %FALSE otherwise.  On %FALSE,
+     *               @error should be set to a description of the failure.
+     **/
     gboolean (*flush)(XfconfBackend *backend,
                       GError **error);
     
+    /*< reserved for future expansion >*/
     void (*_xb_reserved0)();
     void (*_xb_reserved1)();
     void (*_xb_reserved2)();
@@ -99,7 +194,7 @@ gboolean xfconf_backend_get(XfconfBackend *backend,
 
 gboolean xfconf_backend_get_all(XfconfBackend *backend,
                                 const gchar *channel,
-                                GHashTable **properties,
+                                GHashTable *properties,
                                 GError **error);
 
 gboolean xfconf_backend_exists(XfconfBackend *backend,
