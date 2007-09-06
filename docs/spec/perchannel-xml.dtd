@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT channel property*>
+<!ELEMENT property string*>  <!-- <string> elems only if type="strlist" -->
+<!ELEMENT string #PCDATA>
+
+<!ATTLIST channel name CDATA #REQUIRED>
+<!ATTLIST channel version CDATA #REQUIRED>
+
+<!ATTLIST property name CDATA #REQUIRED>
+<!ATTLIST property type (string|strlist|int|int64|double|bool|empty) #REQUIRED>
+<!ATTLIST property value CDATA #IMPLIED>  <!-- not used if type="strlist"
+                                               or type="empty" -->
+
+<!-- <string> element has no attributes -->
