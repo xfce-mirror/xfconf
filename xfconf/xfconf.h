@@ -22,6 +22,8 @@
 
 #include <glib.h>
 
+#define XFCONF_IN_XFCONF_H
+
 #include <xfconf/xfconf-channel.h>
 
 G_BEGIN_DECLS

@@ -20,6 +20,10 @@
 #ifndef __XFCONF_CHANNEL_H__
 #define __XFCONF_CHANNEL_H__
 
+#if !defined(LIBXFCONF_COMPILATION) && !defined(XFCONF_IN_XFCONF_H)
+#error "Do not include xfconf-channel.h, as this file may change or disappear in the future.  Include <xfconf/xfconf.h> instead."
+#endif
+
 #include <glib-object.h>
 
 #define XFCONF_TYPE_CHANNEL             (xfconf_channel_get_type())
