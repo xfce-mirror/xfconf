@@ -615,7 +615,7 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
         goto out;
     
     if(fputs("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n", fp) == EOF
-       || fprintf(fp, "<channel name=\"%s\" version=\"1\">\n", channel) < 0)
+       || fprintf(fp, "<channel name=\"%s\" version=\"0.1\">\n", channel) < 0)
     {
         goto out;
     }
