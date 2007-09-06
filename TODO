@@ -1,0 +1,13 @@
+* add kiosk/locking mechanism
+* perchannel-xml backend should look in all $XDG_CONFIG_DIRS and
+  overlay user settings on top of system settings
+* store config entries in perchannel-xml backend as a real tree rather than
+  flattened (?)
+* implement config store reading for perchannel-xml backend
+* transaction support (?)
+* unit tests
+* MCS settings migration code
+* figure out how to let libxfconf know about the XfconfBackendError enum --
+  maybe just rename to XfconfError and move to common/
+
+* separate XSETTINGS daemon that reads values from xfconfd
