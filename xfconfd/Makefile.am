@@ -44,18 +44,27 @@ service_DATA = $(service_in_files:.service.in=.service)
 %.service: %.service.in
 	sed -e "s,\@bindir\@,$(bindir),g" < $< > $@
 
-if MAINTAINER_MODE
-
-xfconf-dbus-server.h: $(top_srcdir)/common/xfconf-dbus.xml
-	dbus-binding-tool --mode=glib-server --prefix=xfconf $< > $@
-
-endif
-
+DISTCLEANFILES = \
+	$(service_DATA)
 
 EXTRA_DIST = \
 	xfconf-backend-perchannel-xml.c \
 	xfconf-backend-perchannel-xml.h \
 	$(service_in_files)
 
-DISTCLEANFILES = \
-	$(service_DATA)
+
+if MAINTAINER_MODE
+
+xfconf_built_sources = \
+	xfconf-dbus-server.h
+
+DISTCLEANFILES += \
+	$(xfconf_built_sources)
+
+BUILT_SOURCES = \
+	$(xfconf_built_sources)
+
+xfconf-dbus-server.h: $(top_srcdir)/common/xfconf-dbus.xml
+	dbus-binding-tool --mode=glib-server --prefix=xfconf $< > $@
+
+endif

@@ -21,9 +21,13 @@
 #include <config.h>
 #endif
 
+#include <dbus/dbus-glib.h>
+
 #include "xfconf-backend.h"
 
 static GQuark error_quark = 0;
+
+static void xfconf_backend_base_init(gpointer g_class);
 
 
 /**
@@ -58,6 +62,32 @@ xfconf_backend_get_error_quark()
     return error_quark;
 }
 
+/* unfortunately glib-mkenums can't generate types that are compatible with
+ * dbus error names -- the 'nick' value is used, which can have dashes in it,
+ * which dbus doesn't like. */
+GType
+xfconf_backend_error_get_type()
+{
+    static GType type = 0;
+    
+    if(!type) {
+        static const GEnumValue values[] = {
+            { XFCONF_BACKEND_ERROR_UNKNOWN, "XFCONF_BACKEND_ERROR_UNKNOWN", "Unknown" },
+            { XFCONF_BACKEND_ERROR_CHANNEL_NOT_FOUND, "XFCONF_BACKEND_ERROR_CHANNEL_NOT_FOUND", "ChannelNotFound" },
+            { XFCONF_BACKEND_ERROR_PROPERTY_NOT_FOUND, "XFCONF_BACKEND_ERROR_PROPERTY_NOT_FOUND", "PropertyNotFound" },
+            { XFCONF_BACKEND_ERROR_READ_FAILURE, "XFCONF_BACKEND_ERROR_READ_FAILURE", "ReadFailure" },
+            { XFCONF_BACKEND_ERROR_WRITE_FAILURE, "XFCONF_BACKEND_ERROR_WRITE_FAILURE", "WriteFailure" },
+            { XFCONF_BACKEND_ERROR_INTERNAL_ERROR, "XFCONF_BACKEND_ERROR_INTERNAL_ERROR", "InternalError" },
+            { 0, NULL, NULL }
+        };
+        
+        type = g_enum_register_static("XfconfBackendError", values);
+    }
+    
+    return type;
+}
+
+
 GType
 xfconf_backend_get_type()
 {
@@ -66,7 +96,7 @@ xfconf_backend_get_type()
     if(!backend_type) {
         static const GTypeInfo backend_info = {
             sizeof(XfconfBackendInterface),
-            NULL,
+            xfconf_backend_base_init,
             NULL,
             NULL,
             NULL,
@@ -82,6 +112,22 @@ xfconf_backend_get_type()
     }
     
     return backend_type;
+}
+
+
+
+static void
+xfconf_backend_base_init(gpointer g_class)
+{
+    static gboolean _inited = FALSE;
+    
+    if(!_inited) {
+        dbus_g_error_domain_register(XFCONF_BACKEND_ERROR,
+                                     "org.xfce.Xfconf.BackendError",
+                                     XFCONF_TYPE_BACKEND_ERROR);
+        
+        _inited = TRUE;
+    }
 }
 
 
@@ -103,7 +149,8 @@ xfconf_backend_initialize(XfconfBackend *backend,
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
     
-    g_return_val_if_fail(iface && iface->initialize, FALSE);
+    xfconf_backend_return_val_if_fail(iface && iface->initialize
+                                      && (!error || !*error), FALSE);
     
     return iface->initialize(backend, error);
 }
@@ -131,8 +178,9 @@ xfconf_backend_set(XfconfBackend *backend,
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
     
-    g_return_val_if_fail(iface && iface->set && channel && property && value
-                         && (!error || *error), FALSE);
+    xfconf_backend_return_val_if_fail(iface && iface->set && channel && *channel
+                                      && property && *property
+                                      && value && (!error || !*error), FALSE);
     
     return iface->set(backend, channel, property, value, error);
 }
@@ -160,8 +208,9 @@ xfconf_backend_get(XfconfBackend *backend,
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
     
-    g_return_val_if_fail(iface && iface->get && channel && property && value
-                         && (!error || *error), FALSE);
+    xfconf_backend_return_val_if_fail(iface && iface->get && channel && *channel
+                                      && property && *property
+                                      && value && (!error || !*error), FALSE);
     
     return iface->get(backend, channel, property, value, error);
 }
@@ -189,8 +238,9 @@ xfconf_backend_get_all(XfconfBackend *backend,
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
     
-    g_return_val_if_fail(iface && iface->get_all && channel && properties
-                         && (!error || *error), FALSE);
+    xfconf_backend_return_val_if_fail(iface && iface->get_all && channel
+                                      && *channel && properties
+                                      && (!error || !*error), FALSE);
     
     return iface->get_all(backend, channel, properties, error);
 }
@@ -219,8 +269,10 @@ xfconf_backend_exists(XfconfBackend *backend,
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
     
-    g_return_val_if_fail(iface && iface->exists && channel && property && exists
-                         && (!error || *error), FALSE);
+    xfconf_backend_return_val_if_fail(iface && iface->exists && channel
+                                      && *channel && property && *property
+                                      && exists
+                                      && (!error || !*error), FALSE);
     
     return iface->exists(backend, channel, property, exists, error);
 }
@@ -246,8 +298,9 @@ xfconf_backend_remove(XfconfBackend *backend,
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
     
-    g_return_val_if_fail(iface && iface->remove && channel && property
-                         && (!error || *error), FALSE);
+    xfconf_backend_return_val_if_fail(iface && iface->remove && channel
+                                      && *channel && property && *property
+                                      && (!error || !*error), FALSE);
     
     return iface->remove(backend, channel, property, error);
 }
@@ -271,8 +324,9 @@ xfconf_backend_remove_channel(XfconfBackend *backend,
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
     
-    g_return_val_if_fail(iface && iface->remove_channel && channel
-                         && (!error || *error), FALSE);
+    xfconf_backend_return_val_if_fail(iface && iface->remove_channel && channel
+                                      && *channel
+                                      && (!error || !*error), FALSE);
     
     return iface->remove_channel(backend, channel, error);
 }
@@ -295,7 +349,8 @@ xfconf_backend_flush(XfconfBackend *backend,
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
     
-    g_return_val_if_fail(iface && iface->flush && (!error || *error), FALSE);
+    xfconf_backend_return_val_if_fail(iface && iface->flush
+                                      && (!error || !*error), FALSE);
     
     return iface->flush(backend, error);
 }

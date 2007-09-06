@@ -28,7 +28,7 @@
 #include "xfconf-backend-factory.h"
 #include "xfconf-backend.h"
 #include "xfconf-marshal.h"
-
+#include "xfconf-util.h"
 
 static gboolean xfconf_set_property(XfconfDaemon *xfconfd,
                                     const gchar *channel,
@@ -96,9 +96,9 @@ xfconf_daemon_class_init(XfconfDaemonClass *klass)
     
     object_class->finalize = xfconf_daemon_finalize;
     
-    g_signal_new("changed", XFCONF_TYPE_DAEMON, G_SIGNAL_RUN_LAST, 0, NULL,
-                 NULL, xfconf_marshal_VOID__STRING_STRING, G_TYPE_NONE, 2,
-                 G_TYPE_STRING, G_TYPE_STRING);
+    g_signal_new("property-changed", XFCONF_TYPE_DAEMON, G_SIGNAL_RUN_LAST, 0,
+                 NULL, NULL, xfconf_marshal_VOID__STRING_STRING, G_TYPE_NONE,
+                 2, G_TYPE_STRING, G_TYPE_STRING);
     
     dbus_g_object_type_install_info(G_TYPE_FROM_CLASS(klass),
                                     &dbus_glib_xfconf_object_info);
@@ -162,7 +162,7 @@ xfconf_get_all_properties(XfconfDaemon *xfconfd,
     
     *properties = g_hash_table_new_full(g_str_hash, g_str_equal,
                                         (GDestroyNotify)g_free,
-                                        (GDestroyNotify)g_value_unset);
+                                        (GDestroyNotify)xfconf_g_value_free);
     
     ret = xfconf_backend_get_all(xfconfd->backend, channel, *properties, error);
     if(!ret) {
