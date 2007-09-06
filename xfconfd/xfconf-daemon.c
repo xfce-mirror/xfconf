@@ -30,41 +30,41 @@
 #include "xfconf-marshal.h"
 
 
-static gboolean xfconfd_set_property(XfconfDaemon *xfconfd,
-                                     const gchar *channel,
-                                     const gchar *property,
-                                     const GValue *value,
-                                     GError **error);
-static gboolean xfconfd_get_property(XfconfDaemon *xfconfd,
-                                     const gchar *channel,
-                                     const gchar *property,
-                                     GValue *value,
-                                     GError **error);
-static gboolean xfconfd_get_all_properties(XfconfDaemon *xfconfd,
-                                           const gchar *channel,
-                                           GHashTable **properties,
-                                           GError **error);
-static gboolean xfconfd_property_exists(XfconfDaemon *xfconfd,
-                                        const gchar *channel,
-                                        const gchar *property,
-                                        gboolean *exists,
-                                        GError **error);
-static gboolean xfconfd_remove_property(XfconfDaemon *xfconfd,
-                                        const gchar *channel,
-                                        const gchar *property,
-                                        GError **error);
-static gboolean xfconfd_remove_channel(XfconfDaemon *xfconfd,
-                                       const gchar *channel,
-                                       GError **error);
-static gboolean xfconfd_show_list(XfconfDaemon *xfconfd,
-                                  const gchar *display,
-                                  GError **error);
-static gboolean xfconfd_show_plugin(XfconfDaemon *xfconfd,
-                                    const gchar *display,
-                                    const gchar *name,
+static gboolean xfconf_set_property(XfconfDaemon *xfconfd,
+                                    const gchar *channel,
+                                    const gchar *property,
+                                    const GValue *value,
                                     GError **error);
+static gboolean xfconf_get_property(XfconfDaemon *xfconfd,
+                                    const gchar *channel,
+                                    const gchar *property,
+                                    GValue *value,
+                                    GError **error);
+static gboolean xfconf_get_all_properties(XfconfDaemon *xfconfd,
+                                          const gchar *channel,
+                                          GHashTable **properties,
+                                          GError **error);
+static gboolean xfconf_property_exists(XfconfDaemon *xfconfd,
+                                       const gchar *channel,
+                                       const gchar *property,
+                                       gboolean *exists,
+                                       GError **error);
+static gboolean xfconf_remove_property(XfconfDaemon *xfconfd,
+                                       const gchar *channel,
+                                       const gchar *property,
+                                       GError **error);
+static gboolean xfconf_remove_channel(XfconfDaemon *xfconfd,
+                                      const gchar *channel,
+                                      GError **error);
+static gboolean xfconf_gui_show_list(XfconfDaemon *xfconfd,
+                                     const gchar *display,
+                                     GError **error);
+static gboolean xfconf_gui_show_plugin(XfconfDaemon *xfconfd,
+                                       const gchar *display,
+                                       const gchar *name,
+                                       GError **error);
 
-#include "xfconfd-dbus-server.h"
+#include "xfconf-dbus-server.h"
 
 struct _XfconfDaemon
 {
@@ -101,7 +101,7 @@ xfconf_daemon_class_init(XfconfDaemonClass *klass)
                  G_TYPE_STRING, G_TYPE_STRING);
     
     dbus_g_object_type_install_info(G_TYPE_FROM_CLASS(klass),
-                                    &dbus_glib_xfconfd_object_info);
+                                    &dbus_glib_xfconf_object_info);
 }
 
 static void
@@ -129,21 +129,21 @@ xfconf_daemon_finalize(GObject *obj)
 
 
 static gboolean
-xfconfd_set_property(XfconfDaemon *xfconfd,
-                     const gchar *channel,
-                     const gchar *property,
-                     const GValue *value,
-                     GError **error)
+xfconf_set_property(XfconfDaemon *xfconfd,
+                    const gchar *channel,
+                    const gchar *property,
+                    const GValue *value,
+                    GError **error)
 {
     return xfconf_backend_set(xfconfd->backend, channel, property, value, error);
 }
 
 static gboolean
-xfconfd_get_property(XfconfDaemon *xfconfd,
-                     const gchar *channel,
-                     const gchar *property,
-                     GValue *value,
-                     GError **error)
+xfconf_get_property(XfconfDaemon *xfconfd,
+                    const gchar *channel,
+                    const gchar *property,
+                    GValue *value,
+                    GError **error)
 {
     /* FIXME: presumably, |value| leaks.  how do we fix this?  perhaps
      * using the org.freedesktop.DBus.GLib.Async annotation? */
@@ -151,10 +151,10 @@ xfconfd_get_property(XfconfDaemon *xfconfd,
 }
 
 static gboolean
-xfconfd_get_all_properties(XfconfDaemon *xfconfd,
-                           const gchar *channel,
-                           GHashTable **properties,
-                           GError **error)
+xfconf_get_all_properties(XfconfDaemon *xfconfd,
+                          const gchar *channel,
+                          GHashTable **properties,
+                          GError **error)
 {
     gboolean ret;
     
@@ -177,36 +177,36 @@ xfconfd_get_all_properties(XfconfDaemon *xfconfd,
 }
 
 static gboolean
-xfconfd_property_exists(XfconfDaemon *xfconfd,
-                        const gchar *channel,
-                        const gchar *property,
-                        gboolean *exists,
-                        GError **error)
+xfconf_property_exists(XfconfDaemon *xfconfd,
+                       const gchar *channel,
+                       const gchar *property,
+                       gboolean *exists,
+                       GError **error)
 {
     return xfconf_backend_exists(xfconfd->backend, channel, property, exists, error);
 }
 
 static gboolean
-xfconfd_remove_property(XfconfDaemon *xfconfd,
-                        const gchar *channel,
-                        const gchar *property,
-                        GError **error)
+xfconf_remove_property(XfconfDaemon *xfconfd,
+                       const gchar *channel,
+                       const gchar *property,
+                       GError **error)
 {
     return xfconf_backend_remove(xfconfd->backend, channel, property, error);
 }
 
 static gboolean
-xfconfd_remove_channel(XfconfDaemon *xfconfd,
-                       const gchar *channel,
-                       GError **error)
+xfconf_remove_channel(XfconfDaemon *xfconfd,
+                      const gchar *channel,
+                      GError **error)
 {
     return xfconf_backend_remove_channel(xfconfd->backend, channel, error);
 }
 
 static gboolean
-xfconfd_show_list(XfconfDaemon *xfconfd,
-                  const gchar *display,
-                  GError **error)
+xfconf_gui_show_list(XfconfDaemon *xfconfd,
+                     const gchar *display,
+                     GError **error)
 {
     gchar *command;
     gboolean ret;
@@ -225,10 +225,10 @@ xfconfd_show_list(XfconfDaemon *xfconfd,
 }
 
 static gboolean
-xfconfd_show_plugin(XfconfDaemon *xfconfd,
-                    const gchar *display,
-                    const gchar *name,
-                    GError **error)
+xfconf_gui_show_plugin(XfconfDaemon *xfconfd,
+                       const gchar *display,
+                       const gchar *name,
+                       GError **error)
 {
     gchar *command;
     gboolean ret;

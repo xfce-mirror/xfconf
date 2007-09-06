@@ -2,6 +2,7 @@
 
 <node name="/org/xfce/Xfconf">
     <interface name="org.xfce.Xfconf">
+        <annotation name="org.freedesktop.DBus.GLib.CSymbol" value="xfconf"/>
     
         <!--
              void org.xfce.Xfconf.SetProperty(String channel,
@@ -111,6 +112,9 @@
     </interface>
     
     <interface name="org.xfce.Xfconf.GUI">
+        <annotation name="org.freedesktop.DBus.GLib.CSymbol"
+                    value="xfconf_gui"/>
+        
         <!--
              void org.xfce.Xfconf.GUI.ShowList(String display)
              

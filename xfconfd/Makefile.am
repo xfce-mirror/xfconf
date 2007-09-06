@@ -17,7 +17,7 @@ xfconfd_SOURCES = \
 	xfconf-backend.h \
 	xfconf-daemon.c \
 	xfconf-daemon.h \
-	xfconfd-dbus-server.h \
+	xfconf-dbus-server.h \
 	$(xfconf_backend_sources)
 
 xfconfd_CFLAGS = \
@@ -46,8 +46,8 @@ service_DATA = $(service_in_files:.service.in=.service)
 
 if MAINTAINER_MODE
 
-xfconfd-dbus-server.h: $(top_srcdir)/common/xfconf-dbus.xml
-	dbus-binding-tool --mode=glib-server --prefix=xfconfd $< > $@
+xfconf-dbus-server.h: $(top_srcdir)/common/xfconf-dbus.xml
+	dbus-binding-tool --mode=glib-server --prefix=xfconf $< > $@
 
 endif
 
