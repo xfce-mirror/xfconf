@@ -70,6 +70,9 @@ static gboolean xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
                                                      const gchar *channel,
                                                      const gchar *property,
                                                      GError **error);
+static gboolean xfconf_backend_perchannel_xml_remove_channel(XfconfBackend *backend,
+                                                             const gchar *channel,
+                                                             GError **error);
 static gboolean xfconf_backend_perchannel_xml_flush(XfconfBackend *backend,
                                                     GError **error);
 
@@ -108,6 +111,7 @@ xfconf_backend_perchannel_xml_backend_init(XfconfBackendInterface *iface)
     iface->get_all = xfconf_backend_perchannel_xml_get_all;
     iface->exists = xfconf_backend_perchannel_xml_exists;
     iface->remove = xfconf_backend_perchannel_xml_remove;
+    iface->remove_channel = xfconf_backend_perchannel_xml_remove_channel;
     iface->flush = xfconf_backend_perchannel_xml_flush;
 }
 
@@ -178,6 +182,14 @@ xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
                                      const gchar *channel,
                                      const gchar *property,
                                      GError **error)
+{
+    return FALSE;
+}
+
+static gboolean
+xfconf_backend_perchannel_xml_remove_channel(XfconfBackend *backend,
+                                             const gchar *channel,
+                                             GError **error)
 {
     return FALSE;
 }

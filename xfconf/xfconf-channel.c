@@ -219,7 +219,8 @@ xfconf_channel_get_internal(XfconfChannel *channel,
     
     g_value_init(value, property_type);
     
-    ret = xfconf_client_get(proxy, channel->channel_name, property, value, NULL);
+    ret = xfconf_client_get_property(proxy, channel->channel_name, property,
+                                     value, NULL);
     if(!ret)
         g_value_unset(value);
     
@@ -268,8 +269,8 @@ xfconf_channel_has_property(XfconfChannel *channel,
     DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
     gboolean exists = FALSE;
     
-    if(!xfconf_client_exists(proxy, channel->channel_name, property,
-                             &exists, NULL))
+    if(!xfconf_client_property_exists(proxy, channel->channel_name, property,
+                                      &exists, NULL))
     {
         return FALSE;
     }
@@ -290,7 +291,8 @@ xfconf_channel_remove_property(XfconfChannel *channel,
 {
     DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
     
-    xfconf_client_remove(proxy, channel->channel_name, property, NULL);
+    xfconf_client_remove_property(proxy, channel->channel_name, property,
+                                  NULL);
 }
 
 /**
@@ -311,8 +313,11 @@ xfconf_channel_get_all(XfconfChannel *channel)
     DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
     GHashTable *properties = NULL;
     
-    if(!xfconf_client_get_all(proxy, channel->channel_name, &properties, NULL))
+    if(!xfconf_client_get_all_properties(proxy, channel->channel_name,
+       &properties, NULL))
+    {
         return NULL;
+    }
     
     return properties;
 }
@@ -534,7 +539,8 @@ xfconf_channel_set_string(XfconfChannel *channel,
     g_value_init(&val, G_TYPE_STRING);
     g_value_set_string(&val, value);
     
-    ret = xfconf_client_set(proxy, channel->channel_name, property, &val, NULL);
+    ret = xfconf_client_set_property(proxy, channel->channel_name, property,
+                                     &val, NULL);
     
     g_value_unset(&val);
     
@@ -574,7 +580,8 @@ xfconf_channel_set_string_list(XfconfChannel *channel,
     g_value_init(&val, dbus_g_type_get_collection("GPtrArray", G_TYPE_STRING));
     g_value_set_boxed(&val, arr);
     
-    ret = xfconf_client_set(proxy, channel->channel_name, property, &val, NULL);
+    ret = xfconf_client_set_property(proxy, channel->channel_name, property,
+                                     &val, NULL);
     
     g_value_unset(&val);
     g_ptr_array_free(arr, TRUE);
@@ -606,7 +613,8 @@ xfconf_channel_set_int(XfconfChannel *channel,
     g_value_init(&val, G_TYPE_INT);
     g_value_set_int(&val, value);
     
-    ret = xfconf_client_set(proxy, channel->channel_name, property, &val, NULL);
+    ret = xfconf_client_set_property(proxy, channel->channel_name, property,
+                                     &val, NULL);
     
     g_value_unset(&val);
     
@@ -637,7 +645,8 @@ xfconf_channel_set_int64(XfconfChannel *channel,
     g_value_init(&val, G_TYPE_INT64);
     g_value_set_int64(&val, value);
     
-    ret = xfconf_client_set(proxy, channel->channel_name, property, &val, NULL);
+    ret = xfconf_client_set_property(proxy, channel->channel_name, property,
+                                     &val, NULL);
     
     g_value_unset(&val);
     
@@ -668,7 +677,8 @@ xfconf_channel_set_double(XfconfChannel *channel,
     g_value_init(&val, G_TYPE_DOUBLE);
     g_value_set_double(&val, value);
     
-    ret = xfconf_client_set(proxy, channel->channel_name, property, &val, NULL);
+    ret = xfconf_client_set_property(proxy, channel->channel_name, property,
+                                     &val, NULL);
     
     g_value_unset(&val);
     
@@ -699,7 +709,8 @@ xfconf_channel_set_bool(XfconfChannel *channel,
     g_value_init(&val, G_TYPE_BOOLEAN);
     g_value_set_boolean(&val, value);
     
-    ret = xfconf_client_set(proxy, channel->channel_name, property, &val, NULL);
+    ret = xfconf_client_set_property(proxy, channel->channel_name, property,
+                                     &val, NULL);
     
     g_value_unset(&val);
     

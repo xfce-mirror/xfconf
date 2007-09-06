@@ -4,9 +4,9 @@
     <interface name="org.xfce.Xfconf">
     
         <!--
-             void org.xfce.Xfconf.Set(String channel,
-                                      String property,
-                                      Variant value)
+             void org.xfce.Xfconf.SetProperty(String channel,
+                                              String property,
+                                              Variant value)
              
              @channel: A channel/application/namespace name.
              @property: A property name.
@@ -15,29 +15,29 @@
              
              Sets a property value.
         -->
-        <method name="Set">
+        <method name="SetProperty">
             <arg direction="in" name="channel" type="s"/>
             <arg direction="in" name="property" type="s"/>
             <arg direction="in" name="value" type="v"/>
         </method>
         
         <!--
-             Variant org.xfce.Xfconf.Get(String channel,
-                                         String property)
+             Variant org.xfce.Xfconf.GetProperty(String channel,
+                                                 String property)
              
              @channel: A channel/application/namespace name.
              @propert: A property name.
              
              Gets a property value, returned as a variant type.
         -->
-        <method name="Get">
+        <method name="GetProperty">
             <arg direction="in" name="channel" type="s"/>
             <arg direction="in" name="property" type="s"/>
             <arg direction="out" name="value" type="v"/>
         </method>
         
         <!--
-             Array{String,Variant} org.xfce.Xfconf.GetAll(String channel)
+             Array{String,Variant} org.xfce.Xfconf.GetAllProperties(String channel)
              
              @channel: A channel/application/namespace name.
              
@@ -48,14 +48,14 @@
                       properties are strings, and the values are 
                       variants.
         -->
-        <method name="GetAll">
+        <method name="GetAllProperties">
             <arg direction="in" name="channel" type="s"/>
             <arg direction="out" name="properties" type="a{sv}"/>
         </method>
         
         <!--
-             Boolean org.xfce.Xfconf.Exists(String channel,
-                                            String property)
+             Boolean org.xfce.Xfconf.PropertyExists(String channel,
+                                                    String property)
              
              @channel: A channel/application/namespace name.
              @property: A property name.
@@ -64,36 +64,47 @@
              
              Returns: %TRUE if @property exists, %FALSE if not.
         -->
-        <method name="Exists">
+        <method name="PropertyExists">
             <arg direction="in" name="channel" type="s"/>
             <arg direction="in" name="property" type="s"/>
             <arg direction="out" name="exists" type="b"/>
         </method>
         
         <!--
-             void org.xfce.Xfconf.Remove(String channel,
-                                         String property)
+             void org.xfce.Xfconf.RemoveProperty(String channel,
+                                                 String property)
              
              @channel: A channel/application/namespace name.
              @property: A property name.
              
              Removes @property and its value from @channel.
         -->
-        <method name="Remove">
+        <method name="RemoveProperty">
             <arg direction="in" name="channel" type="s"/>
             <arg direction="in" name="property" type="s"/>
         </method>
         
         <!--
-             void org.xfce.Xfconf.Changed(String channel,
-                                          String property)
+             void org.xfce.Xfconf.RemoveChannel(String channel)
+             
+             @channel: A channel/application/namespace name.
+             
+             Removes a channel and all properties in it.
+        -->
+        <method name="RemoveChannel">
+            <arg direction="in" name="channel" type="s"/>
+        </method>
+        
+        <!--
+             void org.xfce.Xfconf.PropertyChanged(String channel,
+                                                  String property)
              
              @channel: A channel/application/namespace name.
              @property: A property name.
              
              Emitted when a property changes.
         -->
-        <signal name="Changed">
+        <signal name="PropertyChanged">
             <arg name="channel" type="s"/>
             <arg name="property" type="s"/>
         </signal>
@@ -118,8 +129,8 @@
         </method>
         
         <!--
-             void org.xfce.Xfconf.ShowPlugin(String display,
-                                             String name)
+             void org.xfce.Xfconf.GUI.ShowPlugin(String display,
+                                                 String name)
              
              @display: A display name, or the empty string.
              @name: A plugin name.

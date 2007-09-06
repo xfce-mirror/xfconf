@@ -30,29 +30,32 @@
 #include "xfconf-marshal.h"
 
 
-static gboolean xfconfd_set(XfconfDaemon *xfconfd,
-                            const gchar *channel,
-                            const gchar *property,
-                            const GValue *value,
-                            GError **error);
-static gboolean xfconfd_get(XfconfDaemon *xfconfd,
-                            const gchar *channel,
-                            const gchar *property,
-                            GValue *value,
-                            GError **error);
-static gboolean xfconfd_get_all(XfconfDaemon *xfconfd,
-                                const gchar *channel,
-                                GHashTable **properties,
-                                GError **error);
-static gboolean xfconfd_exists(XfconfDaemon *xfconfd,
-                               const gchar *channel,
-                               const gchar *property,
-                               gboolean *exists,
-                               GError **error);
-static gboolean xfconfd_remove(XfconfDaemon *xfconfd,
-                               const gchar *channel,
-                               const gchar *property,
-                               GError **error);
+static gboolean xfconfd_set_property(XfconfDaemon *xfconfd,
+                                     const gchar *channel,
+                                     const gchar *property,
+                                     const GValue *value,
+                                     GError **error);
+static gboolean xfconfd_get_property(XfconfDaemon *xfconfd,
+                                     const gchar *channel,
+                                     const gchar *property,
+                                     GValue *value,
+                                     GError **error);
+static gboolean xfconfd_get_all_properties(XfconfDaemon *xfconfd,
+                                           const gchar *channel,
+                                           GHashTable **properties,
+                                           GError **error);
+static gboolean xfconfd_property_exists(XfconfDaemon *xfconfd,
+                                        const gchar *channel,
+                                        const gchar *property,
+                                        gboolean *exists,
+                                        GError **error);
+static gboolean xfconfd_remove_property(XfconfDaemon *xfconfd,
+                                        const gchar *channel,
+                                        const gchar *property,
+                                        GError **error);
+static gboolean xfconfd_remove_channel(XfconfDaemon *xfconfd,
+                                       const gchar *channel,
+                                       GError **error);
 static gboolean xfconfd_show_list(XfconfDaemon *xfconfd,
                                   const gchar *display,
                                   GError **error);
@@ -126,21 +129,21 @@ xfconf_daemon_finalize(GObject *obj)
 
 
 static gboolean
-xfconfd_set(XfconfDaemon *xfconfd,
-            const gchar *channel,
-            const gchar *property,
-            const GValue *value,
-            GError **error)
+xfconfd_set_property(XfconfDaemon *xfconfd,
+                     const gchar *channel,
+                     const gchar *property,
+                     const GValue *value,
+                     GError **error)
 {
     return xfconf_backend_set(xfconfd->backend, channel, property, value, error);
 }
 
 static gboolean
-xfconfd_get(XfconfDaemon *xfconfd,
-            const gchar *channel,
-            const gchar *property,
-            GValue *value,
-            GError **error)
+xfconfd_get_property(XfconfDaemon *xfconfd,
+                     const gchar *channel,
+                     const gchar *property,
+                     GValue *value,
+                     GError **error)
 {
     /* FIXME: presumably, |value| leaks.  how do we fix this?  perhaps
      * using the org.freedesktop.DBus.GLib.Async annotation? */
@@ -148,10 +151,10 @@ xfconfd_get(XfconfDaemon *xfconfd,
 }
 
 static gboolean
-xfconfd_get_all(XfconfDaemon *xfconfd,
-                const gchar *channel,
-                GHashTable **properties,
-                GError **error)
+xfconfd_get_all_properties(XfconfDaemon *xfconfd,
+                           const gchar *channel,
+                           GHashTable **properties,
+                           GError **error)
 {
     gboolean ret;
     
@@ -174,22 +177,30 @@ xfconfd_get_all(XfconfDaemon *xfconfd,
 }
 
 static gboolean
-xfconfd_exists(XfconfDaemon *xfconfd,
-               const gchar *channel,
-               const gchar *property,
-               gboolean *exists,
-               GError **error)
+xfconfd_property_exists(XfconfDaemon *xfconfd,
+                        const gchar *channel,
+                        const gchar *property,
+                        gboolean *exists,
+                        GError **error)
 {
     return xfconf_backend_exists(xfconfd->backend, channel, property, exists, error);
 }
 
 static gboolean
-xfconfd_remove(XfconfDaemon *xfconfd,
-               const gchar *channel,
-               const gchar *property,
-               GError **error)
+xfconfd_remove_property(XfconfDaemon *xfconfd,
+                        const gchar *channel,
+                        const gchar *property,
+                        GError **error)
 {
     return xfconf_backend_remove(xfconfd->backend, channel, property, error);
+}
+
+static gboolean
+xfconfd_remove_channel(XfconfDaemon *xfconfd,
+                       const gchar *channel,
+                       GError **error)
+{
+    return xfconf_backend_remove_channel(xfconfd->backend, channel, error);
 }
 
 static gboolean

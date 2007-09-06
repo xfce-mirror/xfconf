@@ -253,6 +253,31 @@ xfconf_backend_remove(XfconfBackend *backend,
 }
 
 /**
+ * xfconf_backend_remove_channel:
+ * @backend: An #XfconfBackend.
+ * @channel: A channel name.
+ * @error: An error return.
+ *
+ * Removes @channel (and al its properties) from the confguration store.
+ *
+ * Return value: The backend should return %TRUE if the operation
+ *               was successful, or %FALSE otherwise.  On %FALSE,
+ *               @error should be set to a description of the failure.
+ **/ 
+gboolean
+xfconf_backend_remove_channel(XfconfBackend *backend,
+                              const gchar *channel,
+                              GError **error)
+{
+    XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
+    
+    g_return_val_if_fail(iface && iface->remove_channel && channel
+                         && (!error || *error), FALSE);
+    
+    return iface->remove_channel(backend, channel, error);
+}
+
+/**
  * xfconf_backend_flush
  * @backend: The #XfconfBackend.
  * @error: An error return.

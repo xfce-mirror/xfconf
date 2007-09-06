@@ -37,6 +37,7 @@ xfconf_backend_get
 xfconf_backend_get_all
 xfconf_backend_exists
 xfconf_backend_remove
+xfconf_backend_remove_channel
 xfconf_backend_flush
 <SUBSECTION Standard>
 XFCONF_BACKEND
