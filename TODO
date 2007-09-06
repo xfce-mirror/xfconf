@@ -4,6 +4,7 @@
 * store config entries in perchannel-xml backend as a real tree rather than
   flattened (?)
 * implement config store reading for perchannel-xml backend
+* XfconfBackend needs to do validation on channel and property names
 * transaction support (?)
 * unit tests
 * MCS settings migration code
