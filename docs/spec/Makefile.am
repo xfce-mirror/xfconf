@@ -1,2 +1,5 @@
 EXTRA_DIST = \
-	perchannel-xml.did
+	general.txt \
+	lockdown-behavior.txt \
+	perchannel-xml.dtd \
+	perchannel-xml-txt

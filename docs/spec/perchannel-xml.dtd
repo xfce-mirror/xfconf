@@ -5,11 +5,13 @@
 <!ELEMENT string #PCDATA>
 
 <!ATTLIST channel name CDATA #REQUIRED>
-<!ATTLIST channel version CDATA #REQUIRED>
+<!ATTLIST channel version CDATA #REQUIRED>  <!-- currently "1.0" -->
+<!ATTLIST channel locked (true|false) #IMPLIED>
 
 <!ATTLIST property name CDATA #REQUIRED>
 <!ATTLIST property type (string|strlist|int|int64|double|bool|empty) #REQUIRED>
 <!ATTLIST property value CDATA #IMPLIED>  <!-- not used if type="strlist"
                                                or type="empty" -->
+<!ATTLIST property locked (true|false) #IMPLIED>
 
 <!-- <string> element has no attributes -->
