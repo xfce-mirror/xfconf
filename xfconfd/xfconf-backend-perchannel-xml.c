@@ -273,7 +273,7 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
         g_value_unset(cur_val);
     else {
         cur_val = g_new0(GValue, 1);
-        g_tree_insert(properties, g_strdup(property), cur_val);
+        g_tree_insert(properties, g_ascii_strdown(property, -1), cur_val);
     }
     
     g_value_copy(value, g_value_init(cur_val, G_VALUE_TYPE(value)));
@@ -517,7 +517,7 @@ xfconf_backend_perchannel_xml_create_channel(XfconfBackendPerchannelXml *xbpx,
     properties = g_tree_new_full((GCompareDataFunc)g_ascii_strcasecmp, NULL,
                                  (GDestroyNotify)g_free,
                                  (GDestroyNotify)xfconf_property_free);
-    g_tree_insert(xbpx->channels, g_strdup(channel), properties);
+    g_tree_insert(xbpx->channels, g_ascii_strdown(channel, -1), properties);
     
     return properties;
 }
