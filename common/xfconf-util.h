@@ -26,6 +26,8 @@ G_BEGIN_DECLS
 
 void xfconf_g_value_free(GValue *value);
 
+gboolean xfconf_user_is_in_list(const gchar *list);
+
 G_END_DECLS
 
 #endif  /* __XFCONF_UTIL_H__ */

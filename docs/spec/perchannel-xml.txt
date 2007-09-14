@@ -36,9 +36,14 @@
        + version(string): The current file version.  Right now that's
          "1.0".  In general, files with the same 'major version' are
          compatible with each other (required).
-       + locked(bool): Whether or not the channel is locked to prevent
-         user modification (only allowed in config files in
-         non-user-writable locations; optional, defaults to "false").
+       + locked(userlist): A list of users/groups who cannot modify
+         any properties in this channel  (only allowed in config files
+         in non-user-writable locations; mutually exclusive with the
+         "unlocked" attribute; optional, defaults to empty).
+       + unlocked(userlist): A list of users/groups who can modify
+         properties in this channel (only allowed in config files
+         in non-user-writable locations; mutually exclusive with the
+         "locked" attribute; optional, defaults to "*").
    * <property>
      Allowed as a child of the <channel> element or another <property>
      element.
@@ -48,9 +53,14 @@
          "strlist", "int", "int64", "double", "bool", "empty" (required).
        + value(string): The value of the property (required except for
          type="strlist" and type="empty").
-       + locked(bool): Whether or not the property is locked to prevent
-         user modification (only allowed in config files in
-         non-user-writable locations; optional, defaults to "false").
+       + locked(userlist): A list of users/groups who cannot modify
+         this property (only allowed in config files in non-user-writable
+         locations; mutually exclusive with the "unlocked" attribute;
+         optional, defaults to empty).
+       + unlocked(userlist): A list of users/groups who can modify
+         this property (only allowed in config files in non-user-writable
+         locations; mutually exclusive with the "locked" attribute;
+         optional, defaults to "*").
    * <string>
      Only allowed inside <property> elements where type="strlist".  Has
      no attributes; the text between the opening and closing tags is
@@ -82,12 +92,24 @@
    the application's default fallback value will be used instead.
    
    Locking a channel or property is as simple as creating a configuration
-   file and setting the "locked" attribute to "true" on <channel> or
-   <property> elements that should be locked.  This configuration file
-   should be placed in a system location that is read by the daemon
-   (see "File locations" above).
+   file and setting either (and only either) the "locked" or "unlocked"
+   attribute on <channel> or <property> elements that should be
+   restritcted.  This configuration file should be placed in a system
+   location that is read by the daemon (see "File locations" above).
+   
+   Both the "locked" and "unlocked" attributes take a semicolon-separated
+   list of system user and group names.  User names should be entered
+   as-is, and group names should be entered with an "@" symbol prepended
+   to the group name.
+   
+   The "locked" attribute specifies users and groups who may not modify
+   the property.  The "unlocked" attribute specifies users and groups
+   who may modify the property, with other users locked out.  Only
+   one of the two attributes may be specified for a particular channel
+   or property.  If both are present, the "unlocked" attribute is used,
+   and the "locked" attribute is ignored.
    
    Note that <channel> locking locks all properties under that channel,
-   but <property> locking locks only the property with the locked="true"
-   attribute; none of the sub-properties are locked unless they also
-   contain the locked="true" attribute.
+   but <property> locking locks only the property with the "locked" or
+   "unlocked" attribute; none of the sub-properties are locked unless
+   they also contain a "locked" or "unlocked" attribute.

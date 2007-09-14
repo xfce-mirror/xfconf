@@ -35,7 +35,7 @@ dnl AC_PROG_MAKE_SET
 
 dnl check for standard header files
 AC_HEADER_STDC
-AC_CHECK_HEADERS([errno.h fcntl.h  \
+AC_CHECK_HEADERS([errno.h fcntl.h  grp.h \
                   signal.h stdlib.h string.h \
                   sys/stat.h sys/time.h sys/types.h \
                   unistd.h])

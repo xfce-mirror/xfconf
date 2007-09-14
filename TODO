@@ -11,5 +11,6 @@
 * figure out how to let libxfconf know about the XfconfBackendError enum --
   maybe just rename to XfconfError and move to common/
 * expire channels from memory if they aren't accessed for a while
+* add a GetAllChannels() method to enable a gconf-editor type app
 
 * separate XSETTINGS daemon that reads values from xfconfd
