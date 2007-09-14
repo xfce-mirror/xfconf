@@ -12,7 +12,9 @@ libxfconf_common_la_CFLAGS = \
 
 if MAINTAINER_MODE
 
-all-local: xfconf-marshal.c xfconf-marshal.h
+BUILT_SOURCES = \
+	xfconf-marshal.c \
+	xfconf-marshal.h
 
 xfconf-marshal.h: stamp-xfconf-marshal.h
 	@true

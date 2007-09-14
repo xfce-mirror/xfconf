@@ -9,9 +9,9 @@ libxfconfinclude_HEADERS = \
 libxfconf_0_la_SOURCES = \
 	$(libxfconfinclude_HEADERS) \
 	xfconf-channel.c \
+	xfconf-dbus-bindings.h \
 	xfconf-private.h \
-	xfconf.c \
-	xfconf-dbus-bindings.h
+	xfconf.c
 
 libxfconf_0_la_CFLAGS = \
 	-I$(top_srcdir)/common \
@@ -38,7 +38,10 @@ pkgconfig_DATA = libxfconf-0.pc
 
 if MAINTAINER_MODE
 
-xfconf-dbus-bindings.h: $(top_srcdir)/common/xfconf-dbus.xml
+BUILT_SOURCES = \
+	xfconf-dbus-bindings.h
+
+xfconf-dbus-bindings.h: $(top_srcdir)/common/xfconf-dbus.xml Makefile
 	dbus-binding-tool --mode=glib-client --prefix=xfconf_client $< \
 	    | sed -e 's/org_xfce_Xfconf_/xfconf_client_/g;' \
 	          -e 's/_GUI_/_gui_/g;' > $@
