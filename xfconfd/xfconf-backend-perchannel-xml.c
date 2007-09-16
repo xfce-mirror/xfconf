@@ -996,7 +996,30 @@ typedef struct
 {
     FILE *fp;
     gboolean error_occurred;
+    gchar cur_path[MAX_PREF_PATH];
 } NodeWriterData;
+
+static inline gint
+count_slashes(const gchar *str,
+              gchar *leading,
+              gsize leading_len)
+{
+    gint slashes = 0;
+    gchar *p = (gchar *)str;
+    
+    while(*p) {
+        if('/' == *p)
+            ++slashes;
+        ++p;
+    }
+    
+    if(slashes * 2 > leading_len - 1)
+        slashes = (leading_len - 1) / 2;
+    memset(leading, ' ', slashes * 2);
+    leading[slashes * 2] = 0;
+    
+    return slashes;
+}
 
 static gboolean
 tree_write_nodes(gpointer key,
@@ -1006,12 +1029,66 @@ tree_write_nodes(gpointer key,
     NodeWriterData *ndata = data;
     const gchar *property = key, *type_str = NULL;
     const GValue *value = value_p;
-    gchar *value_str = NULL;
+    gchar *value_str = NULL, *p, *short_prop_name;
+    gint n_tabs;
+    gchar leading[128];
     
-    /*
-     * I know the suggested config value scheme implies some kind of hierarchical
-     * list of properties, but I'm lazy, so we're just going to store them flat.
-     */
+    /* this is less than ideal.  there's no easy way to 'peek' at the next
+     * value in the tree to know if there are sub-properties or not, so we
+     * defer closing the current property tag until we know if there are
+     * are sub-properties or not. */
+    
+    n_tabs = count_slashes(ndata->cur_path, leading, sizeof(leading));
+    
+    if(!g_str_has_prefix(property, ndata->cur_path)) {
+        /* new property is not a sub-property of the last property.  first
+         * close as many previous properties as needed */
+        while((p = g_strrstr(ndata->cur_path, "/"))
+              && !g_str_has_prefix(property, ndata->cur_path))
+        {
+            DBG("cur_path:%s", ndata->cur_path);
+            fprintf(ndata->fp, "%s</property>\n", leading);
+            leading[n_tabs * 2 - 1] = 0;
+            leading[n_tabs * 2 - 2] = 0;
+            --n_tabs;
+            *p = 0;
+        }
+        
+        fprintf(ndata->fp, "%s</property>\n", leading);
+        leading[n_tabs * 2 - 1] = 0;
+        leading[n_tabs * 2 - 2] = 0;
+        --n_tabs;
+        p = g_strrstr(ndata->cur_path, "/");
+        if(p)
+            *p = 0;
+    }
+        
+    /* open new branches if needed */
+    for(p = (gchar *)property + strlen(ndata->cur_path); p && *p;) {
+        gchar *q = strstr(p+1, "/");
+        
+        DBG("p:%s, q:%s", p, q);
+        
+        if(q) {
+            ++n_tabs;
+            leading[n_tabs * 2 - 2] = ' ';
+            leading[n_tabs * 2 - 1] = ' ';
+            leading[n_tabs * 2] = 0;
+            
+            fputs(leading, ndata->fp);
+            fputs("<property name=\"", ndata->fp);
+            fwrite(p+1, 1, q-p-1, ndata->fp);
+            fputs("\" type=\"empty\">\n", ndata->fp);
+        }
+        
+        p = q;
+    }
+    
+    g_strlcpy(ndata->cur_path, property, MAX_PREF_PATH);
+    n_tabs = count_slashes(property, leading, sizeof(leading));
+    short_prop_name = g_strrstr(property, "/");
+    g_assert(short_prop_name);
+    ++short_prop_name;
     
     switch(G_VALUE_TYPE(value)) {
         case G_TYPE_STRING:
@@ -1054,15 +1131,15 @@ tree_write_nodes(gpointer key,
             break;
     }
     
-    if(fprintf(ndata->fp, "  <property name=\"%s\" type=\"%s\"",
-               property, type_str) < 0)
+    if(fprintf(ndata->fp, "%s<property name=\"%s\" type=\"%s\"",
+               leading, short_prop_name, type_str) < 0)
     {
         ndata->error_occurred = TRUE;
         goto out;
     }
     
     if(value_str) {
-        if(fprintf(ndata->fp, " value=\"%s\"/>\n", value_str) < 0) {
+        if(fprintf(ndata->fp, " value=\"%s\">\n", value_str) < 0) {
             ndata->error_occurred = TRUE;
             goto out;
         }
@@ -1078,7 +1155,9 @@ tree_write_nodes(gpointer key,
         arr = g_value_get_boxed(value);
         for(i = 0; i < arr->len; ++i) {
             value_str = g_markup_escape_text(arr->pdata[i], -1);
-            if(fprintf(ndata->fp, "    <string>%s</string\n", value_str) < 0) {
+            if(fprintf(ndata->fp, "%s  <string>%s</string>\n",
+                       leading, value_str) < 0)
+            {
                 ndata->error_occurred = TRUE;
                 goto out;
             }
@@ -1086,10 +1165,12 @@ tree_write_nodes(gpointer key,
         }
         value_str = NULL;
         
-        if(fputs("  </property>\n", ndata->fp) == EOF) {
+        /*
+        if(fprintf(ndata->fp, "%s</property>\n", leading) == EOF) {
             ndata->error_occurred = TRUE;
             goto out;
         }
+        */
     }
     
 out:
@@ -1106,9 +1187,10 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
 {
     gboolean ret = FALSE;
     GTree *properties = g_tree_lookup(xbpx->channels, channel);
-    gchar *filename = NULL, *filename_tmp = NULL;
+    gchar *filename = NULL, *filename_tmp = NULL, leading[128], *p;
     FILE *fp = NULL;
     NodeWriterData ndata;
+    gint n_tabs;
     
     if(!properties) {
         if(error) {
@@ -1126,7 +1208,7 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
     if(!fp)
         goto out;
     
-    if(fputs("<?xml version=\"%s.%s\" encoding=\"UTF-8\"?>\n\n", fp) == EOF
+    if(fputs("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n", fp) == EOF
        || fprintf(fp, "<channel name=\"%s\" version=\"%s.%s\">\n", channel,
                   FILE_VERSION_MAJOR, FILE_VERSION_MINOR) < 0)
     {
@@ -1135,9 +1217,20 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
     
     ndata.fp = fp;
     ndata.error_occurred = FALSE;
+    ndata.cur_path[0] = 0;
     g_tree_foreach(properties, tree_write_nodes, &ndata);
     if(ndata.error_occurred)
         goto out;
+    
+    /* close any open <property> tags */
+    n_tabs = count_slashes(ndata.cur_path, leading, sizeof(leading));
+    while((p = g_strrstr(ndata.cur_path, "/"))) {
+        fprintf(fp, "%s</property>\n", leading);
+        leading[n_tabs * 2 - 1] = 0;
+        leading[n_tabs * 2 - 2] = 0;
+        --n_tabs;
+        *p = 0;
+    }
     
     if(fputs("</channel>\n", fp) == EOF)
         goto out;
