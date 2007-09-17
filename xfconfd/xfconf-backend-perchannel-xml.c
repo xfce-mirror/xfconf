@@ -550,8 +550,6 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
     gint maj_ver_len;
     XfconfProperty *prop = NULL;
     
-    TRACE("entering (%s)", element_name);
-    
     switch(state->cur_elem) {
         case ELEM_NONE:
             if(strcmp(element_name, "channel")) {
@@ -762,6 +760,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                         g_value_set_boolean(prop->value, FALSE);
                 } else {
                     g_tree_remove(state->properties, fullpath);
+                    prop = NULL;
                     
                     if(strcmp(type, "empty")) {
                         if(error) {
@@ -772,6 +771,9 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                         return;
                     }
                 }
+                
+                if(prop)
+                    DBG("property '%s' has value type %s", fullpath, G_VALUE_TYPE_NAME(prop->value));
                 
                 g_strlcpy(state->cur_path, fullpath, MAX_PREF_PATH);
                 state->cur_elem = ELEM_PROPERTY;
@@ -813,8 +815,6 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
     gchar *p;
     GPtrArray *arr;
     
-    TRACE("entering (%s)", element_name);
-    
     switch(state->cur_elem) {
         case ELEM_CHANNEL:
             state->cur_elem = ELEM_NONE;
@@ -824,8 +824,6 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
             /* FIXME: use stacks here */
             state->strlist_property = NULL;
             state->strlist_value = NULL;
-            
-            DBG("closing property elem, cur_path is \"%s\"", state->cur_path);
             
             p = g_strrstr(state->cur_path, "/");
             
@@ -880,8 +878,6 @@ xfconf_backend_perchannel_xml_text_elem(GMarkupParseContext *context,
 {
     XmlParserState *state = user_data;
     
-    TRACE("entering");
-    
     if(ELEM_STRING != state->cur_elem) {
         /* check to make sure it's not just whitespace */
         if(check_is_whitespace(text, text_len))
@@ -928,7 +924,12 @@ xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
     
     TRACE("entering (%s)", filename);
     
+    memset(&state, 0, sizeof(XmlParserState));
     state.properties = *properties;
+    state.xbpx = xbpx;
+    state.cur_elem = ELEM_NONE;
+    state.channel_locked = FALSE;
+    state.is_system_file = FALSE;  /* FIXME */
     
     fd = open(filename, O_RDONLY, 0);
     if(fd < 0)
@@ -948,11 +949,6 @@ xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
         if(read(fd, file_contents, st.st_size) != st.st_size)
             goto out;
     }
-    
-    state.xbpx = xbpx;
-    state.cur_elem = ELEM_NONE;
-    state.channel_name = NULL;
-    memset(state.cur_path, 0, MAX_PREF_PATH);
     
     context = g_markup_parse_context_new(&parser, 0, &state, NULL);
     if(!g_markup_parse_context_parse(context, file_contents, st.st_size, &error)
@@ -1083,7 +1079,8 @@ tree_write_nodes(gpointer key,
 {
     NodeWriterData *ndata = data;
     const gchar *property = key, *type_str = NULL;
-    const GValue *value = value_p;
+    const XfconfProperty *prop = value_p;
+    const GValue *value = prop->value;
     gchar *value_str = NULL, *p, *short_prop_name;
     gint n_tabs;
     gchar leading[128];
@@ -1101,7 +1098,7 @@ tree_write_nodes(gpointer key,
         while((p = g_strrstr(ndata->cur_path, "/"))
               && !g_str_has_prefix(property, ndata->cur_path))
         {
-            DBG("cur_path:%s", ndata->cur_path);
+            //DBG("cur_path:%s", ndata->cur_path);
             fprintf(ndata->fp, "%s</property>\n", leading);
             leading[n_tabs * 2 - 1] = 0;
             leading[n_tabs * 2 - 2] = 0;
@@ -1122,7 +1119,7 @@ tree_write_nodes(gpointer key,
     for(p = (gchar *)property + strlen(ndata->cur_path); p && *p;) {
         gchar *q = strstr(p+1, "/");
         
-        DBG("p:%s, q:%s", p, q);
+        //DBG("p:%s, q:%s", p, q);
         
         if(q) {
             ++n_tabs;
