@@ -257,7 +257,7 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
     GTree *properties = g_tree_lookup(xbpx->channels, channel);
-    GValue *cur_val;
+    XfconfProperty *cur_prop;
     
     if(!properties) {
         properties = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
@@ -268,15 +268,17 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
         }
     }
     
-    cur_val = g_tree_lookup(properties, property);
-    if(cur_val)
-        g_value_unset(cur_val);
-    else {
-        cur_val = g_new0(GValue, 1);
-        g_tree_insert(properties, g_ascii_strdown(property, -1), cur_val);
+    cur_prop = g_tree_lookup(properties, property);
+    if(cur_prop) {
+        if(G_IS_VALUE(cur_prop->value))
+            g_value_unset(cur_prop->value);
+    } else {
+        cur_prop = g_new0(XfconfProperty, 1);
+        cur_prop->value = g_new0(GValue, 1);
+        g_tree_insert(properties, g_ascii_strdown(property, -1), cur_prop);
     }
     
-    g_value_copy(value, g_value_init(cur_val, G_VALUE_TYPE(value)));
+    g_value_copy(value, g_value_init(cur_prop->value, G_VALUE_TYPE(value)));
     xfconf_backend_perchannel_xml_schedule_save(xbpx, channel);
     
     return TRUE;
@@ -303,7 +305,8 @@ xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
     }
     
     cur_prop = g_tree_lookup(properties, property);
-    if(!cur_prop || !cur_prop->value || !G_IS_VALUE(cur_prop)) {
+    DBG("cur_prop:%p, cur_prop->value:%p, G_IS_VALUE:%d", cur_prop, cur_prop ? cur_prop->value : NULL, cur_prop && cur_prop->value ? G_IS_VALUE(cur_prop->value) : 0);
+    if(!cur_prop || !cur_prop->value || !G_IS_VALUE(cur_prop->value)) {
         if(error) {
             g_set_error(error, XFCONF_BACKEND_ERROR,
                         XFCONF_BACKEND_ERROR_PROPERTY_NOT_FOUND,
@@ -324,10 +327,15 @@ tree_to_hash_table(gpointer key,
                    gpointer value,
                    gpointer data)
 {
-    GValue *value1 = g_new0(GValue, 1);
+    GValue *value1;
+    XfconfProperty *prop = value;
     
-    g_value_copy(value, g_value_init(value1, G_VALUE_TYPE(value)));
-    g_hash_table_insert((GHashTable *)data, g_strdup(key), value1);
+    if(G_IS_VALUE(prop->value)) {
+        value1 = g_new0(GValue, 1);
+        g_value_copy(prop->value,
+                     g_value_init(value1, G_VALUE_TYPE(prop->value)));
+        g_hash_table_insert((GHashTable *)data, g_strdup(key), value1);
+    }
     
     return FALSE;
 }
