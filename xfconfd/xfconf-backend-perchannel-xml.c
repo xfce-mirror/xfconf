@@ -291,7 +291,9 @@ xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
     GTree *properties = g_tree_lookup(xbpx->channels, channel);
-    GValue *cur_val;
+    XfconfProperty *cur_prop;
+    
+    TRACE("entering");
     
     if(!properties) {
         properties = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
@@ -300,8 +302,8 @@ xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
             return FALSE;
     }
     
-    cur_val = g_tree_lookup(properties, property);
-    if(!cur_val) {
+    cur_prop = g_tree_lookup(properties, property);
+    if(!cur_prop || !cur_prop->value || !G_IS_VALUE(cur_prop)) {
         if(error) {
             g_set_error(error, XFCONF_BACKEND_ERROR,
                         XFCONF_BACKEND_ERROR_PROPERTY_NOT_FOUND,
@@ -311,7 +313,8 @@ xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
         return FALSE;
     }
     
-    g_value_copy(cur_val, g_value_init(value, G_VALUE_TYPE(cur_val)));
+    g_value_copy(cur_prop->value, g_value_init(value,
+                                               G_VALUE_TYPE(cur_prop->value)));
     
     return TRUE;
 }
@@ -464,7 +467,8 @@ xfconf_backend_perchannel_xml_flush(XfconfBackend *backend,
 static void
 xfconf_property_free(XfconfProperty *property)
 {
-    g_value_unset(property->value);
+    if(G_IS_VALUE(property->value))
+        g_value_unset(property->value);
     g_free(property->value);
     g_free(property);
 }
@@ -537,6 +541,8 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
     gchar fullpath[MAX_PREF_PATH], *p;
     gint maj_ver_len;
     XfconfProperty *prop = NULL;
+    
+    TRACE("entering (%s)", element_name);
     
     switch(state->cur_elem) {
         case ELEM_NONE:
@@ -760,6 +766,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 }
                 
                 g_strlcpy(state->cur_path, fullpath, MAX_PREF_PATH);
+                state->cur_elem = ELEM_PROPERTY;
             } else if(ELEM_PROPERTY == state->cur_elem
                       && state->strlist_property  /* FIXME: use stack */
                       && state->strlist_value  /* FIXME: use stack */
@@ -776,6 +783,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 }
                 return;
             }
+            break;
         
         case ELEM_STRING:
             if(error) {
@@ -797,6 +805,8 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
     gchar *p;
     GPtrArray *arr;
     
+    TRACE("entering (%s)", element_name);
+    
     switch(state->cur_elem) {
         case ELEM_CHANNEL:
             state->cur_elem = ELEM_NONE;
@@ -807,11 +817,13 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
             state->strlist_property = NULL;
             state->strlist_value = NULL;
             
-             p = g_strrstr(state->cur_path, "/");
+            DBG("closing property elem, cur_path is \"%s\"", state->cur_path);
+            
+            p = g_strrstr(state->cur_path, "/");
             
             if(p) {
                 *p = 0;
-                if(!*p)
+                if(!*(state->cur_path))
                     state->cur_elem = ELEM_CHANNEL;
                 else
                     state->cur_elem = ELEM_PROPERTY;
@@ -834,6 +846,23 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
     }
 }
 
+static inline gboolean
+check_is_whitespace(const gchar *str,
+                    gsize str_len)
+{
+    gint i;
+    
+    for(i = 0; i < str_len; ++i) {
+        if(str[i] != ' ' && str[i] != '\t' && str[i] != '\r' && str[i] != '\n'
+           && str[i] != 0)
+        {
+            return FALSE;
+        }
+    }
+    
+    return TRUE;
+}
+
 static void
 xfconf_backend_perchannel_xml_text_elem(GMarkupParseContext *context,
                                         const gchar *text,
@@ -843,7 +872,13 @@ xfconf_backend_perchannel_xml_text_elem(GMarkupParseContext *context,
 {
     XmlParserState *state = user_data;
     
+    TRACE("entering");
+    
     if(ELEM_STRING != state->cur_elem) {
+        /* check to make sure it's not just whitespace */
+        if(check_is_whitespace(text, text_len))
+            return;
+        
         if(error) {
             g_set_error(error, G_MARKUP_ERROR, G_MARKUP_ERROR_INVALID_CONTENT,
                         "Content only allowed in <string> elements");
@@ -863,7 +898,8 @@ xfconf_backend_perchannel_xml_text_elem(GMarkupParseContext *context,
 
 static gboolean
 xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
-                                         const gchar *filename)
+                                         const gchar *filename,
+                                         GTree **properties)
 {
     gboolean ret = FALSE;
     gchar *file_contents = NULL;
@@ -881,6 +917,10 @@ xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
 #ifdef HAVE_MMAP
     void *addr = NULL;
 #endif
+    
+    TRACE("entering (%s)", filename);
+    
+    state.properties = *properties;
     
     fd = open(filename, O_RDONLY, 0);
     if(fd < 0)
@@ -919,6 +959,9 @@ xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
     ret = TRUE;
     
 out:
+    TRACE("exiting");
+    
+    *properties = state.properties;
     
     if(context)
         g_markup_parse_context_free(context);
@@ -947,6 +990,8 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
     gchar *filename_stem = NULL, **filenames = NULL;
     GList *system_files = NULL, *user_files = NULL, *l;
     gint i;
+    
+    TRACE("entering");
     
     filename_stem = g_strdup_printf(CONFIG_FILE_FMT, channel);
     filenames = xfce_resource_lookup_all(XFCE_RESOURCE_CONFIG, filename_stem);
@@ -978,9 +1023,11 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
     
     /* FIXME: handle locking */
     for(l = system_files; l; l = l->next)
-        xfconf_backend_perchannel_xml_merge_file(xbpx, l->data);
+        xfconf_backend_perchannel_xml_merge_file(xbpx, l->data, &properties);
     for(l = user_files; l; l = l->next)
-        xfconf_backend_perchannel_xml_merge_file(xbpx, l->data);
+        xfconf_backend_perchannel_xml_merge_file(xbpx, l->data, &properties);
+    
+    g_tree_insert(xbpx->channels, g_ascii_strdown(channel, -1), properties);
     
 out:
     
