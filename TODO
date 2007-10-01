@@ -1,9 +1,4 @@
-* add kiosk/locking mechanism
-* perchannel-xml backend should look in all $XDG_CONFIG_DIRS and
-  overlay user settings on top of system settings
-* store config entries in perchannel-xml backend as a real tree rather than
-  flattened (?)
-* implement config store reading for perchannel-xml backend
+* add kiosk/locking mechanism (mostly done)
 * XfconfBackend needs to do validation on channel and property names
 * transaction support (?)
 * unit tests
