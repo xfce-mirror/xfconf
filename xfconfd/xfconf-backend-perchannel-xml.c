@@ -1226,6 +1226,7 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
     }
     
     prop = g_new0(XfconfProperty, 1);
+    prop->name = g_strdup("/");
     properties = g_node_new(prop);
     
     /* FIXME: handle locking */
@@ -1247,7 +1248,7 @@ out:
     g_list_foreach(user_files, (GFunc)g_free, NULL);
     g_list_free(user_files);
     g_list_foreach(system_files, (GFunc)g_free, NULL);
-    g_list_free(user_files);
+    g_list_free(system_files);
     
     return properties;
 }
