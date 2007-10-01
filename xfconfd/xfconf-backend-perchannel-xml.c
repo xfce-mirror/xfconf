@@ -61,12 +61,13 @@
 #define FILE_VERSION_MAJOR  "1"
 #define FILE_VERSION_MINOR  "0"
 
+#define PROP_NAME_IS_VALID(name) ( (name) && (name)[0] == '/' && (name)[1] != 0 && !strstr((name), "//") )
+
 #define CONFIG_DIR_STEM  "xfce4/xfconf/" XFCONF_BACKEND_PERCHANNEL_XML_TYPE_ID "/"
 #define CONFIG_FILE_FMT  CONFIG_DIR_STEM "%s.xml"
 #define CACHE_TIMEOUT    (20*60*1000)  /* 20 minutes */
 #define WRITE_TIMEOUT    (5*1000)  /* 5 secionds */
-
-#define MAX_PREF_PATH  4096
+#define MAX_PROP_PATH    (4096)
 
 struct _XfconfBackendPerchannelXml
 {
@@ -87,7 +88,8 @@ typedef struct _XfconfBackendPerchannelXmlClass
 
 typedef struct
 {
-    GValue *value;
+    gchar *name;
+    GValue value;
     gboolean locked;
 } XfconfProperty;
 
@@ -101,16 +103,18 @@ typedef enum
 
 /* FIXME: due to the hierarchical nature of the file, i need to use a
  * stack for strlist_property and strlist_value because a more than one
- * strlist property can be open at once */
+ * strlist property can be open at once.  the current xml file writer always
+ * puts the <string> elements right after the opening <property>, but it's
+ * possible someone could edit the file so that's not the case anymore. */
 typedef struct
 {
     XfconfBackendPerchannelXml *xbpx;
-    GTree *properties;
+    GNode *properties;
     gboolean is_system_file;
     XmlParserElem cur_elem;
     gchar *channel_name;
     gboolean channel_locked;
-    gchar cur_path[MAX_PREF_PATH];
+    gchar cur_path[MAX_PROP_PATH];
     gchar *cur_text;
     gchar *strlist_property;
     GValue *strlist_value;
@@ -157,14 +161,24 @@ static gboolean xfconf_backend_perchannel_xml_flush(XfconfBackend *backend,
 static void xfconf_backend_perchannel_xml_schedule_save(XfconfBackendPerchannelXml *xbpx,
                                                         const gchar *channel);
 
-static GTree *xfconf_backend_perchannel_xml_create_channel(XfconfBackendPerchannelXml *xbpx,
+static GNode *xfconf_backend_perchannel_xml_create_channel(XfconfBackendPerchannelXml *xbpx,
                                                            const gchar *channel);
-static GTree *xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
+static GNode *xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
                                                          const gchar *channel,
                                                          GError **error);
 static gboolean xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
                                                             const gchar *channel,
                                                             GError **error);
+
+static GNode *xfconf_proptree_add_property(GNode *proptree,
+                                           const gchar *name,
+                                           const GValue *value,
+                                           gboolean locked);
+static XfconfProperty *xfconf_proptree_lookup(GNode *proptree,
+                                              const gchar *name);
+static gboolean xfconf_proptree_remove(GNode *proptree,
+                                       const gchar *name);
+static void xfconf_proptree_destroy(GNode *proptree);
 
 static void xfconf_property_free(XfconfProperty *property);
 
@@ -256,7 +270,7 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
                                   GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    GTree *properties = g_tree_lookup(xbpx->channels, channel);
+    GNode *properties = g_tree_lookup(xbpx->channels, channel);
     XfconfProperty *cur_prop;
     
     if(!properties) {
@@ -268,17 +282,25 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
         }
     }
     
-    cur_prop = g_tree_lookup(properties, property);
+    cur_prop = xfconf_proptree_lookup(properties, property);
     if(cur_prop) {
-        if(G_IS_VALUE(cur_prop->value))
-            g_value_unset(cur_prop->value);
-    } else {
-        cur_prop = g_new0(XfconfProperty, 1);
-        cur_prop->value = g_new0(GValue, 1);
-        g_tree_insert(properties, g_ascii_strdown(property, -1), cur_prop);
-    }
+        if(cur_prop->locked) {
+            if(error) {
+                g_set_error(error, XFCONF_BACKEND_ERROR,
+                            XFCONF_BACKEND_ERROR_PERMISSION_DENIED,
+                            _("You don't have permission to modify property \"%s\" on channel \"%s\""),
+                            property, channel);
+            }
+            return FALSE;
+        }
+        
+        if(G_IS_VALUE(&cur_prop->value))
+            g_value_unset(&cur_prop->value);
+        g_value_copy(value, g_value_init(&cur_prop->value,
+                                         G_VALUE_TYPE(value)));
+    } else
+        xfconf_proptree_add_property(properties, property, value, FALSE);
     
-    g_value_copy(value, g_value_init(cur_prop->value, G_VALUE_TYPE(value)));
     xfconf_backend_perchannel_xml_schedule_save(xbpx, channel);
     
     return TRUE;
@@ -292,7 +314,7 @@ xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
                                   GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    GTree *properties = g_tree_lookup(xbpx->channels, channel);
+    GNode *properties = g_tree_lookup(xbpx->channels, channel);
     XfconfProperty *cur_prop;
     
     TRACE("entering");
@@ -304,9 +326,8 @@ xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
             return FALSE;
     }
     
-    cur_prop = g_tree_lookup(properties, property);
-    DBG("cur_prop:%p, cur_prop->value:%p, G_IS_VALUE:%d", cur_prop, cur_prop ? cur_prop->value : NULL, cur_prop && cur_prop->value ? G_IS_VALUE(cur_prop->value) : 0);
-    if(!cur_prop || !cur_prop->value || !G_IS_VALUE(cur_prop->value)) {
+    cur_prop = xfconf_proptree_lookup(properties, property);
+    if(!cur_prop || !G_IS_VALUE(&cur_prop->value)) {
         if(error) {
             g_set_error(error, XFCONF_BACKEND_ERROR,
                         XFCONF_BACKEND_ERROR_PROPERTY_NOT_FOUND,
@@ -316,28 +337,47 @@ xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
         return FALSE;
     }
     
-    g_value_copy(cur_prop->value, g_value_init(value,
-                                               G_VALUE_TYPE(cur_prop->value)));
+    g_value_copy(&cur_prop->value, g_value_init(value,
+                                               G_VALUE_TYPE(&cur_prop->value)));
     
     return TRUE;
 }
 
-static gboolean
-tree_to_hash_table(gpointer key,
-                   gpointer value,
-                   gpointer data)
+static void
+xfconf_proptree_node_to_hash_table(GNode *node,
+                                   GHashTable *props_hash,
+                                   gchar cur_path[MAX_PROP_PATH])
 {
-    GValue *value1;
-    XfconfProperty *prop = value;
+    XfconfProperty *prop = node->data;
     
-    if(G_IS_VALUE(prop->value)) {
-        value1 = g_new0(GValue, 1);
-        g_value_copy(prop->value,
-                     g_value_init(value1, G_VALUE_TYPE(prop->value)));
-        g_hash_table_insert((GHashTable *)data, g_strdup(key), value1);
+    if(G_VALUE_TYPE(&prop->value)) {
+        GValue *value = g_new0(GValue, 1);
+        
+        g_value_copy(&prop->value, g_value_init(value,
+                                                G_VALUE_TYPE(&prop->value)));
+        g_hash_table_insert(props_hash,
+                            g_strconcat(cur_path, "/", prop->name, NULL),
+                            value);
     }
     
-    return FALSE;
+    if(node->children) {
+        GNode *cur;
+        gchar *p;
+        
+        g_strlcat(cur_path, "/", MAX_PROP_PATH);
+        g_strlcat(cur_path, prop->name, MAX_PROP_PATH);
+        
+        for(cur = g_node_first_child(node);
+            cur;
+            cur = g_node_next_sibling(cur))
+        {
+            xfconf_proptree_node_to_hash_table(cur, props_hash, cur_path);
+        }
+        
+        p = strrchr(cur_path, '/');
+        if(p)
+            *p = 0;
+    }
 }
 
 static gboolean
@@ -347,16 +387,23 @@ xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
                                       GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    GTree *properties1 = g_tree_lookup(xbpx->channels, channel);
-
-    if(!properties1) {
-        properties1 = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
-                                                                 error);
-        if(!properties1)
+    GNode *props_tree = g_tree_lookup(xbpx->channels, channel), *cur;
+    gchar cur_path[MAX_PROP_PATH];
+    
+    if(!props_tree) {
+        props_tree = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
+                                                                error);
+        if(!props_tree)
             return FALSE;
     }
     
-    g_tree_foreach(properties1, tree_to_hash_table, properties);
+    for(cur = g_node_first_child(props_tree);
+        cur;
+        cur = g_node_next_sibling(cur))
+    {
+        cur_path[0] = 0;
+        xfconf_proptree_node_to_hash_table(cur, properties, cur_path);
+    }
     
     return TRUE;
 }
@@ -369,7 +416,8 @@ xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
                                      GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    GTree *properties = g_tree_lookup(xbpx->channels, channel);
+    GNode *properties = g_tree_lookup(xbpx->channels, channel);
+    XfconfProperty *prop;
     
     if(!properties) {
         properties = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
@@ -380,10 +428,8 @@ xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
         }
     }
     
-    if(g_tree_lookup(properties, property))
-        *exists = TRUE;
-    else
-        *exists = FALSE;
+    prop = xfconf_proptree_lookup(properties, property);
+    *exists = (prop && G_VALUE_TYPE(&prop->value) ? TRUE : FALSE);
     
     return TRUE;
 }
@@ -395,7 +441,7 @@ xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
                                      GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    GTree *properties = g_tree_lookup(xbpx->channels, channel);
+    GNode *properties = g_tree_lookup(xbpx->channels, channel);
     
     if(!properties) {
         properties = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
@@ -404,7 +450,7 @@ xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
             return FALSE;
     }
     
-    if(!g_tree_lookup(properties, property)) {
+    if(!xfconf_proptree_remove(properties, property)) {
         if(error) {
             g_set_error(error, XFCONF_BACKEND_ERROR,
                         XFCONF_BACKEND_ERROR_PROPERTY_NOT_FOUND,
@@ -414,7 +460,6 @@ xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
         return FALSE;
     }
     
-    g_tree_remove(properties, property);
     xfconf_backend_perchannel_xml_schedule_save(xbpx, channel);
     
     return TRUE;
@@ -472,12 +517,144 @@ xfconf_backend_perchannel_xml_flush(XfconfBackend *backend,
 
 
 
+static GNode *
+xfconf_proptree_lookup_node(GNode *proptree,
+                            const gchar *name)
+{
+    GNode *found_node = NULL;
+    gchar **parts;
+    GNode *parent, *node;
+    gint i;
+    
+    g_return_val_if_fail(PROP_NAME_IS_VALID(name), NULL);
+    
+    parts = g_strsplit_set(name+1, "/", -1);
+    parent = proptree;
+    
+    for(i = 0; parts[i]; ++i) {
+        for(node = g_node_first_child(parent);
+            node;
+            node = g_node_next_sibling(node))
+        {
+            if(!strcmp(((XfconfProperty *)node->data)->name, parts[i])) {
+                if(!parts[i+1])
+                    found_node = node;
+                else
+                    parent = node;
+                break;
+            }
+        }
+        
+        if(found_node || !node)
+            break;
+    }
+    
+    g_strfreev(parts);
+    
+    return found_node;
+}
+
+static XfconfProperty *
+xfconf_proptree_lookup(GNode *proptree,
+                       const gchar *name)
+{
+    GNode *node;
+    XfconfProperty *prop = NULL;
+    
+    node = xfconf_proptree_lookup_node(proptree, name);
+    if(node)
+        prop = node->data;
+    
+    return prop;
+}
+
+/* here we assume the entry does not already exist */
+static GNode *
+xfconf_proptree_add_property(GNode *proptree,
+                             const gchar *name,
+                             const GValue *value,
+                             gboolean locked)
+{
+    GNode *parent = NULL;
+    gchar tmp[MAX_PROP_PATH];
+    gchar *p;
+    XfconfProperty *prop;
+    
+    g_return_val_if_fail(PROP_NAME_IS_VALID(name), NULL);
+    
+    g_strlcpy(tmp, name, MAX_PROP_PATH);
+    p = g_strrstr(tmp, "/");
+    if(p == tmp)
+        parent = proptree;
+    else {
+        *p = 0;
+        parent = xfconf_proptree_lookup_node(proptree, tmp);
+        if(!parent)
+            parent = xfconf_proptree_add_property(proptree, tmp, NULL, FALSE);
+    }
+    
+    prop = g_new0(XfconfProperty, 1);
+    prop->name = g_strdup(strrchr(name, '/')+1);
+    if(value) {
+        g_value_init(&prop->value, G_VALUE_TYPE(value));
+        g_value_copy(value, &prop->value);
+    }
+    prop->locked = locked;
+    
+    return g_node_append_data(parent, prop);
+}
+
+static gboolean
+xfconf_proptree_remove(GNode *proptree,
+                       const gchar *name)
+{
+    GNode *node = xfconf_proptree_lookup_node(proptree, name);
+    XfconfProperty *prop;
+    
+    /* FIXME: this won't clean up empty parents of the node to be removed */
+    
+    if(node && G_IS_VALUE(&((XfconfProperty *)node->data)->value)) {
+        if(node->children) {
+            /* don't remove the children; just blank out the value */
+            prop = node->data;
+            g_value_unset(&prop->value);
+        } else {
+            g_node_unlink(node);
+            xfconf_proptree_destroy(node);
+        }
+        
+        return TRUE;
+    }
+    
+    return FALSE;
+}
+
+static gboolean
+proptree_free_node_data(GNode *node,
+                        gpointer data)
+{
+    xfconf_property_free((XfconfProperty *)data);
+    return FALSE;
+}
+
+static void
+xfconf_proptree_destroy(GNode *proptree)
+{
+    if(G_LIKELY(proptree)) {
+        g_node_traverse(proptree, G_IN_ORDER, G_TRAVERSE_ALL, -1,
+                        proptree_free_node_data, NULL);
+        g_node_destroy(proptree);
+    }
+}
+
+
+
 static void
 xfconf_property_free(XfconfProperty *property)
 {
-    if(G_IS_VALUE(property->value))
-        g_value_unset(property->value);
-    g_free(property->value);
+    g_free(property->name);
+    if(G_IS_VALUE(&property->value))
+        g_value_unset(&property->value);
     g_free(property);
 }
 
@@ -515,20 +692,21 @@ xfconf_backend_perchannel_xml_schedule_save(XfconfBackendPerchannelXml *xbpx,
                                   xbpx);
 }
 
-static GTree *
+static GNode *
 xfconf_backend_perchannel_xml_create_channel(XfconfBackendPerchannelXml *xbpx,
                                              const gchar *channel)
 {
-    GTree *properties;
+    GNode *properties;
+    XfconfProperty *prop;
     
     if((properties = g_tree_lookup(xbpx->channels, channel))) {
         g_warning("Attempt to create channel when one already exists.");
         return properties;
     }
     
-    properties = g_tree_new_full((GCompareDataFunc)g_ascii_strcasecmp, NULL,
-                                 (GDestroyNotify)g_free,
-                                 (GDestroyNotify)xfconf_property_free);
+    prop = g_new0(XfconfProperty, 1);
+    prop->name = g_strdup("/");
+    properties = g_node_new(prop);
     g_tree_insert(xbpx->channels, g_ascii_strdown(channel, -1), properties);
     
     return properties;
@@ -546,7 +724,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
     gint i;
     const gchar *name = NULL, *type = NULL, *value = NULL;
     const gchar *version = NULL, *locked = NULL, *unlocked = NULL;
-    gchar fullpath[MAX_PREF_PATH], *p;
+    gchar fullpath[MAX_PROP_PATH], *p;
     gint maj_ver_len;
     XfconfProperty *prop = NULL;
     
@@ -626,6 +804,8 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                         state->channel_locked = xfconf_user_is_in_list(locked);
                     
                     if(state->channel_locked) {
+                        XfconfProperty *prop;
+                        
                         /* if this channel is locked now, we want to throw
                          * out all existing properties.  it's possible that
                          * there's more than one file that describes this
@@ -638,11 +818,11 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                          * channel after this file is done.
                          */
                         
-                        g_tree_destroy(state->properties);
-                        state->properties = g_tree_new_full((GCompareDataFunc)g_ascii_strcasecmp,
-                                                            NULL,
-                                                            (GDestroyNotify)g_free,
-                                                            (GDestroyNotify)xfconf_property_free);
+                        xfconf_proptree_destroy(state->properties);
+                        
+                        prop = g_new0(XfconfProperty, 1);
+                        prop->name = g_strdup("/");
+                        state->properties = g_node_new(prop);
                     }
                 }
                 
@@ -685,27 +865,29 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 }
                 
                 /* FIXME: name validation! */
-                g_strlcpy(fullpath, state->cur_path, MAX_PREF_PATH);
-                g_strlcat(fullpath, "/", MAX_PREF_PATH);
-                g_strlcat(fullpath, name, MAX_PREF_PATH);
+                g_strlcpy(fullpath, state->cur_path, MAX_PROP_PATH);
+                g_strlcat(fullpath, "/", MAX_PROP_PATH);
+                g_strlcat(fullpath, name, MAX_PROP_PATH);
                 
                 /* check if property is locked in a previous file */
-                prop = g_tree_lookup(state->properties, fullpath);
+                prop = xfconf_proptree_lookup(state->properties, fullpath);
                 if(prop) {
                     if(prop->locked) {
                         /* we just want to skip over this property, but not
                          * throw an error */
                         state->cur_elem = ELEM_PROPERTY;
-                        g_strlcpy(state->cur_path, fullpath, MAX_PREF_PATH);
+                        g_strlcpy(state->cur_path, fullpath, MAX_PROP_PATH);
                         return;
                     } else {
                         /* clear out the old data */
-                        g_value_unset(prop->value);
+                        g_value_unset(&prop->value);
                     }
                 } else {
-                    prop = g_new0(XfconfProperty, 1);
-                    prop->value = g_new0(GValue, 1);
-                    g_tree_insert(state->properties, g_strdup(fullpath), prop);
+                    GNode *prop_node = xfconf_proptree_add_property(state->properties,
+                                                                    fullpath,
+                                                                    NULL,
+                                                                    FALSE);
+                    prop = prop_node->data;
                 }
                 
                 if(state->channel_locked)
@@ -718,7 +900,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                                         "Attribute \"locked\" not allowed in <%s> for non-system files",
                                         element_name);
                         }
-                        g_tree_remove(state->properties, fullpath);
+                        xfconf_proptree_remove(state->properties, fullpath);
                         return;
                     }
                     
@@ -730,38 +912,35 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 
                 /* parse types and values */
                 if(!strcmp(type, "string")) {
-                    g_value_init(prop->value, G_TYPE_STRING);
-                    g_value_set_string(prop->value, value);
+                    g_value_init(&prop->value, G_TYPE_STRING);
+                    g_value_set_string(&prop->value, value);
                 } else if(!strcmp(type, "strlist")) {
                     GPtrArray *arr = g_ptr_array_new();
-                    g_value_init(prop->value,
+                    g_value_init(&prop->value,
                                  dbus_g_type_get_collection("GPtrArray",
                                                             G_TYPE_STRING));
-                    g_value_set_boxed(prop->value, arr);
+                    g_value_set_boxed(&prop->value, arr);
                     /* FIXME: use stacks here */
                     state->strlist_property = g_strdup(fullpath);
-                    state->strlist_value = prop->value;
+                    state->strlist_value = &prop->value;
                 } else if(!strcmp(type, "int")) {
-                    g_value_init(prop->value, G_TYPE_INT);
-                    g_value_set_int(prop->value, atoi(value));
+                    g_value_init(&prop->value, G_TYPE_INT);
+                    g_value_set_int(&prop->value, atoi(value));
                 } else if(!strcmp(type, "int64")) {
-                    g_value_init(prop->value, G_TYPE_INT64);
-                    g_value_set_int64(prop->value, g_ascii_strtoll(value, NULL,
-                                                                   0));
+                    g_value_init(&prop->value, G_TYPE_INT64);
+                    g_value_set_int64(&prop->value, g_ascii_strtoll(value, NULL,
+                                                                    0));
                 } else if(!strcmp(type, "double")) {
-                    g_value_init(prop->value, G_TYPE_DOUBLE);
-                    g_value_set_double(prop->value, g_ascii_strtod(value,
-                                                                   NULL));
+                    g_value_init(&prop->value, G_TYPE_DOUBLE);
+                    g_value_set_double(&prop->value, g_ascii_strtod(value,
+                                                                    NULL));
                 } else if(!strcmp(type, "bool")) {
-                    g_value_init(prop->value, G_TYPE_BOOLEAN);
+                    g_value_init(&prop->value, G_TYPE_BOOLEAN);
                     if(!g_ascii_strcasecmp(value, "true"))
-                        g_value_set_boolean(prop->value, TRUE);
+                        g_value_set_boolean(&prop->value, TRUE);
                     else
-                        g_value_set_boolean(prop->value, FALSE);
+                        g_value_set_boolean(&prop->value, FALSE);
                 } else {
-                    g_tree_remove(state->properties, fullpath);
-                    prop = NULL;
-                    
                     if(strcmp(type, "empty")) {
                         if(error) {
                             g_set_error(error, G_MARKUP_ERROR,
@@ -773,9 +952,9 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 }
                 
                 if(prop)
-                    DBG("property '%s' has value type %s", fullpath, G_VALUE_TYPE_NAME(prop->value));
+                    DBG("property '%s' has value type %s", fullpath, G_VALUE_TYPE_NAME(&prop->value));
                 
-                g_strlcpy(state->cur_path, fullpath, MAX_PREF_PATH);
+                g_strlcpy(state->cur_path, fullpath, MAX_PROP_PATH);
                 state->cur_elem = ELEM_PROPERTY;
             } else if(ELEM_PROPERTY == state->cur_elem
                       && state->strlist_property  /* FIXME: use stack */
@@ -818,6 +997,7 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
     switch(state->cur_elem) {
         case ELEM_CHANNEL:
             state->cur_elem = ELEM_NONE;
+            state->cur_path[0] = 0;
             break;
         
         case ELEM_PROPERTY:
@@ -903,7 +1083,10 @@ xfconf_backend_perchannel_xml_text_elem(GMarkupParseContext *context,
 static gboolean
 xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
                                          const gchar *filename,
-                                         GTree **properties)
+                                         gboolean is_system_file,
+                                         GNode **properties,
+                                         gboolean *channel_locked,
+                                         GError **error)
 {
     gboolean ret = FALSE;
     gchar *file_contents = NULL;
@@ -917,7 +1100,6 @@ xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
     XmlParserState state;
     int fd = -1;
     struct stat st;
-    GError *error = NULL;
 #ifdef HAVE_MMAP
     void *addr = NULL;
 #endif
@@ -929,7 +1111,7 @@ xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
     state.xbpx = xbpx;
     state.cur_elem = ELEM_NONE;
     state.channel_locked = FALSE;
-    state.is_system_file = FALSE;  /* FIXME */
+    state.is_system_file = is_system_file;
     
     fd = open(filename, O_RDONLY, 0);
     if(fd < 0)
@@ -951,15 +1133,15 @@ xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
     }
     
     context = g_markup_parse_context_new(&parser, 0, &state, NULL);
-    if(!g_markup_parse_context_parse(context, file_contents, st.st_size, &error)
-       || !g_markup_parse_context_end_parse(context, &error))
+    if(!g_markup_parse_context_parse(context, file_contents, st.st_size, error)
+       || !g_markup_parse_context_end_parse(context, error))
     {
         g_warning("Error parsing xfconf config file \"%s\": %s", filename,
-                  error->message);
-        g_error_free(error);
+                  error && *error ? (*error)->message : "(?)");
         goto out;
     }
     
+    *channel_locked = state.channel_locked;
     ret = TRUE;
     
 out:
@@ -985,15 +1167,17 @@ out:
     return ret;
 }
 
-static GTree *
+static GNode *
 xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
                                            const gchar *channel,
                                            GError **error)
 {
-    GTree *properties = NULL;
+    GNode *properties = NULL;
     gchar *filename_stem = NULL, **filenames = NULL;
     GList *system_files = NULL, *user_files = NULL, *l;
     gint i;
+    XfconfProperty *prop;
+    gboolean channel_locked = FALSE;
     
     TRACE("entering");
     
@@ -1020,16 +1204,20 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
         goto out;
     }
     
-    properties = g_tree_new_full((GCompareDataFunc)g_ascii_strcasecmp,
-                                 NULL,
-                                 (GDestroyNotify)g_free,
-                                 (GDestroyNotify)xfconf_property_free);
+    prop = g_new0(XfconfProperty, 1);
+    properties = g_node_new(prop);
     
     /* FIXME: handle locking */
-    for(l = system_files; l; l = l->next)
-        xfconf_backend_perchannel_xml_merge_file(xbpx, l->data, &properties);
-    for(l = user_files; l; l = l->next)
-        xfconf_backend_perchannel_xml_merge_file(xbpx, l->data, &properties);
+    for(l = system_files; l && !channel_locked; l = l->next) {
+        xfconf_backend_perchannel_xml_merge_file(xbpx, l->data, TRUE,
+                                                 &properties, &channel_locked,
+                                                 error);
+    }
+    for(l = user_files; l && !channel_locked; l = l->next) {
+        xfconf_backend_perchannel_xml_merge_file(xbpx, l->data, FALSE,
+                                                 &properties, &channel_locked,
+                                                 error);
+    }
     
     g_tree_insert(xbpx->channels, g_ascii_strdown(channel, -1), properties);
     
@@ -1043,206 +1231,128 @@ out:
     return properties;
 }
 
-typedef struct
-{
-    FILE *fp;
-    gboolean error_occurred;
-    gchar cur_path[MAX_PREF_PATH];
-} NodeWriterData;
-
-static inline gint
-count_slashes(const gchar *str,
-              gchar *leading,
-              gsize leading_len)
-{
-    gint slashes = 0;
-    gchar *p = (gchar *)str;
-    
-    while(*p) {
-        if('/' == *p)
-            ++slashes;
-        ++p;
-    }
-    
-    if(slashes * 2 > leading_len - 1)
-        slashes = (leading_len - 1) / 2;
-    memset(leading, ' ', slashes * 2);
-    leading[slashes * 2] = 0;
-    
-    return slashes;
-}
-
 static gboolean
-tree_write_nodes(gpointer key,
-                 gpointer value_p,
-                 gpointer data)
+xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
+                                         FILE *fp,
+                                         GNode *node,
+                                         gint depth,
+                                         GError **error)
 {
-    NodeWriterData *ndata = data;
-    const gchar *property = key, *type_str = NULL;
-    const XfconfProperty *prop = value_p;
-    const GValue *value = prop->value;
-    gchar *value_str = NULL, *p, *short_prop_name;
-    gint n_tabs;
-    gchar leading[128];
+    XfconfProperty *prop = node->data;
+    GValue *value = &prop->value;
+    GString *elem_str;
+    gchar spaces[MAX_PROP_PATH];
+    GNode *child;
+    gint i;
+    gboolean is_strlist = FALSE;
     
-    /* this is less than ideal.  there's no easy way to 'peek' at the next
-     * value in the tree to know if there are sub-properties or not, so we
-     * defer closing the current property tag until we know if there are
-     * are sub-properties or not. */
+    if(depth * 2 > sizeof(spaces) + 1)
+        depth = sizeof(spaces) / 2 - 1;
     
-    n_tabs = count_slashes(ndata->cur_path, leading, sizeof(leading));
+    memset(spaces, ' ', depth * 2);
+    spaces[depth * 2] = 0;
     
-    if(!g_str_has_prefix(property, ndata->cur_path)) {
-        /* new property is not a sub-property of the last property.  first
-         * close as many previous properties as needed */
-        while((p = g_strrstr(ndata->cur_path, "/"))
-              && !g_str_has_prefix(property, ndata->cur_path))
-        {
-            //DBG("cur_path:%s", ndata->cur_path);
-            fprintf(ndata->fp, "%s</property>\n", leading);
-            leading[n_tabs * 2 - 1] = 0;
-            leading[n_tabs * 2 - 2] = 0;
-            --n_tabs;
-            *p = 0;
-        }
-        
-        fprintf(ndata->fp, "%s</property>\n", leading);
-        leading[n_tabs * 2 - 1] = 0;
-        leading[n_tabs * 2 - 2] = 0;
-        --n_tabs;
-        p = g_strrstr(ndata->cur_path, "/");
-        if(p)
-            *p = 0;
-    }
-        
-    /* open new branches if needed */
-    for(p = (gchar *)property + strlen(ndata->cur_path); p && *p;) {
-        gchar *q = strstr(p+1, "/");
-        
-        //DBG("p:%s, q:%s", p, q);
-        
-        if(q) {
-            ++n_tabs;
-            leading[n_tabs * 2 - 2] = ' ';
-            leading[n_tabs * 2 - 1] = ' ';
-            leading[n_tabs * 2] = 0;
-            
-            fputs(leading, ndata->fp);
-            fputs("<property name=\"", ndata->fp);
-            fwrite(p+1, 1, q-p-1, ndata->fp);
-            fputs("\" type=\"empty\">\n", ndata->fp);
-        }
-        
-        p = q;
-    }
-    
-    g_strlcpy(ndata->cur_path, property, MAX_PREF_PATH);
-    n_tabs = count_slashes(property, leading, sizeof(leading));
-    short_prop_name = g_strrstr(property, "/");
-    g_assert(short_prop_name);
-    ++short_prop_name;
+    elem_str = g_string_sized_new(128);
+    g_string_append_printf(elem_str, "%s<property name=\"%s\"", spaces,
+                           prop->name);
     
     switch(G_VALUE_TYPE(value)) {
         case G_TYPE_STRING:
-            value_str = g_markup_escape_text(g_value_get_string(value), -1);
-            type_str = "string";
+            g_string_append_printf(elem_str, " type=\"string\" value=\"%s\"",
+                                   g_value_get_string(value));
             break;
         
         case G_TYPE_INT:
-            value_str = g_strdup_printf("%d", g_value_get_int(value));
-            type_str = "int";
+            g_string_append_printf(elem_str, " type=\"int\" value=\"%d\"",
+                                   g_value_get_int(value));
             break;
         
         case G_TYPE_INT64:
-            value_str = g_strdup_printf("%" G_GINT64_FORMAT,
-                                        g_value_get_int64(value));
-            type_str = "int64";
+            g_string_append_printf(elem_str, " type=\"int64\" value=\"%" G_GINT64_FORMAT "\"",
+                                   g_value_get_int64(value));
             break;
         
         case G_TYPE_DOUBLE:
-            value_str = g_strdup_printf("%f", g_value_get_double(value));
-            type_str = "double";
+            g_string_append_printf(elem_str, " type=\"double\" value=\"%f\"",
+                                   g_value_get_double(value));
             break;
         
         case G_TYPE_BOOLEAN:
-            value_str = g_strdup(g_value_get_boolean(value) ? "true" : "false");
-            type_str = "bool";
+            g_string_append_printf(elem_str, " type=\"bool\" value=\"%s\"",
+                                   g_value_get_boolean(value) ? "true" : "false");
             break;
         
         default:
             if(G_VALUE_TYPE(value) == dbus_g_type_get_collection("GPtrArray",
                                                                  G_TYPE_STRING))
             {
-                type_str = "strlist";
-            } else {
-                g_warning("Unknown value type %d (\"%s\"), skipping",
+                GPtrArray *arr;
+                
+                is_strlist = TRUE;
+                
+                g_string_append(elem_str, " type=\"strlist\">\n");
+                
+                arr = g_value_get_boxed(value);
+                for(i = 0; i < arr->len; ++i) {
+                    gchar *value_str = g_markup_escape_text(arr->pdata[i], -1);
+                    g_string_append_printf(elem_str,
+                                           "%s  <string>%s</string>\n",
+                                           spaces, value_str);
+                    g_free(value_str);
+                }
+            } else if(G_VALUE_TYPE(value) != 0) {
+                g_warning("Unknown value type %d (\"%s\"), treating as branch",
                           (int)G_VALUE_TYPE(value), G_VALUE_TYPE_NAME(value));
-                ndata->error_occurred = TRUE;
-                return TRUE;
+                g_value_unset(value);
             }
             break;
     }
     
-    if(fprintf(ndata->fp, "%s<property name=\"%s\" type=\"%s\"",
-               leading, short_prop_name, type_str) < 0)
-    {
-        ndata->error_occurred = TRUE;
-        goto out;
+    if(!G_VALUE_TYPE(value))
+        g_string_append(elem_str, " type=\"empty\"");
+    
+    child = g_node_first_child(node);
+    if(!is_strlist) {
+        if(child)
+            g_string_append(elem_str, ">\n");
+        else
+            g_string_append(elem_str, "/>\n");
     }
     
-    if(value_str) {
-        if(fprintf(ndata->fp, " value=\"%s\">\n", value_str) < 0) {
-            ndata->error_occurred = TRUE;
-            goto out;
+    if(fputs(elem_str->str, fp) == EOF) {
+        /* _flush_channel() will handle |error| */
+        g_string_free(elem_str, TRUE);
+        return FALSE;
+    }
+    g_string_free(elem_str, TRUE);
+    
+    for(; child; child = g_node_next_sibling(child)) {
+        if(!xfconf_backend_perchannel_xml_write_node(xbpx, fp, child,
+                                                     depth + 1, error))
+        {
+            return FALSE;
         }
-    } else {
-        GPtrArray *arr;
-        gint i;
-        
-        if(fputs(">\n", ndata->fp) == EOF) {
-            ndata->error_occurred = TRUE;
-            goto out;
-        }
-        
-        arr = g_value_get_boxed(value);
-        for(i = 0; i < arr->len; ++i) {
-            value_str = g_markup_escape_text(arr->pdata[i], -1);
-            if(fprintf(ndata->fp, "%s  <string>%s</string>\n",
-                       leading, value_str) < 0)
-            {
-                ndata->error_occurred = TRUE;
-                goto out;
-            }
-            g_free(value_str);
-        }
-        value_str = NULL;
-        
-        /*
-        if(fprintf(ndata->fp, "%s</property>\n", leading) == EOF) {
-            ndata->error_occurred = TRUE;
-            goto out;
-        }
-        */
     }
     
-out:
-    g_free(value_str);
+    if(is_strlist || g_node_first_child(node)) {
+        if(fputs(spaces, fp) == EOF || fputs("</property>\n", fp) == EOF) {
+            /* _flush_channel() will handle |error| */
+            return FALSE;
+        }
+    }
     
-    return ndata->error_occurred;
+    return TRUE;
 }
     
-
 static gboolean
 xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
                                             const gchar *channel,
                                             GError **error)
 {
     gboolean ret = FALSE;
-    GTree *properties = g_tree_lookup(xbpx->channels, channel);
-    gchar *filename = NULL, *filename_tmp = NULL, leading[128], *p;
+    GNode *properties = g_tree_lookup(xbpx->channels, channel), *child;
+    gchar *filename = NULL, *filename_tmp = NULL;
     FILE *fp = NULL;
-    NodeWriterData ndata;
-    gint n_tabs;
     
     if(!properties) {
         if(error) {
@@ -1267,21 +1377,12 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
         goto out;
     }
     
-    ndata.fp = fp;
-    ndata.error_occurred = FALSE;
-    ndata.cur_path[0] = 0;
-    g_tree_foreach(properties, tree_write_nodes, &ndata);
-    if(ndata.error_occurred)
-        goto out;
-    
-    /* close any open <property> tags */
-    n_tabs = count_slashes(ndata.cur_path, leading, sizeof(leading));
-    while((p = g_strrstr(ndata.cur_path, "/"))) {
-        fprintf(fp, "%s</property>\n", leading);
-        leading[n_tabs * 2 - 1] = 0;
-        leading[n_tabs * 2 - 2] = 0;
-        --n_tabs;
-        *p = 0;
+    for(child = g_node_first_child(properties);
+        child;
+        child = g_node_next_sibling(child))
+    {
+        if(!xfconf_backend_perchannel_xml_write_node(xbpx, fp, child, 1, error))
+            goto out;
     }
     
     if(fputs("</channel>\n", fp) == EOF)
