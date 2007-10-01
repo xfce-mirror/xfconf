@@ -609,21 +609,42 @@ xfconf_proptree_remove(GNode *proptree,
                        const gchar *name)
 {
     GNode *node = xfconf_proptree_lookup_node(proptree, name);
-    XfconfProperty *prop;
     
-    /* FIXME: this won't clean up empty parents of the node to be removed */
-    
-    if(node && G_IS_VALUE(&((XfconfProperty *)node->data)->value)) {
-        if(node->children) {
-            /* don't remove the children; just blank out the value */
-            prop = node->data;
-            g_value_unset(&prop->value);
-        } else {
-            g_node_unlink(node);
-            xfconf_proptree_destroy(node);
-        }
+    if(node) {
+        XfconfProperty *prop = node->data;
         
-        return TRUE;
+        if(G_IS_VALUE(&prop->value)) {
+            if(node->children) {
+                /* don't remove the children; just blank out the value */
+                g_value_unset(&prop->value);
+            } else {
+                GNode *parent = node->parent;
+                
+                g_node_unlink(node);
+                xfconf_proptree_destroy(node);
+                
+                /* remove parents without values until we find a parent with
+                 * a value */
+                while(parent) {
+                    prop = parent->data;
+                    if(!G_IS_VALUE(&prop->value)) {
+                        GNode *tmp = parent;
+                        parent = parent->parent;
+                        
+                        g_node_unlink(tmp);
+                        xfconf_proptree_destroy(tmp);
+                        
+                        /* but don't remove the root node */
+                        prop = parent->data;
+                        if(!strcmp("/", prop->name))
+                            parent = NULL;
+                    } else
+                        parent = NULL;
+                }
+            }
+            
+            return TRUE;
+        }
     }
     
     return FALSE;
@@ -633,7 +654,7 @@ static gboolean
 proptree_free_node_data(GNode *node,
                         gpointer data)
 {
-    xfconf_property_free((XfconfProperty *)data);
+    xfconf_property_free((XfconfProperty *)node->data);
     return FALSE;
 }
 
