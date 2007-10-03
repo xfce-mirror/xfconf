@@ -627,6 +627,7 @@ xfconf_proptree_remove(GNode *proptree,
         if(G_IS_VALUE(&prop->value)) {
             if(node->children) {
                 /* don't remove the children; just blank out the value */
+                DBG("unsetting value at \"%s\"", prop->name);
                 g_value_unset(&prop->value);
             } else {
                 GNode *parent = node->parent;
@@ -635,12 +636,14 @@ xfconf_proptree_remove(GNode *proptree,
                 xfconf_proptree_destroy(node);
                 
                 /* remove parents without values until we find a parent with
-                 * a value */
+                 * a value or any children */
                 while(parent) {
                     prop = parent->data;
-                    if(!G_IS_VALUE(&prop->value)) {
+                    if(!G_IS_VALUE(&prop->value) && !parent->children) {
                         GNode *tmp = parent;
                         parent = parent->parent;
+                        
+                        DBG("unlinking node at \"%s\"", prop->name);
                         
                         g_node_unlink(tmp);
                         xfconf_proptree_destroy(tmp);
