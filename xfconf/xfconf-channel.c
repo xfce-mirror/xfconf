@@ -135,7 +135,10 @@ xfconf_channel_class_init(XfconfChannelClass *klass)
 static void
 xfconf_channel_init(XfconfChannel *instance)
 {
-    
+    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    dbus_g_proxy_connect_signal(proxy, "Changed",
+                                G_CALLBACK(xfconf_channel_property_changed),
+                                instance, NULL);
 }
 
 static void
@@ -241,16 +244,9 @@ xfconf_channel_get_internal(XfconfChannel *channel,
 XfconfChannel *
 xfconf_channel_new(const gchar *channel_name)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
-    XfconfChannel *channel = g_object_new(XFCONF_TYPE_CHANNEL,
-                                          "channel-name", channel_name,
-                                          NULL);
-    
-    dbus_g_proxy_connect_signal(proxy, "Changed",
-                                G_CALLBACK(xfconf_channel_property_changed),
-                                channel, NULL);
-    
-    return channel;
+    return g_object_new(XFCONF_TYPE_CHANNEL,
+                        "channel-name", channel_name,
+                        NULL);
 }
 
 /**
