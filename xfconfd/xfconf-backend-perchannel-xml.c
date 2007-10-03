@@ -275,12 +275,18 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
     
     if(!properties) {
         properties = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
+#ifdef XFCONF_ENABLE_CHECKS
                                                                 error);
+#else
+                                                                NULL);
+#endif
         if(!properties) {
+#ifdef XFCONF_ENABLE_CHECKS
             if(error && *error) {
                 g_error_free(*error);
                 *error = NULL;
             }
+#endif
             properties = xfconf_backend_perchannel_xml_create_channel(xbpx,
                                                                       channel);
         }
@@ -425,12 +431,18 @@ xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
     
     if(!properties) {
         properties = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
+#ifdef XFCONF_ENABLE_CHECKS
                                                                 error);
+#else
+                                                                NULL);
+#endif
         if(!properties) {
+#ifdef XFCONF_ENABLE_CHECKS
             if(error && *error) {
                 g_error_free(*error);
                 *error = NULL;
             }
+#endif
             
             *exists = FALSE;
             return TRUE;
