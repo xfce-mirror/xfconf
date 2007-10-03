@@ -202,7 +202,7 @@ xfconf_backend_perchannel_xml_init(XfconfBackendPerchannelXml *instance)
     instance->channels = g_tree_new_full((GCompareDataFunc)g_ascii_strcasecmp,
                                          NULL,
                                          (GDestroyNotify)g_free,
-                                         (GDestroyNotify)g_tree_destroy);
+                                         (GDestroyNotify)xfconf_proptree_destroy);
 }
 
 static void
@@ -511,6 +511,8 @@ xfconf_backend_perchannel_xml_flush(XfconfBackend *backend,
     
     for(l = xbpx->dirty_channels; l; l = l->next)
         xfconf_backend_perchannel_xml_flush_channel(xbpx, l->data, error);
+    
+    TRACE("exiting, flushed all channels");
     
     return TRUE;
 }
