@@ -3,7 +3,8 @@ SUBDIRS = \
 	xfconf \
 	xfconfd \
 	po \
-	docs
+	docs \
+	tests
 
 EXTRA_DIST = \
 	AUTHORS \
