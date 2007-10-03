@@ -21,6 +21,7 @@ xfconfd_SOURCES = \
 	$(xfconf_backend_sources)
 
 xfconfd_CFLAGS = \
+	-DLIBXFCONF_COMPILATION \
 	-DBINDIR=\"$(bindir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-I$(top_srcdir)/common \

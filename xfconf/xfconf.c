@@ -88,6 +88,9 @@ xfconf_init(GError **error)
     
     g_type_init();
     
+    dbus_g_error_domain_register(XFCONF_ERROR, "org.xfce.Xfconf.Error",
+                                 XFCONF_TYPE_ERROR);
+    
     dbus_conn = dbus_g_bus_get(DBUS_BUS_SESSION, error);
     if(!dbus_conn)
         return FALSE;

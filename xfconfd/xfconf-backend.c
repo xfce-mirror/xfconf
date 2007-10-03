@@ -25,7 +25,6 @@
 
 #include "xfconf-backend.h"
 
-static GQuark error_quark = 0;
 
 static void xfconf_backend_base_init(gpointer g_class);
 
@@ -46,47 +45,6 @@ static void xfconf_backend_base_init(gpointer g_class);
  *
  * An instance of a class implementing a #XfconfBackendInterface.
  **/
-
-
-/**
- * XFCONF_BACKEND_ERROR:
- *
- * The error domain for XfconfBackend.
- **/
-GQuark
-xfconf_backend_get_error_quark()
-{
-    if(!error_quark)
-        error_quark = g_quark_from_static_string("xfconf-backend-error-quark");
-    
-    return error_quark;
-}
-
-/* unfortunately glib-mkenums can't generate types that are compatible with
- * dbus error names -- the 'nick' value is used, which can have dashes in it,
- * which dbus doesn't like. */
-GType
-xfconf_backend_error_get_type()
-{
-    static GType type = 0;
-    
-    if(!type) {
-        static const GEnumValue values[] = {
-            { XFCONF_BACKEND_ERROR_UNKNOWN, "XFCONF_BACKEND_ERROR_UNKNOWN", "Unknown" },
-            { XFCONF_BACKEND_ERROR_CHANNEL_NOT_FOUND, "XFCONF_BACKEND_ERROR_CHANNEL_NOT_FOUND", "ChannelNotFound" },
-            { XFCONF_BACKEND_ERROR_PROPERTY_NOT_FOUND, "XFCONF_BACKEND_ERROR_PROPERTY_NOT_FOUND", "PropertyNotFound" },
-            { XFCONF_BACKEND_ERROR_READ_FAILURE, "XFCONF_BACKEND_ERROR_READ_FAILURE", "ReadFailure" },
-            { XFCONF_BACKEND_ERROR_WRITE_FAILURE, "XFCONF_BACKEND_ERROR_WRITE_FAILURE", "WriteFailure" },
-            { XFCONF_BACKEND_ERROR_PERMISSION_DENIED, "XFCONF_BACKEND_ERROR_PERMISSION_DENIED", "PermissionDenied" },
-            { XFCONF_BACKEND_ERROR_INTERNAL_ERROR, "XFCONF_BACKEND_ERROR_INTERNAL_ERROR", "InternalError" },
-            { 0, NULL, NULL }
-        };
-        
-        type = g_enum_register_static("XfconfBackendError", values);
-    }
-    
-    return type;
-}
 
 
 GType
@@ -123,10 +81,6 @@ xfconf_backend_base_init(gpointer g_class)
     static gboolean _inited = FALSE;
     
     if(!_inited) {
-        dbus_g_error_domain_register(XFCONF_BACKEND_ERROR,
-                                     "org.xfce.Xfconf.BackendError",
-                                     XFCONF_TYPE_BACKEND_ERROR);
-        
         _inited = TRUE;
     }
 }

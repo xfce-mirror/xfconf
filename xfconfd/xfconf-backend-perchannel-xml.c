@@ -249,8 +249,8 @@ xfconf_backend_perchannel_xml_initialize(XfconfBackend *backend,
     
     if(!path || !g_file_test(path, G_FILE_TEST_IS_DIR)) {
         if(error) {
-            g_set_error(error, XFCONF_BACKEND_ERROR,
-                        XFCONF_BACKEND_ERROR_WRITE_FAILURE,
+            g_set_error(error, XFCONF_ERROR,
+                        XFCONF_ERROR_WRITE_FAILURE,
                         _("Unable to create configuration directory"));
         }
         g_free(path);
@@ -296,8 +296,8 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
     if(cur_prop) {
         if(cur_prop->locked) {
             if(error) {
-                g_set_error(error, XFCONF_BACKEND_ERROR,
-                            XFCONF_BACKEND_ERROR_PERMISSION_DENIED,
+                g_set_error(error, XFCONF_ERROR,
+                            XFCONF_ERROR_PERMISSION_DENIED,
                             _("You don't have permission to modify property \"%s\" on channel \"%s\""),
                             property, channel);
             }
@@ -339,8 +339,8 @@ xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
     cur_prop = xfconf_proptree_lookup(properties, property);
     if(!cur_prop || !G_IS_VALUE(&cur_prop->value)) {
         if(error) {
-            g_set_error(error, XFCONF_BACKEND_ERROR,
-                        XFCONF_BACKEND_ERROR_PROPERTY_NOT_FOUND,
+            g_set_error(error, XFCONF_ERROR,
+                        XFCONF_ERROR_PROPERTY_NOT_FOUND,
                         _("Property \"%s\" does not exist on channel \"%s\""),
                         property, channel);
         }
@@ -473,8 +473,8 @@ xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
     
     if(!xfconf_proptree_remove(properties, property)) {
         if(error) {
-            g_set_error(error, XFCONF_BACKEND_ERROR,
-                        XFCONF_BACKEND_ERROR_PROPERTY_NOT_FOUND,
+            g_set_error(error, XFCONF_ERROR,
+                        XFCONF_ERROR_PROPERTY_NOT_FOUND,
                         _("Property \"%s\" does not exist on channel \"%s\""),
                         property, channel);
         }
@@ -510,8 +510,8 @@ xfconf_backend_perchannel_xml_remove_channel(XfconfBackend *backend,
     filename = g_strdup_printf("%s/%s.xml", xbpx->config_save_path, channel);
     if(unlink(filename)) {
         if(error) {
-            g_set_error(error, XFCONF_BACKEND_ERROR,
-                        XFCONF_BACKEND_ERROR_WRITE_FAILURE,
+            g_set_error(error, XFCONF_ERROR,
+                        XFCONF_ERROR_WRITE_FAILURE,
                         _("Unable to remove channel \"%s\": %s"),
                         channel, strerror(errno));
         }
@@ -1245,8 +1245,8 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
     
     if(!system_files && !user_files) {
         if(error) {
-            g_set_error(error, XFCONF_BACKEND_ERROR,
-                        XFCONF_BACKEND_ERROR_CHANNEL_NOT_FOUND,
+            g_set_error(error, XFCONF_ERROR,
+                        XFCONF_ERROR_CHANNEL_NOT_FOUND,
                         _("Channel \"%s\" does not exist"), channel);
         }
         goto out;
@@ -1421,8 +1421,8 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
     
     if(!properties) {
         if(error) {
-            g_set_error(error, XFCONF_BACKEND_ERROR,
-                        XFCONF_BACKEND_ERROR_CHANNEL_NOT_FOUND,
+            g_set_error(error, XFCONF_ERROR,
+                        XFCONF_ERROR_CHANNEL_NOT_FOUND,
                         _("Channel \"%s\" does not exist"), channel);
         }
         return FALSE;
@@ -1466,8 +1466,8 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
     
 out:
     if(!ret && error && !*error) {
-        g_set_error(error, XFCONF_BACKEND_ERROR,
-                    XFCONF_BACKEND_ERROR_WRITE_FAILURE,
+        g_set_error(error, XFCONF_ERROR,
+                    XFCONF_ERROR_WRITE_FAILURE,
                     _("Unable to write channel \"%s\": %s"),
                     channel, strerror(errno));
     }

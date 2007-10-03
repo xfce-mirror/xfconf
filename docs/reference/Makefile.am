@@ -21,8 +21,13 @@ MKDB_OPTIONS=--sgml-mode --output-format=xml
 FIXXREF_OPTIONS=
 
 # Used for dependencies
-HFILE_GLOB=$(top_srcdir)/xfconf/*.h $(top_srcdir)/xfconfd/*.h
-CFILE_GLOB=$(top_srcdir)/xfconf/*.c $(top_srcdir)/xfconfd/*.c
+HFILE_GLOB = \
+	$(top_srcdir)/xfconf/*.h \
+	$(top_srcdir)/xfconfd/*.h
+CFILE_GLOB = \
+	$(top_srcdir)/xfconf/*.c \
+	$(top_srcdir)/xfconfd/*.c \
+	$(top_srcdir)/common/xfconf-errors.c
 
 # Header files to ignore when scanning
 IGNORE_HFILES= \

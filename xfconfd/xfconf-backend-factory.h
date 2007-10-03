@@ -26,9 +26,6 @@
 
 G_BEGIN_DECLS
 
-#define XFCONF_BACKEND_ERROR  (xfconf_backend_get_error_quark())
-GQuark xfconf_backend_get_error_quark();
-
 XfconfBackend *xfconf_backend_factory_get_backend(const gchar *type,
                                                   GError **error);
 

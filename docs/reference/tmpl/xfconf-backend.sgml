@@ -20,13 +20,6 @@ one could think of to store data.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### MACRO XFCONF_BACKEND_ERROR ##### -->
-<para>
-
-</para>
-
-
-
 <!-- ##### STRUCT XfconfBackendInterface ##### -->
 <para>
 

@@ -29,6 +29,7 @@
 #include "xfconf-backend.h"
 #include "xfconf-marshal.h"
 #include "xfconf-util.h"
+#include "xfconf/xfconf-errors.h"
 
 static gboolean xfconf_set_property(XfconfDaemon *xfconfd,
                                     const gchar *channel,
@@ -72,7 +73,7 @@ struct _XfconfDaemon
     
     DBusGConnection *dbus_conn;
     
-    XfconfBackend *backend;
+    GList *backends;
 };
 
 typedef struct _XfconfDaemonClass
@@ -102,6 +103,8 @@ xfconf_daemon_class_init(XfconfDaemonClass *klass)
     
     dbus_g_object_type_install_info(G_TYPE_FROM_CLASS(klass),
                                     &dbus_glib_xfconf_object_info);
+    dbus_g_error_domain_register(XFCONF_ERROR, "org.xfce.Xfconf.Error",
+                                 XFCONF_TYPE_ERROR);
 }
 
 static void
@@ -114,11 +117,13 @@ static void
 xfconf_daemon_finalize(GObject *obj)
 {
     XfconfDaemon *xfconfd = XFCONF_DAEMON(obj);
+    GList *l;
     
-    if(xfconfd->backend) {
-        xfconf_backend_flush(xfconfd->backend, NULL);
-        g_object_unref(G_OBJECT(xfconfd->backend));
+    for(l = xfconfd->backends; l; l = l->next) {
+        xfconf_backend_flush(l->data, NULL);
+        g_object_unref(l->data);
     }
+    g_list_free(xfconfd->backends);
     
     if(xfconfd->dbus_conn)
         dbus_g_connection_unref(xfconfd->dbus_conn);
@@ -135,7 +140,9 @@ xfconf_set_property(XfconfDaemon *xfconfd,
                     const GValue *value,
                     GError **error)
 {
-    return xfconf_backend_set(xfconfd->backend, channel, property, value, error);
+    /* only write to first backend */
+    return xfconf_backend_set(xfconfd->backends->data, channel, property,
+                              value, error);
 }
 
 static gboolean
@@ -145,9 +152,22 @@ xfconf_get_property(XfconfDaemon *xfconfd,
                     GValue *value,
                     GError **error)
 {
+    GList *l;
+    
     /* FIXME: presumably, |value| leaks.  how do we fix this?  perhaps
      * using the org.freedesktop.DBus.GLib.Async annotation? */
-    return xfconf_backend_get(xfconfd->backend, channel, property, value, error);
+    
+    /* check each backend until we find a value */
+    for(l = xfconfd->backends; l; l = l->next) {
+        if(xfconf_backend_get(l->data, channel, property, value, error))
+            return TRUE;
+        else if(l->next && error && *error) {
+            g_error_free(*error);
+            *error = NULL;
+        }
+    }
+    
+    return FALSE;
 }
 
 static gboolean
@@ -156,7 +176,8 @@ xfconf_get_all_properties(XfconfDaemon *xfconfd,
                           GHashTable **properties,
                           GError **error)
 {
-    gboolean ret;
+    gboolean ret = FALSE;
+    GList *l;
     
     g_return_val_if_fail(properties && !*properties, FALSE);
     
@@ -164,7 +185,16 @@ xfconf_get_all_properties(XfconfDaemon *xfconfd,
                                         (GDestroyNotify)g_free,
                                         (GDestroyNotify)xfconf_g_value_free);
     
-    ret = xfconf_backend_get_all(xfconfd->backend, channel, *properties, error);
+    /* get all properties from all backends.  if they all fail, return FALSE */
+    for(l = xfconfd->backends; l; l = l->next) {
+        if(xfconf_backend_get_all(l->data, channel, *properties, error))
+            ret = TRUE;
+        else if(l->next && error && *error) {
+            g_error_free(*error);
+            *error = NULL;
+        }
+    }
+    
     if(!ret) {
         g_hash_table_destroy(*properties);
         *properties = NULL;
@@ -183,7 +213,27 @@ xfconf_property_exists(XfconfDaemon *xfconfd,
                        gboolean *exists,
                        GError **error)
 {
-    return xfconf_backend_exists(xfconfd->backend, channel, property, exists, error);
+    gboolean ret = FALSE, exists_tmp = FALSE;
+    GList *l;
+    
+    /* if at least one backend returns TRUE (regardles if |*exists| gets set
+     * to TRUE or FALSE), we'll return TRUE from this function */
+    
+    for(l = xfconfd->backends; l; l = l->next) {
+        if(xfconf_backend_exists(l->data, channel, property, &exists_tmp,
+                                 error))
+        {
+            ret = TRUE;
+            *exists = exists_tmp;
+            if(*exists)
+                return TRUE;
+        } else if(l->next && error && *error) {
+            g_error_free(*error);
+            *error = NULL;
+        }
+    }
+    
+    return ret;
 }
 
 static gboolean
@@ -192,7 +242,23 @@ xfconf_remove_property(XfconfDaemon *xfconfd,
                        const gchar *property,
                        GError **error)
 {
-    return xfconf_backend_remove(xfconfd->backend, channel, property, error);
+    gboolean ret = FALSE;
+    GList *l;
+    
+    /* while technically all backends but the first should be opened read-only,
+     * we need to remove from all backends so the property doesn't reappear
+     * later */
+    
+    for(l = xfconfd->backends; l; l = l->next) {
+        if(xfconf_backend_remove(l->data, channel, property, error))
+            ret = TRUE;
+        else if(l->next && error && *error) {
+            g_error_free(*error);
+            *error = NULL;
+        }
+    }
+    
+    return ret;
 }
 
 static gboolean
@@ -200,7 +266,23 @@ xfconf_remove_channel(XfconfDaemon *xfconfd,
                       const gchar *channel,
                       GError **error)
 {
-    return xfconf_backend_remove_channel(xfconfd->backend, channel, error);
+    gboolean ret = FALSE;
+    GList *l;
+    
+    /* while technically all backends but the first should be opened read-only,
+     * we need to remove from all backends so the channel doesn't reappear
+     * later */
+    
+    for(l = xfconfd->backends; l; l = l->next) {
+        if(xfconf_backend_remove_channel(l->data, channel, error))
+            ret = TRUE;
+        else if(l->next && error && *error) {
+            g_error_free(*error);
+            *error = NULL;
+        }
+    }
+    
+    return ret;
 }
 
 static gboolean
@@ -288,12 +370,33 @@ xfconf_daemon_start(XfconfDaemon *xfconfd,
 
 static gboolean
 xfconf_daemon_load_config(XfconfDaemon *xfconfd,
-                          const gchar *backend_id,
+                          gchar * const *backend_ids,
                           GError **error)
 {
-    xfconfd->backend = xfconf_backend_factory_get_backend(backend_id, error);
-    if(!xfconfd->backend)
+    gint i;
+    
+    for(i = 0; backend_ids[i]; ++i) {
+        GError *error1 = NULL;
+        XfconfBackend *backend = xfconf_backend_factory_get_backend(backend_ids[i],
+                                                                    &error1);
+        if(!backend) {
+            g_warning("Unable to start backend \"%s\": %s", backend_ids[i],
+                      error1->message);
+            g_error_free(error1);
+            error1 = NULL;
+        } else
+            xfconfd->backends = g_list_prepend(xfconfd->backends, backend);
+    }
+                                           
+    if(!xfconfd->backends) {
+        if(error) {
+            g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_NO_BACKEND,
+                        _("No backends could be started"));
+        }
         return FALSE;
+    }
+    
+    xfconfd->backends = g_list_reverse(xfconfd->backends);
     
     return TRUE;
 }
@@ -301,17 +404,17 @@ xfconf_daemon_load_config(XfconfDaemon *xfconfd,
 
 
 XfconfDaemon *
-xfconf_daemon_new_unique(const gchar *backend_id,
+xfconf_daemon_new_unique(gchar * const *backend_ids,
                          GError **error)
 {
     XfconfDaemon *xfconfd;
     
-    g_return_val_if_fail(backend_id && *backend_id, NULL);
+    g_return_val_if_fail(backend_ids && backend_ids[0], NULL);
     
     xfconfd = g_object_new(XFCONF_TYPE_DAEMON, NULL);
     
     if(!xfconf_daemon_start(xfconfd, error)
-       || !xfconf_daemon_load_config(xfconfd, backend_id, error))
+       || !xfconf_daemon_load_config(xfconfd, backend_ids, error))
     {
         g_object_unref(G_OBJECT(xfconfd));
         return NULL;

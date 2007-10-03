@@ -29,7 +29,6 @@ XFCONF_CHANNEL_GET_CLASS
 
 <SECTION>
 <FILE>xfconf-backend</FILE>
-XFCONF_BACKEND_ERROR
 XfconfBackendInterface
 xfconf_backend_initialize
 xfconf_backend_set
@@ -52,3 +51,8 @@ xfconf_init
 xfconf_shutdown
 </SECTION>
 
+<SECTION>
+<FILE>xfconf-errors</FILE>
+XFCONF_ERROR
+XfconfError
+</SECTION>

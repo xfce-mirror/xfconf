@@ -7,6 +7,11 @@
   </bookinfo>
 
   <chapter>
+    <title>Xfconf Errors</title>
+    <xi:include href="xml/xfconf-errors.xml"/>
+  </chapter>
+
+  <chapter>
     <title>Xfconf Daemon</title>
     <xi:include href="xml/xfconf-backend.xml"/>
   </chapter>

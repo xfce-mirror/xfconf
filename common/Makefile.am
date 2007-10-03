@@ -2,12 +2,15 @@
 noinst_LTLIBRARIES = libxfconf-common.la
 
 libxfconf_common_la_SOURCES = \
+	xfconf-errors.c \
 	xfconf-marshal.c \
 	xfconf-marshal.h \
 	xfconf-util.c \
 	xfconf-util.h
 
 libxfconf_common_la_CFLAGS = \
+	-DLIBXFCONF_COMPILATION \
+	-I$(top_srcdir) \
 	$(GLIB_CFLAGS)
 
 if MAINTAINER_MODE

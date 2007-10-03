@@ -28,19 +28,18 @@
 #include <glib/gi18n.h>
 #endif
 
+#include <xfconf/xfconf-errors.h>
+
 #define XFCONF_TYPE_BACKEND                (xfconf_backend_get_type())
 #define XFCONF_BACKEND(obj)                (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_TYPE_BACKEND, XfconfBackend))
 #define XFCONF_IS_BACKEND(obj)             (G_TYPE_CHECK_INSTANCE_TYPE((obj), XFCONF_TYPE_BACKEND))
 #define XFCONF_BACKEND_GET_INTERFACE(obj)  (G_TYPE_INSTANCE_GET_INTERFACE((obj), XFCONF_TYPE_BACKEND, XfconfBackendInterface))
 
-#define XFCONF_TYPE_BACKEND_ERROR          (xfconf_backend_error_get_type())
-#define XFCONF_BACKEND_ERROR               (xfconf_backend_get_error_quark())
-
 #define xfconf_backend_return_val_if_fail(cond, val)  G_STMT_START{ \
     if(!(cond)) { \
         if(error) { \
-            g_set_error(error, XFCONF_BACKEND_ERROR, \
-                        XFCONF_BACKEND_ERROR_INTERNAL_ERROR, \
+            g_set_error(error, XFCONF_ERROR, \
+                        XFCONF_ERROR_INTERNAL_ERROR, \
                         _("An internal error occurred; this is probably a bug")); \
         } \
         g_return_val_if_fail((cond), (val)); \
@@ -49,17 +48,6 @@
 }G_STMT_END
 
 G_BEGIN_DECLS
-
-typedef enum
-{
-    XFCONF_BACKEND_ERROR_UNKNOWN = 0,
-    XFCONF_BACKEND_ERROR_CHANNEL_NOT_FOUND,
-    XFCONF_BACKEND_ERROR_PROPERTY_NOT_FOUND,
-    XFCONF_BACKEND_ERROR_READ_FAILURE,
-    XFCONF_BACKEND_ERROR_WRITE_FAILURE,
-    XFCONF_BACKEND_ERROR_PERMISSION_DENIED,
-    XFCONF_BACKEND_ERROR_INTERNAL_ERROR,
-} XfconfBackendError;
 
 typedef struct _XfconfBackend           XfconfBackend;
 typedef struct _XfconfBackendInterface  XfconfBackendInterface;
@@ -112,9 +100,6 @@ struct _XfconfBackendInterface
     void (*_xb_reserved2)();
     void (*_xb_reserved3)();
 };
-
-GType xfconf_backend_error_get_type() G_GNUC_CONST;
-GQuark xfconf_backend_get_error_quark();
 
 GType xfconf_backend_get_type() G_GNUC_CONST;
 

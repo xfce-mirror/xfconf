@@ -66,7 +66,7 @@ xfconf_backend_factory_get_backend(const gchar *type,
     backend_gtype = GPOINTER_TO_UINT(g_hash_table_lookup(backends, type));
     if(0 == backend_gtype) {
         if(error) {
-            g_set_error(error, XFCONF_BACKEND_ERROR, 0,
+            g_set_error(error, XFCONF_ERROR, 0,
                         _("Unable to find Xfconf backend of type \"%s\""),
                         type);
         }

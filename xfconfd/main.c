@@ -118,6 +118,15 @@ main(int argc,
     GIOChannel *signal_io;
     guint signal_watch = 0;
     
+    GOptionContext *opt_ctx;
+    gchar **backends = NULL;
+    GOptionEntry options[] = {
+        { "backends", 'b', 0, G_OPTION_ARG_STRING_ARRAY, NULL,
+            N_("Configuration backends to use.  The first backend specified " \
+               "is opened read/write; the others, read-only."), NULL },
+        { NULL, 0, 0, 0, 0, NULL, NULL },
+    };
+
     memset(&act, 0, sizeof(act));
     act.sa_handler = sighandler;
     act.sa_flags = SA_RESTART;
@@ -136,6 +145,18 @@ main(int argc,
     g_set_application_name("Xfce Configuration Daemon");
     g_set_prgname("xfconfd");
     g_type_init();
+    
+    options[0].arg_data = &backends;
+    
+    opt_ctx = g_option_context_new(N_("Xfce configuration daemon"));
+    g_option_context_set_translation_domain(opt_ctx, PACKAGE);
+    g_option_context_set_description(opt_ctx,
+                                     N_("Report bugs to http://bugs.xfce.org/"));
+    g_option_context_add_main_entries(opt_ctx, options, PACKAGE);
+    if(!g_option_context_parse(opt_ctx, &argc, &argv, &error)) {
+        g_printerr("Error parsing options: %s\n", error->message);
+        return 1;
+    }
     
     mloop = g_main_loop_new(NULL, FALSE);
     
@@ -159,11 +180,17 @@ main(int argc,
         }
     }
     
-    xfconfd = xfconf_daemon_new_unique(DEFAULT_BACKEND, &error);
+    if(!backends) {
+        backends = g_new0(gchar *, 2);
+        backends[0] = g_strdup(DEFAULT_BACKEND);
+    }
+    
+    xfconfd = xfconf_daemon_new_unique(backends, &error);
     if(!xfconfd) {
         g_printerr("Xfconfd failed to start: %s\n", error->message);
         return 1;
     }
+    g_strfreev(backends);
     
     g_main_loop_run(mloop);
     

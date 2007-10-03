@@ -4,6 +4,7 @@ lib_LTLIBRARIES = libxfconf-0.la
 libxfconfincludedir = $(includedir)/xfce4/xfconf-$(LIBXFCONF_VERSION_API)/xfconf
 libxfconfinclude_HEADERS = \
 	xfconf-channel.h \
+	xfconf-errors.h \
 	xfconf.h
 
 libxfconf_0_la_SOURCES = \
