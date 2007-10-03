@@ -128,8 +128,8 @@ main(int argc,
     sigaction(SIGQUIT, &act, NULL);
     sigaction(SIGUSR1, &act, NULL);
     
-    //act.sa_handler = SIG_IGN;
-    //sigaction(SIGPIPE, &act, NULL);
+    act.sa_handler = SIG_IGN;
+    sigaction(SIGPIPE, &act, NULL);
     
     xfce_textdomain(PACKAGE, LOCALEDIR, "UTF-8");
     
