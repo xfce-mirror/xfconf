@@ -32,7 +32,7 @@ main(int argc,
     if(!xfconf_tests_start())
         return 1;
     
-    channel = xfconf_channel_new("test-channel");
+    channel = xfconf_channel_new(TEST_CHANNEL_NAME);
     
     TEST_OPERATION(!strcmp(xfconf_channel_get_string(channel, test_string_property, ""), test_string));
     

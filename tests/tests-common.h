@@ -43,6 +43,8 @@
 #include <glib.h>
 #include <xfconf/xfconf.h>
 
+#define TEST_CHANNEL_NAME  "test-channel"
+
 #define TEST_OPERATION(x) G_STMT_START{ \
     if(!(x)) { \
         g_critical("Test failed: " # x); \
