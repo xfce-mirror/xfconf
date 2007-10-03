@@ -30,20 +30,29 @@ main(int argc,
     
     channel = xfconf_channel_new("test-channel");
     
+    TEST_OPERATION(xfconf_channel_has_property(channel, test_string_property));
     xfconf_channel_remove_property(channel, test_string_property);
-    xfconf_channel_remove_property(channel, test_strlist_property);
-    xfconf_channel_remove_property(channel, test_int_property);
-    xfconf_channel_remove_property(channel, test_int64_property);
-    xfconf_channel_remove_property(channel, test_double_property);
-    xfconf_channel_remove_property(channel, test_bool_property);
+    TEST_OPERATION(!xfconf_channel_has_property(channel, test_string_property));
     
-    TEST_OPERATION(xfconf_channel_get_string(channel, test_string_property, NULL) == NULL);
-    TEST_OPERATION(xfconf_channel_get_string_list(channel, test_strlist_property, NULL) == NULL);
-    TEST_OPERATION(xfconf_channel_get_int(channel, test_int_property, -1) == -1);
-    TEST_OPERATION(xfconf_channel_get_int64(channel, test_int64_property, -1) == -1);
-    /* FIXME: will this work everywhere? */
-    TEST_OPERATION(xfconf_channel_get_double(channel, test_double_property, 0.0) == 0.0);
-    TEST_OPERATION(xfconf_channel_get_bool(channel, test_bool_property, FALSE) == FALSE);
+    TEST_OPERATION(xfconf_channel_has_property(channel, test_strlist_property));
+    xfconf_channel_remove_property(channel, test_strlist_property);
+    TEST_OPERATION(!xfconf_channel_has_property(channel, test_strlist_property));
+    
+    TEST_OPERATION(xfconf_channel_has_property(channel, test_int_property));
+    xfconf_channel_remove_property(channel, test_int_property);
+    TEST_OPERATION(!xfconf_channel_has_property(channel, test_int_property));
+    
+    TEST_OPERATION(xfconf_channel_has_property(channel, test_int64_property));
+    xfconf_channel_remove_property(channel, test_int64_property);
+    TEST_OPERATION(!xfconf_channel_has_property(channel, test_int64_property));
+    
+    TEST_OPERATION(xfconf_channel_has_property(channel, test_double_property));
+    xfconf_channel_remove_property(channel, test_double_property);
+    TEST_OPERATION(!xfconf_channel_has_property(channel, test_double_property));
+    
+    TEST_OPERATION(xfconf_channel_has_property(channel, test_bool_property));
+    xfconf_channel_remove_property(channel, test_bool_property);
+    TEST_OPERATION(!xfconf_channel_has_property(channel, test_bool_property));
     
     g_object_unref(G_OBJECT(channel));
     
