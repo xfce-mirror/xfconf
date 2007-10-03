@@ -136,7 +136,7 @@ static void
 xfconf_channel_init(XfconfChannel *instance)
 {
     DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
-    dbus_g_proxy_connect_signal(proxy, "Changed",
+    dbus_g_proxy_connect_signal(proxy, "PropertyChanged",
                                 G_CALLBACK(xfconf_channel_property_changed),
                                 instance, NULL);
 }
@@ -181,7 +181,7 @@ xfconf_channel_finalize(GObject *obj)
     XfconfChannel *channel = XFCONF_CHANNEL(obj);
     DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
     
-    dbus_g_proxy_disconnect_signal(proxy, "Changed",
+    dbus_g_proxy_disconnect_signal(proxy, "PropertyChanged",
                                    G_CALLBACK(xfconf_channel_property_changed),
                                    channel);
     

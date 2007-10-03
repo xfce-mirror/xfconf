@@ -21,9 +21,12 @@
 #include <config.h>
 #endif
 
+#include <glib-object.h>
+
 #include <dbus/dbus-glib.h>
 
 #include "xfconf.h"
+#include "xfconf-marshal.h"
 
 
 static guint xfconf_refcnt = 0;
@@ -83,6 +86,8 @@ xfconf_init(GError **error)
         return TRUE;
     }
     
+    g_type_init();
+    
     dbus_conn = dbus_g_bus_get(DBUS_BUS_SESSION, error);
     if(!dbus_conn)
         return FALSE;
@@ -91,6 +96,15 @@ xfconf_init(GError **error)
                                            "org.xfce.Xfconf",
                                            "/org/xfce/Xfconf",
                                            "org.xfce.Xfconf");
+    
+    dbus_g_object_register_marshaller((GClosureMarshal)xfconf_marshal_VOID__STRING_STRING,
+                                      G_TYPE_NONE,
+                                      G_TYPE_STRING,
+                                      G_TYPE_STRING,
+                                      G_TYPE_INVALID);
+    dbus_g_proxy_add_signal(dbus_proxy, "PropertyChanged",
+                            G_TYPE_STRING, G_TYPE_STRING,
+                            G_TYPE_INVALID);
     
     gui_dbus_proxy = dbus_g_proxy_new_for_name(dbus_conn,
                                                "org.xfce.Xfconf",
