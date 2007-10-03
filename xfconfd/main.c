@@ -120,7 +120,10 @@ main(int argc,
     
     GOptionContext *opt_ctx;
     gchar **backends = NULL;
+    gboolean print_version = FALSE;
     GOptionEntry options[] = {
+        { "version", 'V', 0, G_OPTION_ARG_NONE, NULL,
+            N_("Prints the xfconfd version"), NULL },
         { "backends", 'b', 0, G_OPTION_ARG_STRING_ARRAY, NULL,
             N_("Configuration backends to use.  The first backend specified " \
                "is opened read/write; the others, read-only."), NULL },
@@ -146,16 +149,23 @@ main(int argc,
     g_set_prgname("xfconfd");
     g_type_init();
     
-    options[0].arg_data = &backends;
+    options[0].arg_data = &print_version;
+    options[1].arg_data = &backends;
     
-    opt_ctx = g_option_context_new(N_("Xfce configuration daemon"));
+    opt_ctx = g_option_context_new(NULL);
     g_option_context_set_translation_domain(opt_ctx, PACKAGE);
+    g_option_context_set_summary(opt_ctx, N_("Xfce configuration daemon"));
     g_option_context_set_description(opt_ctx,
-                                     N_("Report bugs to http://bugs.xfce.org/"));
+                                     N_("Report bugs to http://bugs.xfce.org/\n"));
     g_option_context_add_main_entries(opt_ctx, options, PACKAGE);
     if(!g_option_context_parse(opt_ctx, &argc, &argv, &error)) {
         g_printerr("Error parsing options: %s\n", error->message);
         return 1;
+    }
+    
+    if(print_version) {
+        g_print("Xfconfd version " VERSION "\n");
+        return 0;
     }
     
     mloop = g_main_loop_new(NULL, FALSE);
