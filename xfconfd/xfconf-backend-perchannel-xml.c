@@ -275,8 +275,12 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
     
     if(!properties) {
         properties = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
-                                                                NULL);
+                                                                error);
         if(!properties) {
+            if(error && *error) {
+                g_error_free(*error);
+                *error = NULL;
+            }
             properties = xfconf_backend_perchannel_xml_create_channel(xbpx,
                                                                       channel);
         }
@@ -421,8 +425,13 @@ xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
     
     if(!properties) {
         properties = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
-                                                                NULL);
+                                                                error);
         if(!properties) {
+            if(error && *error) {
+                g_error_free(*error);
+                *error = NULL;
+            }
+            
             *exists = FALSE;
             return TRUE;
         }
@@ -1047,6 +1056,7 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
             arr = g_value_get_boxed(state->strlist_value);
             g_ptr_array_add(arr, state->cur_text);
             state->cur_text = NULL;
+            state->cur_elem = ELEM_PROPERTY;
             break;
         
         case ELEM_NONE:
@@ -1319,6 +1329,22 @@ xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
                 arr = g_value_get_boxed(value);
                 for(i = 0; i < arr->len; ++i) {
                     gchar *value_str = g_markup_escape_text(arr->pdata[i], -1);
+                    g_string_append_printf(elem_str,
+                                           "%s  <string>%s</string>\n",
+                                           spaces, value_str);
+                    g_free(value_str);
+                }
+            } else if(G_VALUE_TYPE(value) == G_TYPE_STRV) {
+                gchar **strlist;
+                gint i;
+                
+                is_strlist = TRUE;
+                
+                g_string_append(elem_str, " type=\"strlist\">\n");
+                
+                strlist = g_value_get_boxed(value);
+                for(i = 0; strlist[i]; ++i) {
+                    gchar *value_str = g_markup_escape_text(strlist[i], -1);
                     g_string_append_printf(elem_str,
                                            "%s  <string>%s</string>\n",
                                            spaces, value_str);
