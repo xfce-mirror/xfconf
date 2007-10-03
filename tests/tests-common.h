@@ -36,6 +36,10 @@
 #include <sys/wait.h>
 #endif
 
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
+
 #include <glib.h>
 #include <xfconf/xfconf.h>
 
@@ -75,6 +79,9 @@ xfconf_tests_start()
         g_error_free(error);
         return FALSE;
     }
+    
+    /* this is lame */
+    sleep(1);
     
     if(!xfconf_init(&error)) {
         g_critical("Failed to init libxfconf: %s", error->message);
