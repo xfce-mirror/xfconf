@@ -1,11 +1,25 @@
+-> for version 1.0
+
 * add kiosk/locking mechanism (mostly done)
 * XfconfBackend needs to do validation on channel and property names
-* transaction support (?)
-* unit tests
+* unit tests (mostly done)
 * MCS settings migration code
-* figure out how to let libxfconf know about the XfconfBackendError enum --
-  maybe just rename to XfconfError and move to common/
+  - special backend to read config entries
+  - script/c code for users who want to migrate all their settings to
+    xfconf and ditch MCS entirely
 * expire channels from memory if they aren't accessed for a while
 * add a GetAllChannels() method to enable a gconf-editor type app
-
+* implement the PropertyChanged signal
+  - should fire whenever SetProperty() is called and a value is set.
+    + optimise by checking previous value; don't fire signal if the value
+      hasn't really changed.  will this slow down the daemon too much?
+  - file system monitoring.  if a backend file changes, the daemon needs to
+    re-read the file, but must save the old property tree so it can figure out
+    what has changed so it can send appropriate PropertyChanged signals
 * separate XSETTINGS daemon that reads values from xfconfd
+
+
+-> for future:
+
+* transaction support
+* network support - allow remote displays and such
