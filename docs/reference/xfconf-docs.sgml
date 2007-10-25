@@ -7,7 +7,8 @@
   </bookinfo>
 
   <chapter>
-    <title>Xfconf Errors</title>
+    <title>Xfconf Core Functionality</title>
+    <xi:include href="xml/xfconf-types.xml"/>
     <xi:include href="xml/xfconf-errors.xml"/>
   </chapter>
 

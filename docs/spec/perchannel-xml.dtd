@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!ELEMENT channel property*>
-<!ELEMENT property string*>  <!-- <string> elems only if type="strlist" -->
-<!ELEMENT string #PCDATA>
+<!ELEMENT property (property|value)*>  <!-- <value> elems only allowed
+                                            if type="array" -->
+<!ELEMENT value EMPTY>
 
 <!ATTLIST channel name CDATA #REQUIRED>
 <!ATTLIST channel version CDATA #REQUIRED>  <!-- currently "1.0" -->
-<!ATTLIST channel locked (true|false) #IMPLIED>
+<!ATTLIST channel locked CDATA #IMPLIED>    <!-- only one of these -->
+<!ATTLIST channel unlocked CDATA #IMPLIED>  <!-- two are allowed -->
 
 <!ATTLIST property name CDATA #REQUIRED>
-<!ATTLIST property type (string|strlist|int|int64|double|bool|empty) #REQUIRED>
-<!ATTLIST property value CDATA #IMPLIED>  <!-- not used if type="strlist"
+<!ATTLIST property type (string|uchar|char|uint16|int16|uint|int|uint64|int64|float|double|bool|array|empty) #REQUIRED>
+<!ATTLIST property value CDATA #IMPLIED>  <!-- not used if type="array"
                                                or type="empty" -->
-<!ATTLIST property locked (true|false) #IMPLIED>
+<!ATTLIST property locked CDATA #IMPLIED>    <!-- only one of these -->
+<!ATTLIST property unlocked CDATA #IMPLIED>  <!-- two are allowed -->
 
-<!-- <string> element has no attributes -->
+<!ATTLIST value type (string|uchar|char|uint16|int16|uint|int|uint64|int64|float|double|bool) #REQUIRED>
+<!ATTLIST value value CDATA #REQUIRED>

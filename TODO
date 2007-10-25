@@ -1,8 +1,12 @@
 -> for version 1.0
 
-* add kiosk/locking mechanism (mostly done)
-* XfconfBackend needs to do validation on channel and property names
-* unit tests (mostly done)
+* XfconfBackend needs to do better validation on channel and property names
+* unit tests - some done, need:
+  - locking test
+  - RemoveChannel() test
+  - PropertyChanged notification test
+  - GetAllProperties() test
+  - tests for all the array and struct stuff
 * MCS settings migration code
   - special backend to read config entries
   - script/c code for users who want to migrate all their settings to
@@ -16,10 +20,17 @@
   - file system monitoring.  if a backend file changes, the daemon needs to
     re-read the file, but must save the old property tree so it can figure out
     what has changed so it can send appropriate PropertyChanged signals
+    + what happens if a channel isn't loaded into memory and its backing file
+      changes?  load it and send PropertyChanged for all properties?  that
+      could be very bad.
 * separate XSETTINGS daemon that reads values from xfconfd
-
+* libxfce4mcs-client dummy implementation that forwards to libxfconf
+* cmdline get/set/query tool so the config store can be scriptable
 
 -> for future:
 
 * transaction support
 * network support - allow remote displays and such
+* do some caching in the client library?  seems wasteful of memory, but it
+  could allow the daemon to ditch its copy of a channel's properties more
+  often.

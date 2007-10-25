@@ -42,9 +42,9 @@ main(int argc,
     xfconf_channel_remove_property(channel, test_int_property);
     TEST_OPERATION(!xfconf_channel_has_property(channel, test_int_property));
     
-    TEST_OPERATION(xfconf_channel_has_property(channel, test_int64_property));
-    xfconf_channel_remove_property(channel, test_int64_property);
-    TEST_OPERATION(!xfconf_channel_has_property(channel, test_int64_property));
+    TEST_OPERATION(xfconf_channel_has_property(channel, test_uint64_property));
+    xfconf_channel_remove_property(channel, test_uint64_property);
+    TEST_OPERATION(!xfconf_channel_has_property(channel, test_uint64_property));
     
     TEST_OPERATION(xfconf_channel_has_property(channel, test_double_property));
     xfconf_channel_remove_property(channel, test_double_property);

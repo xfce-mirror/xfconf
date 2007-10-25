@@ -39,6 +39,12 @@ one could think of to store data.
 @_xb_reserved2: Reserved for future expansion.
 @_xb_reserved3: Reserved for future expansion.
 
+<!-- ##### STRUCT XfconfBackend ##### -->
+<para>
+
+</para>
+
+
 <!-- ##### FUNCTION xfconf_backend_initialize ##### -->
 <para>
 

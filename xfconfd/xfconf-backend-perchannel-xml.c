@@ -57,6 +57,7 @@
 #include "xfconf-backend-perchannel-xml.h"
 #include "xfconf-backend.h"
 #include "xfconf-util.h"
+#include "xfconf/xfconf-types.h"
 
 #define FILE_VERSION_MAJOR  "1"
 #define FILE_VERSION_MINOR  "0"
@@ -68,6 +69,24 @@
 #define CACHE_TIMEOUT    (20*60*1000)  /* 20 minutes */
 #define WRITE_TIMEOUT    (5*1000)  /* 5 secionds */
 #define MAX_PROP_PATH    (4096)
+
+#ifdef CHAR_MIN
+#define XFCONF_MINCHAR  CHAR_MIN
+#else 
+#define XFCONF_MINCHAR  (-128)
+#endif
+
+#ifdef CHAR_MAX
+#define XFCONF_MAXCHAR  CHAR_MAX
+#else
+#define XFCONF_MAXCHAR  (127)
+#endif
+
+#ifdef UCHAR_MAX
+#define XFCONF_MAXUCHAR  UCHAR_MAX
+#else
+#define XFCONF_MAXUCHAR  (255)
+#endif
 
 struct _XfconfBackendPerchannelXml
 {
@@ -98,13 +117,13 @@ typedef enum
     ELEM_NONE = 0,
     ELEM_CHANNEL,
     ELEM_PROPERTY,
-    ELEM_STRING,
+    ELEM_VALUE,
 } XmlParserElem;
 
 /* FIXME: due to the hierarchical nature of the file, i need to use a
- * stack for strlist_property and strlist_value because a more than one
- * strlist property can be open at once.  the current xml file writer always
- * puts the <string> elements right after the opening <property>, but it's
+ * stack for list_property and list_value because  more than one array
+ * property can be open at once.  the current xml file writer always
+ * puts the <value> elements right after the opening <property>, but it's
  * possible someone could edit the file so that's not the case anymore. */
 typedef struct
 {
@@ -115,9 +134,8 @@ typedef struct
     gchar *channel_name;
     gboolean channel_locked;
     gchar cur_path[MAX_PROP_PATH];
-    gchar *cur_text;
-    gchar *strlist_property;
-    GValue *strlist_value;
+    gchar *list_property;
+    GValue *list_value;
 } XmlParserState;
 
 static void xfconf_backend_perchannel_xml_class_init(XfconfBackendPerchannelXmlClass *klass);
@@ -759,6 +777,156 @@ xfconf_backend_perchannel_xml_create_channel(XfconfBackendPerchannelXml *xbpx,
     return properties;
 }
 
+static GType
+xfconf_string_type_to_gtype(const gchar *type)
+{
+    if(!strcmp(type, "string"))
+        return G_TYPE_STRING;
+    else if(!strcmp(type, "uchar"))
+        return G_TYPE_UCHAR;
+    else if(!strcmp(type, "char"))
+        return G_TYPE_CHAR;
+    else if(!strcmp(type, "uint16"))
+        return XFCONF_TYPE_UINT16;
+    else if(!strcmp(type, "int16"))
+        return XFCONF_TYPE_INT16;
+    else if(!strcmp(type, "uint"))
+        return G_TYPE_UINT;
+    else if(!strcmp(type, "int"))
+        return G_TYPE_INT;
+    else if(!strcmp(type, "uint64"))
+        return G_TYPE_UINT64;
+    else if(!strcmp(type, "int64"))
+        return G_TYPE_INT64;
+    else if(!strcmp(type, "float"))
+        return G_TYPE_FLOAT;
+    else if(!strcmp(type, "double"))
+        return G_TYPE_DOUBLE;
+    else if(!strcmp(type, "bool"))
+        return G_TYPE_BOOLEAN;
+    else if(!strcmp(type, "array"))
+        return G_TYPE_VALUE_ARRAY;
+    else if(!strcmp(type, "empty"))
+        return G_TYPE_NONE;
+    
+    return G_TYPE_INVALID;
+}
+
+static gboolean
+xfconf_string_to_value(const gchar *str,
+                       GValue *value)
+{
+#define CHECK_CONVERT_STATUS() \
+    if(*str == 0 || *endptr != 0) \
+        return FALSE
+#define CHECK_CONVERT_VALUE(val, minval, maxval) \
+    if((val) < (minval) || (val) > (maxval)) \
+        return FALSE
+    
+#define REAL_HANDLE_INT(minval, maxval, convertfunc, setfunc) \
+    G_STMT_START{ \
+        errno = 0; \
+        intval = convertfunc(str, &endptr, 0); \
+        if(0 == intval && ERANGE == errno) \
+            return FALSE; \
+        CHECK_CONVERT_STATUS(); \
+        CHECK_CONVERT_VALUE(intval, minval, maxval); \
+        setfunc(value, intval); \
+        return TRUE; \
+    }G_STMT_END
+
+#define HANDLE_UINT(minval, maxval, setfunc)  REAL_HANDLE_INT(minval, maxval, strtoul, setfunc)
+#define HANDLE_INT(minval, maxval, setfunc)  REAL_HANDLE_INT(minval, maxval, strtol, setfunc)
+    
+    guint64 uintval;
+    gint64 intval;
+    gdouble dval;
+    gchar *endptr = NULL;
+    
+    switch(G_VALUE_TYPE(value)) {
+        case G_TYPE_STRING:
+            g_value_set_string(value, str);
+            return TRUE;
+        
+        case G_TYPE_UCHAR:
+            HANDLE_UINT(0, XFCONF_MAXUCHAR, g_value_set_uchar);
+        case G_TYPE_CHAR:
+            HANDLE_INT(XFCONF_MINCHAR, XFCONF_MAXCHAR, g_value_set_char);
+        case G_TYPE_UINT:
+            HANDLE_UINT(0, G_MAXUINT, g_value_set_uint);
+        case G_TYPE_INT:
+            HANDLE_INT(G_MININT, G_MAXINT, g_value_set_int);
+        
+        case G_TYPE_UINT64:
+            errno = 0;
+            uintval = g_ascii_strtoull(str, &endptr, 0);
+            if(0 == uintval && ERANGE == errno)
+                return FALSE;
+            CHECK_CONVERT_STATUS();
+            g_value_set_uint64(value, uintval);
+            return TRUE;
+        
+        case G_TYPE_INT64:
+            errno = 0;
+            intval = g_ascii_strtoll(str, &endptr, 0);
+            if(0 == intval && ERANGE == errno)
+                return FALSE;
+            CHECK_CONVERT_STATUS();
+            g_value_set_uint64(value, intval);
+            return TRUE;
+        
+        case G_TYPE_FLOAT:
+            errno = 0;
+            dval = g_ascii_strtod(str, &endptr);
+            if(0.0 == dval && ERANGE == errno)
+                return FALSE;
+            CHECK_CONVERT_STATUS();
+            if(dval < G_MINFLOAT || dval > G_MAXFLOAT)
+                return FALSE;
+            g_value_set_float(value, (gfloat)dval);
+            return TRUE;
+        
+        case G_TYPE_DOUBLE:
+            errno = 0;
+            dval = g_ascii_strtod(str, &endptr);
+            if(0.0 == dval && ERANGE == errno)
+                return FALSE;
+            CHECK_CONVERT_STATUS();
+            g_value_set_double(value, dval);
+            return TRUE;
+        
+        case G_TYPE_BOOLEAN:
+            if(!strcmp(str, "true")) {
+                g_value_set_boolean(value, TRUE);
+                return TRUE;
+            } else if(!strcmp(str, "false")) {
+                g_value_set_boolean(value, FALSE);
+                return TRUE;
+            } else
+                return FALSE;
+        
+        default:
+            if(XFCONF_TYPE_UINT16 == G_VALUE_TYPE(value)) {
+                HANDLE_INT(0, G_MAXUSHORT, xfconf_g_value_set_uint16);
+                return TRUE;
+            } else if(XFCONF_TYPE_INT16 == G_VALUE_TYPE(value)) {
+                HANDLE_INT(G_MINSHORT, G_MAXSHORT, xfconf_g_value_set_int16);
+                return TRUE;
+            } else if(G_TYPE_VALUE_ARRAY == G_VALUE_TYPE(value)) {
+                GValueArray *arr = g_value_array_new(3);
+                g_value_set_boxed(value, arr);
+                return TRUE;
+            }
+            return FALSE;
+    }
+
+#undef CHECK_CONVERT_STATUS
+#undef CHECK_CONVERT_VALUE
+#undef REAL_HANDLE_INT
+#undef HANDLE_INT
+#undef HANDLE_UINT
+}
+
 static void
 xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                                          const gchar *element_name,
@@ -880,6 +1048,8 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
         case ELEM_CHANNEL:
         case ELEM_PROPERTY:
             if(!strcmp(element_name, "property")) {
+                GType value_type;
+                
                 for(i = 0; attribute_names[i]; ++i) {
                     if(!strcmp(attribute_names[i], "name"))
                         name = attribute_values[i];
@@ -958,44 +1128,32 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 }
                 
                 /* parse types and values */
-                if(!strcmp(type, "string")) {
-                    g_value_init(&prop->value, G_TYPE_STRING);
-                    g_value_set_string(&prop->value, value);
-                } else if(!strcmp(type, "strlist")) {
-                    GPtrArray *arr = g_ptr_array_new();
-                    g_value_init(&prop->value,
-                                 dbus_g_type_get_collection("GPtrArray",
-                                                            G_TYPE_STRING));
-                    g_value_set_boxed(&prop->value, arr);
-                    /* FIXME: use stacks here */
-                    state->strlist_property = g_strdup(fullpath);
-                    state->strlist_value = &prop->value;
-                } else if(!strcmp(type, "int")) {
-                    g_value_init(&prop->value, G_TYPE_INT);
-                    g_value_set_int(&prop->value, atoi(value));
-                } else if(!strcmp(type, "int64")) {
-                    g_value_init(&prop->value, G_TYPE_INT64);
-                    g_value_set_int64(&prop->value, g_ascii_strtoll(value, NULL,
-                                                                    0));
-                } else if(!strcmp(type, "double")) {
-                    g_value_init(&prop->value, G_TYPE_DOUBLE);
-                    g_value_set_double(&prop->value, g_ascii_strtod(value,
-                                                                    NULL));
-                } else if(!strcmp(type, "bool")) {
-                    g_value_init(&prop->value, G_TYPE_BOOLEAN);
-                    if(!g_ascii_strcasecmp(value, "true"))
-                        g_value_set_boolean(&prop->value, TRUE);
-                    else
-                        g_value_set_boolean(&prop->value, FALSE);
-                } else {
-                    if(strcmp(type, "empty")) {
-                        if(error) {
-                            g_set_error(error, G_MARKUP_ERROR,
-                                        G_MARKUP_ERROR_INVALID_CONTENT,
-                                        "Invalid property type \"%s\"", type);
-                        }
-                        return;
+                value_type = xfconf_string_type_to_gtype(type);
+                if(G_TYPE_INVALID == value_type) {
+                    if(error) {
+                        g_set_error(error, G_MARKUP_ERROR,
+                                    G_MARKUP_ERROR_INVALID_CONTENT,
+                                    _("Invalid type for <%s>: \"%s\""),
+                                    element_name, type);
                     }
+                    return;
+                }
+                
+                g_value_init(&prop->value, value_type);
+                if(!xfconf_string_to_value(value, &prop->value)) {
+                    if(error) {
+                        g_set_error(error, G_MARKUP_ERROR,
+                                    G_MARKUP_ERROR_INVALID_CONTENT,
+                                    _("Unable to parse value from \"%s\""),
+                                    value);
+                    }
+                    return;
+                }
+                
+                if(G_TYPE_VALUE_ARRAY == value_type) {
+                    /* FIXME: use stacks here */
+                    state->list_property = g_strdup(fullpath);
+                    state->list_value = &prop->value;
                 }
                 
                 if(prop)
@@ -1004,11 +1162,67 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 g_strlcpy(state->cur_path, fullpath, MAX_PROP_PATH);
                 state->cur_elem = ELEM_PROPERTY;
             } else if(ELEM_PROPERTY == state->cur_elem
-                      && state->strlist_property  /* FIXME: use stack */
-                      && state->strlist_value  /* FIXME: use stack */
-                      && !strcmp(element_name, "string"))
+                      && state->list_property  /* FIXME: use stack */
+                      && state->list_value  /* FIXME: use stack */
+                      && !strcmp(element_name, "value"))
             {
-                state->cur_elem = ELEM_STRING;
+                GValueArray *arr;
+                GValue val;
+                GType value_type = G_TYPE_INVALID;
+                
+                for(i = 0; attribute_names[i]; ++i) {
+                    if(!strcmp(attribute_names[i], "type"))
+                        type = attribute_values[i];
+                    else if(!strcmp(attribute_names[i], "value"))
+                        value = attribute_values[i];
+                    else {
+                        if(error) {
+                            g_set_error(error, G_MARKUP_ERROR,
+                                        G_MARKUP_ERROR_UNKNOWN_ATTRIBUTE,
+                                        "Unknown attribute in <%s>: %s",
+                                        element_name, attribute_names[i]);
+                        }
+                        return;
+                    }
+                }
+                
+                value_type = xfconf_string_type_to_gtype(attribute_values[i]);
+                if(G_TYPE_VALUE_ARRAY == value_type) {
+                    if(error) {
+                        g_set_error(error, G_MARKUP_ERROR,
+                                    G_MARKUP_ERROR_INVALID_CONTENT,
+                                    _("The type attribute of <value> cannot be an array"));
+                    }
+                    return;
+                } else if(G_TYPE_INVALID == value_type
+                          || G_TYPE_NONE == value_type)
+                {
+                    if(error) {
+                        g_set_error(error, G_MARKUP_ERROR,
+                                    G_MARKUP_ERROR_INVALID_CONTENT,
+                                    _("Invalid type for <%s>: \"%s\""),
+                                    element_name, type);
+                    }
+                    return;
+                }
+                
+                g_value_init(&val, value_type);
+                if(!xfconf_string_to_value(value, &val)) {
+                    if(error) {
+                        g_set_error(error, G_MARKUP_ERROR,
+                                    G_MARKUP_ERROR_INVALID_CONTENT,
+                                    _("Unable to parse value from \"%s\""),
+                                    value);
+                    }
+                    g_value_unset(&val);
+                    return;
+                }
+                
+                arr = g_value_get_boxed(state->list_value);
+                g_value_array_append(arr, &val);
+                g_value_unset(&val);
+                
+                state->cur_elem = ELEM_VALUE;
             } else {
                 if(error) {
                     g_set_error(error, G_MARKUP_ERROR,
@@ -1021,11 +1235,11 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
             }
             break;
         
-        case ELEM_STRING:
+        case ELEM_VALUE:
             if(error) {
                 g_set_error(error, G_MARKUP_ERROR,
                             G_MARKUP_ERROR_UNKNOWN_ELEMENT,
-                            "No other elements are allowed inside a string element.");
+                            "No other elements are allowed inside a <value> element.");
             }
             return;
     }
@@ -1039,7 +1253,6 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
 {
     XmlParserState *state = user_data;
     gchar *p;
-    GPtrArray *arr;
     
     switch(state->cur_elem) {
         case ELEM_CHANNEL:
@@ -1049,8 +1262,8 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
         
         case ELEM_PROPERTY:
             /* FIXME: use stacks here */
-            state->strlist_property = NULL;
-            state->strlist_value = NULL;
+            state->list_property = NULL;
+            state->list_value = NULL;
             
             p = g_strrstr(state->cur_path, "/");
             
@@ -1066,11 +1279,7 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
             }
             break;
         
-        case ELEM_STRING:
-            /* FIXME: use stack */
-            arr = g_value_get_boxed(state->strlist_value);
-            g_ptr_array_add(arr, state->cur_text);
-            state->cur_text = NULL;
+        case ELEM_VALUE:
             state->cur_elem = ELEM_PROPERTY;
             break;
         
@@ -1080,6 +1289,7 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
     }
 }
 
+#if 0
 static inline gboolean
 check_is_whitespace(const gchar *str,
                     gsize str_len)
@@ -1106,14 +1316,14 @@ xfconf_backend_perchannel_xml_text_elem(GMarkupParseContext *context,
 {
     XmlParserState *state = user_data;
     
-    if(ELEM_STRING != state->cur_elem) {
+    if(ELEM_VALUE != state->cur_elem) {
         /* check to make sure it's not just whitespace */
         if(check_is_whitespace(text, text_len))
             return;
         
         if(error) {
             g_set_error(error, G_MARKUP_ERROR, G_MARKUP_ERROR_INVALID_CONTENT,
-                        "Content only allowed in <string> elements");
+                        "Content only allowed in <value> elements");
         }
         return;
     }
@@ -1127,6 +1337,7 @@ xfconf_backend_perchannel_xml_text_elem(GMarkupParseContext *context,
         state->cur_text[cur_len + text_len] = 0;
     }
 }
+#endif
 
 static gboolean
 xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
@@ -1142,7 +1353,7 @@ xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
     GMarkupParser parser = {
         xfconf_backend_perchannel_xml_start_elem,
         xfconf_backend_perchannel_xml_end_elem,
-        xfconf_backend_perchannel_xml_text_elem,
+        /* xfconf_backend_perchannel_xml_text_elem, */
         NULL,
     };
     XmlParserState state;
@@ -1256,7 +1467,6 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
     prop->name = g_strdup("/");
     properties = g_node_new(prop);
     
-    /* FIXME: handle locking */
     for(l = system_files; l && !channel_locked; l = l->next) {
         xfconf_backend_perchannel_xml_merge_file(xbpx, l->data, TRUE,
                                                  &properties, &channel_locked,
@@ -1281,34 +1491,31 @@ out:
 }
 
 static gboolean
-xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
-                                         FILE *fp,
-                                         GNode *node,
-                                         gint depth,
-                                         GError **error)
+xfconf_format_xml_tag(GString *elem_str,
+                      GValue *value,
+                      gboolean is_array_value,
+                      gchar spaces[MAX_PROP_PATH],
+                      gboolean *is_array)
 {
-    XfconfProperty *prop = node->data;
-    GValue *value = &prop->value;
-    GString *elem_str;
-    gchar spaces[MAX_PROP_PATH];
-    GNode *child;
-    gint i;
-    gboolean is_strlist = FALSE;
-    
-    if(depth * 2 > sizeof(spaces) + 1)
-        depth = sizeof(spaces) / 2 - 1;
-    
-    memset(spaces, ' ', depth * 2);
-    spaces[depth * 2] = 0;
-    
-    elem_str = g_string_sized_new(128);
-    g_string_append_printf(elem_str, "%s<property name=\"%s\"", spaces,
-                           prop->name);
-    
     switch(G_VALUE_TYPE(value)) {
         case G_TYPE_STRING:
             g_string_append_printf(elem_str, " type=\"string\" value=\"%s\"",
                                    g_value_get_string(value));
+            break;
+        
+        case G_TYPE_UCHAR:
+            g_string_append_printf(elem_str, " type=\"uchar\" value=\"%hhu\"",
+                                   g_value_get_uchar(value));
+            break;
+        
+        case G_TYPE_CHAR:
+            g_string_append_printf(elem_str, " type=\"char\" value=\"%hhd\"",
+                                   g_value_get_uchar(value));
+            break;
+        
+        case G_TYPE_UINT:
+            g_string_append_printf(elem_str, " type=\"uint\" value=\"%u\"",
+                                   g_value_get_uint(value));
             break;
         
         case G_TYPE_INT:
@@ -1316,9 +1523,19 @@ xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
                                    g_value_get_int(value));
             break;
         
+        case G_TYPE_UINT64:
+            g_string_append_printf(elem_str, " type=\"uint64\" value=\"%" G_GUINT64_FORMAT "\"",
+                                   g_value_get_uint64(value));
+            break;
+        
         case G_TYPE_INT64:
             g_string_append_printf(elem_str, " type=\"int64\" value=\"%" G_GINT64_FORMAT "\"",
                                    g_value_get_int64(value));
+            break;
+        
+        case G_TYPE_FLOAT:
+            g_string_append_printf(elem_str, " type=\"float\" value=\"%f\"",
+                                   (gdouble)g_value_get_float(value));
             break;
         
         case G_TYPE_DOUBLE:
@@ -1332,30 +1549,14 @@ xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
             break;
         
         default:
-            if(G_VALUE_TYPE(value) == dbus_g_type_get_collection("GPtrArray",
-                                                                 G_TYPE_STRING))
-            {
-                GPtrArray *arr;
-                
-                is_strlist = TRUE;
-                
-                g_string_append(elem_str, " type=\"strlist\">\n");
-                
-                arr = g_value_get_boxed(value);
-                for(i = 0; i < arr->len; ++i) {
-                    gchar *value_str = g_markup_escape_text(arr->pdata[i], -1);
-                    g_string_append_printf(elem_str,
-                                           "%s  <string>%s</string>\n",
-                                           spaces, value_str);
-                    g_free(value_str);
-                }
-            } else if(G_VALUE_TYPE(value) == G_TYPE_STRV) {
+            if(G_VALUE_TYPE(value) == G_TYPE_STRV) {
                 gchar **strlist;
                 gint i;
                 
-                is_strlist = TRUE;
+                if(is_array_value)
+                    return FALSE;
                 
-                g_string_append(elem_str, " type=\"strlist\">\n");
+                g_string_append(elem_str, " type=\"array\">\n");
                 
                 strlist = g_value_get_boxed(value);
                 for(i = 0; strlist[i]; ++i) {
@@ -1365,19 +1566,83 @@ xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
                                            spaces, value_str);
                     g_free(value_str);
                 }
-            } else if(G_VALUE_TYPE(value) != 0) {
-                g_warning("Unknown value type %d (\"%s\"), treating as branch",
-                          (int)G_VALUE_TYPE(value), G_VALUE_TYPE_NAME(value));
-                g_value_unset(value);
+                
+                *is_array = TRUE;
+            } else if(G_VALUE_TYPE(value) == G_TYPE_VALUE_ARRAY) {
+                GValueArray *arr;
+                gint i;
+                
+                if(is_array_value)
+                    return FALSE;
+                
+                g_string_append(elem_str, " type=\"array\">\n");
+                
+                arr = g_value_get_boxed(value);
+                for(i = 0; i < arr->n_values; ++i) {
+                    GValue *value1 = g_value_array_get_nth(arr, i);
+                    gboolean dummy;
+                    
+                    g_string_append_printf(elem_str, "%s  <value ", spaces);
+                    if(!xfconf_format_xml_tag(elem_str, value1, TRUE, spaces,
+                                              &dummy))
+                    {
+                        return FALSE;
+                    }
+                    g_string_append(elem_str, "/>\n");
+                }
+                
+                *is_array = TRUE;
+            } else {
+                if(is_array_value)
+                    return FALSE;
+                
+                if(G_VALUE_TYPE(value) != 0) {
+                    g_warning("Unknown value type %d (\"%s\"), treating as branch",
+                              (int)G_VALUE_TYPE(value), G_VALUE_TYPE_NAME(value));
+                    g_value_unset(value);
+                }
+                
+                is_array = FALSE;
+                g_string_append(elem_str, " type=\"empty\"");
             }
             break;
     }
     
-    if(!G_VALUE_TYPE(value))
-        g_string_append(elem_str, " type=\"empty\"");
+    return TRUE;
+}
+
+static gboolean
+xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
+                                         FILE *fp,
+                                         GNode *node,
+                                         gint depth,
+                                         GError **error)
+{
+    XfconfProperty *prop = node->data;
+    GValue *value = &prop->value;
+    GString *elem_str;
+    gchar spaces[MAX_PROP_PATH];
+    GNode *child;
+    gboolean is_array = FALSE;
+    
+    if(depth * 2 > sizeof(spaces) + 1)
+        depth = sizeof(spaces) / 2 - 1;
+    
+    memset(spaces, ' ', depth * 2);
+    spaces[depth * 2] = 0;
+    
+    elem_str = g_string_sized_new(128);
+    g_string_append_printf(elem_str, "%s<property name=\"%s\"", spaces,
+                           prop->name);
+    
+    if(!xfconf_format_xml_tag(elem_str, value, FALSE, spaces, &is_array)) {
+        /* _flush_channel() will handle |error| */
+        g_string_free(elem_str, TRUE);
+        return FALSE;
+    }
     
     child = g_node_first_child(node);
-    if(!is_strlist) {
+    if(!is_array) {
         if(child)
             g_string_append(elem_str, ">\n");
         else
@@ -1395,11 +1660,12 @@ xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
         if(!xfconf_backend_perchannel_xml_write_node(xbpx, fp, child,
                                                      depth + 1, error))
         {
+            /* _flush_channel() will handle |error| */
             return FALSE;
         }
     }
     
-    if(is_strlist || g_node_first_child(node)) {
+    if(is_array || g_node_first_child(node)) {
         if(fputs(spaces, fp) == EOF || fputs("</property>\n", fp) == EOF) {
             /* _flush_channel() will handle |error| */
             return FALSE;

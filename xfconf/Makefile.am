@@ -5,6 +5,7 @@ libxfconfincludedir = $(includedir)/xfce4/xfconf-$(LIBXFCONF_VERSION_API)/xfconf
 libxfconfinclude_HEADERS = \
 	xfconf-channel.h \
 	xfconf-errors.h \
+	xfconf-types.h \
 	xfconf.h
 
 libxfconf_0_la_SOURCES = \
@@ -49,4 +50,3 @@ xfconf-dbus-bindings.h: $(top_srcdir)/common/xfconf-dbus.xml Makefile
 
 endif
 
-EXTRA_DIST = xfconf-marshal.list

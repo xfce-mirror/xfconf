@@ -5,6 +5,7 @@ libxfconf_common_la_SOURCES = \
 	xfconf-errors.c \
 	xfconf-marshal.c \
 	xfconf-marshal.h \
+	xfconf-types.c \
 	xfconf-util.c \
 	xfconf-util.h
 

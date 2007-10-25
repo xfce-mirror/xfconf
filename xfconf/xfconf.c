@@ -21,19 +21,26 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
 #include <glib-object.h>
 
 #include <dbus/dbus-glib.h>
 
 #include "xfconf.h"
 #include "xfconf-marshal.h"
-
+#include "xfconf-private.h"
 
 static guint xfconf_refcnt = 0;
 static DBusGConnection *dbus_conn = NULL;
 static DBusGProxy *dbus_proxy = NULL;
 static DBusGProxy *gui_dbus_proxy = NULL;
+static GHashTable *named_structs = NULL;
 
+
+/* private api */
 
 DBusGConnection *
 _xfconf_get_dbus_g_connection()
@@ -42,7 +49,7 @@ _xfconf_get_dbus_g_connection()
         g_critical("xfconf_init() must be called before attempting to use libxfconf!");
         return NULL;
     }
-    
+
     return dbus_conn;
 }
 
@@ -53,7 +60,7 @@ _xfconf_get_dbus_g_proxy()
         g_critical("xfconf_init() must be called before attempting to use libxfconf!");
         return NULL;
     }
-    
+
     return dbus_proxy;
 }
 
@@ -64,9 +71,26 @@ _xfconf_get_gui_dbus_g_proxy()
         g_critical("xfconf_init() must be called before attempting to use libxfconf!");
         return NULL;
     }
-    
+
     return gui_dbus_proxy;
 }
+
+XfconfNamedStruct *
+_xfconf_named_struct_lookup(const gchar *struct_name)
+{
+    return g_hash_table_lookup(named_structs, struct_name);
+}
+
+static void
+_xfconf_named_struct_free(XfconfNamedStruct *ns)
+{
+    g_free(ns->member_types);
+    g_free(ns);
+}
+
+
+
+/* public api */
 
 /**
  * xfconf_init:
@@ -85,21 +109,21 @@ xfconf_init(GError **error)
         ++xfconf_refcnt;
         return TRUE;
     }
-    
+
     g_type_init();
-    
+
     dbus_g_error_domain_register(XFCONF_ERROR, "org.xfce.Xfconf.Error",
                                  XFCONF_TYPE_ERROR);
-    
+
     dbus_conn = dbus_g_bus_get(DBUS_BUS_SESSION, error);
     if(!dbus_conn)
         return FALSE;
-    
+
     dbus_proxy = dbus_g_proxy_new_for_name(dbus_conn,
                                            "org.xfce.Xfconf",
                                            "/org/xfce/Xfconf",
                                            "org.xfce.Xfconf");
-    
+
     dbus_g_object_register_marshaller((GClosureMarshal)xfconf_marshal_VOID__STRING_STRING,
                                       G_TYPE_NONE,
                                       G_TYPE_STRING,
@@ -108,12 +132,16 @@ xfconf_init(GError **error)
     dbus_g_proxy_add_signal(dbus_proxy, "PropertyChanged",
                             G_TYPE_STRING, G_TYPE_STRING,
                             G_TYPE_INVALID);
-    
+
     gui_dbus_proxy = dbus_g_proxy_new_for_name(dbus_conn,
                                                "org.xfce.Xfconf",
                                                "/org/xfce/Xfconf",
                                                "org.xfce.Xfconf.GUI");
-    
+
+    named_structs = g_hash_table_new_full(g_str_hash, g_str_equal,
+                                          (GDestroyNotify)g_free,
+                                          (GDestroyNotify)_xfconf_named_struct_free);
+
     ++xfconf_refcnt;
     return TRUE;
 }
@@ -130,13 +158,43 @@ xfconf_shutdown()
 {
     if(--xfconf_refcnt)
         return;
-    
+
+    g_hash_table_destroy(named_structs);
+    named_structs = NULL;
+
     g_object_unref(G_OBJECT(dbus_proxy));
     dbus_proxy = NULL;
-    
+
     g_object_unref(G_OBJECT(gui_dbus_proxy));
     gui_dbus_proxy = NULL;
-    
+
     dbus_g_connection_unref(dbus_conn);
     dbus_conn = NULL;
+}
+
+/**
+ * xfconf_named_struct_register:
+ * @struct_name: The unique name of the struct to register.
+ * @n_members: The number of data members in the struct.
+ * @member_types: An array of the #GType<!-- -->s of the struct members.
+ *
+ * Registers a named struct for use with xfconf_channel_get_named_struct()
+ * and xfconf_channel_set_named_struct().
+ **/
+void
+xfconf_named_struct_register(const gchar *struct_name,
+                             guint n_members,
+                             const GType *member_types)
+{
+    XfconfNamedStruct *ns;
+
+    g_return_if_fail(struct_name && *struct_name && n_members && member_types
+                     && !g_hash_table_lookup(named_structs, struct_name));
+
+    ns = g_new(XfconfNamedStruct, 1);
+    ns->n_members = n_members;
+    ns->member_types = g_new(GType, n_members);
+    memcpy(ns->member_types, member_types, sizeof(GType) * n_members);
+
+    g_hash_table_insert(named_structs, g_strdup(struct_name), ns);
 }

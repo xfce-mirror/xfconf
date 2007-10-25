@@ -38,8 +38,7 @@ main(int argc,
     
     {  /* meh */
         gchar **strlist = xfconf_channel_get_string_list(channel,
-                                                         test_strlist_property,
-                                                         NULL);
+                                                         test_strlist_property);
         gint i;
         
         if(!strlist) {
@@ -68,7 +67,7 @@ main(int argc,
     }
     
     TEST_OPERATION(xfconf_channel_get_int(channel, test_int_property, -1) == test_int);
-    TEST_OPERATION(xfconf_channel_get_int64(channel, test_int64_property, -1) == test_int64);
+    TEST_OPERATION(xfconf_channel_get_uint64(channel, test_uint64_property, -1) == test_uint64);
     /* FIXME: will this work everywhere? */
     TEST_OPERATION(xfconf_channel_get_double(channel, test_double_property, 0.0) == test_double);
     TEST_OPERATION(xfconf_channel_get_bool(channel, test_bool_property, FALSE) == test_bool);

@@ -94,7 +94,6 @@ configuration keys with the same names.
 
 @channel: 
 @property: 
-@default_value: 
 @Returns: 
 
 
@@ -109,7 +108,7 @@ configuration keys with the same names.
 @Returns: 
 
 
-<!-- ##### FUNCTION xfconf_channel_get_int64 ##### -->
+<!-- ##### FUNCTION xfconf_channel_get_uint64 ##### -->
 <para>
 
 </para>
@@ -160,7 +159,7 @@ configuration keys with the same names.
 
 @channel: 
 @property: 
-@value: 
+@values: 
 @Returns: 
 
 
@@ -175,7 +174,7 @@ configuration keys with the same names.
 @Returns: 
 
 
-<!-- ##### FUNCTION xfconf_channel_set_int64 ##### -->
+<!-- ##### FUNCTION xfconf_channel_set_uint64 ##### -->
 <para>
 
 </para>
@@ -205,6 +204,199 @@ configuration keys with the same names.
 @channel: 
 @property: 
 @value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_property ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_set_property ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_array ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@first_value_type: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_array_valist ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@first_value_type: 
+@var_args: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_arrayv ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_set_array ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@first_value_type: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_set_array_valist ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@first_value_type: 
+@var_args: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_set_arrayv ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@values: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_named_struct ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@struct_name: 
+@value_struct: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_set_named_struct ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@struct_name: 
+@value_struct: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_struct ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value_struct: 
+@first_member_type: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_struct_valist ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value_struct: 
+@first_member_type: 
+@var_args: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_structv ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value_struct: 
+@n_members: 
+@member_types: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_set_struct ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value_struct: 
+@first_member_type: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_set_struct_valist ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value_struct: 
+@first_member_type: 
+@var_args: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_set_structv ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value_struct: 
+@n_members: 
+@member_types: 
 @Returns: 
 
 

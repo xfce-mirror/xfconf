@@ -33,7 +33,7 @@ main(int argc,
     TEST_OPERATION(xfconf_channel_has_property(channel, test_string_property));
     TEST_OPERATION(xfconf_channel_has_property(channel, test_strlist_property));
     TEST_OPERATION(xfconf_channel_has_property(channel, test_int_property));
-    TEST_OPERATION(xfconf_channel_has_property(channel, test_int64_property));
+    TEST_OPERATION(xfconf_channel_has_property(channel, test_uint64_property));
     TEST_OPERATION(xfconf_channel_has_property(channel, test_double_property));
     TEST_OPERATION(xfconf_channel_has_property(channel, test_bool_property));
     

@@ -53,12 +53,6 @@ stamp-xfconf-marshal
 
 @obj: 
 
-<!-- ##### STRUCT XfconfBackend ##### -->
-<para>
-
-</para>
-
-
 <!-- ##### FUNCTION xfconf_backend_get_error_quark ##### -->
 <para>
 
@@ -87,5 +81,25 @@ stamp-xfconf-marshal
 </para>
 
 @channel: 
+@Returns: 
+
+<!-- ##### FUNCTION xfconf_channel_get_int64 ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@default_value: 
+@Returns: 
+
+<!-- ##### FUNCTION xfconf_channel_set_int64 ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value: 
 @Returns: 
 

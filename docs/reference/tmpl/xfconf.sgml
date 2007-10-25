@@ -1,8 +1,8 @@
 <!-- ##### SECTION Title ##### -->
-Xfconf Library Initialization
+Xfconf Library Core
 
 <!-- ##### SECTION Short_Description ##### -->
-Init routines for libxfconf
+Init routines and core functionality for libxfconf
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
@@ -36,5 +36,15 @@ resources.
 
 </para>
 
+
+
+<!-- ##### FUNCTION xfconf_named_struct_register ##### -->
+<para>
+
+</para>
+
+@struct_name: 
+@n_members: 
+@member_types: 
 
 

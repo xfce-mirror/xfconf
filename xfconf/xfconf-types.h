@@ -17,25 +17,32 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __XFCONF_H__
-#define __XFCONF_H__
+#ifndef __XFCONF_TYPES_H__
+#define __XFCONF_TYPES_H__
 
-#include <glib.h>
+#if !defined(LIBXFCONF_COMPILATION) && !defined(XFCONF_IN_XFCONF_H)
+#error "Do not include xfconf-types.h, as this file may change or disappear in the future.  Include <xfconf/xfconf.h> instead."
+#endif
 
-#define XFCONF_IN_XFCONF_H
+#include <glib-object.h>
 
-#include <xfconf/xfconf-channel.h>
-#include <xfconf/xfconf-errors.h>
+#define XFCONF_TYPE_UINT16  (xfconf_uint16_get_type())
+#define XFCONF_TYPE_INT16   (xfconf_int16_get_type())
 
 G_BEGIN_DECLS
 
-gboolean xfconf_init(GError **error);
-void xfconf_shutdown();
+GType xfconf_uint16_get_type() G_GNUC_CONST;
 
-void xfconf_named_struct_register(const gchar *struct_name,
-                                  guint n_members,
-                                  const GType *member_types);
+guint16 xfconf_g_value_get_uint16(const GValue *value);
+void xfconf_g_value_set_uint16(GValue *value,
+                               guint16 v_uint16);
+
+GType xfconf_int16_get_type() G_GNUC_CONST;
+
+gint16 xfconf_g_value_get_int16(const GValue *value);
+void xfconf_g_value_set_int16(GValue *value,
+                              gint16 v_int16);
 
 G_END_DECLS
 
-#endif  /* __XFCONF_H__ */
+#endif

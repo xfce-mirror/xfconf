@@ -1,3 +1,5 @@
+XfconfBackendPerchannelXml file format, version 1.0
+
 -> High-level overview:
 
    The Per-channel XML configuration store backend is a simple
@@ -11,10 +13,15 @@
            <property name="allow-editing" type="bool" value="true"/>
            <property name="last-document" type="string" value="foo.txt"/>
        </property>
-       <property name="history" type="strlist">
-           <string>foo.txt</string>
-           <string>bar.txt</string>
-           <string>baz.txt</string>
+       <property name="history" type="array">
+           <value type="string" value="foo.txt"/>
+           <value type="string" value="bar.txt"/>
+           <value type="string" value="baz.txt"/>
+       </property>
+       <property name="random-stuff" type="array">
+           <value type="int" value="345"/>
+           <value type="double" value="42.4"/>
+           <value type="string" value="cheese"/>
        </property>
    </channel>
 
@@ -50,9 +57,10 @@
      Attributes:
        + name(string): The name of the property (required).
        + type(string): The type of property.  Must be one of: "string",
-         "strlist", "int", "int64", "double", "bool", "empty" (required).
+         "uchar", "char", "uint16", "int16", "uint", "int", "uint64",
+         "int64", "float", "double", "bool", "array", or "empty" (required).
        + value(string): The value of the property (required except for
-         type="strlist" and type="empty").
+         type="array" and type="empty").
        + locked(userlist): A list of users/groups who cannot modify
          this property (only allowed in config files in non-user-writable
          locations; mutually exclusive with the "unlocked" attribute;
@@ -61,10 +69,13 @@
          this property (only allowed in config files in non-user-writable
          locations; mutually exclusive with the "locked" attribute;
          optional, defaults to "*").
-   * <string>
-     Only allowed inside <property> elements where type="strlist".  Has
-     no attributes; the text between the opening and closing tags is
-     the property value.
+   * <value>
+     Only allowed inside <property> elements where type="array", and
+     indicates an array element value.
+     Attributes:
+       + type(string): The type of value.  All values for type= on
+         <property> are supported except for "array" and "empty" (required).
+       + value(string): The element's value, encoded as a string (required).
 
 
 -> Nesting:

@@ -20,8 +20,16 @@
 #ifndef __XFCONF_PRIVATE_H__
 #define __XFCONF_PRIVATE_H__
 
+typedef struct
+{
+    guint n_members;
+    GType *member_types;
+} XfconfNamedStruct;
+
 DBusGConnection *_xfconf_get_dbus_g_connection();
 DBusGProxy *_xfconf_get_dbus_g_proxy();
 DBusGProxy *_xfconf_get_gui_dbus_g_proxy();
+
+XfconfNamedStruct *_xfconf_named_struct_lookup(const gchar *struct_name);
 
 #endif  /* __XFCONF_PRIVATE_H__ */

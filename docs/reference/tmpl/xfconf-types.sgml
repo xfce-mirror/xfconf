@@ -1,0 +1,57 @@
+<!-- ##### SECTION Title ##### -->
+Xfconf Types
+
+<!-- ##### SECTION Short_Description ##### -->
+GObject types used by the Xfconf daemon and library
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION xfconf_g_value_get_int16 ##### -->
+<para>
+
+</para>
+
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_g_value_get_uint16 ##### -->
+<para>
+
+</para>
+
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_g_value_set_int16 ##### -->
+<para>
+
+</para>
+
+@value: 
+@v_int16: 
+
+
+<!-- ##### FUNCTION xfconf_g_value_set_uint16 ##### -->
+<para>
+
+</para>
+
+@value: 
+@v_uint16: 
+
+

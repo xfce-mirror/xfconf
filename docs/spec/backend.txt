@@ -1,0 +1,43 @@
+Xfconf Backends
+---------------
+
+Xfconf backends act as the actual configuration store.  A backend might
+write flat files to disk, XML files to disk, rows to a relational
+database, entries to an LDAP server, or any other possible mechanism
+desired to persistently store the data.
+
+A backend must implement the XfconfBackend interface, which is described
+in the API documentation.
+
+The backend will have to deal with a variety of data types.  While some
+of these types are wrapped directly in the client library (e.g.,
+xfconf_channel_set_uint64()), users of the library can also set other,
+semi-arbitrary types, as well as array types.
+
+So, the backend must, at minimum, be able to understand the following GTypes:
+
+G_TYPE_STRING
+G_TYPE_STRV  (special GType for a C array of G_TYPE_STRING)
+G_TYPE_UCHAR
+G_TYPE_CHAR
+XFCONF_TYPE_UINT16
+XFCONF_TYPE_INT16
+G_TYPE_UINT
+G_TYPE_INT
+G_TYPE_UINT64
+G_TYPE_INT64
+G_TYPE_FLOAT
+G_TYPE_DOUBLE
+G_TYPE_BOOLEAN
+
+In addition, the backend must be able to handle arrays of arbitrary
+types from the above list (with the exception of G_TYPE_STRV).  A single
+array may hold multiple values of the same type, or of different types.
+Because of this, array types are received by the backend as GValueArrays.
+The GType of each value in the array must be checked, of course, as the
+array elements may be of different types.
+
+If the backend receives a G_TYPE_STRV value, it may treat it specially
+in storage, or may simply store it as an array of G_TYPE_STRING values.
+However, the backend should always return it to clients as G_TYPE_STRV,
+not as a G_TYPE_VALUE_ARRAY of G_TYPE_STRING.
