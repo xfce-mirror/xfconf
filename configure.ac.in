@@ -5,9 +5,15 @@ dnl
 dnl Copyright (c) 2007 Brian Tarricone <bjt23@cornell.edu>
 dnl
 
-m4_define([xfconf_version], [0.1.0svn])
+dnl version info
 m4_define([libxfconf_verinfo], [0:0:0])
 m4_define([libxfconf_version_api], [0])
+m4_define([xfconf_version_major], [0])
+m4_define([xfconf_version_minor], [1])
+m4_define([xfconf_version_micro], [0])
+m4_define([xfconf_version_build], [r@REVISION@])
+m4_define([xfconf_version_tag], [svn])
+m4_define([xfconf_version], [xfconf_version_major().xfconf_version_minor().xfconf_version_micro()ifelse(xfconf_version_tag(), [svn], [xfconf_version_tag()-xfconf_version_build()], [xfconf_version_tag()])])
 
 dnl init autoconf
 AC_INIT([xfconf], [xfconf_version], [bjt23@cornell.edu])
@@ -74,6 +80,30 @@ XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.4.0])
 dnl XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.4.0])
 XDT_CHECK_PACKAGE([DBUS], [dbus-1], [1.0.0])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.72])
+
+dnl check alignment for struct returns
+AC_DEFUN([BT_GLIB_CHECK_ALIGNOF],
+[
+    saved_CFLAGS="$CFLAGS"
+    saved_LIBS="$LIBS"
+    CFLAGS="$CFLAGS $GLIB_CFLAGS"
+    LIBS="$LIBS $GLIB_LIBS"
+    AC_CHECK_ALIGNOF([$1], [#include <glib.h>])
+    CFLAGS="$saved_CFLAGS"
+    LIBS="$saved_LIBS"
+])
+BT_GLIB_CHECK_ALIGNOF(guchar)
+BT_GLIB_CHECK_ALIGNOF(gchar)
+BT_GLIB_CHECK_ALIGNOF(guint16)
+BT_GLIB_CHECK_ALIGNOF(gint16)
+BT_GLIB_CHECK_ALIGNOF(guint32)
+BT_GLIB_CHECK_ALIGNOF(gint32)
+BT_GLIB_CHECK_ALIGNOF(guint64)
+BT_GLIB_CHECK_ALIGNOF(gint64)
+BT_GLIB_CHECK_ALIGNOF(gfloat)
+BT_GLIB_CHECK_ALIGNOF(gdouble)
+BT_GLIB_CHECK_ALIGNOF(gboolean)
+BT_GLIB_CHECK_ALIGNOF(gpointer)
 
 dnl gtk-doc
 GTK_DOC_CHECK([1.0])
