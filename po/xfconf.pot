@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-04 04:44-0700\n"
+"POT-Creation-Date: 2007-10-27 12:22-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,12 +21,61 @@ msgstr ""
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr ""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:110
+#: xfconfd/xfconf-backend-perchannel-xml.c:272
 #, c-format
 msgid "Unable to create configuration directory"
 msgstr ""
 
-#: xfconfd/xfconf-daemon.c:181
+#: xfconfd/xfconf-backend-perchannel-xml.c:319
+#, c-format
+msgid "You don't have permission to modify property \"%s\" on channel \"%s\""
+msgstr ""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:362
+#: xfconfd/xfconf-backend-perchannel-xml.c:496
+#, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\""
+msgstr ""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:533
+#, c-format
+msgid "Unable to remove channel \"%s\": %s"
+msgstr ""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1136
+#: xfconfd/xfconf-backend-perchannel-xml.c:1203
+#, c-format
+msgid "Invalid type for <%s>: \"%s\""
+msgstr ""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1147
+#: xfconfd/xfconf-backend-perchannel-xml.c:1214
+#, c-format
+msgid "Unable to parse value from \"%s\""
+msgstr ""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1194
+#, c-format
+msgid "The type attribute of <value> cannot be an array"
+msgstr ""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1461
+#: xfconfd/xfconf-backend-perchannel-xml.c:1692
+#, c-format
+msgid "Channel \"%s\" does not exist"
+msgstr ""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1737
+#, c-format
+msgid "Unable to write channel \"%s\": %s"
+msgstr ""
+
+#: xfconfd/xfconf-daemon.c:362
 #, c-format
 msgid "Another Xfconf daemon is already running"
+msgstr ""
+
+#: xfconfd/xfconf-daemon.c:394
+#, c-format
+msgid "No backends could be started"
 msgstr ""

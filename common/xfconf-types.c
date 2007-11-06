@@ -22,6 +22,7 @@
 #endif
 
 #include "xfconf/xfconf-types.h"
+#include "xfconf-alias.h"
 
 #include <gobject/gvaluecollector.h>
 
@@ -181,3 +182,8 @@ xfconf_g_value_set_int16(GValue *value,
     g_return_if_fail(G_VALUE_HOLDS(value, XFCONF_TYPE_INT16));
     value->data[0].v_int = v_int16;
 }
+
+
+
+#define __XFCONF_TYPES_C__
+#include "xfconf-aliasdef.c"

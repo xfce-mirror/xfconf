@@ -30,6 +30,7 @@
 #include "xfconf-private.h"
 #include "xfconf-marshal.h"
 #include "xfconf-types.h"
+#include "common/xfconf-alias.h"
 
 #define ALIGN_VAL(val, align)  ( ((val) + ((align) -1)) & ~((align) - 1) )
 
@@ -1684,3 +1685,8 @@ out:
 
     return ret;
 }
+
+
+
+#define __XFCONF_CHANNEL_C__
+#include "common/xfconf-aliasdef.c"

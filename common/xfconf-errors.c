@@ -22,6 +22,7 @@
 #endif
 
 #include "xfconf/xfconf-errors.h"
+#include "xfconf-alias.h"
 
 static GQuark xfconf_error_quark = 0;
 
@@ -74,3 +75,8 @@ xfconf_error_get_type()
     
     return type;
 }
+
+
+
+#define __XFCONF_ERRORS_C__
+#include "xfconf-aliasdef.c"

@@ -24,6 +24,7 @@ xfconfd_CFLAGS = \
 	-DLIBXFCONF_COMPILATION \
 	-DBINDIR=\"$(bindir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
+	-I$(top_srcdir) \
 	-I$(top_srcdir)/common \
 	$(GLIB_CFLAGS) \
 	$(DBUS_CFLAGS) \

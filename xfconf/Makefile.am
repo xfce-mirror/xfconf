@@ -16,6 +16,7 @@ libxfconf_0_la_SOURCES = \
 	xfconf.c
 
 libxfconf_0_la_CFLAGS = \
+	-I$(top_srcdir) \
 	-I$(top_srcdir)/common \
 	-DLIBXFCONF_COMPILATION \
 	-DG_LOG_DOMAIN=\"xfconf\" \
@@ -38,6 +39,7 @@ libxfconf_0_la_LIBADD = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libxfconf-0.pc
 
+
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
@@ -48,5 +50,13 @@ xfconf-dbus-bindings.h: $(top_srcdir)/common/xfconf-dbus.xml Makefile
 	    | sed -e 's/org_xfce_Xfconf_/xfconf_client_/g;' \
 	          -e 's/_GUI_/_gui_/g;' > $@
 
+if HAVE_GNUC_VISIBILITY
+TESTS = abicheck.sh
 endif
 
+endif
+
+
+EXTRA_DIST = \
+	abicheck.sh \
+	xfconf.symbols

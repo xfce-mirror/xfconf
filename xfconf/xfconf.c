@@ -32,6 +32,7 @@
 #include "xfconf.h"
 #include "xfconf-marshal.h"
 #include "xfconf-private.h"
+#include "common/xfconf-alias.h"
 
 static guint xfconf_refcnt = 0;
 static DBusGConnection *dbus_conn = NULL;
@@ -198,3 +199,8 @@ xfconf_named_struct_register(const gchar *struct_name,
 
     g_hash_table_insert(named_structs, g_strdup(struct_name), ns);
 }
+
+
+
+#define __XFCONF_C__
+#include "common/xfconf-aliasdef.c"
