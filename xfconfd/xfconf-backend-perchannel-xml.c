@@ -1497,10 +1497,14 @@ xfconf_format_xml_tag(GString *elem_str,
                       gchar spaces[MAX_PROP_PATH],
                       gboolean *is_array)
 {
+    gchar *tmp;
+    
     switch(G_VALUE_TYPE(value)) {
         case G_TYPE_STRING:
+            tmp = g_markup_escape_text(g_value_get_string(value), -1);
             g_string_append_printf(elem_str, " type=\"string\" value=\"%s\"",
-                                   g_value_get_string(value));
+                                   tmp);
+            g_free(tmp);
             break;
         
         case G_TYPE_UCHAR:
@@ -1562,7 +1566,7 @@ xfconf_format_xml_tag(GString *elem_str,
                 for(i = 0; strlist[i]; ++i) {
                     gchar *value_str = g_markup_escape_text(strlist[i], -1);
                     g_string_append_printf(elem_str,
-                                           "%s  <string>%s</string>\n",
+                                           "%s  <value type=\"string\" value=\"%s\"/>\n",
                                            spaces, value_str);
                     g_free(value_str);
                 }
