@@ -1139,25 +1139,28 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                     return;
                 }
                 
-                g_value_init(&prop->value, value_type);
-                if(!xfconf_string_to_value(value, &prop->value)) {
-                    if(error) {
-                        g_set_error(error, G_MARKUP_ERROR,
-                                    G_MARKUP_ERROR_INVALID_CONTENT,
-                                    _("Unable to parse value from \"%s\""),
-                                    value);
+                if(G_TYPE_NONE != value_type) {
+                    g_value_init(&prop->value, value_type);
+                    if(!xfconf_string_to_value(value, &prop->value)) {
+                        if(error) {
+                            g_set_error(error, G_MARKUP_ERROR,
+                                        G_MARKUP_ERROR_INVALID_CONTENT,
+                                        _("Unable to parse value from \"%s\""),
+                                        value);
+                        }
+                        return;
                     }
-                    return;
-                }
-                
-                if(G_TYPE_VALUE_ARRAY == value_type) {
-                    /* FIXME: use stacks here */
-                    state->list_property = g_strdup(fullpath);
-                    state->list_value = &prop->value;
-                }
-                
-                if(prop)
-                    DBG("property '%s' has value type %s", fullpath, G_VALUE_TYPE_NAME(&prop->value));
+                    
+                    if(G_TYPE_VALUE_ARRAY == value_type) {
+                        /* FIXME: use stacks here */
+                        state->list_property = g_strdup(fullpath);
+                        state->list_value = &prop->value;
+                    }
+                    
+                    if(prop)
+                        DBG("property '%s' has value type %s", fullpath, G_VALUE_TYPE_NAME(&prop->value));
+                } else
+                    DBG("empty property (branch)");
                 
                 g_strlcpy(state->cur_path, fullpath, MAX_PROP_PATH);
                 state->cur_elem = ELEM_PROPERTY;
@@ -1167,7 +1170,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                       && !strcmp(element_name, "value"))
             {
                 GValueArray *arr;
-                GValue val;
+                GValue val = { 0, };
                 GType value_type = G_TYPE_INVALID;
                 
                 for(i = 0; attribute_names[i]; ++i) {
@@ -1186,7 +1189,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                     }
                 }
                 
-                value_type = xfconf_string_type_to_gtype(attribute_values[i]);
+                value_type = xfconf_string_type_to_gtype(type);
                 if(G_TYPE_VALUE_ARRAY == value_type) {
                     if(error) {
                         g_set_error(error, G_MARKUP_ERROR,
