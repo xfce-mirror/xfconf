@@ -33,8 +33,14 @@ echo 'dnl *** DO NOT EDIT! ***' >>configure.ac
 echo >>configure.ac
 
 # substitute revision and linguas
-linguas=`sed -e '/^#/d' po/LINGUAS`
-revision=`LC_ALL=C svn info $0 | awk '/^Revision: / {printf "%05d\n", $2}'`
+linguas=$(sed -e '/^#/d' po/LINGUAS)
+if [ -d .git/svn ]; then
+    revision=$(git-svn log | head -n 2 | tail -n 1 | cut -d' ' -f1 | cut -dr -f2)
+elif [ -d .svn ]; then
+    revision=$(LC_ALL=C svn info $0 | awk '/^Revision: / {printf "%05d\n", $2}')
+else
+    revision=UNKNOWN
+fi
 sed -e "s/@LINGUAS@/${linguas}/g" \
     -e "s/@REVISION@/${revision}/g" \
     < "configure.ac.in" >> "configure.ac"
