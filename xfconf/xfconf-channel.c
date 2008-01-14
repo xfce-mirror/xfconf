@@ -397,18 +397,38 @@ gchar **
 xfconf_channel_get_string_list(XfconfChannel *channel,
                                const gchar *property)
 {
-    gchar **value = NULL;
-    GValue val = { 0, };
+    gchar **values = NULL;
+    GValueArray *valarray;
+    gint i;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, NULL);
 
-    if(xfconf_channel_get_internal(channel, property, &val)) {
-        if(G_VALUE_TYPE(&val) == G_TYPE_STRV)
-            value = g_value_dup_boxed(&val);
-        g_value_unset(&val);
+    valarray = xfconf_channel_get_arrayv(channel, property);
+    if(!valarray)
+        return NULL;
+
+    if(!valarray->n_values) {
+        g_value_array_free(valarray);
+        return NULL;
     }
 
-    return value;
+    values = g_new0(gchar *, valarray->n_values + 1);
+
+    for(i = 0; i < valarray->n_values; ++i) {
+        GValue *val = g_value_array_get_nth(valarray, i);
+
+        if(G_VALUE_TYPE(val) != G_TYPE_STRING) {
+            g_value_array_free(valarray);
+            g_strfreev(values);
+            return NULL;
+        }
+
+        values[i] = g_value_dup_string(val);  /* FIXME: avoid copy? */
+    }
+
+    g_value_array_free(valarray);
+
+    return values;
 }
 
 /**
@@ -581,23 +601,25 @@ xfconf_channel_set_string_list(XfconfChannel *channel,
                                const gchar *property,
                                const gchar **values)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GValueArray *valarray;
     GValue val = { 0, };
+    gint i;
     gboolean ret;
-    ERROR_DEFINE;
 
-    g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && values,
-                         FALSE);
+    g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && values
+                         && values[0], FALSE);
 
-    g_value_init(&val, G_TYPE_STRV);
-    g_value_set_boxed(&val, values);
+    valarray = g_value_array_new(2);
+    for(i = 0; values[i]; ++i) {
+        g_value_init(&val, G_TYPE_STRING);
+        g_value_set_string(&val, values[i]);
+        g_value_array_append(valarray, &val);
+        g_value_unset(&val);
+    }
 
-    ret = xfconf_client_set_property(proxy, channel->channel_name, property,
-                                     &val, ERROR);
-    if(!ret)
-        ERROR_CHECK;
+    ret = xfconf_channel_set_arrayv(channel, property, valarray);
 
-    g_value_unset(&val);
+    g_value_array_free(valarray);
 
     return ret;
 }

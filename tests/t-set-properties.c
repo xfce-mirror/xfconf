@@ -37,6 +37,30 @@ main(int argc,
     TEST_OPERATION(xfconf_channel_set_double(channel, test_double_property, test_double));
     TEST_OPERATION(xfconf_channel_set_bool(channel, test_bool_property, test_bool));
     
+    {
+        GValueArray *valarray = g_value_array_new(3);
+        GValue val = { 0, };
+        
+        g_value_init(&val, G_TYPE_BOOLEAN);
+        g_value_set_boolean(&val, TRUE);
+        g_value_array_append(valarray, &val);
+        g_value_unset(&val);
+        
+        g_value_init(&val, G_TYPE_INT64);
+        g_value_set_int64(&val, 5000000000LL);
+        g_value_array_append(valarray, &val);
+        g_value_unset(&val);
+        
+        g_value_init(&val, G_TYPE_STRING);
+        g_value_set_string(&val, "test string");
+        g_value_array_append(valarray, &val);
+        g_value_unset(&val);
+        
+        TEST_OPERATION(xfconf_channel_set_arrayv(channel, "/arrayprop", valarray));
+        
+        g_value_array_free(valarray);
+    }
+    
     g_object_unref(G_OBJECT(channel));
     
     xfconf_tests_end();
