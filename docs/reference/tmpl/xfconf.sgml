@@ -48,3 +48,11 @@ resources.
 @member_types: 
 
 
+<!-- ##### FUNCTION xfconf_array_free ##### -->
+<para>
+
+</para>
+
+@arr: 
+
+

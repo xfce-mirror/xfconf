@@ -36,6 +36,7 @@ main(int argc,
     TEST_OPERATION(xfconf_channel_has_property(channel, test_uint64_property));
     TEST_OPERATION(xfconf_channel_has_property(channel, test_double_property));
     TEST_OPERATION(xfconf_channel_has_property(channel, test_bool_property));
+    TEST_OPERATION(xfconf_channel_has_property(channel, test_array_property));
     
     g_object_unref(G_OBJECT(channel));
     

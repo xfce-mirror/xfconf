@@ -200,6 +200,49 @@ xfconf_named_struct_register(const gchar *struct_name,
     g_hash_table_insert(named_structs, g_strdup(struct_name), ns);
 }
 
+#if 0
+/**
+ * xfconf_array_new:
+ * @n_preallocs: Number of entries to preallocate space for.
+ *
+ * Convenience function to greate a new #GArray to hold
+ * #GValue<!-- -->s.  Normal #GArray functions may be used on
+ * the returned array.  For convenience, see also xfconf_array_free().
+ *
+ * Returns: A new #GArray.
+ **/
+GArray *
+xfconf_array_new(gint n_preallocs)
+{
+    return g_array_sized_new(FALSE, TRUE, sizeof(GValue), n_preallocs);
+}
+#endif
+
+/**
+ * xfconf_array_free:
+ * @arr: A #GPtrArray of #GValue<!-- -->s.
+ *
+ * Properly frees a #GPtrArray structure containing a list of
+ * #GValue<!-- -->s.  This will also cause the contents of the
+ * values to be freed as well.
+ **/
+void
+xfconf_array_free(GPtrArray *arr)
+{
+    gint i;
+    
+    if(!arr)
+        return;
+    
+    for(i = 0; i < arr->len; ++i) {
+        GValue *val = g_ptr_array_index(arr, i);
+        g_value_unset(val);
+        g_free(val);
+    }
+    
+    g_ptr_array_free(arr, TRUE);
+}
+
 
 
 #define __XFCONF_C__

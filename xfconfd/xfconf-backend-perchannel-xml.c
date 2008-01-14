@@ -57,7 +57,8 @@
 #include "xfconf-backend-perchannel-xml.h"
 #include "xfconf-backend.h"
 #include "xfconf-util.h"
-#include "xfconf/xfconf-types.h"
+#include "xfconf-types.h"
+#include "xfconf-common-private.h"
 
 #define FILE_VERSION_MAJOR  "1"
 #define FILE_VERSION_MINOR  "0"
@@ -366,7 +367,7 @@ xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
     }
     
     g_value_copy(&cur_prop->value, g_value_init(value,
-                                               G_VALUE_TYPE(&cur_prop->value)));
+                                                G_VALUE_TYPE(&cur_prop->value)));
     
     return TRUE;
 }
@@ -805,7 +806,7 @@ xfconf_string_type_to_gtype(const gchar *type)
     else if(!strcmp(type, "bool"))
         return G_TYPE_BOOLEAN;
     else if(!strcmp(type, "array"))
-        return G_TYPE_VALUE_ARRAY;
+        return XFCONF_TYPE_G_VALUE_ARRAY;
     else if(!strcmp(type, "empty"))
         return G_TYPE_NONE;
     
@@ -872,7 +873,7 @@ xfconf_string_to_value(const gchar *str,
             if(0 == intval && ERANGE == errno)
                 return FALSE;
             CHECK_CONVERT_STATUS();
-            g_value_set_uint64(value, intval);
+            g_value_set_int64(value, intval);
             return TRUE;
         
         case G_TYPE_FLOAT:
@@ -912,9 +913,9 @@ xfconf_string_to_value(const gchar *str,
             } else if(XFCONF_TYPE_INT16 == G_VALUE_TYPE(value)) {
                 HANDLE_INT(G_MINSHORT, G_MAXSHORT, xfconf_g_value_set_int16);
                 return TRUE;
-            } else if(G_TYPE_VALUE_ARRAY == G_VALUE_TYPE(value)) {
-                GValueArray *arr = g_value_array_new(3);
-                g_value_set_boxed(value, arr);
+            } else if(XFCONF_TYPE_G_VALUE_ARRAY == G_VALUE_TYPE(value)) {
+                GPtrArray *arr = g_ptr_array_sized_new(1);
+                g_value_take_boxed(value, arr);
                 return TRUE;
             }
             return FALSE;
@@ -1145,13 +1146,13 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                         if(error) {
                             g_set_error(error, G_MARKUP_ERROR,
                                         G_MARKUP_ERROR_INVALID_CONTENT,
-                                        _("Unable to parse value from \"%s\""),
-                                        value);
+                                        _("Unable to parse value of type \"%s\" from \"%s\""),
+                                        g_type_name(value_type), value);
                         }
                         return;
                     }
                     
-                    if(G_TYPE_VALUE_ARRAY == value_type) {
+                    if(XFCONF_TYPE_G_VALUE_ARRAY == value_type) {
                         /* FIXME: use stacks here */
                         state->list_property = g_strdup(fullpath);
                         state->list_value = &prop->value;
@@ -1169,8 +1170,8 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                       && state->list_value  /* FIXME: use stack */
                       && !strcmp(element_name, "value"))
             {
-                GValueArray *arr;
-                GValue val = { 0, };
+                GPtrArray *arr;
+                GValue *val;
                 GType value_type = G_TYPE_INVALID;
                 
                 for(i = 0; attribute_names[i]; ++i) {
@@ -1190,7 +1191,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 }
                 
                 value_type = xfconf_string_type_to_gtype(type);
-                if(G_TYPE_VALUE_ARRAY == value_type) {
+                if(XFCONF_TYPE_G_VALUE_ARRAY == value_type) {
                     if(error) {
                         g_set_error(error, G_MARKUP_ERROR,
                                     G_MARKUP_ERROR_INVALID_CONTENT,
@@ -1209,21 +1210,22 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                     return;
                 }
                 
-                g_value_init(&val, value_type);
-                if(!xfconf_string_to_value(value, &val)) {
+                val = g_new0(GValue, 1);
+                g_value_init(val, value_type);
+                if(!xfconf_string_to_value(value, val)) {
                     if(error) {
                         g_set_error(error, G_MARKUP_ERROR,
                                     G_MARKUP_ERROR_INVALID_CONTENT,
-                                    _("Unable to parse value from \"%s\""),
-                                    value);
+                                    _("Unable to parse value of type \"%s\" from \"%s\""),
+                                    g_type_name(value_type), value);
                     }
-                    g_value_unset(&val);
+                    g_value_unset(val);
+                    g_free(val);
                     return;
                 }
                 
                 arr = g_value_get_boxed(state->list_value);
-                g_value_array_append(arr, &val);
-                g_value_unset(&val);
+                g_ptr_array_add(arr, val);
                 
                 state->cur_elem = ELEM_VALUE;
             } else {
@@ -1560,6 +1562,9 @@ xfconf_format_xml_tag(GString *elem_str,
                 gchar **strlist;
                 gint i;
                 
+                /* we shouldn't get here anymore, i think */
+                g_critical("Got G_TYPE_STRV.  Shouldn't happen anymore, right?");
+                
                 if(is_array_value)
                     return FALSE;
                 
@@ -1575,8 +1580,8 @@ xfconf_format_xml_tag(GString *elem_str,
                 }
                 
                 *is_array = TRUE;
-            } else if(G_VALUE_TYPE(value) == G_TYPE_VALUE_ARRAY) {
-                GValueArray *arr;
+            } else if(XFCONF_TYPE_G_VALUE_ARRAY == G_VALUE_TYPE(value)) {
+                GPtrArray *arr;
                 gint i;
                 
                 if(is_array_value)
@@ -1585,8 +1590,8 @@ xfconf_format_xml_tag(GString *elem_str,
                 g_string_append(elem_str, " type=\"array\">\n");
                 
                 arr = g_value_get_boxed(value);
-                for(i = 0; i < arr->n_values; ++i) {
-                    GValue *value1 = g_value_array_get_nth(arr, i);
+                for(i = 0; i < arr->len; ++i) {
+                    GValue *value1 = g_ptr_array_index(arr, i);
                     gboolean dummy;
                     
                     g_string_append_printf(elem_str, "%s  <value ", spaces);

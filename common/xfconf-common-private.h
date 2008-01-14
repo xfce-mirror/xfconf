@@ -1,7 +1,7 @@
 /*
  *  xfconf
  *
- *  Copyright (c) 2007 Brian Tarricone <bjt23@cornell.edu>
+ *  Copyright (c) 2008 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,27 +17,9 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __XFCONF_H__
-#define __XFCONF_H__
+#ifndef __XFCONF_COMMON_PRIVATE_H__
+#define __XFCONF_COMMON_PRIVATE_H__
 
-#include <glib.h>
+#define XFCONF_TYPE_G_VALUE_ARRAY  (dbus_g_type_get_collection("GPtrArray", G_TYPE_VALUE))
 
-#define XFCONF_IN_XFCONF_H
-
-#include <xfconf/xfconf-channel.h>
-#include <xfconf/xfconf-errors.h>
-
-G_BEGIN_DECLS
-
-gboolean xfconf_init(GError **error);
-void xfconf_shutdown();
-
-void xfconf_named_struct_register(const gchar *struct_name,
-                                  guint n_members,
-                                  const GType *member_types);
-
-void xfconf_array_free(GPtrArray *arr);
-
-G_END_DECLS
-
-#endif  /* __XFCONF_H__ */
+#endif  /* __XFCONF_COMMON_PRIVATE_H__ */

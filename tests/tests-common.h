@@ -69,6 +69,7 @@ const gchar *test_double_property = "/test/doubletest/double";
 const gdouble test_double = 42.4242;
 const gchar *test_bool_property = "/test/booltest/bool";
 const gboolean test_bool = TRUE;
+const gchar *test_array_property = "/test/arrayprop";
 
 static inline gboolean
 xfconf_tests_start()

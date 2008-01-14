@@ -59,5 +59,6 @@ EXTRA_DIST = \
 	make-exo-alias.pl \
 	xfconf-alias.h \
 	xfconf-aliasdef.c \
+	xfconf-common-private.h \
 	xfconf-dbus.xml \
 	xfconf-marshal.list

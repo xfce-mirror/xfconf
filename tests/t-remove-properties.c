@@ -54,6 +54,10 @@ main(int argc,
     xfconf_channel_remove_property(channel, test_bool_property);
     TEST_OPERATION(!xfconf_channel_has_property(channel, test_bool_property));
     
+    TEST_OPERATION(xfconf_channel_has_property(channel, test_array_property));
+    xfconf_channel_remove_property(channel, test_array_property);
+    TEST_OPERATION(!xfconf_channel_has_property(channel, test_array_property));
+    
     g_object_unref(G_OBJECT(channel));
     
     xfconf_tests_end();

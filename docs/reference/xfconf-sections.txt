@@ -67,6 +67,7 @@ xfconf_backend_get_type
 xfconf_init
 xfconf_shutdown
 xfconf_named_struct_register
+xfconf_array_free
 </SECTION>
 
 <SECTION>

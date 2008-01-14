@@ -125,8 +125,8 @@ gboolean xfconf_channel_get_array_valist(XfconfChannel *channel,
                                          const gchar *property,
                                          GType first_value_type,
                                          va_list var_args);
-GValueArray *xfconf_channel_get_arrayv(XfconfChannel *channel,
-                                       const gchar *property);
+GPtrArray *xfconf_channel_get_arrayv(XfconfChannel *channel,
+                                     const gchar *property);
 
 gboolean xfconf_channel_set_array(XfconfChannel *channel,
                                   const gchar *property,
@@ -138,7 +138,7 @@ gboolean xfconf_channel_set_array_valist(XfconfChannel *channel,
                                          va_list var_args);
 gboolean xfconf_channel_set_arrayv(XfconfChannel *channel,
                                    const gchar *property,
-                                   GValueArray *values);
+                                   GPtrArray *values);
 
 /* struct types */
 

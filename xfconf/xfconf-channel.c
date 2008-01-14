@@ -30,7 +30,9 @@
 #include "xfconf-private.h"
 #include "xfconf-marshal.h"
 #include "xfconf-types.h"
-#include "common/xfconf-alias.h"
+#include "xfconf-common-private.h"
+#include "xfconf-alias.h"
+#include "xfconf.h"
 
 #define ALIGN_VAL(val, align)  ( ((val) + ((align) -1)) & ~((align) - 1) )
 
@@ -398,35 +400,29 @@ xfconf_channel_get_string_list(XfconfChannel *channel,
                                const gchar *property)
 {
     gchar **values = NULL;
-    GValueArray *valarray;
+    GPtrArray *arr;
     gint i;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, NULL);
 
-    valarray = xfconf_channel_get_arrayv(channel, property);
-    if(!valarray)
+    arr = xfconf_channel_get_arrayv(channel, property);
+    if(!arr)
         return NULL;
 
-    if(!valarray->n_values) {
-        g_value_array_free(valarray);
-        return NULL;
-    }
-
-    values = g_new0(gchar *, valarray->n_values + 1);
-
-    for(i = 0; i < valarray->n_values; ++i) {
-        GValue *val = g_value_array_get_nth(valarray, i);
+    values = g_new0(gchar *, arr->len + 1);
+    for(i = 0; i < arr->len; ++i) {
+        GValue *val = g_ptr_array_index(arr, i);
 
         if(G_VALUE_TYPE(val) != G_TYPE_STRING) {
-            g_value_array_free(valarray);
+            xfconf_array_free(arr);
             g_strfreev(values);
             return NULL;
         }
 
-        values[i] = g_value_dup_string(val);  /* FIXME: avoid copy? */
+        values[i] = g_value_dup_string(val);  /* FIXME: avoid copy */
     }
 
-    g_value_array_free(valarray);
+    xfconf_array_free(arr);
 
     return values;
 }
@@ -601,25 +597,29 @@ xfconf_channel_set_string_list(XfconfChannel *channel,
                                const gchar *property,
                                const gchar **values)
 {
-    GValueArray *valarray;
-    GValue val = { 0, };
+    GPtrArray *arr;
+    GValue *val;
     gint i;
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && values
                          && values[0], FALSE);
 
-    valarray = g_value_array_new(2);
+    /* count strings so we can prealloc */
+    for(i = 0; values[i]; ++i)
+        (void)0;
+    
+    arr = g_ptr_array_sized_new(i);
     for(i = 0; values[i]; ++i) {
-        g_value_init(&val, G_TYPE_STRING);
-        g_value_set_string(&val, values[i]);
-        g_value_array_append(valarray, &val);
-        g_value_unset(&val);
+        val = g_new0(GValue, 1);
+        g_value_init(val, G_TYPE_STRING);
+        g_value_set_static_string(val, values[i]);
+        g_ptr_array_add(arr, val);
     }
 
-    ret = xfconf_channel_set_arrayv(channel, property, valarray);
+    ret = xfconf_channel_set_arrayv(channel, property, arr);
 
-    g_value_array_free(valarray);
+    xfconf_array_free(arr);
 
     return ret;
 }
@@ -888,34 +888,34 @@ xfconf_channel_get_array_valist(XfconfChannel *channel,
                                 va_list var_args)
 {
     gboolean ret = FALSE;
-    GValueArray *valarray = NULL;
+    GPtrArray *arr = NULL;
     GType cur_value_type;
-    GValue *value;
+    GValue *val;
     gint i;
 
-    valarray = xfconf_channel_get_arrayv(channel, property);
-    if(!valarray)
+    arr = xfconf_channel_get_arrayv(channel, property);
+    if(!arr)
         return FALSE;
 
     for(cur_value_type = first_value_type, i = 0;
         cur_value_type != G_TYPE_INVALID;
         cur_value_type = va_arg(var_args, GType), ++i)
     {
-        if(i > valarray->n_values - 1) {
+        if(i > arr->len - 1) {
 #ifdef XFCONF_ENABLE_CHECKS
             g_warning("Too many parameters passed, or config store doesn't " \
                       "have enough elements in array (it only provided %d).",
-                       valarray->n_values);
+                       arr->len);
 #endif
             goto out;
         }
 
-        value = g_value_array_get_nth(valarray, i);
+        val = g_ptr_array_index(arr, i);
 
-        if(G_VALUE_TYPE(value) != cur_value_type) {
+        if(G_VALUE_TYPE(val) != cur_value_type) {
 #ifdef XFCONF_ENABLE_CHECKS
             g_warning("Value types don't match (%d != %d) at parameter %d",
-                       (int)G_VALUE_TYPE(value), (int)cur_value_type, i);
+                       (int)G_VALUE_TYPE(val), (int)cur_value_type, i);
 #endif
             goto out;
         }
@@ -923,7 +923,7 @@ xfconf_channel_get_array_valist(XfconfChannel *channel,
 #define HANDLE_CASE(ctype, GTYPE, valtype) \
     case G_TYPE_ ## GTYPE: { \
         ctype *__val_p = va_arg(var_args, ctype *); \
-        *__val_p = g_value_get_ ## valtype(value); \
+        *__val_p = g_value_get_ ## valtype(val); \
         break; \
     }
 
@@ -941,34 +941,34 @@ xfconf_channel_get_array_valist(XfconfChannel *channel,
 
             case G_TYPE_STRING: {
                 gchar **__val_p = va_arg(var_args, gchar **);
-                *__val_p = g_value_dup_string(value);
+                *__val_p = g_value_dup_string(val);
                 break;
             }
 
             default:
                 if(XFCONF_TYPE_UINT16 == cur_value_type) {
                     guint16 *__val_p = va_arg(var_args, guint16 *);
-                    *__val_p = xfconf_g_value_get_uint16(value);
+                    *__val_p = xfconf_g_value_get_uint16(val);
                 } else if(XFCONF_TYPE_INT16 == cur_value_type) {
                     gint16 *__val_p = va_arg(var_args, gint16 *);
-                    *__val_p = xfconf_g_value_get_int16(value);
+                    *__val_p = xfconf_g_value_get_int16(val);
                 } else if(G_TYPE_STRV == cur_value_type) {
                     gchar ***__val_p = va_arg(var_args, gchar ***);
-                    *__val_p = g_value_dup_boxed(value);
+                    *__val_p = g_value_dup_boxed(val);
                 } else {
                     g_warning("Unknown value type %d (%s) in value array.",
-                              G_VALUE_TYPE(value), G_VALUE_TYPE_NAME(value));
+                              G_VALUE_TYPE(val), G_VALUE_TYPE_NAME(val));
                     goto out;
                 }
                 break;
         }
     }
 
-    if(i < valarray->n_values) {
+    if(i < arr->len) {
 #ifdef XFCONF_ENABLE_CHECKS
         g_warning("Too few parameters passed, or config store has too " \
                   "many elements in array (it provided %d).",
-                   valarray->n_values);
+                   arr->len);
 #endif
         goto out;
     }
@@ -976,7 +976,7 @@ xfconf_channel_get_array_valist(XfconfChannel *channel,
     ret = TRUE;
 
 out:
-    g_value_array_free(valarray);
+    xfconf_array_free(arr);
 
     return ret;
 }
@@ -987,35 +987,44 @@ out:
  * @property: A property string.
  *
  * Gets an array property on @channel and returns it as
- * a #GValueArray.
+ * a #GPtrArray, which can be freed with xfconf_array_free()
+ * when no longer needed.
  *
- * Returns: A newly-allocated #GValueArray on success, or %NULL
+ * Returns: A newly-allocated #GPtrArray on success, or %NULL
  *          on failure.
  **/
-GValueArray *
+GPtrArray *
 xfconf_channel_get_arrayv(XfconfChannel *channel,
                           const gchar *property)
 {
+    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
     GValue val = { 0, };
-    GValueArray *valarray = NULL;
+    GPtrArray *arr = NULL;
+    ERROR_DEFINE;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, NULL);
-
-    if(!xfconf_channel_get_internal(channel, property, &val))
+    
+    if(!xfconf_client_get_property(proxy, channel->channel_name, property,
+                                   &val, ERROR))
+    {
+        ERROR_CHECK;
         return NULL;
-
-    if(G_VALUE_TYPE(&val) != G_TYPE_VALUE_ARRAY) {
-#ifdef XFCONF_ENABLE_CHECKS
-        g_warning("Type returned for xfconf_channel_get_arrayv() was not G_TYPE_VALUE_ARRAY");
-#endif
+    }
+    
+    if(XFCONF_TYPE_G_VALUE_ARRAY != G_VALUE_TYPE(&val)) {
         g_value_unset(&val);
         return NULL;
     }
-
-    valarray = g_value_dup_boxed(&val);  /* the copy here sucks */
-    g_value_unset(&val);
-
-    return valarray;
+    
+    arr = g_value_get_boxed(&val);
+    if(!arr->len) {
+        g_ptr_array_free(arr, TRUE);
+        return NULL;
+    }
+    
+    /* FIXME: does anything with |val| leak here? */
+    
+    return arr;
 }
 
 /**
@@ -1072,15 +1081,15 @@ xfconf_channel_set_array_valist(XfconfChannel *channel,
                                 GType first_value_type,
                                 va_list var_args)
 {
-    GValueArray *valarray;
+    GPtrArray *arr;
     GType cur_value_type;
-    GValue val = { 0, };
+    GValue *val;
     gboolean ret = FALSE;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property
                          && G_TYPE_INVALID != first_value_type, FALSE);
 
-    valarray = g_value_array_new(5);  /* FIXME: arbitrary number... */
+    arr = g_ptr_array_sized_new(3);  /* this is somewhat arbitrary... */
 
     for(cur_value_type = first_value_type;
         cur_value_type != G_TYPE_INVALID;
@@ -1089,9 +1098,10 @@ xfconf_channel_set_array_valist(XfconfChannel *channel,
 #define HANDLE_CASE(ctype, GTYPE, valtype) \
     case G_TYPE_ ## GTYPE: { \
         ctype *__val = va_arg(var_args, ctype *); \
-        g_value_init(&val, G_TYPE_ ## GTYPE); \
-        g_value_set_ ## valtype(&val, *__val); \
-        g_value_array_append(valarray, &val); \
+        val = g_new0(GValue, 1); \
+        g_value_init(val, G_TYPE_ ## GTYPE); \
+        g_value_set_ ## valtype(val, *__val); \
+        g_ptr_array_add(arr, val); \
         break; \
     }
 
@@ -1105,40 +1115,49 @@ xfconf_channel_set_array_valist(XfconfChannel *channel,
             HANDLE_CASE(gfloat, FLOAT, float)
             HANDLE_CASE(gdouble, DOUBLE, double)
             HANDLE_CASE(gboolean, BOOLEAN, boolean)
-            HANDLE_CASE(gchar *, STRING, string)
 #undef HANDLE_CASE
+            
+            case G_TYPE_STRING: {
+                gchar *__val = va_arg(var_args, gchar *);
+                val = g_new0(GValue, 1);
+                g_value_init(val, G_TYPE_STRING);
+                g_value_set_static_string(val, __val);
+                g_ptr_array_add(arr, val);
+                break;
+            }
 
             default:
                 if(XFCONF_TYPE_UINT16 == cur_value_type) {
                     guint16 *__val = va_arg(var_args, guint16 *);
-                    g_value_init(&val, XFCONF_TYPE_UINT16);
-                    xfconf_g_value_set_uint16(&val, *__val);
-                    g_value_array_append(valarray, &val);
+                    val = g_new0(GValue, 1);
+                    g_value_init(val, XFCONF_TYPE_UINT16);
+                    xfconf_g_value_set_uint16(val, *__val);
+                    g_ptr_array_add(arr, val);
                 } else if(XFCONF_TYPE_INT16 == cur_value_type) {
                     gint16 *__val = va_arg(var_args, gint16 *);
-                    g_value_init(&val, XFCONF_TYPE_INT16);
-                    xfconf_g_value_set_int16(&val, *__val);
-                    g_value_array_append(valarray, &val);
+                    val = g_new0(GValue, 1);
+                    g_value_init(val, XFCONF_TYPE_INT16);
+                    xfconf_g_value_set_int16(val, *__val);
+                    g_ptr_array_add(arr, val);
                 } else if(G_TYPE_STRV == cur_value_type) {
                     gchar **__val = va_arg(var_args, gchar **);
-                    g_value_init(&val, G_TYPE_STRV);
-                    g_value_set_boxed(&val, __val);
-                    g_value_array_append(valarray, &val);
+                    val = g_new0(GValue, 1);
+                    g_value_init(val, G_TYPE_STRV);
+                    g_value_set_static_boxed(val, __val);
+                    g_ptr_array_add(arr, val);
                 } else {
                     g_warning("Unknown value type %d (%s) in parameter list.",
-                              G_VALUE_TYPE(&val), G_VALUE_TYPE_NAME(&val));
+                              cur_value_type, g_type_name(cur_value_type));
                     goto out;
                 }
                 break;
         }
-
-        g_value_unset(&val);
     }
 
-    ret = xfconf_channel_set_arrayv(channel, property, valarray);
+    ret = xfconf_channel_set_arrayv(channel, property, arr);
 
 out:
-    g_value_array_free(valarray);
+    xfconf_array_free(arr);
 
     return ret;
 }
@@ -1147,7 +1166,7 @@ out:
  * xfconf_channel_set_arrayv:
  * @channel: An #XfconfChannel.
  * @property: A property string.
- * @values: A #GValueArray of values.
+ * @values: A #GPtrArray of #GValue<!-- -->s.
  *
  * Sets an array property on @channel, using the values in the
  * provided @values array.
@@ -1157,7 +1176,7 @@ out:
 gboolean
 xfconf_channel_set_arrayv(XfconfChannel *channel,
                           const gchar *property,
-                          GValueArray *values)
+                          GPtrArray *values)
 {
     DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
     GValue val = { 0, };
@@ -1167,15 +1186,15 @@ xfconf_channel_set_arrayv(XfconfChannel *channel,
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && values,
                          FALSE);
 
-    g_value_init(&val, G_TYPE_VALUE_ARRAY);
-    g_value_set_boxed(&val, values);
-
+    g_value_init(&val, XFCONF_TYPE_G_VALUE_ARRAY);
+    g_value_set_static_boxed(&val, values);
+    
     ret = xfconf_client_set_property(proxy, channel->channel_name, property,
                                      &val, ERROR);
-
+    
     if(!ret)
         ERROR_CHECK;
-
+    
     g_value_unset(&val);
 
     return ret;
@@ -1366,23 +1385,23 @@ xfconf_channel_get_structv(XfconfChannel *channel,
                            guint n_members,
                            GType *member_types)
 {
-    GValueArray *valarray;
+    GPtrArray *arr;
     guint i;
-    GValue *value;
+    GValue *val;
     gboolean ret = FALSE;
     gsize cur_offset = 0;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && value_struct
                          && n_members && member_types, FALSE);
 
-    valarray = xfconf_channel_get_arrayv(channel, property);
-    if(!valarray)
+    arr = xfconf_channel_get_arrayv(channel, property);
+    if(!arr)
         return FALSE;
 
-    if(valarray->n_values != n_members) {
+    if(arr->len != n_members) {
 #ifdef XFCONF_ENABLE_CHECKS
         g_warning("Returned value array does not match the number of struct " \
-                  "members (%d != %d)", valarray->n_values, n_members);
+                  "members (%d != %d)", arr->len, n_members);
 #endif
         goto out;
     }
@@ -1390,26 +1409,26 @@ xfconf_channel_get_structv(XfconfChannel *channel,
     for(i = 0; i < n_members; ++i) {
         typedef struct { guchar a; } DummyStruct;
 #ifdef XFCONF_ENABLE_CHECKS
-#define CHECK_VALUE_TYPES(value, GTYPE) G_STMT_START{ \
-    if(G_VALUE_TYPE((value)) != (GTYPE)) { \
+#define CHECK_VALUE_TYPES(val, GTYPE) G_STMT_START{ \
+    if(G_VALUE_TYPE((val)) != (GTYPE)) { \
         g_warning("Returned value type does not match specified struct member type"); \
         goto out; \
     } \
 }G_STMT_END
 #else
-#define CHECK_VALUE_TYPES(value, GTYPE) G_STMT_START{ \
-    if(G_VALUE_TYPE((value)) != (GTYPE)) \
+#define CHECK_VALUE_TYPES(val, GTYPE) G_STMT_START{ \
+    if(G_VALUE_TYPE((val)) != (GTYPE)) \
         goto out; \
 }G_STMT_END
 #endif
 
 #define SET_STRUCT_VAL(ctype, GTYPE, alignment, cvalgetter)  G_STMT_START{ \
     ctype *__val_p; \
-    value = g_value_array_get_nth(valarray, i); \
-    CHECK_VALUE_TYPES(value, GTYPE); \
+    val = g_ptr_array_index(arr, i); \
+    CHECK_VALUE_TYPES(val, GTYPE); \
     cur_offset = ALIGN_VAL(cur_offset, alignment); \
     __val_p = (ctype *)(((guchar *)(&(((DummyStruct *)value_struct)->a)))+cur_offset); \
-    *__val_p = cvalgetter(value); \
+    *__val_p = cvalgetter(val); \
     cur_offset += sizeof(ctype); \
 }G_STMT_END
 
@@ -1486,7 +1505,7 @@ xfconf_channel_get_structv(XfconfChannel *channel,
     ret = TRUE;
 
 out:
-    g_value_array_free(valarray);
+    xfconf_array_free(arr);
 
     return ret;
 }
@@ -1605,35 +1624,35 @@ xfconf_channel_set_structv(XfconfChannel *channel,
                            guint n_members,
                            GType *member_types)
 {
-    GValueArray *valarray;
+    GPtrArray *arr;
     guint i;
-    GValue val = { 0, };
+    GValue *val;
     gboolean ret = FALSE;
     gsize cur_offset = 0;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && value_struct
                          && n_members && member_types, FALSE);
 
-    valarray = g_value_array_new(n_members);
+    arr = g_ptr_array_sized_new(n_members);
 
     for(i = 0; i < n_members; ++i) {
         typedef struct { guchar a; } DummyStruct;
 
 #define GET_STRUCT_VAL(ctype, GTYPE, alignment, cvalsetter)  G_STMT_START{ \
     ctype *__val_p; \
-    g_value_init(&val, GTYPE); \
+    val = g_new0(GValue, 1); \
+    g_value_init(val, GTYPE); \
     cur_offset = ALIGN_VAL(cur_offset, alignment); \
     __val_p = (ctype *)(((guchar *)(&(((DummyStruct *)value_struct)->a)))+cur_offset); \
-    cvalsetter(&val, *__val_p); \
-    g_value_array_append(valarray, &val); \
-    g_value_unset(&val); \
+    cvalsetter(val, *__val_p); \
+    g_ptr_array_add(arr, val); \
     cur_offset += sizeof(ctype); \
 }G_STMT_END
 
         switch(member_types[i]) {
             case G_TYPE_STRING:
                 GET_STRUCT_VAL(gchar *, G_TYPE_STRING, ALIGNOF_GPOINTER,
-                               g_value_set_string);
+                               g_value_set_static_string);
                 break;
             
             case G_TYPE_UCHAR:
@@ -1700,10 +1719,10 @@ xfconf_channel_set_structv(XfconfChannel *channel,
         }
     }
 
-    ret = xfconf_channel_set_arrayv(channel, property, valarray);
+    ret = xfconf_channel_set_arrayv(channel, property, arr);
 
 out:
-    g_value_array_free(valarray);
+    xfconf_array_free(arr);
 
     return ret;
 }
