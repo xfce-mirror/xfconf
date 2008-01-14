@@ -17,7 +17,6 @@ semi-arbitrary types, as well as array types.
 So, the backend must, at minimum, be able to understand the following GTypes:
 
 G_TYPE_STRING
-G_TYPE_STRV  (special GType for a C array of G_TYPE_STRING)
 G_TYPE_UCHAR
 G_TYPE_CHAR
 XFCONF_TYPE_UINT16
@@ -31,13 +30,9 @@ G_TYPE_DOUBLE
 G_TYPE_BOOLEAN
 
 In addition, the backend must be able to handle arrays of arbitrary
-types from the above list (with the exception of G_TYPE_STRV).  A single
-array may hold multiple values of the same type, or of different types.
-Because of this, array types are received by the backend as GValueArrays.
-The GType of each value in the array must be checked, of course, as the
-array elements may be of different types.
-
-If the backend receives a G_TYPE_STRV value, it may treat it specially
-in storage, or may simply store it as an array of G_TYPE_STRING values.
-However, the backend should always return it to clients as G_TYPE_STRV,
-not as a G_TYPE_VALUE_ARRAY of G_TYPE_STRING.
+types from the above list.  A single array may hold multiple values
+of the same type, or of different types.  Because of this, an array is
+sent over the bus as a GValue which holds a GPtrArray which holds an
+array of GValues (which of course hold the actual values).  The GType
+of each value in the array must be checked, of course, as the array
+elements may be of different types.

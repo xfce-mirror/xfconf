@@ -89,8 +89,8 @@ XfconfBackendPerchannelXml file format, version 1.0
    /HappyApp/main/last-document
    /HappyApp/history
    
-   (These strings are what you'd look up if using libxfconf to retrieve
-   property values.)
+   (These strings, minus the channel name part at the beginning, are what
+   you'd look up if using libxfconf to retrieve property values.)
 
 
 -> Locking/Kiosk mode:
