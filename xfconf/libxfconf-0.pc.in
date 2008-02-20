@@ -10,4 +10,4 @@ Description: Configuration library for Xfce
 Requires: gobject-2.0 dbus-1 dbus-glib-1
 Version: @PACKAGE_VERSION@
 Libs: -L${libdir} -lxfconf-${libxfconf_api_version}
-Cflags: -I${includedir}/xfconf-${libxfconf_api_version}
+Cflags: -I${includedir}/xfce4/xfconf-${libxfconf_api_version}
