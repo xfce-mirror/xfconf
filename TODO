@@ -24,6 +24,7 @@
       changes?  load it and send PropertyChanged for all properties?  that
       could be very bad.
 * separate XSETTINGS daemon that reads values from xfconfd
+  - add multi-screen support
 * libxfce4mcs-client dummy implementation that forwards to libxfconf
 * cmdline get/set/query tool so the config store can be scriptable
 

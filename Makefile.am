@@ -2,6 +2,7 @@ SUBDIRS = \
 	common \
 	xfconf \
 	xfconfd \
+	xfsettingsd \
 	po \
 	docs \
 	tests
