@@ -28,6 +28,7 @@
 xfconf_init
 xfconf_shutdown
 xfconf_named_struct_register
+xfconf_array_free
 #endif
 #endif
 
