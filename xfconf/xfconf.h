@@ -26,6 +26,7 @@
 
 #include <xfconf/xfconf-channel.h>
 #include <xfconf/xfconf-errors.h>
+#include <xfconf/xfconf-types.h>
 
 G_BEGIN_DECLS
 
