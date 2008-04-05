@@ -1,3 +1,5 @@
+if BUILD_XFSETTINGSD
+
 bin_PROGRAMS = xfsettingsd
 
 xfsettingsd_SOURCES = \
@@ -8,6 +10,7 @@ xfsettingsd_CFLAGS = \
 	$(GTK_CFLAGS) \
 	$(GLIB_CFLAGS) \
 	$(DBUS_GLIB_CFLAGS) \
+	$(LIBXFCE4UTIL_CFLAGS) \
 	-DDATADIR=\"$(datadir)\" \
 	-DSRCDIR=\"$(top_srcdir)\" \
 	-DLOCALEDIR=\"$(localedir)\"
@@ -16,7 +19,10 @@ xfsettingsd_LDADD = \
 	$(top_builddir)/xfconf/libxfconf-0.la \
 	$(GTK_LIBS) \
 	$(GLIB_LIBS) \
-	$(DBUS_GLIB_LIBS)
+	$(DBUS_GLIB_LIBS) \
+	$(LIBXFCE4UTIL_LIBS)
 
 INCLUDES = \
-	-I${top_srcdir}
+	-I$(top_srcdir)
+
+endif

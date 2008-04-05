@@ -264,7 +264,7 @@ xsettings_registry_notify(XSettingsRegistry *registry)
         entry = registry->priv->properties[i];
 
         gint name_len = XSETTINGS_PAD(strlen(entry->name), 4);
-        gint value_len;
+        gint value_len = 0;
 
         switch (G_VALUE_TYPE(entry->value))
         {
@@ -426,10 +426,9 @@ xsettings_registry_new (XfconfChannel *channel, Display *dpy, gint screen)
     gchar buffer[256];
     unsigned char c = 'a';
     TimeStampInfo info;
-    Atom timestamp_atom;
     XEvent xevent;
 
-    g_sprintf(buffer, "_XSETTINGS_S%d", screen);
+    g_snprintf(buffer, sizeof(buffer), "_XSETTINGS_S%d", screen);
     Atom selection_atom = XInternAtom(dpy, buffer, True);
     Atom manager_atom = XInternAtom(dpy, "MANAGER", True);
 
@@ -597,4 +596,6 @@ xsettings_registry_load(XSettingsRegistry *registry, gboolean debug)
         g_free(name);
 
     }
+
+    return TRUE;
 }

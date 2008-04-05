@@ -16,20 +16,22 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
+
 #include <X11/Xlib.h>
 
 #include <glib.h>
 
-#if defined(GETTEXT_PACKAGE)
-#include <glib/gi18n-lib.h>
-#else
-#include <glib/gi18n.h>
-#endif
-
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 
+#include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
 
 #include "registry.h"
@@ -92,7 +94,7 @@ settings_daemon_check_running (Display *display, gint screen)
     Atom atom;
     gchar buffer[256];
 
-    g_sprintf(buffer, "_XSETTINGS_S%d", screen);
+    g_snprintf(buffer, sizeof(buffer), "_XSETTINGS_S%d", screen);
     atom = XInternAtom((Display *)display, buffer, False);
 
     if (XGetSelectionOwner((Display *)display, atom))
@@ -106,17 +108,9 @@ settings_daemon_check_running (Display *display, gint screen)
 int
 main(int argc, char **argv)
 {
-    Atom selection_atom;
-    Atom xsettings_atom;
-    Atom manager_atom;
-
     GError *cli_error = NULL;
 
-    #ifdef ENABLE_NLS
-    bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
-    bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-    textdomain (GETTEXT_PACKAGE);
-    #endif
+    xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
     if(!gtk_init_with_args(&argc, &argv, _(""), entries, PACKAGE, &cli_error))
     {
@@ -188,4 +182,6 @@ main(int argc, char **argv)
         XDestroyWindow (gdk_display, window);
         xfconf_shutdown();
     }
+
+    return 0;
 }
