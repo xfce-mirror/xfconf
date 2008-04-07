@@ -107,7 +107,43 @@ main(int argc, char **argv)
     /** Check if the value is specified */
     if(!value)
     {
+        /**
+         * Read the property value
+         */
+        if (xfconf_channel_has_property(channel, property_name))
+        {
+            GValue tmp_value = {0, };
+            xfconf_channel_get_property(channel, property_name, &tmp_value);
 
+            GType prop_type = G_VALUE_TYPE(&tmp_value);
+            switch(prop_type)
+            {
+                case G_TYPE_INT:
+                    {
+                        gint val = g_value_get_int(&tmp_value);
+                        g_print("%d\n", val);
+                    }
+                    break;
+                case G_TYPE_STRING:
+                    {
+                        const gchar *val = g_value_get_string(&tmp_value);
+                        g_print("%s\n", val);
+                    }
+                    break;
+                case G_TYPE_BOOLEAN:
+                    {
+                        gboolean val = g_value_get_boolean(&tmp_value);
+                        g_print("%d\n", val);
+                    }
+                    break;
+            }
+            g_value_unset(&tmp_value);
+        }
+        else
+        {
+            g_print("[ERROR] Property doesn't exist\n");
+            return 1;
+        }
     }
     else
     {
