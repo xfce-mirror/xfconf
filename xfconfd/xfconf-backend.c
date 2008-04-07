@@ -309,3 +309,27 @@ xfconf_backend_flush(XfconfBackend *backend,
     
     return iface->flush(backend, error);
 }
+
+/**
+ * xfconf_backend_register_property_changed_func:
+ * @backend: The #XfconfBackend.
+ * @func: A function of type #XfconfPropertyChangeFunc.
+ * @user_data: Arbitrary caller-supplied data.
+ *
+ * Registers a function to be called when a property changes.  The
+ * backend implementation should keep a pointer to @func and @user_data
+ * and call @func when a property in the configuration store changes.
+ **/
+void
+xfconf_backend_register_property_changed_func(XfconfBackend *backend,
+                                              XfconfPropertyChangedFunc func,
+                                              gpointer user_data)
+{
+    XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
+
+    g_return_if_fail(iface);
+    if(!iface->register_property_changed_func)
+        return;
+
+    iface->register_property_changed_func(backend, func, user_data);
+}

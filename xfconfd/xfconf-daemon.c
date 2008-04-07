@@ -120,6 +120,7 @@ xfconf_daemon_finalize(GObject *obj)
     GList *l;
     
     for(l = xfconfd->backends; l; l = l->next) {
+        xfconf_backend_register_property_changed_func(l->data, NULL, NULL);
         xfconf_backend_flush(l->data, NULL);
         g_object_unref(l->data);
     }
@@ -132,6 +133,37 @@ xfconf_daemon_finalize(GObject *obj)
 }
 
 
+
+static void
+xfconf_daemon_backend_property_changed(XfconfBackend *backend,
+                                       const gchar *channel,
+                                       const gchar *property,
+                                       gpointer user_data)
+{
+    XfconfDaemon *xfconfd = user_data;
+    DBusGProxy *signal_proxy;
+    DBusMessage *msg;
+
+    /* FIXME: this function needs to be rewritten to not suck.  cache
+     * the DBusGProxy?  is there a better way to emit signals anyway? */
+
+    signal_proxy = dbus_g_proxy_new_for_name(xfconfd->dbus_conn,
+                                             "org.xfce.Xfconf",
+                                             "/org/xfce/Xfconf",
+                                             "org.xfce.Xfconf");
+
+    msg = dbus_message_new_signal("/org/xfce/Xfconf", "org.xfce.Xfconf",
+                                  "PropertyChanged");
+    dbus_message_append_args(msg,
+                             DBUS_TYPE_STRING, &channel,
+                             DBUS_TYPE_STRING, &property,
+                             DBUS_TYPE_INVALID);
+
+    dbus_g_proxy_send(signal_proxy, msg, NULL);
+    
+    g_object_unref(G_OBJECT(signal_proxy));
+    dbus_message_unref(msg);
+}
 
 static gboolean
 xfconf_set_property(XfconfDaemon *xfconfd,
@@ -364,7 +396,7 @@ xfconf_daemon_start(XfconfDaemon *xfconfd,
         
         return FALSE;
     }
-    
+
     return TRUE;
 }
 
@@ -384,8 +416,12 @@ xfconf_daemon_load_config(XfconfDaemon *xfconfd,
                       error1->message);
             g_error_free(error1);
             error1 = NULL;
-        } else
+        } else {
             xfconfd->backends = g_list_prepend(xfconfd->backends, backend);
+            xfconf_backend_register_property_changed_func(backend,
+                                                          xfconf_daemon_backend_property_changed,
+                                                          xfconfd);
+        }
     }
                                            
     if(!xfconfd->backends) {

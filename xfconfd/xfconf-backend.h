@@ -52,6 +52,11 @@ G_BEGIN_DECLS
 typedef struct _XfconfBackend           XfconfBackend;
 typedef struct _XfconfBackendInterface  XfconfBackendInterface;
 
+typedef void (*XfconfPropertyChangedFunc)(XfconfBackend *backend,
+                                          const gchar *channel,
+                                          const gchar *property,
+                                          gpointer user_data);
+
 struct _XfconfBackendInterface
 {
     GTypeInterface parent;
@@ -93,6 +98,10 @@ struct _XfconfBackendInterface
     
     gboolean (*flush)(XfconfBackend *backend,
                       GError **error);
+
+    void (*register_property_changed_func)(XfconfBackend *backend,
+                                           XfconfPropertyChangedFunc func,
+                                           gpointer user_data);
     
     /*< reserved for future expansion >*/
     void (*_xb_reserved0)();
@@ -140,6 +149,10 @@ gboolean xfconf_backend_remove_channel(XfconfBackend *backend,
     
 gboolean xfconf_backend_flush(XfconfBackend *backend,
                               GError **error);
+
+void xfconf_backend_register_property_changed_func(XfconfBackend *backend,
+                                                   XfconfPropertyChangedFunc func,
+                                                   gpointer user_data);
 
 G_END_DECLS
 

@@ -34,6 +34,7 @@ one could think of to store data.
 @remove: See xfconf_backend_remove().
 @remove_channel: See xfconf_backend_remove_channel().
 @flush: See xfconf_backend_flush().
+@register_property_changed_func: See xfconf_backend_register_property_changed_func().
 @_xb_reserved0: Reserved for future expansion.
 @_xb_reserved1: Reserved for future expansion.
 @_xb_reserved2: Reserved for future expansion.

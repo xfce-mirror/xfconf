@@ -99,6 +99,9 @@ struct _XfconfBackendPerchannelXml
     
     guint save_id;
     GList *dirty_channels;
+
+    XfconfPropertyChangedFunc prop_changed_func;
+    gpointer prop_changed_data;
 };
 
 typedef struct _XfconfBackendPerchannelXmlClass
@@ -176,6 +179,9 @@ static gboolean xfconf_backend_perchannel_xml_remove_channel(XfconfBackend *back
                                                              GError **error);
 static gboolean xfconf_backend_perchannel_xml_flush(XfconfBackend *backend,
                                                     GError **error);
+static void xfconf_backend_perchannel_xml_register_property_changed_func(XfconfBackend *backend,
+                                                                         XfconfPropertyChangedFunc func,
+                                                                         gpointer user_data);
 
 static void xfconf_backend_perchannel_xml_schedule_save(XfconfBackendPerchannelXml *xbpx,
                                                         const gchar *channel);
@@ -255,6 +261,7 @@ xfconf_backend_perchannel_xml_backend_init(XfconfBackendInterface *iface)
     iface->remove = xfconf_backend_perchannel_xml_remove;
     iface->remove_channel = xfconf_backend_perchannel_xml_remove_channel;
     iface->flush = xfconf_backend_perchannel_xml_flush;
+    iface->register_property_changed_func = xfconf_backend_perchannel_xml_register_property_changed_func;
 }
 
 static gboolean
@@ -327,8 +334,16 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
             g_value_unset(&cur_prop->value);
         g_value_copy(value, g_value_init(&cur_prop->value,
                                          G_VALUE_TYPE(value)));
-    } else
+
+        /* FIXME: this will trigger if the value is replaced by the same
+         * value */
+        if(xbpx->prop_changed_func)
+            xbpx->prop_changed_func(backend, channel, property, xbpx->prop_changed_data);
+    } else {
         xfconf_proptree_add_property(properties, property, value, FALSE);
+        if(xbpx->prop_changed_func)
+            xbpx->prop_changed_func(backend, channel, property, xbpx->prop_changed_data);
+    }
     
     xfconf_backend_perchannel_xml_schedule_save(xbpx, channel);
     
@@ -499,6 +514,9 @@ xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
         }
         return FALSE;
     }
+
+    if(xbpx->prop_changed_func)
+        xbpx->prop_changed_func(backend, channel, property, xbpx->prop_changed_data);
     
     xfconf_backend_perchannel_xml_schedule_save(xbpx, channel);
     
@@ -538,6 +556,9 @@ xfconf_backend_perchannel_xml_remove_channel(XfconfBackend *backend,
         return FALSE;
     }
     g_free(filename);
+
+    /* FIXME: do we want to do a PropertyChanged for each property
+     * in the channel?  or should we add a ChannelRemoved signal? */
     
     return TRUE;
 }
@@ -555,6 +576,17 @@ xfconf_backend_perchannel_xml_flush(XfconfBackend *backend,
     TRACE("exiting, flushed all channels");
     
     return TRUE;
+}
+
+static void
+xfconf_backend_perchannel_xml_register_property_changed_func(XfconfBackend *backend,
+                                                             XfconfPropertyChangedFunc func,
+                                                             gpointer user_data)
+{
+    XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
+
+    xbpx->prop_changed_func = func;
+    xbpx->prop_changed_data = user_data;
 }
 
 
