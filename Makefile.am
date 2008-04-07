@@ -2,6 +2,7 @@ SUBDIRS = \
 	common \
 	xfconf \
 	xfconfd \
+	xfconf-query \
 	xfsettingsd \
 	po \
 	docs \

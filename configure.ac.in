@@ -176,6 +176,7 @@ po/Makefile.in
 tests/Makefile
 xfconf/Makefile
 xfconf/libxfconf-0.pc
+xfconf-query/Makefile
 xfconfd/Makefile
 xfsettingsd/Makefile
 ])

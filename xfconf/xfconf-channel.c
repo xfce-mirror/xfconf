@@ -781,7 +781,7 @@ xfconf_channel_get_property(XfconfChannel *channel,
                             const gchar *property,
                             GValue *value)
 {
-    GValue val1;
+    GValue val1 = {0, };
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && value,
