@@ -124,7 +124,7 @@ main(int argc, char **argv)
 
     if(version)
     {
-        g_print("%s\n", PACKAGE_STRING);
+        g_print("xfsettingsd %s\n", PACKAGE_VERSION);
         return 0;
     }
 
