@@ -33,6 +33,12 @@
 #include <errno.h>
 #endif
 
+#ifdef GETTEXT_PACKAGE
+#include <glib/gi18n-lib.h>
+#else
+#include <glib/gi18n.h>
+#endif
+
 #include <dbus/dbus-glib.h>
 
 #include "xfconf-gvaluefuncs.h"
@@ -159,6 +165,7 @@ _xfconf_gvalue_from_string(GValue *value,
                 return TRUE;
             } else if(XFCONF_TYPE_G_VALUE_ARRAY == G_VALUE_TYPE(value)) {
                 GPtrArray *arr = g_ptr_array_sized_new(1);
+                g_ptr_array_add(arr, g_strdup(str));
                 g_value_take_boxed(value, arr);
                 return TRUE;
             }
@@ -170,6 +177,50 @@ _xfconf_gvalue_from_string(GValue *value,
 #undef REAL_HANDLE_INT
 #undef HANDLE_INT
 #undef HANDLE_UINT
+}
+
+gchar *
+_xfconf_string_from_gvalue(GValue *val)
+{
+    g_return_val_if_fail(val && G_VALUE_TYPE(val), NULL);
+
+    switch(G_VALUE_TYPE(val)) {
+        case G_TYPE_STRING:
+            return g_value_dup_string(val);
+        case G_TYPE_UCHAR:
+            return g_strdup_printf("%u", (guint)g_value_get_uchar(val));
+        case G_TYPE_CHAR:
+            return g_strdup_printf("%d", (gint)g_value_get_char(val));
+        case G_TYPE_UINT:
+            return g_strdup_printf("%u", g_value_get_uint(val));
+        case G_TYPE_INT:
+            return g_strdup_printf("%d", g_value_get_int(val));
+        case G_TYPE_UINT64:
+            return g_strdup_printf("%" G_GUINT64_FORMAT,
+                                   g_value_get_uint64(val));
+        case G_TYPE_INT64:
+            return g_strdup_printf("%" G_GINT64_FORMAT,
+                                   g_value_get_int64(val));
+        case G_TYPE_FLOAT:
+            return g_strdup_printf("%f", (gdouble)g_value_get_float(val));
+        case G_TYPE_DOUBLE:
+            return g_strdup_printf("%f", g_value_get_double(val));
+        case G_TYPE_BOOLEAN:
+            return g_strdup(g_value_get_boolean(val) ? _("true")
+                                                     : _("false"));
+        default:
+            if(G_VALUE_TYPE(val) == XFCONF_TYPE_UINT16) {
+                return g_strdup_printf("%u",
+                                       (guint)xfconf_g_value_get_uint16(val));
+            } else if(G_VALUE_TYPE(val) == XFCONF_TYPE_INT16) {
+                return g_strdup_printf("%d",
+                                       (gint)xfconf_g_value_get_int16(val));
+            }
+            break;
+    }
+
+    g_warning("Unable to convert GValue to string");
+    return NULL;
 }
 
 void

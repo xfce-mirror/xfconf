@@ -78,50 +78,6 @@ xfconf_gtk_binding_free(XfconfGtkBinding *binding)
 
 
 
-static gchar *
-xfconf_gtk_string_from_gvalue(GValue *val)
-{
-    g_return_val_if_fail(val && G_VALUE_TYPE(val), NULL);
-
-    switch(G_VALUE_TYPE(val)) {
-        case G_TYPE_STRING:
-            return g_value_dup_string(val);
-        case G_TYPE_UCHAR:
-            return g_strdup_printf("%u", (guint)g_value_get_uchar(val));
-        case G_TYPE_CHAR:
-            return g_strdup_printf("%d", (gint)g_value_get_char(val));
-        case G_TYPE_UINT:
-            return g_strdup_printf("%u", g_value_get_uint(val));
-        case G_TYPE_INT:
-            return g_strdup_printf("%d", g_value_get_int(val));
-        case G_TYPE_UINT64:
-            return g_strdup_printf("%" G_GUINT64_FORMAT,
-                                   g_value_get_uint64(val));
-        case G_TYPE_INT64:
-            return g_strdup_printf("%" G_GINT64_FORMAT,
-                                   g_value_get_int64(val));
-        case G_TYPE_FLOAT:
-            return g_strdup_printf("%f", (gdouble)g_value_get_float(val));
-        case G_TYPE_DOUBLE:
-            return g_strdup_printf("%f", g_value_get_double(val));
-        case G_TYPE_BOOLEAN:
-            return g_strdup(g_value_get_boolean(val) ? _("true")
-                                                     : _("false"));
-        default:
-            if(G_VALUE_TYPE(val) == XFCONF_TYPE_UINT16) {
-                return g_strdup_printf("%u",
-                                       (guint)xfconf_g_value_get_uint16(val));
-            } else if(G_VALUE_TYPE(val) == XFCONF_TYPE_INT16) {
-                return g_strdup_printf("%d",
-                                       (gint)xfconf_g_value_get_int16(val));
-            }
-            break;
-    }
-
-    g_warning("Unable to convert GValue to string");
-    return NULL;
-}
-
 static gboolean
 xfconf_gtk_update_property_from_string(XfconfGtkBinding *binding,
                                        const gchar *value)
@@ -161,7 +117,7 @@ xfconf_gtk_editable_binding(XfconfChannel *channel,
     if(!xfconf_channel_get_property(channel, property, &val))
         return;
 
-    new_val = xfconf_gtk_string_from_gvalue(&val);
+    new_val = _xfconf_string_from_gvalue(&val);
     g_value_unset(&val);
     if(!new_val)
         return;

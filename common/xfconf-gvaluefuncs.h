@@ -27,6 +27,8 @@ G_BEGIN_DECLS
 gboolean _xfconf_gvalue_from_string(GValue *value,
                                     const gchar *str) G_GNUC_INTERNAL;
 
+gchar *_xfconf_string_from_gvalue(GValue *value) G_GNUC_INTERNAL;
+
 void _xfconf_gvalue_free(GValue *value) G_GNUC_INTERNAL;
 
 G_END_DECLS
