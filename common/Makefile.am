@@ -1,5 +1,7 @@
 
-noinst_LTLIBRARIES = libxfconf-common.la
+noinst_LTLIBRARIES = \
+	libxfconf-common.la \
+	libxfconf-gvaluefuncs.la
 
 libxfconf_common_la_SOURCES = \
 	xfconf-errors.c \
@@ -17,6 +19,16 @@ libxfconf_common_la_CFLAGS = \
 libxfconf_built_sources = \
 	xfconf-alias.h \
 	xfconf-aliasdef.c
+
+
+libxfconf_gvaluefuncs_la_SOURCES = \
+	xfconf-gvaluefuncs.c
+
+libxfconf_gvaluefuncs_la_CFLAGS = \
+	-DLIBXFCONF_COMPILATION \
+	-I$(top_srcdir) \
+	$(GLIB_CFLAGS) \
+	$(DBUS_GLIB_CFLAGS)
 
 
 if MAINTAINER_MODE

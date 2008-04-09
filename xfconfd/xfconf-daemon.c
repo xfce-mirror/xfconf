@@ -29,6 +29,7 @@
 #include "xfconf-backend.h"
 #include "xfconf-marshal.h"
 #include "xfconf-util.h"
+#include "xfconf-gvaluefuncs.h"
 #include "xfconf/xfconf-errors.h"
 
 static gboolean xfconf_set_property(XfconfDaemon *xfconfd,
@@ -215,7 +216,7 @@ xfconf_get_all_properties(XfconfDaemon *xfconfd,
     
     *properties = g_hash_table_new_full(g_str_hash, g_str_equal,
                                         (GDestroyNotify)g_free,
-                                        (GDestroyNotify)xfconf_g_value_free);
+                                        (GDestroyNotify)_xfconf_gvalue_free);
     
     /* get all properties from all backends.  if they all fail, return FALSE */
     for(l = xfconfd->backends; l; l = l->next) {

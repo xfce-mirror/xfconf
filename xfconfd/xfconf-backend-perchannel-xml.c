@@ -57,7 +57,8 @@
 #include "xfconf-backend-perchannel-xml.h"
 #include "xfconf-backend.h"
 #include "xfconf-util.h"
-#include "xfconf-types.h"
+#include "xfconf-gvaluefuncs.h"
+#include "xfconf/xfconf-types.h"
 #include "xfconf-common-private.h"
 
 #define FILE_VERSION_MAJOR  "1"
@@ -70,24 +71,6 @@
 #define CACHE_TIMEOUT    (20*60*1000)  /* 20 minutes */
 #define WRITE_TIMEOUT    (5*1000)  /* 5 secionds */
 #define MAX_PROP_PATH    (4096)
-
-#ifdef CHAR_MIN
-#define XFCONF_MINCHAR  CHAR_MIN
-#else 
-#define XFCONF_MINCHAR  (-128)
-#endif
-
-#ifdef CHAR_MAX
-#define XFCONF_MAXCHAR  CHAR_MAX
-#else
-#define XFCONF_MAXCHAR  (127)
-#endif
-
-#ifdef UCHAR_MAX
-#define XFCONF_MAXUCHAR  UCHAR_MAX
-#else
-#define XFCONF_MAXUCHAR  (255)
-#endif
 
 struct _XfconfBackendPerchannelXml
 {
@@ -845,121 +828,6 @@ xfconf_string_type_to_gtype(const gchar *type)
     return G_TYPE_INVALID;
 }
 
-static gboolean
-xfconf_string_to_value(const gchar *str,
-                       GValue *value)
-{
-#define CHECK_CONVERT_STATUS() \
-    if(*str == 0 || *endptr != 0) \
-        return FALSE
-#define CHECK_CONVERT_VALUE(val, minval, maxval) \
-    if((val) < (minval) || (val) > (maxval)) \
-        return FALSE
-    
-#define REAL_HANDLE_INT(minval, maxval, convertfunc, setfunc) \
-    G_STMT_START{ \
-        errno = 0; \
-        intval = convertfunc(str, &endptr, 0); \
-        if(0 == intval && ERANGE == errno) \
-            return FALSE; \
-        CHECK_CONVERT_STATUS(); \
-        CHECK_CONVERT_VALUE(intval, minval, maxval); \
-        setfunc(value, intval); \
-        return TRUE; \
-    }G_STMT_END
-
-#define HANDLE_UINT(minval, maxval, setfunc)  REAL_HANDLE_INT(minval, maxval, strtoul, setfunc)
-#define HANDLE_INT(minval, maxval, setfunc)  REAL_HANDLE_INT(minval, maxval, strtol, setfunc)
-    
-    guint64 uintval;
-    gint64 intval;
-    gdouble dval;
-    gchar *endptr = NULL;
-    
-    switch(G_VALUE_TYPE(value)) {
-        case G_TYPE_STRING:
-            g_value_set_string(value, str);
-            return TRUE;
-        
-        case G_TYPE_UCHAR:
-            HANDLE_UINT(0, XFCONF_MAXUCHAR, g_value_set_uchar);
-        case G_TYPE_CHAR:
-            HANDLE_INT(XFCONF_MINCHAR, XFCONF_MAXCHAR, g_value_set_char);
-        case G_TYPE_UINT:
-            HANDLE_UINT(0, G_MAXUINT, g_value_set_uint);
-        case G_TYPE_INT:
-            HANDLE_INT(G_MININT, G_MAXINT, g_value_set_int);
-        
-        case G_TYPE_UINT64:
-            errno = 0;
-            uintval = g_ascii_strtoull(str, &endptr, 0);
-            if(0 == uintval && ERANGE == errno)
-                return FALSE;
-            CHECK_CONVERT_STATUS();
-            g_value_set_uint64(value, uintval);
-            return TRUE;
-        
-        case G_TYPE_INT64:
-            errno = 0;
-            intval = g_ascii_strtoll(str, &endptr, 0);
-            if(0 == intval && ERANGE == errno)
-                return FALSE;
-            CHECK_CONVERT_STATUS();
-            g_value_set_int64(value, intval);
-            return TRUE;
-        
-        case G_TYPE_FLOAT:
-            errno = 0;
-            dval = g_ascii_strtod(str, &endptr);
-            if(0.0 == dval && ERANGE == errno)
-                return FALSE;
-            CHECK_CONVERT_STATUS();
-            if(dval < G_MINFLOAT || dval > G_MAXFLOAT)
-                return FALSE;
-            g_value_set_float(value, (gfloat)dval);
-            return TRUE;
-        
-        case G_TYPE_DOUBLE:
-            errno = 0;
-            dval = g_ascii_strtod(str, &endptr);
-            if(0.0 == dval && ERANGE == errno)
-                return FALSE;
-            CHECK_CONVERT_STATUS();
-            g_value_set_double(value, dval);
-            return TRUE;
-        
-        case G_TYPE_BOOLEAN:
-            if(!strcmp(str, "true")) {
-                g_value_set_boolean(value, TRUE);
-                return TRUE;
-            } else if(!strcmp(str, "false")) {
-                g_value_set_boolean(value, FALSE);
-                return TRUE;
-            } else
-                return FALSE;
-        
-        default:
-            if(XFCONF_TYPE_UINT16 == G_VALUE_TYPE(value)) {
-                HANDLE_INT(0, G_MAXUSHORT, xfconf_g_value_set_uint16);
-                return TRUE;
-            } else if(XFCONF_TYPE_INT16 == G_VALUE_TYPE(value)) {
-                HANDLE_INT(G_MINSHORT, G_MAXSHORT, xfconf_g_value_set_int16);
-                return TRUE;
-            } else if(XFCONF_TYPE_G_VALUE_ARRAY == G_VALUE_TYPE(value)) {
-                GPtrArray *arr = g_ptr_array_sized_new(1);
-                g_value_take_boxed(value, arr);
-                return TRUE;
-            }
-            return FALSE;
-    }
-
-#undef CHECK_CONVERT_STATUS
-#undef CHECK_CONVERT_VALUE
-#undef REAL_HANDLE_INT
-#undef HANDLE_INT
-#undef HANDLE_UINT
-}
-
 static void
 xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                                          const gchar *element_name,
@@ -1174,7 +1042,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 
                 if(G_TYPE_NONE != value_type) {
                     g_value_init(&prop->value, value_type);
-                    if(!xfconf_string_to_value(value, &prop->value)) {
+                    if(!_xfconf_gvalue_from_string(&prop->value, value)) {
                         if(error) {
                             g_set_error(error, G_MARKUP_ERROR,
                                         G_MARKUP_ERROR_INVALID_CONTENT,
@@ -1244,7 +1112,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 
                 val = g_new0(GValue, 1);
                 g_value_init(val, value_type);
-                if(!xfconf_string_to_value(value, val)) {
+                if(!_xfconf_gvalue_from_string(val, value)) {
                     if(error) {
                         g_set_error(error, G_MARKUP_ERROR,
                                     G_MARKUP_ERROR_INVALID_CONTENT,

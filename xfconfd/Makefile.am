@@ -26,7 +26,6 @@ xfconfd_CFLAGS = \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/common \
-	-I$(top_srcdir)/xfconf \
 	$(GLIB_CFLAGS) \
 	$(DBUS_CFLAGS) \
 	$(DBUS_GLIB_CFLAGS) \
@@ -34,6 +33,7 @@ xfconfd_CFLAGS = \
 
 xfconfd_LDADD = \
 	$(top_builddir)/common/libxfconf-common.la \
+	$(top_builddir)/common/libxfconf-gvaluefuncs.la \
 	$(GLIB_LIBS) \
 	$(DBUS_LIBS) \
 	$(DBUS_GLIB_LIBS) \
