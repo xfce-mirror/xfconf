@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-08 23:21-0700\n"
+"POT-Creation-Date: 2008-04-09 22:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: common/xfconf-gvaluefuncs.c:209
+#: common/xfconf-gvaluefuncs.c:222
 msgid "true"
 msgstr ""
 
-#: common/xfconf-gvaluefuncs.c:210
+#: common/xfconf-gvaluefuncs.c:223
 msgid "false"
 msgstr ""
 
-#: xfsettingsd/main.c:50 xfconf-query/main.c:51
+#: xfsettingsd/main.c:50 xfconf-query/main.c:52
 msgid "Version information"
 msgstr ""
 
-#: xfsettingsd/main.c:54 xfconf-query/main.c:55
+#: xfsettingsd/main.c:54 xfconf-query/main.c:56
 msgid "Verbose output"
 msgstr ""
 
@@ -130,14 +130,14 @@ msgstr ""
 msgid "No backends could be started"
 msgstr ""
 
-#: xfconf-query/main.c:59
+#: xfconf-query/main.c:60
 msgid "pick the channel"
 msgstr ""
 
-#: xfconf-query/main.c:63
+#: xfconf-query/main.c:64
 msgid "pick the property"
 msgstr ""
 
-#: xfconf-query/main.c:67
+#: xfconf-query/main.c:68
 msgid "set (change the value)"
 msgstr ""

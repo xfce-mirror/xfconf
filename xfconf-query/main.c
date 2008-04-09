@@ -37,7 +37,8 @@
 #include <glib/gi18n.h>
 #endif
 
-#include <xfconf/xfconf.h>
+#include "xfconf-gvaluefuncs.h"
+#include "xfconf/xfconf.h"
 
 static gboolean version = FALSE;
 static gboolean verbose = FALSE;
@@ -116,108 +117,22 @@ main(int argc, char **argv)
         GValue value = {0, };
         xfconf_channel_get_property(channel, property_name, &value);
 
-        GType prop_type = G_VALUE_TYPE(&value);
         /** Read value */
         if(set_value == NULL)
         {
-            switch(prop_type)
-            {
-                case G_TYPE_INT:
-                    {
-                        gint i_val = g_value_get_int(&value);
-                        g_print("%d\n", i_val);
-                    }
-                    break;
-                case G_TYPE_STRING:
-                    {
-                        const gchar *str_val = g_value_get_string(&value);
-                        g_print("%s\n", str_val);
-                    }
-                    break;
-                case G_TYPE_BOOLEAN:
-                    {
-                        gboolean b_val = g_value_get_boolean(&value);
-                        g_print("%d\n", b_val);
-                    }
-                    break;
-            }
-
+            const gchar *str_val = _xfconf_string_from_gvalue(&value);
+            g_print("%s\n", str_val);
         }
-
         /* Write value */
         else
         {
-            if (set_value[0] != NULL)
+            if(_xfconf_gvalue_from_string(&value, set_value[0]))
             {
-                gint i = 0;
-                if (set_value[1] != NULL)
-                {
-                    i++;
-                    /** Check if the type is the same as specified */
-                    switch(prop_type)
-                    {
-                        case G_TYPE_INT:
-                            if (g_strcasecmp(set_value[0], "int"))
-                            {
-                                /** ERROR */
-                                g_critical("Property '%s' is not of type '%s'", set_value[1], set_value[0]);
-                                return 1;
-                            }
-                            break;
-                        case G_TYPE_STRING:
-                            if (g_strcasecmp(set_value[0], "string"))
-                            {
-                                /** ERROR */
-                                g_critical("Property '%s' is not of type '%s'", set_value[1], set_value[0]);
-                                return 1;
-                            }
-                            break;
-                        case G_TYPE_BOOLEAN:
-                            if (g_strcasecmp(set_value[0], "boolean"))
-                            {
-                                /** ERROR */
-                                g_critical("Property '%s' is not of type '%s'", set_value[1], set_value[0]);
-                                return 1;
-                            }
-                            break;
-                    }
-                }
-
-                /** Set the value */
-                switch(prop_type)
-                {
-                    case G_TYPE_INT:
-                    case G_TYPE_UINT:
-                        {
-                        gint i_val = atoi(set_value[i]);
-                        xfconf_channel_set_int(channel, property_name, i_val);
-                        }
-                        break;
-                    case G_TYPE_STRING:
-                        xfconf_channel_set_string(channel, property_name, set_value[i]);
-                        break;
-                    case G_TYPE_BOOLEAN:
-                        if(!g_strcasecmp(set_value[i], "True") || !g_strcasecmp(set_value[i], "1"))
-                        {
-                            xfconf_channel_set_bool(channel, property_name, TRUE);
-                            return 0;
-                        }
-                        if(!g_strcasecmp(set_value[i], "False") || !g_strcasecmp(set_value[i], "0"))
-                        {
-                            xfconf_channel_set_bool(channel, property_name, FALSE);
-                            return 0;
-                        }
-                        break;
-                    case G_TYPE_DOUBLE:
-                        break;
-                    case G_TYPE_INT64:
-                    case G_TYPE_UINT64:
-                        break;
-                }
+                xfconf_channel_set_property(channel, property_name, &value);
             }
             else
             {
-                /** Error */
+                g_print("ERROR: Could not convert value\n");
             }
         }
         g_value_unset(&value);

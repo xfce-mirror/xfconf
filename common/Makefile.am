@@ -22,7 +22,8 @@ libxfconf_built_sources = \
 
 
 libxfconf_gvaluefuncs_la_SOURCES = \
-	xfconf-gvaluefuncs.c
+	xfconf-gvaluefuncs.c \
+	xfconf-gvaluefuncs.h
 
 libxfconf_gvaluefuncs_la_CFLAGS = \
 	-DLIBXFCONF_COMPILATION \
