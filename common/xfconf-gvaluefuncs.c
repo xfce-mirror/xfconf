@@ -164,9 +164,22 @@ _xfconf_gvalue_from_string(GValue *value,
                 HANDLE_INT(G_MINSHORT, G_MAXSHORT, xfconf_g_value_set_int16);
                 return TRUE;
             } else if(XFCONF_TYPE_G_VALUE_ARRAY == G_VALUE_TYPE(value)) {
-                GPtrArray *arr = g_ptr_array_sized_new(1);
-                g_ptr_array_add(arr, g_strdup(str));
+                gchar **strings = g_strsplit_set(str, ";", -1);
+                gint i = 0;
+                GPtrArray *arr;
+                
+                if(!strings)
+                    return FALSE;
+
+                while(strings[i])
+                    ++i;
+                
+                arr = g_ptr_array_sized_new(i);
+                for(i = 0; strings[i]; ++i)
+                    g_ptr_array_add(arr, strings[i]);
                 g_value_take_boxed(value, arr);
+
+                g_free(strings);
                 return TRUE;
             }
             return FALSE;
