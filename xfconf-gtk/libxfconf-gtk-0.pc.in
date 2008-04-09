@@ -1,0 +1,13 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+libxfconf_gtk_api_version=@LIBXFCONF_GTK_VERSION_API@
+
+Name: @PACKAGE_TARNAME@
+Description: Xfconf Gtk convenience library for Xfce
+Requires: libxfconf-@LIBXFCONF_VERSION_API@ gtk+-2.0
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -lxfconf-gtk-${libxfconf_gtk_api_version}
+Cflags: -I${includedir}/xfce4/xfconf-gtk-${libxfconf_gtk_api_version}

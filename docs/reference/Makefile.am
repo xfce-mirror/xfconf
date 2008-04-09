@@ -23,10 +23,12 @@ FIXXREF_OPTIONS=
 # Used for dependencies
 HFILE_GLOB = \
 	$(top_srcdir)/xfconf/*.h \
-	$(top_srcdir)/xfconfd/*.h
+	$(top_srcdir)/xfconfd/*.h \
+	$(top_srcdir)/xfconf-gtk/*.h
 CFILE_GLOB = \
 	$(top_srcdir)/xfconf/*.c \
 	$(top_srcdir)/xfconfd/*.c \
+	$(top_srcdir)/xfconf-gtk/*.c \
 	$(top_srcdir)/common/xfconf-errors.c
 
 # Header files to ignore when scanning
@@ -62,6 +64,7 @@ INCLUDES = \
 
 GTKDOC_LIBS = \
 	$(top_builddir)/xfconf/libxfconf-$(LIBXFCONF_VERSION_API).la \
+	$(top_builddir)/xfconf-gtk/libxfconf-gtk-$(LIBXFCONF_GTK_VERSION_API).la \
 	$(top_builddir)/xfconfd/xfconfd-xfconf-backend.o
 
 include $(top_srcdir)/gtk-doc.make

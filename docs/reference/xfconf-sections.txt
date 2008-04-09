@@ -83,3 +83,9 @@ xfconf_g_value_get_uint16
 xfconf_g_value_set_int16
 xfconf_g_value_set_uint16
 </SECTION>
+
+<SECTION>
+<FILE>xfconf-gtk</FILE>
+xfconf_gtk_widget_bind_property
+xfconf_gtk_widget_unbind
+</SECTION>
