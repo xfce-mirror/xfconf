@@ -6,7 +6,9 @@ GObject types used by the Xfconf daemon and library
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-
+libgobject lacks GObject fundamental types for 16-bit signed and unsigned
+integers, which may be useful to use in an Xfconf store.  GObject types for
+these primitive types are provided here.
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
