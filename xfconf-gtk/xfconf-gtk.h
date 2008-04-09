@@ -25,10 +25,10 @@
 
 G_BEGIN_DECLS
 
-void xfconf_gtk_widget_bind_property(GtkWidget *widget,
-                                     XfconfChannel *channel,
-                                     const gchar *property,
-                                     GType property_type);
+void xfconf_gtk_editable_bind_property(GtkEditable *editable,
+                                       XfconfChannel *channel,
+                                       const gchar *property,
+                                       GType property_type);
 
 void xfconf_gtk_widget_unbind(GtkWidget *widget);
 

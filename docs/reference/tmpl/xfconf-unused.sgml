@@ -103,3 +103,13 @@ stamp-xfconf-marshal
 @value: 
 @Returns: 
 
+<!-- ##### FUNCTION xfconf_gtk_widget_bind_property ##### -->
+<para>
+
+</para>
+
+@widget: 
+@channel: 
+@property: 
+@property_type: 
+

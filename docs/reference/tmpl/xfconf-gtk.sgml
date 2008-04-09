@@ -26,12 +26,12 @@ in the Xfconf store.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### FUNCTION xfconf_gtk_widget_bind_property ##### -->
+<!-- ##### FUNCTION xfconf_gtk_editable_bind_property ##### -->
 <para>
 
 </para>
 
-@widget: 
+@editable: 
 @channel: 
 @property: 
 @property_type: 

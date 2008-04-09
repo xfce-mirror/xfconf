@@ -155,6 +155,9 @@ xfconf_gtk_editable_binding(XfconfChannel *channel,
     gchar *cur_val, *new_val;
     gint strpos = 0;
 
+    if(strcmp(property, binding->property))
+        return;
+
     if(!xfconf_channel_get_property(channel, property, &val))
         return;
 
@@ -199,53 +202,48 @@ xfconf_gtk_editable_changed(GtkEditable *editable,
 
 
 /**
- * xfconf_gtk_widget_bind_property:
- * @widget: A #GtkWidget.
+ * xfconf_gtk_editable_bind_property:
+ * @editable: A widget implementing #GtkEditable.
  * @channel: An #XfconfChannel.
  * @property: A string property name.
  * @property_type: The #GType of @property.
  *
- * Binds @widget to @property on @channel such that @widget will
+ * Binds @editable to @property on @channel such that @editable will
  * always display the value of @property, even if that value changes
  * via any other means.  If @widget is editable, the binding will also
  * cause @property to be updated in the Xfconf configuration store.
  *
- * Note that not all types of #GtkWidget are supported.  Specifically,
- * the following widgets are supported:
- *   FIXME: list widgets
+ * Note: #GtkEntry and #GtkSpinButton (and perhaps others) both
+ *       implement the #GtkEditable interface and can be used with
+ *       this function.
  **/
 void
-xfconf_gtk_widget_bind_property(GtkWidget *widget,
-                                XfconfChannel *channel,
-                                const gchar *property,
-                                GType property_type)
+xfconf_gtk_editable_bind_property(GtkEditable *editable,
+                                  XfconfChannel *channel,
+                                  const gchar *property,
+                                  GType property_type)
 {
     XfconfGtkBinding *binding;
+    GtkWidget *widget;
 
-    g_return_if_fail(GTK_IS_WIDGET(widget) && XFCONF_IS_CHANNEL(channel)
+    g_return_if_fail(GTK_IS_EDITABLE(editable) && XFCONF_IS_CHANNEL(channel)
                      && property && *property);
 
-    if(GTK_IS_EDITABLE(widget)) {
-        binding = g_new0(XfconfGtkBinding, 1);
+    widget = GTK_WIDGET(editable);
 
-        binding->widget = widget;
-        binding->channel = channel;
-        binding->property = g_strdup(property);
-        binding->property_type = property_type;
-        binding->xfconf_callback = G_CALLBACK(xfconf_gtk_editable_binding);
-        binding->gtk_callback = G_CALLBACK(xfconf_gtk_editable_changed);
+    binding = g_new0(XfconfGtkBinding, 1);
+    binding->widget = widget;
+    binding->channel = channel;
+    binding->property = g_strdup(property);
+    binding->property_type = property_type;
+    binding->xfconf_callback = G_CALLBACK(xfconf_gtk_editable_binding);
+    binding->gtk_callback = G_CALLBACK(xfconf_gtk_editable_changed);
 
-        /* set initial entry value */
-        xfconf_gtk_editable_binding(channel, property, binding);
+    /* set initial entry value */
+    xfconf_gtk_editable_binding(channel, property, binding);
 
-        g_signal_connect(G_OBJECT(widget), "changed",
-                         binding->gtk_callback, binding);
-    } else {
-        g_warning("GtkWidget type %s cannot be bound to an xfconf property",
-                  G_OBJECT_TYPE_NAME(widget));
-        return;
-    }
-
+    g_signal_connect(G_OBJECT(widget), "changed",
+                     binding->gtk_callback, binding);
     g_signal_connect(G_OBJECT(channel), "property-changed",
                      binding->xfconf_callback, binding);
 
