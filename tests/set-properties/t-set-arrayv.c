@@ -30,13 +30,6 @@ main(int argc,
     
     channel = xfconf_channel_new(TEST_CHANNEL_NAME);
     
-    TEST_OPERATION(xfconf_channel_set_string(channel, test_string_property, test_string));
-    TEST_OPERATION(xfconf_channel_set_string_list(channel, test_strlist_property, test_strlist));
-    TEST_OPERATION(xfconf_channel_set_int(channel, test_int_property, test_int));
-    TEST_OPERATION(xfconf_channel_set_uint64(channel, test_uint64_property, test_uint64));
-    TEST_OPERATION(xfconf_channel_set_double(channel, test_double_property, test_double));
-    TEST_OPERATION(xfconf_channel_set_bool(channel, test_bool_property, test_bool));
-    
     {
         GPtrArray *arr = g_ptr_array_sized_new(3);
         GValue *val;

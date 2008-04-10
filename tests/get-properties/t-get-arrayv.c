@@ -34,45 +34,6 @@ main(int argc,
     
     channel = xfconf_channel_new(TEST_CHANNEL_NAME);
     
-    TEST_OPERATION(!strcmp(xfconf_channel_get_string(channel, test_string_property, ""), test_string));
-    
-    {
-        gchar **strlist = xfconf_channel_get_string_list(channel,
-                                                         test_strlist_property);
-        gint i;
-        
-        if(!strlist) {
-            g_critical("Test failed: xfconf_channel_get_string_list() returned NULL");
-            xfconf_tests_end();
-            return 1;
-        }
-        
-        for(i = 0; strlist[i] && test_strlist[i]; ++i) {
-            if(strcmp(strlist[i], test_strlist[i])) {
-                g_critical("Test failed: string list values don't match (%s != %s)",
-                           strlist[i], test_strlist[i]);
-                xfconf_tests_end();
-                return 1;
-            }
-        }
-        
-        if(strlist[i] || test_strlist[i]) {
-            g_critical("Test failed: in string list, element %d should be NULL (0x%p, 0x%p)",
-                       i, strlist[i], test_strlist[i]);
-            xfconf_tests_end();
-            return 1;
-        }
-        
-        g_strfreev(strlist);
-    }
-    
-    
-    TEST_OPERATION(xfconf_channel_get_int(channel, test_int_property, -1) == test_int);
-    TEST_OPERATION(xfconf_channel_get_uint64(channel, test_uint64_property, -1) == test_uint64);
-    /* FIXME: will this work everywhere? */
-    TEST_OPERATION(xfconf_channel_get_double(channel, test_double_property, 0.0) == test_double);
-    TEST_OPERATION(xfconf_channel_get_bool(channel, test_bool_property, FALSE) == test_bool);
-    
     {
         GPtrArray *arr = xfconf_channel_get_arrayv(channel, test_array_property);
         GValue *val;

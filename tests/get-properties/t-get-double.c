@@ -19,6 +19,10 @@
 
 #include "tests-common.h"
 
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
 int
 main(int argc,
      char **argv)
@@ -30,13 +34,8 @@ main(int argc,
     
     channel = xfconf_channel_new(TEST_CHANNEL_NAME);
     
-    TEST_OPERATION(xfconf_channel_has_property(channel, test_string_property));
-    TEST_OPERATION(xfconf_channel_has_property(channel, test_strlist_property));
-    TEST_OPERATION(xfconf_channel_has_property(channel, test_int_property));
-    TEST_OPERATION(xfconf_channel_has_property(channel, test_uint64_property));
-    TEST_OPERATION(xfconf_channel_has_property(channel, test_double_property));
-    TEST_OPERATION(xfconf_channel_has_property(channel, test_bool_property));
-    TEST_OPERATION(xfconf_channel_has_property(channel, test_array_property));
+    /* FIXME: will this work everywhere? */
+    TEST_OPERATION(xfconf_channel_get_double(channel, test_double_property, 0.0) == test_double);
     
     g_object_unref(G_OBJECT(channel));
     
