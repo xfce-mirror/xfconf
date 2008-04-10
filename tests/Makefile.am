@@ -11,4 +11,5 @@ clean-local:
 
 EXTRA_DIST = \
 	$(test_scripts) \
+	test-template.sh.in \
 	tests-common.h

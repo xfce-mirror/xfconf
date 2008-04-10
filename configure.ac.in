@@ -189,6 +189,11 @@ docs/reference/version.xml
 docs/spec/Makefile
 po/Makefile.in
 tests/Makefile
+tests/set-properties/Makefile
+tests/has-properties/Makefile
+tests/get-properties/Makefile
+tests/remove-properties/Makefile
+tests/property-changed-signal/Makefile
 xfconf/Makefile
 xfconf/libxfconf-0.pc
 xfconf-gtk/Makefile

@@ -23,7 +23,7 @@ TESTS = $(test_scripts)
 AM_CFLAGS = \
 	-DXFCONFD=\"$(top_builddir)/xfconfd/xfconfd\" \
 	-I$(top_srcdir) \
-	-I$(top_builddir)/tests \
+	-I$(top_srcdir)/tests \
 	$(GLIB_CFLAGS)
 
 LIBS = \
@@ -37,13 +37,12 @@ t_get_arrayv_SOURCES = t-get-arrayv.c
 t_get_boolean_SOURCES = t-get-boolean.c
 t_get_stringlist_SOURCES = t-get-stringlist.c
 
-%.sh: test-template.sh.in Makefile
-	sed -e 's/@TEST_NAME@/$@/; s/\.sh//;' <$(srcdir)/test-template.sh.in >$@
+%.sh: $(top_srcdir)/tests/test-template.sh.in Makefile
+	sed -e 's/@TEST_NAME@/$@/; s/\.sh//;' <$(top_srcdir)/tests/test-template.sh.in >$@
 	chmod 755 $@
 
 clean-local:
 	rm -f t-get-*.sh
 
 EXTRA_DIST = \
-	$(test_scripts) \
-	test-template.sh.in
+	$(test_scripts)

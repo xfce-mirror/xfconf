@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-09 22:32+0200\n"
+"POT-Creation-Date: 2008-04-11 00:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: common/xfconf-gvaluefuncs.c:222
+#: common/xfconf-gvaluefuncs.c:208
 msgid "true"
 msgstr ""
 
-#: common/xfconf-gvaluefuncs.c:223
+#: common/xfconf-gvaluefuncs.c:209
 msgid "false"
 msgstr ""
 
