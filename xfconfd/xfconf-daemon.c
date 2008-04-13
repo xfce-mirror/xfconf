@@ -82,10 +82,18 @@ typedef struct _XfconfDaemonClass
     GObjectClass parent;
 } XfconfDaemonClass;
 
+enum
+{
+    SIG_PROPERTY_CHANGED = 0,
+    N_SIGS,
+};
+
 static void xfconf_daemon_class_init(XfconfDaemonClass *klass);
 
 static void xfconf_daemon_init(XfconfDaemon *instance);
 static void xfconf_daemon_finalize(GObject *obj);
+
+static guint signals[N_SIGS] = { 0, };
 
 
 G_DEFINE_TYPE(XfconfDaemon, xfconf_daemon, G_TYPE_OBJECT)
@@ -98,9 +106,15 @@ xfconf_daemon_class_init(XfconfDaemonClass *klass)
     
     object_class->finalize = xfconf_daemon_finalize;
     
-    g_signal_new("property-changed", XFCONF_TYPE_DAEMON, G_SIGNAL_RUN_LAST, 0,
-                 NULL, NULL, xfconf_marshal_VOID__STRING_STRING, G_TYPE_NONE,
-                 2, G_TYPE_STRING, G_TYPE_STRING);
+    signals[SIG_PROPERTY_CHANGED] = g_signal_new("property-changed",
+                                                 XFCONF_TYPE_DAEMON,
+                                                 G_SIGNAL_RUN_LAST,
+                                                 0,
+                                                 NULL, NULL,
+                                                 xfconf_marshal_VOID__STRING_STRING,
+                                                 G_TYPE_NONE,
+                                                 2, G_TYPE_STRING,
+                                                 G_TYPE_STRING);
     
     dbus_g_object_type_install_info(G_TYPE_FROM_CLASS(klass),
                                     &dbus_glib_xfconf_object_info);
@@ -142,28 +156,8 @@ xfconf_daemon_backend_property_changed(XfconfBackend *backend,
                                        gpointer user_data)
 {
     XfconfDaemon *xfconfd = user_data;
-    DBusGProxy *signal_proxy;
-    DBusMessage *msg;
-
-    /* FIXME: this function needs to be rewritten to not suck.  cache
-     * the DBusGProxy?  is there a better way to emit signals anyway? */
-
-    signal_proxy = dbus_g_proxy_new_for_name(xfconfd->dbus_conn,
-                                             "org.xfce.Xfconf",
-                                             "/org/xfce/Xfconf",
-                                             "org.xfce.Xfconf");
-
-    msg = dbus_message_new_signal("/org/xfce/Xfconf", "org.xfce.Xfconf",
-                                  "PropertyChanged");
-    dbus_message_append_args(msg,
-                             DBUS_TYPE_STRING, &channel,
-                             DBUS_TYPE_STRING, &property,
-                             DBUS_TYPE_INVALID);
-
-    dbus_g_proxy_send(signal_proxy, msg, NULL);
-    
-    g_object_unref(G_OBJECT(signal_proxy));
-    dbus_message_unref(msg);
+    g_signal_emit(G_OBJECT(xfconfd), signals[SIG_PROPERTY_CHANGED], 0,
+                  channel, property);
 }
 
 static gboolean
