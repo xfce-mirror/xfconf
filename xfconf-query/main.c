@@ -29,6 +29,7 @@
 #endif
 
 #include <stdlib.h>
+#include <string.h>
 #include <glib.h>
 
 #if defined(GETTEXT_PACKAGE)
@@ -41,19 +42,53 @@
 #include "xfconf/xfconf.h"
 
 static gboolean version = FALSE;
+static gboolean list = FALSE;
 static gboolean verbose = FALSE;
 static gchar *channel_name = NULL;
 static gchar *property_name = NULL;
 static gchar **set_value = NULL;
 
+static
+xfconf_query_get_propname_size (gpointer key, gpointer value, gpointer user_data)
+{
+    gint *size = user_data;
+    gchar *property_name = (gchar *)key;
+
+    if (strlen(property_name) > *size)
+        *size = strlen(property_name);
+
+}
+
+static
+xfconf_query_list_contents (gpointer key, gpointer value, gpointer user_data)
+{
+    gint i;
+    gint size = *(gint *)user_data;
+    gint property_name_size = 0, value_size = 0;
+    gchar *property_name = (gchar *)key;
+    GValue *property_value = (GValue *)value;
+
+    if (verbose)
+    {
+        g_print("%s%n", property_name, &property_name_size);
+        for(i = property_name_size; i < (size+2); ++i)
+        {
+            g_print(" ");
+        }
+        const gchar *str_val = _xfconf_string_from_gvalue(property_value);
+        g_print("%s%n", str_val, &value_size);
+        g_print("\n");
+    }
+    else
+    {
+        g_print ("%s\n", property_name);
+    }
+}
+
 static GOptionEntry entries[] =
 {
     {    "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
         N_("Version information"),
-        NULL
-    },
-    {    "verbose", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &verbose,
-        N_("Verbose output"),
         NULL
     },
     {    "channel", 'c', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &channel_name,
@@ -66,6 +101,14 @@ static GOptionEntry entries[] =
     },
     {    "set", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING_ARRAY, &set_value,
         N_("set (change the value)"),
+        NULL
+    },
+    {    "list", 'l', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &list,
+        N_("List properties"),
+        NULL
+    },
+    {    "verbose", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &verbose,
+        N_("Verbose output"),
         NULL
     },
     { NULL }
@@ -104,7 +147,7 @@ main(int argc, char **argv)
     }
 
     /** Check if the property is specified */
-    if(!property_name)
+    if(!property_name && !list)
     {
         g_print("No property specified, aborting...\n");
         return 1;
@@ -112,30 +155,53 @@ main(int argc, char **argv)
 
     channel = xfconf_channel_new(channel_name);
 
-    if (xfconf_channel_has_property(channel, property_name))
+    if (property_name)
     {
-        GValue value = {0, };
-        xfconf_channel_get_property(channel, property_name, &value);
+        if (xfconf_channel_has_property(channel, property_name))
+        {
+            GValue value = {0, };
+            xfconf_channel_get_property(channel, property_name, &value);
 
-        /** Read value */
-        if(set_value == NULL)
-        {
-            const gchar *str_val = _xfconf_string_from_gvalue(&value);
-            g_print("%s\n", str_val);
-        }
-        /* Write value */
-        else
-        {
-            if(_xfconf_gvalue_from_string(&value, set_value[0]))
+            /** Read value */
+            if(set_value == NULL)
             {
-                xfconf_channel_set_property(channel, property_name, &value);
+                const gchar *str_val = _xfconf_string_from_gvalue(&value);
+                g_print("%s\n", str_val);
             }
+            /* Write value */
             else
             {
-                g_print("ERROR: Could not convert value\n");
+                if(_xfconf_gvalue_from_string(&value, set_value[0]))
+                {
+                    xfconf_channel_set_property(channel, property_name, &value);
+                }
+                else
+                {
+                    g_print(_("ERROR: Could not convert value\n"));
+                }
             }
+            g_value_unset(&value);
         }
-        g_value_unset(&value);
+        else
+        {
+            g_print(_("ERROR: Property '%s' missing\nfrom channel '%s'\n"), property_name, channel_name);
+            return 1;
+        }
+    }
+
+    if (list)
+    {
+        GHashTable *channel_contents = xfconf_channel_get_all(channel);
+        if (channel_contents)
+        {
+            gint size = 0;
+            g_hash_table_foreach (channel_contents, (GHFunc)xfconf_query_get_propname_size, &size);
+            g_hash_table_foreach (channel_contents, (GHFunc)xfconf_query_list_contents, &size);
+        }
+        else
+        {
+            g_print(_("Channel '%s' contains no properties\n"), channel_name);
+        }
     }
 
     return 0;
