@@ -48,7 +48,7 @@ static gchar *channel_name = NULL;
 static gchar *property_name = NULL;
 static gchar **set_value = NULL;
 
-static
+static void
 xfconf_query_get_propname_size (gpointer key, gpointer value, gpointer user_data)
 {
     gint *size = user_data;
@@ -59,7 +59,7 @@ xfconf_query_get_propname_size (gpointer key, gpointer value, gpointer user_data
 
 }
 
-static
+static void
 xfconf_query_list_contents (gpointer key, gpointer value, gpointer user_data)
 {
     gint i;
