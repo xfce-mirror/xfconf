@@ -44,9 +44,11 @@
 static gboolean version = FALSE;
 static gboolean list = FALSE;
 static gboolean verbose = FALSE;
+static gboolean create = FALSE;
 static gchar *channel_name = NULL;
 static gchar *property_name = NULL;
 static gchar **set_value = NULL;
+static gchar *type = NULL;
 
 static void
 xfconf_query_get_propname_size (gpointer key, gpointer value, gpointer user_data)
@@ -111,6 +113,14 @@ static GOptionEntry entries[] =
         N_("Verbose output"),
         NULL
     },
+    {    "create", 'n', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &create,
+        N_("Create if missing"),
+        NULL
+    },
+    {    "type", 't', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &type,
+       N_("Specify the property value type"),
+       NULL
+    },
     { NULL }
 };
 
@@ -119,6 +129,7 @@ main(int argc, char **argv)
 {
     GError *cli_error = NULL;
     XfconfChannel *channel = NULL;
+    gboolean prop_exists;
 
     g_type_init();
     xfconf_init(NULL);
@@ -157,10 +168,13 @@ main(int argc, char **argv)
 
     if (property_name)
     {
-        if (xfconf_channel_has_property(channel, property_name))
+        prop_exists = xfconf_channel_has_property(channel, property_name);
+        if (prop_exists || (create && type))
         {
             GValue value = {0, };
-            xfconf_channel_get_property(channel, property_name, &value);
+
+            if(prop_exists)
+                xfconf_channel_get_property(channel, property_name, &value);
 
             /** Read value */
             if(set_value == NULL)
@@ -171,6 +185,20 @@ main(int argc, char **argv)
             /* Write value */
             else
             {
+                if(!prop_exists)
+                {
+                    GType gtype = _xfconf_gtype_from_string(type);
+
+                    if(G_TYPE_NONE == gtype || G_TYPE_INVALID == gtype)
+                    {
+                        g_printerr(_("Unable to convert \"%s\" to type\n"),
+                                   type);
+                        return 1;
+                    }
+
+                    g_value_init(&value, gtype);
+                }
+
                 if(_xfconf_gvalue_from_string(&value, set_value[0]))
                 {
                     xfconf_channel_set_property(channel, property_name, &value);
