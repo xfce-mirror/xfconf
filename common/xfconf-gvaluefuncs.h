@@ -24,6 +24,8 @@
 
 G_BEGIN_DECLS
 
+GType _xfconf_gtype_from_string(const gchar *type) G_GNUC_INTERNAL;
+
 gboolean _xfconf_gvalue_from_string(GValue *value,
                                     const gchar *str) G_GNUC_INTERNAL;
 

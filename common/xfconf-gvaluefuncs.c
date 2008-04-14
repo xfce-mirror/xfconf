@@ -63,6 +63,41 @@
 #define XFCONF_MAXUCHAR  (255)
 #endif
 
+GType
+_xfconf_gtype_from_string(const gchar *type)
+{
+    if(!strcmp(type, "string"))
+        return G_TYPE_STRING;
+    else if(!strcmp(type, "uchar"))
+        return G_TYPE_UCHAR;
+    else if(!strcmp(type, "char"))
+        return G_TYPE_CHAR;
+    else if(!strcmp(type, "uint16"))
+        return XFCONF_TYPE_UINT16;
+    else if(!strcmp(type, "int16"))
+        return XFCONF_TYPE_INT16;
+    else if(!strcmp(type, "uint"))
+        return G_TYPE_UINT;
+    else if(!strcmp(type, "int"))
+        return G_TYPE_INT;
+    else if(!strcmp(type, "uint64"))
+        return G_TYPE_UINT64;
+    else if(!strcmp(type, "int64"))
+        return G_TYPE_INT64;
+    else if(!strcmp(type, "float"))
+        return G_TYPE_FLOAT;
+    else if(!strcmp(type, "double"))
+        return G_TYPE_DOUBLE;
+    else if(!strcmp(type, "bool"))
+        return G_TYPE_BOOLEAN;
+    else if(!strcmp(type, "array"))
+        return XFCONF_TYPE_G_VALUE_ARRAY;
+    else if(!strcmp(type, "empty"))
+        return G_TYPE_NONE;
+    
+    return G_TYPE_INVALID;
+}
+
 gboolean
 _xfconf_gvalue_from_string(GValue *value,
                            const gchar *str)

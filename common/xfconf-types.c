@@ -184,6 +184,7 @@ xfconf_g_value_set_int16(GValue *value,
 }
 
 
-
+#ifdef LIBXFCONF_COMPILATION
 #define __XFCONF_TYPES_C__
 #include "xfconf-aliasdef.c"
+#endif

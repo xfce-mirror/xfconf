@@ -28,7 +28,6 @@
 #include "xfconf-backend-factory.h"
 #include "xfconf-backend.h"
 #include "xfconf-marshal.h"
-#include "xfconf-util.h"
 #include "xfconf-gvaluefuncs.h"
 #include "xfconf/xfconf-errors.h"
 

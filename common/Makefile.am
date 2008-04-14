@@ -6,10 +6,7 @@ noinst_LTLIBRARIES = \
 libxfconf_common_la_SOURCES = \
 	xfconf-errors.c \
 	xfconf-marshal.c \
-	xfconf-marshal.h \
-	xfconf-types.c \
-	xfconf-util.c \
-	xfconf-util.h
+	xfconf-marshal.h
 
 libxfconf_common_la_CFLAGS = \
 	-DLIBXFCONF_COMPILATION \
@@ -74,4 +71,5 @@ EXTRA_DIST = \
 	xfconf-aliasdef.c \
 	xfconf-common-private.h \
 	xfconf-dbus.xml \
-	xfconf-marshal.list
+	xfconf-marshal.list \
+	xfconf-types.c

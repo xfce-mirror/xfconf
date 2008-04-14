@@ -37,17 +37,7 @@
 #include <string.h>
 #endif
 
-#include "xfconf-util.h"
-
-void
-xfconf_g_value_free(GValue *value)
-{
-    if(!value)
-        return;
-    g_value_unset(value);
-    g_free(value);
-}
-
+#include "xfconf-locking-utils.h"
 
 /* group cache stuff */
 

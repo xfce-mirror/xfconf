@@ -56,7 +56,7 @@
 
 #include "xfconf-backend-perchannel-xml.h"
 #include "xfconf-backend.h"
-#include "xfconf-util.h"
+#include "xfconf-locking-utils.h"
 #include "xfconf-gvaluefuncs.h"
 #include "xfconf/xfconf-types.h"
 #include "xfconf-common-private.h"
@@ -793,41 +793,6 @@ xfconf_backend_perchannel_xml_create_channel(XfconfBackendPerchannelXml *xbpx,
     return properties;
 }
 
-static GType
-xfconf_string_type_to_gtype(const gchar *type)
-{
-    if(!strcmp(type, "string"))
-        return G_TYPE_STRING;
-    else if(!strcmp(type, "uchar"))
-        return G_TYPE_UCHAR;
-    else if(!strcmp(type, "char"))
-        return G_TYPE_CHAR;
-    else if(!strcmp(type, "uint16"))
-        return XFCONF_TYPE_UINT16;
-    else if(!strcmp(type, "int16"))
-        return XFCONF_TYPE_INT16;
-    else if(!strcmp(type, "uint"))
-        return G_TYPE_UINT;
-    else if(!strcmp(type, "int"))
-        return G_TYPE_INT;
-    else if(!strcmp(type, "uint64"))
-        return G_TYPE_UINT64;
-    else if(!strcmp(type, "int64"))
-        return G_TYPE_INT64;
-    else if(!strcmp(type, "float"))
-        return G_TYPE_FLOAT;
-    else if(!strcmp(type, "double"))
-        return G_TYPE_DOUBLE;
-    else if(!strcmp(type, "bool"))
-        return G_TYPE_BOOLEAN;
-    else if(!strcmp(type, "array"))
-        return XFCONF_TYPE_G_VALUE_ARRAY;
-    else if(!strcmp(type, "empty"))
-        return G_TYPE_NONE;
-    
-    return G_TYPE_INVALID;
-}
-
 static void
 xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                                          const gchar *element_name,
@@ -1029,7 +994,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 }
                 
                 /* parse types and values */
-                value_type = xfconf_string_type_to_gtype(type);
+                value_type = _xfconf_gtype_from_string(type);
                 if(G_TYPE_INVALID == value_type) {
                     if(error) {
                         g_set_error(error, G_MARKUP_ERROR,
@@ -1090,7 +1055,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                     }
                 }
                 
-                value_type = xfconf_string_type_to_gtype(type);
+                value_type = _xfconf_gtype_from_string(type);
                 if(XFCONF_TYPE_G_VALUE_ARRAY == value_type) {
                     if(error) {
                         g_set_error(error, G_MARKUP_ERROR,

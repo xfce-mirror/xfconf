@@ -13,7 +13,8 @@ libxfconf_0_la_SOURCES = \
 	xfconf-channel.c \
 	xfconf-dbus-bindings.h \
 	xfconf-private.h \
-	xfconf.c
+	xfconf.c \
+	$(top_srcdir)/common/xfconf-types.c
 
 libxfconf_0_la_CFLAGS = \
 	-I$(top_srcdir) \

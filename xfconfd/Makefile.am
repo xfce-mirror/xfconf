@@ -18,7 +18,10 @@ xfconfd_SOURCES = \
 	xfconf-daemon.c \
 	xfconf-daemon.h \
 	xfconf-dbus-server.h \
-	$(xfconf_backend_sources)
+	xfconf-locking-utils.c \
+	xfconf-locking-utils.h \
+	$(xfconf_backend_sources) \
+	$(top_srcdir)/common/xfconf-types.c
 
 xfconfd_CFLAGS = \
 	-DLIBXFCONF_COMPILATION \
