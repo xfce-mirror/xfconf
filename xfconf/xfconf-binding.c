@@ -26,7 +26,7 @@
 #endif
 
 #include "xfconf-binding.h"
-
+#include "xfconf-alias.h"
 
 typedef struct
 {
