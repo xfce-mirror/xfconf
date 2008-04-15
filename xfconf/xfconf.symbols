@@ -94,7 +94,7 @@ xfconf_channel_set_structv
 /* xfconf-binding.h */
 #if IN_HEADER(__XFCONF_BINDING_H__)
 #if IN_SOURCE(__XFCONF_BINDING_C__)
-xfconf_g_object_bind
-xfconf_g_object_unbind
+xfconf_g_property_bind
+xfconf_g_property_unbind
 #endif
 #endif
