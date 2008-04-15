@@ -35,6 +35,8 @@ test_signal_changed(XfconfChannel *channel,
     SignalTestData *std = user_data;
     if(!strcmp(property, test_string_property))
         std->got_signal = TRUE;
+    else
+        std->got_signal = FALSE;
     g_main_loop_quit(std->mloop);
 }
 
@@ -52,6 +54,7 @@ main(int argc,
 {
     XfconfChannel *channel;
     SignalTestData std = { NULL, FALSE };
+    gchar detailed_signal[512];
     
     std.mloop = g_main_loop_new(NULL, FALSE);
 
@@ -59,12 +62,15 @@ main(int argc,
         return 1;
     
     channel = xfconf_channel_new(TEST_CHANNEL_NAME);
-    g_signal_connect(G_OBJECT(channel), "property-changed",
+    g_snprintf(detailed_signal, sizeof(detailed_signal),
+               "property-changed::%s", test_string_property);
+    g_signal_connect(G_OBJECT(channel), detailed_signal,
                      G_CALLBACK(test_signal_changed), &std);
     
     TEST_OPERATION(xfconf_channel_set_string(channel, test_string_property, test_string));
+    TEST_OPERATION(xfconf_channel_set_int(channel, test_int_property, test_int));
     
-    g_timeout_add(1500, test_watchdog, &std);
+    g_timeout_add(2000, test_watchdog, &std);
     g_main_loop_run(std.mloop);
 
     g_main_loop_unref(std.mloop);

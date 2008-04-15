@@ -131,7 +131,8 @@ xfconf_channel_class_init(XfconfChannelClass *klass)
      **/
     signals[SIG_PROPERTY_CHANGED] = g_signal_new("property-changed",
                                                  XFCONF_TYPE_CHANNEL,
-                                                 G_SIGNAL_RUN_LAST,
+                                                 G_SIGNAL_RUN_LAST
+                                                 | G_SIGNAL_DETAILED,
                                                  G_STRUCT_OFFSET(XfconfChannelClass,
                                                                  property_changed),
                                                  NULL,
@@ -231,8 +232,8 @@ xfconf_channel_property_changed(DBusGProxy *proxy,
     if(strcmp(channel_name, channel->channel_name))
         return;
 
-    g_signal_emit(G_OBJECT(channel), signals[SIG_PROPERTY_CHANGED], 0,
-                  property);
+    g_signal_emit(G_OBJECT(channel), signals[SIG_PROPERTY_CHANGED],
+                  g_quark_from_string(property), property);
 }
 
 
