@@ -93,6 +93,16 @@ xfconf_g_binding_object_destroyed(gpointer data,
                                   GObject *where_the_object_was)
 {
     XfconfGBinding *binding = data;
+    GList *bindings = g_object_steal_data(G_OBJECT(binding->channel),
+                                          "--xfconf-g-bindings");
+
+    bindings = g_list_remove(bindings, binding);
+    if(bindings) {
+        g_object_set_data_full(G_OBJECT(binding->channel),
+                               "--xfconf-g-bindings",
+                               bindings, (GDestroyNotify)g_list_free);
+    }
+
     binding->object = NULL;
     xfconf_g_binding_free(binding);
 }
