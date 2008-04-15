@@ -25,8 +25,11 @@
 #define XFCONF_IN_XFCONF_H
 
 #include <xfconf/xfconf-channel.h>
+#include <xfconf/xfconf-binding.h>
 #include <xfconf/xfconf-errors.h>
 #include <xfconf/xfconf-types.h>
+
+#undef XFCONF_IN_XFCONF_H
 
 G_BEGIN_DECLS
 

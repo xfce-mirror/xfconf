@@ -3,6 +3,7 @@ lib_LTLIBRARIES = libxfconf-0.la
 
 libxfconfincludedir = $(includedir)/xfce4/xfconf-$(LIBXFCONF_VERSION_API)/xfconf
 libxfconfinclude_HEADERS = \
+	xfconf-binding.h \
 	xfconf-channel.h \
 	xfconf-errors.h \
 	xfconf-types.h \
@@ -10,6 +11,7 @@ libxfconfinclude_HEADERS = \
 
 libxfconf_0_la_SOURCES = \
 	$(libxfconfinclude_HEADERS) \
+	xfconf-binding.c \
 	xfconf-channel.c \
 	xfconf-dbus-bindings.h \
 	xfconf-private.h \

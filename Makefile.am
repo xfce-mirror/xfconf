@@ -4,7 +4,6 @@ SUBDIRS = \
 	xfconfd \
 	xfconf-query \
 	xfsettingsd \
-	xfconf-gtk \
 	po \
 	docs \
 	tests

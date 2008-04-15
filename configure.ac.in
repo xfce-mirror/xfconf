@@ -196,8 +196,6 @@ tests/remove-properties/Makefile
 tests/property-changed-signal/Makefile
 xfconf/Makefile
 xfconf/libxfconf-0.pc
-xfconf-gtk/Makefile
-xfconf-gtk/libxfconf-gtk-0.pc
 xfconf-query/Makefile
 xfconfd/Makefile
 xfsettingsd/Makefile

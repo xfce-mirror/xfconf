@@ -90,3 +90,11 @@ xfconf_channel_set_struct_valist
 xfconf_channel_set_structv
 #endif
 #endif
+
+/* xfconf-binding.h */
+#if IN_HEADER(__XFCONF_BINDING_H__)
+#if IN_SOURCE(__XFCONF_BINDING_C__)
+xfconf_g_object_bind
+xfconf_g_object_unbind
+#endif
+#endif

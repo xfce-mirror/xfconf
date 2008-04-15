@@ -21,10 +21,6 @@
     <title>Xfconf Client Library</title>
     <xi:include href="xml/xfconf.xml"/>
     <xi:include href="xml/xfconf-channel.xml"/>
-  </chapter>
-  
-  <chapter>
-    <title>Xfconf Gtk Convenience Library</title>
-    <xi:include href="xml/xfconf-gtk.xml"/>
+    <xi:include href="xml/xfconf-binding.xml"/>
   </chapter>
 </book>
