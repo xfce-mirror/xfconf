@@ -45,6 +45,7 @@ static gboolean version = FALSE;
 static gboolean list = FALSE;
 static gboolean verbose = FALSE;
 static gboolean create = FALSE;
+static gboolean remove = FALSE;
 static gchar *channel_name = NULL;
 static gchar *property_name = NULL;
 static gchar **set_value = NULL;
@@ -114,12 +115,16 @@ static GOptionEntry entries[] =
         NULL
     },
     {    "create", 'n', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &create,
-        N_("Create if missing"),
+        N_("Create new entry"),
         NULL
     },
     {    "type", 't', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &type,
        N_("Specify the property value type"),
        NULL
+    },
+    {    "remove", 'r', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &remove,
+        N_("Remove property"),
+        NULL
     },
     { NULL }
 };
@@ -164,6 +169,12 @@ main(int argc, char **argv)
         return 1;
     }
 
+    if (create && remove)
+    {
+        g_print("--create and --remove options can not be used together,\naborting...\n");
+        return 1;
+    }
+
     channel = xfconf_channel_new(channel_name);
 
     if (property_name)
@@ -176,11 +187,18 @@ main(int argc, char **argv)
             if(prop_exists)
                 xfconf_channel_get_property(channel, property_name, &value);
 
+            /** Remove property */
+            if (remove)
+            {
+                g_value_unset(&value);
+                xfconf_channel_remove_property(channel, property_name);
+            }
             /** Read value */
-            if(set_value == NULL)
+            else if(set_value == NULL)
             {
                 const gchar *str_val = _xfconf_string_from_gvalue(&value);
                 g_print("%s\n", str_val);
+                g_value_unset(&value);
             }
             /* Write value */
             else
@@ -207,8 +225,8 @@ main(int argc, char **argv)
                 {
                     g_print(_("ERROR: Could not convert value\n"));
                 }
+                g_value_unset(&value);
             }
-            g_value_unset(&value);
         }
         else
         {
