@@ -167,7 +167,7 @@ xsettings_registry_init(XSettingsRegistry *registry)
     registry->priv->properties[--i] = xsettings_registry_entry_new_string("Gtk/IconSizes", NULL);
     registry->priv->properties[--i] = xsettings_registry_entry_new_string("Gtk/KeyThemeName", NULL);
     registry->priv->properties[--i] = xsettings_registry_entry_new_string("Gtk/ToolbarStyle", "Icons");
-    registry->priv->properties[--i] = xsettings_registry_entry_new_string("Gtk/ToolbarIconSize", "LARGE_TOOLBAR");
+    registry->priv->properties[--i] = xsettings_registry_entry_new_int("Gtk/ToolbarIconSize", 3);
     registry->priv->properties[--i] = xsettings_registry_entry_new_string("Gtk/IMPreeditStyle", "");
     registry->priv->properties[--i] = xsettings_registry_entry_new_string("Gtk/IMStatusStyle", "");
     registry->priv->properties[--i] = xsettings_registry_entry_new_bool("Gtk/MenuImages", TRUE);
