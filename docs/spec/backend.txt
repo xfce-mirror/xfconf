@@ -14,13 +14,11 @@ of these types are wrapped directly in the client library (e.g.,
 xfconf_channel_set_uint64()), users of the library can also set other,
 semi-arbitrary types, as well as array types.
 
-So, the backend must, at minimum, be able to understand the following GTypes:
+So, the backend must, be able to understand the following GTypes:
 
 G_TYPE_STRING
 G_TYPE_UCHAR
 G_TYPE_CHAR
-XFCONF_TYPE_UINT16
-XFCONF_TYPE_INT16
 G_TYPE_UINT
 G_TYPE_INT
 G_TYPE_UINT64
@@ -28,6 +26,12 @@ G_TYPE_INT64
 G_TYPE_FLOAT
 G_TYPE_DOUBLE
 G_TYPE_BOOLEAN
+
+Note about 16-bit values: dbus-glib does not support sending 16-bit signed
+and unsigned integers over D-Bus, even though libdbus does.  For convenience,
+libxfconf will take any 16-bit values it receives and convert them into
+32-bit values before sending them to the daemon.  From the daemon/backend
+point of view, 16-bit values are simply not supported.
 
 In addition, the backend must be able to handle arrays of arbitrary
 types from the above list.  A single array may hold multiple values

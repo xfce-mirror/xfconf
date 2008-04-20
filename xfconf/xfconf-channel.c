@@ -244,15 +244,81 @@ xfconf_channel_get_internal(XfconfChannel *channel,
                             GValue *value)
 {
     DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GValue tmp_val = { 0, }, *val;
     gboolean ret;
     ERROR_DEFINE;
 
+    /* we support 2 ways of using this function:
+     * 1.  |value| is unset, and we just take the property from xfconf
+     *     and give it to the caller as-is, in the type xfconf gives
+     * 2.  |value| is initialised, so we (try to) transform the value
+     *     returned into the type the caller requested
+     */
+
+    if(G_VALUE_TYPE(value))
+        val = &tmp_val;
+    else
+        val = value;
+
     ret = xfconf_client_get_property(proxy, channel->channel_name, property,
-                                     value, ERROR);
+                                     val, ERROR);
     if(!ret)
         ERROR_CHECK;
 
+    if(ret && val == &tmp_val) {
+        if(!g_value_transform(val, value)) {
+            g_warning("Unable to tranform value of type \"%s\" to type \"%s\" for property %s",
+                      G_VALUE_TYPE_NAME(val), G_VALUE_TYPE_NAME(value),
+                      property);
+            g_value_unset(val);
+            return FALSE;
+        }
+        g_value_unset(val);
+    }
+
     return ret;
+}
+
+static GPtrArray *
+xfconf_fixup_16bit_ints(GPtrArray *arr)
+{
+    GPtrArray *arr_new = NULL;
+    gint i;
+
+    for(i = 0; i < arr->len; ++i) {
+        GValue *v = g_ptr_array_index(arr, i);
+
+        if(G_VALUE_TYPE(v) == XFCONF_TYPE_UINT16
+           || G_VALUE_TYPE(v) == XFCONF_TYPE_INT16)
+        {
+            arr_new = g_ptr_array_sized_new(arr->len);
+            break;
+        }
+    }
+
+    if(!arr_new)
+        return NULL;
+
+    for(i = 0; i < arr->len; ++i) {
+        GValue *v_src, *v_dest;
+
+        v_src = g_ptr_array_index(arr, i);
+        v_dest = g_new0(GValue, 1);
+        if(G_VALUE_TYPE(v_src) == XFCONF_TYPE_UINT16) {
+            g_value_init(v_dest, G_TYPE_UINT);
+            g_value_set_uint(v_dest, xfconf_g_value_get_uint16(v_src));
+        } else if(G_VALUE_TYPE(v_src) == XFCONF_TYPE_INT16) {
+            g_value_init(v_dest, G_TYPE_INT);
+            g_value_set_int(v_dest, xfconf_g_value_get_int16(v_src));
+        } else {
+            g_value_init(v_dest, G_VALUE_TYPE(v_src));
+            g_value_copy(v_src, v_dest);
+        }
+
+        g_ptr_array_add(arr_new, v_dest);
+    }
+
+    return arr_new;
 }
 
 
@@ -774,6 +840,13 @@ xfconf_channel_set_bool(XfconfChannel *channel,
  * Gets a property on @channel and stores it in @value.  The caller is
  * responsible for calling g_value_unset() when finished with @value.
  *
+ * This function can be called with an initialized or uninitialized
+ * @value.  If @value is initialized to a particular type, libxfconf
+ * will attempt to convert the value returned from the configuration
+ * store to that type if they don't match.  If @value is uninitialized,
+ * The value in the configuration store will be returned in its native
+ * type.
+ *
  * Returns: %TRUE if the property was retrieved successfully,
  *          %FALSE otherwise.
  **/
@@ -782,7 +855,7 @@ xfconf_channel_get_property(XfconfChannel *channel,
                             const gchar *property,
                             GValue *value)
 {
-    GValue val1 = {0, };
+    GValue val1 = { 0, };
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && value,
@@ -818,16 +891,33 @@ xfconf_channel_set_property(XfconfChannel *channel,
                             const GValue *value)
 {
     DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GValue *val, tmp_val = { 0, };
     gboolean ret;
     ERROR_DEFINE;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && value,
                          FALSE);
 
+    /* intercept uint16/int16 since dbus-glib doesn't know how to send
+     * them over the wire */
+    if(G_VALUE_TYPE(value) == XFCONF_TYPE_UINT16) {
+        val = &tmp_val;
+        g_value_init(&tmp_val, G_TYPE_UINT);
+        g_value_set_uint(&tmp_val, xfconf_g_value_get_uint16(value));
+    } else if(G_VALUE_TYPE(value) == XFCONF_TYPE_INT16) {
+        val = &tmp_val;
+        g_value_init(&tmp_val, G_TYPE_INT);
+        g_value_set_int(&tmp_val, xfconf_g_value_get_int16(value));
+    } else
+        val = (GValue *)value;
+
     ret = xfconf_client_set_property(proxy, channel->channel_name, property,
-                                     value, ERROR);
+                                     val, ERROR);
     if(!ret)
         ERROR_CHECK;
+
+    if(val == &tmp_val)
+        g_value_unset(&tmp_val);
 
     return ret;
 }
@@ -913,7 +1003,11 @@ xfconf_channel_get_array_valist(XfconfChannel *channel,
 
         val = g_ptr_array_index(arr, i);
 
-        if(G_VALUE_TYPE(val) != cur_value_type) {
+        /* special case: uint16/int16 are stored as uint/int */
+        if(G_VALUE_TYPE(val) != cur_value_type
+           && !((G_VALUE_TYPE(val) == G_TYPE_UINT && cur_value_type == XFCONF_TYPE_UINT16)
+                || (G_VALUE_TYPE(val) == G_TYPE_INT && cur_value_type == XFCONF_TYPE_INT16)))
+        {
 #ifdef XFCONF_ENABLE_CHECKS
             g_warning("Value types don't match (%d != %d) at parameter %d",
                        (int)G_VALUE_TYPE(val), (int)cur_value_type, i);
@@ -948,11 +1042,13 @@ xfconf_channel_get_array_valist(XfconfChannel *channel,
 
             default:
                 if(XFCONF_TYPE_UINT16 == cur_value_type) {
+                    /* uint16 is stored as uint */
                     guint16 *__val_p = va_arg(var_args, guint16 *);
-                    *__val_p = xfconf_g_value_get_uint16(val);
+                    *__val_p = (guint16)g_value_get_uint(val);
                 } else if(XFCONF_TYPE_INT16 == cur_value_type) {
+                    /* int16 is stored as int */
                     gint16 *__val_p = va_arg(var_args, gint16 *);
-                    *__val_p = xfconf_g_value_get_int16(val);
+                    *__val_p = (gint16)g_value_get_int(val);
                 } else if(G_TYPE_STRV == cur_value_type) {
                     gchar ***__val_p = va_arg(var_args, gchar ***);
                     *__val_p = g_value_dup_boxed(val);
@@ -1129,16 +1225,18 @@ xfconf_channel_set_array_valist(XfconfChannel *channel,
 
             default:
                 if(XFCONF_TYPE_UINT16 == cur_value_type) {
+                    /* uint16 is stored as uint */
                     guint16 *__val = va_arg(var_args, guint16 *);
                     val = g_new0(GValue, 1);
-                    g_value_init(val, XFCONF_TYPE_UINT16);
-                    xfconf_g_value_set_uint16(val, *__val);
+                    g_value_init(val, G_TYPE_UINT);
+                    g_value_set_uint(val, (guint)*__val);
                     g_ptr_array_add(arr, val);
                 } else if(XFCONF_TYPE_INT16 == cur_value_type) {
+                    /* int16 is stored as int */
                     gint16 *__val = va_arg(var_args, gint16 *);
                     val = g_new0(GValue, 1);
-                    g_value_init(val, XFCONF_TYPE_INT16);
-                    xfconf_g_value_set_int16(val, *__val);
+                    g_value_init(val, G_TYPE_INT);
+                    g_value_set_int(val, (gint)*__val);
                     g_ptr_array_add(arr, val);
                 } else if(G_TYPE_STRV == cur_value_type) {
                     gchar **__val = va_arg(var_args, gchar **);
@@ -1180,6 +1278,7 @@ xfconf_channel_set_arrayv(XfconfChannel *channel,
                           GPtrArray *values)
 {
     DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GPtrArray *values_new = NULL;
     GValue val = { 0, };
     gboolean ret;
     ERROR_DEFINE;
@@ -1187,8 +1286,10 @@ xfconf_channel_set_arrayv(XfconfChannel *channel,
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && values,
                          FALSE);
 
+    values_new = xfconf_fixup_16bit_ints(values);
+
     g_value_init(&val, XFCONF_TYPE_G_VALUE_ARRAY);
-    g_value_set_static_boxed(&val, values);
+    g_value_set_static_boxed(&val, values_new ? values_new : values);
     
     ret = xfconf_client_set_property(proxy, channel->channel_name, property,
                                      &val, ERROR);
@@ -1197,6 +1298,9 @@ xfconf_channel_set_arrayv(XfconfChannel *channel,
         ERROR_CHECK;
     
     g_value_unset(&val);
+
+    if(values_new)
+        xfconf_array_free(values_new);
 
     return ret;
 }
@@ -1486,11 +1590,13 @@ xfconf_channel_get_structv(XfconfChannel *channel,
 
             default:
                 if(XFCONF_TYPE_UINT16 == member_types[i]) {
-                    SET_STRUCT_VAL(guint16, XFCONF_TYPE_UINT16,
-                                   ALIGNOF_GUINT16, xfconf_g_value_get_uint16);
+                    /* uint16 is stored as uint */
+                    SET_STRUCT_VAL(guint16, G_TYPE_UINT,
+                                   ALIGNOF_GUINT16, g_value_get_uint);
                 } else if(XFCONF_TYPE_INT16 == member_types[i]) {
-                    SET_STRUCT_VAL(gint16, XFCONF_TYPE_INT16,
-                                   ALIGNOF_GINT16, xfconf_g_value_get_int16);
+                    /* int16 is stored as int */
+                    SET_STRUCT_VAL(gint16, G_TYPE_INT,
+                                   ALIGNOF_GINT16, g_value_get_int);
                 } else {
 #ifdef XFCONF_ENABLE_CHECKS
                     g_warning("Unable to handle value type %d (%s) when " \
@@ -1703,9 +1809,11 @@ xfconf_channel_set_structv(XfconfChannel *channel,
 
             default:
                 if(XFCONF_TYPE_UINT16 == member_types[i]) {
+                    /* _set_arrayv() will convert these */
                     GET_STRUCT_VAL(guint16, XFCONF_TYPE_UINT16,
                                    ALIGNOF_GUINT16, xfconf_g_value_set_uint16);
                 } else if(XFCONF_TYPE_INT16 == member_types[i]) {
+                    /* _set_arrayv() will convert these */
                     GET_STRUCT_VAL(gint16, XFCONF_TYPE_INT16,
                                    ALIGNOF_GINT16, xfconf_g_value_set_int16);
                 } else {

@@ -59,6 +59,9 @@ XfconfBackendPerchannelXml file format, version 1.0
        + type(string): The type of property.  Must be one of: "string",
          "uchar", "char", "uint16", "int16", "uint", "int", "uint64",
          "int64", "float", "double", "bool", "array", or "empty" (required).
+         Note that due to a limitation in dbus-glib, uint16 and int16 aren't
+         actually used, but they are supported in the backend in case
+         support for 16-bit values becomes supported in the future.
        + value(string): The value of the property (required except for
          type="array" and type="empty").
        + locked(userlist): A list of users/groups who cannot modify
