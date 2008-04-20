@@ -7,7 +7,8 @@ AM_CFLAGS = \
 	-DXFCONFD=\"$(top_builddir)/xfconfd/xfconfd\" \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/tests \
-	$(GLIB_CFLAGS)
+	$(GLIB_CFLAGS) \
+	$(DBUS_CFLAGS)
 
 LIBS = \
 	$(top_builddir)/xfconf/libxfconf-$(LIBXFCONF_VERSION_API).la

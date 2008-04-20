@@ -41,9 +41,11 @@
 #endif
 
 #include <glib.h>
+#include <dbus/dbus.h>
 #include <xfconf/xfconf.h>
 
 #define TEST_CHANNEL_NAME  "test-channel"
+#define WAIT_TIMEOUT       10
 
 #define TEST_OPERATION(x) G_STMT_START{ \
     if(!(x)) { \
@@ -71,24 +73,58 @@ const gchar *test_bool_property = "/test/booltest/bool";
 const gboolean test_bool = TRUE;
 const gchar *test_array_property = "/test/arrayprop";
 
+static inline void xfconf_tests_end();
+
 static inline gboolean
 xfconf_tests_start()
 {
     gchar *argv[2] = { XFCONFD, NULL };
+    DBusConnection *dbus_conn;
+    DBusMessage *msg, *ret;
+    DBusError derror;
+    GTimeVal start, now;
     GError *error = NULL;
-    
+
     if(!g_spawn_async(NULL, argv, NULL, 0, NULL, NULL, &xfconfd_pid, &error)) {
         g_critical("Failed to launch xfconfd (%s): %s", XFCONFD, error->message);
         g_error_free(error);
         return FALSE;
     }
-    
-    /* this is lame */
-    sleep(1);
-    
+
+    /* wait until xfconfd finishes starting */
+    dbus_error_init(&derror);
+    dbus_conn = dbus_bus_get(DBUS_BUS_SESSION, NULL);
+    if(!dbus_conn) {
+        g_critical("Failed to connect to D-Bus: %s", derror.message);
+        dbus_error_free(&derror);
+        xfconf_tests_end();
+        return FALSE;
+    }
+    msg = dbus_message_new_method_call("org.xfce.Xfconf",
+                                      "/org/xfce/Xfconf",
+                                      "org.freedesktop.DBus.Peer",
+                                      "Ping");
+    g_get_current_time(&start);
+    while(!(ret = dbus_connection_send_with_reply_and_block(dbus_conn,
+                                                            msg, 0, NULL)))
+    {
+        g_get_current_time(&now);
+        if(now.tv_sec - start.tv_sec > WAIT_TIMEOUT) {
+            g_critical("xfconfd failed to start after %d seconds", WAIT_TIMEOUT);
+            dbus_message_unref(msg);
+            dbus_connection_unref(dbus_conn);
+            xfconf_tests_end();
+            return FALSE;
+        }
+    }
+    dbus_message_unref(msg);
+    dbus_message_unref(ret);
+    dbus_connection_unref(dbus_conn);
+
     if(!xfconf_init(&error)) {
         g_critical("Failed to init libxfconf: %s", error->message);
         g_error_free(error);
+        xfconf_tests_end();
         return FALSE;
     }
     
