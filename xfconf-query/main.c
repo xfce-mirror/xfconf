@@ -90,7 +90,7 @@ xfconf_query_list_contents (gpointer key, gpointer value, gpointer user_data)
 
 static GOptionEntry entries[] =
 {
-    {    "version", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
+    {    "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
         N_("Version information"),
         NULL
     },
@@ -110,7 +110,7 @@ static GOptionEntry entries[] =
         N_("List properties"),
         NULL
     },
-    {    "verbose", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &verbose,
+    {    "verbose", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &verbose,
         N_("Verbose output"),
         NULL
     },
