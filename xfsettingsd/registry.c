@@ -82,15 +82,29 @@ struct _XSettingsRegistryPriv
     Display *display;
     Window window;
     Atom xsettings_atom;
+    Atom selection_atom;
 };
 
 static void xsettings_registry_set_property(GObject*, guint, const GValue*, GParamSpec*);
 static void xsettings_registry_get_property(GObject*, guint, GValue*, GParamSpec*);
 
 static void
-cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gchar *property_name, XSettingsRegistry *registry); 
+cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gchar *property_name, const GValue *value, XSettingsRegistry *registry); 
 static Bool
 timestamp_predicate (Display *display, XEvent  *xevent, XPointer arg);
+
+gboolean
+xsettings_registry_process_event (XSettingsRegistry *registry, XEvent *xevent)
+{
+    if ((xevent->xany.window == registry->priv->window) &&
+        (xevent->xany.type == SelectionClear) &&
+        (xevent->xselectionclear.selection == registry->priv->selection_atom))
+    {
+        return TRUE;
+    }
+
+    return FALSE;
+}
 
 static XSettingsRegistryEntry *
 xsettings_registry_entry_new_string(const gchar *name, const gchar *value);
@@ -106,6 +120,7 @@ enum {
     XSETTINGS_REGISTRY_PROPERTY_DISPLAY,
     XSETTINGS_REGISTRY_PROPERTY_SCREEN,
     XSETTINGS_REGISTRY_PROPERTY_XSETTINGS_ATOM,
+    XSETTINGS_REGISTRY_PROPERTY_SELECTION_ATOM,
     XSETTINGS_REGISTRY_PROPERTY_WINDOW
 };
 
@@ -130,6 +145,9 @@ xsettings_registry_class_init(XSettingsRegistryClass *reg_class)
 
 	pspec = g_param_spec_long("xsettings_atom", NULL, NULL, G_MINLONG, G_MAXLONG, 0, G_PARAM_READABLE|G_PARAM_WRITABLE|G_PARAM_CONSTRUCT_ONLY);
 	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_XSETTINGS_ATOM, pspec);
+
+	pspec = g_param_spec_long("selection_atom", NULL, NULL, G_MINLONG, G_MAXLONG, 0, G_PARAM_READABLE|G_PARAM_WRITABLE|G_PARAM_CONSTRUCT_ONLY);
+	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_SELECTION_ATOM, pspec);
 
 	pspec = g_param_spec_long("window", NULL, NULL, G_MINLONG, G_MAXLONG, 0, G_PARAM_READABLE|G_PARAM_WRITABLE|G_PARAM_CONSTRUCT_ONLY);
 	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_WINDOW, pspec);
@@ -182,7 +200,7 @@ xsettings_registry_init(XSettingsRegistry *registry)
 }
 
 static void
-cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gchar *name, XSettingsRegistry *registry)
+cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gchar *name, const GValue *value, XSettingsRegistry *registry)
 {
     gint i;
 
@@ -191,18 +209,9 @@ cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gch
         XSettingsRegistryEntry *entry = registry->priv->properties[i];
         if (!strcmp(entry->name, &name[1]))
         {
-            switch (G_VALUE_TYPE(entry->value))
-            {
-                case G_TYPE_INT:
-                    g_value_set_int(entry->value, xfconf_channel_get_int(channel, name, g_value_get_int(entry->value)));
-                    break;
-                case G_TYPE_STRING:
-                    g_value_set_string(entry->value, xfconf_channel_get_string(channel, name, g_value_get_string(entry->value)));
-                    break;
-                case G_TYPE_BOOLEAN:
-                    g_value_set_boolean(entry->value, xfconf_channel_get_bool(channel, name, g_value_get_boolean(entry->value)));
-                    break;
-            }
+            g_value_reset(entry->value);
+            g_value_copy(value, entry->value);
+            break;
         }
     }
     xsettings_registry_notify(registry);
@@ -404,6 +413,10 @@ xsettings_registry_new (XfconfChannel *channel, Display *dpy, gint screen)
     Atom xsettings_atom = XInternAtom(dpy, "_XSETTINGS_SETTINGS", True);
 
     Window window = 0;
+    gchar buffer[256];
+    unsigned char c = 'a';
+    TimeStampInfo info;
+    XEvent xevent;
 
     window = XCreateSimpleWindow (dpy,
 					 RootWindow (dpy, screen),
@@ -416,21 +429,19 @@ xsettings_registry_new (XfconfChannel *channel, Display *dpy, gint screen)
         return NULL;
     }
 
+    g_snprintf(buffer, sizeof(buffer), "_XSETTINGS_S%d", screen);
+    Atom selection_atom = XInternAtom(dpy, buffer, True);
+    Atom manager_atom = XInternAtom(dpy, "MANAGER", True);
+
+
     GObject *object = g_object_new(XSETTINGS_REGISTRY_TYPE,
                                    "channel", channel,
                                    "display", dpy,
                                    "screen", screen,
                                    "xsettings_atom", xsettings_atom,
+                                   "selection_atom", selection_atom,
                                    "window", window,
                                    NULL);
-    gchar buffer[256];
-    unsigned char c = 'a';
-    TimeStampInfo info;
-    XEvent xevent;
-
-    g_snprintf(buffer, sizeof(buffer), "_XSETTINGS_S%d", screen);
-    Atom selection_atom = XInternAtom(dpy, buffer, True);
-    Atom manager_atom = XInternAtom(dpy, "MANAGER", True);
 
     info.timestamp_prop_atom = XInternAtom(dpy, "_TIMESTAMP_PROP", False);
     info.window = window;
@@ -505,6 +516,9 @@ xsettings_registry_set_property(GObject *object, guint property_id, const GValue
         case XSETTINGS_REGISTRY_PROPERTY_XSETTINGS_ATOM:
             XSETTINGS_REGISTRY(object)->priv->xsettings_atom = g_value_get_long(value);
             break;
+        case XSETTINGS_REGISTRY_PROPERTY_SELECTION_ATOM:
+            XSETTINGS_REGISTRY(object)->priv->selection_atom = g_value_get_long(value);
+            break;
         case XSETTINGS_REGISTRY_PROPERTY_WINDOW:
             XSETTINGS_REGISTRY(object)->priv->window = g_value_get_long(value);
             break;
@@ -528,6 +542,9 @@ xsettings_registry_get_property(GObject *object, guint property_id, GValue *valu
         break;
         case XSETTINGS_REGISTRY_PROPERTY_XSETTINGS_ATOM:
             g_value_set_long(value, XSETTINGS_REGISTRY(object)->priv->xsettings_atom);
+        break;
+        case XSETTINGS_REGISTRY_PROPERTY_SELECTION_ATOM:
+            g_value_set_long(value, XSETTINGS_REGISTRY(object)->priv->selection_atom);
         break;
         case XSETTINGS_REGISTRY_PROPERTY_WINDOW:
             g_value_set_long(value, XSETTINGS_REGISTRY(object)->priv->window);

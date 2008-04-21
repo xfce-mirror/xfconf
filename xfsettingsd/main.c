@@ -71,8 +71,11 @@ manager_event_filter (GdkXEvent *xevent,
                       GdkEvent *event,
                       gpointer data)
 {
-    if (FALSE)
+    XSettingsRegistry *registry = XSETTINGS_REGISTRY(data);
+
+    if (xsettings_registry_process_event(registry, xevent))
     {
+        gtk_main_quit();
         return GDK_FILTER_REMOVE;
     }
     else
@@ -161,9 +164,9 @@ main(int argc, char **argv)
         xsettings_registry_load(registry, debug);
 
         xsettings_registry_notify(registry);
-    }
 
-    gdk_window_add_filter(NULL, manager_event_filter, NULL);
+        gdk_window_add_filter(NULL, manager_event_filter, registry);
+    }
 
     if(!debug) /* If not in debug mode, fork to background */
     {
