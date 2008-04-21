@@ -64,6 +64,8 @@ xfconf_channel_get_string
 xfconf_channel_set_string
 xfconf_channel_get_int
 xfconf_channel_set_int
+xfconf_channel_get_uint
+xfconf_channel_set_uint
 xfconf_channel_get_uint64
 xfconf_channel_set_uint64
 xfconf_channel_get_double

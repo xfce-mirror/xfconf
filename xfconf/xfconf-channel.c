@@ -525,6 +525,36 @@ xfconf_channel_get_int(XfconfChannel *channel,
 }
 
 /**
+ * xfconf_channel_get_uint:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ * @default_value: A fallback value.
+ *
+ * Retrieves the unsigned int value associated with @property on @channel.
+ *
+ * Returns: The uint value, or, if @property is not in @channel,
+ *          @default_value is returned.
+ **/
+guint32
+xfconf_channel_get_uint(XfconfChannel *channel,
+                        const gchar *property,
+                        guint32 default_value)
+{
+    gint value = default_value;
+    GValue val = { 0, };
+
+    g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, value);
+
+    if(xfconf_channel_get_internal(channel, property, &val)) {
+        if(G_VALUE_TYPE(&val) == G_TYPE_UINT)
+            value = g_value_get_uint(&val);
+        g_value_unset(&val);
+    }
+
+    return value;
+}
+
+/**
  * xfconf_channel_get_uint64:
  * @channel: An #XfconfChannel.
  * @property: A property name.
@@ -714,6 +744,41 @@ xfconf_channel_set_int(XfconfChannel *channel,
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, FALSE);
 
     g_value_init(&val, G_TYPE_INT);
+    g_value_set_int(&val, value);
+
+    ret = xfconf_client_set_property(proxy, channel->channel_name, property,
+                                     &val, ERROR);
+    if(!ret)
+        ERROR_CHECK;
+
+    g_value_unset(&val);
+
+    return ret;
+}
+
+/**
+ * xfconf_channel_set_uint:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ * @value: The value to set.
+ *
+ * Sets @value for @property on @channel in the configuration store.
+ *
+ * Returns: %TRUE on success, %FALSE if an error occured.
+ **/
+gboolean
+xfconf_channel_set_uint(XfconfChannel *channel,
+                        const gchar *property,
+                        guint32 value)
+{
+    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GValue val = { 0, };
+    gboolean ret;
+    ERROR_DEFINE;
+
+    g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, FALSE);
+
+    g_value_init(&val, G_TYPE_UINT);
     g_value_set_int(&val, value);
 
     ret = xfconf_client_set_property(proxy, channel->channel_name, property,

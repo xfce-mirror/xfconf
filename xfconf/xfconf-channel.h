@@ -58,21 +58,19 @@ gboolean xfconf_channel_set_string(XfconfChannel *channel,
                                    const gchar *property,
                                    const gchar *value);
 
-/* needed?
-guint16 xfconf_channel_get_ushort(XfconfChannel *channel,
-                                  const gchar *property,
-                                  guint16 default_value);
-gboolean xfconf_channel_set_ushort(XfconfChannel *channel,
-                                   const gchar *property,
-                                   guint16 value);
-*/
-
 gint32 xfconf_channel_get_int(XfconfChannel *channel,
                               const gchar *property,
                               gint32 default_value);
 gboolean xfconf_channel_set_int(XfconfChannel *channel,
                                 const gchar *property,
                                 gint32 value);
+
+guint32 xfconf_channel_get_uint(XfconfChannel *channel,
+                                const gchar *property,
+                                guint32 default_value);
+gboolean xfconf_channel_set_uint(XfconfChannel *channel,
+                                 const gchar *property,
+                                 guint32 value);
 
 guint64 xfconf_channel_get_uint64(XfconfChannel *channel,
                                   const gchar *property,
