@@ -125,13 +125,14 @@ xfconf_init(GError **error)
                                            "/org/xfce/Xfconf",
                                            "org.xfce.Xfconf");
 
-    dbus_g_object_register_marshaller((GClosureMarshal)xfconf_marshal_VOID__STRING_STRING,
+    dbus_g_object_register_marshaller((GClosureMarshal)xfconf_marshal_VOID__STRING_STRING_BOXED,
                                       G_TYPE_NONE,
                                       G_TYPE_STRING,
                                       G_TYPE_STRING,
+                                      G_TYPE_VALUE,
                                       G_TYPE_INVALID);
     dbus_g_proxy_add_signal(dbus_proxy, "PropertyChanged",
-                            G_TYPE_STRING, G_TYPE_STRING,
+                            G_TYPE_STRING, G_TYPE_STRING, G_TYPE_VALUE,
                             G_TYPE_INVALID);
 
     gui_dbus_proxy = dbus_g_proxy_new_for_name(dbus_conn,

@@ -74,7 +74,8 @@ typedef struct _XfconfChannelClass
 
     /*< signals >*/
     void (*property_changed)(XfconfChannel *channel,
-                             const gchar *property);
+                             const gchar *property,
+                             const GValue *value);
 } XfconfChannelClass;
 
 enum
@@ -105,6 +106,7 @@ static void xfconf_channel_finalize(GObject *obj);
 static void xfconf_channel_property_changed(DBusGProxy *proxy,
                                             const gchar *channel_name,
                                             const gchar *property,
+                                            const GValue *value,
                                             gpointer user_data);
 
 static guint signals[N_SIGS] = { 0, };
@@ -137,9 +139,10 @@ xfconf_channel_class_init(XfconfChannelClass *klass)
                                                                  property_changed),
                                                  NULL,
                                                  NULL,
-                                                 g_cclosure_marshal_VOID__STRING,
+                                                 xfconf_marshal_VOID__STRING_BOXED,
                                                  G_TYPE_NONE,
-                                                 1, G_TYPE_STRING);
+                                                 2, G_TYPE_STRING,
+                                                 G_TYPE_VALUE);
 
     /**
      * XfconfChannel::channel-name:
@@ -153,10 +156,6 @@ xfconf_channel_class_init(XfconfChannelClass *klass)
                                                         NULL,
                                                         G_PARAM_READWRITE
                                                         | G_PARAM_CONSTRUCT_ONLY));
-
-    dbus_g_object_register_marshaller(xfconf_marshal_VOID__STRING_STRING,
-                                      G_TYPE_NONE, G_TYPE_STRING, G_TYPE_STRING,
-                                      G_TYPE_INVALID);
 }
 
 static void
@@ -223,6 +222,7 @@ static void
 xfconf_channel_property_changed(DBusGProxy *proxy,
                                 const gchar *channel_name,
                                 const gchar *property,
+                                const GValue *value,
                                 gpointer user_data)
 {
     /* FIXME: optimise this by keeping track of all channels in a big hashtable
@@ -233,7 +233,7 @@ xfconf_channel_property_changed(DBusGProxy *proxy,
         return;
 
     g_signal_emit(G_OBJECT(channel), signals[SIG_PROPERTY_CHANGED],
-                  g_quark_from_string(property), property);
+                  g_quark_from_string(property), property, value);
 }
 
 

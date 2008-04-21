@@ -108,6 +108,7 @@
         <signal name="PropertyChanged">
             <arg name="channel" type="s"/>
             <arg name="property" type="s"/>
+            <arg name="value" type="v"/>
         </signal>
     </interface>
     

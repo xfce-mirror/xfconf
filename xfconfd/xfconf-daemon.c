@@ -110,10 +110,11 @@ xfconf_daemon_class_init(XfconfDaemonClass *klass)
                                                  G_SIGNAL_RUN_LAST,
                                                  0,
                                                  NULL, NULL,
-                                                 xfconf_marshal_VOID__STRING_STRING,
+                                                 xfconf_marshal_VOID__STRING_STRING_BOXED,
                                                  G_TYPE_NONE,
-                                                 2, G_TYPE_STRING,
-                                                 G_TYPE_STRING);
+                                                 3, G_TYPE_STRING,
+                                                 G_TYPE_STRING,
+                                                 G_TYPE_VALUE);
     
     dbus_g_object_type_install_info(G_TYPE_FROM_CLASS(klass),
                                     &dbus_glib_xfconf_object_info);
@@ -155,8 +156,15 @@ xfconf_daemon_backend_property_changed(XfconfBackend *backend,
                                        gpointer user_data)
 {
     XfconfDaemon *xfconfd = user_data;
+    GValue value = { 0, };
+
+    xfconf_backend_get(backend, channel, property, &value, NULL);
+
     g_signal_emit(G_OBJECT(xfconfd), signals[SIG_PROPERTY_CHANGED], 0,
-                  channel, property);
+                  channel, property, &value);
+
+    if(G_VALUE_TYPE(&value))
+        g_value_unset(&value);
 }
 
 static gboolean

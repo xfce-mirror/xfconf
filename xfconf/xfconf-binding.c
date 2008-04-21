@@ -45,6 +45,7 @@ static void xfconf_g_binding_object_destroyed(gpointer data,
                                               GObject *where_the_object_was);
 static void xfconf_g_binding_channel_property_changed(XfconfChannel *channel,
                                                       const gchar *property,
+                                                      const GValue *value,
                                                       gpointer user_data);
 static void xfconf_g_binding_object_property_changed(GObject *object,
                                                      GParamSpec *pspec,
@@ -110,17 +111,15 @@ xfconf_g_binding_object_destroyed(gpointer data,
 static void
 xfconf_g_binding_channel_property_changed(XfconfChannel *channel,
                                           const gchar *property,
+                                          const GValue *value,
                                           gpointer user_data)
 {
     XfconfGBinding *binding = user_data;
-    GValue src_val = { 0, }, dst_val = { 0, };
-
-    if(!xfconf_channel_get_property(channel, property, &src_val))
-        return;
+    GValue dst_val = { 0, };
 
     g_value_init(&dst_val, binding->object_property_type);
 
-    if(g_value_transform(&src_val, &dst_val)) {
+    if(g_value_transform(value, &dst_val)) {
         g_signal_handlers_block_by_func(binding->object,
                                         G_CALLBACK(xfconf_g_binding_object_property_changed),
                                         binding);
@@ -131,7 +130,6 @@ xfconf_g_binding_channel_property_changed(XfconfChannel *channel,
                                           binding);
     }
 
-    g_value_unset(&src_val);
     g_value_unset(&dst_val);
 }
 
@@ -194,6 +192,7 @@ xfconf_g_property_bind(XfconfChannel *channel,
     GParamSpec *pspec;
     gchar buf[1024];
     GList *bindings;
+    GValue value = { 0, };
 
     g_return_if_fail(XFCONF_IS_CHANNEL(channel)
                      && xfconf_property && *xfconf_property
@@ -263,8 +262,11 @@ xfconf_g_property_bind(XfconfChannel *channel,
                                bindings, (GDestroyNotify)g_list_free);
     }
 
-    xfconf_g_binding_channel_property_changed(channel, xfconf_property,
-                                              binding);
+    if(xfconf_channel_get_property(channel, xfconf_property, &value)) {
+        xfconf_g_binding_channel_property_changed(channel, xfconf_property,
+                                                  &value, binding);
+        g_value_unset(&value);
+    }
 }
 
 /**
