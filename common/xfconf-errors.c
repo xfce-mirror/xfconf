@@ -34,6 +34,13 @@ static GQuark xfconf_error_quark = 0;
 
 
 /**
+ * XFCONF_TYPE_ERROR:
+ *
+ * An enum GType for Xfconf errors.
+ **/
+
+
+/**
  * XfconfError:
  *
  * An enumeration listing the different kinds of errors under the
@@ -67,6 +74,7 @@ xfconf_error_get_type()
             { XFCONF_ERROR_PERMISSION_DENIED, "XFCONF_ERROR_PERMISSION_DENIED", "PermissionDenied" },
             { XFCONF_ERROR_INTERNAL_ERROR, "XFCONF_ERROR_INTERNAL_ERROR", "InternalError" },
             { XFCONF_ERROR_NO_BACKEND, "XFCONF_ERROR_NO_BACKEND", "NoBackend" },
+            { XFCONF_ERROR_INVALID_PROPERTY, "XFCONF_ERROR_INVALID_PROPERTY", "InvalidProperty" },
             { 0, NULL, NULL }
         };
         
