@@ -20,6 +20,8 @@
 #ifndef __XFCONF_COMMON_PRIVATE_H__
 #define __XFCONF_COMMON_PRIVATE_H__
 
+#include <dbus/dbus-glib.h>
+
 #define XFCONF_TYPE_G_VALUE_ARRAY  (dbus_g_type_get_collection("GPtrArray", G_TYPE_VALUE))
 
 #endif  /* __XFCONF_COMMON_PRIVATE_H__ */
