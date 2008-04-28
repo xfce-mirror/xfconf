@@ -75,6 +75,7 @@ xfconf_error_get_type()
             { XFCONF_ERROR_INTERNAL_ERROR, "XFCONF_ERROR_INTERNAL_ERROR", "InternalError" },
             { XFCONF_ERROR_NO_BACKEND, "XFCONF_ERROR_NO_BACKEND", "NoBackend" },
             { XFCONF_ERROR_INVALID_PROPERTY, "XFCONF_ERROR_INVALID_PROPERTY", "InvalidProperty" },
+            { XFCONF_ERROR_INVALID_CHANNEL, "XFCONF_ERROR_INVALID_CHANNEL", "InvalidChannel" },
             { 0, NULL, NULL }
         };
         

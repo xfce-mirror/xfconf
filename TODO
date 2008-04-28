@@ -1,6 +1,5 @@
 -> for version 1.0
 
-* XfconfBackend needs to do better validation on channel and property names
 * unit tests - some done, need:
   - locking test
   - RemoveChannel() test
@@ -22,7 +21,9 @@
       changes?  load it and send PropertyChanged for all properties?  that
       could be very bad.
 * multi-screen support for xfsettingsd
-* libxfce4mcs-client dummy implementation that forwards to libxfconf
+* libxfce4mcs-client dummy implementation that forwards to libxfconf (?)
+* maybe validate channel/prop names in libxfconf too to generate an error
+  without a roundtrip to the server (?)
 
 -> for future:
 

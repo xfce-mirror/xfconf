@@ -39,4 +39,5 @@ use of #GError<!-- -->s.
 @XFCONF_ERROR_INTERNAL_ERROR: An internal error (likely a bug in xfconf) occurred
 @XFCONF_ERROR_NO_BACKEND: No backends were found, or those found could not be loaded
 @XFCONF_ERROR_INVALID_PROPERTY: The property name specified was invalid
+@XFCONF_ERROR_INVALID_CHANNEL: The channel name specified was invalid
 

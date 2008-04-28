@@ -30,6 +30,8 @@ static void xfconf_backend_base_init(gpointer g_class);
 
 static inline gboolean xfconf_property_is_valid(const gchar *property,
                                                 GError **error);
+static inline gboolean xfconf_channel_is_valid(const gchar *channel,
+                                               GError **error);
 
 /**
  * XfconfBackendInterface:
@@ -131,6 +133,37 @@ xfconf_property_is_valid(const gchar *property,
     return TRUE;
 }
 
+static inline gboolean
+xfconf_channel_is_valid(const gchar *channel,
+                        GError **error)
+{
+    const gchar *p = channel;
+
+    if(!p || !*p) {
+        if(error) {
+            g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_INVALID_CHANNEL,
+                        _("Channel name cannot be an empty string"));
+        }
+        return FALSE;
+    }
+
+    p++;
+    while(*p) {
+        if(!(*p >= 'A' && *p <= 'Z') && !(*p >= 'a' && *p <= 'z')
+           && *p != '_' && *p != '-')
+        {
+            if(error) {
+                g_set_error(error, XFCONF_ERROR,
+                            XFCONF_ERROR_INVALID_CHANNEL,
+                            _("Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"));
+            }
+            return FALSE;
+        }
+    }
+
+    return TRUE;
+}
+
 
 
 /**
@@ -182,6 +215,8 @@ xfconf_backend_set(XfconfBackend *backend,
     xfconf_backend_return_val_if_fail(iface && iface->set && channel && *channel
                                       && property && *property
                                       && value && (!error || !*error), FALSE);
+    if(!xfconf_channel_is_valid(channel, error))
+        return FALSE;
     if(!xfconf_property_is_valid(property, error))
         return FALSE;
     
@@ -214,6 +249,8 @@ xfconf_backend_get(XfconfBackend *backend,
     xfconf_backend_return_val_if_fail(iface && iface->get && channel && *channel
                                       && property && *property
                                       && value && (!error || !*error), FALSE);
+    if(!xfconf_channel_is_valid(channel, error))
+        return FALSE;
     if(!xfconf_property_is_valid(property, error))
         return FALSE;
     
@@ -246,7 +283,9 @@ xfconf_backend_get_all(XfconfBackend *backend,
     xfconf_backend_return_val_if_fail(iface && iface->get_all && channel
                                       && *channel && properties
                                       && (!error || !*error), FALSE);
- 
+    if(!xfconf_channel_is_valid(channel, error))
+        return FALSE;
+
     return iface->get_all(backend, channel, properties, error);
 }
 
@@ -278,7 +317,9 @@ xfconf_backend_exists(XfconfBackend *backend,
                                       && *channel && property && *property
                                       && exists
                                       && (!error || !*error), FALSE);
-   if(!xfconf_property_is_valid(property, error))
+    if(!xfconf_channel_is_valid(channel, error))
+        return FALSE;
+    if(!xfconf_property_is_valid(property, error))
         return FALSE;
  
     return iface->exists(backend, channel, property, exists, error);
@@ -308,6 +349,8 @@ xfconf_backend_remove(XfconfBackend *backend,
     xfconf_backend_return_val_if_fail(iface && iface->remove && channel
                                       && *channel && property && *property
                                       && (!error || !*error), FALSE);
+    if(!xfconf_channel_is_valid(channel, error))
+        return FALSE;
     if(!xfconf_property_is_valid(property, error))
         return FALSE;
     
@@ -336,7 +379,9 @@ xfconf_backend_remove_channel(XfconfBackend *backend,
     xfconf_backend_return_val_if_fail(iface && iface->remove_channel && channel
                                       && *channel
                                       && (!error || !*error), FALSE);
-    
+    if(!xfconf_channel_is_valid(channel, error))
+        return FALSE;
+
     return iface->remove_channel(backend, channel, error);
 }
 
