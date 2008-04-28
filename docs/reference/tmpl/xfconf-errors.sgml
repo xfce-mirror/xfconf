@@ -38,4 +38,5 @@ use of #GError<!-- -->s.
 @XFCONF_ERROR_PERMISSION_DENIED: The user is not allowed to read or write to the channel or property
 @XFCONF_ERROR_INTERNAL_ERROR: An internal error (likely a bug in xfconf) occurred
 @XFCONF_ERROR_NO_BACKEND: No backends were found, or those found could not be loaded
+@XFCONF_ERROR_INVALID_PROPERTY: The property name specified was invalid
 

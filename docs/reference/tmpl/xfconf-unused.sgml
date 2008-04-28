@@ -53,6 +53,12 @@ stamp-xfconf-marshal
 
 @obj: 
 
+<!-- ##### MACRO XFCONF_TYPE_ERROR ##### -->
+<para>
+
+</para>
+
+
 <!-- ##### FUNCTION xfconf_backend_get_error_quark ##### -->
 <para>
 

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-11 00:33+0200\n"
+"POT-Creation-Date: 2008-04-23 23:57-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: common/xfconf-gvaluefuncs.c:208
+#: common/xfconf-gvaluefuncs.c:243
 msgid "true"
 msgstr ""
 
-#: common/xfconf-gvaluefuncs.c:209
+#: common/xfconf-gvaluefuncs.c:244
 msgid "false"
 msgstr ""
 
-#: xfsettingsd/main.c:50 xfconf-query/main.c:52
+#: xfsettingsd/main.c:50 xfconf-query/main.c:94
 msgid "Version information"
 msgstr ""
 
-#: xfsettingsd/main.c:54 xfconf-query/main.c:56
+#: xfsettingsd/main.c:54 xfconf-query/main.c:114
 msgid "Verbose output"
 msgstr ""
 
@@ -69,30 +69,30 @@ msgstr ""
 msgid "Unable to remove channel \"%s\": %s"
 msgstr ""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1037
-#: xfconfd/xfconf-backend-perchannel-xml.c:1107
+#: xfconfd/xfconf-backend-perchannel-xml.c:1002
+#: xfconfd/xfconf-backend-perchannel-xml.c:1072
 #, c-format
 msgid "Invalid type for <%s>: \"%s\""
 msgstr ""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1049
-#: xfconfd/xfconf-backend-perchannel-xml.c:1119
+#: xfconfd/xfconf-backend-perchannel-xml.c:1014
+#: xfconfd/xfconf-backend-perchannel-xml.c:1084
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr ""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1098
+#: xfconfd/xfconf-backend-perchannel-xml.c:1063
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr ""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1366
-#: xfconfd/xfconf-backend-perchannel-xml.c:1604
+#: xfconfd/xfconf-backend-perchannel-xml.c:1331
+#: xfconfd/xfconf-backend-perchannel-xml.c:1569
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr ""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1649
+#: xfconfd/xfconf-backend-perchannel-xml.c:1614
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr ""
@@ -120,24 +120,62 @@ msgstr ""
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr ""
 
-#: xfconfd/xfconf-daemon.c:395
+#: xfconfd/xfconf-daemon.c:396
 #, c-format
 msgid "Another Xfconf daemon is already running"
 msgstr ""
 
-#: xfconfd/xfconf-daemon.c:431
+#: xfconfd/xfconf-daemon.c:432
 #, c-format
 msgid "No backends could be started"
 msgstr ""
 
-#: xfconf-query/main.c:60
+#: xfconf-query/main.c:98
 msgid "pick the channel"
 msgstr ""
 
-#: xfconf-query/main.c:64
+#: xfconf-query/main.c:102
 msgid "pick the property"
 msgstr ""
 
-#: xfconf-query/main.c:68
+#: xfconf-query/main.c:106
 msgid "set (change the value)"
+msgstr ""
+
+#: xfconf-query/main.c:110
+msgid "List properties"
+msgstr ""
+
+#: xfconf-query/main.c:118
+msgid "Create new entry"
+msgstr ""
+
+#: xfconf-query/main.c:122
+msgid "Specify the property value type"
+msgstr ""
+
+#: xfconf-query/main.c:126
+msgid "Remove property"
+msgstr ""
+
+#: xfconf-query/main.c:212
+#, c-format
+msgid "Unable to convert \"%s\" to type\n"
+msgstr ""
+
+#: xfconf-query/main.c:226
+#, c-format
+msgid "ERROR: Could not convert value\n"
+msgstr ""
+
+#: xfconf-query/main.c:233
+#, c-format
+msgid ""
+"ERROR: Property '%s' missing\n"
+"from channel '%s'\n"
+msgstr ""
+
+#: xfconf-query/main.c:249
+#, c-format
+msgid "Channel '%s' contains no properties\n"
 msgstr ""

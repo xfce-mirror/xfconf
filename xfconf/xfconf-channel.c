@@ -72,7 +72,6 @@ typedef struct _XfconfChannelClass
 {
     GObjectClass parent;
 
-    /*< signals >*/
     void (*property_changed)(XfconfChannel *channel,
                              const gchar *property,
                              const GValue *value);
@@ -126,10 +125,16 @@ xfconf_channel_class_init(XfconfChannelClass *klass)
 
     /**
      * XfconfChannel::property-changed:
-     * @channel: An #XfconfChannel.
-     * @property: A property name.
+     * @channel: The #XfconfChannel emitting the signal.
+     * @property: The property that changed.
+     * @value: The new value.
      *
-     * Emitted when a property on @channel has changed.
+     * Emitted whenever a property on @channel has changed.  If
+     * the change was caused by the removal of @property, @value
+     * will be unset; you should test this with
+     * <informalexample><programlisting>
+     * G_VALUE_TYPE(value) == G_TYPE_INVALID
+     * </programlisting></informalexample>
      **/
     signals[SIG_PROPERTY_CHANGED] = g_signal_new("property-changed",
                                                  XFCONF_TYPE_CHANNEL,

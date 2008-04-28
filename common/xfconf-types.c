@@ -30,6 +30,20 @@
 
 #include <gobject/gvaluecollector.h>
 
+
+/**
+ * XFCONF_TYPE_UINT16:
+ *
+ * The registered #GType for a 16-bit unsigned type.
+ **/
+
+/**
+ * XFCONF_TYPE_INT16:
+ *
+ * The registered #GType for a 16-bit signed type.
+ **/
+
+
 static void
 gvalue_from_short(const GValue *src_value,
                   GValue *dest_value)

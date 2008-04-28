@@ -31,8 +31,9 @@ configuration keys with the same names.
 
 </para>
 
-@xfconfchannel: the object which received the signal.
-@arg1: 
+@channel: the object which received the signal.
+@property: 
+@value: 
 
 <!-- ##### ARG XfconfChannel:channel-name ##### -->
 <para>
@@ -108,6 +109,17 @@ configuration keys with the same names.
 @Returns: 
 
 
+<!-- ##### FUNCTION xfconf_channel_get_uint ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@default_value: 
+@Returns: 
+
+
 <!-- ##### FUNCTION xfconf_channel_get_uint64 ##### -->
 <para>
 
@@ -164,6 +176,17 @@ configuration keys with the same names.
 
 
 <!-- ##### FUNCTION xfconf_channel_set_int ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_set_uint ##### -->
 <para>
 
 </para>
