@@ -784,7 +784,7 @@ xfconf_channel_set_uint(XfconfChannel *channel,
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, FALSE);
 
     g_value_init(&val, G_TYPE_UINT);
-    g_value_set_int(&val, value);
+    g_value_set_uint(&val, value);
 
     ret = xfconf_client_set_property(proxy, channel->channel_name, property,
                                      &val, ERROR);
