@@ -159,6 +159,7 @@ xfconf_channel_is_valid(const gchar *channel,
             }
             return FALSE;
         }
+        p++;
     }
 
     return TRUE;
