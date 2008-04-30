@@ -108,6 +108,7 @@ xfconf_property_is_valid(const gchar *property,
     p++;
     while(*p) {
         if(!(*p >= 'A' && *p <= 'Z') && !(*p >= 'a' && *p <= 'z')
+           && !(*p >= '0' && *p <= '9')
            && *p != '_' && *p != '-' && *p != '/')
         {
             if(error) {
@@ -150,6 +151,7 @@ xfconf_channel_is_valid(const gchar *channel,
     p++;
     while(*p) {
         if(!(*p >= 'A' && *p <= 'Z') && !(*p >= 'a' && *p <= 'z')
+           && !(*p >= '0' && *p <= '9')
            && *p != '_' && *p != '-')
         {
             if(error) {
