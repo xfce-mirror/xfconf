@@ -1,0 +1,185 @@
+# Portuguese/Brazil translation of orage.
+# Copyright (C) 2003-2006 The Xfce development team.
+# This file is distributed under the same license as the orage package.
+#
+# Og Maciel <ogmaciel@gnome.org>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfconf\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-04-23 23:57-0700\n"
+"PO-Revision-Date: 2008-05-01 19:00-0500\n"
+"Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
+"Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: common/xfconf-gvaluefuncs.c:243
+msgid "true"
+msgstr "true"
+
+#: common/xfconf-gvaluefuncs.c:244
+msgid "false"
+msgstr "false"
+
+#: xfsettingsd/main.c:50
+#: xfconf-query/main.c:94
+msgid "Version information"
+msgstr "Informação da versão"
+
+#: xfsettingsd/main.c:54
+#: xfconf-query/main.c:114
+msgid "Verbose output"
+msgstr "Saída detalhada"
+
+#: xfsettingsd/main.c:58
+msgid "Force replace existing any xsettings daemon"
+msgstr "Forçar a substituição de qualquer serviço xsettings"
+
+#: xfsettingsd/main.c:62
+msgid "Start in debug mode (don't fork to the background)"
+msgstr "Iniciar em mode de depuração (não bifurcar para o segundo plano)"
+
+#: xfsettingsd/main.c:119
+#, c-format
+msgid ""
+"%s: %s\n"
+"Try %s --help to see a full list of available command line options.\n"
+msgstr ""
+"%s: %s\n"
+"Tente %s --help para ver uma lista completa dos comandos de linha de comando disponíveis.\n"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:263
+#, c-format
+msgid "Unable to create configuration directory"
+msgstr "Não foi possível criar o diretório de configurações"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:310
+#, c-format
+msgid "You don't have permission to modify property \"%s\" on channel \"%s\""
+msgstr "Você não possui permissões para modificar a propriedade \"%s\" no canal \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:361
+#: xfconfd/xfconf-backend-perchannel-xml.c:495
+#, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\""
+msgstr "A propriedade \"%s\" não existe no canal \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:535
+#, c-format
+msgid "Unable to remove channel \"%s\": %s"
+msgstr "Não foi possível remover o canal \"%s\": %s"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1002
+#: xfconfd/xfconf-backend-perchannel-xml.c:1072
+#, c-format
+msgid "Invalid type for <%s>: \"%s\""
+msgstr "Tipo inválido para <%s>: \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1014
+#: xfconfd/xfconf-backend-perchannel-xml.c:1084
+#, c-format
+msgid "Unable to parse value of type \"%s\" from \"%s\""
+msgstr "Não foi possível analizar o valor do tipo \"%s\" de \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1063
+#, c-format
+msgid "The type attribute of <value> cannot be an array"
+msgstr "O tipo de atributo de <value> não pode ser uma matriz"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1331
+#: xfconfd/xfconf-backend-perchannel-xml.c:1569
+#, c-format
+msgid "Channel \"%s\" does not exist"
+msgstr "O canal \"%s\" não existe"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1614
+#, c-format
+msgid "Unable to write channel \"%s\": %s"
+msgstr "Não é possível escrever o canal \"%s\": %s"
+
+#: xfconfd/xfconf-backend-factory.c:70
+#, c-format
+msgid "Unable to find Xfconf backend of type \"%s\""
+msgstr "Não foi possível encontrar o backend do tipo \"%s\""
+
+#: xfconfd/main.c:126
+msgid "Prints the xfconfd version"
+msgstr "Imprime a versão do xfconfd"
+
+#: xfconfd/main.c:128
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "Backends de configuração a usar. O primeiro backend especificado é aberto no modo de escrita e leitura; os outros somente de leitura."
+
+#: xfconfd/main.c:157
+msgid "Xfce configuration daemon"
+msgstr "Serviço de configuração do Xfce"
+
+#: xfconfd/main.c:159
+msgid "Report bugs to http://bugs.xfce.org/\n"
+msgstr "Relate erros a http://bugs.xfce.org/\n"
+
+#: xfconfd/xfconf-daemon.c:396
+#, c-format
+msgid "Another Xfconf daemon is already running"
+msgstr "Um outro serviço Xfconf já está em execução"
+
+#: xfconfd/xfconf-daemon.c:432
+#, c-format
+msgid "No backends could be started"
+msgstr "Nenhum backend foi iniciado"
+
+#: xfconf-query/main.c:98
+msgid "pick the channel"
+msgstr "escolher o canal"
+
+#: xfconf-query/main.c:102
+msgid "pick the property"
+msgstr "escolha o canal"
+
+#: xfconf-query/main.c:106
+msgid "set (change the value)"
+msgstr "defina (modifique o valor)"
+
+#: xfconf-query/main.c:110
+msgid "List properties"
+msgstr "Listar propriedades"
+
+#: xfconf-query/main.c:118
+msgid "Create new entry"
+msgstr "Criar nova entrada"
+
+#: xfconf-query/main.c:122
+msgid "Specify the property value type"
+msgstr "Especificar o tipo de valor da propriedade"
+
+#: xfconf-query/main.c:126
+msgid "Remove property"
+msgstr "Remover propriedade"
+
+#: xfconf-query/main.c:212
+#, c-format
+msgid "Unable to convert \"%s\" to type\n"
+msgstr "Não foi possível converter \"%s\" para tipo\n"
+
+#: xfconf-query/main.c:226
+#, c-format
+msgid "ERROR: Could not convert value\n"
+msgstr "ERRO: Não foi possível converter o valor\n"
+
+#: xfconf-query/main.c:233
+#, c-format
+msgid ""
+"ERROR: Property '%s' missing\n"
+"from channel '%s'\n"
+msgstr ""
+"ERRO: A propriedade \"%s\" está faltando\n"
+"do canal \"%s\"\n"
+
+#: xfconf-query/main.c:249
+#, c-format
+msgid "Channel '%s' contains no properties\n"
+msgstr "o canal \"%s\" não possui propriedades\n"
+
