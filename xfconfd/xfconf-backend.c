@@ -148,7 +148,6 @@ xfconf_channel_is_valid(const gchar *channel,
         return FALSE;
     }
 
-    p++;
     while(*p) {
         if(!(*p >= 'A' && *p <= 'Z') && !(*p >= 'a' && *p <= 'z')
            && !(*p >= '0' && *p <= '9')
