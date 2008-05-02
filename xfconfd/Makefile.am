@@ -50,7 +50,7 @@ service_DATA = $(service_in_files:.service.in=.service)
 %.service: %.service.in
 	sed -e "s,\@bindir\@,$(bindir),g" < $< > $@
 
-DISTCLEANFILES = \
+CLEANFILES = \
 	$(service_DATA)
 
 EXTRA_DIST = \
@@ -64,7 +64,7 @@ if MAINTAINER_MODE
 xfconf_built_sources = \
 	xfconf-dbus-server.h
 
-DISTCLEANFILES += \
+DISTCLEANFILES = \
 	$(xfconf_built_sources)
 
 BUILT_SOURCES = \
