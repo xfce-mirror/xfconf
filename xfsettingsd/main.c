@@ -112,6 +112,8 @@ int
 main(int argc, char **argv)
 {
     GError *cli_error = NULL;
+    gint screen;
+    Window window = None;
 
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
@@ -133,10 +135,8 @@ main(int argc, char **argv)
 
     xfconf_init(NULL);
 
-    gint screen = DefaultScreen(gdk_display);
+    screen = DefaultScreen(gdk_display);
         
-    Window window = 0;
-
     running = settings_daemon_check_running(GDK_DISPLAY(), DefaultScreen(GDK_DISPLAY()));
 
     if (running)
@@ -155,11 +155,14 @@ main(int argc, char **argv)
 
     if ((running && force_replace) || (!running))
     {
+        XfconfChannel *channel;
+        XSettingsRegistry *registry;
+
         XF_DEBUG("Initializing...\n");
 
-        XfconfChannel *channel = xfconf_channel_new("xsettings");
+        channel = xfconf_channel_new("xsettings");
 
-        XSettingsRegistry *registry = xsettings_registry_new(channel, gdk_display, screen);
+        registry = xsettings_registry_new(channel, gdk_display, screen);
         
         xsettings_registry_load(registry, debug);
 

@@ -220,12 +220,14 @@ cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gch
 void
 xsettings_registry_notify(XSettingsRegistry *registry)
 {
+    guchar *buffer, *pos;
+    gint buf_len, i;
+
     registry->priv->last_change_serial = registry->priv->serial;
 
     XSettingsRegistryEntry *entry = NULL;
 
-    gint buf_len = 12;
-    gint i;
+    buf_len = 12;
 
     /** Calculate buffer size */
     for(i = 0; i < XSETTINGS_REGISTRY_SIZE; ++i)
@@ -255,8 +257,8 @@ xsettings_registry_notify(XSettingsRegistry *registry)
         }
     }
 
-    guchar *buffer = NULL;
-    guchar *pos = buffer = g_new0(guchar, buf_len);
+    buffer = NULL;
+    pos = buffer = g_new0(guchar, buf_len);
 
     *(CARD32 *)pos = LSBFirst;
     pos +=4;
@@ -270,10 +272,12 @@ xsettings_registry_notify(XSettingsRegistry *registry)
     /** Fill the buffer */
     for(i = 0; i < XSETTINGS_REGISTRY_SIZE; ++i)
     {
+        gint name_len, value_len = 0, str_length;
+
         entry = registry->priv->properties[i];
 
-        gint name_len = XSETTINGS_PAD(strlen(entry->name), 4);
-        gint value_len = 0;
+        name_len = XSETTINGS_PAD(strlen(entry->name), 4);
+        value_len = 0;
 
         switch (G_VALUE_TYPE(entry->value))
         {
@@ -301,7 +305,7 @@ xsettings_registry_notify(XSettingsRegistry *registry)
         }
         *pos++ = 0;
 
-        gint str_length = strlen(entry->name);
+        str_length = strlen(entry->name);
         *(CARD16 *)pos = str_length;
         pos += 2;
         memcpy (pos, entry->name, str_length);
@@ -417,6 +421,8 @@ xsettings_registry_new (XfconfChannel *channel, Display *dpy, gint screen)
     unsigned char c = 'a';
     TimeStampInfo info;
     XEvent xevent;
+    Atom selection_atom, manager_atom;
+    GObject *object;
 
     window = XCreateSimpleWindow (dpy,
 					 RootWindow (dpy, screen),
@@ -430,18 +436,18 @@ xsettings_registry_new (XfconfChannel *channel, Display *dpy, gint screen)
     }
 
     g_snprintf(buffer, sizeof(buffer), "_XSETTINGS_S%d", screen);
-    Atom selection_atom = XInternAtom(dpy, buffer, True);
-    Atom manager_atom = XInternAtom(dpy, "MANAGER", True);
+    selection_atom = XInternAtom(dpy, buffer, True);
+    manager_atom = XInternAtom(dpy, "MANAGER", True);
 
 
-    GObject *object = g_object_new(XSETTINGS_REGISTRY_TYPE,
-                                   "channel", channel,
-                                   "display", dpy,
-                                   "screen", screen,
-                                   "xsettings_atom", xsettings_atom,
-                                   "selection_atom", selection_atom,
-                                   "window", window,
-                                   NULL);
+    object = g_object_new(XSETTINGS_REGISTRY_TYPE,
+                          "channel", channel,
+                          "display", dpy,
+                          "screen", screen,
+                          "xsettings_atom", xsettings_atom,
+                          "selection_atom", selection_atom,
+                          "window", window,
+                          NULL);
 
     info.timestamp_prop_atom = XInternAtom(dpy, "_TIMESTAMP_PROP", False);
     info.window = window;
