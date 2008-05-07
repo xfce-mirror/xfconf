@@ -260,7 +260,11 @@ xsettings_registry_notify(XSettingsRegistry *registry)
     buffer = NULL;
     pos = buffer = g_new0(guchar, buf_len);
 
-    *(CARD32 *)pos = LSBFirst;
+#if G_BYTE_ORDER == G_LITTLE_ENDIAN
+    *(CARD8 *)pos = LSBFirst;
+#else
+    *(CARD8 *)pos = MSBFirst;
+#endif
     pos +=4;
 
     *(CARD32 *)pos = registry->priv->serial++;
