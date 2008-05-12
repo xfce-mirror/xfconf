@@ -147,7 +147,37 @@ xfconf_daemon_finalize(GObject *obj)
     G_OBJECT_CLASS(xfconf_daemon_parent_class)->finalize(obj);
 }
 
+typedef struct
+{
+    XfconfDaemon *xfconfd;
+    XfconfBackend *backend;
+    gchar *channel;
+    gchar *property;
+} XfconfPropChangedData;
 
+static gboolean
+xfconf_daemon_emit_property_changed_idled(gpointer data)
+{
+    XfconfPropChangedData *pdata = data;
+    GValue value = { 0, };
+
+    xfconf_backend_get(pdata->backend, pdata->channel, pdata->property,
+                       &value, NULL);
+
+    g_signal_emit(G_OBJECT(pdata->xfconfd), signals[SIG_PROPERTY_CHANGED],
+                  0, pdata->channel, pdata->property, &value);
+
+    if(G_VALUE_TYPE(&value))
+        g_value_unset(&value);
+
+    g_object_unref(G_OBJECT(pdata->backend));
+    g_free(pdata->channel);
+    g_free(pdata->property);
+    g_object_unref(G_OBJECT(pdata->xfconfd));
+    g_slice_free(XfconfPropChangedData, pdata);
+
+    return FALSE;
+}
 
 static void
 xfconf_daemon_backend_property_changed(XfconfBackend *backend,
@@ -155,16 +185,14 @@ xfconf_daemon_backend_property_changed(XfconfBackend *backend,
                                        const gchar *property,
                                        gpointer user_data)
 {
-    XfconfDaemon *xfconfd = user_data;
-    GValue value = { 0, };
+    XfconfPropChangedData *pdata = g_slice_new0(XfconfPropChangedData);
 
-    xfconf_backend_get(backend, channel, property, &value, NULL);
+    pdata->xfconfd = g_object_ref(G_OBJECT(user_data));
+    pdata->backend = g_object_ref(G_OBJECT(backend));
+    pdata->channel = g_strdup(channel);
+    pdata->property = g_strdup(property);
 
-    g_signal_emit(G_OBJECT(xfconfd), signals[SIG_PROPERTY_CHANGED], 0,
-                  channel, property, &value);
-
-    if(G_VALUE_TYPE(&value))
-        g_value_unset(&value);
+    g_idle_add(xfconf_daemon_emit_property_changed_idled, pdata);
 }
 
 static gboolean
