@@ -39,10 +39,12 @@
 #define XF_DEBUG(str) \
     if (debug) g_print (str)
 
-gboolean version = FALSE;
-gboolean force_replace = FALSE;
-gboolean running = FALSE;
-gboolean debug = FALSE;
+static gboolean version = FALSE;
+static gboolean force_replace = FALSE;
+static gboolean running = FALSE;
+static gboolean debug = FALSE;
+
+static GList *registries = NULL;
 
 static GOptionEntry entries[] =
 {
@@ -75,7 +77,10 @@ manager_event_filter (GdkXEvent *xevent,
 
     if (xsettings_registry_process_event(registry, xevent))
     {
-        gtk_main_quit();
+        g_object_unref(G_OBJECT(registry));
+        registries = g_list_remove(registries, registry);
+        if(!registries)
+            gtk_main_quit();
         return GDK_FILTER_REMOVE;
     }
     else
@@ -112,8 +117,10 @@ int
 main(int argc, char **argv)
 {
     GError *cli_error = NULL;
-    gint screen;
-    Window window = None;
+    GdkDisplay *gdpy;
+    gint n_screens, screen;
+    gboolean keep_running = FALSE;
+    XfconfChannel *channel;
 
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
@@ -133,42 +140,59 @@ main(int argc, char **argv)
         return 0;
     }
 
-    xfconf_init(NULL);
-
-    screen = DefaultScreen(gdk_display);
-        
-    running = settings_daemon_check_running(GDK_DISPLAY(), DefaultScreen(GDK_DISPLAY()));
-
-    if (running)
+    if(!xfconf_init(&cli_error))
     {
-        XF_DEBUG("XSETTINGS Daemon running\n");
-        if (force_replace)
-        {
-            XF_DEBUG("Replacing XSETTINGS daemon\n");
-        }
-        else
-        {
-            XF_DEBUG("Aborting...\n");
-            return 1;
-        }
+        g_printerr("Failed to connect to Xfconf daemon: %s\n",
+                   cli_error->message);
+        return 1;
     }
 
-    if ((running && force_replace) || (!running))
+    channel = xfconf_channel_new("xsettings");
+
+    gdpy = gdk_display_get_default();
+    n_screens = gdk_display_get_n_screens(gdpy);
+
+    for(screen = 0; screen < n_screens; ++screen)
     {
-        XfconfChannel *channel;
         XSettingsRegistry *registry;
+
+        running = settings_daemon_check_running(GDK_DISPLAY_XDISPLAY(gdpy),
+                                                screen);
+
+        if (running)
+        {
+            XF_DEBUG("XSETTINGS Daemon running\n");
+            if (force_replace)
+            {
+                XF_DEBUG("Replacing XSETTINGS daemon\n");
+                keep_running = TRUE;
+            }
+            else
+            {
+                continue;
+            }
+        }
 
         XF_DEBUG("Initializing...\n");
 
-        channel = xfconf_channel_new("xsettings");
-
-        registry = xsettings_registry_new(channel, gdk_display, screen);
+        registry = xsettings_registry_new(channel,
+                                          GDK_DISPLAY_XDISPLAY(gdpy),
+                                          screen);
+        registries = g_list_append(registries, registry);
         
         xsettings_registry_load(registry, debug);
 
         xsettings_registry_notify(registry);
 
         gdk_window_add_filter(NULL, manager_event_filter, registry);
+
+        keep_running = TRUE;
+    }
+
+    if(!keep_running)
+    {
+        XF_DEBUG("Not replacing existing XSETTINGS manager\n");
+        return 1;
     }
 
     if(!debug) /* If not in debug mode, fork to background */
@@ -177,7 +201,6 @@ main(int argc, char **argv)
         {
             gtk_main();
     
-            XDestroyWindow (gdk_display, window);
             xfconf_shutdown();
         }
     }
@@ -185,7 +208,6 @@ main(int argc, char **argv)
     {
         gtk_main();
 
-        XDestroyWindow (gdk_display, window);
         xfconf_shutdown();
     }
 
