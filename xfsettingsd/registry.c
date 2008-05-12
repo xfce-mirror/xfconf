@@ -54,6 +54,7 @@
 
 #include <string.h>
 
+#include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
 
 #include "registry.h"
@@ -215,6 +216,59 @@ cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gch
         }
     }
     xsettings_registry_notify(registry);
+    if (!strncmp(name, "/Xft", 4))
+        xsettings_registry_store_xrdb(registry);
+}
+
+void
+xsettings_registry_store_xrdb(XSettingsRegistry *registry)
+{
+    XSettingsRegistryEntry *xft_antialias = registry->priv->properties[16];
+    XSettingsRegistryEntry *xft_hinting = registry->priv->properties[15];
+    XSettingsRegistryEntry *xft_hintstyle = registry->priv->properties[14];
+    XSettingsRegistryEntry *xft_rgba = registry->priv->properties[13];
+    XSettingsRegistryEntry *xft_dpi = registry->priv->properties[12];
+    
+    gchar *cmd;
+    FILE *fp;
+    gchar *path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                                       "xfce4" G_DIR_SEPARATOR_S "Xft.xrdb",
+                                       TRUE);
+
+    if (G_LIKELY (path != NULL))
+    {
+    
+        if(!g_file_test(path, G_FILE_TEST_IS_REGULAR))
+        {
+        }
+
+        fp = fopen(path, "w");
+        if(fp != NULL)
+        {
+            fprintf(fp, "Xft.antialias: %d\n", g_value_get_int(xft_antialias->value));
+            fprintf(fp, "Xft.hinting: %d\n", g_value_get_int(xft_hinting->value));
+            if(g_value_get_int(xft_hinting->value))
+                fprintf(fp, "Xft.hintstyle: %s\n", g_value_get_string(xft_hintstyle->value));
+            else
+                fprintf(fp, "Xft.hintstyle: hintnone\n");
+            fprintf(fp, "Xft.rgba: %s\n", g_value_get_string(xft_rgba->value));
+            if(g_value_get_int (xft_dpi->value) > 0)
+                fprintf(fp, "Xft.dpi: %d\n", g_value_get_int(xft_dpi->value));
+            fclose(fp);
+
+            /* run xrdb to merge the new settings */
+            cmd = g_strdup_printf("xrdb -nocpp -merge \"%s\"", path);
+            g_spawn_command_line_async(cmd, NULL);
+            g_free(cmd);
+            
+            if(!g_value_get_int(xft_dpi->value)) {
+                /* filter out Xft.dpi from xrdb */
+                g_spawn_command_line_async("sh -c \"xrdb -query | grep -i -v '^Xft.dpi:' | xrdb\"",
+                                           NULL);
+            }
+        }
+        g_free(path);
+    }
 }
 
 void

@@ -82,6 +82,8 @@ gboolean
 xsettings_registry_load(XSettingsRegistry *registry, gboolean debug);
 void
 xsettings_registry_notify(XSettingsRegistry *registry);
+void
+xsettings_registry_store_xrdb(XSettingsRegistry *registry);
 gboolean
 xsettings_registry_process_event (XSettingsRegistry *registry, XEvent *xevent);
 
