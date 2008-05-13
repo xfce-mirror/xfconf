@@ -102,6 +102,7 @@
              
              @channel: A channel/application/namespace name.
              @property: A property name.
+             @value: The new value.
              
              Emitted when a property changes.
         -->
@@ -109,6 +110,20 @@
             <arg name="channel" type="s"/>
             <arg name="property" type="s"/>
             <arg name="value" type="v"/>
+        </signal>
+
+        <!--
+             void org.xfce.Xfconf.PropertyRemoved(String channel,
+                                                  String property)
+
+             @channel: A channel/application/namespace name.
+             @property: A property name.
+
+             Emitted when a property is removed.
+        -->
+        <signal name="PropertyRemoved">
+            <arg name="channel" type="s"/>
+            <arg name="property" type="s"/>
         </signal>
     </interface>
     

@@ -84,6 +84,7 @@ typedef struct _XfconfDaemonClass
 enum
 {
     SIG_PROPERTY_CHANGED = 0,
+    SIG_PROPERTY_REMOVED,
     N_SIGS,
 };
 
@@ -115,7 +116,17 @@ xfconf_daemon_class_init(XfconfDaemonClass *klass)
                                                  3, G_TYPE_STRING,
                                                  G_TYPE_STRING,
                                                  G_TYPE_VALUE);
-    
+
+    signals[SIG_PROPERTY_REMOVED] = g_signal_new("property-removed",
+                                                 XFCONF_TYPE_DAEMON,
+                                                 G_SIGNAL_RUN_LAST,
+                                                 0,
+                                                 NULL, NULL,
+                                                 xfconf_marshal_VOID__STRING_STRING,
+                                                 G_TYPE_NONE,
+                                                 2, G_TYPE_STRING,
+                                                 G_TYPE_STRING);
+
     dbus_g_object_type_install_info(G_TYPE_FROM_CLASS(klass),
                                     &dbus_glib_xfconf_object_info);
     dbus_g_error_domain_register(XFCONF_ERROR, "org.xfce.Xfconf.Error",
@@ -164,11 +175,14 @@ xfconf_daemon_emit_property_changed_idled(gpointer data)
     xfconf_backend_get(pdata->backend, pdata->channel, pdata->property,
                        &value, NULL);
 
-    g_signal_emit(G_OBJECT(pdata->xfconfd), signals[SIG_PROPERTY_CHANGED],
-                  0, pdata->channel, pdata->property, &value);
-
-    if(G_VALUE_TYPE(&value))
+    if(G_VALUE_TYPE(&value)) {
+        g_signal_emit(G_OBJECT(pdata->xfconfd), signals[SIG_PROPERTY_CHANGED],
+                      0, pdata->channel, pdata->property, &value);
         g_value_unset(&value);
+    } else {
+        g_signal_emit(G_OBJECT(pdata->xfconfd), signals[SIG_PROPERTY_REMOVED],
+                      0, pdata->channel, pdata->property);
+    }
 
     g_object_unref(G_OBJECT(pdata->backend));
     g_free(pdata->channel);

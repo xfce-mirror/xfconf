@@ -107,6 +107,11 @@ static void xfconf_channel_property_changed(DBusGProxy *proxy,
                                             const gchar *property,
                                             const GValue *value,
                                             gpointer user_data);
+static void xfconf_channel_property_removed(DBusGProxy *proxy,
+                                            const gchar *channel_name,
+                                            const gchar *property,
+                                            gpointer user_data);
+
 
 static guint signals[N_SIGS] = { 0, };
 
@@ -170,6 +175,9 @@ xfconf_channel_init(XfconfChannel *instance)
     dbus_g_proxy_connect_signal(proxy, "PropertyChanged",
                                 G_CALLBACK(xfconf_channel_property_changed),
                                 instance, NULL);
+    dbus_g_proxy_connect_signal(proxy, "PropertyRemoved",
+                                G_CALLBACK(xfconf_channel_property_removed),
+                                instance, NULL);
 }
 
 static void
@@ -230,8 +238,6 @@ xfconf_channel_property_changed(DBusGProxy *proxy,
                                 const GValue *value,
                                 gpointer user_data)
 {
-    /* FIXME: optimise this by keeping track of all channels in a big hashtable
-     * and using only a single instance of this callback for the class */
     XfconfChannel *channel = XFCONF_CHANNEL(user_data);
 
     if(strcmp(channel_name, channel->channel_name))
@@ -241,6 +247,21 @@ xfconf_channel_property_changed(DBusGProxy *proxy,
                   g_quark_from_string(property), property, value);
 }
 
+static void
+xfconf_channel_property_removed(DBusGProxy *proxy,
+                                const gchar *channel_name,
+                                const gchar *property,
+                                gpointer user_data)
+{
+    XfconfChannel *channel = XFCONF_CHANNEL(user_data);
+    GValue value = { 0, };
+
+    if(strcmp(channel_name, channel->channel_name))
+        return;
+
+    g_signal_emit(G_OBJECT(channel), signals[SIG_PROPERTY_CHANGED],
+                  g_quark_from_string(property), property, value);
+}
 
 
 static gboolean
