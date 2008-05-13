@@ -506,6 +506,26 @@ xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
     return TRUE;
 }
 
+typedef struct
+{
+    XfconfBackend *backend;
+    const gchar *channel;
+} PropChangeData;
+
+static void nodes_do_propchange_remove(GNode *node,
+                                       gpointer data)
+{
+    XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(data);
+    PropChangeData *pdata = data;
+    XfconfProperty *prop = node->data;
+
+    if(!G_VALUE_TYPE(&prop->value))
+        return;
+
+    xbpx->prop_changed_func(pdata->backend, pdata->channel,
+                            prop->name, xbpx->prop_changed_data);
+}
+
 static gboolean
 xfconf_backend_perchannel_xml_remove_channel(XfconfBackend *backend,
                                              const gchar *channel,
@@ -524,7 +544,21 @@ xfconf_backend_perchannel_xml_remove_channel(XfconfBackend *backend,
             xbpx->save_id = 0;
         }
     }
-    
+
+    if(xbpx->prop_changed_func) {
+        GNode *properties = g_tree_lookup(xbpx->channels, channel);
+        PropChangeData pdata;
+
+        if(!properties) {
+            properties = xfconf_backend_perchannel_xml_load_channel(xbpx,
+                                                                    channel,
+                                                                    NULL);
+        }
+        pdata.backend = backend;
+        pdata.channel = channel;
+        g_node_children_foreach(properties, G_TRAVERSE_ALL,
+                                nodes_do_propchange_remove, &pdata);
+    }
     g_tree_remove(xbpx->channels, channel);
     
     filename = g_strdup_printf("%s/%s.xml", xbpx->config_save_path, channel);
@@ -540,9 +574,6 @@ xfconf_backend_perchannel_xml_remove_channel(XfconfBackend *backend,
     }
     g_free(filename);
 
-    /* FIXME: do we want to do a PropertyChanged for each property
-     * in the channel?  or should we add a ChannelRemoved signal? */
-    
     return TRUE;
 }
 
