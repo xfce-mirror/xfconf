@@ -30,6 +30,7 @@ typedef struct
 static void
 test_signal_changed(XfconfChannel *channel,
                     const gchar *property,
+                    const GValue *value,
                     gpointer user_data)
 {
     SignalTestData *std = user_data;
