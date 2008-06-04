@@ -1145,7 +1145,7 @@ xfconf_channel_get_array_valist(XfconfChannel *channel,
                     *__val_p = g_value_dup_boxed(val);
                 } else {
                     g_warning("Unknown value type %d (%s) in value array.",
-                              G_VALUE_TYPE(val), G_VALUE_TYPE_NAME(val));
+                              (gint)G_VALUE_TYPE(val), G_VALUE_TYPE_NAME(val));
                     goto out;
                 }
                 break;
@@ -1337,7 +1337,7 @@ xfconf_channel_set_array_valist(XfconfChannel *channel,
                     g_ptr_array_add(arr, val);
                 } else {
                     g_warning("Unknown value type %d (%s) in parameter list.",
-                              cur_value_type, g_type_name(cur_value_type));
+                              (gint)cur_value_type, g_type_name(cur_value_type));
                     goto out;
                 }
                 break;
