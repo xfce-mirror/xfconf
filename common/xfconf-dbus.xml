@@ -98,7 +98,8 @@
         
         <!--
              void org.xfce.Xfconf.PropertyChanged(String channel,
-                                                  String property)
+                                                  String property.
+                                                  Variant value)
              
              @channel: A channel/application/namespace name.
              @property: A property name.
