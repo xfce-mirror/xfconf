@@ -70,10 +70,72 @@
 
 G_DEFINE_TYPE(XSettingsRegistry, xsettings_registry, G_TYPE_OBJECT);
 
+enum
+{
+    XSETTING_ENTRY_NET_DOUBLECLICKTIME,
+    XSETTING_ENTRY_NET_DOUBLECLICKDISTANCE,
+    XSETTING_ENTRY_NET_DNDDRAGTRESHOLD,
+    XSETTING_ENTRY_NET_CURSORBLINK,
+    XSETTING_ENTRY_NET_CURSORBLINKTIME,
+    XSETTING_ENTRY_NET_THEMENAME,
+    XSETTING_ENTRY_NET_ICONTHEMENAME,
+    XSETTING_ENTRY_XFT_ANTIALIAS,
+    XSETTING_ENTRY_XFT_HINTING,
+    XSETTING_ENTRY_XFT_HINTSTYLE,
+    XSETTING_ENTRY_XFT_RGBA,
+    XSETTING_ENTRY_XFT_DPI,
+    XSETTING_ENTRY_GTK_CANCHANGEACCELS,
+    XSETTING_ENTRY_GTK_COLORPALETTE,
+    XSETTING_ENTRY_GTK_FONTNAME,
+    XSETTING_ENTRY_GTK_ICONSIZES,
+    XSETTING_ENTRY_GTK_KEYTHEMENAME,
+    XSETTING_ENTRY_GTK_TOOLBARSTYLE,
+    XSETTING_ENTRY_GTK_TOOLBARICONSIZE,
+    XSETTING_ENTRY_GTK_IMPREEDITSTYLE,
+    XSETTING_ENTRY_GTK_IMSTATUSSTYLE,
+    XSETTING_ENTRY_GTK_MENUIMAGES,
+    XSETTING_ENTRY_GTK_BUTTONIMAGES,
+    XSETTING_ENTRY_GTK_MENUBARACCEL,
+    XSETTING_ENTRY_GTK_CURSORTHEMENAME,
+    XSETTING_ENTRY_GTK_CURSORTHEMESIZE,
+} XSettingType;
+
+static XSettingsRegistryEntry properties[] = {
+{ "Net/DoubleClickTime", G_TYPE_INT, },
+{ "Net/DoubleClickDistance", G_TYPE_INT, },
+{ "Net/DndDragThreshold", G_TYPE_INT, },
+{ "Net/CursorBlink", G_TYPE_BOOLEAN, },
+{ "Net/CursorBlinkTime", G_TYPE_INT, },
+{ "Net/ThemeName", G_TYPE_STRING, },
+{ "Net/IconThemeName", G_TYPE_STRING, },
+
+{ "Xft/Antialias", G_TYPE_INT, },
+{ "Xft/Hinting", G_TYPE_INT, },
+{ "Xft/HintStyle", G_TYPE_STRING, },
+{ "Xft/RGBA", G_TYPE_STRING, },
+{ "Xft/DPI", G_TYPE_INT, },
+
+{ "Gtk/CanChangeAccels", G_TYPE_BOOLEAN, },
+{ "Gtk/ColorPalette", G_TYPE_STRING, },
+{ "Gtk/FontName", G_TYPE_STRING, },
+{ "Gtk/IconSizes", G_TYPE_STRING, },
+{ "Gtk/KeyThemeName", G_TYPE_STRING, },
+{ "Gtk/ToolbarStyle", G_TYPE_STRING, },
+{ "Gtk/ToolbarIconSize", G_TYPE_INT, },
+{ "Gtk/IMPreeditStyle", G_TYPE_STRING, },
+{ "Gtk/IMStatusStyle", G_TYPE_STRING, },
+{ "Gtk/MenuImages", G_TYPE_BOOLEAN, },
+{ "Gtk/ButtonImages", G_TYPE_BOOLEAN, },
+{ "Gtk/MenuBarAccel", G_TYPE_STRING, },
+{ "Gtk/CursorThemeName", G_TYPE_STRING, },
+{ "Gtk/CursorThemeSize", G_TYPE_INT, },
+
+{ NULL, 0,},
+};
+
+
 struct _XSettingsRegistryPriv
 {
-    XSettingsRegistryEntry **properties;
-
     gint serial;
     gint last_change_serial;
 
@@ -106,15 +168,6 @@ xsettings_registry_process_event (XSettingsRegistry *registry, XEvent *xevent)
 
     return FALSE;
 }
-
-static XSettingsRegistryEntry *
-xsettings_registry_entry_new_string(const gchar *name, const gchar *value);
-static XSettingsRegistryEntry *
-xsettings_registry_entry_new_int(const gchar *name, gint value);
-static XSettingsRegistryEntry *
-xsettings_registry_entry_new_bool(const gchar *name, gboolean value);
-
-#define XSETTINGS_REGISTRY_SIZE 24
 
 enum {
 	XSETTINGS_REGISTRY_PROPERTY_CHANNEL = 1,
@@ -159,45 +212,40 @@ void
 xsettings_registry_init(XSettingsRegistry *registry)
 {
     registry->priv = g_new0(XSettingsRegistryPriv, 1);
-    registry->priv->properties = g_new0(XSettingsRegistryEntry *, XSETTINGS_REGISTRY_SIZE);
 
-    gint i = XSETTINGS_REGISTRY_SIZE;
     /* Net settings */
-    registry->priv->properties[--i] = xsettings_registry_entry_new_int("Net/DoubleClickTime", 250);
-    registry->priv->properties[--i] = xsettings_registry_entry_new_int("Net/DoubleClickDistance", 5);
-    registry->priv->properties[--i] = xsettings_registry_entry_new_int("Net/DndDragThreshold", 8);
-    registry->priv->properties[--i] = xsettings_registry_entry_new_bool("Net/CursorBlink", TRUE);
-    registry->priv->properties[--i] = xsettings_registry_entry_new_int("Net/CursorBlinkTime", 1200);
-    registry->priv->properties[--i] = xsettings_registry_entry_new_string("Net/ThemeName", "Default");
-    registry->priv->properties[--i] = xsettings_registry_entry_new_string("Net/IconThemeName", "hicolor");
+    g_value_set_int (&properties[XSETTING_ENTRY_NET_DOUBLECLICKTIME].value, 250);
+    g_value_set_int (&properties[XSETTING_ENTRY_NET_DOUBLECLICKDISTANCE].value, 5);
+    g_value_set_int (&properties[XSETTING_ENTRY_NET_DNDDRAGTRESHOLD].value, 8);
+    g_value_set_boolean (&properties[XSETTING_ENTRY_NET_CURSORBLINK].value, TRUE);
+    g_value_set_int (&properties[XSETTING_ENTRY_NET_CURSORBLINKTIME].value, 1200);
+    g_value_set_string (&properties[XSETTING_ENTRY_NET_THEMENAME].value, "Default");
+    g_value_set_string (&properties[XSETTING_ENTRY_NET_ICONTHEMENAME].value, "hicolor");
     /* Xft settings */
-    registry->priv->properties[--i] = xsettings_registry_entry_new_int("Xft/Antialias", -1);
-    registry->priv->properties[--i] = xsettings_registry_entry_new_int("Xft/Hinting", -1);
-    registry->priv->properties[--i] = xsettings_registry_entry_new_string("Xft/HintStyle", "hintnone");
-    registry->priv->properties[--i] = xsettings_registry_entry_new_string("Xft/RGBA", "none");
-    registry->priv->properties[--i] = xsettings_registry_entry_new_int("Xft/DPI", -1);
+    g_value_set_int (&properties[XSETTING_ENTRY_XFT_ANTIALIAS].value, -1);
+    g_value_set_int (&properties[XSETTING_ENTRY_XFT_HINTING].value, -1);
+    g_value_set_string (&properties[XSETTING_ENTRY_XFT_HINTSTYLE].value, "hintnone");
+    g_value_set_string (&properties[XSETTING_ENTRY_XFT_RGBA].value, "none");
+    g_value_set_int (&properties[XSETTING_ENTRY_XFT_DPI].value, -1);
     /* GTK settings */
-    registry->priv->properties[--i] = xsettings_registry_entry_new_bool("Gtk/CanChangeAccels", FALSE);
-    registry->priv->properties[--i] = xsettings_registry_entry_new_string("Gtk/ColorPalette", 
+    g_value_set_boolean (&properties[XSETTING_ENTRY_GTK_CANCHANGEACCELS].value, FALSE);
+    g_value_set_string (&properties[XSETTING_ENTRY_GTK_COLORPALETTE].value,
                     "black:white:gray50:red:purple:blue:light "
                     "blue:green:yellow:orange:lavender:brown:goldenrod4:dodger "
                     "blue:pink:light green:gray10:gray30:gray75:gray90");
-    registry->priv->properties[--i] = xsettings_registry_entry_new_string("Gtk/FontName", "Sans 10");
-    registry->priv->properties[--i] = xsettings_registry_entry_new_string("Gtk/IconSizes", NULL);
-    registry->priv->properties[--i] = xsettings_registry_entry_new_string("Gtk/KeyThemeName", NULL);
-    registry->priv->properties[--i] = xsettings_registry_entry_new_string("Gtk/ToolbarStyle", "Icons");
-    registry->priv->properties[--i] = xsettings_registry_entry_new_int("Gtk/ToolbarIconSize", 3);
-    registry->priv->properties[--i] = xsettings_registry_entry_new_string("Gtk/IMPreeditStyle", "");
-    registry->priv->properties[--i] = xsettings_registry_entry_new_string("Gtk/IMStatusStyle", "");
-    registry->priv->properties[--i] = xsettings_registry_entry_new_bool("Gtk/MenuImages", TRUE);
-    registry->priv->properties[--i] = xsettings_registry_entry_new_bool("Gtk/ButtonImages", TRUE);
-    registry->priv->properties[--i] = xsettings_registry_entry_new_string("Gtk/MenuBarAccel", "F10");
+    g_value_set_string (&properties[XSETTING_ENTRY_GTK_FONTNAME].value, "Sans 10");
+    g_value_set_string (&properties[XSETTING_ENTRY_GTK_ICONSIZES].value, NULL);
+    g_value_set_string (&properties[XSETTING_ENTRY_GTK_KEYTHEMENAME].value, NULL);
+    g_value_set_string (&properties[XSETTING_ENTRY_GTK_TOOLBARSTYLE].value, "Icons");
+    g_value_set_int (&properties[XSETTING_ENTRY_GTK_TOOLBARICONSIZE].value, 3);
+    g_value_set_string (&properties[XSETTING_ENTRY_GTK_IMPREEDITSTYLE].value, "");
+    g_value_set_string (&properties[XSETTING_ENTRY_GTK_IMSTATUSSTYLE].value, "");
+    g_value_set_boolean (&properties[XSETTING_ENTRY_GTK_MENUIMAGES].value, TRUE);
+    g_value_set_boolean (&properties[XSETTING_ENTRY_GTK_BUTTONIMAGES].value, TRUE);
+    g_value_set_string (&properties[XSETTING_ENTRY_GTK_MENUBARACCEL].value, "F10");
 
-#ifdef DEBUG
-    if (i != 0)
-        g_critical ("XSETTINGS_REGISTRY_SIZE != number of registry items");
-#endif
-
+    g_value_set_string (&properties[XSETTING_ENTRY_GTK_CURSORTHEMENAME].value, NULL);
+    g_value_set_int (&properties[XSETTING_ENTRY_GTK_CURSORTHEMESIZE].value, 0);
 }
 
 static void
@@ -205,13 +253,14 @@ cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gch
 {
     gint i;
 
-    for (i = 0; i < XSETTINGS_REGISTRY_SIZE; ++i)
+    XSettingsRegistryEntry *entry = properties;
+
+    for(; entry->name != NULL; ++entry)
     {
-        XSettingsRegistryEntry *entry = registry->priv->properties[i];
         if (!strcmp(entry->name, &name[1]))
         {
-            g_value_reset(entry->value);
-            g_value_copy(value, entry->value);
+            g_value_reset(&entry->value);
+            g_value_copy(value, &entry->value);
             break;
         }
     }
@@ -223,12 +272,6 @@ cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gch
 void
 xsettings_registry_store_xrdb(XSettingsRegistry *registry)
 {
-    XSettingsRegistryEntry *xft_antialias = registry->priv->properties[16];
-    XSettingsRegistryEntry *xft_hinting = registry->priv->properties[15];
-    XSettingsRegistryEntry *xft_hintstyle = registry->priv->properties[14];
-    XSettingsRegistryEntry *xft_rgba = registry->priv->properties[13];
-    XSettingsRegistryEntry *xft_dpi = registry->priv->properties[12];
-    
     gchar *cmd;
     FILE *fp;
     gchar *path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
@@ -245,15 +288,15 @@ xsettings_registry_store_xrdb(XSettingsRegistry *registry)
         fp = fopen(path, "w");
         if(fp != NULL)
         {
-            fprintf(fp, "Xft.antialias: %d\n", g_value_get_int(xft_antialias->value));
-            fprintf(fp, "Xft.hinting: %d\n", g_value_get_int(xft_hinting->value));
-            if(g_value_get_int(xft_hinting->value))
-                fprintf(fp, "Xft.hintstyle: %s\n", g_value_get_string(xft_hintstyle->value));
+            fprintf(fp, "Xft.antialias: %d\n", g_value_get_int(&properties[XSETTING_ENTRY_XFT_ANTIALIAS].value));
+            fprintf(fp, "Xft.hinting: %d\n", g_value_get_int(&properties[XSETTING_ENTRY_XFT_HINTING].value));
+            if(g_value_get_int(&properties[XSETTING_ENTRY_XFT_HINTING].value))
+                fprintf(fp, "Xft.hintstyle: %s\n", g_value_get_string(&properties[XSETTING_ENTRY_XFT_HINTSTYLE].value));
             else
                 fprintf(fp, "Xft.hintstyle: hintnone\n");
-            fprintf(fp, "Xft.rgba: %s\n", g_value_get_string(xft_rgba->value));
-            if(g_value_get_int (xft_dpi->value) > 0)
-                fprintf(fp, "Xft.dpi: %d\n", g_value_get_int(xft_dpi->value));
+            fprintf(fp, "Xft.rgba: %s\n", g_value_get_string(&properties[XSETTING_ENTRY_XFT_RGBA].value));
+            if(g_value_get_int (&properties[XSETTING_ENTRY_XFT_DPI].value) > 0)
+                fprintf(fp, "Xft.dpi: %d\n", g_value_get_int(&properties[XSETTING_ENTRY_XFT_DPI].value));
             fclose(fp);
 
             /* run xrdb to merge the new settings */
@@ -261,11 +304,33 @@ xsettings_registry_store_xrdb(XSettingsRegistry *registry)
             g_spawn_command_line_async(cmd, NULL);
             g_free(cmd);
             
-            if(!g_value_get_int(xft_dpi->value)) {
+            if(!g_value_get_int(&properties[XSETTING_ENTRY_XFT_DPI].value)) {
                 /* filter out Xft.dpi from xrdb */
                 g_spawn_command_line_async("sh -c \"xrdb -query | grep -i -v '^Xft.dpi:' | xrdb\"",
                                            NULL);
             }
+        }
+        g_free(path);
+    }
+    path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                                       "xfce4" G_DIR_SEPARATOR_S "Xcursor.xrdb",
+                                       TRUE);
+    if (G_LIKELY (path != NULL))
+    {
+    
+        if(!g_file_test(path, G_FILE_TEST_IS_REGULAR))
+        {
+        }
+
+        fp = fopen(path, "w");
+        if(fp != NULL)
+        {
+            fprintf(fp, "Xcursor.theme: %s\n"
+                        "Xcursor.theme_core: true\n"
+                        "Xcursor.size: %d\n",
+                        g_value_get_string (&properties[XSETTING_ENTRY_GTK_CURSORTHEMENAME].value),
+                        g_value_get_int (&properties[XSETTING_ENTRY_GTK_CURSORTHEMESIZE].value));
+            fclose(fp);
         }
         g_free(path);
     }
@@ -277,18 +342,19 @@ xsettings_registry_notify(XSettingsRegistry *registry)
     guchar *buffer, *pos;
     gint buf_len, i;
 
+    gint prop_count = 0;
     registry->priv->last_change_serial = registry->priv->serial;
 
-    XSettingsRegistryEntry *entry = NULL;
+    XSettingsRegistryEntry *entry = properties;
 
     buf_len = 12;
 
     /** Calculate buffer size */
-    for(i = 0; i < XSETTINGS_REGISTRY_SIZE; ++i)
+    for(; entry->name != NULL; ++entry)
     {
-        entry = registry->priv->properties[i];
+        prop_count++;
         buf_len += 8 + XSETTINGS_PAD(strlen(entry->name), 4);
-        switch (G_VALUE_TYPE(entry->value))
+        switch (G_VALUE_TYPE(&entry->value))
         {
             case G_TYPE_INT:
             case G_TYPE_BOOLEAN:
@@ -297,7 +363,7 @@ xsettings_registry_notify(XSettingsRegistry *registry)
             case G_TYPE_STRING:
                 {
                     buf_len += 4;
-                    const gchar *value = g_value_get_string(entry->value);
+                    const gchar *value = g_value_get_string(&entry->value);
                     if(value)
                     {
                         buf_len += XSETTINGS_PAD(strlen(value), 4);
@@ -324,20 +390,20 @@ xsettings_registry_notify(XSettingsRegistry *registry)
     *(CARD32 *)pos = registry->priv->serial++;
     pos += 4;
 
-    *(CARD32 *)pos = XSETTINGS_REGISTRY_SIZE;
+    *(CARD32 *)pos = prop_count; /* nr of props */
     pos += 4;
 
     /** Fill the buffer */
-    for(i = 0; i < XSETTINGS_REGISTRY_SIZE; ++i)
+    entry = properties;
+    for(; entry->name != NULL; ++entry)
     {
         gint name_len, value_len = 0, str_length;
 
-        entry = registry->priv->properties[i];
 
         name_len = XSETTINGS_PAD(strlen(entry->name), 4);
         value_len = 0;
 
-        switch (G_VALUE_TYPE(entry->value))
+        switch (G_VALUE_TYPE(&entry->value))
         {
             case G_TYPE_INT:
             case G_TYPE_BOOLEAN:
@@ -346,7 +412,7 @@ xsettings_registry_notify(XSettingsRegistry *registry)
             case G_TYPE_STRING:
                 *pos++ = 1; // String 
                 {
-                    const gchar *value = g_value_get_string(entry->value);
+                    const gchar *value = g_value_get_string(&entry->value);
                     if(value)
                     {
                         value_len = XSETTINGS_PAD(strlen(value), 4);
@@ -379,11 +445,11 @@ xsettings_registry_notify(XSettingsRegistry *registry)
         *(CARD32 *)pos = registry->priv->last_change_serial; 
         pos+= 4;
 
-        switch (G_VALUE_TYPE(entry->value))
+        switch (G_VALUE_TYPE(&entry->value))
         {
             case G_TYPE_STRING:
                 {
-                    const gchar *val = g_value_get_string(entry->value);
+                    const gchar *val = g_value_get_string(&entry->value);
 
                     if (val)
                     {
@@ -407,11 +473,11 @@ xsettings_registry_notify(XSettingsRegistry *registry)
                 }
                 break;
             case G_TYPE_INT:
-                *(CARD32 *)pos = g_value_get_int(entry->value);
+                *(CARD32 *)pos = g_value_get_int(&entry->value);
                 pos += 4;
                 break;
             case G_TYPE_BOOLEAN:
-                *(CARD32 *)pos = g_value_get_boolean(entry->value);
+                *(CARD32 *)pos = g_value_get_boolean(&entry->value);
                 pos += 4;
                 break;
             case G_TYPE_UINT64:
@@ -429,44 +495,6 @@ xsettings_registry_notify(XSettingsRegistry *registry)
                     8, PropModeReplace, buffer, buf_len);
 
     registry->priv->last_change_serial = registry->priv->serial;
-}
-
-static XSettingsRegistryEntry *
-xsettings_registry_entry_new_string(const gchar *name, const gchar *value)
-{
-    XSettingsRegistryEntry *entry = g_new0(XSettingsRegistryEntry, 1);
-    entry->name = g_strdup(name);
-
-    entry->value = g_new0(GValue, 1);
-    entry->value = g_value_init(entry->value, G_TYPE_STRING);
-    g_value_set_string(entry->value, value);
-
-    return entry;
-}
-
-static XSettingsRegistryEntry *
-xsettings_registry_entry_new_int(const gchar *name, gint value)
-{
-    XSettingsRegistryEntry *entry = g_new0(XSettingsRegistryEntry, 1);
-    entry->name = g_strdup(name);
-    entry->value = g_new0(GValue, 1);
-    entry->value = g_value_init(entry->value, G_TYPE_INT);
-    g_value_set_int(entry->value, value);
-
-    return entry;
-}
-
-static XSettingsRegistryEntry *
-xsettings_registry_entry_new_bool(const gchar *name, gboolean value)
-{
-    XSettingsRegistryEntry *entry = g_new0(XSettingsRegistryEntry, 1);
-    entry->name = g_strdup(name);
-
-    entry->value = g_new0(GValue, 1);
-    entry->value = g_value_init(entry->value, G_TYPE_BOOLEAN);
-    g_value_set_boolean(entry->value, value);
-
-    return entry;
 }
 
 XSettingsRegistry *
@@ -637,26 +665,25 @@ xsettings_registry_load(XSettingsRegistry *registry, gboolean debug)
 {
     gint i;
     XfconfChannel *channel = registry->priv->channel;
+    XSettingsRegistryEntry *entry = properties;
 
-    for(i = 0; i < XSETTINGS_REGISTRY_SIZE ; ++i)
+    while (entry->name)
     {
-        XSettingsRegistryEntry *entry = registry->priv->properties[i];
-
         gchar *name = g_strconcat("/", entry->name, NULL);
 
         if (xfconf_channel_has_property(channel, name) == TRUE)
         {
             XSETTINGS_DEBUG_LOAD(entry->name);
-            switch (G_VALUE_TYPE(entry->value))
+            switch (G_VALUE_TYPE(&entry->value))
             {
                 case G_TYPE_INT:
-                    g_value_set_int(entry->value, xfconf_channel_get_int(channel, name, g_value_get_int(entry->value)));
+                    g_value_set_int(&entry->value, xfconf_channel_get_int(channel, name, g_value_get_int(&entry->value)));
                     break;
                 case G_TYPE_STRING:
-                    g_value_set_string(entry->value, xfconf_channel_get_string(channel, name, g_value_get_string(entry->value)));
+                    g_value_set_string(&entry->value, xfconf_channel_get_string(channel, name, g_value_get_string(&entry->value)));
                     break;
                 case G_TYPE_BOOLEAN:
-                    g_value_set_boolean(entry->value, xfconf_channel_get_bool(channel, name, g_value_get_boolean(entry->value)));
+                    g_value_set_boolean(&entry->value, xfconf_channel_get_bool(channel, name, g_value_get_boolean(&entry->value)));
                     break;
             }
         }
@@ -664,7 +691,7 @@ xsettings_registry_load(XSettingsRegistry *registry, gboolean debug)
         {
             XSETTINGS_DEBUG_CREATE(entry->name);
 
-            if(xfconf_channel_set_property(channel, name, entry->value))
+            if(xfconf_channel_set_property(channel, name, &entry->value))
             {
                 XSETTINGS_DEBUG("... OK\n");
             }
@@ -675,7 +702,7 @@ xsettings_registry_load(XSettingsRegistry *registry, gboolean debug)
         }
 
         g_free(name);
-
+        entry++;
     }
 
     return TRUE;

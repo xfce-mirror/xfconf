@@ -23,8 +23,7 @@ typedef struct _XSettingsRegistryEntry XSettingsRegistryEntry;
 
 struct _XSettingsRegistryEntry {
     gchar *name;
-    GValue *value;
-    Atom atom;
+    GValue value;
 };
 
 #define XSETTINGS_REGISTRY_TYPE xsettings_registry_get_type()
