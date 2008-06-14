@@ -101,36 +101,36 @@ enum
 } XSettingType;
 
 static XSettingsRegistryEntry properties[] = {
-{ "Net/DoubleClickTime", G_TYPE_INT, },
-{ "Net/DoubleClickDistance", G_TYPE_INT, },
-{ "Net/DndDragThreshold", G_TYPE_INT, },
-{ "Net/CursorBlink", G_TYPE_BOOLEAN, },
-{ "Net/CursorBlinkTime", G_TYPE_INT, },
-{ "Net/ThemeName", G_TYPE_STRING, },
-{ "Net/IconThemeName", G_TYPE_STRING, },
+{ "Net/DoubleClickTime", {G_TYPE_INT, }},
+{ "Net/DoubleClickDistance", {G_TYPE_INT, }},
+{ "Net/DndDragThreshold", {G_TYPE_INT, }},
+{ "Net/CursorBlink", {G_TYPE_BOOLEAN, }},
+{ "Net/CursorBlinkTime", {G_TYPE_INT, }},
+{ "Net/ThemeName", {G_TYPE_STRING, }},
+{ "Net/IconThemeName", {G_TYPE_STRING, }},
 
-{ "Xft/Antialias", G_TYPE_INT, },
-{ "Xft/Hinting", G_TYPE_INT, },
-{ "Xft/HintStyle", G_TYPE_STRING, },
-{ "Xft/RGBA", G_TYPE_STRING, },
-{ "Xft/DPI", G_TYPE_INT, },
+{ "Xft/Antialias", {G_TYPE_INT, }},
+{ "Xft/Hinting", {G_TYPE_INT, }},
+{ "Xft/HintStyle", {G_TYPE_STRING, }},
+{ "Xft/RGBA", {G_TYPE_STRING, }},
+{ "Xft/DPI", {G_TYPE_INT, }},
 
-{ "Gtk/CanChangeAccels", G_TYPE_BOOLEAN, },
-{ "Gtk/ColorPalette", G_TYPE_STRING, },
-{ "Gtk/FontName", G_TYPE_STRING, },
-{ "Gtk/IconSizes", G_TYPE_STRING, },
-{ "Gtk/KeyThemeName", G_TYPE_STRING, },
-{ "Gtk/ToolbarStyle", G_TYPE_STRING, },
-{ "Gtk/ToolbarIconSize", G_TYPE_INT, },
-{ "Gtk/IMPreeditStyle", G_TYPE_STRING, },
-{ "Gtk/IMStatusStyle", G_TYPE_STRING, },
-{ "Gtk/MenuImages", G_TYPE_BOOLEAN, },
-{ "Gtk/ButtonImages", G_TYPE_BOOLEAN, },
-{ "Gtk/MenuBarAccel", G_TYPE_STRING, },
-{ "Gtk/CursorThemeName", G_TYPE_STRING, },
-{ "Gtk/CursorThemeSize", G_TYPE_INT, },
+{ "Gtk/CanChangeAccels", {G_TYPE_BOOLEAN, }},
+{ "Gtk/ColorPalette", {G_TYPE_STRING, }},
+{ "Gtk/FontName", {G_TYPE_STRING, }},
+{ "Gtk/IconSizes", {G_TYPE_STRING, }},
+{ "Gtk/KeyThemeName", {G_TYPE_STRING, }},
+{ "Gtk/ToolbarStyle", {G_TYPE_STRING, }},
+{ "Gtk/ToolbarIconSize", {G_TYPE_INT, }},
+{ "Gtk/IMPreeditStyle", {G_TYPE_STRING, }},
+{ "Gtk/IMStatusStyle", {G_TYPE_STRING, }},
+{ "Gtk/MenuImages", {G_TYPE_BOOLEAN, }},
+{ "Gtk/ButtonImages", {G_TYPE_BOOLEAN, }},
+{ "Gtk/MenuBarAccel", {G_TYPE_STRING, }},
+{ "Gtk/CursorThemeName", {G_TYPE_STRING, }},
+{ "Gtk/CursorThemeSize", {G_TYPE_INT, }},
 
-{ NULL, 0,},
+{ NULL, {0, }},
 };
 
 
@@ -251,8 +251,6 @@ xsettings_registry_init(XSettingsRegistry *registry)
 static void
 cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gchar *name, const GValue *value, XSettingsRegistry *registry)
 {
-    gint i;
-
     XSettingsRegistryEntry *entry = properties;
 
     for(; entry->name != NULL; ++entry)
@@ -340,7 +338,7 @@ void
 xsettings_registry_notify(XSettingsRegistry *registry)
 {
     guchar *buffer, *pos;
-    gint buf_len, i;
+    gint buf_len;
 
     gint prop_count = 0;
     registry->priv->last_change_serial = registry->priv->serial;
@@ -663,7 +661,6 @@ timestamp_predicate (Display *display,
 gboolean
 xsettings_registry_load(XSettingsRegistry *registry, gboolean debug)
 {
-    gint i;
     XfconfChannel *channel = registry->priv->channel;
     XSettingsRegistryEntry *entry = properties;
 

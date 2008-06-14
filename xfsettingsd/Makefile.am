@@ -4,12 +4,14 @@ bin_PROGRAMS = xfsettingsd
 
 xfsettingsd_SOURCES = \
 	main.c \
-	registry.c registry.h
+	registry.c registry.h \
+	accessx.c accessx.h
 
 xfsettingsd_CFLAGS = \
 	$(GTK_CFLAGS) \
 	$(GLIB_CFLAGS) \
 	$(DBUS_GLIB_CFLAGS) \
+	$(LIBNOTIFY_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	-DDATADIR=\"$(datadir)\" \
 	-DSRCDIR=\"$(top_srcdir)\" \
@@ -20,6 +22,7 @@ xfsettingsd_LDADD = \
 	$(GTK_LIBS) \
 	$(GLIB_LIBS) \
 	$(DBUS_GLIB_LIBS) \
+	$(LIBNOTIFY_LIBS) \
 	$(LIBXFCE4UTIL_LIBS)
 
 INCLUDES = \

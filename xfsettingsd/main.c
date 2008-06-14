@@ -33,7 +33,9 @@
 
 #include <libxfce4util/libxfce4util.h>
 #include <xfconf/xfconf.h>
+#include <libnotify/notify.h>
 
+#include "accessx.h"
 #include "registry.h"
 
 #define XF_DEBUG(str) \
@@ -120,7 +122,7 @@ main(int argc, char **argv)
     GdkDisplay *gdpy;
     gint n_screens, screen;
     gboolean keep_running = FALSE;
-    XfconfChannel *channel;
+    XfconfChannel *xsettings_channel, *accessx_channel;
 
     xfce_textdomain(GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
@@ -147,7 +149,8 @@ main(int argc, char **argv)
         return 1;
     }
 
-    channel = xfconf_channel_new("xsettings");
+    xsettings_channel = xfconf_channel_new("xsettings");
+    accessx_channel = xfconf_channel_new("accessx");
 
     gdpy = gdk_display_get_default();
     n_screens = gdk_display_get_n_screens(gdpy);
@@ -175,7 +178,7 @@ main(int argc, char **argv)
 
         XF_DEBUG("Initializing...\n");
 
-        registry = xsettings_registry_new(channel,
+        registry = xsettings_registry_new(xsettings_channel,
                                           GDK_DISPLAY_XDISPLAY(gdpy),
                                           screen);
         registries = g_list_append(registries, registry);
@@ -194,6 +197,10 @@ main(int argc, char **argv)
         XF_DEBUG("Not replacing existing XSETTINGS manager\n");
         return 1;
     }
+
+    notify_init("xfsettingsd");
+
+    accessx_notification_init(accessx_channel);
 
     if(!debug) /* If not in debug mode, fork to background */
     {
