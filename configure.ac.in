@@ -204,6 +204,7 @@ docs/Makefile
 docs/reference/Makefile
 docs/reference/version.xml
 docs/spec/Makefile
+docs/xfsettingsd/Makefile
 po/Makefile.in
 tests/Makefile
 tests/set-properties/Makefile
