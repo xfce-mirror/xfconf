@@ -150,8 +150,8 @@ toggle_accessx (XfconfChannel *channel)
     gboolean bounce_keys = xfconf_channel_get_bool (channel, "/AccessX/BounceKeys", FALSE);
     gint slow_keys_delay = xfconf_channel_get_int (channel, "/AccessX/SlowKeysDelay", 100);
     gint debounce_delay = xfconf_channel_get_int (channel, "/AccessX/DeBounceDelay", 100);
-    gboolean sticky_keys_ltl = xfconf_channel_get_bool (channel, "/AccessX/StickyKeysLatchToLock", FALSE);
-    gboolean sticky_keys_tk = xfconf_channel_get_bool (channel, "/AccessX/StickyKeysTwoKeysUnlock", FALSE);
+    gboolean sticky_keys_ltl = xfconf_channel_get_bool (channel, "/AccessX/StickyKeys/LatchToLock", FALSE);
+    gboolean sticky_keys_tk = xfconf_channel_get_bool (channel, "/AccessX/StickyKeys/TwoKeysDisable", FALSE);
 #ifdef HAVE_XKB
     if (xkbpresent)
     {
