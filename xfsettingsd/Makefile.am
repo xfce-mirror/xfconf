@@ -4,8 +4,7 @@ bin_PROGRAMS = xfsettingsd
 
 xfsettingsd_SOURCES = \
 	main.c \
-	registry.c registry.h \
-	accessx.c accessx.h
+	registry.c registry.h
 
 xfsettingsd_CFLAGS = \
 	$(GTK_CFLAGS) \
