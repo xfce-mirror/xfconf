@@ -263,75 +263,115 @@ cb_xsettings_registry_channel_property_changed(XfconfChannel *channel, const gch
         }
     }
     xsettings_registry_notify(registry);
-    if (!strncmp(name, "/Xft", 4))
+    if (!strncmp(name, "/Xft", 4) || !strncmp(name, "/Gtk/CursorTheme", 16))
         xsettings_registry_store_xrdb(registry);
 }
 
 void
 xsettings_registry_store_xrdb(XSettingsRegistry *registry)
 {
-    gchar *cmd;
-    FILE *fp;
-    gchar *path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                                       "xfce4" G_DIR_SEPARATOR_S "Xft.xrdb",
-                                       TRUE);
+    gchar    *filename;
+    GError   *error = NULL;
+    GString  *string;
+    gchar    *command, *contents;
+    gboolean  result = TRUE;
 
-    if (G_LIKELY (path != NULL))
+    /* store the xft properties */
+    filename = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, "xfce4" G_DIR_SEPARATOR_S "Xft.xrdb", TRUE);
+    if (G_LIKELY (filename))
     {
-    
-        if(!g_file_test(path, G_FILE_TEST_IS_REGULAR))
-        {
-        }
-
-        fp = fopen(path, "w");
-        if(fp != NULL)
-        {
-            fprintf(fp, "Xft.antialias: %d\n", g_value_get_int(&properties[XSETTING_ENTRY_XFT_ANTIALIAS].value));
-            fprintf(fp, "Xft.hinting: %d\n", g_value_get_int(&properties[XSETTING_ENTRY_XFT_HINTING].value));
-            if(g_value_get_int(&properties[XSETTING_ENTRY_XFT_HINTING].value))
-                fprintf(fp, "Xft.hintstyle: %s\n", g_value_get_string(&properties[XSETTING_ENTRY_XFT_HINTSTYLE].value));
-            else
-                fprintf(fp, "Xft.hintstyle: hintnone\n");
-            fprintf(fp, "Xft.rgba: %s\n", g_value_get_string(&properties[XSETTING_ENTRY_XFT_RGBA].value));
-            if(g_value_get_int (&properties[XSETTING_ENTRY_XFT_DPI].value) > 0)
-                fprintf(fp, "Xft.dpi: %d\n", g_value_get_int(&properties[XSETTING_ENTRY_XFT_DPI].value));
-            fclose(fp);
-
-            /* run xrdb to merge the new settings */
-            cmd = g_strdup_printf("xrdb -nocpp -merge \"%s\"", path);
-            g_spawn_command_line_async(cmd, NULL);
-            g_free(cmd);
+        /* create file contents */
+        string = g_string_sized_new (80);
+        g_string_append_printf (string, "Xft.antialias: %d\n"
+                                        "Xft.hinting: %d\n"
+                                        "Xft.rgba: %s\n",
+                                        g_value_get_int (&properties[XSETTING_ENTRY_XFT_ANTIALIAS].value),
+                                        g_value_get_int (&properties[XSETTING_ENTRY_XFT_HINTING].value),
+                                        g_value_get_string (&properties[XSETTING_ENTRY_XFT_RGBA].value));
+        
+        if (g_value_get_int (&properties[XSETTING_ENTRY_XFT_HINTING].value))
+            g_string_append_printf (string, "Xft.hintstyle: %s\n", g_value_get_string (&properties[XSETTING_ENTRY_XFT_HINTSTYLE].value));
+        else
+            string = g_string_append (string, "Xft.hintstyle: hintnone\n");
             
-            if(!g_value_get_int(&properties[XSETTING_ENTRY_XFT_DPI].value)) {
-                /* filter out Xft.dpi from xrdb */
-                g_spawn_command_line_async("sh -c \"xrdb -query | grep -i -v '^Xft.dpi:' | xrdb\"",
-                                           NULL);
+        if (g_value_get_int (&properties[XSETTING_ENTRY_XFT_DPI].value) > 0)
+            g_string_append_printf (string, "Xft.dpi: %d\n", g_value_get_int (&properties[XSETTING_ENTRY_XFT_DPI].value));
+
+        /* try to write the file contents */
+        if (G_LIKELY (g_file_set_contents (filename, string->str, -1, &error)))
+        {
+            /* create command to merge with the x resource database */
+            command = g_strdup_printf ("xrdb -nocpp -merge \"%s\"", filename);
+            result = g_spawn_command_line_async (command, &error);
+            g_free (command);
+            
+            /* remove dpi from the database if not set */
+            if (result && g_value_get_int (&properties[XSETTING_ENTRY_XFT_DPI].value) == 0)
+            {
+                command = g_strdup ("sh -c \"xrdb -query | grep -i -v '^Xft.dpi:' | xrdb\"");
+                result = g_spawn_command_line_async (command, &error);
+                g_free (command);
             }
         }
-        g_free(path);
+        else
+        {
+            /* print error */
+            g_critical ("Failed to write to '%s': %s", filename, error->message);
+            g_error_free (error);
+        }
+        
+        /* cleanup */
+        g_free (filename);
+        g_string_free (string, TRUE);
+        
+        /* leave when there where spawn problems */
+        if (result == FALSE)
+            goto spawn_error;
     }
-    path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                                       "xfce4" G_DIR_SEPARATOR_S "Xcursor.xrdb",
-                                       TRUE);
-    if (G_LIKELY (path != NULL))
-    {
     
-        if(!g_file_test(path, G_FILE_TEST_IS_REGULAR))
+    /* store cursor settings */
+    filename = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, "xfce4" G_DIR_SEPARATOR_S "Xcursor.xrdb", TRUE);
+    if (G_LIKELY (filename))
+    {
+        /* build file contents */
+        contents = g_strdup_printf ("Xcursor.theme: %s\n"
+                                    "Xcursor.theme_core: true\n"
+                                    "Xcursor.size: %d\n",
+                                    g_value_get_string (&properties[XSETTING_ENTRY_GTK_CURSORTHEMENAME].value),
+                                    g_value_get_int (&properties[XSETTING_ENTRY_GTK_CURSORTHEMESIZE].value));
+        
+        /* write the contents to the file */
+        if (G_LIKELY (g_file_set_contents (filename, contents, -1, &error)))
         {
+            /* create command to merge with the x resource database */
+            command = g_strdup_printf ("xrdb -nocpp -merge \"%s\"", filename);
+            result = g_spawn_command_line_async (command, &error);
+            g_free (command);
         }
-
-        fp = fopen(path, "w");
-        if(fp != NULL)
+        else
         {
-            fprintf(fp, "Xcursor.theme: %s\n"
-                        "Xcursor.theme_core: true\n"
-                        "Xcursor.size: %d\n",
-                        g_value_get_string (&properties[XSETTING_ENTRY_GTK_CURSORTHEMENAME].value),
-                        g_value_get_int (&properties[XSETTING_ENTRY_GTK_CURSORTHEMESIZE].value));
-            fclose(fp);
+            /* print error */
+            g_critical ("Failed to write to '%s': %s", filename, error->message);
+            g_error_free (error);
         }
-        g_free(path);
+        
+        /* cleanup */
+        g_free (filename);
+        g_free (contents);
+        
+        /* leave when there where spawn problems */
+        if (result == FALSE)
+            goto spawn_error;
     }
+    
+    /* leave */
+    return;
+    
+    spawn_error:
+    
+    /* print warning */
+    g_critical ("Failed to spawn xrdb: %s", error->message);
+    g_free (error);
 }
 
 void

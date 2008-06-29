@@ -62,6 +62,7 @@ static void
 sighandler(int sig)
 {
     guint32 sigstate;
+    gint avoid_gcc_warning;
     
     switch(sig) {
         case SIGUSR1:
@@ -73,7 +74,7 @@ sighandler(int sig)
             break;
     }
     
-    write(signal_pipe[1], &sigstate, sizeof(sigstate));
+    avoid_gcc_warning = write(signal_pipe[1], &sigstate, sizeof(sigstate));
 }
 
 static gboolean

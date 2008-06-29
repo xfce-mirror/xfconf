@@ -59,7 +59,7 @@ xfconf_query_get_propname_size (gpointer key, gpointer value, gpointer user_data
     gint *size = user_data;
     gchar *property_name = (gchar *)key;
 
-    if (strlen(property_name) > *size)
+    if ((gint) strlen(property_name) > *size)
         *size = strlen(property_name);
 
 }
@@ -208,7 +208,7 @@ main(int argc, char **argv)
             else
             {
                 GPtrArray *arr = g_value_get_boxed(&value);
-                gint i;
+                guint i;
 
                 g_print(_("Value is an array with %d items:\n\n"), arr->len);
 

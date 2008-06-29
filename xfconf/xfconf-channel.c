@@ -309,7 +309,7 @@ static GPtrArray *
 xfconf_fixup_16bit_ints(GPtrArray *arr)
 {
     GPtrArray *arr_new = NULL;
-    gint i;
+    guint i;
 
     for(i = 0; i < arr->len; ++i) {
         GValue *v = g_ptr_array_index(arr, i);
@@ -494,7 +494,7 @@ xfconf_channel_get_string_list(XfconfChannel *channel,
 {
     gchar **values = NULL;
     GPtrArray *arr;
-    gint i;
+    guint i;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, NULL);
 
@@ -1073,7 +1073,7 @@ xfconf_channel_get_array_valist(XfconfChannel *channel,
     GPtrArray *arr = NULL;
     GType cur_value_type;
     GValue *val;
-    gint i;
+    guint i;
 
     arr = xfconf_channel_get_arrayv(channel, property);
     if(!arr)
@@ -1528,7 +1528,7 @@ xfconf_channel_get_struct_valist(XfconfChannel *channel,
 {
     GType cur_member_type;
     GType *member_types;
-    gint n_members;
+    guint n_members;
     gsize cur_size = 5;  /* FIXME: arbitrary... */
     gboolean ret;
 
@@ -1772,7 +1772,7 @@ xfconf_channel_set_struct_valist(XfconfChannel *channel,
 {
     GType cur_member_type;
     GType *member_types;
-    gint n_members;
+    guint n_members;
     gsize cur_size = 5;  /* FIXME: arbitrary... */
     gboolean ret;
 

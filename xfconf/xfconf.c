@@ -238,7 +238,7 @@ xfconf_array_new(gint n_preallocs)
 void
 xfconf_array_free(GPtrArray *arr)
 {
-    gint i;
+    guint i;
     
     if(!arr)
         return;

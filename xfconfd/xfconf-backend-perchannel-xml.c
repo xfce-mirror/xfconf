@@ -882,7 +882,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 
                 /* compare versions */
                 p = strstr(version, ".");
-                maj_ver_len = p ? p - version : strlen(version);
+                maj_ver_len = p ? p - version : (gint) strlen(version);
                 if(maj_ver_len != strlen(FILE_VERSION_MAJOR)
                    || strncmp(version, FILE_VERSION_MAJOR, maj_ver_len))
                 {
@@ -1478,7 +1478,7 @@ xfconf_format_xml_tag(GString *elem_str,
                 *is_array = TRUE;
             } else if(XFCONF_TYPE_G_VALUE_ARRAY == G_VALUE_TYPE(value)) {
                 GPtrArray *arr;
-                gint i;
+                guint i;
                 
                 if(is_array_value)
                     return FALSE;
@@ -1533,7 +1533,7 @@ xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
     GNode *child;
     gboolean is_array = FALSE;
     
-    if(depth * 2 > sizeof(spaces) + 1)
+    if(depth * 2 > (gint) sizeof(spaces) + 1)
         depth = sizeof(spaces) / 2 - 1;
     
     memset(spaces, ' ', depth * 2);
