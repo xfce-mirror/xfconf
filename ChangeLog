@@ -1,0 +1,7 @@
+2008-07-03	Jannis Pohlmann <jannis@xfce.org>
+
+	* xfconfd/xfconf-backend.c, xfconfd/xfconf-backend-perchannel-xml.c: 
+	  Allow '<' and '>' to be in property names. Escape property names
+		using g_markup_escape() before writing them to the XML files.
+	* xfconf-query/main.c: Add message newline to one of the error 
+	  messages.

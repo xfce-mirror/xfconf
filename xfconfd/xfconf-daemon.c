@@ -229,7 +229,7 @@ xfconf_get_property(XfconfDaemon *xfconfd,
                     GError **error)
 {
     GList *l;
-    
+
     /* FIXME: presumably, |value| leaks.  how do we fix this?  perhaps
      * using the org.freedesktop.DBus.GLib.Async annotation? */
     

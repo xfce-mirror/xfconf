@@ -75,11 +75,11 @@
 struct _XfconfBackendPerchannelXml
 {
     GObject parent;
-    
+
     gchar *config_save_path;
-    
+
     GTree *channels;
-    
+
     guint save_id;
     GList *dirty_channels;
 
@@ -200,7 +200,7 @@ static void
 xfconf_backend_perchannel_xml_class_init(XfconfBackendPerchannelXmlClass *klass)
 {
     GObjectClass *object_class = (GObjectClass *)klass;
-    
+
     object_class->finalize = xfconf_backend_perchannel_xml_finalize;
 }
 
@@ -217,19 +217,19 @@ static void
 xfconf_backend_perchannel_xml_finalize(GObject *obj)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(obj);
-    
+
     if(xbpx->save_id) {
         g_source_remove(xbpx->save_id);
         xbpx->save_id = 0;
     }
-    
+
     if(xbpx->dirty_channels)
         xfconf_backend_perchannel_xml_flush(XFCONF_BACKEND(xbpx), NULL);
-    
+
     g_tree_destroy(xbpx->channels);
-    
+
     g_free(xbpx->config_save_path);
-    
+
     G_OBJECT_CLASS(xfconf_backend_perchannel_xml_parent_class)->finalize(obj);
 }
 
@@ -255,7 +255,7 @@ xfconf_backend_perchannel_xml_initialize(XfconfBackend *backend,
     gchar *path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
                                               CONFIG_DIR_STEM,
                                               TRUE);
-    
+
     if(!path || !g_file_test(path, G_FILE_TEST_IS_DIR)) {
         if(error) {
             g_set_error(error, XFCONF_ERROR,
@@ -265,9 +265,9 @@ xfconf_backend_perchannel_xml_initialize(XfconfBackend *backend,
         g_free(path);
         return FALSE;
     }
-    
+
     backend_px->config_save_path = path;
-    
+
     return TRUE;
 }
 
@@ -281,7 +281,7 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
     GNode *properties = g_tree_lookup(xbpx->channels, channel);
     XfconfProperty *cur_prop;
-    
+
     if(!properties) {
         properties = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
 #ifdef XFCONF_ENABLE_CHECKS
@@ -300,7 +300,7 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
                                                                       channel);
         }
     }
-    
+
     cur_prop = xfconf_proptree_lookup(properties, property);
     if(cur_prop) {
         if(cur_prop->locked) {
@@ -312,7 +312,7 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
             }
             return FALSE;
         }
-        
+
         if(G_IS_VALUE(&cur_prop->value))
             g_value_unset(&cur_prop->value);
         g_value_copy(value, g_value_init(&cur_prop->value,
@@ -327,9 +327,9 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
         if(xbpx->prop_changed_func)
             xbpx->prop_changed_func(backend, channel, property, xbpx->prop_changed_data);
     }
-    
+
     xfconf_backend_perchannel_xml_schedule_save(xbpx, channel);
-    
+
     return TRUE;
 }
 
@@ -343,16 +343,16 @@ xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
     GNode *properties = g_tree_lookup(xbpx->channels, channel);
     XfconfProperty *cur_prop;
-    
+
     TRACE("entering");
-    
+
     if(!properties) {
         properties = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
                                                                 error);
         if(!properties)
             return FALSE;
     }
-    
+
     cur_prop = xfconf_proptree_lookup(properties, property);
     if(!cur_prop || !G_IS_VALUE(&cur_prop->value)) {
         if(error) {
@@ -363,10 +363,10 @@ xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
         }
         return FALSE;
     }
-    
+
     g_value_copy(&cur_prop->value, g_value_init(value,
                                                 G_VALUE_TYPE(&cur_prop->value)));
-    
+
     return TRUE;
 }
 
@@ -376,31 +376,31 @@ xfconf_proptree_node_to_hash_table(GNode *node,
                                    gchar cur_path[MAX_PROP_PATH])
 {
     XfconfProperty *prop = node->data;
-    
+
     if(G_VALUE_TYPE(&prop->value)) {
         GValue *value = g_new0(GValue, 1);
-        
+
         g_value_copy(&prop->value, g_value_init(value,
                                                 G_VALUE_TYPE(&prop->value)));
         g_hash_table_insert(props_hash,
                             g_strconcat(cur_path, "/", prop->name, NULL),
                             value);
     }
-    
+
     if(node->children) {
         GNode *cur;
         gchar *p;
-        
+
         g_strlcat(cur_path, "/", MAX_PROP_PATH);
         g_strlcat(cur_path, prop->name, MAX_PROP_PATH);
-        
+
         for(cur = g_node_first_child(node);
             cur;
             cur = g_node_next_sibling(cur))
         {
             xfconf_proptree_node_to_hash_table(cur, props_hash, cur_path);
         }
-        
+
         p = strrchr(cur_path, '/');
         if(p)
             *p = 0;
@@ -416,14 +416,14 @@ xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
     GNode *props_tree = g_tree_lookup(xbpx->channels, channel), *cur;
     gchar cur_path[MAX_PROP_PATH];
-    
+
     if(!props_tree) {
         props_tree = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
                                                                 error);
         if(!props_tree)
             return FALSE;
     }
-    
+
     for(cur = g_node_first_child(props_tree);
         cur;
         cur = g_node_next_sibling(cur))
@@ -431,7 +431,7 @@ xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
         cur_path[0] = 0;
         xfconf_proptree_node_to_hash_table(cur, properties, cur_path);
     }
-    
+
     return TRUE;
 }
 
@@ -445,7 +445,7 @@ xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
     GNode *properties = g_tree_lookup(xbpx->channels, channel);
     XfconfProperty *prop;
-    
+
     if(!properties) {
         properties = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
 #ifdef XFCONF_ENABLE_CHECKS
@@ -460,15 +460,15 @@ xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
                 *error = NULL;
             }
 #endif
-            
+
             *exists = FALSE;
             return TRUE;
         }
     }
-    
+
     prop = xfconf_proptree_lookup(properties, property);
     *exists = (prop && G_VALUE_TYPE(&prop->value) ? TRUE : FALSE);
-    
+
     return TRUE;
 }
 
@@ -480,14 +480,14 @@ xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
     GNode *properties = g_tree_lookup(xbpx->channels, channel);
-    
+
     if(!properties) {
         properties = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
                                                                 error);
         if(!properties)
             return FALSE;
     }
-    
+
     if(!xfconf_proptree_remove(properties, property)) {
         if(error) {
             g_set_error(error, XFCONF_ERROR,
@@ -500,9 +500,9 @@ xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
 
     if(xbpx->prop_changed_func)
         xbpx->prop_changed_func(backend, channel, property, xbpx->prop_changed_data);
-    
+
     xfconf_backend_perchannel_xml_schedule_save(xbpx, channel);
-    
+
     return TRUE;
 }
 
@@ -534,7 +534,7 @@ xfconf_backend_perchannel_xml_remove_channel(XfconfBackend *backend,
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
     gchar *filename;
     GList *dirty;
-    
+
     if((dirty = g_list_find_custom(xbpx->dirty_channels, channel,
                                    (GCompareFunc)g_ascii_strcasecmp)))
     {
@@ -560,7 +560,7 @@ xfconf_backend_perchannel_xml_remove_channel(XfconfBackend *backend,
                                 nodes_do_propchange_remove, &pdata);
     }
     g_tree_remove(xbpx->channels, channel);
-    
+
     filename = g_strdup_printf("%s/%s.xml", xbpx->config_save_path, channel);
     if(unlink(filename)) {
         if(error) {
@@ -583,12 +583,12 @@ xfconf_backend_perchannel_xml_flush(XfconfBackend *backend,
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
     GList *l;
-    
+
     for(l = xbpx->dirty_channels; l; l = l->next)
         xfconf_backend_perchannel_xml_flush_channel(xbpx, l->data, error);
-    
+
     TRACE("exiting, flushed all channels");
-    
+
     return TRUE;
 }
 
@@ -613,12 +613,12 @@ xfconf_proptree_lookup_node(GNode *proptree,
     gchar **parts;
     GNode *parent, *node;
     gint i;
-    
+
     g_return_val_if_fail(PROP_NAME_IS_VALID(name), NULL);
-    
+
     parts = g_strsplit_set(name+1, "/", -1);
     parent = proptree;
-    
+
     for(i = 0; parts[i]; ++i) {
         for(node = g_node_first_child(parent);
             node;
@@ -632,13 +632,13 @@ xfconf_proptree_lookup_node(GNode *proptree,
                 break;
             }
         }
-        
+
         if(found_node || !node)
             break;
     }
-    
+
     g_strfreev(parts);
-    
+
     return found_node;
 }
 
@@ -648,11 +648,11 @@ xfconf_proptree_lookup(GNode *proptree,
 {
     GNode *node;
     XfconfProperty *prop = NULL;
-    
+
     node = xfconf_proptree_lookup_node(proptree, name);
     if(node)
         prop = node->data;
-    
+
     return prop;
 }
 
@@ -667,9 +667,9 @@ xfconf_proptree_add_property(GNode *proptree,
     gchar tmp[MAX_PROP_PATH];
     gchar *p;
     XfconfProperty *prop;
-    
+
     g_return_val_if_fail(PROP_NAME_IS_VALID(name), NULL);
-    
+
     g_strlcpy(tmp, name, MAX_PROP_PATH);
     p = g_strrstr(tmp, "/");
     if(p == tmp)
@@ -680,7 +680,7 @@ xfconf_proptree_add_property(GNode *proptree,
         if(!parent)
             parent = xfconf_proptree_add_property(proptree, tmp, NULL, FALSE);
     }
-    
+
     prop = g_new0(XfconfProperty, 1);
     prop->name = g_strdup(strrchr(name, '/')+1);
     if(value) {
@@ -688,7 +688,7 @@ xfconf_proptree_add_property(GNode *proptree,
         g_value_copy(value, &prop->value);
     }
     prop->locked = locked;
-    
+
     return g_node_append_data(parent, prop);
 }
 
@@ -697,10 +697,10 @@ xfconf_proptree_remove(GNode *proptree,
                        const gchar *name)
 {
     GNode *node = xfconf_proptree_lookup_node(proptree, name);
-    
+
     if(node) {
         XfconfProperty *prop = node->data;
-        
+
         if(G_IS_VALUE(&prop->value)) {
             if(node->children) {
                 /* don't remove the children; just blank out the value */
@@ -708,10 +708,10 @@ xfconf_proptree_remove(GNode *proptree,
                 g_value_unset(&prop->value);
             } else {
                 GNode *parent = node->parent;
-                
+
                 g_node_unlink(node);
                 xfconf_proptree_destroy(node);
-                
+
                 /* remove parents without values until we find a parent with
                  * a value or any children */
                 while(parent) {
@@ -719,12 +719,12 @@ xfconf_proptree_remove(GNode *proptree,
                     if(!G_IS_VALUE(&prop->value) && !parent->children) {
                         GNode *tmp = parent;
                         parent = parent->parent;
-                        
+
                         DBG("unlinking node at \"%s\"", prop->name);
-                        
+
                         g_node_unlink(tmp);
                         xfconf_proptree_destroy(tmp);
-                        
+
                         /* but don't remove the root node */
                         prop = parent->data;
                         if(!strcmp("/", prop->name))
@@ -733,11 +733,11 @@ xfconf_proptree_remove(GNode *proptree,
                         parent = NULL;
                 }
             }
-            
+
             return TRUE;
         }
     }
-    
+
     return FALSE;
 }
 
@@ -775,7 +775,7 @@ xfconf_backend_perchannel_xml_save_timeout(gpointer data)
 {
     XFCONF_BACKEND_PERCHANNEL_XML(data)->save_id = 0;
     xfconf_backend_perchannel_xml_flush(XFCONF_BACKEND(data), NULL);
-    
+
     return FALSE;
 }
 
@@ -787,18 +787,18 @@ xfconf_backend_perchannel_xml_schedule_save(XfconfBackendPerchannelXml *xbpx,
                            (GCompareFunc)g_ascii_strcasecmp))
     {
         gpointer orig_key = NULL, val = NULL;
-        
+
         if(!g_tree_lookup_extended(xbpx->channels, channel, &orig_key, &val)) {
             g_warning("Attempt to schedule save for a nonexistent channel.");
             return;
         }
-        
+
         xbpx->dirty_channels = g_list_prepend(xbpx->dirty_channels, orig_key);
     }
-    
+
     if(xbpx->save_id)
         g_source_remove(xbpx->save_id);
-    
+
     xbpx->save_id = g_timeout_add(WRITE_TIMEOUT,
                                   xfconf_backend_perchannel_xml_save_timeout,
                                   xbpx);
@@ -810,17 +810,17 @@ xfconf_backend_perchannel_xml_create_channel(XfconfBackendPerchannelXml *xbpx,
 {
     GNode *properties;
     XfconfProperty *prop;
-    
+
     if((properties = g_tree_lookup(xbpx->channels, channel))) {
         g_warning("Attempt to create channel when one already exists.");
         return properties;
     }
-    
+
     prop = g_new0(XfconfProperty, 1);
     prop->name = g_strdup("/");
     properties = g_node_new(prop);
     g_tree_insert(xbpx->channels, g_ascii_strdown(channel, -1), properties);
-    
+
     return properties;
 }
 
@@ -839,7 +839,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
     gchar fullpath[MAX_PROP_PATH], *p;
     gint maj_ver_len;
     XfconfProperty *prop = NULL;
-    
+
     switch(state->cur_elem) {
         case ELEM_NONE:
             if(strcmp(element_name, "channel")) {
@@ -870,7 +870,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                         return;
                     }
                 }
-                
+
                 if(!name || !*name || !version || !*version) {
                     if(error) {
                         g_set_error(error, G_MARKUP_ERROR,
@@ -879,7 +879,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                     }
                     return;
                 }
-                
+
                 /* compare versions */
                 p = strstr(version, ".");
                 maj_ver_len = p ? p - version : (gint) strlen(version);
@@ -895,10 +895,10 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                     }
                     return;
                 }
-                
+
                 /* FIXME: validate name for valid chars */
                 state->channel_name = g_strdup(name);
-                
+
                 if((locked && *locked) || (unlocked && *unlocked)) {
                     if(!state->is_system_file) {
                         if(error) {
@@ -909,15 +909,15 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                         }
                         return;
                     }
-                    
+
                     if(unlocked && *unlocked)
                         state->channel_locked = !xfconf_user_is_in_list(unlocked);
                     else if(locked && *locked)
                         state->channel_locked = xfconf_user_is_in_list(locked);
-                    
+
                     if(state->channel_locked) {
                         XfconfProperty *prop;
-                        
+
                         /* if this channel is locked now, we want to throw
                          * out all existing properties.  it's possible that
                          * there's more than one file that describes this
@@ -929,24 +929,24 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                          * and just stop processing properties for this
                          * channel after this file is done.
                          */
-                        
+
                         xfconf_proptree_destroy(state->properties);
-                        
+
                         prop = g_new0(XfconfProperty, 1);
                         prop->name = g_strdup("/");
                         state->properties = g_node_new(prop);
                     }
                 }
-                
+
                 state->cur_elem = ELEM_CHANNEL;
             }
             break;
-        
+
         case ELEM_CHANNEL:
         case ELEM_PROPERTY:
             if(!strcmp(element_name, "property")) {
                 GType value_type;
-                
+
                 for(i = 0; attribute_names[i]; ++i) {
                     if(!strcmp(attribute_names[i], "name"))
                         name = attribute_values[i];
@@ -968,7 +968,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                         return;
                     }
                 }
-                
+
                 if(!name || !*name || !type || !*type) {
                     if(error) {
                         g_set_error(error, G_MARKUP_ERROR,
@@ -977,12 +977,12 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                     }
                     return;
                 }
-                
+
                 /* FIXME: name validation! */
                 g_strlcpy(fullpath, state->cur_path, MAX_PROP_PATH);
                 g_strlcat(fullpath, "/", MAX_PROP_PATH);
                 g_strlcat(fullpath, name, MAX_PROP_PATH);
-                
+
                 /* check if property is locked in a previous file */
                 prop = xfconf_proptree_lookup(state->properties, fullpath);
                 if(prop) {
@@ -1003,7 +1003,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                                                                     FALSE);
                     prop = prop_node->data;
                 }
-                
+
                 if(state->channel_locked)
                     prop->locked = TRUE;
                 else if((locked && *locked) || (unlocked && *unlocked)) {
@@ -1017,13 +1017,13 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                         xfconf_proptree_remove(state->properties, fullpath);
                         return;
                     }
-                    
+
                     if(unlocked && *unlocked)
                         prop->locked = !xfconf_user_is_in_list(unlocked);
                     else if(locked && *locked)
                         prop->locked = xfconf_user_is_in_list(locked);
                 }
-                
+
                 /* parse types and values */
                 value_type = _xfconf_gtype_from_string(type);
                 if(G_TYPE_INVALID == value_type) {
@@ -1035,7 +1035,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                     }
                     return;
                 }
-                
+
                 if(G_TYPE_NONE != value_type) {
                     g_value_init(&prop->value, value_type);
                     if(!_xfconf_gvalue_from_string(&prop->value, value)) {
@@ -1047,18 +1047,18 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                         }
                         return;
                     }
-                    
+
                     if(XFCONF_TYPE_G_VALUE_ARRAY == value_type) {
                         /* FIXME: use stacks here */
                         state->list_property = g_strdup(fullpath);
                         state->list_value = &prop->value;
                     }
-                    
+
                     if(prop)
                         DBG("property '%s' has value type %s", fullpath, G_VALUE_TYPE_NAME(&prop->value));
                 } else
                     DBG("empty property (branch)");
-                
+
                 g_strlcpy(state->cur_path, fullpath, MAX_PROP_PATH);
                 state->cur_elem = ELEM_PROPERTY;
             } else if(ELEM_PROPERTY == state->cur_elem
@@ -1069,7 +1069,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 GPtrArray *arr;
                 GValue *val;
                 GType value_type = G_TYPE_INVALID;
-                
+
                 for(i = 0; attribute_names[i]; ++i) {
                     if(!strcmp(attribute_names[i], "type"))
                         type = attribute_values[i];
@@ -1085,7 +1085,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                         return;
                     }
                 }
-                
+
                 value_type = _xfconf_gtype_from_string(type);
                 if(XFCONF_TYPE_G_VALUE_ARRAY == value_type) {
                     if(error) {
@@ -1105,7 +1105,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                     }
                     return;
                 }
-                
+
                 val = g_new0(GValue, 1);
                 g_value_init(val, value_type);
                 if(!_xfconf_gvalue_from_string(val, value)) {
@@ -1119,10 +1119,10 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                     g_free(val);
                     return;
                 }
-                
+
                 arr = g_value_get_boxed(state->list_value);
                 g_ptr_array_add(arr, val);
-                
+
                 state->cur_elem = ELEM_VALUE;
             } else {
                 if(error) {
@@ -1135,7 +1135,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 return;
             }
             break;
-        
+
         case ELEM_VALUE:
             if(error) {
                 g_set_error(error, G_MARKUP_ERROR,
@@ -1154,20 +1154,20 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
 {
     XmlParserState *state = user_data;
     gchar *p;
-    
+
     switch(state->cur_elem) {
         case ELEM_CHANNEL:
             state->cur_elem = ELEM_NONE;
             state->cur_path[0] = 0;
             break;
-        
+
         case ELEM_PROPERTY:
             /* FIXME: use stacks here */
             state->list_property = NULL;
             state->list_value = NULL;
-            
+
             p = g_strrstr(state->cur_path, "/");
-            
+
             if(p) {
                 *p = 0;
                 if(!*(state->cur_path))
@@ -1179,11 +1179,11 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
                 state->cur_elem = ELEM_CHANNEL;
             }
             break;
-        
+
         case ELEM_VALUE:
             state->cur_elem = ELEM_PROPERTY;
             break;
-        
+
         case ELEM_NONE:
             /* this really can't happen */
             break;
@@ -1196,7 +1196,7 @@ check_is_whitespace(const gchar *str,
                     gsize str_len)
 {
     gint i;
-    
+
     for(i = 0; i < str_len; ++i) {
         if(str[i] != ' ' && str[i] != '\t' && str[i] != '\r' && str[i] != '\n'
            && str[i] != 0)
@@ -1204,7 +1204,7 @@ check_is_whitespace(const gchar *str,
             return FALSE;
         }
     }
-    
+
     return TRUE;
 }
 
@@ -1216,19 +1216,19 @@ xfconf_backend_perchannel_xml_text_elem(GMarkupParseContext *context,
                                         GError **error)
 {
     XmlParserState *state = user_data;
-    
+
     if(ELEM_VALUE != state->cur_elem) {
         /* check to make sure it's not just whitespace */
         if(check_is_whitespace(text, text_len))
             return;
-        
+
         if(error) {
             g_set_error(error, G_MARKUP_ERROR, G_MARKUP_ERROR_INVALID_CONTENT,
                         "Content only allowed in <value> elements");
         }
         return;
     }
-    
+
     if(!state->cur_text)
         state->cur_text = g_strndup(text, text_len);
     else {
@@ -1263,35 +1263,35 @@ xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
 #ifdef HAVE_MMAP
     void *addr = NULL;
 #endif
-    
+
     TRACE("entering (%s)", filename);
-    
+
     memset(&state, 0, sizeof(XmlParserState));
     state.properties = *properties;
     state.xbpx = xbpx;
     state.cur_elem = ELEM_NONE;
     state.channel_locked = FALSE;
     state.is_system_file = is_system_file;
-    
+
     fd = open(filename, O_RDONLY, 0);
     if(fd < 0)
         goto out;
-    
+
     if(fstat(fd, &st))
         goto out;
-    
+
 #ifdef HAVE_MMAP
     addr = mmap(NULL, st.st_size, PROT_READ, MAP_FILE | MAP_SHARED, fd, 0);
     if(addr != MAP_FAILED)
         file_contents = addr;
 #endif
-    
+
     if(!file_contents) {
         file_contents = g_malloc(st.st_size);
         if(read(fd, file_contents, st.st_size) != st.st_size)
             goto out;
     }
-    
+
     context = g_markup_parse_context_new(&parser, 0, &state, NULL);
     if(!g_markup_parse_context_parse(context, file_contents, st.st_size, error)
        || !g_markup_parse_context_end_parse(context, error))
@@ -1300,30 +1300,30 @@ xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
                   error && *error ? (*error)->message : "(?)");
         goto out;
     }
-    
+
     *channel_locked = state.channel_locked;
     ret = TRUE;
-    
+
 out:
     TRACE("exiting");
-    
+
     *properties = state.properties;
-    
+
     if(context)
         g_markup_parse_context_free(context);
-    
+
 #ifdef HAVE_MMAP
     if(addr) {
         munmap(addr, st.st_size);
         file_contents = NULL;
     }
 #endif
-    
+
     g_free(file_contents);
-    
+
     if(fd >= 0)
         close(fd);
-    
+
     return ret;
 }
 
@@ -1338,13 +1338,13 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
     gint i;
     XfconfProperty *prop;
     gboolean channel_locked = FALSE;
-    
+
     TRACE("entering");
-    
+
     filename_stem = g_strdup_printf(CONFIG_FILE_FMT, channel);
     filenames = xfce_resource_lookup_all(XFCE_RESOURCE_CONFIG, filename_stem);
     g_free(filename_stem);
-    
+
     for(i = 0; filenames[i]; ++i) {
         if(!access(filenames[i], W_OK))  /* we can write, it's ours */
             user_files = g_list_append(user_files, filenames[i]);
@@ -1354,7 +1354,7 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
             g_free(filenames[i]);
     }
     g_free(filenames);
-    
+
     if(!system_files && !user_files) {
         if(error) {
             g_set_error(error, XFCONF_ERROR,
@@ -1363,11 +1363,11 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
         }
         goto out;
     }
-    
+
     prop = g_new0(XfconfProperty, 1);
     prop->name = g_strdup("/");
     properties = g_node_new(prop);
-    
+
     for(l = system_files; l && !channel_locked; l = l->next) {
         xfconf_backend_perchannel_xml_merge_file(xbpx, l->data, TRUE,
                                                  &properties, &channel_locked,
@@ -1378,16 +1378,16 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
                                                  &properties, &channel_locked,
                                                  error);
     }
-    
+
     g_tree_insert(xbpx->channels, g_ascii_strdown(channel, -1), properties);
-    
+
 out:
-    
+
     g_list_foreach(user_files, (GFunc)g_free, NULL);
     g_list_free(user_files);
     g_list_foreach(system_files, (GFunc)g_free, NULL);
     g_list_free(system_files);
-    
+
     return properties;
 }
 
@@ -1399,7 +1399,7 @@ xfconf_format_xml_tag(GString *elem_str,
                       gboolean *is_array)
 {
     gchar *tmp;
-    
+
     switch(G_VALUE_TYPE(value)) {
         case G_TYPE_STRING:
             tmp = g_markup_escape_text(g_value_get_string(value), -1);
@@ -1407,65 +1407,65 @@ xfconf_format_xml_tag(GString *elem_str,
                                    tmp);
             g_free(tmp);
             break;
-        
+
         case G_TYPE_UCHAR:
             g_string_append_printf(elem_str, " type=\"uchar\" value=\"%hhu\"",
                                    g_value_get_uchar(value));
             break;
-        
+
         case G_TYPE_CHAR:
             g_string_append_printf(elem_str, " type=\"char\" value=\"%hhd\"",
                                    g_value_get_uchar(value));
             break;
-        
+
         case G_TYPE_UINT:
             g_string_append_printf(elem_str, " type=\"uint\" value=\"%u\"",
                                    g_value_get_uint(value));
             break;
-        
+
         case G_TYPE_INT:
             g_string_append_printf(elem_str, " type=\"int\" value=\"%d\"",
                                    g_value_get_int(value));
             break;
-        
+
         case G_TYPE_UINT64:
             g_string_append_printf(elem_str, " type=\"uint64\" value=\"%" G_GUINT64_FORMAT "\"",
                                    g_value_get_uint64(value));
             break;
-        
+
         case G_TYPE_INT64:
             g_string_append_printf(elem_str, " type=\"int64\" value=\"%" G_GINT64_FORMAT "\"",
                                    g_value_get_int64(value));
             break;
-        
+
         case G_TYPE_FLOAT:
             g_string_append_printf(elem_str, " type=\"float\" value=\"%f\"",
                                    (gdouble)g_value_get_float(value));
             break;
-        
+
         case G_TYPE_DOUBLE:
             g_string_append_printf(elem_str, " type=\"double\" value=\"%f\"",
                                    g_value_get_double(value));
             break;
-        
+
         case G_TYPE_BOOLEAN:
             g_string_append_printf(elem_str, " type=\"bool\" value=\"%s\"",
                                    g_value_get_boolean(value) ? "true" : "false");
             break;
-        
+
         default:
             if(G_VALUE_TYPE(value) == G_TYPE_STRV) {
                 gchar **strlist;
                 gint i;
-                
+
                 /* we shouldn't get here anymore, i think */
                 g_critical("Got G_TYPE_STRV.  Shouldn't happen anymore, right?");
-                
+
                 if(is_array_value)
                     return FALSE;
-                
+
                 g_string_append(elem_str, " type=\"array\">\n");
-                
+
                 strlist = g_value_get_boxed(value);
                 for(i = 0; strlist[i]; ++i) {
                     gchar *value_str = g_markup_escape_text(strlist[i], -1);
@@ -1474,7 +1474,7 @@ xfconf_format_xml_tag(GString *elem_str,
                                            spaces, value_str);
                     g_free(value_str);
                 }
-                
+
                 *is_array = TRUE;
             } else if(XFCONF_TYPE_G_VALUE_ARRAY == G_VALUE_TYPE(value)) {
                 GPtrArray *arr;
@@ -1482,14 +1482,14 @@ xfconf_format_xml_tag(GString *elem_str,
                 
                 if(is_array_value)
                     return FALSE;
-                
+
                 g_string_append(elem_str, " type=\"array\">\n");
-                
+
                 arr = g_value_get_boxed(value);
                 for(i = 0; i < arr->len; ++i) {
                     GValue *value1 = g_ptr_array_index(arr, i);
                     gboolean dummy;
-                    
+
                     g_string_append_printf(elem_str, "%s  <value ", spaces);
                     if(!xfconf_format_xml_tag(elem_str, value1, TRUE, spaces,
                                               &dummy))
@@ -1498,24 +1498,24 @@ xfconf_format_xml_tag(GString *elem_str,
                     }
                     g_string_append(elem_str, "/>\n");
                 }
-                
+
                 *is_array = TRUE;
             } else {
                 if(is_array_value)
                     return FALSE;
-                
+
                 if(G_VALUE_TYPE(value) != 0) {
                     g_warning("Unknown value type %d (\"%s\"), treating as branch",
                               (int)G_VALUE_TYPE(value), G_VALUE_TYPE_NAME(value));
                     g_value_unset(value);
                 }
-                
+
                 is_array = FALSE;
                 g_string_append(elem_str, " type=\"empty\"");
             }
             break;
     }
-    
+
     return TRUE;
 }
 
@@ -1531,24 +1531,29 @@ xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
     GString *elem_str;
     gchar spaces[MAX_PROP_PATH];
     GNode *child;
+    gchar *escaped_name;
     gboolean is_array = FALSE;
     
     if(depth * 2 > (gint) sizeof(spaces) + 1)
         depth = sizeof(spaces) / 2 - 1;
-    
+
     memset(spaces, ' ', depth * 2);
     spaces[depth * 2] = 0;
-    
+
+    escaped_name = g_markup_escape_text(prop->name, strlen(prop->name));
+
     elem_str = g_string_sized_new(128);
     g_string_append_printf(elem_str, "%s<property name=\"%s\"", spaces,
-                           prop->name);
-    
+                           escaped_name);
+
+    g_free (escaped_name);
+
     if(!xfconf_format_xml_tag(elem_str, value, FALSE, spaces, &is_array)) {
         /* _flush_channel() will handle |error| */
         g_string_free(elem_str, TRUE);
         return FALSE;
     }
-    
+
     child = g_node_first_child(node);
     if(!is_array) {
         if(child)
@@ -1556,14 +1561,14 @@ xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
         else
             g_string_append(elem_str, "/>\n");
     }
-    
+
     if(fputs(elem_str->str, fp) == EOF) {
         /* _flush_channel() will handle |error| */
         g_string_free(elem_str, TRUE);
         return FALSE;
     }
     g_string_free(elem_str, TRUE);
-    
+
     for(; child; child = g_node_next_sibling(child)) {
         if(!xfconf_backend_perchannel_xml_write_node(xbpx, fp, child,
                                                      depth + 1, error))
@@ -1572,17 +1577,17 @@ xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
             return FALSE;
         }
     }
-    
+
     if(is_array || g_node_first_child(node)) {
         if(fputs(spaces, fp) == EOF || fputs("</property>\n", fp) == EOF) {
             /* _flush_channel() will handle |error| */
             return FALSE;
         }
     }
-    
+
     return TRUE;
 }
-    
+
 static gboolean
 xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
                                             const gchar *channel,
@@ -1592,7 +1597,7 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
     GNode *properties = g_tree_lookup(xbpx->channels, channel), *child;
     gchar *filename = NULL, *filename_tmp = NULL;
     FILE *fp = NULL;
-    
+
     if(!properties) {
         if(error) {
             g_set_error(error, XFCONF_ERROR,
@@ -1601,21 +1606,21 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
         }
         return FALSE;
     }
-    
+
     filename = g_strdup_printf("%s/%s.xml", xbpx->config_save_path, channel);
     filename_tmp = g_strconcat(filename, ".new", NULL);
-    
+
     fp = fopen(filename_tmp, "w");
     if(!fp)
         goto out;
-    
+
     if(fputs("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n", fp) == EOF
        || fprintf(fp, "<channel name=\"%s\" version=\"%s.%s\">\n", channel,
                   FILE_VERSION_MAJOR, FILE_VERSION_MINOR) < 0)
     {
         goto out;
     }
-    
+
     for(child = g_node_first_child(properties);
         child;
         child = g_node_next_sibling(child))
@@ -1623,21 +1628,21 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
         if(!xfconf_backend_perchannel_xml_write_node(xbpx, fp, child, 1, error))
             goto out;
     }
-    
+
     if(fputs("</channel>\n", fp) == EOF)
         goto out;
-    
+
     if(fclose(fp)) {
         fp = NULL;
         goto out;
     }
     fp = NULL;
-    
+
     if(rename(filename_tmp, filename))
         goto out;
-    
+
     ret = TRUE;
-    
+
 out:
     if(!ret && error && !*error) {
         g_set_error(error, XFCONF_ERROR,
@@ -1645,12 +1650,12 @@ out:
                     _("Unable to write channel \"%s\": %s"),
                     channel, strerror(errno));
     }
-    
+
     if(fp)
         fclose(fp);
-    
+
     g_free(filename);
     g_free(filename_tmp);
-    
+
     return ret;
 }

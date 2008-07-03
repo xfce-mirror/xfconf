@@ -193,7 +193,7 @@ main(int argc, char **argv)
 
             if(!xfconf_channel_get_property(channel, property_name, &value))
             {
-                g_print(_("Property \"%s\" doesn't exist on channel \"%s\"."),
+                g_print(_("Property \"%s\" doesn't exist on channel \"%s\".\n"),
                         property_name, channel_name);
                 return 1;
             }
