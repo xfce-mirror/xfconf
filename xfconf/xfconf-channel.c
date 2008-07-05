@@ -224,6 +224,10 @@ xfconf_channel_finalize(GObject *obj)
                                    G_CALLBACK(xfconf_channel_property_changed),
                                    channel);
 
+    dbus_g_proxy_disconnect_signal(proxy, "PropertyRemoved",
+                                   G_CALLBACK(xfconf_channel_property_removed),
+                                   channel);
+
     g_free(channel->channel_name);
 
     G_OBJECT_CLASS(xfconf_channel_parent_class)->finalize(obj);
