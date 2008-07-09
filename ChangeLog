@@ -1,3 +1,7 @@
+2008-07-10	Jannis Pohlmann <jannis@xfce.org>
+
+	* autogen.sh: Fix @REVISION@ substitution when using git svn.
+
 2008-07-05	Jannis Pohlmann <jannis@xfce.org>
 
 	* xfconf/xfconf-channel.c: Disconnect from 'PropertyRemoved' signal
