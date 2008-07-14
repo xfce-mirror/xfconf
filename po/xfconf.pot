@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: xfsettingsd/main.c:115
+#: xfsettingsd/main.c:127
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-23 23:57-0700\n"
+"POT-Creation-Date: 2008-07-14 23:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,23 +25,23 @@ msgstr ""
 msgid "false"
 msgstr ""
 
-#: xfsettingsd/main.c:50 xfconf-query/main.c:94
+#: xfsettingsd/main.c:52 xfconf-query/main.c:96
 msgid "Version information"
 msgstr ""
 
-#: xfsettingsd/main.c:54 xfconf-query/main.c:114
+#: xfsettingsd/main.c:56 xfconf-query/main.c:116
 msgid "Verbose output"
 msgstr ""
 
-#: xfsettingsd/main.c:58
+#: xfsettingsd/main.c:60
 msgid "Force replace existing any xsettings daemon"
 msgstr ""
 
-#: xfsettingsd/main.c:62
+#: xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
 msgstr ""
 
-#: xfsettingsd/main.c:119
+#: xfsettingsd/main.c:131
 #, c-format
 msgid ""
 "%s: %s\n"
@@ -64,35 +64,35 @@ msgstr ""
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr ""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:535
+#: xfconfd/xfconf-backend-perchannel-xml.c:569
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr ""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1002
-#: xfconfd/xfconf-backend-perchannel-xml.c:1072
+#: xfconfd/xfconf-backend-perchannel-xml.c:1033
+#: xfconfd/xfconf-backend-perchannel-xml.c:1103
 #, c-format
 msgid "Invalid type for <%s>: \"%s\""
 msgstr ""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1014
-#: xfconfd/xfconf-backend-perchannel-xml.c:1084
+#: xfconfd/xfconf-backend-perchannel-xml.c:1045
+#: xfconfd/xfconf-backend-perchannel-xml.c:1115
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr ""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1063
+#: xfconfd/xfconf-backend-perchannel-xml.c:1094
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr ""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1331
-#: xfconfd/xfconf-backend-perchannel-xml.c:1569
+#: xfconfd/xfconf-backend-perchannel-xml.c:1362
+#: xfconfd/xfconf-backend-perchannel-xml.c:1605
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr ""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1614
+#: xfconfd/xfconf-backend-perchannel-xml.c:1650
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr ""
@@ -102,80 +102,155 @@ msgstr ""
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr ""
 
-#: xfconfd/main.c:126
+#: xfconfd/xfconf-backend.c:103
+#, c-format
+msgid "Property names must start with a '/' character"
+msgstr ""
+
+#: xfconfd/xfconf-backend.c:118
+#, c-format
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+
+#: xfconfd/xfconf-backend.c:127
+#, c-format
+msgid "Property names cannot have two or more '/' characters in a row"
+msgstr ""
+
+#: xfconfd/xfconf-backend.c:147
+#, c-format
+msgid "Channel name cannot be an empty string"
+msgstr ""
+
+#: xfconfd/xfconf-backend.c:160
+#, c-format
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr ""
+
+#: xfconfd/main.c:127
 msgid "Prints the xfconfd version"
 msgstr ""
 
-#: xfconfd/main.c:128
+#: xfconfd/main.c:129
 msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
 msgstr ""
 
-#: xfconfd/main.c:157
+#: xfconfd/main.c:158
 msgid "Xfce configuration daemon"
 msgstr ""
 
-#: xfconfd/main.c:159
+#: xfconfd/main.c:160
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr ""
 
-#: xfconfd/xfconf-daemon.c:396
+#: xfconfd/xfconf-daemon.c:438
 #, c-format
 msgid "Another Xfconf daemon is already running"
 msgstr ""
 
-#: xfconfd/xfconf-daemon.c:432
+#: xfconfd/xfconf-daemon.c:474
 #, c-format
 msgid "No backends could be started"
 msgstr ""
 
-#: xfconf-query/main.c:98
+#: xfconf-query/main.c:100
 msgid "pick the channel"
 msgstr ""
 
-#: xfconf-query/main.c:102
+#: xfconf-query/main.c:104
 msgid "pick the property"
 msgstr ""
 
-#: xfconf-query/main.c:106
+#: xfconf-query/main.c:108
 msgid "set (change the value)"
 msgstr ""
 
-#: xfconf-query/main.c:110
+#: xfconf-query/main.c:112
 msgid "List properties"
 msgstr ""
 
-#: xfconf-query/main.c:118
+#: xfconf-query/main.c:120
 msgid "Create new entry"
 msgstr ""
 
-#: xfconf-query/main.c:122
+#: xfconf-query/main.c:124
 msgid "Specify the property value type"
 msgstr ""
 
-#: xfconf-query/main.c:126
+#: xfconf-query/main.c:128
 msgid "Remove property"
 msgstr ""
 
-#: xfconf-query/main.c:212
+#: xfconf-query/main.c:196
 #, c-format
-msgid "Unable to convert \"%s\" to type\n"
+msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
 msgstr ""
 
-#: xfconf-query/main.c:226
-#, c-format
-msgid "ERROR: Could not convert value\n"
+#: xfconf-query/main.c:204 xfconf-query/main.c:222
+msgid "(unknown)"
 msgstr ""
 
-#: xfconf-query/main.c:233
+#: xfconf-query/main.c:213
 #, c-format
 msgid ""
-"ERROR: Property '%s' missing\n"
-"from channel '%s'\n"
+"Value is an array with %d items:\n"
+"\n"
 msgstr ""
 
-#: xfconf-query/main.c:249
+#: xfconf-query/main.c:236
+#, c-format
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\".  If you would\n"
+"like to create a new property, use the --create option.\n"
+msgstr ""
+
+#: xfconf-query/main.c:244
+#, c-format
+msgid "When creating a new property, you must specify the value type.\n"
+msgstr ""
+
+#: xfconf-query/main.c:254
+#, c-format
+msgid "Failed to get existing type for value.\n"
+msgstr ""
+
+#: xfconf-query/main.c:272
+#, c-format
+msgid "Unable to determine type of value.\n"
+msgstr ""
+
+#: xfconf-query/main.c:278
+#, c-format
+msgid "You must specify a value type to change an array into a single value.\n"
+msgstr ""
+
+#: xfconf-query/main.c:288 xfconf-query/main.c:350
+#, c-format
+msgid "Unable to convert \"%s\" to type \"%s\"\n"
+msgstr ""
+
+#: xfconf-query/main.c:295 xfconf-query/main.c:365
+#, c-format
+msgid "Failed to set property.\n"
+msgstr ""
+
+#: xfconf-query/main.c:320
+#, c-format
+msgid "Have %d new values, but could only determine %d types.\n"
+msgstr ""
+
+#: xfconf-query/main.c:341
+#, c-format
+msgid "Unable to determine type of value at index %d.\n"
+msgstr ""
+
+#: xfconf-query/main.c:383
 #, c-format
 msgid "Channel '%s' contains no properties\n"
 msgstr ""

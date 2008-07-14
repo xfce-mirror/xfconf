@@ -34,6 +34,10 @@ xfconfd_CFLAGS = \
 	$(DBUS_GLIB_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS)
 
+if ENABLE_PROFILING
+xfconfd_CFLAGS += -pg
+endif
+
 xfconfd_LDADD = \
 	$(top_builddir)/common/libxfconf-common.la \
 	$(top_builddir)/common/libxfconf-gvaluefuncs.la \

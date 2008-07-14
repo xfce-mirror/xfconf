@@ -196,6 +196,16 @@ if test "x$have_gnuc_visibility" = "xyes"; then
 fi
 AM_CONDITIONAL([HAVE_GNUC_VISIBILITY], [test "x$have_gnuc_visibility" = "xyes"])
 
+AC_ARG_ENABLE([profiling],
+              AC_HELP_STRING([--enable-profiling],
+                             [Enable gprof profiling support]),
+              [enable_profiling=yes])
+if test "x$enable_profiling" = "xyes"; then
+    AC_DEFINE([XFCONF_ENABLE_PROFILING], [1],
+              [Define if gprof profiling should be compiled in])
+    AM_CONDITIONAL([ENABLE_PROFILING], [test "x$enable_profiling" = "xyes"])
+fi
+
 AC_OUTPUT([
 Makefile
 common/Makefile

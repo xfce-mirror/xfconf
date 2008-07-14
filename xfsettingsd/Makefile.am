@@ -16,6 +16,10 @@ xfsettingsd_CFLAGS = \
 	-DSRCDIR=\"$(top_srcdir)\" \
 	-DLOCALEDIR=\"$(localedir)\"
 
+if ENABLE_PROFILING
+xfsettingsd_CFLAGS += -pg
+endif
+
 xfsettingsd_LDADD = \
 	$(top_builddir)/xfconf/libxfconf-0.la \
 	$(GTK_LIBS) \
