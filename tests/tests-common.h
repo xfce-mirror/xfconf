@@ -45,7 +45,7 @@
 #include <xfconf/xfconf.h>
 
 #define TEST_CHANNEL_NAME  "test-channel"
-#define WAIT_TIMEOUT       10
+#define WAIT_TIMEOUT       15
 
 #define TEST_OPERATION(x) G_STMT_START{ \
     if(!(x)) { \
