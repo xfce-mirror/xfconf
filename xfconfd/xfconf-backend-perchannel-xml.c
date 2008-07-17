@@ -897,6 +897,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 }
 
                 /* FIXME: validate name for valid chars */
+                /* FIXME: Is this used at all? Where does it need to be free'd? */
                 state->channel_name = g_strdup(name);
 
                 if((locked && *locked) || (unlocked && *unlocked)) {

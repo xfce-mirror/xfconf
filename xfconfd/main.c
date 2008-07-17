@@ -161,8 +161,11 @@ main(int argc,
     g_option_context_add_main_entries(opt_ctx, options, PACKAGE);
     if(!g_option_context_parse(opt_ctx, &argc, &argv, &error)) {
         g_printerr("Error parsing options: %s\n", error->message);
+        g_error_free(error);
+        g_option_context_free(opt_ctx);
         return 1;
     }
+    g_option_context_free(opt_ctx);
     
     if(print_version) {
         g_print("Xfconfd version " VERSION "\n");
@@ -199,6 +202,7 @@ main(int argc,
     xfconfd = xfconf_daemon_new_unique(backends, &error);
     if(!xfconfd) {
         g_printerr("Xfconfd failed to start: %s\n", error->message);
+        g_error_free(error);
         return 1;
     }
     g_strfreev(backends);
