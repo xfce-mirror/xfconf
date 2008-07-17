@@ -712,11 +712,11 @@ xfconf_proptree_remove(GNode *proptree,
                 g_node_unlink(node);
                 xfconf_proptree_destroy(node);
 
-                /* remove parents without values until we find a parent with
-                 * a value or any children */
+                /* remove parents without values until we find the root node or 
+                 * a parent with a value or any children */
                 while(parent) {
                     prop = parent->data;
-                    if(!G_IS_VALUE(&prop->value) && !parent->children) {
+                    if(!G_IS_VALUE(&prop->value) && !parent->children && strcmp(prop->name, "/") != 0) {
                         GNode *tmp = parent;
                         parent = parent->parent;
 
@@ -724,11 +724,6 @@ xfconf_proptree_remove(GNode *proptree,
 
                         g_node_unlink(tmp);
                         xfconf_proptree_destroy(tmp);
-
-                        /* but don't remove the root node */
-                        prop = parent->data;
-                        if(!strcmp("/", prop->name))
-                            parent = NULL;
                     } else
                         parent = NULL;
                 }
