@@ -371,7 +371,7 @@ xsettings_registry_store_xrdb(XSettingsRegistry *registry)
     
     /* print warning */
     g_critical ("Failed to spawn xrdb: %s", error->message);
-    g_free (error);
+    g_error_free (error);
 }
 
 void
@@ -533,6 +533,8 @@ xsettings_registry_notify(XSettingsRegistry *registry)
                     8, PropModeReplace, buffer, buf_len);
 
     registry->priv->last_change_serial = registry->priv->serial;
+
+    g_free (buffer);
 }
 
 XSettingsRegistry *
@@ -703,6 +705,7 @@ xsettings_registry_load(XSettingsRegistry *registry, gboolean debug)
 {
     XfconfChannel *channel = registry->priv->channel;
     XSettingsRegistryEntry *entry = properties;
+    gchar *str;
 
     while (entry->name)
     {
@@ -717,7 +720,9 @@ xsettings_registry_load(XSettingsRegistry *registry, gboolean debug)
                     g_value_set_int(&entry->value, xfconf_channel_get_int(channel, name, g_value_get_int(&entry->value)));
                     break;
                 case G_TYPE_STRING:
-                    g_value_set_string(&entry->value, xfconf_channel_get_string(channel, name, g_value_get_string(&entry->value)));
+                    str = xfconf_channel_get_string(channel, name, g_value_get_string(&entry->value));
+                    g_value_set_string(&entry->value, str);
+                    g_free(str);
                     break;
                 case G_TYPE_BOOLEAN:
                     g_value_set_boolean(&entry->value, xfconf_channel_get_bool(channel, name, g_value_get_boolean(&entry->value)));
