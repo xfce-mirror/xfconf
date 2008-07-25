@@ -118,7 +118,6 @@ typedef struct
     GNode *properties;
     gboolean is_system_file;
     XmlParserElem cur_elem;
-    gchar *channel_name;
     gboolean channel_locked;
     gchar cur_path[MAX_PROP_PATH];
     gchar *list_property;
@@ -890,10 +889,6 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                     }
                     return;
                 }
-
-                /* FIXME: validate name for valid chars */
-                /* FIXME: Is this used at all? Where does it need to be free'd? */
-                state->channel_name = g_strdup(name);
 
                 if((locked && *locked) || (unlocked && *unlocked)) {
                     if(!state->is_system_file) {
