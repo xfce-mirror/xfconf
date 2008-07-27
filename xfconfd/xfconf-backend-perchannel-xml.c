@@ -443,7 +443,7 @@ xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
          * double '/' at the beginning of each prop */
         for(cur = g_node_first_child(props_tree);
             cur;
-            cur = g_node_next_sibling(props_tree))
+            cur = g_node_next_sibling(cur))
         {
             cur_path[0] = 0;
             xfconf_proptree_node_to_hash_table(cur, properties, cur_path);
