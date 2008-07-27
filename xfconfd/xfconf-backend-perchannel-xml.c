@@ -437,12 +437,19 @@ xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
         }
 
         g_strlcpy(cur_path, property_base, sizeof(cur_path));
+        xfconf_proptree_node_to_hash_table(cur, properties, cur_path);
     } else {
-        cur = props_tree;
-        cur_path[0] = 0;
+        /* need to hit each child directly to avoid having a
+         * double '/' at the beginning of each prop */
+        for(cur = g_node_first_child(props_tree);
+            cur;
+            cur = g_node_next_sibling(props_tree))
+        {
+            cur_path[0] = 0;
+            xfconf_proptree_node_to_hash_table(cur, properties, cur_path);
+        }
     }
 
-    xfconf_proptree_node_to_hash_table(cur, properties, cur_path);
 
     return TRUE;
 }
