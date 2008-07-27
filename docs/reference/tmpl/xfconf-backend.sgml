@@ -32,7 +32,6 @@ one could think of to store data.
 @get_all: See xfconf_backend_get_all().
 @exists: See xfconf_backend_exists().
 @remove: See xfconf_backend_remove().
-@remove_channel: See xfconf_backend_remove_channel().
 @flush: See xfconf_backend_flush().
 @register_property_changed_func: See xfconf_backend_register_property_changed_func().
 @_xb_reserved0: Reserved for future expansion.
@@ -89,6 +88,7 @@ one could think of to store data.
 
 @backend: 
 @channel: 
+@property_base: 
 @properties: 
 @error: 
 @Returns: 
@@ -115,17 +115,7 @@ one could think of to store data.
 @backend: 
 @channel: 
 @property: 
-@error: 
-@Returns: 
-
-
-<!-- ##### FUNCTION xfconf_backend_remove_channel ##### -->
-<para>
-
-</para>
-
-@backend: 
-@channel: 
+@recursive: 
 @error: 
 @Returns: 
 

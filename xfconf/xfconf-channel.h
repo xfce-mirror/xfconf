@@ -46,8 +46,11 @@ gboolean xfconf_channel_has_property(XfconfChannel *channel,
 
 void xfconf_channel_remove_property(XfconfChannel *channel,
                                     const gchar *property);
+void xfconf_channel_remove_properties(XfconfChannel *channel,
+                                      const gchar *property_base);
 
-GHashTable *xfconf_channel_get_all(XfconfChannel *channel);
+GHashTable *xfconf_channel_get_properties(XfconfChannel *channel,
+                                          const gchar *property_base);
 
 /* basic types */
 

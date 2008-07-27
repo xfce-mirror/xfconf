@@ -43,6 +43,7 @@ static gboolean xfconf_get_property(XfconfDaemon *xfconfd,
                                     GError **error);
 static gboolean xfconf_get_all_properties(XfconfDaemon *xfconfd,
                                           const gchar *channel,
+                                          const gchar *property_base,
                                           GHashTable **properties,
                                           GError **error);
 static gboolean xfconf_property_exists(XfconfDaemon *xfconfd,
@@ -53,10 +54,8 @@ static gboolean xfconf_property_exists(XfconfDaemon *xfconfd,
 static gboolean xfconf_remove_property(XfconfDaemon *xfconfd,
                                        const gchar *channel,
                                        const gchar *property,
+                                       gboolean recursive,
                                        GError **error);
-static gboolean xfconf_remove_channel(XfconfDaemon *xfconfd,
-                                      const gchar *channel,
-                                      GError **error);
 static gboolean xfconf_gui_show_list(XfconfDaemon *xfconfd,
                                      const gchar *display,
                                      GError **error);
@@ -249,6 +248,7 @@ xfconf_get_property(XfconfDaemon *xfconfd,
 static gboolean
 xfconf_get_all_properties(XfconfDaemon *xfconfd,
                           const gchar *channel,
+                          const gchar *property_base,
                           GHashTable **properties,
                           GError **error)
 {
@@ -263,9 +263,11 @@ xfconf_get_all_properties(XfconfDaemon *xfconfd,
     
     /* get all properties from all backends.  if they all fail, return FALSE */
     for(l = xfconfd->backends; l; l = l->next) {
-        if(xfconf_backend_get_all(l->data, channel, *properties, error))
+        if(xfconf_backend_get_all(l->data, channel, property_base,
+                                  *properties, error))
+        {
             ret = TRUE;
-        else if(l->next && error && *error) {
+        } else if(l->next && error && *error) {
             g_error_free(*error);
             *error = NULL;
         }
@@ -275,9 +277,6 @@ xfconf_get_all_properties(XfconfDaemon *xfconfd,
         g_hash_table_destroy(*properties);
         *properties = NULL;
     }
-    
-    /* FIXME: presumably, |*properties| leaks.  how do we fix this?  perhaps
-     * using the org.freedesktop.DBus.GLib.Async annotation? */
     
     return ret;
 }
@@ -316,6 +315,7 @@ static gboolean
 xfconf_remove_property(XfconfDaemon *xfconfd,
                        const gchar *channel,
                        const gchar *property,
+                       gboolean recursive,
                        GError **error)
 {
     gboolean ret = FALSE;
@@ -326,31 +326,7 @@ xfconf_remove_property(XfconfDaemon *xfconfd,
      * later */
     
     for(l = xfconfd->backends; l; l = l->next) {
-        if(xfconf_backend_remove(l->data, channel, property, error))
-            ret = TRUE;
-        else if(l->next && error && *error) {
-            g_error_free(*error);
-            *error = NULL;
-        }
-    }
-    
-    return ret;
-}
-
-static gboolean
-xfconf_remove_channel(XfconfDaemon *xfconfd,
-                      const gchar *channel,
-                      GError **error)
-{
-    gboolean ret = FALSE;
-    GList *l;
-    
-    /* while technically all backends but the first should be opened read-only,
-     * we need to remove from all backends so the channel doesn't reappear
-     * later */
-    
-    for(l = xfconfd->backends; l; l = l->next) {
-        if(xfconf_backend_remove_channel(l->data, channel, error))
+        if(xfconf_backend_remove(l->data, channel, property, recursive, error))
             ret = TRUE;
         else if(l->next && error && *error) {
             g_error_free(*error);

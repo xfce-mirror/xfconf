@@ -371,7 +371,7 @@ main(int argc, char **argv)
 
     if (list)
     {
-        GHashTable *channel_contents = xfconf_channel_get_all(channel);
+        GHashTable *channel_contents = xfconf_channel_get_properties(channel, NULL);
         if (channel_contents)
         {
             gint size = 0;

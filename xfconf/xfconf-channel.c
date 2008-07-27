@@ -412,33 +412,65 @@ xfconf_channel_remove_property(XfconfChannel *channel,
     ERROR_DEFINE;
 
     if(!xfconf_client_remove_property(proxy, channel->channel_name, property,
-                                      ERROR))
+                                      FALSE, ERROR))
     {
         ERROR_CHECK;
     }
 }
 
 /**
- * xfconf_channel_get_all:
+ * xfconf_channel_remove_properties:
  * @channel: An #XfconfChannel.
+ * @property_base: The base property name of properties to remove.
  *
- * Retrieves all properties from @channel and stores them in a #GHashTable
- * in which the keys correspond to the string (gchar *) properties, and
- * the values correspond to variant (GValue *) values.  The keys and values
- * are owned by the hash table and should be copied if needed.
+ * Removes @property_base from @channel, and removes all
+ * sub-properties of @property_base as well.  To remove the
+ * entire channel, specify "/" or %NULL for @property_base.
+ **/
+void
+xfconf_channel_remove_properties(XfconfChannel *channel,
+                                 const gchar *property_base)
+{
+    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    ERROR_DEFINE;
+
+    if(!xfconf_client_remove_property(proxy, channel->channel_name,
+                                      property_base ? property_base : "/",
+                                      TRUE, ERROR))
+    {
+        ERROR_CHECK;
+    }
+}
+
+/**
+ * xfconf_channel_get_properties:
+ * @channel: An #XfconfChannel.
+ * @property_base: The base property name of properties to retrieve.
+ *
+ * Retrieves multiple properties from @channel and stores
+ * them in a #GHashTable in which the keys correspond to
+ * the string (gchar *) property names, and the values
+ * correspond to variant (GValue *) values.  The keys and
+ * values are owned by the hash table and should be copied
+ * if needed.  The value of the property specified by
+ * @property_base (if it exists) and all sub-properties are
+ * retrieved.  To retrieve all properties in the channel,
+ * specify "/" or %NULL for @property_base.
  *
  * Returns: A newly-allocated #GHashTable, which should be freed with
  *          g_hash_table_destroy() when no longer needed.
  **/
 GHashTable *
-xfconf_channel_get_all(XfconfChannel *channel)
+xfconf_channel_get_properties(XfconfChannel *channel,
+                              const gchar *property_base)
 {
     DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
     GHashTable *properties = NULL;
     ERROR_DEFINE;
 
     if(!xfconf_client_get_all_properties(proxy, channel->channel_name,
-       &properties, ERROR))
+                                         property_base ? property_base : "/",
+                                         &properties, ERROR))
     {
         ERROR_CHECK;
         return NULL;

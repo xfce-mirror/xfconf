@@ -264,12 +264,17 @@ xfconf_backend_get(XfconfBackend *backend,
  * xfconf_backend_get_all:
  * @backend: The #XfconfBackend.
  * @channel: A channel name.
+ * @property_base: The base of properties to return.
  * @properties: A #GHashTable.
  * @error: An error return.
  *
- * Gets all properties and values on @channel and stores them in
+ * Gets multiple properties and values on @channel and stores them in
  * @properties, which is already initialized to hold #gchar* keys and
- * #GValue<!-- -->* values.
+ * #GValue<!-- -->* values.  The @property_base parameter can be
+ * used to limit the retrieval to a sub-tree of the property tree.
+ *
+ * A value of the empty string ("") or forward slash ("/") for
+ * @property_base indicates the entire channel.
  *
  * Return value: The backend should return %TRUE if the operation
  *               was successful, or %FALSE otherwise.  On %FALSE,
@@ -278,18 +283,25 @@ xfconf_backend_get(XfconfBackend *backend,
 gboolean
 xfconf_backend_get_all(XfconfBackend *backend,
                        const gchar *channel,
+                       const gchar *property_base,
                        GHashTable *properties,
                        GError **error)
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
     
     xfconf_backend_return_val_if_fail(iface && iface->get_all && channel
-                                      && *channel && properties
+                                      && *channel && property_base
+                                      && properties
                                       && (!error || !*error), FALSE);
     if(!xfconf_channel_is_valid(channel, error))
         return FALSE;
+    if(*property_base && !(property_base[0] == '/' && !property_base[1])
+       && !xfconf_property_is_valid(property_base, error))
+    {
+        return FALSE;
+    }
 
-    return iface->get_all(backend, channel, properties, error);
+    return iface->get_all(backend, channel, property_base, properties, error);
 }
 
 /**
@@ -333,9 +345,13 @@ xfconf_backend_exists(XfconfBackend *backend,
  * @backend: The #XfconfBackend.
  * @channel: A channel name.
  * @property: A property name.
+ * @recursive: Whether or not the remove is recursive.
  * @error: An error return.
  *
  * Removes the property identified by @property from @channel.
+ * If @recursive is %TRUE, all sub-properties of @property will be
+ * removed as well.  If the empty string ("") or a forward slash ("/")
+ * is specified for @property, the entire channel will be removed.
  *
  * Return value: The backend should return %TRUE if the operation
  *               was successful, or %FALSE otherwise.  On %FALSE,
@@ -345,6 +361,7 @@ gboolean
 xfconf_backend_remove(XfconfBackend *backend,
                       const gchar *channel,
                       const gchar *property,
+                      gboolean recursive,
                       GError **error)
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
@@ -354,38 +371,21 @@ xfconf_backend_remove(XfconfBackend *backend,
                                       && (!error || !*error), FALSE);
     if(!xfconf_channel_is_valid(channel, error))
         return FALSE;
-    if(!xfconf_property_is_valid(property, error))
-        return FALSE;
-    
-    return iface->remove(backend, channel, property, error);
-}
 
-/**
- * xfconf_backend_remove_channel:
- * @backend: An #XfconfBackend.
- * @channel: A channel name.
- * @error: An error return.
- *
- * Removes @channel (and al its properties) from the confguration store.
- *
- * Return value: The backend should return %TRUE if the operation
- *               was successful, or %FALSE otherwise.  On %FALSE,
- *               @error should be set to a description of the failure.
- **/ 
-gboolean
-xfconf_backend_remove_channel(XfconfBackend *backend,
-                              const gchar *channel,
-                              GError **error)
-{
-    XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
-    
-    xfconf_backend_return_val_if_fail(iface && iface->remove_channel && channel
-                                      && *channel
-                                      && (!error || !*error), FALSE);
-    if(!xfconf_channel_is_valid(channel, error))
+    if(!recursive && (!*property || (property[0] == '/' && !property[1]))) {
+        if(error) {
+            g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_INVALID_PROPERTY,
+                        _("The property name can only be empty or \"/\" if a recursive remove was specified."));
+        }
         return FALSE;
+    }
+    if(*property && !(property[0] == '/' && !property[1])
+       && !xfconf_property_is_valid(property, error))
+    {
+        return FALSE;
+    }
 
-    return iface->remove_channel(backend, channel, error);
+    return iface->remove(backend, channel, property, recursive, error);
 }
 
 /**

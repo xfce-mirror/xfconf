@@ -4,7 +4,8 @@ XfconfChannel
 xfconf_channel_new
 xfconf_channel_has_property
 xfconf_channel_remove_property
-xfconf_channel_get_all
+xfconf_channel_remove_properties
+xfconf_channel_get_properties
 xfconf_channel_get_string
 xfconf_channel_get_string_list
 xfconf_channel_get_int

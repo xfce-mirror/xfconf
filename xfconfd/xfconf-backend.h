@@ -78,6 +78,7 @@ struct _XfconfBackendInterface
     
     gboolean (*get_all)(XfconfBackend *backend,
                         const gchar *channel,
+                        const gchar *property_base,
                         GHashTable *properties,
                         GError **error);
     
@@ -90,11 +91,8 @@ struct _XfconfBackendInterface
     gboolean (*remove)(XfconfBackend *backend,
                        const gchar *channel,
                        const gchar *property,
+                       gboolean recursive,
                        GError **error);
-    
-    gboolean (*remove_channel)(XfconfBackend *backend,
-                               const gchar *channel,
-                               GError **error);
     
     gboolean (*flush)(XfconfBackend *backend,
                       GError **error);
@@ -129,6 +127,7 @@ gboolean xfconf_backend_get(XfconfBackend *backend,
 
 gboolean xfconf_backend_get_all(XfconfBackend *backend,
                                 const gchar *channel,
+                                const gchar *property_base,
                                 GHashTable *properties,
                                 GError **error);
 
@@ -141,12 +140,9 @@ gboolean xfconf_backend_exists(XfconfBackend *backend,
 gboolean xfconf_backend_remove(XfconfBackend *backend,
                                const gchar *channel,
                                const gchar *property,
+                               gboolean recursive,
                                GError **error);
 
-gboolean xfconf_backend_remove_channel(XfconfBackend *backend,
-                                       const gchar *channel,
-                                       GError **error);
-    
 gboolean xfconf_backend_flush(XfconfBackend *backend,
                               GError **error);
 

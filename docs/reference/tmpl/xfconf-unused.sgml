@@ -66,6 +66,16 @@ stamp-xfconf-marshal
 
 @Returns: 
 
+<!-- ##### FUNCTION xfconf_backend_remove_channel ##### -->
+<para>
+
+</para>
+
+@backend: 
+@channel: 
+@error: 
+@Returns: 
+
 <!-- ##### FUNCTION xfconf_channel_begin_transaction ##### -->
 <para>
 
@@ -82,6 +92,14 @@ stamp-xfconf-marshal
 @channel: 
 
 <!-- ##### FUNCTION xfconf_channel_commit_transaction ##### -->
+<para>
+
+</para>
+
+@channel: 
+@Returns: 
+
+<!-- ##### FUNCTION xfconf_channel_get_all ##### -->
 <para>
 
 </para>

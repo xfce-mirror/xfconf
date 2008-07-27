@@ -68,12 +68,22 @@ configuration keys with the same names.
 @property: 
 
 
-<!-- ##### FUNCTION xfconf_channel_get_all ##### -->
+<!-- ##### FUNCTION xfconf_channel_remove_properties ##### -->
 <para>
 
 </para>
 
 @channel: 
+@property_base: 
+
+
+<!-- ##### FUNCTION xfconf_channel_get_properties ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property_base: 
 @Returns: 
 
 

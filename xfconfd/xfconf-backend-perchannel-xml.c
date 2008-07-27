@@ -145,6 +145,7 @@ static gboolean xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
                                                   GError **error);
 static gboolean xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
                                                       const gchar *channel,
+                                                      const gchar *property_base,
                                                       GHashTable *properties,
                                                       GError **error);
 static gboolean xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
@@ -155,10 +156,8 @@ static gboolean xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
 static gboolean xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
                                                      const gchar *channel,
                                                      const gchar *property,
+                                                     gboolean recursive,
                                                      GError **error);
-static gboolean xfconf_backend_perchannel_xml_remove_channel(XfconfBackend *backend,
-                                                             const gchar *channel,
-                                                             GError **error);
 static gboolean xfconf_backend_perchannel_xml_flush(XfconfBackend *backend,
                                                     GError **error);
 static void xfconf_backend_perchannel_xml_register_property_changed_func(XfconfBackend *backend,
@@ -183,6 +182,8 @@ static GNode *xfconf_proptree_add_property(GNode *proptree,
                                            gboolean locked);
 static XfconfProperty *xfconf_proptree_lookup(GNode *proptree,
                                               const gchar *name);
+static GNode *xfconf_proptree_lookup_node(GNode *proptree,
+                                          const gchar *name);
 static gboolean xfconf_proptree_remove(GNode *proptree,
                                        const gchar *name);
 static void xfconf_proptree_destroy(GNode *proptree);
@@ -241,7 +242,6 @@ xfconf_backend_perchannel_xml_backend_init(XfconfBackendInterface *iface)
     iface->get_all = xfconf_backend_perchannel_xml_get_all;
     iface->exists = xfconf_backend_perchannel_xml_exists;
     iface->remove = xfconf_backend_perchannel_xml_remove;
-    iface->remove_channel = xfconf_backend_perchannel_xml_remove_channel;
     iface->flush = xfconf_backend_perchannel_xml_flush;
     iface->register_property_changed_func = xfconf_backend_perchannel_xml_register_property_changed_func;
 }
@@ -409,6 +409,7 @@ xfconf_proptree_node_to_hash_table(GNode *node,
 static gboolean
 xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
                                       const gchar *channel,
+                                      const gchar *property_base,
                                       GHashTable *properties,
                                       GError **error)
 {
@@ -423,13 +424,25 @@ xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
             return FALSE;
     }
 
-    for(cur = g_node_first_child(props_tree);
-        cur;
-        cur = g_node_next_sibling(cur))
-    {
+    if(property_base[0] && property_base[1]) {
+        /* it's not "" or "/" */
+        cur = xfconf_proptree_lookup_node(props_tree, property_base);
+        if(!cur) {
+            if(error) {
+                g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_PROPERTY_NOT_FOUND,
+                             _("Property \"%s\" does not exist on channel \"%s\""),
+                             property_base, channel);
+            }
+            return FALSE;
+        }
+
+        g_strlcpy(cur_path, property_base, sizeof(cur_path));
+    } else {
+        cur = props_tree;
         cur_path[0] = 0;
-        xfconf_proptree_node_to_hash_table(cur, properties, cur_path);
     }
+
+    xfconf_proptree_node_to_hash_table(cur, properties, cur_path);
 
     return TRUE;
 }
@@ -471,40 +484,6 @@ xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
     return TRUE;
 }
 
-static gboolean
-xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
-                                     const gchar *channel,
-                                     const gchar *property,
-                                     GError **error)
-{
-    XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    GNode *properties = g_tree_lookup(xbpx->channels, channel);
-
-    if(!properties) {
-        properties = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
-                                                                error);
-        if(!properties)
-            return FALSE;
-    }
-
-    if(!xfconf_proptree_remove(properties, property)) {
-        if(error) {
-            g_set_error(error, XFCONF_ERROR,
-                        XFCONF_ERROR_PROPERTY_NOT_FOUND,
-                        _("Property \"%s\" does not exist on channel \"%s\""),
-                        property, channel);
-        }
-        return FALSE;
-    }
-
-    if(xbpx->prop_changed_func)
-        xbpx->prop_changed_func(backend, channel, property, xbpx->prop_changed_data);
-
-    xfconf_backend_perchannel_xml_schedule_save(xbpx, channel);
-
-    return TRUE;
-}
-
 typedef struct
 {
     XfconfBackend *backend;
@@ -526,9 +505,10 @@ static void nodes_do_propchange_remove(GNode *node,
 }
 
 static gboolean
-xfconf_backend_perchannel_xml_remove_channel(XfconfBackend *backend,
-                                             const gchar *channel,
-                                             GError **error)
+do_remove_channel(XfconfBackend *backend,
+                  const gchar *channel,
+                  GNode *properties,
+                  GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
     gchar *filename;
@@ -545,14 +525,8 @@ xfconf_backend_perchannel_xml_remove_channel(XfconfBackend *backend,
     }
 
     if(xbpx->prop_changed_func) {
-        GNode *properties = g_tree_lookup(xbpx->channels, channel);
         PropChangeData pdata;
 
-        if(!properties) {
-            properties = xfconf_backend_perchannel_xml_load_channel(xbpx,
-                                                                    channel,
-                                                                    NULL);
-        }
         pdata.backend = backend;
         pdata.channel = channel;
         g_node_children_foreach(properties, G_TRAVERSE_ALL,
@@ -572,6 +546,77 @@ xfconf_backend_perchannel_xml_remove_channel(XfconfBackend *backend,
         return FALSE;
     }
     g_free(filename);
+
+    return TRUE;
+}
+
+static gboolean
+xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
+                                     const gchar *channel,
+                                     const gchar *property,
+                                     gboolean recursive,
+                                     GError **error)
+{
+    XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
+    GNode *properties = g_tree_lookup(xbpx->channels, channel);
+
+    if(!properties) {
+        properties = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
+                                                                error);
+        if(!properties)
+            return FALSE;
+    }
+
+    if(!recursive) {
+        if(!xfconf_proptree_remove(properties, property)) {
+            if(error) {
+                g_set_error(error, XFCONF_ERROR,
+                            XFCONF_ERROR_PROPERTY_NOT_FOUND,
+                            _("Property \"%s\" does not exist on channel \"%s\""),
+                            property, channel);
+            }
+            return FALSE;
+        }
+
+        if(xbpx->prop_changed_func)
+            xbpx->prop_changed_func(backend, channel, property, xbpx->prop_changed_data);
+    } else {
+        GNode *top;
+        XfconfProperty *prop;
+        
+        if(property[0] && property[1]) {
+            PropChangeData pdata;
+
+            /* it's not "" or "/" */
+            top = xfconf_proptree_lookup_node(properties, property);
+            if(!top) {
+                if(error) {
+                    g_set_error(error, XFCONF_ERROR,
+                                XFCONF_ERROR_PROPERTY_NOT_FOUND,
+                                _("Property \"%s\" does not exist on channel \"%s\""),
+                                property, channel);
+                }
+                return FALSE;
+            }
+
+            g_node_unlink(top);
+            prop = top->data;
+            if(G_VALUE_TYPE(&prop->value) && xbpx->prop_changed_func)
+                xbpx->prop_changed_func(backend, channel, property, xbpx->prop_changed_data);
+
+            pdata.backend = backend;
+            pdata.channel = channel;
+            g_node_children_foreach(top, G_TRAVERSE_ALL,
+                                    nodes_do_propchange_remove, &pdata);
+
+            xfconf_proptree_destroy(top);
+        } else {
+            /* remove the entire channel */
+            return do_remove_channel(backend, channel, properties, error);
+        }
+    }
+
+    xfconf_backend_perchannel_xml_schedule_save(xbpx, channel);
 
     return TRUE;
 }

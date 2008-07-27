@@ -38,12 +38,16 @@
         </method>
         
         <!--
-             Array{String,Variant} org.xfce.Xfconf.GetAllProperties(String channel)
+             Array{String,Variant} org.xfce.Xfconf.GetAllProperties(String channel,
+                                                                    String property_base)
              
              @channel: A channel/application/namespace name.
+             @property_base: The root of poperties to return.
              
              Gets all the properties and values that exist in
-             @channel.
+             @channel that are rooted at @property_base.  Passing
+             "/" or the empty string as @property_base will return
+             all properties in the channel.
              
              Returns: An array of properties and values; the
                       properties are strings, and the values are 
@@ -51,6 +55,7 @@
         -->
         <method name="GetAllProperties">
             <arg direction="in" name="channel" type="s"/>
+            <arg direction="in" name="property_base" type="s"/>
             <arg direction="out" name="properties" type="a{sv}"/>
         </method>
         
@@ -73,27 +78,23 @@
         
         <!--
              void org.xfce.Xfconf.RemoveProperty(String channel,
-                                                 String property)
+                                                 String property,
+                                                 Boolean recursive)
              
              @channel: A channel/application/namespace name.
              @property: A property name.
+             @recursive: Whether the operation removes sub-properties.
              
-             Removes @property and its value from @channel.
+             Removes @property and its value from @channel.  If
+             @recursive is true, all sub-properties of the
+             specified property will be removed as well.  If the
+             special "/" property is specified for @property, and
+             @recursive is true, the entire channel will be removed.
         -->
         <method name="RemoveProperty">
             <arg direction="in" name="channel" type="s"/>
             <arg direction="in" name="property" type="s"/>
-        </method>
-        
-        <!--
-             void org.xfce.Xfconf.RemoveChannel(String channel)
-             
-             @channel: A channel/application/namespace name.
-             
-             Removes a channel and all properties in it.
-        -->
-        <method name="RemoveChannel">
-            <arg direction="in" name="channel" type="s"/>
+            <arg direction="in" name="recursive" type="b"/>
         </method>
         
         <!--
