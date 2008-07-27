@@ -106,6 +106,14 @@ xfconf_property_is_valid(const gchar *property,
     }
 
     p++;
+    if(!*p) {
+        if(error) {
+            g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_INVALID_PROPERTY,
+                        _("The root element ('/') is not a valid property name"));
+        }
+        return FALSE;
+    }
+
     while(*p) {
         if(!(*p >= 'A' && *p <= 'Z') && !(*p >= 'a' && *p <= 'z')
            && !(*p >= '0' && *p <= '9')
@@ -130,6 +138,14 @@ xfconf_property_is_valid(const gchar *property,
         }
 
         p++;
+    }
+
+    if(*(p-1) == '/') {
+        if(error) {
+            g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_INVALID_PROPERTY,
+                        _("Property names cannot end with a '/' character"));
+        }
+        return FALSE;
     }
 
     return TRUE;
