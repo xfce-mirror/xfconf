@@ -69,7 +69,7 @@
 #define CONFIG_DIR_STEM  "xfce4/xfconf/" XFCONF_BACKEND_PERCHANNEL_XML_TYPE_ID "/"
 #define CONFIG_FILE_FMT  CONFIG_DIR_STEM "%s.xml"
 #define CACHE_TIMEOUT    (20*60*1000)  /* 20 minutes */
-#define WRITE_TIMEOUT    (5*1000)  /* 5 secionds */
+#define WRITE_TIMEOUT    (5*1000)  /* 5 seconds */
 #define MAX_PROP_PATH    (4096)
 
 struct _XfconfBackendPerchannelXml
@@ -81,7 +81,7 @@ struct _XfconfBackendPerchannelXml
     GTree *channels;
 
     guint save_id;
-    GList *dirty_channels;
+    GSList *dirty_channels;
 
     XfconfPropertyChangedFunc prop_changed_func;
     gpointer prop_changed_data;
@@ -519,12 +519,12 @@ do_remove_channel(XfconfBackend *backend,
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
     gchar *filename;
-    GList *dirty;
+    GSList *dirty;
 
-    if((dirty = g_list_find_custom(xbpx->dirty_channels, channel,
-                                   (GCompareFunc)g_ascii_strcasecmp)))
+    if((dirty = g_slist_find_custom(xbpx->dirty_channels, channel,
+                                    (GCompareFunc)g_ascii_strcasecmp)))
     {
-        xbpx->dirty_channels = g_list_remove(xbpx->dirty_channels, dirty);
+        xbpx->dirty_channels = g_slist_remove(xbpx->dirty_channels, dirty);
         if(!xbpx->dirty_channels && xbpx->save_id) {
             g_source_remove(xbpx->save_id);
             xbpx->save_id = 0;
@@ -633,7 +633,7 @@ xfconf_backend_perchannel_xml_flush(XfconfBackend *backend,
                                     GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    GList *l;
+    GSList *l;
 
     for(l = xbpx->dirty_channels; l; l = l->next)
         xfconf_backend_perchannel_xml_flush_channel(xbpx, l->data, error);
@@ -732,7 +732,7 @@ xfconf_proptree_add_property(GNode *proptree,
             parent = xfconf_proptree_add_property(proptree, tmp, NULL, FALSE);
     }
 
-    prop = g_new0(XfconfProperty, 1);
+    prop = g_slice_new0(XfconfProperty);
     prop->name = g_strdup(strrchr(name, '/')+1);
     if(value) {
         g_value_init(&prop->value, G_VALUE_TYPE(value));
@@ -813,7 +813,7 @@ xfconf_property_free(XfconfProperty *property)
     g_free(property->name);
     if(G_IS_VALUE(&property->value))
         g_value_unset(&property->value);
-    g_free(property);
+    g_slice_free(XfconfProperty, property);
 }
 
 static gboolean
@@ -829,8 +829,8 @@ static void
 xfconf_backend_perchannel_xml_schedule_save(XfconfBackendPerchannelXml *xbpx,
                                             const gchar *channel)
 {
-    if(!g_list_find_custom(xbpx->dirty_channels, channel,
-                           (GCompareFunc)g_ascii_strcasecmp))
+    if(!g_slist_find_custom(xbpx->dirty_channels, channel,
+                            (GCompareFunc)g_ascii_strcasecmp))
     {
         gpointer orig_key = NULL, val = NULL;
 
@@ -839,7 +839,7 @@ xfconf_backend_perchannel_xml_schedule_save(XfconfBackendPerchannelXml *xbpx,
             return;
         }
 
-        xbpx->dirty_channels = g_list_prepend(xbpx->dirty_channels, orig_key);
+        xbpx->dirty_channels = g_slist_prepend(xbpx->dirty_channels, orig_key);
     }
 
     if(xbpx->save_id)
@@ -862,7 +862,7 @@ xfconf_backend_perchannel_xml_create_channel(XfconfBackendPerchannelXml *xbpx,
         return properties;
     }
 
-    prop = g_new0(XfconfProperty, 1);
+    prop = g_slice_new0(XfconfProperty);
     prop->name = g_strdup("/");
     properties = g_node_new(prop);
     g_tree_insert(xbpx->channels, g_ascii_strdown(channel, -1), properties);
@@ -975,7 +975,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
 
                         xfconf_proptree_destroy(state->properties);
 
-                        prop = g_new0(XfconfProperty, 1);
+                        prop = g_slice_new0(XfconfProperty);
                         prop->name = g_strdup("/");
                         state->properties = g_node_new(prop);
                     }
@@ -1377,7 +1377,7 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
 {
     GNode *properties = NULL;
     gchar *filename_stem = NULL, **filenames = NULL;
-    GList *system_files = NULL, *user_files = NULL, *l;
+    GSList *system_files = NULL, *user_files = NULL, *l;
     gint i;
     XfconfProperty *prop;
     gboolean channel_locked = FALSE;
@@ -1390,9 +1390,9 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
 
     for(i = 0; filenames[i]; ++i) {
         if(!access(filenames[i], W_OK))  /* we can write, it's ours */
-            user_files = g_list_append(user_files, filenames[i]);
+            user_files = g_slist_append(user_files, filenames[i]);
         else if(!access(filenames[i], R_OK))  /* we can read, it's system */
-            system_files = g_list_append(system_files, filenames[i]);
+            system_files = g_slist_append(system_files, filenames[i]);
         else  /* we can't even read, so skip it */
             g_free(filenames[i]);
     }
@@ -1407,7 +1407,7 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
         goto out;
     }
 
-    prop = g_new0(XfconfProperty, 1);
+    prop = g_slice_new0(XfconfProperty);
     prop->name = g_strdup("/");
     properties = g_node_new(prop);
 
@@ -1426,10 +1426,10 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
 
 out:
 
-    g_list_foreach(user_files, (GFunc)g_free, NULL);
-    g_list_free(user_files);
-    g_list_foreach(system_files, (GFunc)g_free, NULL);
-    g_list_free(system_files);
+    g_slist_foreach(user_files, (GFunc)g_free, NULL);
+    g_slist_free(user_files);
+    g_slist_foreach(system_files, (GFunc)g_free, NULL);
+    g_slist_free(system_files);
 
     return properties;
 }

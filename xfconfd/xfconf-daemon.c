@@ -30,6 +30,7 @@
 #include "xfconf-marshal.h"
 #include "xfconf-gvaluefuncs.h"
 #include "xfconf/xfconf-errors.h"
+#include "xfconf-common-private.h"
 
 static gboolean xfconf_set_property(XfconfDaemon *xfconfd,
                                     const gchar *channel,
@@ -105,7 +106,7 @@ xfconf_daemon_class_init(XfconfDaemonClass *klass)
     
     object_class->finalize = xfconf_daemon_finalize;
     
-    signals[SIG_PROPERTY_CHANGED] = g_signal_new("property-changed",
+    signals[SIG_PROPERTY_CHANGED] = g_signal_new(I_("property-changed"),
                                                  XFCONF_TYPE_DAEMON,
                                                  G_SIGNAL_RUN_LAST,
                                                  0,
@@ -116,7 +117,7 @@ xfconf_daemon_class_init(XfconfDaemonClass *klass)
                                                  G_TYPE_STRING,
                                                  G_TYPE_VALUE);
 
-    signals[SIG_PROPERTY_REMOVED] = g_signal_new("property-removed",
+    signals[SIG_PROPERTY_REMOVED] = g_signal_new(I_("property-removed"),
                                                  XFCONF_TYPE_DAEMON,
                                                  G_SIGNAL_RUN_LAST,
                                                  0,

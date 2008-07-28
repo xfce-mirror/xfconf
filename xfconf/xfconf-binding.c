@@ -27,6 +27,7 @@
 
 #include "xfconf-binding.h"
 #include "xfconf-alias.h"
+#include "xfconf-common-private.h"
 
 typedef struct
 {
@@ -77,7 +78,7 @@ xfconf_g_binding_free(XfconfGBinding *binding)
 
     g_free(binding->xfconf_property);
     g_free(binding->object_property);
-    g_free(binding);
+    g_slice_free(XfconfGBinding, binding);
 }
 
 static void
@@ -94,14 +95,14 @@ xfconf_g_binding_object_destroyed(gpointer data,
                                   GObject *where_the_object_was)
 {
     XfconfGBinding *binding = data;
-    GList *bindings = g_object_steal_data(G_OBJECT(binding->channel),
-                                          "--xfconf-g-bindings");
+    GSList *bindings = g_object_steal_data(G_OBJECT(binding->channel),
+                                           I_("--xfconf-g-bindings"));
 
-    bindings = g_list_remove(bindings, binding);
+    bindings = g_slist_remove(bindings, binding);
     if(bindings) {
         g_object_set_data_full(G_OBJECT(binding->channel),
-                               "--xfconf-g-bindings",
-                               bindings, (GDestroyNotify)g_list_free);
+                               I_("--xfconf-g-bindings"),
+                               bindings, (GDestroyNotify)g_slist_free);
     }
 
     binding->object = NULL;
@@ -191,7 +192,7 @@ xfconf_g_property_bind(XfconfChannel *channel,
     XfconfGBinding *binding;
     GParamSpec *pspec;
     gchar buf[1024];
-    GList *bindings;
+    GSList *bindings;
     GValue value = { 0, };
 
     g_return_if_fail(XFCONF_IS_CHANNEL(channel)
@@ -228,7 +229,7 @@ xfconf_g_property_bind(XfconfChannel *channel,
     }
 
 
-    binding = g_new0(XfconfGBinding, 1);
+    binding = g_slice_new0(XfconfGBinding);
     binding->channel = channel;
     binding->xfconf_property = g_strdup(xfconf_property);
     binding->xfconf_property_type = xfconf_property_type;
@@ -253,13 +254,13 @@ xfconf_g_property_bind(XfconfChannel *channel,
                      G_CALLBACK(xfconf_g_binding_object_property_changed),
                      binding);
 
-    bindings = g_object_get_data(G_OBJECT(channel), "--xfconf-g-bindings");
+    bindings = g_object_get_data(G_OBJECT(channel), I_("--xfconf-g-bindings"));
     if(bindings)
-        bindings = g_list_append(bindings, binding);
+        bindings = g_slist_append(bindings, binding);
     else {
-        bindings = g_list_append(bindings, binding);
-        g_object_set_data_full(G_OBJECT(channel), "--xfconf-g-bindings",
-                               bindings, (GDestroyNotify)g_list_free);
+        bindings = g_slist_append(bindings, binding);
+        g_object_set_data_full(G_OBJECT(channel), I_("--xfconf-g-bindings"),
+                               bindings, (GDestroyNotify)g_slist_free);
     }
 
     if(xfconf_channel_get_property(channel, xfconf_property, &value)) {
@@ -285,9 +286,9 @@ xfconf_g_property_unbind(XfconfChannel *channel,
                          GObject *object,
                          const gchar *object_property)
 {
-    GList *bindings = g_object_steal_data(G_OBJECT(channel),
-                                          "--xfconf-g-bindings");
-    GList *l;
+    GSList *bindings = g_object_steal_data(G_OBJECT(channel),
+                                           I_("--xfconf-g-bindings"));
+    GSList *l;
 
     for(l = bindings; l; l = l->next) {
         XfconfGBinding *binding = l->data;
@@ -296,15 +297,15 @@ xfconf_g_property_unbind(XfconfChannel *channel,
            && !strcmp(xfconf_property, binding->xfconf_property)
            && !strcmp(object_property, binding->object_property))
         {
-            bindings = g_list_delete_link(bindings, l);
+            bindings = g_slist_delete_link(bindings, l);
             xfconf_g_binding_free(binding);
             break;
         }
     }
 
     if(bindings) {
-        g_object_set_data_full(G_OBJECT(channel), "--xfconf-g-bindings",
-                               bindings, (GDestroyNotify)g_list_free);
+        g_object_set_data_full(G_OBJECT(channel), I_("--xfconf-g-bindings"),
+                               bindings, (GDestroyNotify)g_slist_free);
     }
 }
 

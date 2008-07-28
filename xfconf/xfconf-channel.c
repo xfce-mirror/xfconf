@@ -141,7 +141,7 @@ xfconf_channel_class_init(XfconfChannelClass *klass)
      * G_VALUE_TYPE(value) == G_TYPE_INVALID
      * </programlisting></informalexample>
      **/
-    signals[SIG_PROPERTY_CHANGED] = g_signal_new("property-changed",
+    signals[SIG_PROPERTY_CHANGED] = g_signal_new(I_("property-changed"),
                                                  XFCONF_TYPE_CHANNEL,
                                                  G_SIGNAL_RUN_LAST
                                                  | G_SIGNAL_DETAILED,

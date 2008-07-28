@@ -1,3 +1,14 @@
+2008-07-28	Nick Schermer <nick@xfce.org>
+
+	* configure.ac.in: Bump glib dependency to 2.12.0.
+	* xfconf/xfconf-channel.c, xfconf/xfconf-binding.c,
+	  xfconfd/xfconf-backend-perchannel-xml.c,
+	  xfconfd/xfconf-daemon.c, common/xfconf-common-private.h:
+	  Use GSList where possible. Use the slice allocator where
+	  possible (therefore the 2.12.0 dependency). Use
+	  g_intern_static_string() in g_signal_new and 
+	  g_object_[sg]et_data.
+
 2008-07-10	Jannis Pohlmann <jannis@xfce.org>
 
 	* autogen.sh: Fix @REVISION@ substitution when using git svn.
