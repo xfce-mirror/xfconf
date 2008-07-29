@@ -191,7 +191,7 @@ xfconf_channel_set_g_property(GObject *object,
 {
     switch(property_id) {
         case PROP_CHANNEL_NAME:
-            XFCONF_CHANNEL(object)->channel_name = g_strdup(g_value_get_string(value));
+            XFCONF_CHANNEL(object)->channel_name = g_value_dup_string(value);
             break;
 
         default:
