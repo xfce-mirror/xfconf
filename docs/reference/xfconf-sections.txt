@@ -96,4 +96,5 @@ XFCONF_TYPE_UINT16
 <FILE>xfconf-binding</FILE>
 xfconf_g_property_bind
 xfconf_g_property_unbind
+xfconf_g_property_unbind_all
 </SECTION>

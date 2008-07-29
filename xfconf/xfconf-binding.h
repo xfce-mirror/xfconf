@@ -40,6 +40,8 @@ void xfconf_g_property_unbind(XfconfChannel *channel,
                               GObject *object,
                               const gchar *object_property);
 
+void xfconf_g_property_unbind_all(GObject *object);
+
 G_END_DECLS
 
 #endif  /* __XFCONF_BINDING_H__ */

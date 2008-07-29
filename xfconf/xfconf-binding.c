@@ -25,6 +25,8 @@
 #include <string.h>
 #endif
 
+#define DATA_KEY (I_("--xfconf-g-bindings"))
+
 #include "xfconf.h"
 #include "xfconf-alias.h"
 #include "xfconf-common-private.h"
@@ -60,7 +62,7 @@ xfconf_g_binding_free(XfconfGBinding *binding)
 
     if(binding->object) {
         g_signal_handlers_disconnect_by_func(G_OBJECT(binding->object),
-                                            G_CALLBACK(xfconf_g_binding_object_property_changed),
+                                             G_CALLBACK(xfconf_g_binding_object_property_changed),
                                              binding);
         g_object_weak_unref(G_OBJECT(binding->object),
                             xfconf_g_binding_object_destroyed,
@@ -86,6 +88,14 @@ xfconf_g_binding_channel_destroyed(gpointer data,
                                    GObject *where_the_object_was)
 {
     XfconfGBinding *binding = data;
+    GSList *bindings = g_object_steal_data(G_OBJECT(binding->object), DATA_KEY);
+    bindings = g_slist_remove(bindings, binding);
+
+    if(bindings) {
+        g_object_set_data_full(G_OBJECT(binding->object), DATA_KEY,
+                               bindings, (GDestroyNotify)g_slist_free);
+    }
+
     binding->channel = NULL;
     xfconf_g_binding_free(binding);
 }
@@ -95,16 +105,6 @@ xfconf_g_binding_object_destroyed(gpointer data,
                                   GObject *where_the_object_was)
 {
     XfconfGBinding *binding = data;
-    GSList *bindings = g_object_steal_data(G_OBJECT(binding->channel),
-                                           I_("--xfconf-g-bindings"));
-
-    bindings = g_slist_remove(bindings, binding);
-    if(bindings) {
-        g_object_set_data_full(G_OBJECT(binding->channel),
-                               I_("--xfconf-g-bindings"),
-                               bindings, (GDestroyNotify)g_slist_free);
-    }
-
     binding->object = NULL;
     xfconf_g_binding_free(binding);
 }
@@ -254,12 +254,12 @@ xfconf_g_property_bind(XfconfChannel *channel,
                      G_CALLBACK(xfconf_g_binding_object_property_changed),
                      binding);
 
-    bindings = g_object_get_data(G_OBJECT(channel), I_("--xfconf-g-bindings"));
+    bindings = g_object_get_data(G_OBJECT(object), DATA_KEY);
     if(bindings)
         bindings = g_slist_append(bindings, binding);
     else {
         bindings = g_slist_append(bindings, binding);
-        g_object_set_data_full(G_OBJECT(channel), I_("--xfconf-g-bindings"),
+        g_object_set_data_full(G_OBJECT(object), DATA_KEY,
                                bindings, (GDestroyNotify)g_slist_free);
     }
 
@@ -286,14 +286,13 @@ xfconf_g_property_unbind(XfconfChannel *channel,
                          GObject *object,
                          const gchar *object_property)
 {
-    GSList *bindings = g_object_steal_data(G_OBJECT(channel),
-                                           I_("--xfconf-g-bindings"));
+    GSList *bindings = g_object_steal_data(G_OBJECT(object), DATA_KEY);
     GSList *l;
 
     for(l = bindings; l; l = l->next) {
         XfconfGBinding *binding = l->data;
 
-        if(object == binding->object
+        if(channel == binding->channel
            && !strcmp(xfconf_property, binding->xfconf_property)
            && !strcmp(object_property, binding->object_property))
         {
@@ -304,12 +303,28 @@ xfconf_g_property_unbind(XfconfChannel *channel,
     }
 
     if(bindings) {
-        g_object_set_data_full(G_OBJECT(channel), I_("--xfconf-g-bindings"),
+        g_object_set_data_full(G_OBJECT(object), DATA_KEY,
                                bindings, (GDestroyNotify)g_slist_free);
     }
 }
 
+/**
+ * xfconf_g_property_unbind_all:
+ * @object: A #GObject.
+ *
+ * Unbinds all Xfconf channel bindings (see xfconf_g_property_bind())
+ * to the #GObject.
+ **/
+void
+xfconf_g_property_unbind_all(GObject *object)
+{
+    GSList *bindings = g_object_steal_data(G_OBJECT(object), DATA_KEY);
 
+    if(bindings) {
+        g_slist_foreach(bindings, (GFunc)xfconf_g_binding_free, NULL);
+        g_slist_free(bindings);
+    }
+}
 
 #define __XFCONF_BINDING_C__
 #include "common/xfconf-aliasdef.c"
