@@ -21,6 +21,8 @@
 #include <config.h>
 #endif
 
+#include <string.h>
+
 #include <dbus/dbus-glib-lowlevel.h>
 #include <libxfce4util/libxfce4util.h>
 
@@ -57,6 +59,9 @@ static gboolean xfconf_remove_property(XfconfDaemon *xfconfd,
                                        const gchar *property,
                                        gboolean recursive,
                                        GError **error);
+static gboolean xfconf_list_channels(XfconfDaemon *xfconfd,
+                                     gchar ***channels,
+                                     GError **error);
 static gboolean xfconf_gui_show_list(XfconfDaemon *xfconfd,
                                      const gchar *display,
                                      GError **error);
@@ -337,6 +342,34 @@ xfconf_remove_property(XfconfDaemon *xfconfd,
     
     return ret;
 }
+
+static gboolean
+xfconf_list_channels(XfconfDaemon *xfconfd,
+                     gchar ***channels,
+                     GError **error)
+{
+    GSList *lchannels = NULL, *chans_tmp, *lc;
+    GList *l;
+    gint i;
+
+    /* FIXME: with multiple backends, this can cause duplicates */
+    for(l = xfconfd->backends; l; l = l->next) {
+        chans_tmp = NULL;
+        if(xfconf_backend_list_channels(l->data, &chans_tmp, error))
+            lchannels = g_slist_concat(lchannels, chans_tmp);
+        else if(error)
+            g_clear_error(error);
+    }
+
+    *channels = g_malloc(sizeof(gchar *) * (g_slist_length(lchannels) + 1));
+    for(lc = lchannels, i = 0; lc; lc = lc->next, ++i)
+        (*channels)[i] = lc->data;
+    (*channels)[i] = NULL;
+    g_slist_free(lchannels);
+
+    return TRUE;
+}
+
 
 static gboolean
 xfconf_gui_show_list(XfconfDaemon *xfconfd,

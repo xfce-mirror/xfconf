@@ -219,6 +219,7 @@ tests/Makefile
 tests/set-properties/Makefile
 tests/has-properties/Makefile
 tests/get-properties/Makefile
+tests/list-channels/Makefile
 tests/remove-properties/Makefile
 tests/property-changed-signal/Makefile
 xfconf/Makefile

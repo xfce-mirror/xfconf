@@ -96,6 +96,16 @@
             <arg direction="in" name="property" type="s"/>
             <arg direction="in" name="recursive" type="b"/>
         </method>
+
+        <!--
+             Array{String} org.xfce.Xfconf.ListChannels()
+
+             Returns a list of all known channels as an array of
+             strings.
+        -->
+        <method name="ListChannels">
+            <arg direction="out" name="channels" type="as"/>
+        </method>
         
         <!--
              void org.xfce.Xfconf.PropertyChanged(String channel,

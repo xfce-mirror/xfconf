@@ -405,6 +405,31 @@ xfconf_backend_remove(XfconfBackend *backend,
 }
 
 /**
+ * xfconf_backend_list_channels:
+ * @backend: The #XfconfBackend.
+ * @channels: A pointer to a #GSList head.
+ *
+ * Instructs the backend to return a list of channels with
+ * configuration data stored in the configuration store.
+ *
+ * Return value: The backend should return %TRUE if the operation
+ *               was successful, or %FALSE otherwise.  On %FALSE,
+ *               @error should be set to a description of the failure.
+ **/
+gboolean
+xfconf_backend_list_channels(XfconfBackend *backend,
+                             GSList **channels,
+                             GError **error)
+{
+    XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
+
+    xfconf_backend_return_val_if_fail(iface && iface->list_channels
+                                      && (!error || !*error), FALSE);
+
+    return iface->list_channels(backend, channels, error);
+}
+
+/**
  * xfconf_backend_flush
  * @backend: The #XfconfBackend.
  * @error: An error return.

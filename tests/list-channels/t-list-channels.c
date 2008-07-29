@@ -1,7 +1,7 @@
 /*
  *  xfconf
  *
- *  Copyright (c) 2007 Brian Tarricone <bjt23@cornell.edu>
+ *  Copyright (c) 2008 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,33 +17,25 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __XFCONF_H__
-#define __XFCONF_H__
+#include "tests-common.h"
 
-#include <glib.h>
+int
+main(int argc,
+     char **argv)
+{
+    gchar **channels;
+    gint i;
+    
+    if(!xfconf_tests_start())
+        return 1;
+    
+    TEST_OPERATION((channels = xfconf_list_channels()));
 
-#define XFCONF_IN_XFCONF_H
-
-#include <xfconf/xfconf-channel.h>
-#include <xfconf/xfconf-binding.h>
-#include <xfconf/xfconf-errors.h>
-#include <xfconf/xfconf-types.h>
-
-#undef XFCONF_IN_XFCONF_H
-
-G_BEGIN_DECLS
-
-gboolean xfconf_init(GError **error);
-void xfconf_shutdown();
-
-void xfconf_named_struct_register(const gchar *struct_name,
-                                  guint n_members,
-                                  const GType *member_types);
-
-void xfconf_array_free(GPtrArray *arr);
-
-gchar **xfconf_list_channels();
-
-G_END_DECLS
-
-#endif  /* __XFCONF_H__ */
+    for(i = 0; channels[i]; ++i)
+        g_print("Channel %d: %s\n", i, channels[i]);
+    TEST_OPERATION((i == 1));
+    
+    xfconf_tests_end();
+    
+    return 0;
+}

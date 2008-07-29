@@ -158,6 +158,9 @@ static gboolean xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
                                                      const gchar *property,
                                                      gboolean recursive,
                                                      GError **error);
+static gboolean xfconf_backend_perchannel_xml_list_channels(XfconfBackend *backend,
+                                                            GSList **channels,
+                                                            GError **error);
 static gboolean xfconf_backend_perchannel_xml_flush(XfconfBackend *backend,
                                                     GError **error);
 static void xfconf_backend_perchannel_xml_register_property_changed_func(XfconfBackend *backend,
@@ -242,6 +245,7 @@ xfconf_backend_perchannel_xml_backend_init(XfconfBackendInterface *iface)
     iface->get_all = xfconf_backend_perchannel_xml_get_all;
     iface->exists = xfconf_backend_perchannel_xml_exists;
     iface->remove = xfconf_backend_perchannel_xml_remove;
+    iface->list_channels = xfconf_backend_perchannel_xml_list_channels;
     iface->flush = xfconf_backend_perchannel_xml_flush;
     iface->register_property_changed_func = xfconf_backend_perchannel_xml_register_property_changed_func;
 }
@@ -624,6 +628,36 @@ xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
     }
 
     xfconf_backend_perchannel_xml_schedule_save(xbpx, channel);
+
+    return TRUE;
+}
+
+static gboolean
+xfconf_backend_perchannel_xml_list_channels(XfconfBackend *backend,
+                                            GSList **channels,
+                                            GError **error)
+{
+    gchar **dirs;
+    gint i;
+    GDir *dir;
+    const gchar *name;
+
+    dirs = xfce_resource_lookup_all(XFCE_RESOURCE_CONFIG, CONFIG_DIR_STEM);
+    for(i = 0; dirs[i]; ++i) {
+        dir = g_dir_open(dirs[i], 0, 0);
+        if(!dir)
+            continue;
+
+        while((name = g_dir_read_name(dir))) {
+            if(g_str_has_suffix(name, ".xml")) {
+                /* FIXME: maybe validate the files' contents a bit? */
+                *channels = g_slist_prepend(*channels,
+                                            g_strndup(name, strlen(name) - 4));
+            }
+        }
+
+        g_dir_close(dir);
+    }
 
     return TRUE;
 }

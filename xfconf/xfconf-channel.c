@@ -31,8 +31,8 @@
 #include "xfconf-marshal.h"
 #include "xfconf-types.h"
 #include "xfconf-common-private.h"
-#include "xfconf-alias.h"
 #include "xfconf.h"
+#include "xfconf-alias.h"
 
 #define ALIGN_VAL(val, align)  ( ((val) + ((align) -1)) & ~((align) - 1) )
 
@@ -1961,6 +1961,29 @@ out:
     xfconf_array_free(arr);
 
     return ret;
+}
+
+/**
+ * xfconf_list_channels:
+ *
+ * Lists all channels known in the Xfconf configuration store.
+ *
+ * Returns: A newly-allocated array of strings.  Free with
+ *          g_strfreev() when no longer needed.
+ **/
+/* this really belongs in xfconf.c, but i don't feel like including
+ * xfconf-dbus-bindings.h twice, or copying the ERROR macros */
+gchar **
+xfconf_list_channels()
+{
+    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    gchar **channels = NULL;
+    ERROR_DEFINE;
+
+    if(!xfconf_client_list_channels(proxy, &channels, ERROR))
+        ERROR_CHECK;
+
+    return channels;
 }
 
 

@@ -25,7 +25,7 @@
 #include <string.h>
 #endif
 
-#include "xfconf-binding.h"
+#include "xfconf.h"
 #include "xfconf-alias.h"
 #include "xfconf-common-private.h"
 

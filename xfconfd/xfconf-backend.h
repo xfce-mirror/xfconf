@@ -93,6 +93,10 @@ struct _XfconfBackendInterface
                        const gchar *property,
                        gboolean recursive,
                        GError **error);
+
+    gboolean (*list_channels)(XfconfBackend *backend,
+                              GSList **channels,
+                              GError **error);
     
     gboolean (*flush)(XfconfBackend *backend,
                       GError **error);
@@ -142,6 +146,10 @@ gboolean xfconf_backend_remove(XfconfBackend *backend,
                                const gchar *property,
                                gboolean recursive,
                                GError **error);
+
+gboolean xfconf_backend_list_channels(XfconfBackend *backend,
+                                      GSList **channels,
+                                      GError **error);
 
 gboolean xfconf_backend_flush(XfconfBackend *backend,
                               GError **error);

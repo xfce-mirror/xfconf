@@ -160,8 +160,17 @@ main(int argc, char **argv)
     /** Check if the channel is specified */
     if(!channel_name)
     {
-        g_print("No channel specified, aborting...\n");
-        return 1;
+        gchar **channels;
+        gint i;
+
+        g_print("Channels:\n");
+
+        channels = xfconf_list_channels();
+        for(i = 0; channels[i]; ++i)
+            g_print("  %s\n", channels[i]);
+        g_strfreev(channels);
+
+        return 0;
     }
 
     /** Check if the property is specified */

@@ -4,6 +4,7 @@ SUBDIRS = \
 	property-changed-signal \
 	has-properties \
 	get-properties \
+	list-channels \
 	remove-properties
 
 clean-local:

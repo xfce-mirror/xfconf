@@ -91,6 +91,7 @@ xfconf_channel_get_structv
 xfconf_channel_set_struct
 xfconf_channel_set_struct_valist
 xfconf_channel_set_structv
+xfconf_list_channels
 #endif
 #endif
 
