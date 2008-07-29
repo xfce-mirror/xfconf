@@ -68,6 +68,12 @@
 #define XSETTINGS_DEBUG_LOAD(str) \
     if (debug) g_print ("Loading Property: '%s'\n", str)
 
+#define XSETTINGS_PARAM_FLAGS (G_PARAM_READWRITE \
+                               | G_PARAM_CONSTRUCT_ONLY \
+                               | G_PARAM_STATIC_NAME \
+                               | G_PARAM_STATIC_NICK \
+                               | G_PARAM_STATIC_BLURB)
+
 G_DEFINE_TYPE(XSettingsRegistry, xsettings_registry, G_TYPE_OBJECT);
 
 enum
@@ -187,25 +193,23 @@ xsettings_registry_class_init(XSettingsRegistryClass *reg_class)
 	object_class->set_property = xsettings_registry_set_property;
 	object_class->get_property = xsettings_registry_get_property;
 
-
-	pspec = g_param_spec_object("channel", NULL, NULL, XFCONF_TYPE_CHANNEL, G_PARAM_READABLE|G_PARAM_WRITABLE|G_PARAM_CONSTRUCT_ONLY);
+	pspec = g_param_spec_object("channel", NULL, NULL, XFCONF_TYPE_CHANNEL, XSETTINGS_PARAM_FLAGS);
 	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_CHANNEL, pspec);
 
-	pspec = g_param_spec_int("screen", NULL, NULL, -1, 65535, -1, G_PARAM_READABLE|G_PARAM_WRITABLE|G_PARAM_CONSTRUCT_ONLY);
+	pspec = g_param_spec_int("screen", NULL, NULL, -1, 65535, -1, XSETTINGS_PARAM_FLAGS);
 	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_SCREEN, pspec);
 
-	pspec = g_param_spec_pointer("display", NULL, NULL, G_PARAM_READABLE|G_PARAM_WRITABLE|G_PARAM_CONSTRUCT_ONLY);
+	pspec = g_param_spec_pointer("display", NULL, NULL, XSETTINGS_PARAM_FLAGS);
 	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_DISPLAY, pspec);
 
-	pspec = g_param_spec_long("xsettings_atom", NULL, NULL, G_MINLONG, G_MAXLONG, 0, G_PARAM_READABLE|G_PARAM_WRITABLE|G_PARAM_CONSTRUCT_ONLY);
+	pspec = g_param_spec_long("xsettings_atom", NULL, NULL, G_MINLONG, G_MAXLONG, 0, XSETTINGS_PARAM_FLAGS);
 	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_XSETTINGS_ATOM, pspec);
 
-	pspec = g_param_spec_long("selection_atom", NULL, NULL, G_MINLONG, G_MAXLONG, 0, G_PARAM_READABLE|G_PARAM_WRITABLE|G_PARAM_CONSTRUCT_ONLY);
+	pspec = g_param_spec_long("selection_atom", NULL, NULL, G_MINLONG, G_MAXLONG, 0, XSETTINGS_PARAM_FLAGS);
 	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_SELECTION_ATOM, pspec);
 
-	pspec = g_param_spec_long("window", NULL, NULL, G_MINLONG, G_MAXLONG, 0, G_PARAM_READABLE|G_PARAM_WRITABLE|G_PARAM_CONSTRUCT_ONLY);
+	pspec = g_param_spec_long("window", NULL, NULL, G_MINLONG, G_MAXLONG, 0, XSETTINGS_PARAM_FLAGS);
 	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_WINDOW, pspec);
-
 }
 
 void
