@@ -165,7 +165,10 @@ xfconf_channel_class_init(XfconfChannelClass *klass)
                                                         "The name of the channel",
                                                         NULL,
                                                         G_PARAM_READWRITE
-                                                        | G_PARAM_CONSTRUCT_ONLY));
+                                                        | G_PARAM_CONSTRUCT_ONLY
+                                                        | G_PARAM_STATIC_NAME
+                                                        | G_PARAM_STATIC_NICK
+                                                        | G_PARAM_STATIC_BLURB));
 }
 
 static void
