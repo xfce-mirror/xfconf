@@ -255,10 +255,10 @@ xfconf_g_property_bind(XfconfChannel *channel,
                      binding);
 
     bindings = g_object_get_data(G_OBJECT(object), DATA_KEY);
-    if(bindings)
+    if(G_UNLIKELY(bindings))
         bindings = g_slist_append(bindings, binding);
     else {
-        bindings = g_slist_append(bindings, binding);
+        bindings = g_slist_prepend(bindings, binding);
         g_object_set_data_full(G_OBJECT(object), DATA_KEY,
                                bindings, (GDestroyNotify)g_slist_free);
     }
