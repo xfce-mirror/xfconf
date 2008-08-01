@@ -202,10 +202,10 @@ xsettings_registry_class_init(XSettingsRegistryClass *reg_class)
 	pspec = g_param_spec_pointer("display", NULL, NULL, XSETTINGS_PARAM_FLAGS);
 	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_DISPLAY, pspec);
 
-	pspec = g_param_spec_long("xsettings_atom", NULL, NULL, G_MINLONG, G_MAXLONG, 0, XSETTINGS_PARAM_FLAGS);
+	pspec = g_param_spec_long("xsettings-atom", NULL, NULL, G_MINLONG, G_MAXLONG, 0, XSETTINGS_PARAM_FLAGS);
 	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_XSETTINGS_ATOM, pspec);
 
-	pspec = g_param_spec_long("selection_atom", NULL, NULL, G_MINLONG, G_MAXLONG, 0, XSETTINGS_PARAM_FLAGS);
+	pspec = g_param_spec_long("selection-atom", NULL, NULL, G_MINLONG, G_MAXLONG, 0, XSETTINGS_PARAM_FLAGS);
 	g_object_class_install_property(object_class, XSETTINGS_REGISTRY_PROPERTY_SELECTION_ATOM, pspec);
 
 	pspec = g_param_spec_long("window", NULL, NULL, G_MINLONG, G_MAXLONG, 0, XSETTINGS_PARAM_FLAGS);
@@ -574,8 +574,8 @@ xsettings_registry_new (XfconfChannel *channel, Display *dpy, gint screen)
                           "channel", channel,
                           "display", dpy,
                           "screen", screen,
-                          "xsettings_atom", xsettings_atom,
-                          "selection_atom", selection_atom,
+                          "xsettings-atom", xsettings_atom,
+                          "selection-atom", selection_atom,
                           "window", window,
                           NULL);
 
