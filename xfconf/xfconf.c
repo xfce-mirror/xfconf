@@ -79,14 +79,14 @@ _xfconf_get_gui_dbus_g_proxy()
 XfconfNamedStruct *
 _xfconf_named_struct_lookup(const gchar *struct_name)
 {
-    return g_hash_table_lookup(named_structs, struct_name);
+    return named_structs ? g_hash_table_lookup(named_structs, struct_name) : NULL;
 }
 
 static void
 _xfconf_named_struct_free(XfconfNamedStruct *ns)
 {
     g_free(ns->member_types);
-    g_free(ns);
+    g_slice_free(XfconfNamedStruct, ns);
 }
 
 
@@ -148,10 +148,6 @@ xfconf_init(GError **error)
                                                "/org/xfce/Xfconf",
                                                "org.xfce.Xfconf.GUI");
 
-    named_structs = g_hash_table_new_full(g_str_hash, g_str_equal,
-                                          (GDestroyNotify)g_free,
-                                          (GDestroyNotify)_xfconf_named_struct_free);
-
     ++xfconf_refcnt;
     return TRUE;
 }
@@ -169,8 +165,10 @@ xfconf_shutdown()
     if(--xfconf_refcnt)
         return;
 
-    g_hash_table_destroy(named_structs);
-    named_structs = NULL;
+    if(named_structs) {
+        g_hash_table_destroy(named_structs);
+        named_structs = NULL;
+    }
 
     g_object_unref(G_OBJECT(dbus_proxy));
     dbus_proxy = NULL;
@@ -198,15 +196,24 @@ xfconf_named_struct_register(const gchar *struct_name,
 {
     XfconfNamedStruct *ns;
 
-    g_return_if_fail(struct_name && *struct_name && n_members && member_types
-                     && !g_hash_table_lookup(named_structs, struct_name));
+    g_return_if_fail(struct_name && *struct_name && n_members && member_types);
 
-    ns = g_new(XfconfNamedStruct, 1);
-    ns->n_members = n_members;
-    ns->member_types = g_new(GType, n_members);
-    memcpy(ns->member_types, member_types, sizeof(GType) * n_members);
+    /* lazy initialize the hash table */
+    if(named_structs == NULL)
+        named_structs = g_hash_table_new_full(g_str_hash, g_str_equal,
+                                              (GDestroyNotify)g_free,
+                                              (GDestroyNotify)_xfconf_named_struct_free);
 
-    g_hash_table_insert(named_structs, g_strdup(struct_name), ns);
+    if(G_UNLIKELY(g_hash_table_lookup(named_structs, struct_name)))
+        g_critical("The struct '%s' is already registered", struct_name);
+    else {
+        ns = g_slice_new(XfconfNamedStruct);
+        ns->n_members = n_members;
+        ns->member_types = g_new(GType, n_members);
+        memcpy(ns->member_types, member_types, sizeof(GType) * n_members);
+
+        g_hash_table_insert(named_structs, g_strdup(struct_name), ns);
+    }
 }
 
 #if 0
