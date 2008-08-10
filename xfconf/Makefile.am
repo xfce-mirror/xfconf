@@ -49,9 +49,7 @@ BUILT_SOURCES = \
 	xfconf-dbus-bindings.h
 
 xfconf-dbus-bindings.h: $(top_srcdir)/common/xfconf-dbus.xml Makefile
-	dbus-binding-tool --mode=glib-client --prefix=xfconf_client $< \
-	    | sed -e 's/org_xfce_Xfconf_/xfconf_client_/g;' \
-	          -e 's/_GUI_/_gui_/g;' > $@
+	dbus-binding-tool --mode=glib-client $< > $@
 
 if HAVE_GNUC_VISIBILITY
 TESTS = abicheck.sh
