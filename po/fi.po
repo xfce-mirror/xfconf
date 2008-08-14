@@ -1,0 +1,289 @@
+# Finnish translation of the xfconf package.
+# Copyright (C) 2003-2006 The Xfce development team.
+# This file is distributed under the same license as the xfconf package.
+#
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008.
+#
+#: ../xfsettingsd/main.c:127
+msgid ""
+msgstr ""
+"Project-Id-Version: xfconf\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-08-14 13:31+0300\n"
+"PO-Revision-Date: 2008-08-14 13:45+0300\n"
+"Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
+"Language-Team: Finnish <xfce-i18n@xfce.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../common/xfconf-gvaluefuncs.c:243
+msgid "true"
+msgstr "tosi"
+
+#: ../common/xfconf-gvaluefuncs.c:244
+msgid "false"
+msgstr "epätosi"
+
+#: ../xfsettingsd/main.c:52 ../xfconf-query/main.c:96
+msgid "Version information"
+msgstr "Versiotiedot"
+
+#: ../xfsettingsd/main.c:56 ../xfconf-query/main.c:116
+msgid "Verbose output"
+msgstr "Yksityiskohtainen tulostus"
+
+#: ../xfsettingsd/main.c:60
+msgid "Force replace existing any xsettings daemon"
+msgstr "Korvaa olemassaoleva xsettings-taustaprosessi"
+
+#: ../xfsettingsd/main.c:64
+msgid "Start in debug mode (don't fork to the background)"
+msgstr "Käynnistä vianetsintätilassa (älä siirry taustalle)"
+
+#: ../xfsettingsd/main.c:131
+#, c-format
+msgid ""
+"%s: %s\n"
+"Try %s --help to see a full list of available command line options.\n"
+msgstr ""
+"%s: %s\n"
+"Kirjoittamalla %s --help saat täyden listan komentorivivalitsimista.\n"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:266
+#, c-format
+msgid "Unable to create configuration directory"
+msgstr "Asetushakemistoa ei voi luoda"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:313
+#, c-format
+msgid "You don't have permission to modify property \"%s\" on channel \"%s\""
+msgstr "Sinulla ei ole oikeuksia muokata asetusta \"%s\" kanavalla \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:364
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:437
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:586
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:607
+#, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\""
+msgstr "Asetusta \"%s\" ei ole kanavalla \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:553
+#, c-format
+msgid "Unable to remove channel \"%s\": %s"
+msgstr "Kanavaa \"%s\" ei voi poistaa: %s"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1110
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1180
+#, c-format
+msgid "Invalid type for <%s>: \"%s\""
+msgstr "Tyyppi ei kelpaa kohteelle <%s>: \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1122
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1192
+#, c-format
+msgid "Unable to parse value of type \"%s\" from \"%s\""
+msgstr "\"%s\"-tyyppisen arvon jäsennys ei onnistu kohteesta \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1171
+#, c-format
+msgid "The type attribute of <value> cannot be an array"
+msgstr "<arvon> tyyppiominaisuus ei voi olla taulukko"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1439
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1682
+#, c-format
+msgid "Channel \"%s\" does not exist"
+msgstr "Kanavaa \"%s\" ei ole olemassa"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1727
+#, c-format
+msgid "Unable to write channel \"%s\": %s"
+msgstr "Kanavaa \"%s\" ei voi kirjoittaa: %s"
+
+#: ../xfconfd/xfconf-backend-factory.c:70
+#, c-format
+msgid "Unable to find Xfconf backend of type \"%s\""
+msgstr "Tyypin \"%s\" Xfconf-moduulia ei löydy"
+
+#: ../xfconfd/xfconf-backend.c:103
+#, c-format
+msgid "Property names must start with a '/' character"
+msgstr "Asetuksen nimen täytyy alkaa \"/\"-merkillä"
+
+#: ../xfconfd/xfconf-backend.c:112
+#, c-format
+msgid "The root element ('/') is not a valid property name"
+msgstr "Juurielementti (\"/\") ei kelpaa asetuksen nimeksi"
+
+#: ../xfconfd/xfconf-backend.c:126
+#, c-format
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"Asetusten nimissä voi käyttää ainoastaan ASCII-merkkejä A-Z, a-z, 0-9, "
+"\"_\", \"-\", \"<\" ja \">\", sekä erotinmerkkiä \"/\""
+
+#: ../xfconfd/xfconf-backend.c:135
+#, c-format
+msgid "Property names cannot have two or more '/' characters in a row"
+msgstr "Asetuksen nimessä ei voi olla peräkkäisiä \"/\"-merkkejä"
+
+#: ../xfconfd/xfconf-backend.c:146
+#, c-format
+msgid "Property names cannot end with a '/' character"
+msgstr "Asetuksen nimi ei voi päättyä \"/\"-merkkiin"
+
+#: ../xfconfd/xfconf-backend.c:163
+#, c-format
+msgid "Channel name cannot be an empty string"
+msgstr "Kanavan nimi ei voi olla tyhjä merkkijono"
+
+#: ../xfconfd/xfconf-backend.c:176
+#, c-format
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr ""
+"Kanavien nimissä voi käyttää ainoastaan ASCII-merkkejä A-Z, a-z, 0-9, \"_\" "
+"sekä \"-\""
+
+#: ../xfconfd/xfconf-backend.c:394
+#, c-format
+msgid ""
+"The property name can only be empty or \"/\" if a recursive remove was "
+"specified."
+msgstr ""
+"Asetuksen nimi voi olla tyhjä tai \"/\" ainoastaan rekursiivisen poiston "
+"tapauksessa."
+
+#: ../xfconfd/main.c:127
+msgid "Prints the xfconfd version"
+msgstr "Tulostaa xfconfd:n version"
+
+#: ../xfconfd/main.c:129
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
+msgstr ""
+"Käytettävät asetusmoduulit. Ensimmäinen määritetty moduuli avataan luku- "
+"ja kirjoitustilassa, muut vain luettavaksi."
+
+#: ../xfconfd/main.c:158
+msgid "Xfce configuration daemon"
+msgstr "Xfce:n asetus-taustaprosessi"
+
+#: ../xfconfd/main.c:160
+msgid "Report bugs to http://bugs.xfce.org/\n"
+msgstr "Ilmoita vioista osoitteeseen http://bugs.xfce.org/\n"
+
+#: ../xfconfd/xfconf-daemon.c:448
+#, c-format
+msgid "Another Xfconf daemon is already running"
+msgstr "Xfconf-taustaprosessi on jo käynnissä"
+
+#: ../xfconfd/xfconf-daemon.c:484
+#, c-format
+msgid "No backends could be started"
+msgstr "Moduulien käynnistys epäonnistui"
+
+#: ../xfconf-query/main.c:100
+msgid "pick the channel"
+msgstr "valitse kanava"
+
+#: ../xfconf-query/main.c:104
+msgid "pick the property"
+msgstr "valitse asetus"
+
+#: ../xfconf-query/main.c:108
+msgid "set (change the value)"
+msgstr "aseta (vaihda arvo)"
+
+#: ../xfconf-query/main.c:112
+msgid "List properties"
+msgstr "Listaa asetukset"
+
+#: ../xfconf-query/main.c:120
+msgid "Create new entry"
+msgstr "Luo uusi asetus"
+
+#: ../xfconf-query/main.c:124
+msgid "Specify the property value type"
+msgstr "Määritä asetuksen arvon tyyppi"
+
+#: ../xfconf-query/main.c:128
+msgid "Remove property"
+msgstr "Poista asetus"
+
+#: ../xfconf-query/main.c:205
+#, c-format
+msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
+msgstr "Asetusta \"%s\" ei ole kanavalla \"%s\".\n"
+
+#: ../xfconf-query/main.c:213 ../xfconf-query/main.c:231
+msgid "(unknown)"
+msgstr "(tuntematon)"
+
+#: ../xfconf-query/main.c:222
+#, c-format
+msgid ""
+"Value is an array with %d items:\n"
+"\n"
+msgstr ""
+"Arvo on taulukko, jossa on %d kohdetta:\n"
+"\n"
+
+#: ../xfconf-query/main.c:245
+#, c-format
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\".  If you would\n"
+"like to create a new property, use the --create option.\n"
+msgstr ""
+"Asetusta \"%s\" ei ole kanavalla \"%s\". Jos haluat luoda uuden\n"
+"asetuksen, käytä valitsinta --create.\n"
+
+#: ../xfconf-query/main.c:253
+#, c-format
+msgid "When creating a new property, you must specify the value type.\n"
+msgstr "Arvon tyyppi on määritettävä uutta asetusta luotaessa.\n"
+
+#: ../xfconf-query/main.c:263
+#, c-format
+msgid "Failed to get existing type for value.\n"
+msgstr "Arvon tyypin noutaminen epäonnistui.\n"
+
+#: ../xfconf-query/main.c:281
+#, c-format
+msgid "Unable to determine type of value.\n"
+msgstr "Arvon tyypin määritys ei onnistu.\n"
+
+#: ../xfconf-query/main.c:287
+#, c-format
+msgid "You must specify a value type to change an array into a single value.\n"
+msgstr "Määritä arvon tyyppi muuttaaksesi taulukon yksittäiseksi arvoksi.\n"
+
+#: ../xfconf-query/main.c:297 ../xfconf-query/main.c:359
+#, c-format
+msgid "Unable to convert \"%s\" to type \"%s\"\n"
+msgstr "Kohdetta \"%s\" ei voi muuttaa \"%s\"-tyyppiseksi\n"
+
+#: ../xfconf-query/main.c:304 ../xfconf-query/main.c:374
+#, c-format
+msgid "Failed to set property.\n"
+msgstr "Asetuksen muutos epäonnistui.\n"
+
+#: ../xfconf-query/main.c:329
+#, c-format
+msgid "Have %d new values, but could only determine %d types.\n"
+msgstr "%d uutta arvoa, mutta määritettiin vain %d tyyppiä.\n"
+
+#: ../xfconf-query/main.c:350
+#, c-format
+msgid "Unable to determine type of value at index %d.\n"
+msgstr "Tyypin määritys ei onnistu arvolle indeksillä %d.\n"
+
+#: ../xfconf-query/main.c:392
+#, c-format
+msgid "Channel '%s' contains no properties\n"
+msgstr "Kanavalla \"%s\" ei ole asetuksia\n"
