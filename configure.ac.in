@@ -12,9 +12,9 @@ m4_define([libxfconf_gtk_verinfo], [0:0:0])
 m4_define([libxfconf_gtk_version_api], [0])
 m4_define([xfconf_version_major], [4])
 m4_define([xfconf_version_minor], [5])
-m4_define([xfconf_version_micro], [90])
+m4_define([xfconf_version_micro], [80])
 m4_define([xfconf_version_build], [r@REVISION@])
-m4_define([xfconf_version_tag], [svn])
+m4_define([xfconf_version_tag], [])
 m4_define([xfconf_version], [xfconf_version_major().xfconf_version_minor().xfconf_version_micro()ifelse(xfconf_version_tag(), [svn], [xfconf_version_tag()-xfconf_version_build()], [xfconf_version_tag()])])
 
 dnl init autoconf
@@ -22,7 +22,7 @@ AC_INIT([xfconf], [xfconf_version], [bjt23@cornell.edu])
 AC_PREREQ([2.50])
 
 dnl init automake
-AM_INIT_AUTOMAKE()
+AM_INIT_AUTOMAKE([1.8 dist-bzip2 tar-ustar])
 AM_CONFIG_HEADER([config.h])
 dnl AC_DEFINE([WEBSITE], ["http://spuriousinterrupt.org/projects/xfconf"],
 dnl           [Location of the xfconf website])
