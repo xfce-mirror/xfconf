@@ -22,7 +22,7 @@ AC_INIT([xfconf], [xfconf_version], [bjt23@cornell.edu])
 AC_PREREQ([2.50])
 
 dnl init automake
-AM_INIT_AUTOMAKE()
+AM_INIT_AUTOMAKE([1.8 dist-bzip2 tar-ustar])
 AM_CONFIG_HEADER([config.h])
 dnl AC_DEFINE([WEBSITE], ["http://spuriousinterrupt.org/projects/xfconf"],
 dnl           [Location of the xfconf website])
