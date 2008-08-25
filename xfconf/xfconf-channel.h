@@ -39,7 +39,7 @@ typedef struct _XfconfChannel         XfconfChannel;
 
 GType xfconf_channel_get_type() G_GNUC_CONST;
 
-XfconfChannel *xfconf_channel_new(const gchar *channel_name);
+XfconfChannel *xfconf_channel_new(const gchar *channel_name) G_GNUC_WARN_UNUSED_RESULT;
 
 gboolean xfconf_channel_has_property(XfconfChannel *channel,
                                      const gchar *property);
@@ -50,13 +50,13 @@ void xfconf_channel_remove_properties(XfconfChannel *channel,
                                       const gchar *property_base);
 
 GHashTable *xfconf_channel_get_properties(XfconfChannel *channel,
-                                          const gchar *property_base);
+                                          const gchar *property_base) G_GNUC_WARN_UNUSED_RESULT;
 
 /* basic types */
 
 gchar *xfconf_channel_get_string(XfconfChannel *channel,
                                  const gchar *property,
-                                 const gchar *default_value);
+                                 const gchar *default_value) G_GNUC_WARN_UNUSED_RESULT;
 gboolean xfconf_channel_set_string(XfconfChannel *channel,
                                    const gchar *property,
                                    const gchar *value);
@@ -99,7 +99,7 @@ gboolean xfconf_channel_set_bool(XfconfChannel *channel,
 /* this is just convenience API for the array stuff, where
  * all the values are G_TYPE_STRING */
 gchar **xfconf_channel_get_string_list(XfconfChannel *channel,
-                                       const gchar *property);
+                                       const gchar *property) G_GNUC_WARN_UNUSED_RESULT;
 gboolean xfconf_channel_set_string_list(XfconfChannel *channel,
                                         const gchar *property,
                                         const gchar **values);
@@ -127,7 +127,7 @@ gboolean xfconf_channel_get_array_valist(XfconfChannel *channel,
                                          GType first_value_type,
                                          va_list var_args);
 GPtrArray *xfconf_channel_get_arrayv(XfconfChannel *channel,
-                                     const gchar *property);
+                                     const gchar *property) G_GNUC_WARN_UNUSED_RESULT;
 
 gboolean xfconf_channel_set_array(XfconfChannel *channel,
                                   const gchar *property,

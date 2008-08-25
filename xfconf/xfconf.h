@@ -42,7 +42,7 @@ void xfconf_named_struct_register(const gchar *struct_name,
 
 void xfconf_array_free(GPtrArray *arr);
 
-gchar **xfconf_list_channels();
+gchar **xfconf_list_channels() G_GNUC_WARN_UNUSED_RESULT;
 
 G_END_DECLS
 
