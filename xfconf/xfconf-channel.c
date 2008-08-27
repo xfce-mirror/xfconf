@@ -1022,6 +1022,7 @@ xfconf_channel_set_property(XfconfChannel *channel,
 {
     DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
     GValue *val, tmp_val = { 0, };
+    GPtrArray *arr_new = NULL;
     gboolean ret;
     ERROR_DEFINE;
 
@@ -1038,6 +1039,11 @@ xfconf_channel_set_property(XfconfChannel *channel,
         val = &tmp_val;
         g_value_init(&tmp_val, G_TYPE_INT);
         g_value_set_int(&tmp_val, xfconf_g_value_get_int16(value));
+    } else if(G_VALUE_TYPE(value) == XFCONF_TYPE_G_VALUE_ARRAY) {
+        val = &tmp_val;
+        arr_new = xfconf_fixup_16bit_ints(g_value_get_boxed(value));
+        g_value_init(&tmp_val, XFCONF_TYPE_G_VALUE_ARRAY);
+        g_value_set_boxed(&tmp_val, arr_new);
     } else
         val = (GValue *)value;
 
@@ -1048,6 +1054,8 @@ xfconf_channel_set_property(XfconfChannel *channel,
 
     if(val == &tmp_val)
         g_value_unset(&tmp_val);
+    if(arr_new)
+        xfconf_array_free(arr_new);
 
     return ret;
 }
