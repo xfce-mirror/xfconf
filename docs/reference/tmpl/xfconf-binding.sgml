@@ -56,3 +56,14 @@ all this.
 @object: 
 
 
+<!-- ##### FUNCTION xfconf_g_property_bind_gdkcolor ##### -->
+<para>
+
+</para>
+
+@channel: 
+@xfconf_property: 
+@object: 
+@object_property: 
+
+
