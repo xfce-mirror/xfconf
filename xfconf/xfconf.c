@@ -26,6 +26,7 @@
 #endif
 
 #include <glib-object.h>
+#include <gobject/gvaluecollector.h>
 
 #include <dbus/dbus-glib.h>
 
@@ -222,6 +223,62 @@ xfconf_named_struct_register(const gchar *struct_name,
 
         g_hash_table_insert(named_structs, g_strdup(struct_name), ns);
     }
+}
+
+/**
+ * xfconf_array_values_from_gvalue:
+ * @value: A #GValue containing a #GPtrArray
+ * @member_index: the index of the first item to retrieve from the array
+ * @...: variable arguments
+ *
+ * Convenience function to retrieve array values from a #GValue returned
+ * by Xfconf.  The variable arguments should start with a pointer to a
+ * location to store the value at index @member_index.  Further vararg
+ * pairs should be (index, pointer location).  Terminate the argument
+ * list with G_MAXUINT.
+ *
+ * Returns: %TRUE if all values were copied, %FALSE on error.
+ **/
+gboolean
+xfconf_array_values_from_gvalue(const GValue *value,
+                                gint member_index,
+                                ...)
+{
+    va_list var_args;
+    GPtrArray *arr;
+    guint cur_i;
+    GValue *val_arr;
+
+    arr = g_value_get_boxed(value);
+    if(!arr)
+        return FALSE;
+
+    va_start(var_args, member_index);
+
+    for(cur_i = member_index; cur_i != G_MAXUINT; cur_i = va_arg(var_args,
+                                                                 guint))
+    {
+        gchar *errstr = NULL;
+
+        if(cur_i >= arr->len) {
+            va_end(var_args);
+            return FALSE;
+        }
+
+        val_arr = g_ptr_array_index(arr, cur_i);
+        G_VALUE_LCOPY(val_arr, var_args, 0, &errstr);
+        if(errstr) {
+            g_warning("Unable to convert value at position %d: %s",
+                      cur_i, errstr);
+            g_free(errstr);
+            va_end(var_args);
+            return FALSE;
+        }
+    }
+
+    va_end(var_args);
+
+    return TRUE;
 }
 
 #if 0

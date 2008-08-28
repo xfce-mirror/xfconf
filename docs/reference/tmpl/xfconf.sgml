@@ -48,6 +48,17 @@ resources.
 @member_types: 
 
 
+<!-- ##### FUNCTION xfconf_array_values_from_gvalue ##### -->
+<para>
+
+</para>
+
+@value: 
+@member_index: 
+@Varargs: 
+@Returns: 
+
+
 <!-- ##### FUNCTION xfconf_array_free ##### -->
 <para>
 

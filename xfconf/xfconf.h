@@ -40,6 +40,10 @@ void xfconf_named_struct_register(const gchar *struct_name,
                                   guint n_members,
                                   const GType *member_types);
 
+gboolean xfconf_array_values_from_gvalue(const GValue *value,
+                                         gint member_index,
+                                         ...);
+
 void xfconf_array_free(GPtrArray *arr);
 
 gchar **xfconf_list_channels(void) G_GNUC_WARN_UNUSED_RESULT;
