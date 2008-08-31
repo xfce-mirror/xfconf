@@ -382,20 +382,22 @@ xfconf_proptree_node_to_hash_table(GNode *node,
 
     if(G_VALUE_TYPE(&prop->value)) {
         GValue *value = g_new0(GValue, 1);
+        gchar *fullprop;
 
         g_value_copy(&prop->value, g_value_init(value,
                                                 G_VALUE_TYPE(&prop->value)));
-        g_hash_table_insert(props_hash,
-                            g_strconcat(cur_path, "/", prop->name, NULL),
-                            value);
+        fullprop = g_strconcat(cur_path, "/", prop->name, NULL);
+        g_hash_table_insert(props_hash, fullprop, value);
     }
 
     if(node->children) {
         GNode *cur;
         gchar *p;
 
-        g_strlcat(cur_path, "/", MAX_PROP_PATH);
-        g_strlcat(cur_path, prop->name, MAX_PROP_PATH);
+        if(prop->name[0] != '/') {
+            g_strlcat(cur_path, "/", MAX_PROP_PATH);
+            g_strlcat(cur_path, prop->name, MAX_PROP_PATH);
+        }
 
         for(cur = g_node_first_child(node);
             cur;
@@ -418,8 +420,8 @@ xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
                                       GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    GNode *props_tree = g_tree_lookup(xbpx->channels, channel), *cur;
-    gchar cur_path[MAX_PROP_PATH];
+    GNode *props_tree = g_tree_lookup(xbpx->channels, channel);
+    gchar cur_path[MAX_PROP_PATH], *p;
 
     if(!props_tree) {
         props_tree = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
@@ -430,8 +432,8 @@ xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
 
     if(property_base[0] && property_base[1]) {
         /* it's not "" or "/" */
-        cur = xfconf_proptree_lookup_node(props_tree, property_base);
-        if(!cur) {
+        props_tree = xfconf_proptree_lookup_node(props_tree, property_base);
+        if(!props_tree) {
             if(error) {
                 g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_PROPERTY_NOT_FOUND,
                              _("Property \"%s\" does not exist on channel \"%s\""),
@@ -441,19 +443,12 @@ xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
         }
 
         g_strlcpy(cur_path, property_base, sizeof(cur_path));
-        xfconf_proptree_node_to_hash_table(cur, properties, cur_path);
-    } else {
-        /* need to hit each child directly to avoid having a
-         * double '/' at the beginning of each prop */
-        for(cur = g_node_first_child(props_tree);
-            cur;
-            cur = g_node_next_sibling(cur))
-        {
-            cur_path[0] = 0;
-            xfconf_proptree_node_to_hash_table(cur, properties, cur_path);
-        }
-    }
+        p = g_strrstr(cur_path, "/");  /* guaranteed to succeed */
+        *p = 0;
+    } else
+        cur_path[0] = 0;
 
+    xfconf_proptree_node_to_hash_table(props_tree, properties, cur_path);
 
     return TRUE;
 }
