@@ -1,10 +1,8 @@
 # Finnish translation of the xfconf package.
-# Copyright (C) 2003-2006 The Xfce development team.
+# Copyright (C) 2008 The Xfce development team.
 # This file is distributed under the same license as the xfconf package.
-#
 # Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008.
 #
-#: xfsettingsd/main.c:127
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
