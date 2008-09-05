@@ -1,44 +1,46 @@
-# Brazilian Portuguese translation of the xfconf package.
-# Copyright (C) 2008 The Xfce development team.
+# German translations for xfconf package
+# German messages for xfconf.
+# Copyright (C) 2008 THE xfconf'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfconf package.
-# Og Maciel <ogmaciel@gnome.org>, 2008.
+# Fabian Nowak <timystery@arcor.de>, 2008.
 #
 #: xfsettingsd/main.c:127
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: xfconf 0.1.0svn-r27345\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-06 00:08+0200\n"
-"PO-Revision-Date: 2008-07-14 22:32-0500\n"
-"Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
-"Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
+"PO-Revision-Date: 2008-07-18 22:37+0200\n"
+"Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
+"Language-Team: German\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: common/xfconf-gvaluefuncs.c:243
 msgid "true"
-msgstr "true"
+msgstr "wahr"
 
 #: common/xfconf-gvaluefuncs.c:244
 msgid "false"
-msgstr "false"
+msgstr "falsch"
 
 #: xfsettingsd/main.c:52 xfconf-query/main.c:139
 msgid "Version information"
-msgstr "Informação da versão"
+msgstr "Versionsinformation"
 
 #: xfsettingsd/main.c:56 xfconf-query/main.c:159
 msgid "Verbose output"
-msgstr "Saída detalhada"
+msgstr "Gesprächige Ausgabe"
 
 #: xfsettingsd/main.c:60
 msgid "Force replace existing any xsettings daemon"
-msgstr "Forçar a substituição de qualquer serviço xsettings"
+msgstr "Erzwinge das Ersetzen jedes vorhandenen Daemons für xsettings"
 
 #: xfsettingsd/main.c:64
 msgid "Start in debug mode (don't fork to the background)"
-msgstr "Iniciar em mode de depuração (não bifurcar para o segundo plano)"
+msgstr "Im Debugmodus starten (nicht im Hintergrund ausführen)"
 
 #: xfsettingsd/main.c:131
 #, c-format
@@ -47,20 +49,20 @@ msgid ""
 "Try %s --help to see a full list of available command line options.\n"
 msgstr ""
 "%s: %s\n"
-"Tente %s --help para ver uma lista completa dos comandos de linha de comando "
-"disponíveis.\n"
+"Versuchen Sie »%s --help«, um die vollständige Liste verfügbarer Optionen für "
+"die Befehlszeile zu sehen.\n"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:266
 #, c-format
 msgid "Unable to create configuration directory"
-msgstr "Não foi possível criar o diretório de configurações"
+msgstr "Kann kein Verzeichnis für die Einstellungen anlegen"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:313
 #, c-format
 msgid "You don't have permission to modify property \"%s\" on channel \"%s\""
 msgstr ""
-"Você não possui permissões para modificar a propriedade \"%s\" no canal \"%s"
-"\""
+"Sie haben keine ausreichenden Rechte, um die Eigenschaft »%s« auf Kanal »%s« "
+"zu ändern."
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:364
 #: xfconfd/xfconf-backend-perchannel-xml.c:439
@@ -68,50 +70,50 @@ msgstr ""
 #: xfconfd/xfconf-backend-perchannel-xml.c:602
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr "A propriedade \"%s\" não existe no canal \"%s\""
+msgstr "Merkmal »%s« ist für den Kanal »%s« nicht vorhanden"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:548
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr "Não foi possível remover o canal \"%s\": %s"
+msgstr "Kann Kanal »%s« nicht entfernen: %s"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1105
 #: xfconfd/xfconf-backend-perchannel-xml.c:1175
 #, c-format
 msgid "Invalid type for <%s>: \"%s\""
-msgstr "Tipo inválido para <%s>: \"%s\""
+msgstr "Ungültiger Typ für <%s>: »%s«"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1117
 #: xfconfd/xfconf-backend-perchannel-xml.c:1187
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "Não foi possível analizar o valor do tipo \"%s\" de \"%s\""
+msgstr "Kann Wert vom Typ »%s« aus »%s« nicht auslesen"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1166
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "O tipo de atributo de <value> não pode ser uma matriz"
+msgstr "Das Typattribut von <wert> kann kein Array sein"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1434
 #: xfconfd/xfconf-backend-perchannel-xml.c:1677
 #, c-format
 msgid "Channel \"%s\" does not exist"
-msgstr "O canal \"%s\" não existe"
+msgstr "Der Kanal »%s« ist nicht vorhanden"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1722
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "Não é possível escrever o canal \"%s\": %s"
+msgstr "Kann auf Kanal \"%s\" nicht schreiben: %s"
 
 #: xfconfd/xfconf-backend-factory.c:70
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Não foi possível encontrar o backend do tipo \"%s\""
+msgstr ""
 
 #: xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Nomes de propriedades devem começar com um caractere \"/\""
+msgstr ""
 
 #: xfconfd/xfconf-backend.c:112
 #, c-format
@@ -124,25 +126,21 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
 msgstr ""
-"Nomes de propriedades só podem incluir os caracteres ASCII A-Z, a-z, 0-9, \"_"
-"\", \"-\", \"<\" e \">\", assim como também o \"/\" como um separador"
 
 #: xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more '/' characters in a row"
 msgstr ""
-"Nomes de propriedades não podem ter dois ou mais caracteres \"/\" em "
-"sequência"
 
 #: xfconfd/xfconf-backend.c:146
-#, fuzzy, c-format
+#, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Nomes de propriedades devem começar com um caractere \"/\""
+msgstr ""
 
 #: xfconfd/xfconf-backend.c:163
 #, c-format
 msgid "Channel name cannot be an empty string"
-msgstr "O nome do canal não pode ser vazio"
+msgstr ""
 
 #: xfconfd/xfconf-backend.c:176
 #, c-format
@@ -150,7 +148,6 @@ msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
 msgstr ""
-"Nomes de canais só podem incluir os caracteres ASCII A-Z, a-z, 0-9, '_' e '-'"
 
 #: xfconfd/xfconf-backend.c:394
 #, c-format
@@ -161,80 +158,78 @@ msgstr ""
 
 #: xfconfd/main.c:127
 msgid "Prints the xfconfd version"
-msgstr "Imprime a versão do xfconfd"
+msgstr ""
 
 #: xfconfd/main.c:129
 msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
 msgstr ""
-"Backends de configuração a usar. O primeiro backend especificado é aberto no "
-"modo de escrita e leitura; os outros somente de leitura."
 
 #: xfconfd/main.c:158
 msgid "Xfce configuration daemon"
-msgstr "Serviço de configuração do Xfce"
+msgstr "Einstellungsdaemon von Xfce"
 
 #: xfconfd/main.c:160
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr "Relate erros a http://bugs.xfce.org/\n"
+msgstr "Melden Sie Fehler an http://bugs.xfce.org/\n"
 
 #: xfconfd/xfconf-daemon.c:448
 #, c-format
 msgid "Another Xfconf daemon is already running"
-msgstr "Um outro serviço Xfconf já está em execução"
+msgstr "Es läuft bereits ein anderer Xfconf-Daemon"
 
 #: xfconfd/xfconf-daemon.c:484
 #, c-format
 msgid "No backends could be started"
-msgstr "Nenhum backend foi iniciado"
+msgstr "Es konnten keine Backends gestartet werden"
 
 #: xfconf-query/main.c:143
 msgid "pick the channel"
-msgstr "escolher o canal"
+msgstr "Kanal aufnehmen"
 
 #: xfconf-query/main.c:147
 msgid "pick the property"
-msgstr "escolha o canal"
+msgstr "Eigenschaft aufnehmen"
 
 #: xfconf-query/main.c:151
 msgid "set (change the value)"
-msgstr "defina (modifique o valor)"
+msgstr "setzen (den Wert verändern)"
 
 #: xfconf-query/main.c:155
 msgid "List properties"
-msgstr "Listar propriedades"
+msgstr "Eigenschaften aufführen"
 
 #: xfconf-query/main.c:163
 msgid "Create new entry"
-msgstr "Criar nova entrada"
+msgstr "Neuen Eintrag anlegen"
 
 #: xfconf-query/main.c:167
 msgid "Specify the property value type"
-msgstr "Especificar o tipo de valor da propriedade"
+msgstr "Geben Sie den Wertetyp der Eigenschaft an"
 
 #: xfconf-query/main.c:171
 msgid "Remove property"
-msgstr "Remover propriedade"
+msgstr "Entferne Eigenschaft"
 
 #: xfconf-query/main.c:175
 #, fuzzy
 msgid "Export channel"
-msgstr "escolher o canal"
+msgstr "Kanal aufnehmen"
 
 #: xfconf-query/main.c:179
 #, fuzzy
 msgid "Import channel"
-msgstr "escolher o canal"
+msgstr "Kanal aufnehmen"
 
 #: xfconf-query/main.c:276
 #, c-format
 msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
-msgstr "A propriedade \"%s\" não existe no canal \"%s\".\n"
+msgstr "Eigenschaft \"%s\" existiert nicht auf Kanal \"%s\".\n"
 
 #: xfconf-query/main.c:284 xfconf-query/main.c:302
 msgid "(unknown)"
-msgstr "(desconhecido)"
+msgstr "(unbekannt)"
 
 #: xfconf-query/main.c:293
 #, c-format
@@ -242,8 +237,6 @@ msgid ""
 "Value is an array with %d items:\n"
 "\n"
 msgstr ""
-"O valor é uma matriz com %d itens:\n"
-"\n"
 
 #: xfconf-query/main.c:316
 #, c-format
@@ -251,63 +244,51 @@ msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If you would\n"
 "like to create a new property, use the --create option.\n"
 msgstr ""
-"A propriedade \"%s\" não existe no canal \"%s\". Se você deseja\n"
-"criar uma nova propriedade, use a propriedade --create.\n"
 
 #: xfconf-query/main.c:324
 #, c-format
 msgid "When creating a new property, you must specify the value type.\n"
 msgstr ""
-"Ao criar uma nova propriedade, é necessário especificar o tipo do valor.\n"
+"Wenn Sie eine neue Eigenschaft anlegen, müssen Sie den Wertetyp angebem.\n"
 
 #: xfconf-query/main.c:334
 #, c-format
 msgid "Failed to get existing type for value.\n"
-msgstr "Falha ao obter o tipo atual para o valor.\n"
+msgstr "Konnten vorhandenen Typ des Werts nicht bekommen.\n"
 
 #: xfconf-query/main.c:352
 #, c-format
 msgid "Unable to determine type of value.\n"
-msgstr "Não foi possível determinar o tipo do valor.\n"
+msgstr "Kann Wertetyp nicht bestimmen\n"
 
 #: xfconf-query/main.c:358
 #, c-format
 msgid "You must specify a value type to change an array into a single value.\n"
 msgstr ""
-"É necessário especificar um tipo de valor para mudar uma matrix para um "
-"valor único.\n"
+"Sie müssen einen Wertetyp angeben, um ein Array in einen einzigen Wert "
+"konvertieren zu können.\n"
 
 #: xfconf-query/main.c:368 xfconf-query/main.c:430
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
-msgstr "Não foi possível converter \"%s\" para tipo \"%s\"\n"
+msgstr "Kann \"%s\" nicht in Typ \"%s\" konvertieren\n"
 
 #: xfconf-query/main.c:375 xfconf-query/main.c:445
 #, c-format
 msgid "Failed to set property.\n"
-msgstr "Falha ao definir a propriedade.\n"
+msgstr "Konnte Eigenschaften nicht setzen.\n"
 
 #: xfconf-query/main.c:400
 #, c-format
 msgid "Have %d new values, but could only determine %d types.\n"
-msgstr "Existem %d novos valores, mas só foi possível determinar %d tipos.\n"
+msgstr "Habe %d neue Werte, kann aber nur %d Typen erkennen.\n"
 
 #: xfconf-query/main.c:421
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
-msgstr "Não foi possível determinar o tipo do valor no índice %d.\n"
+msgstr "Kann Wertetyp bei Index %d nicht bestimmen.\n"
 
 #: xfconf-query/main.c:463
 #, c-format
 msgid "Channel '%s' contains no properties\n"
-msgstr "o canal \"%s\" não possui propriedades\n"
-
-#~ msgid "ERROR: Could not convert value\n"
-#~ msgstr "ERRO: Não foi possível converter o valor\n"
-
-#~ msgid ""
-#~ "ERROR: Property '%s' missing\n"
-#~ "from channel '%s'\n"
-#~ msgstr ""
-#~ "ERRO: A propriedade \"%s\" está faltando\n"
-#~ "do canal \"%s\"\n"
+msgstr "Kanal \"%s\" enthält keine Eigenschaften\n"

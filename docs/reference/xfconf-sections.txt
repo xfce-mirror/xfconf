@@ -97,4 +97,5 @@ XFCONF_TYPE_UINT16
 xfconf_g_property_bind
 xfconf_g_property_unbind
 xfconf_g_property_unbind_all
+xfconf_g_property_bind_gdkcolor
 </SECTION>

@@ -101,5 +101,6 @@ xfconf_list_channels
 xfconf_g_property_bind
 xfconf_g_property_unbind
 xfconf_g_property_unbind_all
+xfconf_g_property_bind_gdkcolor
 #endif
 #endif

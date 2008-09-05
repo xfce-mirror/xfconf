@@ -42,6 +42,11 @@ void xfconf_g_property_unbind(XfconfChannel *channel,
 
 void xfconf_g_property_unbind_all(GObject *object);
 
+void xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
+                                     const gchar *xfconf_property,
+                                     GObject *object,
+                                     const gchar *object_property);
+
 G_END_DECLS
 
 #endif  /* __XFCONF_BINDING_H__ */

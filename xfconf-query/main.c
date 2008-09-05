@@ -29,6 +29,19 @@
 #include <stdio.h>
 #endif
 
+#ifdef HAVE_SYS_STAT_H
+#include <sys/stat.h>
+#endif
+
+#ifdef HAVE_ERRNO_H
+#include <errno.h>
+#endif
+
+#ifdef HAVE_FCNTL_H
+#include <fcntl.h>
+#endif
+
+
 #include <stdlib.h>
 #include <string.h>
 #include <glib.h>
@@ -52,6 +65,36 @@ static gchar *channel_name = NULL;
 static gchar *property_name = NULL;
 static gchar **set_value = NULL;
 static gchar **type = NULL;
+static gchar *import_file = NULL;
+static gchar *export_file = NULL;
+
+static gboolean
+xfconf_query_import_channel (XfconfChannel *channel, gint fd, GError **error)
+{
+    if (error != NULL)
+    {
+        *error = g_error_new (G_FILE_ERROR, 1, "method not implemented");
+    }
+    else
+    {
+        g_warning ("--import: Method not implemented");
+    }
+    return FALSE;
+}
+
+static gboolean
+xfconf_query_export_channel (XfconfChannel *channel, gint fd, GError **error)
+{
+    if (error != NULL)
+    {
+        *error = g_error_new (G_FILE_ERROR, 1, "method not implemented");
+    }
+    else
+    {
+        g_warning ("--export: Method not implemented");
+    }
+    return FALSE;
+}
 
 static void
 xfconf_query_get_propname_size (gpointer key, gpointer value, gpointer user_data)
@@ -92,7 +135,7 @@ xfconf_query_list_contents (gpointer key, gpointer value, gpointer user_data)
 
 static GOptionEntry entries[] =
 {
-    {    "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
+     {   "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
         N_("Version information"),
         NULL
     },
@@ -128,6 +171,14 @@ static GOptionEntry entries[] =
         N_("Remove property"),
         NULL
     },
+    {   "export", 'x', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &export_file,
+        N_("Export channel"),
+        NULL,
+    },
+    {   "import", 'i', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &import_file,
+        N_("Import channel"),
+        NULL,
+    },
     { NULL }
 };
 
@@ -135,8 +186,10 @@ int
 main(int argc, char **argv)
 {
     GError *cli_error = NULL;
+    GError *error= NULL;
     XfconfChannel *channel = NULL;
     gboolean prop_exists;
+    gint fd = -1;
 
     g_type_init();
     xfconf_init(NULL);
@@ -174,7 +227,7 @@ main(int argc, char **argv)
     }
 
     /** Check if the property is specified */
-    if(!property_name && !list)
+    if(!property_name && !list && !export_file && !import_file)
     {
         g_print("No property specified, aborting...\n");
         return 1;
@@ -183,6 +236,24 @@ main(int argc, char **argv)
     if (create && remove)
     {
         g_print("--create and --remove options can not be used together,\naborting...\n");
+        return 1;
+    }
+
+    if ((create || remove) && (list))
+    {
+        g_print("--create and --remove options can not be used together with\n --list\naborting...\n");
+        return 1;
+    }
+
+    if (import_file && export_file)
+    {
+        g_print("--import and --export options can not be used together,\naborting...\n");
+        return 1;
+    }
+
+    if ((import_file || export_file) && (list || property_name || create || remove))
+    {
+        g_print("--import and --export options can not be used together with\n --create, --remove, --property and --list,\naborting...\n");
         return 1;
     }
 
@@ -390,6 +461,56 @@ main(int argc, char **argv)
         else
         {
             g_print(_("Channel '%s' contains no properties\n"), channel_name);
+        }
+    }
+
+    if (export_file)
+    {
+        if (!strcmp(export_file, "-"))
+        {
+            /* Open stdout */
+            xfconf_query_export_channel (channel, 1, NULL);
+        }
+        else
+        {
+            fd = open (export_file, O_CREAT | O_EXCL, 0);
+            if (fd < 0)
+            {
+                g_print ("Could not create export-file '%s',\n aborting...\n", export_file);
+                return 1;
+            }
+            if (!xfconf_query_export_channel (channel, fd, &error))
+            {
+                close (fd);
+                g_print ("Could not create export-file '%s',\n Cause: '%s'\n", export_file, error->message);
+                return 1;
+            }
+            close (fd);
+        }
+    }
+
+    if (import_file)
+    {
+        if (!strcmp(import_file, "-"))
+        {
+            /* Open stdin */
+            xfconf_query_import_channel (channel, 0, NULL);
+        }
+        else
+        {
+            fd = open (import_file, O_RDONLY, 0);
+            if (fd < 0)
+            {
+                g_print ("Could not open import-file '%s',\n aborting...\n", import_file);
+                return 1;
+            }
+            if (!xfconf_query_import_channel (channel, fd, &error))
+            {
+                close (fd);
+                g_print ("Could not parse import-file '%s',\n Cause: '%s'\n", import_file, error->message);
+                return 1;
+            }
+            close (fd);
         }
     }
 
