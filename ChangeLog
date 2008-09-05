@@ -1,27 +1,1030 @@
-2008-07-28	Nick Schermer <nick@xfce.org>
+2008-09-05  stephan
 
-	* configure.ac.in: Bump glib dependency to 2.12.0.
-	* xfconf/xfconf-channel.c, xfconf/xfconf-binding.c,
+	* configure.ac.in, po/de.po, po/fi.po, po/fr.po, po/pt_BR.po,
+	  po/xfconf.pot:
+	  Remove -svn tag Remove xfce 4.6 alpha tag update .po files
+
+2008-09-03  stephan
+
+	* xfconf-query/main.c:
+	  Add filename selection for --import and --export functions...
+	  still need implementations though
+
+2008-09-02  maximilian
+
+	* po/ChangeLog, po/LINGUAS, po/de.po, po/fi.po, po/fr.po,
+	  po/pt_BR.po:
+	  Translation update for Trunk in xfconf and Branch 4.4 in
+	  mousepad, mcs-manager
+
+2008-08-31  kelnos
+
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  fix fetching properties rooted at something other than /
+
+2008-08-30  jannis
+
+	* autogen.sh:
+	  Don't print errors when trying to determine the revision of a git
+	  svn repository.
+
+2008-08-27  kelnos
+
+	* docs/reference/tmpl/xfconf-binding.sgml,
+	  docs/reference/xfconf-sections.txt, xfconf/xfconf-binding.c,
+	  xfconf/xfconf-binding.h, xfconf/xfconf.symbols:
+	  add xfconf_g_property_bind_gdkcolor(), a nifty hack
+	  
+	  it binds the red/green/blue members of the GdkColor struct to an
+	  xfconf property without getting that pesky first 'pixel' struct
+	  member in the way
+	* xfconf/xfconf-channel.c:
+	  fix 16bit int handling when set with
+	  xfconf_channel_set_property()
+
+2008-08-25  kelnos
+
+	* xfconf/xfconf-channel.h, xfconf/xfconf.h:
+	  add some G_GNUC_WARN_UNUSED magic
+
+2008-08-17  stephan
+
+	* configure.ac.in:
+	  Version bump
+	* configure.ac.in:
+	  Fix configure.ac.in (with ALPHA version number)
+	* configure.ac.in:
+	  Bump version number
+	* configure.ac.in, po/fi.po, po/pt_BR.po:
+	  Bump version number update po files
+
+2008-08-14  jari
+
+	* po/ChangeLog, po/LINGUAS, po/fi.po:
+	  Added Finnish translation.
+
+2008-08-10  nick
+
+	* common/xfconf-dbus.xml, xfconf/Makefile.am:
+	  * Use org.freedesktop.DBus.GLib.ClientCSymbol.
+
+2008-08-07  nick
+
+	* xfconf/xfconf.c:
+	  xfconf/xfconf.c: Lazy initialize the hash table, since named
+	  structures are not used often. Use the slice allocator for the
+	  structures. Print critical warning when the named structure is
+	  already registered. Bug #4267.
+
+2008-08-01  nick
+
+	* xfsettingsd/registry.c:
+	  * Fix my previous commit. Apparently a static name should also be
+	  a canonical name...
+
+2008-07-30  nick
+
+	* xfconf/xfconf-binding.c:
+	  * Tiny optimization. We can assume we normally only bind 1
+	  property to an object. g_slist_prepend avoids a check inside
+	  glib.
+
+2008-07-29  nick
+
+	* xfconf/xfconf-channel.c:
+	  Use g_value_dup_string string here.
+	* xfsettingsd/registry.c:
+	  Don't copy the parameter names here too. Grouped the param's
+	  since they're all the same, so this is more readable.
+	* xfconf/xfconf-channel.c:
+	  Don't copy the parameter name, nick and blurb. They will always
+	  remain valid and unmodified.
+	* docs/reference/tmpl/xfconf-binding.sgml,
+	  docs/reference/xfconf-sections.txt, xfconf/xfconf-binding.c,
+	  xfconf/xfconf-binding.h, xfconf/xfconf.symbols:
+	  Implement xfconf_g_property_unbind_all(GObject *object), see Bug
+	  #4252.
+
+2008-07-29  kelnos
+
+	* common/xfconf-dbus.xml, configure.ac.in,
+	  docs/reference/tmpl/xfconf-backend.sgml,
+	  docs/reference/xfconf-sections.txt, tests/Makefile.am,
+	  tests/list-channels, tests/list-channels/Makefile.am,
+	  tests/list-channels/t-list-channels.c, xfconf-query/main.c,
+	  xfconf/xfconf-binding.c, xfconf/xfconf-channel.c,
+	  xfconf/xfconf.h, xfconf/xfconf.symbols,
 	  xfconfd/xfconf-backend-perchannel-xml.c,
-	  xfconfd/xfconf-daemon.c, common/xfconf-common-private.h:
-	  Use GSList where possible. Use the slice allocator where
-	  possible (therefore the 2.12.0 dependency). Use
-	  g_intern_static_string() in g_signal_new and 
+	  xfconfd/xfconf-backend.c, xfconfd/xfconf-backend.h,
+	  xfconfd/xfconf-daemon.c:
+	  add ListChannels() method to dbus iface and
+	  xfconf_list_channels()
+
+2008-07-28  nick
+
+	* ChangeLog, common/xfconf-common-private.h, configure.ac.in,
+	  xfconf/xfconf-binding.c, xfconf/xfconf-channel.c,
+	  xfconfd/xfconf-backend-perchannel-xml.c, xfconfd/xfconf-daemon.c:
+	  * configure.ac.in: Bump glib dependency to 2.12.0. *
+	  xfconf/xfconf-channel.c, xfconf/xfconf-binding.c,
+	  xfconfd/xfconf-backend-perchannel-xml.c, xfconfd/xfconf-daemon.c,
+	  common/xfconf-common-private.h: Use GSList where possible. Use
+	  the slice allocator where possible (therefore the 2.12.0
+	  dependency). Use g_intern_static_string() in g_signal_new and
 	  g_object_[sg]et_data.
 
-2008-07-10	Jannis Pohlmann <jannis@xfce.org>
+2008-07-27  kelnos
 
-	* autogen.sh: Fix @REVISION@ substitution when using git svn.
+	* docs/spec/general.txt:
+	  update docs
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  fix get_all(), stupid typo
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  revert a change -- avoid double leading slashes when returning
+	  all props
+	* xfconfd/xfconf-backend.c:
+	  improve property name validation
+	* common/xfconf-dbus.xml, docs/reference/tmpl/xfconf-backend.sgml,
+	  docs/reference/tmpl/xfconf-channel.sgml,
+	  docs/reference/tmpl/xfconf-unused.sgml,
+	  docs/reference/xfconf-sections.txt, xfconf-query/main.c,
+	  xfconf/xfconf-channel.c, xfconf/xfconf-channel.h,
+	  xfconf/xfconf.symbols, xfconfd/xfconf-backend-perchannel-xml.c,
+	  xfconfd/xfconf-backend.c, xfconfd/xfconf-backend.h,
+	  xfconfd/xfconf-daemon.c:
+	  make RemoveProperty and GetAllProperties interfaces easier to use
+	  
+	  all removing multiple properties at once based on a subtree of
+	  the property tree. ditto for getting multiple properties at once
 
-2008-07-05	Jannis Pohlmann <jannis@xfce.org>
+2008-07-25  kelnos
 
-	* xfconf/xfconf-channel.c: Disconnect from 'PropertyRemoved' signal
-	  when destroying an XfconfChannel.
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  remove unneeded code, fixes memleak on channel load
 
-2008-07-03	Jannis Pohlmann <jannis@xfce.org>
+2008-07-17  jannis
 
-	* xfconfd/xfconf-backend.c, xfconfd/xfconf-backend-perchannel-xml.c: 
-	  Allow '<' and '>' to be in property names. Escape property names
-		using g_markup_escape() before writing them to the XML files.
-	* xfconf-query/main.c: Add message newline to one of the error 
-	  messages.
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  xfconfd/xfconf-backend-perchannel-xml.c: Fix crash when removing
+	  the last property of a channel. The check whether we are at the
+	  root node (the one with prop->name == "/") was done after
+	  accessing the parent of the current node (which is NULL for the
+	  root node).
+	* xfconfd/main.c, xfconfd/xfconf-backend-perchannel-xml.c:
+	  xfconfd/main.c, xfconfd/xfconf-backend-perchannel-xml.c: Fix a
+	  few small memory leaks and add a comment about one I don't know
+	  how to fix.
+	* xfsettingsd/registry.c:
+	  xfsettingsd/registry.c: Fix memory leaks and a crash due to
+	  invalid free'ing of a GError (use g_error_free instead of
+	  g_free).
+
+2008-07-17  jasper
+
+	* configure.ac.in:
+	  DOS line-endings, eww.
+
+2008-07-16  stephan
+
+	* configure.ac.in:
+	  Fixed bug #4232, xfconf compiles again.
+
+2008-07-15  jannis
+
+	* autogen.sh:
+	  Change @REVISION@ substitution for git svn repositories again.
+
+2008-07-15  omaciel
+
+	* po/ChangeLog, po/pt_BR.po:
+	  Updated Brazilian Portuguese translation.
+
+2008-07-14  stephan
+
+	* gtk-doc.make:
+	  Remove auto-generated file gtk-doc.make
+	* configure.ac.in, po/pt_BR.po, po/xfconf.pot, xfconfd/Makefile.am,
+	  xfsettingsd/Makefile.am:
+	  Add optional profiling support for xfconfd and xfsettingsd Update
+	  .po(t) files.
+	* docs/xfsettingsd/Makefile.am, tests/tests-common.h:
+	  * Fix make distcheck (renamed .txt file in Makefile.am), and
+	  increased the WAIT_TIMEOUT of the tests.
+
+2008-07-09  jannis
+
+	* ChangeLog, autogen.sh:
+	  * autogen.sh: Fix @REVISION@ substitution when using git svn.
+
+2008-07-07  kelnos
+
+	* docs/Makefile.am:
+	  fix missing dir in SUBDIRS
+
+2008-07-05  jannis
+
+	* ChangeLog, xfconf/xfconf-channel.c:
+	  * xfconf/xfconf-channel.c: Disconnect from 'PropertyRemoved'
+	  signal when destroying an XfconfChannel.
+
+2008-07-03  jannis
+
+	* ChangeLog, gtk-doc.make, xfconf-query/main.c,
+	  xfconfd/xfconf-backend-perchannel-xml.c,
+	  xfconfd/xfconf-backend.c, xfconfd/xfconf-daemon.c:
+	  * xfconfd/xfconf-backend.c,
+	  xfconfd/xfconf-backend-perchannel-xml.c: Allow '<' and '>' to be
+	  in property names. Escape property names using g_markup_escape()
+	  before writing them to the XML files. * xfconf-query/main.c: Add
+	  message newline to one of the error messages.
+
+2008-06-29  stephan
+
+	* common/xfconf-types.c, xfconf-query/main.c,
+	  xfconf/xfconf-channel.c, xfconf/xfconf.c, xfconfd/main.c,
+	  xfconfd/xfconf-backend-perchannel-xml.c, xfsettingsd/registry.c:
+	  Applied patch from Nick (Bug #4184) Fixes compiler-warnings Fixes
+	  XCursor Xrdb issue
+	* configure.ac.in, xfsettingsd/Makefile.am, xfsettingsd/accessx.c,
+	  xfsettingsd/accessx.h, xfsettingsd/main.c:
+	  Remove libnotify dependency and accessx-stuff (was moved to
+	  xfce4-settings-helper)
+
+2008-06-14  stephan
+
+	* xfsettingsd/accessx.c:
+	  Modify xfconf-props for accessx
+	* configure.ac.in, docs/xfsettingsd, docs/xfsettingsd/Makefile.am,
+	  docs/xfsettingsd/xfsettingsd-channels.txt:
+	  Add an xfsettingsd section to the docs
+	* configure.ac.in:
+	  Forgot to include configure.ac.in with previous commit.
+	* xfsettingsd/Makefile.am, xfsettingsd/accessx.c,
+	  xfsettingsd/accessx.h, xfsettingsd/main.c,
+	  xfsettingsd/registry.c:
+	  Add xkb-accessx support to xfsettingsd (TODO: make libnotify
+	  dependency optional)
+
+2008-06-10  stephan
+
+	* xfsettingsd/registry.c, xfsettingsd/registry.h:
+	  Improve registry behaviour...
+
+2008-06-05  kelnos
+
+	* common/xfconf-dbus.xml, xfconf/xfconf.c:
+	  properly register marshaller and signal for PropertyRemoved
+
+2008-06-04  kelnos
+
+	* xfconf/xfconf-channel.c:
+	  fix warnings on 64bit
+
+2008-05-13  kelnos
+
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  emit PropertyChanged on all props when a channel is removed
+	* common/xfconf-dbus.xml, common/xfconf-marshal.list,
+	  xfconf/xfconf-channel.c, xfconfd/xfconf-daemon.c:
+	  add PropertyRemoved signal to dbus interface and hook it up
+	  everywhere
+	* tests/property-changed-signal/t-string-changed-signal-detailed.c,
+	  tests/property-changed-signal/t-string-changed-signal.c:
+	  fix property-changed tests (missing callback arg)
+
+2008-05-12  stephan
+
+	* xfsettingsd/registry.c, xfsettingsd/registry.h:
+	  Add support for xrdb stuff
+
+2008-05-12  kelnos
+
+	* TODO, xfsettingsd/main.c:
+	  make xfsettingsd manage all screens
+	* xfconfd/xfconf-daemon.c:
+	  don't emit PropertyChanged before returning from a get/set/etc.
+	  handler
+
+2008-05-07  kelnos
+
+	* xfsettingsd/registry.c:
+	  fix byte order, put the byte order as a CARD8, not CARD32
+	* xfsettingsd/main.c, xfsettingsd/registry.c:
+	  fix compilation with older compilers
+
+2008-05-02  stephan
+
+	* xfconfd/Makefile.am:
+	  Add the .service file to CLEANFILES instead of DISTCLEANFILES.
+	  Fixes the problem of the .service file pointing to the wrong path
+	  when re-running configure
+
+2008-05-01  omaciel
+
+	* po/pt_BR.po:
+	  Added Brazilian Portuguese translation
+	* po/ChangeLog, po/LINGUAS:
+	  Updated Brazilian Portuguese translation
+
+2008-05-01  kelnos
+
+	* xfconfd/xfconf-backend.c:
+	  do validate the first char of the channel name
+
+2008-04-30  kelnos
+
+	* xfconfd/xfconf-backend.c:
+	  i suck. 0-9 are valid characters.
+
+2008-04-29  stephan
+
+	* xfconf/xfconf-channel.c:
+	  xfconf_channel_set_uint works better when it writes uints to the
+	  gvalue instead of ints
+	* xfconfd/xfconf-backend.c:
+	  prevent xfconfd from freezing
+
+2008-04-28  kelnos
+
+	* TODO, common/xfconf-errors.c,
+	  docs/reference/tmpl/xfconf-errors.sgml, xfconf/xfconf-errors.h,
+	  xfconfd/xfconf-backend.c:
+	  validate channel names
+	* common/xfconf-common-private.h, xfconf-query/main.c:
+	  add support for getting and setting array properties to
+	  xfconf-query
+	* common/xfconf-types.c, docs/reference/tmpl/xfconf-backend.sgml,
+	  docs/reference/tmpl/xfconf-channel.sgml,
+	  docs/reference/tmpl/xfconf-errors.sgml,
+	  docs/reference/tmpl/xfconf-unused.sgml,
+	  docs/reference/xfconf-sections.txt, po/POTFILES.in,
+	  po/xfconf.pot, xfconf/xfconf-channel.c:
+	  update docs, po
+
+2008-04-26  kelnos
+
+	* common/xfconf-errors.c, xfconf/xfconf-errors.h,
+	  xfconfd/xfconf-backend.c:
+	  validate property names and throw an error if they're bad
+
+2008-04-21  stephan
+
+	* xfsettingsd/main.c, xfsettingsd/registry.c,
+	  xfsettingsd/registry.h:
+	  Make xfsettingsd use the new property-changed signal interface
+	  
+	  Xfsettingsd will now exit cleanly when it loses the selection
+
+2008-04-21  kelnos
+
+	* common/xfconf-dbus.xml, common/xfconf-marshal.list,
+	  xfconf/xfconf-binding.c, xfconf/xfconf-channel.c,
+	  xfconf/xfconf.c, xfconfd/xfconf-daemon.c:
+	  add property value to
+	  PropertyChanged/XfconfChannel::property-changed signal
+	  
+	  it seems like every time i get a property-changed signal, the
+	  first thing i do is go and fetch the property. always sending the
+	  value over the wire in the signal will generally save us a
+	  round-trip when handling property changes. the downside is that
+	  the value always gets sent out on any prop change, regardless if
+	  anyone cares about that particular property or not
+	* xfconf/xfconf-channel.c, xfconf/xfconf-channel.h,
+	  xfconf/xfconf.symbols:
+	  turns out having convenience getter/setter for unsigned int is
+	  useful
+
+2008-04-20  kelnos
+
+	* common/xfconf-types.c, docs/spec/backend.txt,
+	  docs/spec/perchannel-xml.txt, xfconf/xfconf-channel.c:
+	  treat uint16/int16 as uint32/int32 when sending data over dbus
+	  
+	  annoyingly, dbus-glib doesn't support sending 16-bit signed or
+	  unsigned integers over the bus, since no 16-bit GTypes exist. the
+	  ability to expose custom GValue marshallers is not exposed in
+	  dbus-glib's API, so custom GTypes cannot be added.
+	  
+	  so, internally, we handle 16-bit values as if they were 32-bit
+	  values. the 16-bit types are kept so that the struct-related
+	  functions still work.
+	* xfconf-query/main.c:
+	  use standard capital 'V' for version and lowercase 'v' for
+	  verbose
+	* tests/Makefile.inc, tests/tests-common.h:
+	  properly make sure xfconfd has started on our bus before
+	  continuing
+
+2008-04-17  stephan
+
+	* xfsettingsd/registry.c:
+	  Fix ToolbarIconSize registry entry (int)
+	* xfconf-query/main.c:
+	  Add --remove field to xfconf-query (usefull for xfconfd-database
+	  maintenance)
+
+2008-04-15  kelnos
+
+	* xfconf/xfconf-binding.c:
+	  remove XfconfGBinding from channel's list if the GObject gets
+	  freed
+	* autogen.sh:
+	  get svn revision from git-svn in a smarter way
+	* xfconf/xfconf-binding.c:
+	  fix missing include
+	* xfconf/xfconf.symbols:
+	  fix typo
+	* Makefile.am, configure.ac.in, docs/reference/Makefile.am,
+	  docs/reference/tmpl/xfconf-binding.sgml,
+	  docs/reference/tmpl/xfconf-gtk.sgml,
+	  docs/reference/xfconf-docs.sgml,
+	  docs/reference/xfconf-sections.txt, xfconf-gtk/Makefile.am,
+	  xfconf-gtk/libxfconf-gtk-0.pc.in, xfconf-gtk/xfconf-gtk.c,
+	  xfconf-gtk/xfconf-gtk.h, xfconf/Makefile.am,
+	  xfconf/xfconf-binding.c, xfconf/xfconf-binding.h,
+	  xfconf/xfconf.h, xfconf/xfconf.symbols:
+	  remove libxfconf-gtk and move binding functionality to libxfconf
+	  
+	  binding functionality is not gobject-based (uses properties) and
+	  doesn't require gtk at all
+	* tests/property-changed-signal/Makefile.am,
+	  tests/property-changed-signal/t-string-changed-signal-detailed.c,
+	  tests/property-changed-signal/t-string-changed-signal.c,
+	  xfconf/xfconf-channel.c:
+	  make XfconfChannel::property-changed allow a prop name signal
+	  detail
+	  
+	  this way you can get a signal for changes to all properties in a
+	  channel by connecting to "property-changed", or just one property
+	  by connecting to "property-changed::/property/name"
+
+2008-04-14  kelnos
+
+	* xfconf-query/main.c:
+	  allow xfconf-query to create new channels/properties
+	* common/Makefile.am, common/xfconf-gvaluefuncs.c,
+	  common/xfconf-gvaluefuncs.h, common/xfconf-types.c,
+	  common/xfconf-util.c, common/xfconf-util.h, xfconf/Makefile.am,
+	  xfconfd/Makefile.am, xfconfd/xfconf-backend-perchannel-xml.c,
+	  xfconfd/xfconf-daemon.c, xfconfd/xfconf-locking-utils.c,
+	  xfconfd/xfconf-locking-utils.h:
+	  do some rearranging of code locations
+	  
+	  * the locking evaluation stuff is really only needed in the
+	  daemon * clean up an extra copy of xfconf_g_value_free() * move
+	  _xfconf_gtype_from_string() to gvaluefuncs * compile
+	  xfconf-types.c directly into the daemon and libxfconf separately
+	  to avoid problems with the aliasdef stuff
+
+2008-04-13  stephan
+
+	* xfconf-query/main.c:
+	  Fix build with --enable-debug=full
+	* xfconf-query/main.c:
+	  Add --list and --verbose options to xfconf-query
+
+2008-04-13  kelnos
+
+	* xfconfd/xfconf-daemon.c:
+	  emit the PropertyChanged signal properly. duh.
+
+2008-04-11  kelnos
+
+	* tests/Makefile.inc, tests/get-properties/Makefile.am,
+	  tests/has-properties/Makefile.am,
+	  tests/property-changed-signal/Makefile.am,
+	  tests/remove-properties/Makefile.am,
+	  tests/set-properties/Makefile.am, tests/test-template.sh.in:
+	  pull common stuff out of makefiles, fix 'mke distcheck' properly
+
+2008-04-11  stephan
+
+	* Makefile.am:
+	  Fix make distcheck
+
+2008-04-10  stephan
+
+	* configure.ac.in, po/xfconf.pot, tests/Makefile.am,
+	  tests/get-properties/Makefile.am,
+	  tests/get-properties/test-template.sh.in,
+	  tests/has-properties/Makefile.am,
+	  tests/has-properties/test-template.sh.in, tests/lock-properties,
+	  tests/property-changed-signal/Makefile.am,
+	  tests/property-changed-signal/test-template.sh.in,
+	  tests/remove-properties/Makefile.am,
+	  tests/remove-properties/test-template.sh.in,
+	  tests/set-properties/Makefile.am,
+	  tests/set-properties/test-template.sh.in,
+	  tests/test-template.sh.in:
+	  Fix the test-suite
+	* tests/Makefile.am, tests/get-properties,
+	  tests/get-properties/Makefile.am,
+	  tests/get-properties/t-get-arrayv.c,
+	  tests/get-properties/t-get-boolean.c,
+	  tests/get-properties/t-get-double.c,
+	  tests/get-properties/t-get-int.c,
+	  tests/get-properties/t-get-string.c,
+	  tests/get-properties/t-get-stringlist.c,
+	  tests/get-properties/t-get-uint64.c,
+	  tests/get-properties/test-template.sh.in, tests/has-properties,
+	  tests/has-properties/Makefile.am,
+	  tests/has-properties/t-has-arrayv.c,
+	  tests/has-properties/t-has-boolean.c,
+	  tests/has-properties/t-has-double.c,
+	  tests/has-properties/t-has-int.c,
+	  tests/has-properties/t-has-string.c,
+	  tests/has-properties/t-has-stringlist.c,
+	  tests/has-properties/t-has-uint64.c,
+	  tests/has-properties/test-template.sh.in,
+	  tests/property-changed-signal,
+	  tests/property-changed-signal/Makefile.am,
+	  tests/property-changed-signal/t-string-changed-signal.c,
+	  tests/property-changed-signal/test-template.sh.in,
+	  tests/remove-properties, tests/remove-properties/Makefile.am,
+	  tests/remove-properties/t-remove-arrayv.c,
+	  tests/remove-properties/t-remove-boolean.c,
+	  tests/remove-properties/t-remove-double.c,
+	  tests/remove-properties/t-remove-int.c,
+	  tests/remove-properties/t-remove-string.c,
+	  tests/remove-properties/t-remove-stringlist.c,
+	  tests/remove-properties/t-remove-uint64.c,
+	  tests/remove-properties/test-template.sh.in,
+	  tests/set-properties, tests/set-properties/Makefile.am,
+	  tests/set-properties/t-set-arrayv.c,
+	  tests/set-properties/t-set-boolean.c,
+	  tests/set-properties/t-set-double.c,
+	  tests/set-properties/t-set-int.c,
+	  tests/set-properties/t-set-string.c,
+	  tests/set-properties/t-set-stringlist.c,
+	  tests/set-properties/t-set-uint64.c,
+	  tests/set-properties/test-template.sh.in,
+	  tests/t-get-properties.c, tests/t-has-properties.c,
+	  tests/t-property-changed-signal.c, tests/t-remove-properties.c,
+	  tests/t-set-properties.c, tests/test-template.sh.in:
+	  Organise test-suite a little.
+
+2008-04-10  kelnos
+
+	* common/xfconf-gvaluefuncs.c:
+	  revert previous change -- _xfconf_gvalue_from_string() isn't
+	  meant to be able to convert semicolon-delimited strings into an
+	  array, just to create an array to put arbitrary elements into
+
+2008-04-10  stephan
+
+	* common/xfconf-util.h:
+	  Add G_GNUC_INTERNAL to xfconf_g_value_free function (restores
+	  abi)
+
+2008-04-09  stephan
+
+	* common/Makefile.am, po/xfconf.pot, xfconf-query/Makefile.am,
+	  xfconf-query/main.c:
+	  Improve xfconf-query support for gvalue types (use common-code
+	  for gvalue >< string conversion) Fix compile-warning with
+	  make-distcheck inside common-libs, (add header to Makefile.am)
+	  Update pot file.
+
+2008-04-09  kelnos
+
+	* common/xfconf-gvaluefuncs.c:
+	  convert string list (as semicolon-delim list) into GValue
+	  properly
+	* po/POTFILES.in, po/xfconf.pot:
+	  update POTFILES
+	* common/xfconf-gvaluefuncs.c, common/xfconf-gvaluefuncs.h,
+	  xfconf-gtk/xfconf-gtk.c:
+	  move xfconf_gtk_string_from_gvalue() to common
+	* docs/reference/tmpl/xfconf-gtk.sgml,
+	  docs/reference/tmpl/xfconf-unused.sgml,
+	  docs/reference/xfconf-sections.txt, xfconf-gtk/xfconf-gtk.c,
+	  xfconf-gtk/xfconf-gtk.h:
+	  rename xfconf_gtk_widget_bind_property() s/widget/editable, fix
+	  some bugs
+	  
+	  different widget types are going to have to be handled
+	  differently, with different parameters. check buttons will always
+	  be boolean types, radio buttons will need to have some sort of
+	  identifier associated with them, etc.
+	* Makefile.am, configure.ac.in, docs/reference/Makefile.am,
+	  docs/reference/tmpl/xfconf-gtk.sgml,
+	  docs/reference/xfconf-docs.sgml,
+	  docs/reference/xfconf-sections.txt, xfconf-gtk,
+	  xfconf-gtk/Makefile.am, xfconf-gtk/libxfconf-gtk-0.pc.in,
+	  xfconf-gtk/xfconf-gtk.c, xfconf-gtk/xfconf-gtk.h:
+	  add first pass at xfconf-gtk convenience library
+	  
+	  it only supports widgets that implement GtkEditable, but more to
+	  come soon
+	* common/Makefile.am, common/xfconf-gvaluefuncs.c,
+	  common/xfconf-gvaluefuncs.h, common/xfconf-util.h,
+	  xfconfd/Makefile.am, xfconfd/xfconf-backend-perchannel-xml.c,
+	  xfconfd/xfconf-daemon.c:
+	  move GValue convenience funcs to their own libtool convenience
+	  lib
+	* xfconf/Makefile.am:
+	  fix xfconf includes install location
+	* TODO:
+	  update todo
+	* docs/reference/tmpl/xfconf-types.sgml:
+	  add missing api doc
+
+2008-04-08  stephan
+
+	* xfconf-query/main.c, xfsettingsd/main.c:
+	  Code-cleanup inside xfconf-query Update --version string of
+	  xfconf-query and xfsettingsd
+
+2008-04-07  stephan
+
+	* xfconf-query/main.c:
+	  Add read-support to xfconf-query
+	* Makefile.am, configure.ac.in, xfconf-query,
+	  xfconf-query/Makefile.am, xfconf-query/main.c,
+	  xfconf/xfconf-channel.c:
+	  Add xfconf-query cli-tool (it can only update existing values for
+	  now)
+	  
+	  Fix an uninitialized gvalue struct inside the xfconf library
+
+2008-04-07  kelnos
+
+	* docs/reference/tmpl/xfconf-backend.sgml, tests/Makefile.am,
+	  tests/t-property-changed-signal.c,
+	  xfconfd/xfconf-backend-perchannel-xml.c,
+	  xfconfd/xfconf-backend.c, xfconfd/xfconf-backend.h,
+	  xfconfd/xfconf-daemon.c:
+	  make the PropertyChanged signal work
+	* AUTHORS:
+	  add stephan to AUTHORS
+
+2008-04-05  kelnos
+
+	* xfconf/xfconf.h:
+	  add missing xfconf-types.h include to main header
+	* configure.ac.in, gtk-doc.make, xfsettingsd/Makefile.am,
+	  xfsettingsd/main.c, xfsettingsd/registry.c:
+	  make xfsettingsd build optional, clean up all warnings, xfce-ise
+	  it
+
+2008-04-02  stephan
+
+	* xfsettingsd/registry.c:
+	  Fixed the header information of the registry file.
+	* Makefile.am, TODO, configure.ac.in, xfsettingsd,
+	  xfsettingsd/Makefile.am, xfsettingsd/main.c,
+	  xfsettingsd/registry.c, xfsettingsd/registry.h:
+	  Import xfsettingsd code, the xfce-xsettingsd
+	  
+	  Update TODO
+
+2008-04-02  kelnos
+
+	* xfconf/xfconf.symbols:
+	  add new symbol to xfconf.symbols so 'make check' passes
+
+2008-02-20  kelnos
+
+	* xfconf/Makefile.am, xfconf/libxfconf-0.pc.in:
+	  patch from Stephan to fix includes location
+
+2008-01-14  kelnos
+
+	* docs/spec/backend.txt, docs/spec/perchannel-xml.txt:
+	  update spec and docs
+	* common/Makefile.am, common/xfconf-common-private.h,
+	  docs/reference/tmpl/xfconf.sgml,
+	  docs/reference/xfconf-sections.txt, tests/t-get-properties.c,
+	  tests/t-has-properties.c, tests/t-remove-properties.c,
+	  tests/t-set-properties.c, tests/tests-common.h,
+	  xfconf/xfconf-channel.c, xfconf/xfconf-channel.h,
+	  xfconf/xfconf.c, xfconf/xfconf.h, xfconfd/Makefile.am,
+	  xfconfd/xfconf-backend-perchannel-xml.c:
+	  make the array stuff work, in theory.
+	  
+	  i think this should work now. GArrays of GValues don't seem to
+	  work, unfortunately, but GPtrArrays of GValues do. passing
+	  GValueArrays directly to dbus-glib works, but it's difficult if
+	  not impossible to figure out what they are on the other end.
+	  
+	  anyhow, so the array stuff works by passing a GPtrArray of
+	  GValues to dbus-glib (after stuffing the GPtrArray in its own
+	  GValue).
+	* tests/t-set-properties.c, xfconf/xfconf-channel.c:
+	  use GValueArray to set and get string lists
+
+2007-12-05  kelnos
+
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  * handle 'empty' branches properly * fix typo
+	  (attribute_values[i] -> type)
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  don't use old <string> elem; use <value type="string" ...>
+	  instead
+	* autogen.sh:
+	  extract svn revision using git-svn
+
+2007-11-06  kelnos
+
+	* common, common/Makefile.am, common/make-exo-alias.pl,
+	  common/xfconf-errors.c, common/xfconf-types.c,
+	  common/xfconf-util.h, configure.ac.in,
+	  docs/reference/tmpl/xfconf-types.sgml, po/xfconf.pot, tests,
+	  xfconf/Makefile.am, xfconf/abicheck.sh, xfconf/xfconf-channel.c,
+	  xfconf/xfconf.c, xfconf/xfconf.symbols, xfconfd/Makefile.am:
+	  add gnuc visibility stuff
+
+2007-10-27  kelnos
+
+	* docs/spec/Makefile.am:
+	  fix make dist
+
+2007-10-25  kelnos
+
+	* po/ChangeLog:
+	  distcheck requires a po/changelog
+	* TODO, common/Makefile.am, common/xfconf-types.c,
+	  common/xfconf-util.h, docs/reference/tmpl/xfconf-backend.sgml,
+	  docs/reference/tmpl/xfconf-channel.sgml,
+	  docs/reference/tmpl/xfconf-types.sgml,
+	  docs/reference/tmpl/xfconf-unused.sgml,
+	  docs/reference/tmpl/xfconf.sgml, docs/reference/xfconf-docs.sgml,
+	  docs/reference/xfconf-sections.txt, docs/spec/backend.txt,
+	  docs/spec/perchannel-xml.dtd, docs/spec/perchannel-xml.txt,
+	  gtk-doc.make, tests/t-get-properties.c, tests/t-has-properties.c,
+	  tests/t-remove-properties.c, tests/t-set-properties.c,
+	  tests/tests-common.h, xfconf/Makefile.am,
+	  xfconf/xfconf-channel.c, xfconf/xfconf-channel.h,
+	  xfconf/xfconf-private.h, xfconf/xfconf-types.h, xfconf/xfconf.c,
+	  xfconf/xfconf.h, xfconfd/xfconf-backend-perchannel-xml.c:
+	  start migration to new library API with array types and struct
+	  serializers. this isn't completely done and doesn't quite work
+	  (needs some more daemon backend work), but what's in svn doesn't
+	  work properly right now either
+	* configure.ac.in:
+	  use tagged svn version scheme
+
+2007-10-04  kelnos
+
+	* TODO:
+	  update todo, spearate items into '1.0' items and 'future' items
+
+2007-10-03  kelnos
+
+	* xfconfd/main.c:
+	  add --version option
+	* common/Makefile.am, common/xfconf-errors.c,
+	  docs/reference/Makefile.am,
+	  docs/reference/tmpl/xfconf-backend.sgml,
+	  docs/reference/tmpl/xfconf-errors.sgml,
+	  docs/reference/xfconf-docs.sgml,
+	  docs/reference/xfconf-sections.txt, xfconf/Makefile.am,
+	  xfconf/xfconf-errors.h, xfconf/xfconf.c, xfconf/xfconf.h,
+	  xfconfd/Makefile.am, xfconfd/main.c,
+	  xfconfd/xfconf-backend-factory.c,
+	  xfconfd/xfconf-backend-factory.h,
+	  xfconfd/xfconf-backend-perchannel-xml.c,
+	  xfconfd/xfconf-backend.c, xfconfd/xfconf-backend.h,
+	  xfconfd/xfconf-daemon.c, xfconfd/xfconf-daemon.h:
+	  * move XfconfBackendError to a more public place and rename it to
+	  XfconfError * allow xfconfd to load multiple backends, the first
+	  of which is read/write, and the others are read-only * update
+	  docs
+	* xfconfd/main.c:
+	  ignore sigpipe again
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  don't print warnings on common non-error errors unless
+	  XFCONF_ENABLE_CHECKS is defined
+	* tests/t-get-properties.c, tests/t-has-properties.c,
+	  tests/t-remove-properties.c, tests/t-set-properties.c,
+	  tests/tests-common.h:
+	  use #define instead of hardcoded test channel name
+	* tests/t-remove-properties.c:
+	  make RemoveProperty test more robust - check for presence of each
+	  property before removing, and again after each remove
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  fix RemoveProperty removing all properties from the tree :-(
+	* docs/reference, docs/reference/tmpl:
+	  update svn:ignore
+	* tests:
+	  set svn:ignore
+	* tests/test-template.sh.in:
+	  fix template to use local XDG_CONFIG_HOME
+	* Makefile.am, configure.ac.in, xfconf/xfconf-channel.c:
+	  * add test framework to build * add possibility for extra error
+	  checking in libxfconf * fix warning (don't init gvalues before
+	  passing to dbus) * handle G_TYPE_STRV as string list in libxfconf
+	* tests/tests-common.h:
+	  add a sleep(). meh.
+	* tests, tests/Makefile.am, tests/t-get-properties.c,
+	  tests/t-has-properties.c, tests/t-remove-properties.c,
+	  tests/t-set-properties.c, tests/test-template.sh.in,
+	  tests/tests-common.h:
+	  add tests framework
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  * make error reporting more verbose (should have a way to turn
+	  this off) * handle G_TYPE_STRV (i'm not sure why strlists aren't
+	  getting received as a GPtrArray of (gchar *)s) * fix channel xml
+	  file parse problem with string lists
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  correct GDestroyNotify for the proptree
+	* xfconfd/main.c:
+	  add posix signal handling to exit xfconfd cleanly
+	* xfconf/xfconf-channel.c, xfconf/xfconf.c:
+	  * call g_type_init() in xfconf_init() * register marshaller and
+	  signal for PropertyChanged * fix signal name Changed ->
+	  PropertyChanged
+	* xfconf/xfconf-channel.c:
+	  move channel init stuff out of _new() and into _init()
+
+2007-10-01  kelnos
+
+	* TODO:
+	  update todo
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  fix missing root node property name, fix crash on double-free()
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  * stupid - fix RemoveProperty() crash; just a mistaken parameter
+	  * make _proptree_remove() remove empty parents of the node to be
+	  removed
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  redid perchannel-xml backend to use GNode internally for the
+	  property tree rather than GTree, as GTree is just not really
+	  working right here (even tho it's easier to use). GetProperty(),
+	  SetProperty(), GetAllProperties(), PropertyExists(), and
+	  RemoveChannel() appear to work. RemoveProperty() causes a
+	  segfault, not sure why yet.
+	* xfconfd/xfconf-backend.c, xfconfd/xfconf-backend.h:
+	  add permission denied error type
+
+2007-09-17  kelnos
+
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  fix file writing - forgot to XfconfProperty-ise it
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  fix some get/set stuff. make set and get_all use the new
+	  XfconfProperty stuff. i think stuff is starting to work.
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  fix a bunch of parsing buglets - still more tho
+
+2007-09-16  kelnos
+
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  this appears to work for writing out the perchannel-xml config
+	  files, but it's pretty ugly, and i'm not sure if it works in all
+	  cases
+
+2007-09-14  kelnos
+
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  lowercase all channel/property names to enforce
+	  case-insensitivity
+	* common/Makefile.am, xfconf/Makefile.am:
+	  fix build of autogenerated sources
+	* TODO, common/xfconf-util.c, common/xfconf-util.h,
+	  configure.ac.in, docs/spec/perchannel-xml.txt,
+	  xfconfd/xfconf-backend-perchannel-xml.c:
+	  implement most of the the perchannel-xml reading and parsing
+	  code. it's not complete, and it completely differs from the write
+	  code (right now, it can't properly read the files it writes), and
+	  there are some problems parsing string lists (sometimes), which i
+	  know how to fix. also there's a new locking scheme that
+	  dupilcates the functionality currently in XfceKiosk.
+	  
+	  regardless, it's totally not usable right now, but i need to
+	  commit so i can work on this elsewhere.
+
+2007-09-07  kelnos
+
+	* docs/spec/Makefile.am, docs/spec/general.txt,
+	  docs/spec/lockdown-behavior.txt, docs/spec/perchannel-xml.dtd,
+	  docs/spec/perchannel-xml.txt:
+	  add some preliminary specs/behavior descriptions
+
+2007-09-06  kelnos
+
+	* xfconfd/xfconf-backend-perchannel-xml.c:
+	  change version of perchannel-xml file format from 1 to 0.1
+	* TODO:
+	  update todo again
+	* TODO:
+	  update todo
+	* TODO:
+	  add todo file
+	* docs/spec, xfconfd, xfconfd/Makefile.am,
+	  xfconfd/xfconf-backend-perchannel-xml.c,
+	  xfconfd/xfconf-backend.c, xfconfd/xfconf-backend.h,
+	  xfconfd/xfconf-daemon.c:
+	  implement most of the perchannel-xml backend. reading stuff from
+	  the xml files isn't implemented yet, but writing values is done
+	  and appears to work
+	* docs/spec/Makefile.am:
+	  whoops, forgot the makefile
+	* configure.ac.in, docs/Makefile.am, docs/spec,
+	  docs/spec/perchannel-xml.dtd:
+	  add prelim dtd for the perchannel-xml backend
+	* common/Makefile.am, common/xfconf-util.c, common/xfconf-util.h:
+	  add xfconf_g_value_free() utility function
+	* xfconf/xfconf-channel.h, xfconf/xfconf.h:
+	  clean up header files
+	* common/xfconf-dbus.xml, xfconfd/Makefile.am,
+	  xfconfd/xfconf-daemon.c:
+	  do some cosmetic renaming
+	* common/xfconf-dbus.xml, docs/reference/tmpl/xfconf-backend.sgml,
+	  docs/reference/xfconf-sections.txt, xfconf/xfconf-channel.c,
+	  xfconfd/xfconf-backend-perchannel-xml.c,
+	  xfconfd/xfconf-backend.c, xfconfd/xfconf-backend.h,
+	  xfconfd/xfconf-daemon.c:
+	  * add RemoveChannel() to the dbus interface and client lib *
+	  rename some dbus methods so it's more clear what they do
+
+2007-09-05  kelnos
+
+	* configure.ac.in, xfconfd, xfconfd/Makefile.am,
+	  xfconfd/org.xfce.Xfconf.service.in:
+	  add dbus activation service file
+	* xfconfd/xfconf-daemon.c:
+	  add comment about possible memory leak
+	* xfconfd/Makefile.am, xfconfd/xfconf-daemon.c:
+	  launch to-be-written settings app on ShowList() and ShowPlugin()
+	* docs, docs/reference, docs/reference/tmpl:
+	  set svn:ignore
+	* Makefile.am, common/xfconf-dbus.xml, configure.ac.in, docs,
+	  docs/Makefile.am, docs/reference, docs/reference/Makefile.am,
+	  docs/reference/tmpl, docs/reference/tmpl/xfconf-backend.sgml,
+	  docs/reference/tmpl/xfconf-channel.sgml,
+	  docs/reference/tmpl/xfconf-unused.sgml,
+	  docs/reference/tmpl/xfconf.sgml, docs/reference/version.xml.in,
+	  docs/reference/xfconf-docs.sgml,
+	  docs/reference/xfconf-overrides.txt,
+	  docs/reference/xfconf-sections.txt, docs/reference/xfconf.types,
+	  gtk-doc.make, xfconf/xfconf-channel.c, xfconf/xfconf-channel.h,
+	  xfconfd/xfconf-backend.c, xfconfd/xfconf-backend.h:
+	  add gtk-doc framework and fix up docs everywhere
+	* ., common, po, xfconf, xfconfd:
+	  set svn:ignore
+	* xfconf/xfconf-channel.c, xfconf/xfconf-channel.h,
+	  xfconf/xfconf.c, xfconf/xfconf.h, xfconfd/main.c:
+	  fix some license headers and document all functions in libxfconf
+	* xfconfd/xfconf-backend-perchannel-xml.c,
+	  xfconfd/xfconf-backend.c, xfconfd/xfconf-backend.h,
+	  xfconfd/xfconf-daemon.c:
+	  add docs for XfconfBackendInterface, and change the interface a
+	  little so the backend should expect an already-inited GHashTable
+	  for GetAll() rather than doing that itself
+	* common/xfconf-dbus.xml, xfconf/xfconf-channel.c,
+	  xfconf/xfconf-channel.h, xfconfd/xfconf-backend-perchannel-xml.c,
+	  xfconfd/xfconf-backend.c, xfconfd/xfconf-backend.h,
+	  xfconfd/xfconf-daemon.c:
+	  * change xfconf_channel_get_*() API to return the values directly
+	  and take a 'default_value' param for when a property doesn't
+	  exist * add API to DBus interface: GetAll, Exists, Remove * add
+	  XfconfChannel API: xfconf_channel_get_all(),
+	  xfconf_channel_property_exists(),
+	  xfconf_channel_remove_property()
+
+2007-09-04  kelnos
+
+	* po/POTFILES.in, po/xfconf.pot:
+	  fix potfiles stiff and add pot file
+	* common/Makefile.am, common/xfconf-marshal.list,
+	  xfconf/Makefile.am, xfconf/xfconf-marshal.list,
+	  xfconfd/Makefile.am, xfconfd/xfconf-daemon.c:
+	  move the marshallers into a private lib so both the client lib
+	  and daemon can use it
+	* xfconfd/main.c:
+	  set glib prgname and application_name
+	* xfconfd/main.c, xfconfd/xfconf-daemon.c, xfconfd/xfconf-daemon.h:
+	  add ability to set backend type from main() so it doesn't
+	  segfault
+	* xfconf/Makefile.am, xfconf/xfconf-channel.c,
+	  xfconf/xfconf-channel.h, xfconf/xfconf-marshal.list:
+	  implement pretty much all of XfconfChannel
+	* xfconf/Makefile.am, xfconf/xfconf-channel.c,
+	  xfconf/xfconf-channel.h, xfconf/xfconf-private.h,
+	  xfconf/xfconf.c, xfconf/xfconf.h:
+	  initial files for libxfconf, mostly-empty implementation
+	* xfconfd/Makefile.am, xfconfd/main.c,
+	  xfconfd/xfconf-backend-factory.c,
+	  xfconfd/xfconf-backend-perchannel-xml.c,
+	  xfconfd/xfconf-backend-perchannel-xml.h,
+	  xfconfd/xfconf-backend.c, xfconfd/xfconf-backend.h,
+	  xfconfd/xfconf-daemon.c:
+	  add backend framework to daemon with an empty implementation of a
+	  backend that does an XML file per channel
+	* configure.ac.in:
+	  fixup missing stuff for configure script
+	* po/LINGUAS:
+	  forgot LINGUAS file
+	* AUTHORS, COPYING, ChangeLog, Makefile.am, NEWS, README,
+	  autogen.sh, common, common/Makefile.am, common/xfconf-dbus.xml,
+	  configure.ac.in, po, po/POTFILES.in, xfconf, xfconf/Makefile.am,
+	  xfconf/libxfconf-0.pc.in, xfconfd, xfconfd/Makefile.am,
+	  xfconfd/main.c, xfconfd/xfconf-backend-factory.c,
+	  xfconfd/xfconf-backend-factory.h, xfconfd/xfconf-backend.c,
+	  xfconfd/xfconf-backend.h, xfconfd/xfconf-daemon.c,
+	  xfconfd/xfconf-daemon.h:
+	  initial import of xfconfd/libxfconf
+	* .:
+	  create dir tree for xfconf
+
