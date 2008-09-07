@@ -8,8 +8,6 @@ dnl
 dnl version info
 m4_define([libxfconf_verinfo], [0:0:0])
 m4_define([libxfconf_version_api], [0])
-m4_define([libxfconf_gtk_verinfo], [0:0:0])
-m4_define([libxfconf_gtk_version_api], [0])
 m4_define([xfconf_version_major], [4])
 m4_define([xfconf_version_minor], [5])
 m4_define([xfconf_version_micro], [90])
@@ -18,14 +16,12 @@ m4_define([xfconf_version_tag], [])
 m4_define([xfconf_version], [xfconf_version_major().xfconf_version_minor().xfconf_version_micro()ifelse(xfconf_version_tag(), [svn], [xfconf_version_tag()-xfconf_version_build()], [xfconf_version_tag()])])
 
 dnl init autoconf
-AC_INIT([xfconf], [xfconf_version], [bjt23@cornell.edu])
+AC_INIT([xfconf], [xfconf_version], [http://bugzilla.xfce.org/])
 AC_PREREQ([2.50])
 
 dnl init automake
 AM_INIT_AUTOMAKE([1.8 dist-bzip2 tar-ustar])
 AM_CONFIG_HEADER([config.h])
-dnl AC_DEFINE([WEBSITE], ["http://spuriousinterrupt.org/projects/xfconf"],
-dnl           [Location of the xfconf website])
 AM_MAINTAINER_MODE
 
 dnl check for UNIX variants
@@ -54,13 +50,9 @@ dnl version information
 XFCONF_VERSION=xfconf_version
 LIBXFCONF_VERSION_API=libxfconf_version_api
 LIBXFCONF_VERINFO=libxfconf_verinfo
-LIBXFCONF_GTK_VERSION_API=libxfconf_gtk_version_api
-LIBXFCONF_GTK_VERINFO=libxfconf_gtk_verinfo
 AC_SUBST(XFCONF_VERSION)
 AC_SUBST(LIBXFCONF_VERSION_API)
 AC_SUBST(LIBXFCONF_VERINFO)
-AC_SUBST(LIBXFCONF_GTK_VERSION_API)
-AC_SUBST(LIBXFCONF_GTK_VERINFO)
 
 dnl Check for i18n support
 XDT_I18N([@LINGUAS@])
@@ -71,7 +63,6 @@ dnl XDT_CHECK_LIBX11_REQUIRE
 dnl required
 XDT_CHECK_PACKAGE([GLIB], [gobject-2.0], [2.12.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.5.90])
-dnl XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.4.0])
 XDT_CHECK_PACKAGE([DBUS], [dbus-1], [1.0.0])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.72])
 
@@ -83,33 +74,9 @@ AC_ARG_ENABLE([xsettings-daemon],
               [build_xfsettingsd=yes])
 AM_CONDITIONAL([BUILD_XFSETTINGSD], [test "x$build_xfsettingsd" = "xyes"])
 
-dnl make xfconf-gtk lib optional (so gtk dep is optional)
-AC_ARG_ENABLE([xfconf-gtk],
-              [AC_HELP_STRING([--disable-xfconf-gtk],
-                              [Don't build xfconf-gtk convenience library (default=yes)])],
-              [build_xfconf_gtk=$enableval],
-              [build_xfconf_gtk=yes])
-AM_CONDITIONAL([BUILD_XFCONF_GTK], [test "x$build_xfconf_gtk" = "xyes"])
-
 if test "x$build_xfsettingsd" = "xyes" -o "x$build_xfconf_gtk" = "xyes"; then
     XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.10.0])
 fi
-
-dnl ********************************
-dnl Check for XKB (xkb-settings) ***
-dnl ********************************
-AC_ARG_ENABLE([xkb],
-AC_HELP_STRING([--enable-xkb], [try to use the XKB extension])
-AC_HELP_STRING([--disable-xkb], [don't try to use the XKB extension]),
-  [], [enable_xkb=yes])
-XKB_LIBS=
-if test x"$enable_xkb" = x"yes"; then
-  AC_CHECK_LIB(Xext, XkbLibraryVersion,
-    [XKB_LIBS="-lXi"
-    AC_DEFINE([HAVE_XKB], [1], [Define if XInput is present])],
-    [],[$LIBX11_LIBS -lXi])
-fi
-AC_SUBST([XKB_LIBS])
 
 dnl check alignment for struct returns
 AC_DEFUN([BT_GLIB_CHECK_ALIGNOF],
