@@ -1040,10 +1040,13 @@ xfconf_channel_set_property(XfconfChannel *channel,
         g_value_init(&tmp_val, G_TYPE_INT);
         g_value_set_int(&tmp_val, xfconf_g_value_get_int16(value));
     } else if(G_VALUE_TYPE(value) == XFCONF_TYPE_G_VALUE_ARRAY) {
-        val = &tmp_val;
         arr_new = xfconf_fixup_16bit_ints(g_value_get_boxed(value));
-        g_value_init(&tmp_val, XFCONF_TYPE_G_VALUE_ARRAY);
-        g_value_set_boxed(&tmp_val, arr_new);
+        if(arr_new) {
+            val = &tmp_val;
+            g_value_init(&tmp_val, XFCONF_TYPE_G_VALUE_ARRAY);
+            g_value_set_boxed(&tmp_val, arr_new);
+        } else
+            val = (GValue *)value;
     } else
         val = (GValue *)value;
 
