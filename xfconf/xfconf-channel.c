@@ -267,7 +267,7 @@ xfconf_channel_property_removed(DBusGProxy *proxy,
         return;
 
     g_signal_emit(G_OBJECT(channel), signals[SIG_PROPERTY_CHANGED],
-                  g_quark_from_string(property), property, value);
+                  g_quark_from_string(property), property, &value);
 }
 
 
