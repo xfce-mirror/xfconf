@@ -515,7 +515,11 @@ xsettings_registry_notify(XSettingsRegistry *registry)
                 }
                 break;
             case G_TYPE_INT:
-                *(CARD32 *)pos = g_value_get_int(&entry->value);
+                /* FIXME: Why does Xft/DPI need special treatment? */
+                if (strcmp (entry->name, "Xft/DPI") == 0)
+                    *(CARD32 *)pos = g_value_get_int(&entry->value) * 1024;
+                else
+                    *(CARD32 *)pos = g_value_get_int(&entry->value);
                 pos += 4;
                 break;
             case G_TYPE_BOOLEAN:
