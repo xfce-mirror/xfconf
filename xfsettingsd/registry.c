@@ -515,8 +515,12 @@ xsettings_registry_notify(XSettingsRegistry *registry)
                 }
                 break;
             case G_TYPE_INT:
-                /* FIXME: Why does Xft/DPI need special treatment? */
-                if (strcmp (entry->name, "Xft/DPI") == 0)
+                /* See http://www.freedesktop.org/wiki/Specifications/XSettingsRegistry
+                 * for an explanation.  Weirdly, this is still not correct, as
+                 * font sizes with -1 DPI and a forced setting equal to the X
+                 * server's calculated DPI don't match.  Need to look into
+                 * this a bit more. */
+                if (strcmp (entry->name, "Xft/DPI") == 0 && g_value_get_int(&entry->value) != -1)
                     *(CARD32 *)pos = g_value_get_int(&entry->value) * 1024;
                 else
                     *(CARD32 *)pos = g_value_get_int(&entry->value);
