@@ -757,7 +757,7 @@ xfconf_channel_set_string(XfconfChannel *channel,
 gboolean
 xfconf_channel_set_string_list(XfconfChannel *channel,
                                const gchar *property,
-                               const gchar **values)
+                               gchar * const *values)
 {
     GPtrArray *arr;
     GValue *val;
