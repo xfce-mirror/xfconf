@@ -102,7 +102,7 @@ gchar **xfconf_channel_get_string_list(XfconfChannel *channel,
                                        const gchar *property) G_GNUC_WARN_UNUSED_RESULT;
 gboolean xfconf_channel_set_string_list(XfconfChannel *channel,
                                         const gchar *property,
-                                        const gchar **values);
+                                        const gchar * const *values);
 
 /* really generic API - can set some value types that aren't
  * supported by the basic type API, e.g., char, signed short,
