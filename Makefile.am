@@ -3,7 +3,6 @@ SUBDIRS = \
 	xfconf \
 	xfconfd \
 	xfconf-query \
-	xfsettingsd \
 	po \
 	docs \
 	tests
