@@ -1,5 +1,4 @@
 common/xfconf-gvaluefuncs.c
-xfsettingsd/main.c
 xfconfd/xfconf-backend-perchannel-xml.c
 xfconfd/xfconf-backend-factory.c
 xfconfd/xfconf-backend.c
