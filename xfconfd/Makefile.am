@@ -20,6 +20,8 @@ xfconfd_SOURCES = \
 	xfconf-dbus-server.h \
 	xfconf-locking-utils.c \
 	xfconf-locking-utils.h \
+	xfconf-proptree.c \
+	xfconf-proptree.h \
 	$(xfconf_backend_sources) \
 	$(top_srcdir)/common/xfconf-types.c
 

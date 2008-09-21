@@ -60,17 +60,15 @@
 #include "xfconf-gvaluefuncs.h"
 #include "xfconf/xfconf-types.h"
 #include "xfconf-common-private.h"
+#include "xfconf-proptree.h"
 
 #define FILE_VERSION_MAJOR  "1"
 #define FILE_VERSION_MINOR  "0"
-
-#define PROP_NAME_IS_VALID(name) ( (name) && (name)[0] == '/' && (name)[1] != 0 && !strstr((name), "//") )
 
 #define CONFIG_DIR_STEM  "xfce4/xfconf/" XFCONF_BACKEND_PERCHANNEL_XML_TYPE_ID "/"
 #define CONFIG_FILE_FMT  CONFIG_DIR_STEM "%s.xml"
 #define CACHE_TIMEOUT    (20*60*1000)  /* 20 minutes */
 #define WRITE_TIMEOUT    (5*1000)  /* 5 seconds */
-#define MAX_PROP_PATH    (4096)
 
 struct _XfconfBackendPerchannelXml
 {
@@ -91,20 +89,6 @@ typedef struct _XfconfBackendPerchannelXmlClass
 {
     GObjectClass parent;
 } XfconfBackendPerchannelXmlClass;
-
-typedef struct
-{
-    GNode *properties;
-    gboolean locked;
-} XfconfChannel;
-
-typedef struct
-{
-    gchar *name;
-    GValue value;
-    GValue system_value;
-    gboolean locked;
-} XfconfProperty;
 
 typedef enum
 {
@@ -186,25 +170,6 @@ static XfconfChannel *xfconf_backend_perchannel_xml_load_channel(XfconfBackendPe
 static gboolean xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
                                                             const gchar *channel_name,
                                                             GError **error);
-
-static GNode *xfconf_proptree_add_property(GNode *proptree,
-                                           const gchar *name,
-                                           const GValue *value,
-                                           const GValue *system_value,
-                                           gboolean locked);
-static XfconfProperty *xfconf_proptree_lookup(GNode *proptree,
-                                              const gchar *name);
-static GNode *xfconf_proptree_lookup_node(GNode *proptree,
-                                          const gchar *name);
-static gboolean xfconf_proptree_reset(GNode *proptree,
-                                      const gchar *name);
-static void xfconf_proptree_destroy(GNode *proptree);
-static gchar *xfconf_proptree_build_propname(GNode *prop_node,
-                                             gchar *buf,
-                                             gsize buflen);
-
-static void xfconf_channel_destroy(XfconfChannel *channel);
-static void xfconf_property_free(XfconfProperty *property);
 
 
 G_DEFINE_TYPE_WITH_CODE(XfconfBackendPerchannelXml, xfconf_backend_perchannel_xml, G_TYPE_OBJECT,
@@ -764,206 +729,6 @@ xfconf_backend_perchannel_xml_register_property_changed_func(XfconfBackend *back
 }
 
 
-
-static GNode *
-xfconf_proptree_lookup_node(GNode *proptree,
-                            const gchar *name)
-{
-    GNode *found_node = NULL;
-    gchar **parts;
-    GNode *parent, *node;
-    gint i;
-
-    g_return_val_if_fail(PROP_NAME_IS_VALID(name), NULL);
-
-    parts = g_strsplit_set(name+1, "/", -1);
-    parent = proptree;
-
-    for(i = 0; parts[i]; ++i) {
-        for(node = g_node_first_child(parent);
-            node;
-            node = g_node_next_sibling(node))
-        {
-            if(!strcmp(((XfconfProperty *)node->data)->name, parts[i])) {
-                if(!parts[i+1])
-                    found_node = node;
-                else
-                    parent = node;
-                break;
-            }
-        }
-
-        if(found_node || !node)
-            break;
-    }
-
-    g_strfreev(parts);
-
-    return found_node;
-}
-
-static XfconfProperty *
-xfconf_proptree_lookup(GNode *proptree,
-                       const gchar *name)
-{
-    GNode *node;
-    XfconfProperty *prop = NULL;
-
-    node = xfconf_proptree_lookup_node(proptree, name);
-    if(node)
-        prop = node->data;
-
-    return prop;
-}
-
-/* here we assume the entry does not already exist */
-static GNode *
-xfconf_proptree_add_property(GNode *proptree,
-                             const gchar *name,
-                             const GValue *value,
-                             const GValue *system_value,
-                             gboolean locked)
-{
-    GNode *parent = NULL;
-    gchar tmp[MAX_PROP_PATH];
-    gchar *p;
-    XfconfProperty *prop;
-
-    g_return_val_if_fail(PROP_NAME_IS_VALID(name), NULL);
-
-    g_strlcpy(tmp, name, MAX_PROP_PATH);
-    p = g_strrstr(tmp, "/");
-    if(p == tmp)
-        parent = proptree;
-    else {
-        *p = 0;
-        parent = xfconf_proptree_lookup_node(proptree, tmp);
-        if(!parent)
-            parent = xfconf_proptree_add_property(proptree, tmp, NULL, NULL, FALSE);
-    }
-
-    prop = g_slice_new0(XfconfProperty);
-    prop->name = g_strdup(strrchr(name, '/')+1);
-    if(value) {
-        g_value_init(&prop->value, G_VALUE_TYPE(value));
-        g_value_copy(value, &prop->value);
-    }
-    prop->locked = locked;
-
-    return g_node_append_data(parent, prop);
-}
-
-static gboolean
-xfconf_proptree_reset(GNode *proptree,
-                      const gchar *name)
-{
-    GNode *node = xfconf_proptree_lookup_node(proptree, name);
-
-    if(node) {
-        XfconfProperty *prop = node->data;
-
-        if(G_IS_VALUE(&prop->value)) {
-            if(node->children || G_VALUE_TYPE(&prop->system_value)) {
-                /* don't remove the children; just blank out the value */
-                DBG("unsetting value at \"%s\"", prop->name);
-                g_value_unset(&prop->value);
-            } else {
-                GNode *parent = node->parent;
-
-                g_node_unlink(node);
-                xfconf_proptree_destroy(node);
-
-                /* remove parents without values until we find the root node or 
-                 * a parent with a value or any children */
-                while(parent) {
-                    prop = parent->data;
-                    if(!G_IS_VALUE(&prop->value)
-                       && !G_IS_VALUE(&prop->system_value)
-                       && !parent->children && strcmp(prop->name, "/"))
-                    {
-                        GNode *tmp = parent;
-                        parent = parent->parent;
-
-                        DBG("unlinking node at \"%s\"", prop->name);
-
-                        g_node_unlink(tmp);
-                        xfconf_proptree_destroy(tmp);
-                    } else
-                        parent = NULL;
-                }
-            }
-
-            return TRUE;
-        }
-    }
-
-    return FALSE;
-}
-
-static gboolean
-proptree_free_node_data(GNode *node,
-                        gpointer data)
-{
-    xfconf_property_free((XfconfProperty *)node->data);
-    return FALSE;
-}
-
-static void
-xfconf_proptree_destroy(GNode *proptree)
-{
-    if(G_LIKELY(proptree)) {
-        g_node_traverse(proptree, G_IN_ORDER, G_TRAVERSE_ALL, -1,
-                        proptree_free_node_data, NULL);
-        g_node_destroy(proptree);
-    }
-}
-
-static gchar *
-xfconf_proptree_build_propname(GNode *prop_node,
-                               gchar *buf,
-                               gsize buflen)
-{
-    GSList *components = NULL, *lp;
-    GNode *cur;
-
-    for(cur = prop_node; cur; cur = cur->parent) {
-        XfconfProperty *prop = cur->data;
-        if(!prop->name[1])  /* we've hit "/" */
-            break;
-        components = g_slist_prepend(components, prop->name);
-    }
-
-    /* FIXME: optimise */
-    buf[0] = 0;
-    for(lp = components; lp; lp = lp->next) {
-        g_strlcat(buf, "/", buflen);
-        g_strlcat(buf, (gchar *)lp->data, buflen);
-    }
-
-    g_slist_free(components);
-
-    return buf;
-}
-
-
-
-static void
-xfconf_channel_destroy(XfconfChannel *channel)
-{
-    xfconf_proptree_destroy(channel->properties);
-    g_slice_free(XfconfChannel, channel);
-}
-
-static void
-xfconf_property_free(XfconfProperty *property)
-{
-    g_free(property->name);
-    if(G_VALUE_TYPE(&property->value))
-        g_value_unset(&property->value);
-    if(G_VALUE_TYPE(&property->system_value))
-        g_value_unset(&property->system_value);
-    g_slice_free(XfconfProperty, property);
-}
 
 static gboolean
 xfconf_backend_perchannel_xml_save_timeout(gpointer data)
