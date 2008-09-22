@@ -430,11 +430,6 @@ xfconf_g_property_unbind_all(GObject *object)
  * Xfconf store as four 16-bit unsigned ints (red, green, blue, alpha).
  * Since GdkColor (currently) only supports RGB and not RGBA,
  * the last value will always be set to 0xFFFF.
- *
- * Note that @xfconf_property_type is required since @xfconf_property
- * may or may not already exist in the Xfconf store.  The type of
- * @object_property will be determined automatically.  If the two
- * types do not match, a conversion will be attempted.
  **/
 void
 xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
