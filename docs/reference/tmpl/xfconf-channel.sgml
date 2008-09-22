@@ -40,6 +40,15 @@ configuration keys with the same names.
 
 </para>
 
+<!-- ##### FUNCTION xfconf_channel_get ##### -->
+<para>
+
+</para>
+
+@channel_name: 
+@Returns: 
+
+
 <!-- ##### FUNCTION xfconf_channel_new ##### -->
 <para>
 
@@ -57,6 +66,16 @@ configuration keys with the same names.
 @channel: 
 @property: 
 @Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_reset_property ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property_base: 
+@recursive: 
 
 
 <!-- ##### FUNCTION xfconf_channel_remove_property ##### -->

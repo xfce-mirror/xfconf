@@ -9,7 +9,7 @@ DOC_MODULE=xfconf
 DOC_MAIN_SGML_FILE=$(DOC_MODULE)-docs.sgml
 
 # Extra options to supply to gtkdoc-scan
-SCAN_OPTIONS=--deprecated-guards="XFCE_DISABLE_DEPRECATED"
+SCAN_OPTIONS=--deprecated-guards="XFCE_DISABLE_DEPRECATED|XFCONF_DISABLE_DEPRECATED"
 
 # The directory containing the source code. Relative to $(srcdir)
 DOC_SOURCE_DIR=../..

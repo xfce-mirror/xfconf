@@ -6,7 +6,7 @@ dnl Copyright (c) 2007 Brian Tarricone <bjt23@cornell.edu>
 dnl
 
 dnl version info
-m4_define([libxfconf_verinfo], [0:0:0])
+m4_define([libxfconf_verinfo], [1:0:1])
 m4_define([libxfconf_version_api], [0])
 m4_define([xfconf_version_major], [4])
 m4_define([xfconf_version_minor], [5])

@@ -1,7 +1,7 @@
 /*
  *  xfconf
  *
- *  Copyright (c) 2007 Brian Tarricone <bjt23@cornell.edu>
+ *  Copyright (c) 2007-2008 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -39,15 +39,23 @@ typedef struct _XfconfChannel         XfconfChannel;
 
 GType xfconf_channel_get_type() G_GNUC_CONST;
 
+XfconfChannel *xfconf_channel_get(const gchar *channel_name) G_GNUC_WARN_UNUSED_RESULT;
+
 XfconfChannel *xfconf_channel_new(const gchar *channel_name) G_GNUC_WARN_UNUSED_RESULT;
 
 gboolean xfconf_channel_has_property(XfconfChannel *channel,
                                      const gchar *property);
 
+void xfconf_channel_reset_property(XfconfChannel *channel,
+                                   const gchar *property_base,
+                                   gboolean recursive);
+
+#ifndef XFCONF_DISABLE_DEPRECATED
 void xfconf_channel_remove_property(XfconfChannel *channel,
                                     const gchar *property);
 void xfconf_channel_remove_properties(XfconfChannel *channel,
                                       const gchar *property_base);
+#endif
 
 GHashTable *xfconf_channel_get_properties(XfconfChannel *channel,
                                           const gchar *property_base) G_GNUC_WARN_UNUSED_RESULT;

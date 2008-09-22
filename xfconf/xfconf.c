@@ -165,6 +165,8 @@ xfconf_shutdown()
     if(--xfconf_refcnt)
         return;
 
+    _xfconf_channel_shutdown();
+
     if(named_structs) {
         g_hash_table_destroy(named_structs);
         named_structs = NULL;

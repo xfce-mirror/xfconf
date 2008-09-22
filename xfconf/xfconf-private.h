@@ -32,4 +32,6 @@ DBusGProxy *_xfconf_get_gui_dbus_g_proxy();
 
 XfconfNamedStruct *_xfconf_named_struct_lookup(const gchar *struct_name);
 
+void _xfconf_channel_shutdown();
+
 #endif  /* __XFCONF_PRIVATE_H__ */

@@ -1,7 +1,7 @@
 /*
  *  xfconf
  *
- *  Copyright (c) 2007 Brian Tarricone <bjt23@cornell.edu>
+ *  Copyright (c) 2007-2008 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -114,6 +114,7 @@ static void xfconf_channel_property_removed(DBusGProxy *proxy,
 
 
 static guint signals[N_SIGS] = { 0, };
+static GHashTable *__channel_singletons = NULL;
 
 
 G_DEFINE_TYPE(XfconfChannel, xfconf_channel, G_TYPE_OBJECT)
@@ -233,10 +234,21 @@ xfconf_channel_finalize(GObject *obj)
 
     g_free(channel->channel_name);
 
+    g_hash_table_remove(__channel_singletons, channel);
+
     G_OBJECT_CLASS(xfconf_channel_parent_class)->finalize(obj);
 }
 
 
+
+void
+_xfconf_channel_shutdown()
+{
+    if(G_LIKELY(__channel_singletons)) {
+        g_hash_table_destroy(__channel_singletons);
+        __channel_singletons = NULL;
+    }
+}
 
 static void
 xfconf_channel_property_changed(DBusGProxy *proxy,
@@ -355,15 +367,69 @@ xfconf_fixup_16bit_ints(GPtrArray *arr)
 }
 
 
+
+/**
+ * xfconf_channel_get:
+ * @channel_name: A channel name.
+ *
+ * Either creates a new channel, or fetches a singleton object for
+ * @channel_name.  This function always returns a valid object; no
+ * checking is done to see if the channel exists or has a valid name.
+ *
+ * The reference count of the returned channel is owned by libxfconf.
+ *
+ * In the future, #XfconfChannel may do client-side read caching;
+ * users of this function will of course benefit from caching done
+ * on behalf of any caller of the function, unlike callers of
+ * xfconf_channel_new().
+ *
+ * Returns: An #XfconfChannel singleton.
+ *
+ * Since: 4.5.91
+ **/
+XfconfChannel *
+xfconf_channel_get(const gchar *channel_name)
+{
+    G_LOCK_DEFINE_STATIC(singletons);
+    XfconfChannel *channel;
+
+    G_LOCK(singletons);
+
+    if(G_UNLIKELY(!__channel_singletons)) {
+        __channel_singletons = g_hash_table_new_full(g_str_hash, g_str_equal,
+                                                     (GDestroyNotify)g_free,
+                                                     (GDestroyNotify)g_object_unref);
+    }
+
+    channel = g_hash_table_lookup(__channel_singletons, channel_name);
+    if(!channel) {
+        channel = xfconf_channel_new(channel_name);
+        g_hash_table_insert(__channel_singletons, g_strdup(channel_name),
+                            channel);
+    }
+
+    G_UNLOCK(singletons);
+
+    return channel;
+}
+
 /**
  * xfconf_channel_new:
  * @channel_name: A channel name.
  *
  * Creates a new channel using @name as the channel's identifier.
- * Note that this function does no checking to see if the channel
- * exists or is new.
+ * This function always returns a valid object; no checking is done
+ * to see if the channel exists or has a valid name.
  *
- * Returns: A new #XfconfChannel.
+ * Note: use of this function is not recommended, in favor of
+ * xfconf_channel_get(), which returns a singleton object and
+ * saves a little memory.  However, xfconf_channel_new() can be
+ * useful in some cases where you want to tie an #XfconfChannel's
+ * lifetime (and thus the lifetime of connected signals and bound
+ * #GObject properties) to the lifetime of another object.
+ *
+ * Returns: A new #XfconfChannel.  Release with g_object_unref()
+ *          when no longer needed.
  **/
 XfconfChannel *
 xfconf_channel_new(const gchar *channel_name)
@@ -401,24 +467,61 @@ xfconf_channel_has_property(XfconfChannel *channel,
 }
 
 /**
+ * xfconf_channel_reset_property:
+ * @channel: An #XfconfChannel.
+ * @property_base: A property tree root or property name.
+ * @recursive: Whether to reset properties recursively.
+ *
+ * Resets properties starting at (and including) @property_base.
+ * If @recursive is %TRUE, will also reset all properties that are
+ * under @property_base in the property hierarchy.
+ *
+ * A bit of an explanation as to what this function actually does:
+ * Since Xfconf backends are expected to support setting defaults
+ * via what you might call "optional schema," you can't really
+ * "remove" properties.  Since the client library can't know if a
+ * channel provides default values (or even if the backend supports
+ * it!), at best it can only reset properties to their default values.
+ *
+ * The @property_base parameter can be %NULL or the empty string (""),
+ * in which case the channel root ("/") will be assumed.  Of course,
+ * %TRUE must be passed for @recursive in this case.
+ *
+ * Since: 4.5.91
+ **/
+void
+xfconf_channel_reset_property(XfconfChannel *channel,
+                              const gchar *property_base,
+                              gboolean recursive)
+{
+    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    ERROR_DEFINE;
+
+    g_return_if_fail(XFCONF_IS_CHANNEL(channel) &&
+                     ((property_base && property_base[0] && property_base[1])
+                      || recursive));
+
+    if(!xfconf_client_remove_property(proxy, channel->channel_name,
+                                      property_base, recursive, ERROR))
+    {
+        ERROR_CHECK;
+    }
+}
+
+/**
  * xfconf_channel_remove_property:
  * @channel: An #XfconfChannel.
  * @property: A property name.
  *
  * Removes @property from @channel in the configuration store.
+ *
+ * Deprecated:4.5.91: Use xfconf_channel_reset_property() instead.
  **/
 void
 xfconf_channel_remove_property(XfconfChannel *channel,
                                const gchar *property)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
-    ERROR_DEFINE;
-
-    if(!xfconf_client_remove_property(proxy, channel->channel_name, property,
-                                      FALSE, ERROR))
-    {
-        ERROR_CHECK;
-    }
+    xfconf_channel_reset_property(channel, property, FALSE);
 }
 
 /**
@@ -429,20 +532,14 @@ xfconf_channel_remove_property(XfconfChannel *channel,
  * Removes @property_base from @channel, and removes all
  * sub-properties of @property_base as well.  To remove the
  * entire channel, specify "/" or %NULL for @property_base.
+ *
+ * Deprecated:4.5.91: Use xfconf_channel_reset_property() instead.
  **/
 void
 xfconf_channel_remove_properties(XfconfChannel *channel,
                                  const gchar *property_base)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
-    ERROR_DEFINE;
-
-    if(!xfconf_client_remove_property(proxy, channel->channel_name,
-                                      property_base ? property_base : "/",
-                                      TRUE, ERROR))
-    {
-        ERROR_CHECK;
-    }
+    xfconf_channel_reset_property(channel, property_base, TRUE);
 }
 
 /**
