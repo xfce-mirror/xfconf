@@ -1,4 +1,3 @@
 SUBDIRS = \
 	reference \
-	spec \
-	xfsettingsd
+	spec
