@@ -62,13 +62,6 @@ static gboolean xfconf_remove_property(XfconfDaemon *xfconfd,
 static gboolean xfconf_list_channels(XfconfDaemon *xfconfd,
                                      gchar ***channels,
                                      GError **error);
-static gboolean xfconf_gui_show_list(XfconfDaemon *xfconfd,
-                                     const gchar *display,
-                                     GError **error);
-static gboolean xfconf_gui_show_plugin(XfconfDaemon *xfconfd,
-                                       const gchar *display,
-                                       const gchar *name,
-                                       GError **error);
 
 #include "xfconf-dbus-server.h"
 
@@ -368,52 +361,6 @@ xfconf_list_channels(XfconfDaemon *xfconfd,
     g_slist_free(lchannels);
 
     return TRUE;
-}
-
-
-static gboolean
-xfconf_gui_show_list(XfconfDaemon *xfconfd,
-                     const gchar *display,
-                     GError **error)
-{
-    gchar *command;
-    gboolean ret;
-    
-    if(display)
-        command = g_strdup_printf("env DISPLAY='%s' %s/xfconf-settings-show",
-                                  display, BINDIR);
-    else
-        command = g_strdup(BINDIR "/xfconf-settings-show");
-    
-    ret = g_spawn_command_line_async(command, error);
-    
-    g_free(command);
-    
-    return ret;
-}
-
-static gboolean
-xfconf_gui_show_plugin(XfconfDaemon *xfconfd,
-                       const gchar *display,
-                       const gchar *name,
-                       GError **error)
-{
-    gchar *command;
-    gboolean ret;
-    
-    g_return_val_if_fail(name, FALSE);
-    
-    if(display)
-        command = g_strdup_printf("env DISPLAY='%s' %s/xfconf-settings-show '%s'",
-                                  display, BINDIR, name);
-    else
-        command = g_strdup_printf("%s/xfconf-settings-show '%s'", BINDIR, name);
-    
-    ret = g_spawn_command_line_async(command, error);
-    
-    g_free(command);
-    
-    return ret;
 }
 
 

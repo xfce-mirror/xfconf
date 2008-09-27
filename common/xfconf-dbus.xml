@@ -93,6 +93,13 @@
              specified property will be removed as well.  If the
              special "/" property is specified for @property, and
              @recursive is true, the entire channel will be removed.
+
+             Note that "Remove" is a bit of a misnomer.  "Reset"
+             would be a much better word.  If default properties are
+             set via some system-wide mechanism (that may be backend-
+             specific), this method will really just remove the user's
+             specified value for the property, and reset the value to
+             the system-wide default.
         -->
         <method name="RemoveProperty">
             <arg direction="in" name="channel" type="s"/>
@@ -140,49 +147,5 @@
             <arg name="channel" type="s"/>
             <arg name="property" type="s"/>
         </signal>
-    </interface>
-    
-    <interface name="org.xfce.Xfconf.GUI">
-        <annotation name="org.freedesktop.DBus.GLib.CSymbol"
-                    value="xfconf_gui"/>
-        <annotation name="org.freedesktop.DBus.GLib.ClientCSymbol"
-                    value="xfconf_client_gui"/>
-        
-        <!--
-             void org.xfce.Xfconf.GUI.ShowList(String display)
-             
-             @display: A display name, or the empty string.
-             
-             Instructs the Xfconf daemon to display some type
-             of GUI element that contains a selectable list of
-             settings GUI plugins.  The @display parameter should
-             be an X11-style display string on which the GUI
-             element should be displayed.  If @display is the
-             empty string (not recommended), the GUI will be
-             shown on the default display.
-        -->
-        <method name="ShowList">
-            <arg direction="in" name="display" type="s"/>
-        </method>
-        
-        <!--
-             void org.xfce.Xfconf.GUI.ShowPlugin(String display,
-                                                 String name)
-             
-             @display: A display name, or the empty string.
-             @name: A plugin name.
-             
-             Instructs the Xfconf daemon to show the settings
-             dialog associated with the plugin identified by
-             @name.  The @display parameter should be an
-             X11-style display string on which the GUI element
-             should be displayed.  If @display is the empty
-             string (not recommended), the GUI will be shown
-             on the default display.
-        -->
-        <method name="ShowPlugin">
-            <arg direction="in" name="display" type="s"/>
-            <arg direction="in" name="name" type="s"/>
-        </method>
     </interface>
 </node>
