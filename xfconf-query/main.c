@@ -60,7 +60,7 @@ static gboolean version = FALSE;
 static gboolean list = FALSE;
 static gboolean verbose = FALSE;
 static gboolean create = FALSE;
-static gboolean remove = FALSE;
+static gboolean reset = FALSE;
 static gchar *channel_name = NULL;
 static gchar *property_name = NULL;
 static gchar **set_value = NULL;
@@ -167,8 +167,8 @@ static GOptionEntry entries[] =
        N_("Specify the property value type"),
        NULL
     },
-    {    "remove", 'r', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &remove,
-        N_("Remove property"),
+    {    "reset", 'r', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &reset,
+        N_("Reset property"),
         NULL
     },
     {   "export", 'x', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &export_file,
@@ -233,15 +233,15 @@ main(int argc, char **argv)
         return 1;
     }
 
-    if (create && remove)
+    if (create && reset)
     {
-        g_print("--create and --remove options can not be used together,\naborting...\n");
+        g_print("--create and --reset options can not be used together,\naborting...\n");
         return 1;
     }
 
-    if ((create || remove) && (list))
+    if ((create || reset) && (list))
     {
-        g_print("--create and --remove options can not be used together with\n --list\naborting...\n");
+        g_print("--create and --reset options can not be used together with\n --list\naborting...\n");
         return 1;
     }
 
@@ -251,9 +251,9 @@ main(int argc, char **argv)
         return 1;
     }
 
-    if ((import_file || export_file) && (list || property_name || create || remove))
+    if ((import_file || export_file) && (list || property_name || create || reset))
     {
-        g_print("--import and --export options can not be used together with\n --create, --remove, --property and --list,\naborting...\n");
+        g_print("--import and --export options can not be used together with\n --create, --reset, --property and --list,\naborting...\n");
         return 1;
     }
 
@@ -261,10 +261,10 @@ main(int argc, char **argv)
 
     if (property_name)
     {
-        /** Remove property */
-        if (remove)
+        /** Reset property */
+        if (reset)
         {
-            xfconf_channel_remove_property(channel, property_name);
+            xfconf_channel_reset_property(channel, property_name, FALSE);
         }
         /** Read value */
         else if(set_value == NULL || set_value[0] == NULL)

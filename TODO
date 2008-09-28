@@ -7,10 +7,7 @@
   - tests for all the array and struct stuff
 * MCS settings migration code
   - special backend to read config entries
-  - script/c code for users who want to migrate all their settings to
-    xfconf and ditch MCS entirely
 * expire channels from memory if they aren't accessed for a while
-* add a GetAllChannels() method to enable a gconf-editor type app
 * PropertyChanged signal works, but...
   - optimise by checking previous value; don't fire signal if the value
     hasn't really changed.  will this slow down the daemon too much?
