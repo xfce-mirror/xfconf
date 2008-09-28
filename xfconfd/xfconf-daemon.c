@@ -236,7 +236,7 @@ xfconf_set_property(XfconfDaemon *xfconfd,
                 if(error) {
                     g_set_error(error, XFCONF_ERROR,
                                 XFCONF_ERROR_PERMISSION_DENIED,
-                                _("Property \"%s\" on channel \"%s\" is locked and cannot be modified"),
+                                _("You don't have permission to modify property \"%s\" on channel \"%s\""),
                                 property, channel);
                 }
                 return FALSE;
