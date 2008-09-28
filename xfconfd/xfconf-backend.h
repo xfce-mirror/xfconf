@@ -97,6 +97,12 @@ struct _XfconfBackendInterface
     gboolean (*list_channels)(XfconfBackend *backend,
                               GSList **channels,
                               GError **error);
+
+    gboolean (*is_property_locked)(XfconfBackend *backend,
+                                   const gchar *channel,
+                                   const gchar *property,
+                                   gboolean *locked,
+                                   GError **error);
     
     gboolean (*flush)(XfconfBackend *backend,
                       GError **error);
@@ -150,6 +156,12 @@ gboolean xfconf_backend_remove(XfconfBackend *backend,
 gboolean xfconf_backend_list_channels(XfconfBackend *backend,
                                       GSList **channels,
                                       GError **error);
+
+gboolean xfconf_backend_is_property_locked(XfconfBackend *backend,
+                                           const gchar *channel,
+                                           const gchar *property,
+                                           gboolean *locked,
+                                           GError **error);
 
 gboolean xfconf_backend_flush(XfconfBackend *backend,
                               GError **error);

@@ -68,6 +68,16 @@ configuration keys with the same names.
 @Returns: 
 
 
+<!-- ##### FUNCTION xfconf_channel_is_property_locked ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+@Returns: 
+
+
 <!-- ##### FUNCTION xfconf_channel_reset_property ##### -->
 <para>
 

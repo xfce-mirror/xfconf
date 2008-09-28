@@ -62,6 +62,11 @@ static gboolean xfconf_remove_property(XfconfDaemon *xfconfd,
 static gboolean xfconf_list_channels(XfconfDaemon *xfconfd,
                                      gchar ***channels,
                                      GError **error);
+static gboolean xfconf_is_property_locked(XfconfDaemon *xfconfd,
+                                          const gchar *channel,
+                                          const gchar *property,
+                                          gboolean *locked,
+                                          GError **error);
 
 #include "xfconf-dbus-server.h"
 
@@ -214,6 +219,28 @@ xfconf_set_property(XfconfDaemon *xfconfd,
                     const GValue *value,
                     GError **error)
 {
+    GList *l;
+
+    /* if there's more than one backend, we need to make sure the
+     * property isn't locked on ANY of them */
+    if(G_UNLIKELY(xfconfd->backends->next)) {
+        for(l = xfconfd->backends; l; l = l->next) {
+            gboolean locked = FALSE;
+
+            if(!xfconf_backend_is_property_locked(l->data, channel, property,
+                                                  &locked, error) || locked)
+            {
+                if(error && !*error) {  /* no error occurred, but locked */
+                    g_set_error(error, XFCONF_ERROR,
+                                XFCONF_ERROR_PERMISSION_DENIED,
+                                _("Property \"%s\" on channel \"%s\" is locked and cannot be modified"),
+                                property, channel);
+                }
+                return FALSE;
+            }
+        }
+    }
+
     /* only write to first backend */
     return xfconf_backend_set(xfconfd->backends->data, channel, property,
                               value, error);
@@ -362,6 +389,32 @@ xfconf_list_channels(XfconfDaemon *xfconfd,
 
     return TRUE;
 }
+
+static gboolean
+xfconf_is_property_locked(XfconfDaemon *xfconfd,
+                          const gchar *channel,
+                          const gchar *property,
+                          gboolean *locked,
+                          GError **error)
+{
+    GList *l;
+
+    *locked = FALSE;
+
+    for(l = xfconfd->backends; l; l = l->next) {
+        if(!xfconf_backend_is_property_locked(l->data, channel, property,
+                                              locked, error))
+        {
+            return FALSE;
+        }
+
+        if(*locked)
+            return TRUE;
+    }
+
+    return TRUE;
+}
+
 
 
 

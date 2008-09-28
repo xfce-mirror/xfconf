@@ -408,6 +408,7 @@ xfconf_backend_remove(XfconfBackend *backend,
  * xfconf_backend_list_channels:
  * @backend: The #XfconfBackend.
  * @channels: A pointer to a #GSList head.
+ * @error: An error return.
  *
  * Instructs the backend to return a list of channels with
  * configuration data stored in the configuration store.
@@ -427,6 +428,40 @@ xfconf_backend_list_channels(XfconfBackend *backend,
                                       && (!error || !*error), FALSE);
 
     return iface->list_channels(backend, channels, error);
+}
+
+/**
+ * xfconf_backend_is_property_locked:
+ * @backend: The #XfconfBackend.
+ * @channel: A channel name.
+ * @property: A property name.
+ * @locked: A boolean return.
+ * @error: An error return.
+ *
+ * Queries whether or not the property on @channel is locked by
+ * system policy.
+ *
+ * Return value: The backend should return %TRUE if the operation
+ *               was successful, or %FALSE otherwise.  On %FALSE,
+ *               @error should be set to a description of the failure.
+ **/
+gboolean
+xfconf_backend_is_property_locked(XfconfBackend *backend,
+                                  const gchar *channel,
+                                  const gchar *property,
+                                  gboolean *locked,
+                                  GError **error)
+{
+    XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
+
+    xfconf_backend_return_val_if_fail(iface && iface->is_property_locked
+                                      && (!error || !*error), FALSE);
+    if(!xfconf_channel_is_valid(channel, error))
+        return FALSE;
+    if(!xfconf_property_is_valid(property, error))
+        return FALSE;
+
+    return iface->is_property_locked(backend, channel, property, locked, error);
 }
 
 /**

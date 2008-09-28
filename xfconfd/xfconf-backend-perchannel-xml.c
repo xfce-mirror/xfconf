@@ -161,6 +161,11 @@ static gboolean xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
 static gboolean xfconf_backend_perchannel_xml_list_channels(XfconfBackend *backend,
                                                             GSList **channels,
                                                             GError **error);
+static gboolean xfconf_backend_perchannel_xml_is_property_locked(XfconfBackend *backend,
+                                                                 const gchar *channel,
+                                                                 const gchar *property,
+                                                                 gboolean *locked,
+                                                                 GError **error);
 static gboolean xfconf_backend_perchannel_xml_flush(XfconfBackend *backend,
                                                     GError **error);
 static void xfconf_backend_perchannel_xml_register_property_changed_func(XfconfBackend *backend,
@@ -246,6 +251,7 @@ xfconf_backend_perchannel_xml_backend_init(XfconfBackendInterface *iface)
     iface->exists = xfconf_backend_perchannel_xml_exists;
     iface->remove = xfconf_backend_perchannel_xml_remove;
     iface->list_channels = xfconf_backend_perchannel_xml_list_channels;
+    iface->is_property_locked = xfconf_backend_perchannel_xml_is_property_locked;
     iface->flush = xfconf_backend_perchannel_xml_flush;
     iface->register_property_changed_func = xfconf_backend_perchannel_xml_register_property_changed_func;
 }
@@ -654,6 +660,30 @@ xfconf_backend_perchannel_xml_list_channels(XfconfBackend *backend,
         g_dir_close(dir);
     }
 
+    return TRUE;
+}
+
+static gboolean
+xfconf_backend_perchannel_xml_is_property_locked(XfconfBackend *backend,
+                                                 const gchar *channel,
+                                                 const gchar *property,
+                                                 gboolean *locked,
+                                                 GError **error)
+{
+    XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
+    GNode *properties;
+    XfconfProperty *prop;
+
+    properties = g_tree_lookup(xbpx->channels, channel);
+    if(!properties) {
+        properties = xfconf_backend_perchannel_xml_load_channel(xbpx, channel,
+                                                                error);
+        if(!properties)
+            return FALSE;
+    }
+
+    prop = xfconf_proptree_lookup(properties, property);
+    *locked = prop ? prop->locked : FALSE;
     return TRUE;
 }
 

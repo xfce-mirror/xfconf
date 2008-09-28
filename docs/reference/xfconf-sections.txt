@@ -4,6 +4,7 @@ XfconfChannel
 xfconf_channel_get
 xfconf_channel_new
 xfconf_channel_has_property
+xfconf_channel_is_property_locked
 xfconf_channel_reset_property
 xfconf_channel_remove_property
 xfconf_channel_remove_properties

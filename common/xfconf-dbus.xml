@@ -118,6 +118,25 @@
         </method>
         
         <!--
+             Boolean org.xfce.Xfconf.IsPropertyLocked(String channel,
+                                                      String property)
+
+             @channel: A channel/application/namespace name.
+             @property: A property name.
+
+             Queries whether the property can be modified by the
+             current user.  The property may be locked by system
+             policy.  Example use would be for a "kiosk mode"
+             where users cannot change how the desktop
+             environment is set up.
+        -->
+        <method name="IsPropertyLocked">
+            <arg direction="in" name="channel" type="s"/>
+            <arg direction="in" name="property" type="s"/>
+            <arg direction="out" name="locked" type="b"/>
+        </method>
+
+        <!--
              void org.xfce.Xfconf.PropertyChanged(String channel,
                                                   String property.
                                                   Variant value)

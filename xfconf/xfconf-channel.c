@@ -467,6 +467,38 @@ xfconf_channel_has_property(XfconfChannel *channel,
 }
 
 /**
+ * xfconf_channel_is_property_locked:
+ * @channel: An #XfconfChannel.
+ * @property: A property name.
+ *
+ * Queries whether or not @property on @channel is locked by system
+ * policy.  If the property is locked, calls to
+ * xfconf_channel_set_property() (or any of the "set" family of functions)
+ * or xfconf_channel_reset_property() will fail.
+ *
+ * Returns: %TRUE if the property is locked, %FALSE otherwise.
+ *
+ * Since: 4.5.91
+ **/
+gboolean
+xfconf_channel_is_property_locked(XfconfChannel *channel,
+                                  const gchar *property)
+{
+    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    gboolean locked = FALSE;
+    ERROR_DEFINE;
+
+    if(!xfconf_client_is_property_locked(proxy, channel->channel_name,
+                                         property, &locked, ERROR))
+    {
+        ERROR_CHECK;
+        return FALSE;
+    }
+
+    return locked;
+}
+
+/**
  * xfconf_channel_reset_property:
  * @channel: An #XfconfChannel.
  * @property_base: A property tree root or property name.

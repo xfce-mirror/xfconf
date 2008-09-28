@@ -33,6 +33,7 @@ one could think of to store data.
 @exists: See xfconf_backend_exists().
 @remove: See xfconf_backend_remove().
 @list_channels: See xfconf_backend_list_channels().
+@is_property_locked: See xfconf_backend_is_property_locked().
 @flush: See xfconf_backend_flush().
 @register_property_changed_func: See xfconf_backend_register_property_changed_func().
 @_xb_reserved0: Reserved for future expansion.

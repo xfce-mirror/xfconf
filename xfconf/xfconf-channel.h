@@ -46,6 +46,9 @@ XfconfChannel *xfconf_channel_new(const gchar *channel_name) G_GNUC_WARN_UNUSED_
 gboolean xfconf_channel_has_property(XfconfChannel *channel,
                                      const gchar *property);
 
+gboolean xfconf_channel_is_property_locked(XfconfChannel *channel,
+                                           const gchar *property);
+
 void xfconf_channel_reset_property(XfconfChannel *channel,
                                    const gchar *property_base,
                                    gboolean recursive);
