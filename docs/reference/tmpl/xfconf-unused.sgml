@@ -66,6 +66,18 @@ stamp-xfconf-marshal
 
 @Returns: 
 
+<!-- ##### FUNCTION xfconf_backend_remove ##### -->
+<para>
+
+</para>
+
+@backend: 
+@channel: 
+@property: 
+@recursive: 
+@error: 
+@Returns: 
+
 <!-- ##### FUNCTION xfconf_backend_remove_channel ##### -->
 <para>
 

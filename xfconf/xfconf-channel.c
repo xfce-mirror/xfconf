@@ -533,8 +533,8 @@ xfconf_channel_reset_property(XfconfChannel *channel,
                      ((property_base && property_base[0] && property_base[1])
                       || recursive));
 
-    if(!xfconf_client_remove_property(proxy, channel->channel_name,
-                                      property_base, recursive, ERROR))
+    if(!xfconf_client_reset_property(proxy, channel->channel_name,
+                                     property_base, recursive, ERROR))
     {
         ERROR_CHECK;
     }

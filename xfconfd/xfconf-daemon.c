@@ -54,11 +54,11 @@ static gboolean xfconf_property_exists(XfconfDaemon *xfconfd,
                                        const gchar *property,
                                        gboolean *exists,
                                        GError **error);
-static gboolean xfconf_remove_property(XfconfDaemon *xfconfd,
-                                       const gchar *channel,
-                                       const gchar *property,
-                                       gboolean recursive,
-                                       GError **error);
+static gboolean xfconf_reset_property(XfconfDaemon *xfconfd,
+                                      const gchar *channel,
+                                      const gchar *property,
+                                      gboolean recursive,
+                                      GError **error);
 static gboolean xfconf_list_channels(XfconfDaemon *xfconfd,
                                      gchar ***channels,
                                      GError **error);
@@ -338,21 +338,21 @@ xfconf_property_exists(XfconfDaemon *xfconfd,
 }
 
 static gboolean
-xfconf_remove_property(XfconfDaemon *xfconfd,
-                       const gchar *channel,
-                       const gchar *property,
-                       gboolean recursive,
-                       GError **error)
+xfconf_reset_property(XfconfDaemon *xfconfd,
+                      const gchar *channel,
+                      const gchar *property,
+                      gboolean recursive,
+                      GError **error)
 {
     gboolean ret = FALSE;
     GList *l;
     
     /* while technically all backends but the first should be opened read-only,
-     * we need to remove from all backends so the property doesn't reappear
+     * we need to reset in all backends so the property doesn't reappear
      * later */
     
     for(l = xfconfd->backends; l; l = l->next) {
-        if(xfconf_backend_remove(l->data, channel, property, recursive, error))
+        if(xfconf_backend_reset(l->data, channel, property, recursive, error))
             ret = TRUE;
         else if(l->next && error && *error) {
             g_error_free(*error);

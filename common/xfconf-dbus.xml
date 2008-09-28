@@ -80,28 +80,30 @@
         </method>
         
         <!--
-             void org.xfce.Xfconf.RemoveProperty(String channel,
-                                                 String property,
-                                                 Boolean recursive)
+             void org.xfce.Xfconf.ResetProperty(String channel,
+                                                String property,
+                                                Boolean recursive)
              
              @channel: A channel/application/namespace name.
              @property: A property name.
-             @recursive: Whether the operation removes sub-properties.
+             @recursive: Whether the operation resets sub-properties.
              
-             Removes @property and its value from @channel.  If
-             @recursive is true, all sub-properties of the
-             specified property will be removed as well.  If the
-             special "/" property is specified for @property, and
-             @recursive is true, the entire channel will be removed.
+             Resets @property on @channel.  If @recursive is true,
+             all sub-properties of the specified property will be
+             reset as well.  If the special "/" property is specified
+             for @property, and @recursive is true, the entire channel
+             will be reset.
 
-             Note that "Remove" is a bit of a misnomer.  "Reset"
-             would be a much better word.  If default properties are
-             set via some system-wide mechanism (that may be backend-
-             specific), this method will really just remove the user's
-             specified value for the property, and reset the value to
-             the system-wide default.
+             Since properties can be set by root-owned system-wide
+             settings, actual property *removal* may not be possible.
+             The idea of "reset" is that it puts the configuration store
+             back to the application's original state as if it were
+             freshly installed for the current user.  If there are no
+             system-wide settings, this amounts to a "remove."  If there
+             are system-wide settings and/or some properties are locked
+             by system policy, then it's just a reset.
         -->
-        <method name="RemoveProperty">
+        <method name="ResetProperty">
             <arg direction="in" name="channel" type="s"/>
             <arg direction="in" name="property" type="s"/>
             <arg direction="in" name="recursive" type="b"/>

@@ -88,11 +88,11 @@ struct _XfconfBackendInterface
                        gboolean *exists,
                        GError **error);
     
-    gboolean (*remove)(XfconfBackend *backend,
-                       const gchar *channel,
-                       const gchar *property,
-                       gboolean recursive,
-                       GError **error);
+    gboolean (*reset)(XfconfBackend *backend,
+                      const gchar *channel,
+                      const gchar *property,
+                      gboolean recursive,
+                      GError **error);
 
     gboolean (*list_channels)(XfconfBackend *backend,
                               GSList **channels,
@@ -147,11 +147,11 @@ gboolean xfconf_backend_exists(XfconfBackend *backend,
                                gboolean *exists,
                                GError **error);
 
-gboolean xfconf_backend_remove(XfconfBackend *backend,
-                               const gchar *channel,
-                               const gchar *property,
-                               gboolean recursive,
-                               GError **error);
+gboolean xfconf_backend_reset(XfconfBackend *backend,
+                              const gchar *channel,
+                              const gchar *property,
+                              gboolean recursive,
+                              GError **error);
 
 gboolean xfconf_backend_list_channels(XfconfBackend *backend,
                                       GSList **channels,

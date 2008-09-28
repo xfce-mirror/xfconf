@@ -31,7 +31,7 @@ one could think of to store data.
 @get: See xfconf_backend_get().
 @get_all: See xfconf_backend_get_all().
 @exists: See xfconf_backend_exists().
-@remove: See xfconf_backend_remove().
+@reset: See xfconf_backend_reset().
 @list_channels: See xfconf_backend_list_channels().
 @is_property_locked: See xfconf_backend_is_property_locked().
 @flush: See xfconf_backend_flush().
@@ -109,7 +109,7 @@ one could think of to store data.
 @Returns: 
 
 
-<!-- ##### FUNCTION xfconf_backend_remove ##### -->
+<!-- ##### FUNCTION xfconf_backend_reset ##### -->
 <para>
 
 </para>

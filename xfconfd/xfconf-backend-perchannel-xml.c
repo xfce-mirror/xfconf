@@ -153,11 +153,11 @@ static gboolean xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
                                                      const gchar *property,
                                                      gboolean *exists,
                                                      GError **error);
-static gboolean xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
-                                                     const gchar *channel,
-                                                     const gchar *property,
-                                                     gboolean recursive,
-                                                     GError **error);
+static gboolean xfconf_backend_perchannel_xml_reset(XfconfBackend *backend,
+                                                    const gchar *channel,
+                                                    const gchar *property,
+                                                    gboolean recursive,
+                                                    GError **error);
 static gboolean xfconf_backend_perchannel_xml_list_channels(XfconfBackend *backend,
                                                             GSList **channels,
                                                             GError **error);
@@ -249,7 +249,7 @@ xfconf_backend_perchannel_xml_backend_init(XfconfBackendInterface *iface)
     iface->get = xfconf_backend_perchannel_xml_get;
     iface->get_all = xfconf_backend_perchannel_xml_get_all;
     iface->exists = xfconf_backend_perchannel_xml_exists;
-    iface->remove = xfconf_backend_perchannel_xml_remove;
+    iface->reset = xfconf_backend_perchannel_xml_reset;
     iface->list_channels = xfconf_backend_perchannel_xml_list_channels;
     iface->is_property_locked = xfconf_backend_perchannel_xml_is_property_locked;
     iface->flush = xfconf_backend_perchannel_xml_flush;
@@ -563,11 +563,11 @@ do_remove_channel(XfconfBackend *backend,
 }
 
 static gboolean
-xfconf_backend_perchannel_xml_remove(XfconfBackend *backend,
-                                     const gchar *channel,
-                                     const gchar *property,
-                                     gboolean recursive,
-                                     GError **error)
+xfconf_backend_perchannel_xml_reset(XfconfBackend *backend,
+                                    const gchar *channel,
+                                    const gchar *property,
+                                    gboolean recursive,
+                                    GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
     GNode *properties = g_tree_lookup(xbpx->channels, channel);
