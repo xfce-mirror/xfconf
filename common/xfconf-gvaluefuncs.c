@@ -257,6 +257,52 @@ _xfconf_string_from_gvalue(GValue *val)
     return NULL;
 }
 
+gboolean
+_xfconf_gvalue_is_equal(const GValue *value1,
+                        const GValue *value2)
+{
+    if(G_UNLIKELY(!value1 && !value2))
+        return TRUE;
+    if(G_UNLIKELY(!value1 || !value2))
+        return FALSE;
+    if(G_VALUE_TYPE(value1) != G_VALUE_TYPE(value2))
+        return FALSE;
+    if(G_VALUE_TYPE(value1) == G_TYPE_INVALID
+       || G_VALUE_TYPE(value1) == G_TYPE_NONE)
+    {
+        return TRUE;
+    }
+
+    switch(G_VALUE_TYPE(value1)) {
+#define HANDLE_CMP_GV(TYPE, getter) \
+        case G_TYPE_ ## TYPE: \
+            return g_value_get_ ## getter(value1) == g_value_get_ ## getter(value2)
+
+        HANDLE_CMP_GV(CHAR, char);
+        HANDLE_CMP_GV(UCHAR, uchar);
+        HANDLE_CMP_GV(BOOLEAN, boolean);
+        HANDLE_CMP_GV(INT, int);
+        HANDLE_CMP_GV(UINT, uint);
+        HANDLE_CMP_GV(INT64, int64);
+        HANDLE_CMP_GV(UINT64, uint64);
+        HANDLE_CMP_GV(FLOAT, float);
+        HANDLE_CMP_GV(DOUBLE, double);
+
+        case G_TYPE_STRING:
+            return !g_utf8_collate(g_value_get_string(value1), g_value_get_string(value2));
+
+        default:
+            if(G_VALUE_TYPE(value1) == XFCONF_TYPE_INT16)
+                return xfconf_g_value_get_int16(value1) == xfconf_g_value_get_uint16(value2);
+            else if(G_VALUE_TYPE(value1) == XFCONF_TYPE_UINT16)
+                return xfconf_g_value_get_uint16(value1) == xfconf_g_value_get_uint16(value2);
+            break;
+#undef HANDLE_CMP_GV
+    }
+
+    return FALSE;
+}
+
 void
 _xfconf_gvalue_free(GValue *value)
 {

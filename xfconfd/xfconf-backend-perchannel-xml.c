@@ -322,13 +322,14 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
             return FALSE;
         }
 
+        if(_xfconf_gvalue_is_equal(&cur_prop->value, value))
+            return TRUE;
+
         if(G_IS_VALUE(&cur_prop->value))
             g_value_unset(&cur_prop->value);
         g_value_copy(value, g_value_init(&cur_prop->value,
                                          G_VALUE_TYPE(value)));
 
-        /* FIXME: this will trigger if the value is replaced by the same
-         * value */
         if(xbpx->prop_changed_func)
             xbpx->prop_changed_func(backend, channel, property, xbpx->prop_changed_data);
     } else {

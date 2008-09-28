@@ -31,6 +31,9 @@ gboolean _xfconf_gvalue_from_string(GValue *value,
 
 gchar *_xfconf_string_from_gvalue(GValue *value) G_GNUC_INTERNAL;
 
+gboolean _xfconf_gvalue_is_equal(const GValue *value1,
+                                 const GValue *value2) G_GNUC_INTERNAL;
+
 void _xfconf_gvalue_free(GValue *value) G_GNUC_INTERNAL;
 
 G_END_DECLS
