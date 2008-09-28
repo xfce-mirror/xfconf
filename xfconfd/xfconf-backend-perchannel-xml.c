@@ -1593,7 +1593,7 @@ xfconf_format_xml_tag(GString *elem_str,
                     GValue *value1 = g_ptr_array_index(arr, i);
                     gboolean dummy;
 
-                    g_string_append_printf(elem_str, "%s  <value ", spaces);
+                    g_string_append_printf(elem_str, "%s  <value", spaces);
                     if(!xfconf_format_xml_tag(elem_str, value1, TRUE, spaces,
                                               &dummy))
                     {
