@@ -228,9 +228,12 @@ xfconf_set_property(XfconfDaemon *xfconfd,
             gboolean locked = FALSE;
 
             if(!xfconf_backend_is_property_locked(l->data, channel, property,
-                                                  &locked, error) || locked)
+                                                  &locked, error))
             {
-                if(error && !*error) {  /* no error occurred, but locked */
+                return FALSE;
+            }
+            if(locked) {
+                if(error) {
                     g_set_error(error, XFCONF_ERROR,
                                 XFCONF_ERROR_PERMISSION_DENIED,
                                 _("Property \"%s\" on channel \"%s\" is locked and cannot be modified"),
