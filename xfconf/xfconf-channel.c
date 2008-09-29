@@ -234,7 +234,8 @@ xfconf_channel_finalize(GObject *obj)
 
     g_free(channel->channel_name);
 
-    g_hash_table_remove(__channel_singletons, channel);
+    if(__channel_singletons)
+        g_hash_table_remove(__channel_singletons, channel);
 
     G_OBJECT_CLASS(xfconf_channel_parent_class)->finalize(obj);
 }
