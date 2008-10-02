@@ -162,8 +162,14 @@ xfconf_init(GError **error)
 void
 xfconf_shutdown()
 {
-    if(--xfconf_refcnt)
+    if(xfconf_refcnt <= 0) {
         return;
+    }
+
+    if(xfconf_refcnt > 1) {
+        --xfconf_refcnt;
+        return;
+    }
 
     _xfconf_channel_shutdown();
 
@@ -180,6 +186,8 @@ xfconf_shutdown()
 
     dbus_g_connection_unref(dbus_conn);
     dbus_conn = NULL;
+
+    --xfconf_refcnt;
 }
 
 /**
