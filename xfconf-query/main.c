@@ -61,6 +61,7 @@ static gboolean list = FALSE;
 static gboolean verbose = FALSE;
 static gboolean create = FALSE;
 static gboolean reset = FALSE;
+static gboolean recursive = FALSE;
 static gchar *channel_name = NULL;
 static gchar *property_name = NULL;
 static gchar **set_value = NULL;
@@ -171,6 +172,10 @@ static GOptionEntry entries[] =
         N_("Reset property"),
         NULL
     },
+    {    "recursive", 'R', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &recursive,
+        N_("Recursive (use with -r)"),
+        NULL
+    },
     {   "export", 'x', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &export_file,
         N_("Export channel"),
         NULL,
@@ -264,7 +269,7 @@ main(int argc, char **argv)
         /** Reset property */
         if (reset)
         {
-            xfconf_channel_reset_property(channel, property_name, FALSE);
+            xfconf_channel_reset_property(channel, property_name, recursive);
         }
         /** Read value */
         else if(set_value == NULL || set_value[0] == NULL)
