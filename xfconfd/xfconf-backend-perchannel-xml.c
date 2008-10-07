@@ -195,6 +195,9 @@ static GNode *xfconf_proptree_lookup_node(GNode *proptree,
 static gboolean xfconf_proptree_remove(GNode *proptree,
                                        const gchar *name);
 static void xfconf_proptree_destroy(GNode *proptree);
+static gchar *xfconf_proptree_build_propname(GNode *prop_node,
+                                             gchar *buf,
+                                             gsize buflen);
 
 static void xfconf_property_free(XfconfProperty *property);
 
@@ -503,18 +506,25 @@ typedef struct
     const gchar *channel;
 } PropChangeData;
 
-static void nodes_do_propchange_remove(GNode *node,
-                                       gpointer data)
+static gboolean
+nodes_do_propchange_remove(GNode *node,
+                           gpointer data)
 {
     PropChangeData *pdata = data;
     XfconfProperty *prop = node->data;
+    gchar prop_fullname[4096];
 
-    if(!G_VALUE_TYPE(&prop->value))
-        return;
 
-    pdata->xbpx->prop_changed_func(XFCONF_BACKEND(pdata->xbpx),
-                                   pdata->channel, prop->name,
-                                   pdata->xbpx->prop_changed_data);
+    if(G_VALUE_TYPE(&prop->value)) {
+        pdata->xbpx->prop_changed_func(XFCONF_BACKEND(pdata->xbpx),
+                                       pdata->channel,
+                                       xfconf_proptree_build_propname(node,
+                                                                      prop_fullname,
+                                                                      sizeof(prop_fullname)),
+                                       pdata->xbpx->prop_changed_data);
+    }
+
+    return FALSE;
 }
 
 static gboolean
@@ -542,8 +552,8 @@ do_remove_channel(XfconfBackend *backend,
 
         pdata.xbpx = xbpx;
         pdata.channel = channel;
-        g_node_children_foreach(properties, G_TRAVERSE_ALL,
-                                nodes_do_propchange_remove, &pdata);
+        g_node_traverse(properties, G_POST_ORDER, G_TRAVERSE_ALL, -1,
+                        nodes_do_propchange_remove, &pdata);
     }
     g_tree_remove(xbpx->channels, channel);
 
@@ -595,7 +605,6 @@ xfconf_backend_perchannel_xml_reset(XfconfBackend *backend,
             xbpx->prop_changed_func(backend, channel, property, xbpx->prop_changed_data);
     } else {
         GNode *top;
-        XfconfProperty *prop;
         
         if(property[0] && property[1]) {
             PropChangeData pdata;
@@ -612,16 +621,12 @@ xfconf_backend_perchannel_xml_reset(XfconfBackend *backend,
                 return FALSE;
             }
 
-            g_node_unlink(top);
-            prop = top->data;
-            if(G_VALUE_TYPE(&prop->value) && xbpx->prop_changed_func)
-                xbpx->prop_changed_func(backend, channel, property, xbpx->prop_changed_data);
-
             pdata.xbpx = xbpx;
             pdata.channel = channel;
-            g_node_children_foreach(top, G_TRAVERSE_ALL,
-                                    nodes_do_propchange_remove, &pdata);
+            g_node_traverse(top, G_POST_ORDER, G_TRAVERSE_ALL, -1,
+                            nodes_do_propchange_remove, &pdata);
 
+            g_node_unlink(top);
             xfconf_proptree_destroy(top);
         } else {
             /* remove the entire channel */
@@ -863,6 +868,31 @@ xfconf_proptree_destroy(GNode *proptree)
                         proptree_free_node_data, NULL);
         g_node_destroy(proptree);
     }
+}
+
+static gchar *
+xfconf_proptree_build_propname(GNode *prop_node,
+                               gchar *buf,
+                               gsize buflen)
+{
+    GSList *components = NULL, *lp;
+    GNode *cur;
+
+    for(cur = prop_node; cur; cur = cur->parent) {
+        XfconfProperty *prop = cur->data;
+        if(!prop->name[1])  /* we've hit "/" */
+            break;
+        components = g_slist_prepend(components, prop->name);
+    }
+
+    /* FIXME: optimise */
+    buf[0] = 0;
+    for(lp = components; lp; lp = lp->next) {
+        g_strlcat(buf, "/", buflen);
+        g_strlcat(buf, (gchar *)lp->data, buflen);
+    }
+
+    return buf;
 }
 
 
