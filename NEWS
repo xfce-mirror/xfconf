@@ -1,0 +1,23 @@
+Xfce 4.6beta1 (Xfce 4.5.91)
+===========================
+
+  * Remove xfsettingsd (moved to xfce4-settings package).  This removes
+    xfconf's gtk+ dependency entirely.
+  * Add xfconf_channel_get() which returns an XfconfChannel singleton
+    object that lives until calling xfconf_shutdown().
+  * Add xfconf_channel_reset_property(), which is a replacement for the
+    'remove' functions.  This more accurately describes what 'remove'
+    actually does in the presence of locked properties and/or properties
+    that have system-wide defaults.
+  * Deprecate xfconf_channel_remove_property() and
+    xfconf_channel_remove_properties().
+  * Change D-Bus interface to reflect above two changes.
+  * Add IsPropertyLocked() to the D-Bus interface, as well as a
+    corresponding xfconf_channel_is_property_locked() libxfconf function,
+    which allows clients to query whether or not a property can be
+    modified.
+  * Don't send out a PropertyChange signal if a property is set to the
+    value it already held.
+  * Fix daemon crash when resetting properties recursively.
+  * Fix daemon sending incorrect property names in the PropertyRemoved
+    signal when removing multiple properties at once.
