@@ -499,22 +499,22 @@ xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
 
 typedef struct
 {
-    XfconfBackend *backend;
+    XfconfBackendPerchannelXml *xbpx;
     const gchar *channel;
 } PropChangeData;
 
 static void nodes_do_propchange_remove(GNode *node,
                                        gpointer data)
 {
-    XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(data);
     PropChangeData *pdata = data;
     XfconfProperty *prop = node->data;
 
     if(!G_VALUE_TYPE(&prop->value))
         return;
 
-    xbpx->prop_changed_func(pdata->backend, pdata->channel,
-                            prop->name, xbpx->prop_changed_data);
+    pdata->xbpx->prop_changed_func(XFCONF_BACKEND(pdata->xbpx),
+                                   pdata->channel, prop->name,
+                                   pdata->xbpx->prop_changed_data);
 }
 
 static gboolean
@@ -540,7 +540,7 @@ do_remove_channel(XfconfBackend *backend,
     if(xbpx->prop_changed_func) {
         PropChangeData pdata;
 
-        pdata.backend = backend;
+        pdata.xbpx = xbpx;
         pdata.channel = channel;
         g_node_children_foreach(properties, G_TRAVERSE_ALL,
                                 nodes_do_propchange_remove, &pdata);
@@ -617,7 +617,7 @@ xfconf_backend_perchannel_xml_reset(XfconfBackend *backend,
             if(G_VALUE_TYPE(&prop->value) && xbpx->prop_changed_func)
                 xbpx->prop_changed_func(backend, channel, property, xbpx->prop_changed_data);
 
-            pdata.backend = backend;
+            pdata.xbpx = xbpx;
             pdata.channel = channel;
             g_node_children_foreach(top, G_TRAVERSE_ALL,
                                     nodes_do_propchange_remove, &pdata);
