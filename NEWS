@@ -21,3 +21,8 @@ Xfce 4.6beta1 (Xfce 4.5.91)
   * Fix daemon crash when resetting properties recursively.
   * Fix daemon sending incorrect property names in the PropertyRemoved
     signal when removing multiple properties at once.
+
+Xfce 4.6alpha (Xfce 4.5.90)
+===========================
+
+  * Initial release.  There are bugs, and the API and ABI are not frozen.
