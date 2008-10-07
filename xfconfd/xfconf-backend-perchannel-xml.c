@@ -892,6 +892,8 @@ xfconf_proptree_build_propname(GNode *prop_node,
         g_strlcat(buf, (gchar *)lp->data, buflen);
     }
 
+    g_slist_free(components);
+
     return buf;
 }
 
