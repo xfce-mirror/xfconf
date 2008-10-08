@@ -312,7 +312,7 @@ void
 xfconf_g_property_bind(XfconfChannel *channel,
                        const gchar *xfconf_property,
                        GType xfconf_property_type,
-                       GObject *object,
+                       gpointer object,
                        const gchar *object_property)
 {
     XfconfGBinding *binding;
@@ -352,7 +352,7 @@ xfconf_g_property_bind(XfconfChannel *channel,
     }
 
     binding = xfconf_g_binding_init(channel, xfconf_property,
-                                    xfconf_property_type, object,
+                                    xfconf_property_type, G_OBJECT(object),
                                     object_property,
                                     G_PARAM_SPEC_VALUE_TYPE(pspec));
 }
@@ -370,7 +370,7 @@ xfconf_g_property_bind(XfconfChannel *channel,
 void
 xfconf_g_property_unbind(XfconfChannel *channel,
                          const gchar *xfconf_property,
-                         GObject *object,
+                         gpointer object,
                          const gchar *object_property)
 {
     GSList *bindings = g_object_steal_data(G_OBJECT(object), DATA_KEY);
@@ -403,7 +403,7 @@ xfconf_g_property_unbind(XfconfChannel *channel,
  * to the #GObject.
  **/
 void
-xfconf_g_property_unbind_all(GObject *object)
+xfconf_g_property_unbind_all(gpointer object)
 {
     GSList *bindings = g_object_steal_data(G_OBJECT(object), DATA_KEY);
 
@@ -434,7 +434,7 @@ xfconf_g_property_unbind_all(GObject *object)
 void
 xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
                                 const gchar *xfconf_property,
-                                GObject *object,
+                                gpointer object,
                                 const gchar *object_property)
 {
     XfconfGBinding *binding;
@@ -470,7 +470,7 @@ xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
     }
 
     binding = xfconf_g_binding_init(channel, xfconf_property, __gdkcolor_gtype,
-                                    object, object_property, __gdkcolor_gtype);
+                                    G_OBJECT (object), object_property, __gdkcolor_gtype);
 }
 
 

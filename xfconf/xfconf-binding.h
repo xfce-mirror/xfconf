@@ -32,19 +32,19 @@ G_BEGIN_DECLS
 void xfconf_g_property_bind(XfconfChannel *channel,
                             const gchar *xfconf_property,
                             GType xfconf_property_type,
-                            GObject *object,
+                            gpointer object,
                             const gchar *object_property);
 
 void xfconf_g_property_unbind(XfconfChannel *channel,
                               const gchar *xfconf_property,
-                              GObject *object,
+                              gpointer object,
                               const gchar *object_property);
 
-void xfconf_g_property_unbind_all(GObject *object);
+void xfconf_g_property_unbind_all(gpointer object);
 
 void xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
                                      const gchar *xfconf_property,
-                                     GObject *object,
+                                     gpointer object,
                                      const gchar *object_property);
 
 G_END_DECLS
