@@ -163,8 +163,10 @@ xfconf_g_binding_channel_property_changed(XfconfChannel *channel,
          * boxed types don't have defaults, so bail if that's the case. */
         GParamSpec *pspec;
 
-        if(g_type_is_a(binding->object_property_type, G_TYPE_BOXED))
+        if(g_type_is_a(binding->object_property_type, G_TYPE_BOXED)) {
+            g_value_unset(&dst_val);
             return;
+        }
 
         pspec = g_object_class_find_property(G_OBJECT_GET_CLASS(binding->object),
                                              binding->object_property);
@@ -172,6 +174,7 @@ xfconf_g_binding_channel_property_changed(XfconfChannel *channel,
             g_warning("Unable to find property \"%s\" on object of type \"%s\"",
                       binding->object_property,
                       G_OBJECT_TYPE_NAME(binding->object));
+            g_value_unset(&dst_val);
             return;
         }
 
