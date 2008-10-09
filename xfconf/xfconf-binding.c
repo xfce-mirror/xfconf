@@ -126,7 +126,12 @@ xfconf_g_binding_channel_property_changed_gdkcolor(XfconfGBinding *binding,
     GPtrArray *arr;
     FakeGdkColor color = { 0, };
 
+    if(G_VALUE_TYPE(value) == G_TYPE_INVALID)
+        return;
+        
     arr = g_value_get_boxed(value);
+    if(G_UNLIKELY(!arr || arr->len < 3))
+        return;
 
     color.red = g_value_get_uint(g_ptr_array_index(arr, 0));
     color.green = g_value_get_uint(g_ptr_array_index(arr, 1));
