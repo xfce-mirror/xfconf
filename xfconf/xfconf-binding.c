@@ -158,7 +158,29 @@ xfconf_g_binding_channel_property_changed(XfconfChannel *channel,
 
     g_value_init(&dst_val, binding->object_property_type);
 
-    if(g_value_transform(value, &dst_val)) {
+    if(G_VALUE_TYPE(value) == G_TYPE_INVALID) {
+        /* for a remove, try to reset to the default value, if any.
+         * boxed types don't have defaults, so bail if that's the case. */
+        GParamSpec *pspec;
+
+        if(g_type_is_a(binding->object_property_type, G_TYPE_BOXED))
+            return;
+
+        pspec = g_object_class_find_property(G_OBJECT_GET_CLASS(binding->object),
+                                             binding->object_property);
+        if(G_UNLIKELY(!pspec)) {
+            g_warning("Unable to find property \"%s\" on object of type \"%s\"",
+                      binding->object_property,
+                      G_OBJECT_TYPE_NAME(binding->object));
+            return;
+        }
+
+        g_param_value_set_default(pspec, &dst_val);
+    }
+
+    if(G_VALUE_TYPE(value) == G_TYPE_INVALID
+       || g_value_transform(value, &dst_val))
+    {
         g_signal_handlers_block_by_func(binding->object,
                                         G_CALLBACK(xfconf_g_binding_object_property_changed),
                                         binding);
