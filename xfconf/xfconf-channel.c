@@ -367,6 +367,45 @@ xfconf_fixup_16bit_ints(GPtrArray *arr)
     return arr_new;
 }
 
+static GPtrArray *
+xfconf_transform_array(GPtrArray *arr_src,
+                       GType gtype)
+{
+    GPtrArray *arr_dest;
+    gint i;
+
+    g_return_val_if_fail(arr_src && arr_src->len, NULL);
+    g_return_val_if_fail(gtype != G_TYPE_INVALID, NULL);
+
+    arr_dest = g_ptr_array_sized_new(arr_src->len);
+    for(i = 0; i < arr_src->len; ++i) {
+        GValue *value_src = g_ptr_array_index(arr_src, i);
+        GValue *value_dest = g_new0(GValue, 1);
+
+        g_value_init(value_dest, gtype);
+        if(G_VALUE_TYPE(value_src) == gtype)
+            g_value_copy(value_src, value_dest);
+        else if(!g_value_transform(value_src, value_dest)) {
+            g_warning("Unable to convert array member %d from type \"%s\" to type \"%s\"",
+                      i, G_VALUE_TYPE_NAME(value_src), g_type_name(gtype));
+            /* avoid pulling in all of libxfconf-gvaluefuncs for _xfconf_gvalue_free() */
+            g_value_unset(value_dest);
+            g_free(value_dest);
+            /* reuse i; we're returning anyway */
+            for(i = 0; i < arr_dest->len; ++i) {
+                g_value_unset(g_ptr_array_index(arr_dest, i));
+                g_free(g_ptr_array_index(arr_dest, i));
+            }
+            g_ptr_array_free(arr_dest, TRUE);
+            return NULL;
+        }
+
+        g_ptr_array_add(arr_dest, value_dest);
+    }
+
+    return arr_dest;
+}
+
 
 
 /**
@@ -1103,9 +1142,11 @@ xfconf_channel_set_bool(XfconfChannel *channel,
  * This function can be called with an initialized or uninitialized
  * @value.  If @value is initialized to a particular type, libxfconf
  * will attempt to convert the value returned from the configuration
- * store to that type if they don't match.  If @value is uninitialized,
- * The value in the configuration store will be returned in its native
- * type.
+ * store to that type if they don't match.  If the value type returned
+ * from the configuration store is an array type, each element of the
+ * array will be converted to the type of @value.  If @value is
+ * uninitialized, the value in the configuration store will be returned
+ * in its native type.
  *
  * Returns: %TRUE if the property was retrieved successfully,
  *          %FALSE otherwise.
@@ -1128,11 +1169,26 @@ xfconf_channel_get_property(XfconfChannel *channel,
            && G_VALUE_TYPE(value) != G_VALUE_TYPE(&val1))
         {
             /* caller wants to convert the returned value into a diff type */
-            ret = g_value_transform(&val1, value);
-            if(!ret) {
-                g_warning("Unable to convert property \"%s\" from type \"%s\" to type \"%s\"",
-                          property, G_VALUE_TYPE_NAME(&val1),
-                          G_VALUE_TYPE_NAME(value));
+
+            if(G_VALUE_TYPE(&val1) == XFCONF_TYPE_G_VALUE_ARRAY) {
+                /* we got an array back, so let's convert each item in
+                 * the array to the target type */
+                GPtrArray *arr = xfconf_transform_array(g_value_get_boxed(&val1),
+                                                        G_VALUE_TYPE(value));
+
+                if(arr) {
+                    g_value_unset(value);
+                    g_value_init(value, XFCONF_TYPE_G_VALUE_ARRAY);
+                    g_value_take_boxed(value, arr);
+                } else
+                    ret = FALSE;
+            } else {
+                ret = g_value_transform(&val1, value);
+                if(!ret) {
+                    g_warning("Unable to convert property \"%s\" from type \"%s\" to type \"%s\"",
+                              property, G_VALUE_TYPE_NAME(&val1),
+                              G_VALUE_TYPE_NAME(value));
+                }
             }
         } else {
             /* either the caller wants the native type, or specified the
