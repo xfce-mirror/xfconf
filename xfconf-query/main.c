@@ -21,12 +21,10 @@
 #include <config.h>
 #endif
 
+#include <stdio.h>
+
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
-#endif
-
-#ifdef HAVE_STDIO_H
-#include <stdio.h>
 #endif
 
 #ifdef HAVE_SYS_STAT_H
@@ -41,9 +39,14 @@
 #include <fcntl.h>
 #endif
 
-
+#ifdef HAVE_STDLIB_H
 #include <stdlib.h>
+#endif
+
+#ifdef HAVE_STRING_H
 #include <string.h>
+#endif
+
 #include <glib.h>
 
 #if defined(GETTEXT_PACKAGE)
@@ -74,7 +77,7 @@ xfconf_query_import_channel (XfconfChannel *channel, gint fd, GError **error)
 {
     if (error != NULL)
     {
-        *error = g_error_new (G_FILE_ERROR, 1, "method not implemented");
+        g_set_error (error, G_FILE_ERROR, 1, _("Export method not yet implemented"));
     }
     else
     {
@@ -88,7 +91,7 @@ xfconf_query_export_channel (XfconfChannel *channel, gint fd, GError **error)
 {
     if (error != NULL)
     {
-        *error = g_error_new (G_FILE_ERROR, 1, "method not implemented");
+        g_set_error (error, G_FILE_ERROR, 1, _("Export not yet implemented"));
     }
     else
     {
@@ -473,50 +476,58 @@ main(int argc, char **argv)
     {
         if (!strcmp(export_file, "-"))
         {
-            /* Open stdout */
-            xfconf_query_export_channel (channel, 1, NULL);
+            /* Use stdout */
+            fd = fileno (stdout);
         }
         else
         {
-            fd = open (export_file, O_CREAT | O_EXCL, 0);
+            fd = open (export_file, O_CREAT | O_EXCL | O_WRONLY, 0);
             if (fd < 0)
             {
-                g_print ("Could not create export-file '%s',\n aborting...\n", export_file);
+                g_printerr (_("Could not create export file \"%s\": %s\n"), export_file, strerror (errno));
                 return 1;
             }
-            if (!xfconf_query_export_channel (channel, fd, &error))
-            {
-                close (fd);
-                g_print ("Could not create export-file '%s',\n Cause: '%s'\n", export_file, error->message);
-                return 1;
-            }
-            close (fd);
         }
+
+        if (!xfconf_query_export_channel (channel, fd, &error))
+        {
+            if (fd != fileno (stdout))
+                close (fd);
+            g_printerr (_("Could not create export file \"%s\": %s\n"), export_file, error->message);
+            g_error_free (error);
+            return 1;
+        }
+        if (fd != fileno (stdout))
+            close (fd);
     }
 
     if (import_file)
     {
         if (!strcmp(import_file, "-"))
         {
-            /* Open stdin */
-            xfconf_query_import_channel (channel, 0, NULL);
+            /* Use stdin */
+            fd = fileno (stdin);
         }
         else
         {
             fd = open (import_file, O_RDONLY, 0);
             if (fd < 0)
             {
-                g_print ("Could not open import-file '%s',\n aborting...\n", import_file);
+                g_printerr (_("Could not open import file \"%s\": %s\n"), import_file, strerror (errno));
                 return 1;
             }
-            if (!xfconf_query_import_channel (channel, fd, &error))
-            {
-                close (fd);
-                g_print ("Could not parse import-file '%s',\n Cause: '%s'\n", import_file, error->message);
-                return 1;
-            }
-            close (fd);
         }
+
+        if (!xfconf_query_import_channel (channel, fd, &error))
+        {
+            if (fd != fileno (stdin))
+                close (fd);
+            g_printerr (_("Could not parse import file \"%s\": %s\n"), import_file, error->message);
+            g_error_free (error);
+            return 1;
+        }
+        if (fd != fileno (stdin))
+            close (fd);
     }
 
     return 0;
