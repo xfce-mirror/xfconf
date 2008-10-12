@@ -62,7 +62,7 @@ dnl XDT_CHECK_LIBX11_REQUIRE
 
 dnl required
 XDT_CHECK_PACKAGE([GLIB], [gobject-2.0], [2.12.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.5.90])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.5.91])
 XDT_CHECK_PACKAGE([DBUS], [dbus-1], [1.0.0])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.72])
 
@@ -175,7 +175,6 @@ tests/Makefile
 tests/set-properties/Makefile
 tests/has-properties/Makefile
 tests/get-properties/Makefile
-tests/list-channels/Makefile
 tests/reset-properties/Makefile
 tests/property-changed-signal/Makefile
 xfconf/Makefile
