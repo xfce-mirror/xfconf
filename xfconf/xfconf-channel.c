@@ -1124,12 +1124,30 @@ xfconf_channel_get_property(XfconfChannel *channel,
     ret = xfconf_channel_get_internal(channel, property, &val1);
 
     if(ret) {
-        g_value_copy(&val1, g_value_init(value, G_VALUE_TYPE(&val1)));
-        g_value_unset(&val1);
-        return TRUE;
+        if(G_VALUE_TYPE(value) != G_TYPE_INVALID
+           && G_VALUE_TYPE(value) != G_VALUE_TYPE(&val1))
+        {
+            /* caller wants to convert the returned value into a diff type */
+            ret = g_value_transform(&val1, value);
+            if(!ret) {
+                g_warning("Unable to convert property \"%s\" from type \"%s\" to type \"%s\"",
+                          property, G_VALUE_TYPE_NAME(&val1),
+                          G_VALUE_TYPE_NAME(value));
+            }
+        } else {
+            /* either the caller wants the native type, or specified the
+             * native type to convert to */
+            if(G_VALUE_TYPE(value) == G_VALUE_TYPE(&val1))
+                g_value_unset(value);
+            g_value_copy(&val1, g_value_init(value, G_VALUE_TYPE(&val1)));
+            ret = TRUE;
+        }
     }
 
-    return FALSE;
+    if(G_VALUE_TYPE(&val1))
+        g_value_unset(&val1);
+
+    return ret;
 }
 
 /**

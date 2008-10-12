@@ -29,6 +29,10 @@ Xfce 4.6beta1 (Xfce 4.5.91)
     property.
   * Add -a option to xfconf-query which forces setting a property as an
     array even if the array only has one element.
+  * Fix xfconf_channel_get_property() so it properly converts the value
+    fetched from the config store into the type that the caller
+    requested (if any).
+
 
 Xfce 4.6alpha (Xfce 4.5.90)
 ===========================
