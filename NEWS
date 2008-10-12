@@ -21,6 +21,14 @@ Xfce 4.6beta1 (Xfce 4.5.91)
   * Fix daemon crash when resetting properties recursively.
   * Fix daemon sending incorrect property names in the PropertyRemoved
     signal when removing multiple properties at once.
+  * For GObject property bindings, if the bound xfconf property is
+    removed from the config store, try to reset the GObject property
+    to the default value specified in its GParamSpec.
+  * Add -R option to xfconf-query which causes the -r option (reset) to
+    operate recursively to include all properties under the specified
+    property.
+  * Add -a option to xfconf-query which forces setting a property as an
+    array even if the array only has one element.
 
 Xfce 4.6alpha (Xfce 4.5.90)
 ===========================
