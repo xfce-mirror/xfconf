@@ -65,6 +65,7 @@ static gboolean verbose = FALSE;
 static gboolean create = FALSE;
 static gboolean reset = FALSE;
 static gboolean recursive = FALSE;
+static gboolean force_array = FALSE;
 static gchar *channel_name = NULL;
 static gchar *property_name = NULL;
 static gchar **set_value = NULL;
@@ -177,6 +178,10 @@ static GOptionEntry entries[] =
     },
     {    "recursive", 'R', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &recursive,
         N_("Recursive (use with -r)"),
+        NULL
+    },
+    {   "force-array", 'a', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &force_array,
+        N_("Force array even if only one element"),
         NULL
     },
     {   "export", 'x', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &export_file,
@@ -344,7 +349,7 @@ main(int argc, char **argv)
                 }
             }
 
-            if(!set_value[1])
+            if(!set_value[1] && !force_array)
             {
                 /* not an array */
                 GType gtype = G_TYPE_INVALID;
