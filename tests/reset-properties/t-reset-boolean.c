@@ -30,9 +30,9 @@ main(int argc,
     
     channel = xfconf_channel_new(TEST_CHANNEL_NAME);
     
-    TEST_OPERATION(xfconf_channel_has_property(channel, test_double_property));
-    xfconf_channel_remove_property(channel, test_double_property);
-    TEST_OPERATION(!xfconf_channel_has_property(channel, test_double_property));
+    TEST_OPERATION(xfconf_channel_has_property(channel, test_bool_property));
+    xfconf_channel_reset_property(channel, test_bool_property, FALSE);
+    TEST_OPERATION(!xfconf_channel_has_property(channel, test_bool_property));
     
     g_object_unref(G_OBJECT(channel));
     
