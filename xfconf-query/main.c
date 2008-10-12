@@ -145,19 +145,19 @@ static GOptionEntry entries[] =
         NULL
     },
     {    "channel", 'c', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &channel_name,
-        N_("pick the channel"),
+        N_("Pick the channel"),
         NULL
     },
     {    "property", 'p', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &property_name,
-        N_("pick the property"),
+        N_("Pick the property"),
         NULL
     },
     {    "set", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING_ARRAY, &set_value,
-        N_("set (change the value)"),
+        N_("Change or set the value of the property"),
         NULL
     },
     {    "list", 'l', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &list,
-        N_("List properties"),
+        N_("List properties (or channels if -c isn't specified)"),
         NULL
     },
     {    "verbose", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &verbose,
@@ -185,11 +185,11 @@ static GOptionEntry entries[] =
         NULL
     },
     {   "export", 'x', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &export_file,
-        N_("Export channel"),
+        N_("Export channel to file"),
         NULL,
     },
     {   "import", 'i', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &import_file,
-        N_("Import channel"),
+        N_("Import channel from file"),
         NULL,
     },
     { NULL }
