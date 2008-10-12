@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-06 00:08+0200\n"
+"POT-Creation-Date: 2008-10-13 00:42+0200\n"
 "PO-Revision-Date: 2008-09-25 17:25+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish  <dansk@dansk-gruppen.dk>\n"
@@ -26,80 +26,54 @@ msgstr "sand"
 msgid "false"
 msgstr "falsk"
 
-#: xfsettingsd/main.c:52
-#: xfconf-query/main.c:139
-msgid "Version information"
-msgstr "Versioninformation"
-
-#: xfsettingsd/main.c:56
-#: xfconf-query/main.c:159
-msgid "Verbose output"
-msgstr "Uddybende uddata"
-
-#: xfsettingsd/main.c:60
-msgid "Force replace existing any xsettings daemon"
-msgstr "Tving udskiftning af eksisterende dæmon-xindstillinger"
-
-#: xfsettingsd/main.c:64
-msgid "Start in debug mode (don't fork to the background)"
-msgstr "Start i fejlsøgningstilstand (forgren ikke til baggrunden)"
-
-#: xfsettingsd/main.c:131
-#, c-format
-msgid ""
-"%s: %s\n"
-"Try %s --help to see a full list of available command line options.\n"
-msgstr ""
-"%s: %s\n"
-"Prøv %s --help til fuld liste over tilgængelige kommandolinjer.\n"
-
-#: xfconfd/xfconf-backend-perchannel-xml.c:266
+#: xfconfd/xfconf-backend-perchannel-xml.c:275
 #, c-format
 msgid "Unable to create configuration directory"
 msgstr "Kunne ikke oprette indstillingsmappe"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:313
+#: xfconfd/xfconf-backend-perchannel-xml.c:322 xfconfd/xfconf-daemon.c:239
 #, c-format
 msgid "You don't have permission to modify property \"%s\" on channel \"%s\""
-msgstr "Du har ikke rettigheder til at ændre egenskaber \"%s\" for kanal \"%s\""
+msgstr ""
+"Du har ikke rettigheder til at ændre egenskaber \"%s\" for kanal \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:364
-#: xfconfd/xfconf-backend-perchannel-xml.c:439
-#: xfconfd/xfconf-backend-perchannel-xml.c:581
-#: xfconfd/xfconf-backend-perchannel-xml.c:602
+#: xfconfd/xfconf-backend-perchannel-xml.c:374
+#: xfconfd/xfconf-backend-perchannel-xml.c:449
+#: xfconfd/xfconf-backend-perchannel-xml.c:598
+#: xfconfd/xfconf-backend-perchannel-xml.c:618
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Egenskab \"%s\" findes ikke på kanal \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:548
+#: xfconfd/xfconf-backend-perchannel-xml.c:565
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "Kunne ikke fjerne kanal \"%s\".%s"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1105
-#: xfconfd/xfconf-backend-perchannel-xml.c:1175
+#: xfconfd/xfconf-backend-perchannel-xml.c:1168
+#: xfconfd/xfconf-backend-perchannel-xml.c:1238
 #, c-format
 msgid "Invalid type for <%s>: \"%s\""
 msgstr "Ugyldig type for <%s>: \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1117
-#: xfconfd/xfconf-backend-perchannel-xml.c:1187
+#: xfconfd/xfconf-backend-perchannel-xml.c:1180
+#: xfconfd/xfconf-backend-perchannel-xml.c:1250
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "Kunne ikke fortolke værdi af type \"%s\" fra \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1166
+#: xfconfd/xfconf-backend-perchannel-xml.c:1229
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr "Typeattributten på <value> kan ikke være en tabel"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1434
-#: xfconfd/xfconf-backend-perchannel-xml.c:1677
+#: xfconfd/xfconf-backend-perchannel-xml.c:1497
+#: xfconfd/xfconf-backend-perchannel-xml.c:1740
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "Kanal \"%s\" findes ikke"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1722
+#: xfconfd/xfconf-backend-perchannel-xml.c:1785
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Kunne ikke skrive til kanal \"%s\": %s"
@@ -121,13 +95,18 @@ msgstr "Rodelementet ('/') er ikke et gyldigt egenskabnavn"
 
 #: xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "Egenskabnavne kan kun indeholde ASCII-karakterne A-Z, a-z, 0-9, '_', '-', '<' og '>', samt  '/'  som adskiller"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"Egenskabnavne kan kun indeholde ASCII-karakterne A-Z, a-z, 0-9, '_', '-', "
+"'<' og '>', samt  '/'  som adskiller"
 
 #: xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more '/' characters in a row"
-msgstr "Egenskabnavne kan ikke indeholde mere end to '/' karakterer efter hinanden"
+msgstr ""
+"Egenskabnavne kan ikke indeholde mere end to '/' karakterer efter hinanden"
 
 #: xfconfd/xfconf-backend.c:146
 #, c-format
@@ -141,21 +120,32 @@ msgstr "Kanalnavn kan ikke være tom streng"
 
 #: xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr "Kanalnavne kan kun indeholde ASCII karaktererne A-Z, a-z, 0-9, '_', og '-'"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr ""
+"Kanalnavne kan kun indeholde ASCII karaktererne A-Z, a-z, 0-9, '_', og '-'"
 
-#: xfconfd/xfconf-backend.c:394
-#, c-format
-msgid "The property name can only be empty or \"/\" if a recursive remove was specified."
-msgstr "Egenskabnavne kan kun være tomme eller \"/\" hvis rekursiv fjernelse blev angivet."
+#: xfconfd/xfconf-backend.c:398
+#, fuzzy, c-format
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified."
+msgstr ""
+"Egenskabnavne kan kun være tomme eller \"/\" hvis rekursiv fjernelse blev "
+"angivet."
 
 #: xfconfd/main.c:127
 msgid "Prints the xfconfd version"
 msgstr "Udskriver xfconfd-version"
 
 #: xfconfd/main.c:129
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr "Indstillingsbagende til anvendelse.  Den første bagende der angives åbnes med læs/skriv; de andre som skrivebeskyttet."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
+msgstr ""
+"Indstillingsbagende til anvendelse.  Den første bagende der angives åbnes "
+"med læs/skriv; de andre som skrivebeskyttet."
 
 #: xfconfd/main.c:158
 msgid "Xfce configuration daemon"
@@ -165,63 +155,93 @@ msgstr "Xfce-indstillingsdæmon"
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Rapporter fejl til  http://bugs.xfce.org/\n"
 
-#: xfconfd/xfconf-daemon.c:448
+#: xfconfd/xfconf-daemon.c:451
 #, c-format
 msgid "Another Xfconf daemon is already running"
 msgstr "En anden Xfconf-dæmon kører allerede"
 
-#: xfconfd/xfconf-daemon.c:484
+#: xfconfd/xfconf-daemon.c:487
 #, c-format
 msgid "No backends could be started"
 msgstr "Ingen bagende kunne startes"
 
-#: xfconf-query/main.c:143
-msgid "pick the channel"
+#: xfconf-query/main.c:81
+#, c-format
+msgid "Export method not yet implemented"
+msgstr ""
+
+#: xfconf-query/main.c:95
+#, c-format
+msgid "Export not yet implemented"
+msgstr ""
+
+#: xfconf-query/main.c:144
+msgid "Version information"
+msgstr "Versioninformation"
+
+#: xfconf-query/main.c:148
+#, fuzzy
+msgid "Pick the channel"
 msgstr "vælg kanal"
 
-#: xfconf-query/main.c:147
-msgid "pick the property"
+#: xfconf-query/main.c:152
+#, fuzzy
+msgid "Pick the property"
 msgstr "vælg egenskab"
 
-#: xfconf-query/main.c:151
-msgid "set (change the value)"
-msgstr "indstil (ændre værdi)"
+#: xfconf-query/main.c:156
+msgid "Change or set the value of the property"
+msgstr ""
 
-#: xfconf-query/main.c:155
-msgid "List properties"
-msgstr "Liste egenskaber"
+#: xfconf-query/main.c:160
+msgid "List properties (or channels if -c isn't specified)"
+msgstr ""
 
-#: xfconf-query/main.c:163
+#: xfconf-query/main.c:164
+msgid "Verbose output"
+msgstr "Uddybende uddata"
+
+#: xfconf-query/main.c:168
 msgid "Create new entry"
 msgstr "Opret ny post"
 
-#: xfconf-query/main.c:167
+#: xfconf-query/main.c:172
 msgid "Specify the property value type"
 msgstr "Angiv egenskabværditype"
 
-#: xfconf-query/main.c:171
-msgid "Remove property"
+#: xfconf-query/main.c:176
+#, fuzzy
+msgid "Reset property"
 msgstr "Fjern egenskab"
 
-#: xfconf-query/main.c:175
-msgid "Export channel"
+#: xfconf-query/main.c:180
+msgid "Recursive (use with -r)"
+msgstr ""
+
+#: xfconf-query/main.c:184
+msgid "Force array even if only one element"
+msgstr ""
+
+#: xfconf-query/main.c:188
+#, fuzzy
+msgid "Export channel to file"
 msgstr "Eksporter kanal"
 
-#: xfconf-query/main.c:179
-msgid "Import channel"
+#: xfconf-query/main.c:192
+#, fuzzy
+msgid "Import channel from file"
 msgstr "Importer kanal"
 
-#: xfconf-query/main.c:276
+#: xfconf-query/main.c:289
 #, c-format
 msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
 msgstr "Egenskab \"%s\" findes ikke på kanal \"%s\".\n"
 
-#: xfconf-query/main.c:284
-#: xfconf-query/main.c:302
+#: xfconf-query/main.c:297 xfconf-query/main.c:315
 msgid "(unknown)"
 msgstr "(ukendt)"
 
-#: xfconf-query/main.c:293
+#: xfconf-query/main.c:306
 #, c-format
 msgid ""
 "Value is an array with %d items:\n"
@@ -230,7 +250,7 @@ msgstr ""
 "Værdi er en tabel med %d elementer:\n"
 "\n"
 
-#: xfconf-query/main.c:316
+#: xfconf-query/main.c:329
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If you would\n"
@@ -239,50 +259,82 @@ msgstr ""
 "Egenskab \"%s\" findes ikke på denne kanal \"%s\".  Hvis du ønsker\n"
 "at oprette ny egenskab brug --create indstilling.\n"
 
-#: xfconf-query/main.c:324
+#: xfconf-query/main.c:337
 #, c-format
 msgid "When creating a new property, you must specify the value type.\n"
 msgstr "Når der oprettes en ny egenskab, skal du angive værditypen.\n"
 
-#: xfconf-query/main.c:334
+#: xfconf-query/main.c:347
 #, c-format
 msgid "Failed to get existing type for value.\n"
 msgstr "Kunne ikke få eksisterende type for værdi.\n"
 
-#: xfconf-query/main.c:352
+#: xfconf-query/main.c:365
 #, c-format
 msgid "Unable to determine type of value.\n"
 msgstr "Kunne ikke afgøre type af værdi.\n"
 
-#: xfconf-query/main.c:358
+#: xfconf-query/main.c:371
 #, c-format
 msgid "You must specify a value type to change an array into a single value.\n"
-msgstr "Du skal angive en værditype for at ændre en tabel til en enkeltværdi.\n"
+msgstr ""
+"Du skal angive en værditype for at ændre en tabel til en enkeltværdi.\n"
 
-#: xfconf-query/main.c:368
-#: xfconf-query/main.c:430
+#: xfconf-query/main.c:381 xfconf-query/main.c:443
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "Kunne ikke konvertere \"%s\" til type \"%s\"\n"
 
-#: xfconf-query/main.c:375
-#: xfconf-query/main.c:445
+#: xfconf-query/main.c:388 xfconf-query/main.c:458
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "Kunne ikke sætte egenskab.\n"
 
-#: xfconf-query/main.c:400
+#: xfconf-query/main.c:413
 #, c-format
 msgid "Have %d new values, but could only determine %d types.\n"
 msgstr "Har %d nye værdier, men kunne kun afgøre %d typer.\n"
 
-#: xfconf-query/main.c:421
+#: xfconf-query/main.c:434
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
 msgstr "Kunne ikke afgøre type af værdi ved indeks %d.\n"
 
-#: xfconf-query/main.c:463
+#: xfconf-query/main.c:476
 #, c-format
 msgid "Channel '%s' contains no properties\n"
 msgstr "Kanal '%s' indeholder ingen egenskaber\n"
 
+#: xfconf-query/main.c:492 xfconf-query/main.c:501
+#, c-format
+msgid "Could not create export file \"%s\": %s\n"
+msgstr ""
+
+#: xfconf-query/main.c:521
+#, c-format
+msgid "Could not open import file \"%s\": %s\n"
+msgstr ""
+
+#: xfconf-query/main.c:530
+#, c-format
+msgid "Could not parse import file \"%s\": %s\n"
+msgstr ""
+
+#~ msgid "Force replace existing any xsettings daemon"
+#~ msgstr "Tving udskiftning af eksisterende dæmon-xindstillinger"
+
+#~ msgid "Start in debug mode (don't fork to the background)"
+#~ msgstr "Start i fejlsøgningstilstand (forgren ikke til baggrunden)"
+
+#~ msgid ""
+#~ "%s: %s\n"
+#~ "Try %s --help to see a full list of available command line options.\n"
+#~ msgstr ""
+#~ "%s: %s\n"
+#~ "Prøv %s --help til fuld liste over tilgængelige kommandolinjer.\n"
+
+#~ msgid "set (change the value)"
+#~ msgstr "indstil (ændre værdi)"
+
+#~ msgid "List properties"
+#~ msgstr "Liste egenskaber"

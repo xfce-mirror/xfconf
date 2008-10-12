@@ -57,9 +57,11 @@ main(int argc,
     std.mloop = g_main_loop_new(NULL, FALSE);
 
     if(!xfconf_tests_start())
-        return 1;
+        return 2;
     
     channel = xfconf_channel_new(TEST_CHANNEL_NAME);
+    xfconf_channel_reset_property (channel, test_string_property, FALSE);
+
     g_signal_connect(G_OBJECT(channel), "property-changed",
                      G_CALLBACK(test_signal_changed), &std);
     

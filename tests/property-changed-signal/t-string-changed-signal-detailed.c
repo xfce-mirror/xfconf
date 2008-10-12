@@ -63,6 +63,9 @@ main(int argc,
         return 1;
     
     channel = xfconf_channel_new(TEST_CHANNEL_NAME);
+    xfconf_channel_reset_property (channel, test_string_property, FALSE);
+    xfconf_channel_reset_property (channel, test_int_property, FALSE);
+    
     g_snprintf(detailed_signal, sizeof(detailed_signal),
                "property-changed::%s", test_string_property);
     g_signal_connect(G_OBJECT(channel), detailed_signal,

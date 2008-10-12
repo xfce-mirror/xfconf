@@ -1,11 +1,11 @@
 
 SUBDIRS = \
 	set-properties \
-	property-changed-signal \
 	has-properties \
 	get-properties \
-	list-channels \
-	remove-properties
+	reset-properties \
+	property-changed-signal \
+	list-channels
 
 clean-local:
 	-rm -rf test-xdg_config_home

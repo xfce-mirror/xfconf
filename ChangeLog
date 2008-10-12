@@ -1,3 +1,265 @@
+2008-10-12 10:34  kelnos
+
+	* xfconf/xfconf-channel.c: make xfconf_channel_get_property() also
+	  transform array values
+
+2008-10-12 09:03  kelnos
+
+	* NEWS, xfconf/xfconf-channel.c: fix xfconf_channel_get_property()
+	  so it converts value types properly if
+	  the caller requests it
+
+2008-10-12 07:52  kelnos
+
+	* NEWS: update NEWS
+
+2008-10-12 07:45  kelnos
+
+	* xfconf-query/main.c: fix a bunch of strings
+
+2008-10-12 07:45  kelnos
+
+	* xfconf-query/main.c: add option to force creation of array prop
+	  even if only one value
+
+2008-10-12 07:45  kelnos
+
+	* xfconf-query/main.c: use g_set_error(), not g_error_new(), mark
+	  some more strings as i18n-able,
+	  make stuff more portable
+
+2008-10-10 21:31  sas
+
+	* po/LINGUAS, po/hu.po: [intl:hu] ops
+
+2008-10-09 09:32  kelnos
+
+	* xfconf/xfconf-binding.c: add similar remove checking to the
+	  gdkcolor binding
+
+2008-10-09 09:28  kelnos
+
+	* xfconf/xfconf-binding.c: ... and fix a possible memleak i just
+	  introduced
+
+2008-10-09 09:25  kelnos
+
+	* xfconf/xfconf-binding.c: if a bound property is removed, try to
+	  reset the GObject property to its default
+
+2008-10-08 00:06  jannis
+
+	* xfconf/xfconf-binding.c, xfconf/xfconf-binding.h: Use gpointer
+	  instead of GObject* in the parameters of binding functions.
+
+2008-10-07 14:57  stephan
+
+	* xfconf-query/main.c: Add -R option (recursive) for use with
+	  --reset
+
+2008-10-07 04:46  kelnos
+
+	* xfconfd/xfconf-backend-perchannel-xml.c: whoops, plug memleak i
+	  just introduced
+
+2008-10-07 04:43  kelnos
+
+	* NEWS: the alpha needs some NEWS too
+
+2008-10-07 04:39  kelnos
+
+	* NEWS: update NEWS
+
+2008-10-07 04:23  kelnos
+
+	* xfconfd/xfconf-backend-perchannel-xml.c: fix incorrect property
+	  names sent with the PropertyRemove signal
+
+2008-10-07 03:47  kelnos
+
+	* xfconfd/xfconf-backend-perchannel-xml.c: fix crash when resetting
+	  multiple properties
+
+2008-10-05 19:27  jannis
+
+	* configure.ac.in: Add svn version tag again.
+
+2008-10-02 02:53  jannis
+
+	* xfconf/xfconf.c: Fix reference counting in xfconf_shutdown():
+	  Don't drop to zero before
+	  calling _xfconf_channel_shutdown(). Allow xfconf_shutdown() to be
+	  called
+	  repeatedly without breaking things.
+
+2008-09-29 20:11  lars
+
+	* po/ChangeLog, po/LINGUAS, po/da.po: * da.po: Danish translation
+	  * LINGUAS: Added the Danish language
+	  
+
+2008-09-29 06:07  kelnos
+
+	* xfconf/xfconf-channel.c: fix warning in _finalize() if singletons
+	  hashtable hasn't been created yet
+
+2008-09-29 04:55  stephan
+
+	* configure.ac.in: re-add profiling flag to configure.ac.in
+
+2008-09-28 13:34  stephan
+
+	* TODO, configure.ac.in, xfconf-query/main.c: Update TODO
+	  Remove profiling-switch from configure.ac.in
+	  Update xfconf-query to use the new 'Reset' function in favour of
+	  the deprecated 'remove'.
+
+2008-09-28 10:52  kelnos
+
+	* xfconfd/xfconf-backend-perchannel-xml.c: cosmetic: remove extra
+	  space in xml output
+
+2008-09-28 10:45  kelnos
+
+	* common/xfconf-gvaluefuncs.c, common/xfconf-gvaluefuncs.h,
+	  xfconfd/xfconf-backend-perchannel-xml.c: avoid emitting
+	  PropertyChanged when a property is set to the same value
+	  
+	  not handling any array types yet, though
+
+2008-09-28 10:17  kelnos
+
+	* xfconfd/xfconf-daemon.c: use same string for perms denied error
+
+2008-09-28 10:14  kelnos
+
+	* xfconfd/xfconf-daemon.c: clarify code a bit
+
+2008-09-28 10:01  kelnos
+
+	* common/xfconf-dbus.xml, docs/reference/tmpl/xfconf-backend.sgml,
+	  docs/reference/tmpl/xfconf-unused.sgml,
+	  docs/reference/xfconf-sections.txt, xfconf/xfconf-channel.c,
+	  xfconfd/xfconf-backend-perchannel-xml.c,
+	  xfconfd/xfconf-backend.c, xfconfd/xfconf-backend.h,
+	  xfconfd/xfconf-daemon.c: rename RemoveProperty() to
+	  ResetProperty() all over the place
+	  
+	  might as well just bite the bullet and do this. no incompat
+	  library
+	  changes, but xfconfd will need to be restarted (usually) after
+	  installing this version. i just want everything to be as clean
+	  and
+	  legacy-free as possible when we get to 4.6.0 final...
+
+2008-09-28 10:00  kelnos
+
+	* common/xfconf-dbus.xml, docs/reference/tmpl/xfconf-backend.sgml,
+	  docs/reference/tmpl/xfconf-channel.sgml,
+	  docs/reference/xfconf-sections.txt, xfconf/xfconf-channel.c,
+	  xfconf/xfconf-channel.h, xfconf/xfconf.symbols,
+	  xfconfd/xfconf-backend-perchannel-xml.c,
+	  xfconfd/xfconf-backend.c, xfconfd/xfconf-backend.h,
+	  xfconfd/xfconf-daemon.c: add and implement IsPropertyLocked()
+	  dbus method, add libxfconf getter
+	  
+	  this is buggy right now because the perchannel-xml backend
+	  doesn't
+	  handle locking properly at all. bug fixes forthcoming.
+
+2008-09-27 00:20  kelnos
+
+	* common/xfconf-dbus.xml, xfconfd/xfconf-daemon.c: clarify
+	  RemoveProperty() dbus method description.
+	  remove org.xfce.Xfconf.GUI dbus interface since it's stupid and i
+	  never
+	  really implemented it anyway.
+
+2008-09-25 21:05  stephan
+
+	* configure.ac.in, docs/Makefile.am, docs/xfsettingsd: Remove
+	  xfsettingsd docs
+
+2008-09-22 20:59  kelnos
+
+	* configure.ac.in, docs/reference/Makefile.am,
+	  docs/reference/tmpl/xfconf-channel.sgml,
+	  docs/reference/xfconf-sections.txt, xfconf/xfconf-channel.c,
+	  xfconf/xfconf-channel.h, xfconf/xfconf-private.h,
+	  xfconf/xfconf.c, xfconf/xfconf.symbols: add xfconf_channel_get()
+	  and xfconf_channel_reset_property().
+	  
+	  deprecate xfconf_channel_remove_property() and
+	  xfconf_channel_remove_properties(). increase libtool interface
+	  version
+	  and age.
+
+2008-09-22 20:59  kelnos
+
+	* xfconf/xfconf-binding.c: fix docs for
+	  xfconf_g_property_bind_gdkcolor()
+
+2008-09-16 01:01  kelnos
+
+	* po/POTFILES.in, po/de.po, po/fi.po, po/fr.po, po/pt_BR.po,
+	  po/xfconf.pot: fix POTFILES, remove old strings moved to
+	  xfce4-settings package
+
+2008-09-15 21:53  stephan
+
+	* Makefile.am: Fix makefile
+
+2008-09-15 21:50  stephan
+
+	* configure.ac.in, po/fi.po, po/fr.po, po/pt_BR.po, xfsettingsd:
+	  Remove xfsettingsd in favor of xfce4-settings
+
+2008-09-12 18:36  kelnos
+
+	* xfconf/xfconf-channel.c, xfconf/xfconf-channel.h: ok, this is the
+	  more or less correct way to declare that param, thanks
+	  to jannis for his help.
+	  
+	  yes, i'm way to nitpicky about this, and i should just not care.
+
+2008-09-12 06:05  kelnos
+
+	* xfconf/xfconf-channel.c, xfconf/xfconf-channel.h: whoops, "const
+	  gchar **" certainly isn't right... -> "gchar * const *"
+
+2008-09-10 10:35  kelnos
+
+	* xfsettingsd/registry.c: don't use 1024 scaling factor on Xft/DPI
+	  when it's -1
+
+2008-09-09 18:56  jannis
+
+	* xfsettingsd/registry.c: Multiply the DPI property (and only this
+	  property!) with 1024 prior to
+	  calling XChangeProperty().
+
+2008-09-09 07:38  maximilian
+
+	* po/ChangeLog, po/fr.po: Translations updates and new ones for
+	  trunk in es,fr,id
+
+2008-09-08 21:29  kelnos
+
+	* xfconf/xfconf-channel.c: fix typo with crash when prop removed
+
+2008-09-08 08:42  jari
+
+	* po/ChangeLog, po/fi.po: Update Finnish translations
+
+2008-09-07 18:42  omaciel
+
+	* po/ChangeLog, po/pt_BR.po: Updated Brazilian Portuguese
+	  translation.
+
+2008-09-07 06:32  kelnos
+
+	* ChangeLog: update changelog
+
 2008-09-07 06:31  kelnos
 
 	* xfconf-gtk: rm unused dir
