@@ -30,6 +30,7 @@
 #include "xfconf.h"
 #include "xfconf-alias.h"
 #include "xfconf-common-private.h"
+#include "xfconf-private.h"
 
 typedef struct
 {
@@ -277,14 +278,20 @@ xfconf_g_binding_init(XfconfChannel *channel,
     gchar buf[1024];
     GSList *bindings;
     GValue value = { 0, };
+    const gchar *property_base;
 
     binding = g_slice_new0(XfconfGBinding);
     binding->channel = channel;
-    binding->xfconf_property = g_strdup(xfconf_property);
     binding->xfconf_property_type = xfconf_property_type;
     binding->object = object;
     binding->object_property = g_strdup(object_property);
     binding->object_property_type = object_property_type;
+
+    property_base = _xfconf_channel_get_property_base(channel);
+    if(G_UNLIKELY(property_base))
+        binding->xfconf_property = g_strconcat(property_base, xfconf_property, NULL);
+    else
+        binding->xfconf_property = g_strdup(xfconf_property);
 
     g_object_weak_ref(G_OBJECT(channel),
                       xfconf_g_binding_channel_destroyed,
@@ -293,7 +300,7 @@ xfconf_g_binding_init(XfconfChannel *channel,
                       xfconf_g_binding_object_destroyed,
                       binding);
 
-    g_snprintf(buf, sizeof(buf), "property-changed::%s", xfconf_property);
+    g_snprintf(buf, sizeof(buf), "property-changed::%s", binding->xfconf_property);
     g_signal_connect(G_OBJECT(channel), buf,
                      G_CALLBACK(xfconf_g_binding_channel_property_changed),
                      binding);
@@ -405,12 +412,25 @@ xfconf_g_property_unbind(XfconfChannel *channel,
 {
     GSList *bindings = g_object_steal_data(G_OBJECT(object), DATA_KEY);
     GSList *l;
+    gchar *real_xfconf_property;
+    const gchar *property_base;
+
+    g_return_if_fail(XFCONF_IS_CHANNEL(channel)
+                     && xfconf_property && *xfconf_property
+                     && G_IS_OBJECT(object)
+                     && object_property && *object_property);
+
+    property_base = _xfconf_channel_get_property_base(channel);
+    if(G_UNLIKELY (property_base))
+        real_xfconf_property = g_strconcat(property_base, xfconf_property, NULL);
+    else
+        real_xfconf_property = (gchar *)xfconf_property;
 
     for(l = bindings; l; l = l->next) {
         XfconfGBinding *binding = l->data;
 
         if(channel == binding->channel
-           && !strcmp(xfconf_property, binding->xfconf_property)
+           && !strcmp(real_xfconf_property, binding->xfconf_property)
            && !strcmp(object_property, binding->object_property))
         {
             bindings = g_slist_delete_link(bindings, l);
@@ -418,6 +438,9 @@ xfconf_g_property_unbind(XfconfChannel *channel,
             break;
         }
     }
+
+    if(real_xfconf_property != xfconf_property)
+        g_free(real_xfconf_property);
 
     if(bindings) {
         g_object_set_data_full(G_OBJECT(object), DATA_KEY,

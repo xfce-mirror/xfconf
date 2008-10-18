@@ -40,6 +40,11 @@ configuration keys with the same names.
 
 </para>
 
+<!-- ##### ARG XfconfChannel:property-base ##### -->
+<para>
+
+</para>
+
 <!-- ##### FUNCTION xfconf_channel_get ##### -->
 <para>
 
@@ -55,6 +60,16 @@ configuration keys with the same names.
 </para>
 
 @channel_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_channel_new_with_property_base ##### -->
+<para>
+
+</para>
+
+@channel_name: 
+@property_base: 
 @Returns: 
 
 

@@ -39,9 +39,12 @@ typedef struct _XfconfChannel         XfconfChannel;
 
 GType xfconf_channel_get_type() G_GNUC_CONST;
 
-XfconfChannel *xfconf_channel_get(const gchar *channel_name) G_GNUC_WARN_UNUSED_RESULT;
+XfconfChannel *xfconf_channel_get(const gchar *channel_name);
 
 XfconfChannel *xfconf_channel_new(const gchar *channel_name) G_GNUC_WARN_UNUSED_RESULT;
+
+XfconfChannel *xfconf_channel_new_with_property_base(const gchar *channel_name,
+                                                     const gchar *property_base) G_GNUC_WARN_UNUSED_RESULT;
 
 gboolean xfconf_channel_has_property(XfconfChannel *channel,
                                      const gchar *property);
