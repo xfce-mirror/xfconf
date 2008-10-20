@@ -30,8 +30,6 @@ DBusGConnection *_xfconf_get_dbus_g_connection();
 DBusGProxy *_xfconf_get_dbus_g_proxy();
 DBusGProxy *_xfconf_get_gui_dbus_g_proxy();
 
-const gchar *_xfconf_channel_get_property_base(XfconfChannel *channel);
-
 XfconfNamedStruct *_xfconf_named_struct_lookup(const gchar *struct_name);
 
 void _xfconf_channel_shutdown();

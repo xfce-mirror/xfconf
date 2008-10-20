@@ -285,13 +285,6 @@ _xfconf_channel_shutdown()
 }
 
 
-const gchar *
-_xfconf_channel_get_property_base(XfconfChannel *channel)
-{
-    return channel->property_base;
-}
-
-
 static void
 xfconf_channel_property_changed(DBusGProxy *proxy,
                                 const gchar *channel_name,
