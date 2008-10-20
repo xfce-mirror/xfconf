@@ -1,0 +1,313 @@
+# translation of xfconf.po to Turkish
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Server Acim <sacim@kde.org.tr>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: xfconf\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-10-13 00:42+0200\n"
+"PO-Revision-Date: 2008-10-18 16:00+0300\n"
+"Last-Translator: Server Acim <sacim@kde.org.tr>\n"
+"Language-Team: Turkish <yerellestirme@kde.org.tr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: common/xfconf-gvaluefuncs.c:243
+msgid "true"
+msgstr "doğru"
+
+#: common/xfconf-gvaluefuncs.c:244
+msgid "false"
+msgstr "yanlış"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:275
+#, c-format
+msgid "Unable to create configuration directory"
+msgstr "Yapılandırma dizini oluşturulamıyor"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:322 xfconfd/xfconf-daemon.c:239
+#, c-format
+msgid "You don't have permission to modify property \"%s\" on channel \"%s\""
+msgstr "Özelliği değişirme yetkiniz \"%s\" bu kanal için yok \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:374
+#: xfconfd/xfconf-backend-perchannel-xml.c:449
+#: xfconfd/xfconf-backend-perchannel-xml.c:598
+#: xfconfd/xfconf-backend-perchannel-xml.c:618
+#, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\""
+msgstr "Bu kanal için herhangi bir özellik \"%s\" yer almamaktadırl \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:565
+#, c-format
+msgid "Unable to remove channel \"%s\": %s"
+msgstr "Kalan silinemiyor \"%s\": %s"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1168
+#: xfconfd/xfconf-backend-perchannel-xml.c:1238
+#, c-format
+msgid "Invalid type for <%s>: \"%s\""
+msgstr "Bu dosya biçimi için geçersiz dosya türü <%s>: \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1180
+#: xfconfd/xfconf-backend-perchannel-xml.c:1250
+#, c-format
+msgid "Unable to parse value of type \"%s\" from \"%s\""
+msgstr "Bu türün değerini  \"%s\" bundan ayrıştırmak mümkün değil\"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1229
+#, c-format
+msgid "The type attribute of <value> cannot be an array"
+msgstr "Bir <value> 'in tür değeri bir dizi olamaz"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1497
+#: xfconfd/xfconf-backend-perchannel-xml.c:1740
+#, c-format
+msgid "Channel \"%s\" does not exist"
+msgstr "Kanal \"%s\" bulunamıyor"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1785
+#, c-format
+msgid "Unable to write channel \"%s\": %s"
+msgstr "Kanala yazılamıyor \"%s\": %s"
+
+#: xfconfd/xfconf-backend-factory.c:70
+#, c-format
+msgid "Unable to find Xfconf backend of type \"%s\""
+msgstr "Xfconf tür çıktısını bulamıyor \"%s\""
+
+#: xfconfd/xfconf-backend.c:103
+#, c-format
+msgid "Property names must start with a '/' character"
+msgstr "Özellik isimleri bir '/' karakteriyle başlamalıdır."
+
+#: xfconfd/xfconf-backend.c:112
+#, c-format
+msgid "The root element ('/') is not a valid property name"
+msgstr "Kök ögesi ('/') geçerli bir isme sahip değildir"
+
+#: xfconfd/xfconf-backend.c:126
+#, c-format
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"Özellik isimleri sadece aşağıda listenen ASCII karakterlerini içerebilir:A-Z, a-z, 0-9, '_', "
+"'-', '<' ve '>', ve ayraç olarak  '/'"
+
+#: xfconfd/xfconf-backend.c:135
+#, c-format
+msgid "Property names cannot have two or more '/' characters in a row"
+msgstr "Özellik isimleri bir sırada iki veya daha fazla '/' karakteri içeremez"
+
+#: xfconfd/xfconf-backend.c:146
+#, c-format
+msgid "Property names cannot end with a '/' character"
+msgstr "Özellik isimleri sonda bir '/' karakteriyle bitemez"
+
+#: xfconfd/xfconf-backend.c:163
+#, c-format
+msgid "Channel name cannot be an empty string"
+msgstr "Kanal ismi bir boş dizge olamaz"
+
+#: xfconfd/xfconf-backend.c:176
+#, c-format
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr ""
+"Kanal isimleri sadece şu ASCII karakterlerini içerebilir: A-Z, a-z, 0-9, '_', ve "
+"'-'"
+
+#: xfconfd/xfconf-backend.c:398
+#, c-format
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified."
+msgstr "Eğer özyineli yenileme belirlenmişse, özellik isimleri sadece boş olabilir veya şundan \"/\" oluşabilir."
+
+#: xfconfd/main.c:127
+msgid "Prints the xfconfd version"
+msgstr "xfconfd sürüm bilgisini gösterir"
+
+#: xfconfd/main.c:129
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
+msgstr "Kullanılacak yapılandırma çıkışları. Belirtilen ilk çıktı okuma/yazma olarak açılır; diğerleri sadece-okunur olarak."
+
+#: xfconfd/main.c:158
+msgid "Xfce configuration daemon"
+msgstr "Xfce yapılandırma aracı"
+
+#: xfconfd/main.c:160
+msgid "Report bugs to http://bugs.xfce.org/\n"
+msgstr "Hataları göndereceğiniz adres: http://bugs.xfce.org/\n"
+
+#: xfconfd/xfconf-daemon.c:451
+#, c-format
+msgid "Another Xfconf daemon is already running"
+msgstr "Başka bir Xfconf çalışıyor"
+
+#: xfconfd/xfconf-daemon.c:487
+#, c-format
+msgid "No backends could be started"
+msgstr "Hiç bir geride süren işlev başlatılamadı"
+
+#: xfconf-query/main.c:81
+#, c-format
+msgid "Export method not yet implemented"
+msgstr "Dışarı aktarma yöntemi henüz sağlanmadı"
+
+#: xfconf-query/main.c:95
+#, c-format
+msgid "Export not yet implemented"
+msgstr "Dışarı aktarma henüz sağlanmadı"
+
+#: xfconf-query/main.c:144
+msgid "Version information"
+msgstr "Sürüm bilgisi"
+
+#: xfconf-query/main.c:148
+msgid "Pick the channel"
+msgstr "Kanalı seç"
+
+#: xfconf-query/main.c:152
+msgid "Pick the property"
+msgstr "Özelliği seç"
+
+#: xfconf-query/main.c:156
+msgid "Change or set the value of the property"
+msgstr "Özelliği değiştir veya ayarla"
+
+#: xfconf-query/main.c:160
+msgid "List properties (or channels if -c isn't specified)"
+msgstr "Özellikleri listele (veya kanalları eğer seçilmemişse)"
+
+#: xfconf-query/main.c:164
+msgid "Verbose output"
+msgstr "Yoğun çıktı"
+
+#: xfconf-query/main.c:168
+msgid "Create new entry"
+msgstr "Yeni bir girdi oluştur"
+
+#: xfconf-query/main.c:172
+msgid "Specify the property value type"
+msgstr "Özellik değer türünü belirle"
+
+#: xfconf-query/main.c:176
+msgid "Reset property"
+msgstr "Özelliği sıfırla"
+
+#: xfconf-query/main.c:180
+msgid "Recursive (use with -r)"
+msgstr "Yinelemeli (-r ile kullanın)"
+
+#: xfconf-query/main.c:184
+msgid "Force array even if only one element"
+msgstr "Bir öge de olsa, sıralamaya zorla"
+
+#: xfconf-query/main.c:188
+msgid "Export channel to file"
+msgstr "Kanalı dosyaya aktar"
+
+#: xfconf-query/main.c:192
+msgid "Import channel from file"
+msgstr "Dosyadan kanal aktar"
+
+#: xfconf-query/main.c:289
+#, c-format
+msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
+msgstr "Bu özellik \"%s\" bu kanalda yok \"%s\".\n"
+
+#: xfconf-query/main.c:297 xfconf-query/main.c:315
+msgid "(unknown)"
+msgstr "(bilinmiyor)"
+
+#: xfconf-query/main.c:306
+#, c-format
+msgid ""
+"Value is an array with %d items:\n"
+"\n"
+msgstr ""
+"Değer, %d unsurlarından oluşan bir sıradır:\n"
+"\n"
+
+#: xfconf-query/main.c:329
+#, c-format
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\".  If you would\n"
+"like to create a new property, use the --create option.\n"
+msgstr ""
+"Bu özellik \"%s\" bu kanalda yok \"%s\".\n"
+"Eğer yeni bir özellik oluşturmak isterseniz\n"
+"--oluştur seçeneğini kullanın\n"
+
+#: xfconf-query/main.c:337
+#, c-format
+msgid "When creating a new property, you must specify the value type.\n"
+msgstr ""
+"Yeni bir özellik oluştururken, değer türünü\n"
+"belirlemelisiniz.\n"
+
+#: xfconf-query/main.c:347
+#, c-format
+msgid "Failed to get existing type for value.\n"
+msgstr "Değer için var olan tür alınamadı.\n"
+
+#: xfconf-query/main.c:365
+#, c-format
+msgid "Unable to determine type of value.\n"
+msgstr "Değer türü belirlenemiyor.\n"
+
+#: xfconf-query/main.c:371
+#, c-format
+msgid "You must specify a value type to change an array into a single value.\n"
+msgstr "Bir diziyi tekil değere değiştirmek istiyorsanız bir değer türü belirlemelisiniz.\n"
+
+#: xfconf-query/main.c:381 xfconf-query/main.c:443
+#, c-format
+msgid "Unable to convert \"%s\" to type \"%s\"\n"
+msgstr "Bunu \"%s\" bu türe dönüştürme işlemi \"%s\" başarılamadı\n"
+
+#: xfconf-query/main.c:388 xfconf-query/main.c:458
+#, c-format
+msgid "Failed to set property.\n"
+msgstr "Özellik ayarlanamadı.\n"
+
+#: xfconf-query/main.c:413
+#, c-format
+msgid "Have %d new values, but could only determine %d types.\n"
+msgstr "%d yeni değerlerle sahip, fakat sadece %d türleri belirlenebilir.\n"
+
+#: xfconf-query/main.c:434
+#, c-format
+msgid "Unable to determine type of value at index %d.\n"
+msgstr "%d listesindeki değer türü belirlenemedi.\n"
+
+#: xfconf-query/main.c:476
+#, c-format
+msgid "Channel '%s' contains no properties\n"
+msgstr "Bu kanal %s herhangi bir özellik içermiyor\n"
+
+#: xfconf-query/main.c:492 xfconf-query/main.c:501
+#, c-format
+msgid "Could not create export file \"%s\": %s\n"
+msgstr "Dışarı aktarma dosyası yaratılamadı \"%s\": %s\n"
+
+#: xfconf-query/main.c:521
+#, c-format
+msgid "Could not open import file \"%s\": %s\n"
+msgstr "İçeri aktarılan dosya açılamadı \"%s\": %s\n"
+
+#: xfconf-query/main.c:530
+#, c-format
+msgid "Could not parse import file \"%s\": %s\n"
+msgstr "İçeri aktarılan dosya çözümlenemiyor \"%s\": %s\n"
+
