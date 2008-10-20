@@ -28,7 +28,6 @@ typedef struct
 
 DBusGConnection *_xfconf_get_dbus_g_connection();
 DBusGProxy *_xfconf_get_dbus_g_proxy();
-DBusGProxy *_xfconf_get_gui_dbus_g_proxy();
 
 XfconfNamedStruct *_xfconf_named_struct_lookup(const gchar *struct_name);
 

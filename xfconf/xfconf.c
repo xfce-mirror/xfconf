@@ -37,7 +37,6 @@
 static guint xfconf_refcnt = 0;
 static DBusGConnection *dbus_conn = NULL;
 static DBusGProxy *dbus_proxy = NULL;
-static DBusGProxy *gui_dbus_proxy = NULL;
 static GHashTable *named_structs = NULL;
 
 
@@ -63,17 +62,6 @@ _xfconf_get_dbus_g_proxy()
     }
 
     return dbus_proxy;
-}
-
-DBusGProxy *
-_xfconf_get_gui_dbus_g_proxy()
-{
-    if(!xfconf_refcnt) {
-        g_critical("xfconf_init() must be called before attempting to use libxfconf!");
-        return NULL;
-    }
-
-    return gui_dbus_proxy;
 }
 
 XfconfNamedStruct *
@@ -143,11 +131,6 @@ xfconf_init(GError **error)
                             G_TYPE_STRING, G_TYPE_STRING,
                             G_TYPE_INVALID);
 
-    gui_dbus_proxy = dbus_g_proxy_new_for_name(dbus_conn,
-                                               "org.xfce.Xfconf",
-                                               "/org/xfce/Xfconf",
-                                               "org.xfce.Xfconf.GUI");
-
     ++xfconf_refcnt;
     return TRUE;
 }
@@ -180,9 +163,6 @@ xfconf_shutdown()
 
     g_object_unref(G_OBJECT(dbus_proxy));
     dbus_proxy = NULL;
-
-    g_object_unref(G_OBJECT(gui_dbus_proxy));
-    gui_dbus_proxy = NULL;
 
     dbus_g_connection_unref(dbus_conn);
     dbus_conn = NULL;
