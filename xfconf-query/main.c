@@ -113,29 +113,37 @@ xfconf_query_get_propname_size (gpointer key, gpointer value, gpointer user_data
 }
 
 static void
-xfconf_query_list_contents (gpointer key, gpointer value, gpointer user_data)
+xfconf_query_list_sorted (gpointer key, gpointer value, gpointer user_data)
 {
-    gint i;
-    gint size = *(gint *)user_data;
-    gint property_name_size = 0, value_size = 0;
-    gchar *property_name = (gchar *)key;
-    GValue *property_value = (GValue *)value;
+  GSList **list = user_data;
+  
+  *list = g_slist_insert_sorted (*list, key, (GCompareFunc) g_utf8_collate);
+}
 
-    if (verbose)
+static void
+xfconf_query_list_contents (GSList *sorted_contents, GHashTable *channel_contents, gint size)
+{
+    GSList *li;
+    gchar *format = verbose ? g_strdup_printf ("%%-%ds%%s\n", size + 2) : NULL;
+    GValue *property_value;
+    gchar *string;
+    
+    for (li = sorted_contents; li != NULL; li = li->next)
     {
-        g_print("%s%n", property_name, &property_name_size);
-        for(i = property_name_size; i < (size+2); ++i)
+        if (verbose)
         {
-            g_print(" ");
+            property_value = g_hash_table_lookup (channel_contents, li->data);
+            string = _xfconf_string_from_gvalue (property_value);
+            g_print (format, (gchar *) li->data, string);
+            g_free (string);
         }
-        const gchar *str_val = _xfconf_string_from_gvalue(property_value);
-        g_print("%s%n", str_val, &value_size);
-        g_print("\n");
+        else
+        {
+            g_print ("%s\n", (gchar *) li->data);
+        }
     }
-    else
-    {
-        g_print ("%s\n", property_name);
-    }
+    
+    g_free (format);
 }
 
 static GOptionEntry entries[] =
@@ -272,7 +280,7 @@ main(int argc, char **argv)
 
     channel = xfconf_channel_new(channel_name);
 
-    if (property_name)
+    if (property_name && !list)
     {
         /** Reset property */
         if (reset)
@@ -464,12 +472,20 @@ main(int argc, char **argv)
 
     if (list)
     {
-        GHashTable *channel_contents = xfconf_channel_get_properties(channel, NULL);
+        GHashTable *channel_contents = xfconf_channel_get_properties(channel, property_name);
         if (channel_contents)
         {
             gint size = 0;
-            g_hash_table_foreach (channel_contents, (GHFunc)xfconf_query_get_propname_size, &size);
-            g_hash_table_foreach (channel_contents, (GHFunc)xfconf_query_list_contents, &size);
+            if (verbose)
+                g_hash_table_foreach (channel_contents, (GHFunc)xfconf_query_get_propname_size, &size);
+            
+            GSList *sorted_contents = NULL;
+            g_hash_table_foreach (channel_contents, (GHFunc)xfconf_query_list_sorted, &sorted_contents);
+            
+            xfconf_query_list_contents (sorted_contents, channel_contents, size);
+            
+            g_slist_free (sorted_contents);
+            g_hash_table_destroy (channel_contents);
         }
         else
         {
