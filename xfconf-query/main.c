@@ -66,12 +66,40 @@ static gboolean create = FALSE;
 static gboolean reset = FALSE;
 static gboolean recursive = FALSE;
 static gboolean force_array = FALSE;
+static gboolean monitor = FALSE;
 static gchar *channel_name = NULL;
 static gchar *property_name = NULL;
 static gchar **set_value = NULL;
 static gchar **type = NULL;
 static gchar *import_file = NULL;
 static gchar *export_file = NULL;
+
+static void
+xfconf_query_monitor (XfconfChannel *channel, const gchar *changed_property, GValue *property_value)
+{
+    gchar *string;
+    
+    if (property_name && !g_str_has_prefix (changed_property, property_name))
+        return;
+
+    if (property_value && G_IS_VALUE (property_value))
+    {
+        if (verbose)
+        {
+           string = _xfconf_string_from_gvalue (property_value);
+           g_print (_("Property '%s' changed: %s\n"), changed_property, string);
+           g_free (string);
+       }
+       else
+       {
+           g_print (_("Property '%s' changed\n"), changed_property);
+       }
+    }
+    else
+    {
+        g_print (_("Property '%s' removed\n"), changed_property);
+    }
+}
 
 static gboolean
 xfconf_query_import_channel (XfconfChannel *channel, gint fd, GError **error)
@@ -200,6 +228,10 @@ static GOptionEntry entries[] =
         N_("Import channel from file"),
         NULL,
     },
+    {   "monitor", 'm', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &monitor,
+        N_("Monitor a channel for property changes"),
+        NULL,
+    },
     { NULL }
 };
 
@@ -248,7 +280,7 @@ main(int argc, char **argv)
     }
 
     /** Check if the property is specified */
-    if(!property_name && !list && !export_file && !import_file)
+    if(!property_name && !list && !export_file && !import_file && !monitor)
     {
         g_print("No property specified, aborting...\n");
         return 1;
@@ -279,6 +311,19 @@ main(int argc, char **argv)
     }
 
     channel = xfconf_channel_new(channel_name);
+    
+    if (monitor)
+    {
+        g_signal_connect (G_OBJECT (channel), "property-changed", G_CALLBACK (xfconf_query_monitor), NULL);
+        
+        g_print ("\n");
+        g_print (_("Start monitoring channel '%s':"), channel_name);
+        g_print ("\n------------------------------------------------\n\n");
+        
+        GMainLoop *loop = g_main_loop_new (NULL, TRUE);
+        g_main_loop_run (loop);
+        g_main_loop_unref (loop);        
+    }
 
     if (property_name && !list)
     {
