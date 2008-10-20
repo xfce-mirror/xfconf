@@ -79,6 +79,33 @@ _xfconf_named_struct_free(XfconfNamedStruct *ns)
 
 
 
+static void
+xfconf_static_dbus_init()
+{
+    static gboolean static_dbus_inited = FALSE;
+
+    if(!static_dbus_inited) {
+        dbus_g_error_domain_register(XFCONF_ERROR, "org.xfce.Xfconf.Error",
+                                     XFCONF_TYPE_ERROR);
+
+        dbus_g_object_register_marshaller(xfconf_marshal_VOID__STRING_STRING_BOXED,
+                                          G_TYPE_NONE,
+                                          G_TYPE_STRING,
+                                          G_TYPE_STRING,
+                                          G_TYPE_VALUE,
+                                          G_TYPE_INVALID);
+        dbus_g_object_register_marshaller(xfconf_marshal_VOID__STRING_STRING,
+                                          G_TYPE_NONE,
+                                          G_TYPE_STRING,
+                                          G_TYPE_STRING,
+                                          G_TYPE_INVALID);
+
+        static_dbus_inited = TRUE;
+    }
+}
+
+
+
 /* public api */
 
 /**
@@ -101,8 +128,7 @@ xfconf_init(GError **error)
 
     g_type_init();
 
-    dbus_g_error_domain_register(XFCONF_ERROR, "org.xfce.Xfconf.Error",
-                                 XFCONF_TYPE_ERROR);
+    xfconf_static_dbus_init();
 
     dbus_conn = dbus_g_bus_get(DBUS_BUS_SESSION, error);
     if(!dbus_conn)
@@ -113,20 +139,9 @@ xfconf_init(GError **error)
                                            "/org/xfce/Xfconf",
                                            "org.xfce.Xfconf");
 
-    dbus_g_object_register_marshaller((GClosureMarshal)xfconf_marshal_VOID__STRING_STRING_BOXED,
-                                      G_TYPE_NONE,
-                                      G_TYPE_STRING,
-                                      G_TYPE_STRING,
-                                      G_TYPE_VALUE,
-                                      G_TYPE_INVALID);
     dbus_g_proxy_add_signal(dbus_proxy, "PropertyChanged",
                             G_TYPE_STRING, G_TYPE_STRING, G_TYPE_VALUE,
                             G_TYPE_INVALID);
-    dbus_g_object_register_marshaller((GClosureMarshal)xfconf_marshal_VOID__STRING_STRING,
-                                      G_TYPE_NONE,
-                                      G_TYPE_STRING,
-                                      G_TYPE_STRING,
-                                      G_TYPE_INVALID);
     dbus_g_proxy_add_signal(dbus_proxy, "PropertyRemoved",
                             G_TYPE_STRING, G_TYPE_STRING,
                             G_TYPE_INVALID);
