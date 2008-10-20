@@ -460,7 +460,7 @@ xfconf_transform_array(GPtrArray *arr_src,
                        GType gtype)
 {
     GPtrArray *arr_dest;
-    gint i;
+    guint i;
 
     g_return_val_if_fail(arr_src && arr_src->len, NULL);
     g_return_val_if_fail(gtype != G_TYPE_INVALID, NULL);
