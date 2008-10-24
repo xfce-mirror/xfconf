@@ -1,0 +1,3 @@
+xs/Xfconf.xs
+xs/XfconfChannel.xs
+xs/XfconfError.xs

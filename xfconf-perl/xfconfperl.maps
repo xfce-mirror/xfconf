@@ -1,0 +1,2 @@
+XFCONF_TYPE_CHANNEL  XfconfChannel      GObject  Xfce4::Xfconf::Channel
+XFCONF_ERROR         XFCONF_TYPE_ERROR  GError   Xfce4::Xfconf::Error
