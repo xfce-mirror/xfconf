@@ -157,7 +157,7 @@ xfconf_channel_class_init(XfconfChannelClass *klass)
                                                                  property_changed),
                                                  NULL,
                                                  NULL,
-                                                 xfconf_marshal_VOID__STRING_BOXED,
+                                                 _xfconf_marshal_VOID__STRING_BOXED,
                                                  G_TYPE_NONE,
                                                  2, G_TYPE_STRING,
                                                  G_TYPE_VALUE);
