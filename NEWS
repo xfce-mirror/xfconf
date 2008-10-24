@@ -3,8 +3,9 @@ Xfce 4.6beta2 (Xfce 4.5.92)
 
   * Add xfconf_channel_new_with_property_base() to restrict a channel
     to a subset of the property tree.
-  * Add G_GNUC_DEPRECATED guards to xfconf_channel_remove_property()
-    and xfconf_channel_remove_properties().
+  * Add a dbus message filter to xfconfd that catches dbus daemon
+    disconnect signals and flushes channels before xfconfd gets
+    killed (bug 4487).
 
 
 Xfce 4.6beta1 (Xfce 4.5.91)

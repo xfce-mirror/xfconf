@@ -96,6 +96,10 @@ static void xfconf_daemon_class_init(XfconfDaemonClass *klass);
 static void xfconf_daemon_init(XfconfDaemon *instance);
 static void xfconf_daemon_finalize(GObject *obj);
 
+static DBusHandlerResult xfconf_daemon_handle_dbus_disconnect(DBusConnection *conn,
+                                                              DBusMessage *message,
+                                                              void *user_data);
+
 static guint signals[N_SIGS] = { 0, };
 
 
@@ -154,6 +158,10 @@ xfconf_daemon_finalize(GObject *obj)
         g_object_unref(l->data);
     }
     g_list_free(xfconfd->backends);
+
+    dbus_connection_remove_filter(dbus_g_connection_get_connection(xfconfd->dbus_conn),
+                                  xfconf_daemon_handle_dbus_disconnect,
+                                  xfconfd);
     
     if(xfconfd->dbus_conn)
         dbus_g_connection_unref(xfconfd->dbus_conn);
@@ -494,6 +502,31 @@ xfconf_daemon_load_config(XfconfDaemon *xfconfd,
     return TRUE;
 }
 
+static DBusHandlerResult
+xfconf_daemon_handle_dbus_disconnect(DBusConnection *conn,
+                                     DBusMessage *message,
+                                     void *user_data)
+{
+    if(dbus_message_is_signal(message, DBUS_INTERFACE_LOCAL, "Disconnected")) {
+        XfconfDaemon *xfconfd = user_data;
+        GList *l;
+
+        DBG("got dbus disconnect; flushing all channels");
+
+        for(l = xfconfd->backends; l; l = l->next) {
+            GError *error = NULL;
+            if(!xfconf_backend_flush(XFCONF_BACKEND(l->data), &error)) {
+                g_critical("Failed to flush backend on disconnect: %s",
+                           error->message);
+                g_error_free(error);
+            }
+        }
+    }
+
+    return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+}
+
+
 
 
 XfconfDaemon *
@@ -512,6 +545,10 @@ xfconf_daemon_new_unique(gchar * const *backend_ids,
         g_object_unref(G_OBJECT(xfconfd));
         return NULL;
     }
+
+    dbus_connection_add_filter(dbus_g_connection_get_connection(xfconfd->dbus_conn),
+                               xfconf_daemon_handle_dbus_disconnect,
+                               xfconfd, NULL);
     
     return xfconfd;
 }
