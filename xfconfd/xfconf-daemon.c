@@ -114,7 +114,7 @@ xfconf_daemon_class_init(XfconfDaemonClass *klass)
                                                  G_SIGNAL_RUN_LAST,
                                                  0,
                                                  NULL, NULL,
-                                                 xfconf_marshal_VOID__STRING_STRING_BOXED,
+                                                 _xfconf_marshal_VOID__STRING_STRING_BOXED,
                                                  G_TYPE_NONE,
                                                  3, G_TYPE_STRING,
                                                  G_TYPE_STRING,
@@ -125,7 +125,7 @@ xfconf_daemon_class_init(XfconfDaemonClass *klass)
                                                  G_SIGNAL_RUN_LAST,
                                                  0,
                                                  NULL, NULL,
-                                                 xfconf_marshal_VOID__STRING_STRING,
+                                                 _xfconf_marshal_VOID__STRING_STRING,
                                                  G_TYPE_NONE,
                                                  2, G_TYPE_STRING,
                                                  G_TYPE_STRING);

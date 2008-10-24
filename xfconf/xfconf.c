@@ -88,13 +88,13 @@ xfconf_static_dbus_init()
         dbus_g_error_domain_register(XFCONF_ERROR, "org.xfce.Xfconf.Error",
                                      XFCONF_TYPE_ERROR);
 
-        dbus_g_object_register_marshaller(xfconf_marshal_VOID__STRING_STRING_BOXED,
+        dbus_g_object_register_marshaller(_xfconf_marshal_VOID__STRING_STRING_BOXED,
                                           G_TYPE_NONE,
                                           G_TYPE_STRING,
                                           G_TYPE_STRING,
                                           G_TYPE_VALUE,
                                           G_TYPE_INVALID);
-        dbus_g_object_register_marshaller(xfconf_marshal_VOID__STRING_STRING,
+        dbus_g_object_register_marshaller(_xfconf_marshal_VOID__STRING_STRING,
                                           G_TYPE_NONE,
                                           G_TYPE_STRING,
                                           G_TYPE_STRING,
