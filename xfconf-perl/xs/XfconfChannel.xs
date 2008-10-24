@@ -24,10 +24,6 @@
 #include <common/xfconf-common-private.h>
 
 
-/* pulled in from xfconf/common/xfconf-gvaluefuncs.c, linked into
- * our perl shared lib in a really evil way */
-extern GType _xfconf_gtype_from_string(const gchar *type);
-
 static void
 xfconf_perl_ghashtable_to_hv(gpointer key,
                              gpointer valuep,

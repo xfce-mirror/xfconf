@@ -69,7 +69,7 @@ $xfconf->set_inc($pkgcfg{cflags} . " -I. -Ibuild -I$cwd/..");
 $xfconf->set_libs($pkgcfg{libs}. "-L$cwd/../common/.libs -lxfconf-gvaluefuncs");
 $xfconf->add_pm('Xfconf.pm' => '$(INST_LIBDIR)/Xfconf.pm');
 $xfconf->add_xs(@xs_files);
-$xfconf->add_typemaps(map {File::Spec->catfile($cwd,$_)} 'xfconfperl.typemap');
+$xfconf->add_typemaps(map {File::Spec->catfile($cwd,$_)} 'build/xfconfperl.typemap');
 
 $xfconf->install(qw(xfconfperl.h build/xfconfperl-autogen.h));
 $xfconf->save_config('build/IFiles.pm');
