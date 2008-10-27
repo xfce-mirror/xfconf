@@ -29,6 +29,8 @@ xfconfd_CFLAGS = \
 	-DLOCALEDIR=\"$(localedir)\" \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/common \
+	-I$(top_builddir) \
+	-I$(top_builddir)/common \
 	$(GLIB_CFLAGS) \
 	$(DBUS_CFLAGS) \
 	$(DBUS_GLIB_CFLAGS) \

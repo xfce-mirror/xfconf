@@ -37,12 +37,12 @@ BUILT_SOURCES = \
 
 xfconf-marshal.h: stamp-xfconf-marshal.h
 	@true
-stamp-xfconf-marshal.h: xfconf-marshal.list Makefile
-	glib-genmarshal --prefix=_xfconf_marshal xfconf-marshal.list --header > xfconf-marshal.h
+stamp-xfconf-marshal.h: $(srcdir)/xfconf-marshal.list Makefile
+	glib-genmarshal --prefix=_xfconf_marshal $(srcdir)/xfconf-marshal.list --header > xfconf-marshal.h
 	echo timestamp > $(@F)
-xfconf-marshal.c: xfconf-marshal.list Makefile
+xfconf-marshal.c: $(srcdir)/xfconf-marshal.list Makefile
 	echo '#include "xfconf-marshal.h"' > xfconf-marshal.c
-	glib-genmarshal --prefix=_xfconf_marshal xfconf-marshal.list --body >> xfconf-marshal.c
+	glib-genmarshal --prefix=_xfconf_marshal $(srcdir)/xfconf-marshal.list --body >> xfconf-marshal.c
 
 
 

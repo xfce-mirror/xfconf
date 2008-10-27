@@ -21,6 +21,8 @@ libxfconf_0_la_SOURCES = \
 libxfconf_0_la_CFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/common \
+	-I$(top_builddir) \
+	-I$(top_builddir)/common \
 	-DLIBXFCONF_COMPILATION \
 	-DG_LOG_DOMAIN=\"xfconf\" \
 	$(GLIB_CFLAGS) \
