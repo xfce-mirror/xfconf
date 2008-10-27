@@ -33,4 +33,7 @@ XfconfNamedStruct *_xfconf_named_struct_lookup(const gchar *struct_name);
 
 void _xfconf_channel_shutdown();
 
+void _xfconf_g_bindings_init();
+void _xfconf_g_bindings_shutdown();
+
 #endif  /* __XFCONF_PRIVATE_H__ */

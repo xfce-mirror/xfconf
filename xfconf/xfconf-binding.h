@@ -29,23 +29,25 @@
 
 G_BEGIN_DECLS
 
-void xfconf_g_property_bind(XfconfChannel *channel,
-                            const gchar *xfconf_property,
-                            GType xfconf_property_type,
-                            gpointer object,
-                            const gchar *object_property);
-
-void xfconf_g_property_unbind(XfconfChannel *channel,
+gulong xfconf_g_property_bind(XfconfChannel *channel,
                               const gchar *xfconf_property,
+                              GType xfconf_property_type,
                               gpointer object,
                               const gchar *object_property);
 
-void xfconf_g_property_unbind_all(gpointer object);
+gulong xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
+                                       const gchar *xfconf_property,
+                                       gpointer object,
+                                       const gchar *object_property);
 
-void xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
-                                     const gchar *xfconf_property,
-                                     gpointer object,
-                                     const gchar *object_property);
+void xfconf_g_property_unbind(gulong id);
+
+void xfconf_g_property_unbind_by_property(XfconfChannel *channel,
+                                          const gchar *xfconf_property,
+                                          gpointer object,
+                                          const gchar *object_property);
+
+void xfconf_g_property_unbind_all(gpointer channel_or_object);
 
 G_END_DECLS
 

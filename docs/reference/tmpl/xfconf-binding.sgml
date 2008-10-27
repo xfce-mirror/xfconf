@@ -35,9 +35,30 @@ all this.
 @xfconf_property_type: 
 @object: 
 @object_property: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfconf_g_property_bind_gdkcolor ##### -->
+<para>
+
+</para>
+
+@channel: 
+@xfconf_property: 
+@object: 
+@object_property: 
+@Returns: 
 
 
 <!-- ##### FUNCTION xfconf_g_property_unbind ##### -->
+<para>
+
+</para>
+
+@id: 
+
+
+<!-- ##### FUNCTION xfconf_g_property_unbind_by_property ##### -->
 <para>
 
 </para>
@@ -53,17 +74,6 @@ all this.
 
 </para>
 
-@object: 
-
-
-<!-- ##### FUNCTION xfconf_g_property_bind_gdkcolor ##### -->
-<para>
-
-</para>
-
-@channel: 
-@xfconf_property: 
-@object: 
-@object_property: 
+@channel_or_object: 
 
 

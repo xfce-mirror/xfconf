@@ -33,6 +33,8 @@
 
 typedef struct
 {
+    gulong id;
+
     XfconfChannel *channel;
     gchar *xfconf_property;
     GType xfconf_property_type;
@@ -63,6 +65,9 @@ static void xfconf_g_binding_object_property_changed(GObject *object,
                                                      gpointer user_data);
 
 static GType __gdkcolor_gtype = 0;
+static gulong __last_binding_id = 0;
+static GHashTable *__bindings = NULL;
+
 
 static void
 xfconf_g_binding_free(XfconfGBinding *binding)
@@ -94,20 +99,28 @@ xfconf_g_binding_free(XfconfGBinding *binding)
 }
 
 static void
+xfconf_g_binding_remove_from_object_list(XfconfGBinding *binding,
+                                         gpointer object)
+{
+    GSList *bindings = g_object_steal_data(G_OBJECT(object), DATA_KEY);
+
+    bindings = g_slist_remove(bindings, binding);
+    if(bindings) {
+        g_object_set_data_full(G_OBJECT(object), DATA_KEY, bindings,
+                               (GDestroyNotify)g_slist_free);
+    }
+}
+
+static void
 xfconf_g_binding_channel_destroyed(gpointer data,
                                    GObject *where_the_object_was)
 {
     XfconfGBinding *binding = data;
-    GSList *bindings = g_object_steal_data(G_OBJECT(binding->object), DATA_KEY);
-    bindings = g_slist_remove(bindings, binding);
 
-    if(bindings) {
-        g_object_set_data_full(G_OBJECT(binding->object), DATA_KEY,
-                               bindings, (GDestroyNotify)g_slist_free);
-    }
+    xfconf_g_binding_remove_from_object_list(binding, binding->object);
 
     binding->channel = NULL;
-    xfconf_g_binding_free(binding);
+    g_hash_table_remove(__bindings, GUINT_TO_POINTER(binding->id));
 }
 
 static void
@@ -115,8 +128,11 @@ xfconf_g_binding_object_destroyed(gpointer data,
                                   GObject *where_the_object_was)
 {
     XfconfGBinding *binding = data;
+
+    xfconf_g_binding_remove_from_object_list(binding, binding->channel);
+
     binding->object = NULL;
-    xfconf_g_binding_free(binding);
+    g_hash_table_remove(__bindings, GUINT_TO_POINTER(binding->id));
 }
 
 static void
@@ -303,6 +319,17 @@ xfconf_g_binding_init(XfconfChannel *channel,
                      G_CALLBACK(xfconf_g_binding_object_property_changed),
                      binding);
 
+    /* add to channel's bindings list */
+    bindings = g_object_get_data(G_OBJECT(channel), DATA_KEY);
+    if(G_UNLIKELY(bindings))
+        bindings = g_slist_append(bindings, binding);
+    else {
+        bindings = g_slist_prepend(bindings, binding);
+        g_object_set_data_full(G_OBJECT(channel), DATA_KEY,
+                               bindings, (GDestroyNotify)g_slist_free);
+    }
+
+    /* also add to object's bindings list */
     bindings = g_object_get_data(G_OBJECT(object), DATA_KEY);
     if(G_UNLIKELY(bindings))
         bindings = g_slist_append(bindings, binding);
@@ -318,8 +345,40 @@ xfconf_g_binding_init(XfconfChannel *channel,
         g_value_unset(&value);
     }
 
+    binding->id = ++__last_binding_id;
+    if(G_UNLIKELY(binding->id == 0)) {
+        g_warning("Binding IDs wrapped!  Hopefully this will not be a problem...");
+        binding->id = ++__last_binding_id;  /* can't use zero */
+    }
+
+    g_hash_table_replace(__bindings, GUINT_TO_POINTER(binding->id), binding);
+
     return binding;
 }
+
+
+
+void
+_xfconf_g_bindings_init()
+{
+    if(G_UNLIKELY(__bindings))
+        return;
+
+    __bindings = g_hash_table_new_full(g_direct_hash, g_direct_equal, NULL,
+                                       (GDestroyNotify)xfconf_g_binding_free);
+}
+
+void
+_xfconf_g_bindings_shutdown()
+{
+    if(G_UNLIKELY(!__bindings))
+        return;
+
+    g_hash_table_destroy(__bindings);
+    __bindings = NULL;
+}
+
+
 
 /**
  * xfconf_g_property_bind:
@@ -337,8 +396,11 @@ xfconf_g_binding_init(XfconfChannel *channel,
  * may or may not already exist in the Xfconf store.  The type of
  * @object_property will be determined automatically.  If the two
  * types do not match, a conversion will be attempted.
+ *
+ * Returns: an ID number that can be used to later remove the
+ *          binding.
  **/
-void
+gulong
 xfconf_g_property_bind(XfconfChannel *channel,
                        const gchar *xfconf_property,
                        GType xfconf_property_type,
@@ -348,19 +410,20 @@ xfconf_g_property_bind(XfconfChannel *channel,
     XfconfGBinding *binding;
     GParamSpec *pspec;
 
-    g_return_if_fail(XFCONF_IS_CHANNEL(channel)
-                     && xfconf_property && *xfconf_property
-                     && xfconf_property_type != G_TYPE_NONE
-                     && xfconf_property_type != G_TYPE_INVALID
-                     && G_IS_OBJECT(object)
-                     && object_property && *object_property);
+    g_return_val_if_fail(XFCONF_IS_CHANNEL(channel)
+                         && xfconf_property && *xfconf_property
+                         && xfconf_property_type != G_TYPE_NONE
+                         && xfconf_property_type != G_TYPE_INVALID
+                         && G_IS_OBJECT(object) && !XFCONF_IS_CHANNEL(object)
+                         && object_property && *object_property,
+                         0UL);
 
     pspec = g_object_class_find_property(G_OBJECT_GET_CLASS(object),
                                          object_property);
     if(!pspec) {
         g_warning("Property \"%s\" is not valid for GObject type \"%s\"",
                   object_property, G_OBJECT_TYPE_NAME(object));
-        return;
+        return 0UL;
     }
 
     if(!g_value_type_transformable(xfconf_property_type,
@@ -369,7 +432,7 @@ xfconf_g_property_bind(XfconfChannel *channel,
         g_warning("Converting from type \"%s\" to type \"%s\" is not supported",
                   g_type_name(xfconf_property_type),
                   g_type_name(G_PARAM_SPEC_VALUE_TYPE(pspec)));
-        return;
+        return 0UL;
     }
 
     if(!g_value_type_transformable(G_PARAM_SPEC_VALUE_TYPE(pspec),
@@ -378,74 +441,15 @@ xfconf_g_property_bind(XfconfChannel *channel,
         g_warning("Converting from type \"%s\" to type \"%s\" is not supported",
                   g_type_name(G_PARAM_SPEC_VALUE_TYPE(pspec)),
                   g_type_name(xfconf_property_type));
-        return;
+        return 0UL;
     }
 
     binding = xfconf_g_binding_init(channel, xfconf_property,
                                     xfconf_property_type, G_OBJECT(object),
                                     object_property,
                                     G_PARAM_SPEC_VALUE_TYPE(pspec));
-}
 
-/**
- * xfconf_g_property_unbind:
- * @channel: An #XfconfChannel.
- * @xfconf_property: A bound property on @channel.
- * @object: A #GObject.
- * @object_property: A bound property on @object.
- *
- * Causes an Xfconf channel previously bound to a #GObject property
- * (see xfconf_g_property_bind()) to no longer be bound.
- **/
-void
-xfconf_g_property_unbind(XfconfChannel *channel,
-                         const gchar *xfconf_property,
-                         gpointer object,
-                         const gchar *object_property)
-{
-    GSList *bindings = g_object_steal_data(G_OBJECT(object), DATA_KEY);
-    GSList *l;
-
-    g_return_if_fail(XFCONF_IS_CHANNEL(channel)
-                     && xfconf_property && *xfconf_property
-                     && G_IS_OBJECT(object)
-                     && object_property && *object_property);
-
-    for(l = bindings; l; l = l->next) {
-        XfconfGBinding *binding = l->data;
-
-        if(channel == binding->channel
-           && !strcmp(xfconf_property, binding->xfconf_property)
-           && !strcmp(object_property, binding->object_property))
-        {
-            bindings = g_slist_delete_link(bindings, l);
-            xfconf_g_binding_free(binding);
-            break;
-        }
-    }
-
-    if(bindings) {
-        g_object_set_data_full(G_OBJECT(object), DATA_KEY,
-                               bindings, (GDestroyNotify)g_slist_free);
-    }
-}
-
-/**
- * xfconf_g_property_unbind_all:
- * @object: A #GObject.
- *
- * Unbinds all Xfconf channel bindings (see xfconf_g_property_bind())
- * to the #GObject.
- **/
-void
-xfconf_g_property_unbind_all(gpointer object)
-{
-    GSList *bindings = g_object_steal_data(G_OBJECT(object), DATA_KEY);
-
-    if(bindings) {
-        g_slist_foreach(bindings, (GFunc)xfconf_g_binding_free, NULL);
-        g_slist_free(bindings);
-    }
+    return binding->id;
 }
 
 /**
@@ -465,8 +469,11 @@ xfconf_g_property_unbind_all(gpointer object)
  * Xfconf store as four 16-bit unsigned ints (red, green, blue, alpha).
  * Since GdkColor (currently) only supports RGB and not RGBA,
  * the last value will always be set to 0xFFFF.
+ *
+ * Returns: an ID number that can be used to later remove the
+ *          binding.
  **/
-void
+gulong
 xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
                                 const gchar *xfconf_property,
                                 gpointer object,
@@ -475,16 +482,17 @@ xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
     XfconfGBinding *binding;
     GParamSpec *pspec;
 
-    g_return_if_fail(XFCONF_IS_CHANNEL(channel)
-                     && xfconf_property && *xfconf_property
-                     && G_IS_OBJECT(object)
-                     && object_property && *object_property);
+    g_return_val_if_fail(XFCONF_IS_CHANNEL(channel)
+                         && xfconf_property && *xfconf_property
+                         && G_IS_OBJECT(object) && !XFCONF_IS_CHANNEL(object)
+                         && object_property && *object_property,
+                         0UL);
 
     if(!__gdkcolor_gtype) {
         __gdkcolor_gtype = g_type_from_name("GdkColor");
         if(G_UNLIKELY(!__gdkcolor_gtype)) {
             g_critical("Unable to look up GType for GdkColor: something is very wrong");
-            return;
+            return 0UL;
         }
     }
 
@@ -493,7 +501,7 @@ xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
     if(!pspec) {
         g_warning("Property \"%s\" is not valid for GObject type \"%s\"",
                   object_property, G_OBJECT_TYPE_NAME(object));
-        return;
+        return 0UL;
     }
 
     if(G_PARAM_SPEC_VALUE_TYPE(pspec) != __gdkcolor_gtype) {
@@ -501,11 +509,109 @@ xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
                   object_property, G_OBJECT_TYPE_NAME(object),
                   g_type_name(__gdkcolor_gtype),
                   g_type_name(G_PARAM_SPEC_VALUE_TYPE(pspec)));
-        return;
+        return 0UL;
     }
 
     binding = xfconf_g_binding_init(channel, xfconf_property, __gdkcolor_gtype,
                                     G_OBJECT (object), object_property, __gdkcolor_gtype);
+
+    return binding->id;
+}
+
+/**
+ * xfconf_g_property_unbind:
+ * @id: A binding ID number.
+ *
+ * Removes an Xfconf/GObject property binding based on the binding
+ * ID number.  See xfconf_g_property_bind().
+ **/
+void
+xfconf_g_property_unbind(gulong id)
+{
+    XfconfGBinding *binding = g_hash_table_lookup(__bindings,
+                                                  GUINT_TO_POINTER(id));
+
+    if(G_UNLIKELY(!binding)) {
+        g_warning("ID %lu does not refer to an active binding", id);
+        return;
+    }
+
+    xfconf_g_binding_remove_from_object_list(binding, binding->object);
+    xfconf_g_binding_remove_from_object_list(binding, binding->channel);
+
+    g_hash_table_remove(__bindings, GUINT_TO_POINTER(id));
+}
+
+/**
+ * xfconf_g_property_unbind_by_property:
+ * @channel: An #XfconfChannel.
+ * @xfconf_property: A bound property on @channel.
+ * @object: A #GObject.
+ * @object_property: A bound property on @object.
+ *
+ * Causes an Xfconf channel previously bound to a #GObject property
+ * (see xfconf_g_property_bind()) to no longer be bound.
+ **/
+void
+xfconf_g_property_unbind_by_property(XfconfChannel *channel,
+                                     const gchar *xfconf_property,
+                                     gpointer object,
+                                     const gchar *object_property)
+{
+    GSList *bindings = g_object_steal_data(G_OBJECT(object), DATA_KEY);
+    GSList *l;
+
+    g_return_if_fail(XFCONF_IS_CHANNEL(channel)
+                     && xfconf_property && *xfconf_property
+                     && G_IS_OBJECT(object) && !XFCONF_IS_CHANNEL(object)
+                     && object_property && *object_property);
+
+    for(l = bindings; l; l = l->next) {
+        XfconfGBinding *binding = l->data;
+
+        if(channel == binding->channel
+           && !strcmp(xfconf_property, binding->xfconf_property)
+           && !strcmp(object_property, binding->object_property))
+        {
+            bindings = g_slist_delete_link(bindings, l);
+            xfconf_g_binding_remove_from_object_list(binding, binding->channel);
+            g_hash_table_remove(__bindings, GUINT_TO_POINTER(binding->id));
+            break;
+        }
+    }
+
+    if(bindings) {
+        g_object_set_data_full(G_OBJECT(object), DATA_KEY,
+                               bindings, (GDestroyNotify)g_slist_free);
+    }
+}
+
+/**
+ * xfconf_g_property_unbind_all:
+ * @channel_or_object: A #GObject or #XfconfChannel.
+ *
+ * Unbinds all Xfconf channel bindings (see xfconf_g_property_bind())
+ * to @object.  If @object is an #XfconfChannel, it will unbind all
+ * xfconf properties on that channel.  If @object is a regular #GObject
+ * with properties bound to a channel, all those bindings will be
+ * removed.
+ **/
+void
+xfconf_g_property_unbind_all(gpointer channel_or_object)
+{
+    GSList *bindings = g_object_steal_data(G_OBJECT(channel_or_object),
+                                           DATA_KEY);
+    GSList *l;
+
+    for(l = bindings; l; l = l->next) {
+        XfconfGBinding *binding = l->data;
+        if(XFCONF_IS_CHANNEL(channel_or_object))
+            xfconf_g_binding_remove_from_object_list(binding, binding->object);
+        else
+            xfconf_g_binding_remove_from_object_list(binding, binding->channel);
+        g_hash_table_remove(__bindings, GUINT_TO_POINTER(binding->id));
+    }
+    g_slist_free(bindings);
 }
 
 
