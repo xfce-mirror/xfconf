@@ -1,5 +1,3 @@
-/* NOTE: THIS FILE WAS POSSIBLY AUTO-GENERATED! */
-
 /*
  * Copyright (c) 2008 Brian Tarricone <bjt23@cornell.edu>
  *
@@ -37,6 +35,7 @@ xfconf_perl_ghashtable_to_hv(gpointer key,
 }
 
 MODULE = Xfce4::Xfconf::Channel    PACKAGE = Xfce4::Xfconf::Channel    PREFIX = xfconf_channel_
+PROTOTYPES: ENABLE
 
 XfconfChannel *
 xfconf_channel_new(class, channel_name)
@@ -44,8 +43,21 @@ xfconf_channel_new(class, channel_name)
     C_ARGS:
         channel_name
 
+XfconfChannel *
+xfconf_channel_new_with_property_base(class, channel_name, property_base)
+        const gchar * channel_name
+        const gchar * property_base
+    C_ARGS:
+        channel_name, 
+        property_base
+
 gboolean
 xfconf_channel_has_property(channel, property)
+        XfconfChannel * channel
+        const gchar * property
+
+gboolean
+xfconf_channel_is_property_locked(channel, property)
         XfconfChannel * channel
         const gchar * property
 
@@ -56,7 +68,7 @@ xfconf_channel_reset_property(channel, property_base, recursive=FALSE)
 		gboolean recursive
 
 HV *
-xfconf_channel_get_properties(channel, property_base)
+xfconf_channel_get_properties(channel, property_base=NULL)
         XfconfChannel * channel
         const gchar * property_base
     PREINIT:
@@ -73,198 +85,137 @@ xfconf_channel_get_properties(channel, property_base)
             sv_2mortal((SV *)RETVAL);
             g_hash_table_destroy(properties);
         }
+        ST(0) = (SV *)RETVAL;  /* why isn't xsubpp doing this for us? */
 	
-
-gint32
-xfconf_channel_get_int(channel, property, default_value=0)
+void
+xfconf_channel_get_property(channel, property, default_value=NULL)
         XfconfChannel * channel
         const gchar * property
-        gint32 default_value
-
-gboolean
-xfconf_channel_set_int(channel, property, value)
-        XfconfChannel * channel
-        const gchar * property
-        gint32 value
-
-guint32
-xfconf_channel_get_uint(channel, property, default_value=0)
-        XfconfChannel * channel
-        const gchar * property
-        guint32 default_value
-
-gboolean
-xfconf_channel_set_uint(channel, property, value)
-        XfconfChannel * channel
-        const gchar * property
-        guint32 value
-
-guint64
-xfconf_channel_get_uint64(channel, property, default_value=0)
-        XfconfChannel * channel
-        const gchar * property
-        guint64 default_value
-
-gboolean
-xfconf_channel_set_uint64(channel, property, value)
-        XfconfChannel * channel
-        const gchar * property
-        guint64 value
-
-gdouble
-xfconf_channel_get_double(channel, property, default_value=0.0)
-        XfconfChannel * channel
-        const gchar * property
-        gdouble default_value
-
-gboolean
-xfconf_channel_set_double(channel, property, value)
-        XfconfChannel * channel
-        const gchar * property
-        gdouble value
-
-gboolean
-xfconf_channel_get_bool(channel, property, default_value=FALSE)
-        XfconfChannel * channel
-        const gchar * property
-        gboolean default_value
-
-gboolean
-xfconf_channel_set_bool(channel, property, value)
-        XfconfChannel * channel
-        const gchar * property
-        gboolean value
-
-gchar *
-xfconf_channel_get_string(channel, property, default_value=NULL)
-        XfconfChannel * channel
-        const gchar * property
-        const gchar * default_value
-
-gboolean
-xfconf_channel_set_string(channel, property, value)
-        XfconfChannel * channel
-        const gchar * property
-        const gchar * value
-
-AV *
-xfconf_channel_get_string_list(channel, property)
-        XfconfChannel * channel
-        const gchar * property
+        SV * default_value
     PREINIT:
-        gchar **strs;
-        gint i;
-    CODE:
-        strs = xfconf_channel_get_string_list(channel, property);
-        if(!strs)
-            RETVAL = (AV *)&PL_sv_undef;
-        else {
-            RETVAL = newAV();
-            sv_2mortal((SV *)RETVAL);
-            for(i = 0; strs[i]; ++i)
-                av_store(RETVAL, i, newSVGChar(strs[i]));
-            g_strfreev(strs);
-        }
+        GValue val = { 0, };
+    PPCODE:
+        if(!xfconf_channel_get_property(channel, property, &val)) {
+            XPUSHs((default_value ? default_value : &PL_sv_undef));
+        } else if(G_VALUE_TYPE(&val) == XFCONF_TYPE_G_VALUE_ARRAY) {
+            GPtrArray *arr = g_value_get_boxed(&val);
+            gint i;
 
-SV *
-xfconf_channel_get_property(channel, property)
-        XfconfChannel * channel
-        const gchar * property
-    PREINIT:
-        GValue value = { 0, };
-    CODE:
-        if(!xfconf_channel_get_property(channel, property, &value))
-            RETVAL = &PL_sv_undef;
-        else {
-            RETVAL = gperl_sv_from_value(&value);
-            g_value_unset(&value);
+            EXTEND(SP, arr->len);
+            for(i = 0; i < arr->len; ++i) {
+                GValue *arrval = g_ptr_array_index(arr, i);
+                PUSHs(sv_2mortal(gperl_sv_from_value(arrval)));
+            }
+            g_value_unset(&val);
+        } else {
+            XPUSHs(gperl_sv_from_value(&val));
+            g_value_unset(&val);
         }
 
 gboolean
-xfconf_channel_set_property(channel, property, value)
+_set_property(channel, property, value, arraytypes=NULL)
         XfconfChannel * channel
         const gchar * property
         SV * value
+        SV * arraytypes
+    ALIAS:
+        set_uchar = 0
+        set_char = 1
+        set_uint16 = 2
+        set_int16 = 3
+        set_uint = 4
+        set_int = 5
+        set_uint64 = 6
+        set_int64 = 7
+        set_float = 8
+        set_double = 9
+        set_bool = 10
+        set_string = 11
+        set_array = 12
     PREINIT:
-        GValue val = { 0, };
+        GType gtype = G_TYPE_INVALID;
+        GValue val = { 0 , };
     CODE:
-        /* FIXME: figure out a non-lame way to implement this */
         RETVAL = FALSE;
+        switch(ix) {
+            case 0:  gtype = G_TYPE_UCHAR; break;
+            case 1:  gtype = G_TYPE_CHAR; break;
+            case 2:  gtype = XFCONF_TYPE_UINT16; break;
+            case 3:  gtype = XFCONF_TYPE_INT16; break;
+            case 4:  gtype = G_TYPE_UINT; break;
+            case 5:  gtype = G_TYPE_INT; break;
+            case 6:  gtype = G_TYPE_UINT64; break;
+            case 7:  gtype = G_TYPE_INT64; break;
+            case 8:  gtype = G_TYPE_FLOAT; break;
+            case 9:  gtype = G_TYPE_DOUBLE; break;
+            case 10: gtype = G_TYPE_BOOLEAN; break;
+            case 11: gtype = G_TYPE_STRING; break;
+            case 12: gtype = XFCONF_TYPE_G_VALUE_ARRAY; break;
+        }
 
-void
-xfconf_channel_get_array(channel, property)
-        XfconfChannel * channel
-        const gchar * property
-    PREINIT:
-        GPtrArray *arr;
-        gint i;
-    PPCODE:
-        arr = xfconf_channel_get_arrayv(channel, property);
-        if(arr) {
-            for(i = 0; i < arr->len; ++i) {
-                GValue *value = g_ptr_array_index(arr, i);
-                XPUSHs(sv_2mortal(gperl_sv_from_value(value)));
+        if(gtype != XFCONF_TYPE_G_VALUE_ARRAY) {
+            g_value_init(&val, gtype);
+            gperl_value_from_sv(&val, value);
+            RETVAL = xfconf_channel_set_property(channel, property, &val);
+            g_value_unset(&val);
+        } else {
+            GPtrArray *arr;
+            AV *av_values, *av_types;
+            gint num_elements, i;
+
+            if(!SvROK(value) || (arraytypes && !SvROK(arraytypes)))
+                croak("Usage: Xfce4::Xfconf::Channel::set_array($property, \\@values, \\@types=NULL)");
+
+            av_values = (AV *)SvRV(value);
+            av_types = arraytypes ? (AV *)SvRV(arraytypes) : NULL;
+
+            if(av_len(av_values) != av_len(av_types))
+                croak("Xfce4::Xfconf::Channel::set_array(): values array is not the same size as the types array");
+
+            num_elements = av_len(av_values) + 1;
+            arr = g_ptr_array_sized_new(num_elements);
+            for(i = 0; i < num_elements; ++i) {
+                SV **val_sv = av_fetch(av_values, i, 0);
+                GValue *arrval;
+
+                gtype = G_TYPE_INVALID;
+
+                if(!val_sv || !*val_sv || !SvOK(*val_sv) || SvROK(*val_sv)) {
+                    xfconf_array_free(arr);
+                    croak("Xfce4::Xfconf::Channel::set_array(): invalid value at index %d", i);
+                }
+
+                if(av_types) {
+                    SV **type_sv = av_fetch(av_types, i, 0);
+                    if(type_sv && *type_sv && SvOK(*type_sv))
+                        gtype = _xfconf_gtype_from_string(SvGChar(*type_sv));
+                }
+
+                if(gtype == G_TYPE_INVALID) {
+                    if(av_types)
+                        warn("Xfce4::Xfconf::Channel::set_array(): unable to determine type at index %d; guessing", i);
+                    if(SvNOKp(*val_sv))
+                        gtype = G_TYPE_DOUBLE;
+                    else if(SvIOKp(*val_sv))
+                        gtype = G_TYPE_INT;
+                    else
+                        gtype = G_TYPE_STRING;
+                }
+
+                if(gtype == G_TYPE_NONE || gtype == XFCONF_TYPE_G_VALUE_ARRAY) {
+                    xfconf_array_free(arr);
+                    croak("Xfce4::Xfconf::Channel::set_array(): value cannot be of type 'empty' or 'array' at index %d", i);
+                }
+
+                arrval = g_new0(GValue, 1);
+                g_value_init(arrval, gtype);
+                gperl_value_from_sv(arrval, *val_sv);
+
+                g_ptr_array_add(arr, arrval);
             }
+
+            RETVAL = xfconf_channel_set_arrayv(channel, property, arr);
             xfconf_array_free(arr);
         }
-         
-gboolean
-xfconf_channel_set_array(channel, property, ...)
-        XfconfChannel * channel
-        const gchar * property
-    C_ARGS:
-        property
-    PREINIT:
-        GPtrArray *arr;
-        gint num_elements, i;
-    CODE:
-        RETVAL = FALSE;
-        num_elements = items - 2;
-
-        arr = g_ptr_array_sized_new(num_elements);
-        for(i = 0; i < num_elements; ++i) {
-            SV *val_pair_r = (SV *)ST(i+2);
-            AV *val_pair;
-            SV **type_sv, **val_sv;
-            const gchar *type_str;
-            GType gtype = G_TYPE_INVALID;
-            GValue *value;
-
-            if(!SvROK((SV *)val_pair_r) || SvTYPE(SvRV(val_pair_r)) != SVt_PVAV) {
-                xfconf_array_free(arr);
-                croak("Xfce4::Xfconf::set_array(): Value is not an array reference at index %d", i);
-            }
-
-            val_pair = (AV *)SvRV(val_pair_r);
-            if(av_len(val_pair) != 1) {
-                xfconf_array_free(arr);
-                croak("Xfce4::Xfconf::set_array(): each value pair should have 2 elements (got %d)", av_len(val_pair)+1);
-            }
-
-            type_sv = av_fetch(val_pair, 0, 0);
-            type_str = SvGChar(*type_sv);
-            if(!type_str) {
-                xfconf_array_free(arr);
-                croak("Xfce4::Xfconf::set_array(): first element of value pair %d is not a string", i);
-            }
-            gtype = _xfconf_gtype_from_string(type_str);
-            if(gtype == G_TYPE_INVALID || gtype == XFCONF_TYPE_G_VALUE_ARRAY) {
-                xfconf_array_free(arr);
-                croak("Xfce4::Xfconf::set_array(): value type of element at index %d (%s) is not valid", i, type_str);
-            }
-
-            val_sv = av_fetch(val_pair, 1, 0);
-            if(!val_sv || !*val_sv || !SvOK(*val_sv)) {
-                xfconf_array_free(arr);
-                croak("Xfce4::Xfconf::set_array(): second element of value pair %d is not a valid value", i);
-            }
-
-            value = g_new0(GValue, 1);
-            g_value_init(value, gtype);
-            gperl_value_from_sv(value, *val_sv);
-
-            g_ptr_array_add(arr, value);
-        }
-
-        RETVAL = xfconf_channel_set_arrayv(channel, property, arr);
-        xfconf_array_free(arr);
+        /* why isn't xsubpp doing this for us? */
+        ST(0) = sv_2mortal(boolSV(RETVAL));

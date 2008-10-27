@@ -98,6 +98,45 @@ _xfconf_gtype_from_string(const gchar *type)
     return G_TYPE_INVALID;
 }
 
+G_CONST_RETURN gchar *
+_xfconf_string_from_gtype(GType gtype)
+{
+    switch(gtype) {
+        case G_TYPE_STRING:
+            return "string";
+        case G_TYPE_UCHAR:
+            return "uchar";
+        case G_TYPE_CHAR:
+            return "char";
+        case G_TYPE_UINT:
+            return "uint";
+        case G_TYPE_INT:
+            return "int";
+        case G_TYPE_UINT64:
+            return "uint64";
+        case G_TYPE_INT64:
+            return "int64";
+        case G_TYPE_FLOAT:
+            return "float";
+        case G_TYPE_DOUBLE:
+            return "double";
+        case G_TYPE_BOOLEAN:
+            return "bool";
+        default:
+            if(gtype == XFCONF_TYPE_UINT16)
+                return "uint16";
+            else if(gtype == XFCONF_TYPE_INT16)
+                return "int16";
+            else if(gtype == XFCONF_TYPE_G_VALUE_ARRAY)
+                return "array";
+            break;
+    }
+
+    g_warning("GType %s doesn't map to an Xfconf type",
+              g_type_name(gtype));
+    return NULL;
+}
+
 gboolean
 _xfconf_gvalue_from_string(GValue *value,
                            const gchar *str)

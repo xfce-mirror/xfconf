@@ -34,9 +34,8 @@ AC_PROG_CC
 AM_PROG_CC_C_O
 AC_PROG_INSTALL
 AC_PROG_LIBTOOL
-dnl AC_PROG_INTLTOOL([0.31], [no-xml])
-dnl AC_PROG_MAKE_SET
-AC_CHECK_PROGS([PERL], [perl5 perl])
+AC_PROG_MAKE_SET
+AC_PROG_LN_S
 
 dnl check for standard header files
 AC_HEADER_STDC
@@ -66,6 +65,45 @@ XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.5.91])
 XDT_CHECK_PACKAGE([DBUS], [dbus-1], [1.0.0])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.72])
 
+dnl see if we can build the perl bindings
+AC_ARG_ENABLE([perl-bindings],
+              [AC_HELP_STRING([--disable-perl-bindings],
+                              [Don't try to build the perl bindings (default=auto)])],
+              [use_perl=$enableval], [use_perl=auto])
+PERL_GLIB_REQUIRED_VERSION=1.020
+PERL_EXTUTILS_DEPENDS_REQUIRED_VERSION=0.300
+PERL_EXTUTILS_PKGCONFIG_REQUIRED_VERSION=1.000
+if test "x$use_perl" != "xno"; then
+    AC_PATH_PROGS([PERL], [perl5.8 perl5.6 perl5 perl])
+    if test "$PERL"; then
+        # we need Glib, as well as a few support modules
+        AC_MSG_CHECKING([for perl modules: ExtUtils::Depends, ExtUtils::PkgConfig, Glib])
+        if `$PERL -e "use Glib '$PERL_GLIB_REQUIRED_VERSION'; \
+                      use ExtUtils::Depends '$PERL_EXTUTILS_DEPENDS_REQUIRED_VERSION'; \
+                      use ExtUtils::PkgConfig '$PERL_EXTUTILS_PKGCONFIG_REQUIRED_VERSION';" \
+            >/dev/null 2>&1`
+        then
+            have_perl=yes
+            AC_MSG_RESULT([yes])
+        else
+            have_perl=no
+            AC_MSG_RESULT([no])
+            echo '
+*** Required perl modules not found to build perl bindings.  Requirements are:
+***
+***     ExtUtils::Depends    '"$PERL_EXTUTILS_DEPENDS_REQUIRED_VERSION"'
+***     ExtUtils::PkgConfig  '"$PERL_EXTUTILS_PKGCONFIG_REQUIRED_VERSION"'
+***     Glib                 '"$PERL_GLIB_REQUIRED_VERSION"'
+***
+*** Please install the required dependencies and run '"$0"' again.
+'
+        fi
+    fi
+fi
+AM_CONDITIONAL([BUILD_PERL_BINDINGS], [test "x$have_perl" = "xyes"])
+AC_SUBST([PERL_GLIB_REQUIRED_VERSION])
+AC_SUBST([PERL_EXTUTILS_DEPENDS_REQUIRED_VERSION])
+AC_SUBST([PERL_EXTUTILS_PKGCONFIG_REQUIRED_VERSION])
 
 dnl check alignment for struct returns
 AC_DEFUN([BT_GLIB_CHECK_ALIGNOF],
@@ -179,6 +217,10 @@ tests/reset-properties/Makefile
 tests/property-changed-signal/Makefile
 xfconf/Makefile
 xfconf/libxfconf-0.pc
+xfconf-perl/Makefile.PL
+xfconf-perl/Makefile
+xfconf-perl/Xfconf.pm
+xfconf-perl/xs/Makefile
 xfconf-query/Makefile
 xfconfd/Makefile
 ])

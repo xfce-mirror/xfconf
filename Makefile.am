@@ -3,6 +3,7 @@ SUBDIRS = \
 	xfconf \
 	xfconfd \
 	xfconf-query \
+	xfconf-perl \
 	po \
 	docs \
 	tests

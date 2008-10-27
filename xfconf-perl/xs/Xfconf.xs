@@ -20,7 +20,9 @@
 
 #include "xfconfperl.h"
 
+
 MODULE = Xfce4::Xfconf    PACKAGE = Xfce4::Xfconf    PREFIX = xfconf_
+PROTOTYPES: ENABLE
 
 BOOT:
     {

@@ -10,10 +10,11 @@ use ExtUtils::MakeMaker;
 
 # minimum required version of dependancies we need to build
 our %build_reqs = (
-	'perl-ExtUtils-Depends'   => '0.300',
-	'perl-ExtUtils-PkgConfig' => '1.000',
-	'perl-Glib'               => '1.020', # for Glib::MakeHelper
-	'Xfconf'                  => '4.5.91',
+    'perl-ExtUtils-Depends'   => '@PERL_EXTUTILS_DEPENDS_REQUIRED_VERSION@',
+    'perl-ExtUtils-PkgConfig' => '@PERL_EXTUTILS_PKGCONFIG_REQUIRED_VERSION@',
+    'perl-Glib'               => '@PERL_GLIB_REQUIRED_VERSION@', # for Glib::MakeHelper
+    'DBus'                    => '@DBUS_REQUIRED_VERSION@',
+    'DBus-Glib'               => '@DBUS_GLIB_REQUIRED_VERSION@',
 );
 
 our %pre_reqs = (
@@ -44,7 +45,8 @@ unless(eval "use ExtUtils::Depends '$build_reqs{'perl-ExtUtils-Depends'}';"
 # If the package can't be found, warn and exit with status 0 to indicate to
 # CPAN testers that their system is not supported.
 our %pkgcfg;
-unless(eval { %pkgcfg = ExtUtils::PkgConfig->find ('libxfconf-0 >= '.$build_reqs{Xfconf});
+unless(eval { %pkgcfg = ExtUtils::PkgConfig->find('dbus-glib-1 >= '.$build_reqs{'DBus-Glib'}
+                                                 .' dbus-1 >= '.$build_reqs{DBus});
 	           1; })
 {
     warn $@;
@@ -55,7 +57,13 @@ require Glib::CodeGen;
 
 mkdir('build', 0777);
 
-my @xs_files = <xs/*.xs>;
+my @xs_files = ();
+my @xs_lists = 'xs_files';
+foreach my $file (@xs_lists) {
+    my @names = Glib::MakeHelper->read_source_list_file($file);
+    print "Loaded ".scalar(@names)." xs files from $file\n";
+    push(@xs_files, @names);
+}
 
 Glib::CodeGen->parse_maps('xfconfperl',
                           input => 'xfconfperl.maps');
@@ -63,34 +71,36 @@ Glib::CodeGen->write_boot(xs_files =>\@xs_files,
                           ignore => '(^[^:]+$)|(^Xfce4::Xfconf$)');
 
 my $cwd = cwd();
-my $xfconf = ExtUtils::Depends->new('Xfconf', 'Glib');
-$xfconf->set_inc($pkgcfg{cflags} . " -I. -Ibuild -I$cwd/..");
-# this next bit is probably REALLY not portable
-$xfconf->set_libs($pkgcfg{libs}. "-L$cwd/../common/.libs -lxfconf-gvaluefuncs");
+# this seems not really portable, but works... i think.  subversion's native
+# perl bindings do it this way, anyway.
+my $libxfconf_cflags = "-I$cwd/.. -I".$ENV{'top_builddir'};
+my $libxfconf_libs = "-L$cwd/../common/.libs -L$cwd/../xfconf/.libs "
+                    ."-lxfconf-gvaluefuncs -lxfconf-0";
+
+our $xfconf = ExtUtils::Depends->new('Xfconf', 'Glib');
+$xfconf->set_inc($pkgcfg{cflags} . " -I. -Ibuild " . $libxfconf_cflags);
+$xfconf->set_libs($pkgcfg{libs} . $libxfconf_libs);
 $xfconf->add_pm('Xfconf.pm' => '$(INST_LIBDIR)/Xfconf.pm');
+#$xfconf->add_pm('Array.pm' => '$(INST_LIBDIR)/Xfconf/Array.pm');
 $xfconf->add_xs(@xs_files);
-$xfconf->add_typemaps(map {File::Spec->catfile($cwd,$_)} 'build/xfconfperl.typemap');
+$xfconf->add_typemaps(map {File::Spec->catfile($cwd,$_)} qw(build/xfconfperl.typemap) );
 
 $xfconf->install(qw(xfconfperl.h build/xfconfperl-autogen.h));
 $xfconf->save_config('build/IFiles.pm');
 
 WriteMakefile(
-    NAME          => 'Xfce4::Xfconf',
-    VERSION_FROM  => 'Xfconf.pm',
-    ABSTRACT_FROM => 'Xfconf.pm',
-    PREREQ_PM     => \%pre_reqs,
-    XSPROTOARG    => '-noprototypes',
+    FIRST_MAKEFILE => 'Makefile.perl',
+    NAME           => 'Xfce4::Xfconf',
+    VERSION_FROM   => 'Xfconf.pm',
+    ABSTRACT_FROM  => 'Xfconf.pm',
+    PREREQ_PM      => \%pre_reqs,
+    XSPROTOARG     => '-noprototypes',
     $xfconf->get_makefile_vars,
 );
 
 
 sub MY::postamble
 {
-    return Glib::MakeHelper->postamble_clean ()
-           . Glib::MakeHelper->postamble_rpms(
-                'XFCONF' => $build_reqs{'Xfconf'},
-                'PERL_EXTUTILS_DEPENDS' => $build_reqs{'perl-ExtUtils-Depends'},
-                'PERL_EXTUTILS_PKGCONFIG' => $build_reqs{'perl-ExtUtils-PkgConfig'},
-                'PERL_GLIB' => $build_reqs{'perl-Glib'},
-	         );
+    return Glib::MakeHelper->postamble_clean()
+           . Glib::MakeHelper->postamble_docs_full(DEPENDS => $xfconf)
 }

@@ -24,7 +24,7 @@
     
     require DynaLoader;
     
-    our $VERSION = '0.001svn';
+    our $VERSION = '@VERSION@';
     
     our @ISA = qw(DynaLoader);
     
