@@ -7,70 +7,74 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-20 15:02+0300\n"
-"PO-Revision-Date: 2008-10-20 15:15+0300\n"
+"POT-Creation-Date: 2008-10-31 14:08+0200\n"
+"PO-Revision-Date: 2008-10-31 14:12+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../common/xfconf-gvaluefuncs.c:243
+#: ../common/xfconf-gvaluefuncs.c:282
 msgid "true"
 msgstr "tosi"
 
-#: ../common/xfconf-gvaluefuncs.c:244
+#: ../common/xfconf-gvaluefuncs.c:283
 msgid "false"
 msgstr "epätosi"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:275
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:283
 #, c-format
 msgid "Unable to create configuration directory"
-msgstr "Asetushakemistoa ei voi luoda"
+msgstr "Asetuskansiota ei voi luoda"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:322
-#: ../xfconfd/xfconf-daemon.c:239
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:330
+#: ../xfconfd/xfconf-daemon.c:247
 #, c-format
 msgid "You don't have permission to modify property \"%s\" on channel \"%s\""
 msgstr "Sinulla ei ole oikeuksia muokata asetusta \"%s\" kanavalla \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:374
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:449
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:598
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:618
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:395
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:477
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:638
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:658
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Asetusta \"%s\" ei ole kanavalla \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:565
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:605
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "Kanavaa \"%s\" ei voi poistaa: %s"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1168
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1238
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1289
 #, c-format
-msgid "Invalid type for <%s>: \"%s\""
-msgstr "Tyyppi ei kelpaa kohteelle <%s>: \"%s\""
+msgid "Invalid type for <property>: \"%s\""
+msgstr "<ominaisuuden> tyyppi ei kelpaa: \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1180
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1250
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1305
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1381
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "\"%s\"-tyyppisen arvon jäsennys ei onnistu kohteesta \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1229
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1361
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr "<arvon> tyyppiominaisuus ei voi olla taulukko"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1497
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1740
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
+#, c-format
+msgid "Invalid type for <value>: \"%s\""
+msgstr "<arvon> tyyppi ei kelpaa: \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1667
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1912
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "Kanavaa \"%s\" ei ole olemassa"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1785
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1957
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Kanavaa \"%s\" ei voi kirjoittaa: %s"
@@ -152,12 +156,12 @@ msgstr "Xfce:n asetus-taustaprosessi"
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Ilmoita vioista osoitteeseen http://bugs.xfce.org/\n"
 
-#: ../xfconfd/xfconf-daemon.c:451
+#: ../xfconfd/xfconf-daemon.c:459
 #, c-format
 msgid "Another Xfconf daemon is already running"
 msgstr "Xfconf-taustaprosessi on jo käynnissä"
 
-#: ../xfconfd/xfconf-daemon.c:487
+#: ../xfconfd/xfconf-daemon.c:495
 #, c-format
 msgid "No backends could be started"
 msgstr "Moduulien käynnistys epäonnistui"
