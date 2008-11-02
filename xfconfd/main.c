@@ -27,6 +27,10 @@
 #include <signal.h>
 #endif
 
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
+
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
@@ -163,13 +167,13 @@ main(int argc,
         g_printerr("Error parsing options: %s\n", error->message);
         g_error_free(error);
         g_option_context_free(opt_ctx);
-        return 1;
+        return EXIT_FAILURE;
     }
     g_option_context_free(opt_ctx);
     
     if(print_version) {
         g_print("Xfconfd version " VERSION "\n");
-        return 0;
+        return EXIT_SUCCESS;
     }
     
     mloop = g_main_loop_new(NULL, FALSE);
@@ -201,9 +205,9 @@ main(int argc,
     
     xfconfd = xfconf_daemon_new_unique(backends, &error);
     if(!xfconfd) {
-        g_printerr("Xfconfd failed to start: %s\n", error->message);
+        g_error("Xfconfd failed to start: %s\n", error->message);
         g_error_free(error);
-        return 1;
+        return EXIT_FAILURE;
     }
     g_strfreev(backends);
     
@@ -219,5 +223,5 @@ main(int argc,
     
     g_main_loop_unref(mloop);
     
-    return 0;
+    return EXIT_SUCCESS;
 }
