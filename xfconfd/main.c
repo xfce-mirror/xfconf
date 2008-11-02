@@ -85,8 +85,8 @@ signal_pipe_io(GIOChannel *source,
     guint32 sigstate = 0;
     gsize bread = 0;
     
-    if(G_IO_ERROR_NONE == g_io_channel_read(source, (gchar *)&sigstate,
-                                            sizeof(sigstate), &bread)
+    if(G_IO_ERROR_NONE == g_io_channel_read_chars(source, (gchar *)&sigstate,
+                                                  sizeof(sigstate), &bread, NULL)
        && sizeof(sigstate) == bread)
     {
         switch(sigstate)
