@@ -698,8 +698,14 @@ xfconf_backend_perchannel_xml_list_channels(XfconfBackend *backend,
         while((name = g_dir_read_name(dir))) {
             if(g_str_has_suffix(name, ".xml")) {
                 /* FIXME: maybe validate the files' contents a bit? */
-                *channels = g_slist_prepend(*channels,
-                                            g_strndup(name, strlen(name) - 4));
+                /* FIXME: maybe temp use a hash table or gtree to avoid search */
+                gchar *channel_name = g_strndup(name, strlen(name) - 4);
+                if(!g_slist_find_custom(*channels, channel_name,
+                                        (GCompareFunc)strcmp))
+                {
+                    *channels = g_slist_prepend(*channels, channel_name);
+                } else
+                    g_free(channel_name);
             }
         }
 
