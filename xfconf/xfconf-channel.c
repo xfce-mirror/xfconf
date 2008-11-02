@@ -41,10 +41,11 @@
                                                       (property), NULL) \
                                        : (gchar *)(property) )
 
-#ifdef XFCONF_ENABLE_CHECKS
-
 #define ERROR_DEFINE  GError *___error = NULL
 #define ERROR         &___error
+
+#ifdef XFCONF_ENABLE_CHECKS
+
 #define ERROR_CHECK   G_STMT_START{ \
     if(___error) { \
         g_warning("Error check failed at %s():%d: %s", __FUNCTION__, __LINE__, \
@@ -55,9 +56,10 @@
 
 #else
 
-#define ERROR_DEFINE  G_STMT_START{ }G_STMT_END
-#define ERROR         NULL
-#define ERROR_CHECK   G_STMT_START{ }G_STMT_END
+#define ERROR_CHECK   G_STMT_START{ \
+    if(___error) \
+        g_error_free(___error); \
+}G_STMT_END
 
 #endif
 
