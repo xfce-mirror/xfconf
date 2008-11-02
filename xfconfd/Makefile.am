@@ -24,6 +24,7 @@ xfconfd_SOURCES = \
 	$(top_srcdir)/common/xfconf-types.c
 
 xfconfd_CFLAGS = \
+	-DG_LOG_DOMAIN=\"xfconfd\" \
 	-DLIBXFCONF_COMPILATION \
 	-DBINDIR=\"$(bindir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \

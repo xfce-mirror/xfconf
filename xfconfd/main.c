@@ -127,9 +127,9 @@ main(int argc,
     gchar **backends = NULL;
     gboolean print_version = FALSE;
     GOptionEntry options[] = {
-        { "version", 'V', 0, G_OPTION_ARG_NONE, NULL,
+        { "version", 'V', 0, G_OPTION_ARG_NONE, &print_version,
             N_("Prints the xfconfd version"), NULL },
-        { "backends", 'b', 0, G_OPTION_ARG_STRING_ARRAY, NULL,
+        { "backends", 'b', 0, G_OPTION_ARG_STRING_ARRAY, &backends,
             N_("Configuration backends to use.  The first backend specified " \
                "is opened read/write; the others, read-only."), NULL },
         { NULL, 0, 0, 0, 0, NULL, NULL },
@@ -150,21 +150,18 @@ main(int argc,
     
     xfce_textdomain(PACKAGE, LOCALEDIR, "UTF-8");
     
-    g_set_application_name("Xfce Configuration Daemon");
-    g_set_prgname("xfconfd");
+    g_set_application_name(_("Xfce Configuration Daemon"));
+    g_set_prgname(G_LOG_DOMAIN);
     g_type_init();
-    
-    options[0].arg_data = &print_version;
-    options[1].arg_data = &backends;
     
     opt_ctx = g_option_context_new(NULL);
     g_option_context_set_translation_domain(opt_ctx, PACKAGE);
-    g_option_context_set_summary(opt_ctx, N_("Xfce configuration daemon"));
+    g_option_context_set_summary(opt_ctx, _("Xfce configuration daemon"));
     g_option_context_set_description(opt_ctx,
-                                     N_("Report bugs to http://bugs.xfce.org/\n"));
+                                     _("Report bugs to http://bugs.xfce.org/\n"));
     g_option_context_add_main_entries(opt_ctx, options, PACKAGE);
     if(!g_option_context_parse(opt_ctx, &argc, &argv, &error)) {
-        g_printerr("Error parsing options: %s\n", error->message);
+        g_printerr(_("Error parsing options: %s\n"), error->message);
         g_error_free(error);
         g_option_context_free(opt_ctx);
         return EXIT_FAILURE;
@@ -172,7 +169,7 @@ main(int argc,
     g_option_context_free(opt_ctx);
     
     if(print_version) {
-        g_print("Xfconfd version " VERSION "\n");
+        g_print("Xfconfd " VERSION "\n");
         return EXIT_SUCCESS;
     }
     
@@ -205,7 +202,7 @@ main(int argc,
     
     xfconfd = xfconf_daemon_new_unique(backends, &error);
     if(!xfconfd) {
-        g_error("Xfconfd failed to start: %s\n", error->message);
+        g_critical("Xfconfd failed to start: %s\n", error->message);
         g_error_free(error);
         return EXIT_FAILURE;
     }
