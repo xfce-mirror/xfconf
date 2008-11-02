@@ -159,12 +159,12 @@ xfconf_daemon_finalize(GObject *obj)
     }
     g_list_free(xfconfd->backends);
 
-    dbus_connection_remove_filter(dbus_g_connection_get_connection(xfconfd->dbus_conn),
-                                  xfconf_daemon_handle_dbus_disconnect,
-                                  xfconfd);
-    
-    if(xfconfd->dbus_conn)
+    if(xfconfd->dbus_conn) {
+        dbus_connection_remove_filter(dbus_g_connection_get_connection(xfconfd->dbus_conn),
+                                      xfconf_daemon_handle_dbus_disconnect,
+                                      xfconfd);
         dbus_g_connection_unref(xfconfd->dbus_conn);
+    }
     
     G_OBJECT_CLASS(xfconf_daemon_parent_class)->finalize(obj);
 }
@@ -444,6 +444,10 @@ xfconf_daemon_start(XfconfDaemon *xfconfd,
                                         "/org/xfce/Xfconf",
                                         G_OBJECT(xfconfd));
     
+    dbus_connection_add_filter(dbus_g_connection_get_connection(xfconfd->dbus_conn),
+                               xfconf_daemon_handle_dbus_disconnect,
+                               xfconfd, NULL);
+
     dbus_error_init(&derror);
     ret = dbus_bus_request_name(dbus_g_connection_get_connection(xfconfd->dbus_conn),
                                 "org.xfce.Xfconf",
@@ -546,9 +550,5 @@ xfconf_daemon_new_unique(gchar * const *backend_ids,
         return NULL;
     }
 
-    dbus_connection_add_filter(dbus_g_connection_get_connection(xfconfd->dbus_conn),
-                               xfconf_daemon_handle_dbus_disconnect,
-                               xfconfd, NULL);
-    
     return xfconfd;
 }
