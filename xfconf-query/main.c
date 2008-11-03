@@ -245,7 +245,12 @@ main(int argc, char **argv)
     gint fd = -1;
 
     g_type_init();
-    xfconf_init(NULL);
+    if(!xfconf_init(&error))
+    {
+        g_critical("Failed to init libxfconf: %s\n", error->message);
+        g_error_free(error);
+        return 1;
+    }
     
     GOptionContext *context = g_option_context_new("- xfconf commandline utility");
 
@@ -272,9 +277,12 @@ main(int argc, char **argv)
         g_print("Channels:\n");
 
         channels = xfconf_list_channels();
-        for(i = 0; channels[i]; ++i)
-            g_print("  %s\n", channels[i]);
-        g_strfreev(channels);
+        if(G_LIKELY(channels)) {
+            for(i = 0; channels[i]; ++i)
+                g_print("  %s\n", channels[i]);
+            g_strfreev(channels);
+        } else
+            return 1;
 
         return 0;
     }
