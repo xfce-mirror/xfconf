@@ -9,7 +9,10 @@ Xfce 4.6beta2 (Xfce 4.5.92)
   * Change libxfconf GObject bindings API slightly to use gulong IDs
     for each binding to be used when removing bindings.  Extend the
     unbind functions a bit.
+  * Bump libxfconf interface version due to incompatible change.
   * Add libxfconf perl bindings.
+  * Remove xfconf_channel_remove_property() and
+    xfconf_channel_remove_properties().
 
 
 Xfce 4.6beta1 (Xfce 4.5.91)

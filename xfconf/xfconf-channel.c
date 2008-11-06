@@ -702,40 +702,6 @@ xfconf_channel_reset_property(XfconfChannel *channel,
 }
 
 /**
- * xfconf_channel_remove_property:
- * @channel: An #XfconfChannel.
- * @property: A property name.
- *
- * Removes @property from @channel in the configuration store.
- *
- * Deprecated:4.5.91: Use xfconf_channel_reset_property() instead.
- **/
-void
-xfconf_channel_remove_property(XfconfChannel *channel,
-                               const gchar *property)
-{
-    xfconf_channel_reset_property(channel, property, FALSE);
-}
-
-/**
- * xfconf_channel_remove_properties:
- * @channel: An #XfconfChannel.
- * @property_base: The base property name of properties to remove.
- *
- * Removes @property_base from @channel, and removes all
- * sub-properties of @property_base as well.  To remove the
- * entire channel, specify "/" or %NULL for @property_base.
- *
- * Deprecated:4.5.91: Use xfconf_channel_reset_property() instead.
- **/
-void
-xfconf_channel_remove_properties(XfconfChannel *channel,
-                                 const gchar *property_base)
-{
-    xfconf_channel_reset_property(channel, property_base, TRUE);
-}
-
-/**
  * xfconf_channel_get_properties:
  * @channel: An #XfconfChannel.
  * @property_base: The base property name of properties to retrieve.

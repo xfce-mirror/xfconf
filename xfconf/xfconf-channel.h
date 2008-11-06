@@ -56,13 +56,6 @@ void xfconf_channel_reset_property(XfconfChannel *channel,
                                    const gchar *property_base,
                                    gboolean recursive);
 
-#ifndef XFCONF_DISABLE_DEPRECATED
-void xfconf_channel_remove_property(XfconfChannel *channel,
-                                    const gchar *property);
-void xfconf_channel_remove_properties(XfconfChannel *channel,
-                                      const gchar *property_base);
-#endif
-
 GHashTable *xfconf_channel_get_properties(XfconfChannel *channel,
                                           const gchar *property_base) G_GNUC_WARN_UNUSED_RESULT;
 

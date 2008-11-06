@@ -129,6 +129,22 @@ stamp-xfconf-marshal
 @default_value: 
 @Returns: 
 
+<!-- ##### FUNCTION xfconf_channel_remove_properties ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property_base: 
+
+<!-- ##### FUNCTION xfconf_channel_remove_property ##### -->
+<para>
+
+</para>
+
+@channel: 
+@property: 
+
 <!-- ##### FUNCTION xfconf_channel_set_int64 ##### -->
 <para>
 
