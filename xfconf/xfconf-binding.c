@@ -343,18 +343,6 @@ xfconf_g_binding_init(XfconfChannel *channel,
         xfconf_g_binding_channel_property_changed(channel, xfconf_property,
                                                   &value, binding);
         g_value_unset(&value);
-
-        /* if the property is locked, check to see if the object has
-         * a 'sensitive' property.  if so, it's probably a GtkWidget,
-         * and the widget should *probably* be disabled. */
-        if(xfconf_channel_is_property_locked(channel, xfconf_property)) {
-            GObjectClass *gobject_class = G_OBJECT_GET_CLASS(object);
-            GParamSpec *pspec;
-
-            pspec = g_object_class_find_property(gobject_class, "sensitive");
-            if(pspec && G_IS_PARAM_SPEC_BOOLEAN(pspec))
-                g_object_set(object, "sensitive", FALSE, NULL);
-        }
     }
 
     binding->id = ++__last_binding_id;
