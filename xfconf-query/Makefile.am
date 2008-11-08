@@ -13,8 +13,8 @@ xfconf_query_CFLAGS = \
 	-DLOCALEDIR=\"$(localedir)\"
 
 xfconf_query_LDADD = \
-	$(top_builddir)/xfconf/libxfconf-0.la \
 	$(top_builddir)/common/libxfconf-gvaluefuncs.la \
+	$(top_builddir)/xfconf/libxfconf-0.la \
 	$(GLIB_LIBS) \
 	$(DBUS_GLIB_LIBS)
 

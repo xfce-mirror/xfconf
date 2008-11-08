@@ -17,6 +17,8 @@ Xfce 4.6beta2 (Xfce 4.5.92)
     and treat all others as system files.  This fixes the problem where
     Xfce-installed defaults get read *after* the user's config when
     Xfce is installed to a user-writable prefix (bug 4592).
+  * Fix build on Cygwin and other platforms that actually care about
+    library link order (bug 4559).
 
 
 Xfce 4.6beta1 (Xfce 4.5.91)
