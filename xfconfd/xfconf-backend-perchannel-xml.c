@@ -1645,8 +1645,7 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
                                            GError **error)
 {
     XfconfChannel *channel = NULL;
-    gchar *filename_stem = NULL, **filenames = NULL;
-    GSList *system_files = NULL, *user_files = NULL, *l;
+    gchar *filename_stem, **filenames, *user_file;
     gint i;
     XfconfProperty *prop;
 
@@ -1654,19 +1653,11 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
 
     filename_stem = g_strdup_printf(CONFIG_FILE_FMT, channel_name);
     filenames = xfce_resource_lookup_all(XFCE_RESOURCE_CONFIG, filename_stem);
+    user_file = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                                            filename_stem, FALSE);
     g_free(filename_stem);
 
-    for(i = 0; filenames[i]; ++i) {
-        if(!access(filenames[i], W_OK))  /* we can write, it's ours */
-            user_files = g_slist_append(user_files, filenames[i]);
-        else if(!access(filenames[i], R_OK))  /* we can read, it's system */
-            system_files = g_slist_append(system_files, filenames[i]);
-        else  /* we can't even read, so skip it */
-            g_free(filenames[i]);
-    }
-    g_free(filenames);
-
-    if(!system_files && !user_files) {
+    if((!filenames || !filenames[0]) && !user_file) {
         if(error) {
             g_set_error(error, XFCONF_ERROR,
                         XFCONF_ERROR_CHANNEL_NOT_FOUND,
@@ -1680,25 +1671,25 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
     prop->name = g_strdup("/");
     channel->properties = g_node_new(prop);
 
-    for(l = system_files; l && !channel->locked; l = l->next) {
-        xfconf_backend_perchannel_xml_merge_file(xbpx, l->data, TRUE,
+    /* read in system files */
+    for(i = 0; filenames[i]; ++i) {
+        if(user_file && !strcmp(filenames[i], user_file))
+            continue;
+        xfconf_backend_perchannel_xml_merge_file(xbpx, filenames[i], TRUE,
                                                  channel, NULL);
     }
-    if(!channel->locked) {
-        for(l = user_files; l; l = l->next) {
-            xfconf_backend_perchannel_xml_merge_file(xbpx, l->data, FALSE,
-                                                     channel, NULL);
-        }
+
+    if(!channel->locked && user_file) {
+        /* read in user file */
+        xfconf_backend_perchannel_xml_merge_file(xbpx, user_file, FALSE,
+                                                 channel, NULL);
     }
 
     g_tree_insert(xbpx->channels, g_ascii_strdown(channel_name, -1), channel);
 
 out:
-
-    g_slist_foreach(user_files, (GFunc)g_free, NULL);
-    g_slist_free(user_files);
-    g_slist_foreach(system_files, (GFunc)g_free, NULL);
-    g_slist_free(system_files);
+    g_strfreev(filenames);
+    g_free(user_file);
 
     return channel;
 }
