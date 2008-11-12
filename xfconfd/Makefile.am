@@ -1,5 +1,5 @@
 
-bin_PROGRAMS = xfconfd
+libexec_PROGRAMS = xfconfd
 
 xfconf_backend_sources =
 
@@ -55,7 +55,7 @@ service_in_files = org.xfce.Xfconf.service.in
 service_DATA = $(service_in_files:.service.in=.service)
 
 %.service: %.service.in
-	sed -e "s,\@bindir\@,$(bindir),g" < $< > $@
+	sed -e "s,\@libexecdir\@,$(libexecdir),g" < $< > $@
 
 CLEANFILES = \
 	$(service_DATA)
