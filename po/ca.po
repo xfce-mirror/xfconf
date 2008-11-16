@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-10 00:11+0100\n"
-"PO-Revision-Date: 2008-10-19 20:46+0100\n"
+"PO-Revision-Date: 2008-11-16 10:15+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -48,9 +48,9 @@ msgid "Unable to remove channel \"%s\": %s"
 msgstr "No s'ha pogut treure el canal «%s»: %s"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1295
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "Invàlid tipus per «%s»: «%s»"
+msgstr "Tipus de <propietat> invàlida: «%s»"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1311
 #: xfconfd/xfconf-backend-perchannel-xml.c:1387
@@ -61,12 +61,12 @@ msgstr "No s'ha pogut analitzar el tipus «%s» de «%s»"
 #: xfconfd/xfconf-backend-perchannel-xml.c:1367
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "El tipus d'atribut del «<value>» no pot ser una matriu"
+msgstr "El tipus d'atribut del <valor> no pot ser una matriu"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1376
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Invàlid tipus per «%s»: «%s»"
+msgstr "Tipus de <valor> invàlid: «%s»"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1664
 #: xfconfd/xfconf-backend-perchannel-xml.c:1909
@@ -150,9 +150,8 @@ msgstr ""
 "lectura i escriptura; les altres, s'obren només com de lectura."
 
 #: xfconfd/main.c:154
-#, fuzzy
 msgid "Xfce Configuration Daemon"
-msgstr "Dimoni de configuració Xfconf"
+msgstr "Dimoni de configuració de Xfce"
 
 #: xfconfd/main.c:160
 msgid "Xfce configuration daemon"
@@ -165,7 +164,7 @@ msgstr "Informeu dels errors a http://bugs.xfce.org/\n"
 #: xfconfd/main.c:165
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr ""
+msgstr "S'ha produït un error al analitzar l'opció: %s\n"
 
 #: xfconfd/xfconf-daemon.c:463
 #, c-format
@@ -178,19 +177,19 @@ msgid "No backends could be started"
 msgstr "No es poden iniciar interfícies secundàries"
 
 #: xfconf-query/main.c:90
-#, fuzzy, c-format
+#, c-format
 msgid "Property '%s' changed: %s\n"
-msgstr "La propietat «%s» no hi és al canal «%s».\n"
+msgstr "La propietat «%s» ha canviat: %s\n"
 
 #: xfconf-query/main.c:95
 #, c-format
 msgid "Property '%s' changed\n"
-msgstr ""
+msgstr "S'ha canviat la propietat «%s»\n"
 
 #: xfconf-query/main.c:100
 #, c-format
 msgid "Property '%s' removed\n"
-msgstr ""
+msgstr "S'ha tret la propietat «%s»\n"
 
 #: xfconf-query/main.c:109
 #, c-format
@@ -256,12 +255,12 @@ msgstr "Importa el canal des de el fitxer"
 
 #: xfconf-query/main.c:232
 msgid "Monitor a channel for property changes"
-msgstr ""
+msgstr "Fa un seguiment dels canvis de les propietats"
 
 #: xfconf-query/main.c:328
 #, c-format
 msgid "Start monitoring channel '%s':"
-msgstr ""
+msgstr "Inicia el seguiment del canal «%s»:"
 
 #: xfconf-query/main.c:350
 #, c-format
