@@ -252,6 +252,9 @@ main(int argc, char **argv)
         return 1;
     }
     
+
+    setlocale(LC_ALL, GETTEXT_PACKAGE);
+
     GOptionContext *context = g_option_context_new("- xfconf commandline utility");
 
     g_option_context_add_main_entries(context, entries, GETTEXT_PACKAGE);
