@@ -55,6 +55,8 @@
 #include <glib/gi18n.h>
 #endif
 
+#include <libxfce4util/libxfce4util.h>
+
 #include "xfconf-gvaluefuncs.h"
 #include "xfconf-common-private.h"
 #include "xfconf/xfconf.h"
@@ -244,6 +246,12 @@ main(int argc, char **argv)
     gboolean prop_exists;
     gint fd = -1;
 
+    #ifdef ENABLE_NLS
+    bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+    bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+    textdomain (GETTEXT_PACKAGE);
+    #endif
+
     g_type_init();
     if(!xfconf_init(&error))
     {
@@ -251,9 +259,6 @@ main(int argc, char **argv)
         g_error_free(error);
         return 1;
     }
-    
-
-    setlocale(LC_ALL, GETTEXT_PACKAGE);
 
     GOptionContext *context = g_option_context_new("- xfconf commandline utility");
 
