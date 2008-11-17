@@ -246,11 +246,7 @@ main(int argc, char **argv)
     gboolean prop_exists;
     gint fd = -1;
 
-    #ifdef ENABLE_NLS
-    bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
-    bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-    textdomain (GETTEXT_PACKAGE);
-    #endif
+    xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
     g_type_init();
     if(!xfconf_init(&error))
