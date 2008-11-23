@@ -8,13 +8,15 @@ msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-10 00:11+0100\n"
-"PO-Revision-Date: 2008-11-22 00:55+0100\n"
+"PO-Revision-Date: 2008-11-23 23:56+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.2.0\n"
 
 #: common/xfconf-gvaluefuncs.c:282
 msgid "true"
@@ -100,6 +102,8 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
 msgstr ""
+"Propietate izenek A-Z, a-z, 0-9, '_', '-', '<' eta '>' ASCII  karaktereak "
+"eta '/' bereizle gisa bakarrik eduki dezakete."
 
 #: xfconfd/xfconf-backend.c:135
 #, c-format
@@ -122,6 +126,8 @@ msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
 msgstr ""
+"Kanal izenek A-Z, a-z, 0-9, '_', eta '-' ASCII karaktereak bakarrik eduki "
+"ditzakete"
 
 #: xfconfd/xfconf-backend.c:398
 #, c-format
@@ -337,4 +343,3 @@ msgstr "Ezinda \"%s\" inportatze fitxategia ireki: %s\n"
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Ezinda \"%s\" inportatze fitxategia analizatu: %s\n"
-
