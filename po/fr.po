@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Xfconf 4.5.91\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-10 00:11+0100\n"
-"PO-Revision-Date: 2008-09-07 21:01+0100\n"
+"PO-Revision-Date: 2008-11-30 20:19+0100\n"
 "Last-Translator: Maximilian Schleiss <maximilian@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,12 +29,11 @@ msgstr "faux"
 msgid "Unable to create configuration directory"
 msgstr "Échec à la création d'un dossier de configuration"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:330 xfconfd/xfconf-daemon.c:247
+#: xfconfd/xfconf-backend-perchannel-xml.c:330
+#: xfconfd/xfconf-daemon.c:247
 #, c-format
 msgid "You don't have permission to modify property \"%s\" on channel \"%s\""
-msgstr ""
-"Vous n'avez pas les permissions nécessaires à la modification de propriété "
-"de \"%s\" du canal \"%s\""
+msgstr "Vous n'avez pas les permissions nécessaires à la modification de propriété de \"%s\" du canal \"%s\""
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:395
 #: xfconfd/xfconf-backend-perchannel-xml.c:477
@@ -50,9 +49,9 @@ msgid "Unable to remove channel \"%s\": %s"
 msgstr "Échec é la suppression du canal \"%s\" : %s"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1295
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "Type incorrect pour <%s> : \"%s\""
+msgstr "Type incorrect pour <valeur> : \"%s\""
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1311
 #: xfconfd/xfconf-backend-perchannel-xml.c:1387
@@ -61,14 +60,14 @@ msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "Les valeurs de type \"%s\" de \"%s\" n'ont pas pu être analysées"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1367
-#, fuzzy, c-format
+#, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "Le type d'attribut de <value> ne peut pas être une gamme"
+msgstr "Le type d'attribut de <valeur> ne peut pas être une gamme"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1376
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Type incorrect pour <%s> : \"%s\""
+msgstr "Type incorrect pour <valeur> : \"%s\""
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1664
 #: xfconfd/xfconf-backend-perchannel-xml.c:1909
@@ -94,24 +93,17 @@ msgstr "Les noms des propriétés doivent commencer par \"/\""
 #: xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr ""
-"Les noms des propriétés ne peuvent contenir que des caractères ASCII de A-Z, "
-"a-z, 0-9, \"_\", \"-\", \"<\" et \">\", ainsi que \"/\" comme séparateur"
+msgstr "Les noms des propriétés ne peuvent contenir que des caractères ASCII de A-Z, a-z, 0-9, \"_\", \"-\", \"<\" et \">\", ainsi que \"/\" comme séparateur"
 
 #: xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Les noms des propriétés ne peuvent contenir que des caractères ASCII de A-Z, "
-"a-z, 0-9, '_', '-', '<' et '>', ainsi que '/' comme séparateur"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Les noms des propriétés ne peuvent contenir que des caractères ASCII de A-Z, a-z, 0-9, '_', '-', '<' et '>', ainsi que '/' comme séparateur"
 
 #: xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more '/' characters in a row"
-msgstr ""
-"Les noms des propriétés ne peuvent pas contenir plus d'un \"/\" par ligne"
+msgstr "Les noms des propriétés ne peuvent pas contenir plus d'un \"/\" par ligne"
 
 #: xfconfd/xfconf-backend.c:146
 #, c-format
@@ -125,32 +117,23 @@ msgstr "Le nom du canal ne peut pas être vide"
 
 #: xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr ""
-"Les noms des canaux ne peuvent contenir que des caractères ASCII de A-Z, a-"
-"z, 0-9, \"_\" et \"-\""
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgstr "Les noms des canaux ne peuvent contenir que des caractères ASCII de A-Z, a-z, 0-9, \"_\" et \"-\""
 
 #: xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified."
-msgstr ""
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified."
+msgstr "Le nom de propriété ne peut que vide ou \"/\" si une réinitialisation à rebours a été spécifiée."
 
 #: xfconfd/main.c:132
 msgid "Prints the xfconfd version"
 msgstr "Affiche la version de xfconfd"
 
 #: xfconfd/main.c:134
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
 msgstr ""
 
 #: xfconfd/main.c:154
-#, fuzzy
 msgid "Xfce Configuration Daemon"
 msgstr "Démon de configuration Xfce"
 
@@ -165,7 +148,7 @@ msgstr "Veuillez signaler les bogues à http://bugs.xfce.org/\n"
 #: xfconfd/main.c:165
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr ""
+msgstr "Erreur à l'analyse des options : %s\n"
 
 #: xfconfd/xfconf-daemon.c:463
 #, c-format
@@ -178,51 +161,49 @@ msgid "No backends could be started"
 msgstr ""
 
 #: xfconf-query/main.c:90
-#, fuzzy, c-format
+#, c-format
 msgid "Property '%s' changed: %s\n"
-msgstr "La propriété \"%s\" n'existe pas dans le canal \"%s\".\n"
+msgstr "La propriété '%s' a changé : %s\n"
 
 #: xfconf-query/main.c:95
 #, c-format
 msgid "Property '%s' changed\n"
-msgstr ""
+msgstr "La propriété '%s' a changé\n"
 
 #: xfconf-query/main.c:100
 #, c-format
 msgid "Property '%s' removed\n"
-msgstr ""
+msgstr "La propriété '%s' a été supprimée\n"
 
 #: xfconf-query/main.c:109
 #, c-format
 msgid "Export method not yet implemented"
-msgstr ""
+msgstr "La méthode d'exportation n'est pas encore disponible"
 
 #: xfconf-query/main.c:123
 #, c-format
 msgid "Export not yet implemented"
-msgstr ""
+msgstr "L'exportation n'est pas encore disponible"
 
 #: xfconf-query/main.c:180
 msgid "Version information"
 msgstr "Information sur la version"
 
 #: xfconf-query/main.c:184
-#, fuzzy
 msgid "Pick the channel"
-msgstr "Choisissez le canal"
+msgstr "Choisir le canal"
 
 #: xfconf-query/main.c:188
-#, fuzzy
 msgid "Pick the property"
-msgstr "Choisissez la propriété"
+msgstr "Choisir la propriété"
 
 #: xfconf-query/main.c:192
 msgid "Change or set the value of the property"
-msgstr ""
+msgstr "Changer ou définir la valeur de la propriété"
 
 #: xfconf-query/main.c:196
 msgid "List properties (or channels if -c isn't specified)"
-msgstr ""
+msgstr "Lister les propriétés (ou les canaux si -c n'est pas spécifié)"
 
 #: xfconf-query/main.c:200
 msgid "Verbose output"
@@ -237,43 +218,41 @@ msgid "Specify the property value type"
 msgstr "Spécifier le type de valeur de la propriété"
 
 #: xfconf-query/main.c:212
-#, fuzzy
 msgid "Reset property"
-msgstr "Supprimer la propriété"
+msgstr "Réinitialiser la propriété"
 
 #: xfconf-query/main.c:216
 msgid "Recursive (use with -r)"
-msgstr ""
+msgstr "À rebours (utiliser -r)"
 
 #: xfconf-query/main.c:220
 msgid "Force array even if only one element"
 msgstr ""
 
 #: xfconf-query/main.c:224
-#, fuzzy
 msgid "Export channel to file"
-msgstr "Exporter un canal"
+msgstr "Exporter un canal vers un fichier"
 
 #: xfconf-query/main.c:228
-#, fuzzy
 msgid "Import channel from file"
-msgstr "Importer un canal"
+msgstr "Importer un canal depuis un fichier"
 
 #: xfconf-query/main.c:232
 msgid "Monitor a channel for property changes"
-msgstr ""
+msgstr "Contrôler un canal pour tout changement de propriété"
 
 #: xfconf-query/main.c:328
 #, c-format
 msgid "Start monitoring channel '%s':"
-msgstr ""
+msgstr "Démarrer le contrôle du canal '%s' :"
 
 #: xfconf-query/main.c:350
 #, c-format
 msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
 msgstr "La propriété \"%s\" n'existe pas dans le canal \"%s\".\n"
 
-#: xfconf-query/main.c:358 xfconf-query/main.c:376
+#: xfconf-query/main.c:358
+#: xfconf-query/main.c:376
 msgid "(unknown)"
 msgstr "(inconnue)"
 
@@ -298,9 +277,7 @@ msgstr ""
 #: xfconf-query/main.c:398
 #, c-format
 msgid "When creating a new property, you must specify the value type.\n"
-msgstr ""
-"Lors de la création d'une nouvelle propriété, vous devez spécifier le type "
-"de valeur.\n"
+msgstr "Lors de la création d'une nouvelle propriété, vous devez spécifier le type de valeur.\n"
 
 #: xfconf-query/main.c:408
 #, c-format
@@ -315,16 +292,16 @@ msgstr "Incapacité de définir le type de valeur.\n"
 #: xfconf-query/main.c:432
 #, c-format
 msgid "You must specify a value type to change an array into a single value.\n"
-msgstr ""
-"Vous devez spécifier une type de valeur pour changer un élément en une "
-"valeur unique.\n"
+msgstr "Vous devez spécifier une type de valeur pour changer un élément en une valeur unique.\n"
 
-#: xfconf-query/main.c:442 xfconf-query/main.c:504
+#: xfconf-query/main.c:442
+#: xfconf-query/main.c:504
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "Échec à la conversion de \"%s\" au type \"%s\"\n"
 
-#: xfconf-query/main.c:449 xfconf-query/main.c:519
+#: xfconf-query/main.c:449
+#: xfconf-query/main.c:519
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "Échec à la définition de la propriété.\n"
@@ -344,23 +321,24 @@ msgstr "Le type de valeur de l'index %d n'a pas pu être déterminé.\n"
 msgid "Channel '%s' contains no properties\n"
 msgstr "Le canal \"%s\" ne contient pas de propriétés\n"
 
-#: xfconf-query/main.c:561 xfconf-query/main.c:570
+#: xfconf-query/main.c:561
+#: xfconf-query/main.c:570
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
-msgstr ""
+msgstr "Échec à la création du fichier à exporter \"%s\" : %s\n"
 
 #: xfconf-query/main.c:590
 #, c-format
 msgid "Could not open import file \"%s\": %s\n"
-msgstr ""
+msgstr "Échec à l'ouverture du fichier à importer \"%s\" : %s\n"
 
 #: xfconf-query/main.c:599
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
-msgstr ""
+msgstr "Échec à l'analyse du fichier à importer \"%s\" : %s\n"
 
 #~ msgid "set (change the value)"
 #~ msgstr "définir (changer la valeur)"
-
 #~ msgid "List properties"
 #~ msgstr "Afficher les propriétés"
+
