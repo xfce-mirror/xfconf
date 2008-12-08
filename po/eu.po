@@ -1,14 +1,14 @@
-# translation of xfconf.po to Euskara
+# translation of eu.po to Euskara
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Piarres Beobide <pi@beobide.net>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-10 00:11+0100\n"
-"PO-Revision-Date: 2008-11-23 23:56+0200\n"
+"PO-Revision-Date: 2008-12-08 00:46+0100\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
 "Language: eu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.2.0\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: common/xfconf-gvaluefuncs.c:282
 msgid "true"
@@ -135,6 +135,8 @@ msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified."
 msgstr ""
+"Propietate izena hutsa edo \"/\" bakarrik izan daiteke bakarrik berezarketa "
+"errekurtsibo bat zehaztu bada."
 
 #: xfconfd/main.c:132
 msgid "Prints the xfconfd version"
@@ -145,6 +147,8 @@ msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
 msgstr ""
+"Erabiliko den konfigurazio interfazea. Zehazten den lehen interfazea irakurketa/idazketa "
+"moduan irekiko da, besteak irakurketa soilekoan,"
 
 #: xfconfd/main.c:154
 msgid "Xfce Configuration Daemon"
@@ -283,6 +287,8 @@ msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If you would\n"
 "like to create a new property, use the --create option.\n"
 msgstr ""
+"Ez dago \"%s\" propietaterik \"%s2 kanalean. Propietate berri bat\n"
+" sortu nahi baduzu, --create aukera erabili.\n"
 
 #: xfconf-query/main.c:398
 #, c-format
@@ -302,12 +308,12 @@ msgstr "Ezin da jakin balioaren mota.\n"
 #: xfconf-query/main.c:432
 #, c-format
 msgid "You must specify a value type to change an array into a single value.\n"
-msgstr ""
+msgstr "Balio mota bar zehaztu behar duzu, array bat balio soil batetara bihurtzeko.\n"
 
 #: xfconf-query/main.c:442 xfconf-query/main.c:504
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
-msgstr ""
+msgstr "Ezin da\"%s\" \"%s\" motara bihurtu\n"
 
 #: xfconf-query/main.c:449 xfconf-query/main.c:519
 #, c-format
@@ -317,12 +323,12 @@ msgstr "Huts propietatea ezartzean.\n"
 #: xfconf-query/main.c:474
 #, c-format
 msgid "Have %d new values, but could only determine %d types.\n"
-msgstr ""
+msgstr "%d balio berri ditu, baina %d mota bakarrik antzeman daitezke.\n"
 
 #: xfconf-query/main.c:495
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
-msgstr ""
+msgstr "Ezin da %d indizeko balioaren mota antzeman.\n"
 
 #: xfconf-query/main.c:545
 #, c-format
@@ -343,3 +349,4 @@ msgstr "Ezinda \"%s\" inportatze fitxategia ireki: %s\n"
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Ezinda \"%s\" inportatze fitxategia analizatu: %s\n"
+
