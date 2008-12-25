@@ -67,6 +67,10 @@ XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.6.0])
 XDT_CHECK_PACKAGE([DBUS], [dbus-1], [1.0.0])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.72])
 
+XDT_CHECK_OPTIONAL_PACKAGE([FUSE], [fuse], [2.5.0], [fuse],
+                           [Whether to enable the FUSE module], [yes])
+AM_CONDITIONAL([BUILD_FUSE_MODULE], [test "x$FUSE_FOUND" = "xyes"])
+
 dnl see if we can build the perl bindings
 AC_ARG_ENABLE([perl-bindings],
               [AC_HELP_STRING([--disable-perl-bindings],
@@ -227,6 +231,7 @@ tests/reset-properties/Makefile
 tests/property-changed-signal/Makefile
 xfconf/Makefile
 xfconf/libxfconf-0.pc
+xfconf-fuse/Makefile
 xfconf-perl/Makefile.PL
 xfconf-perl/Makefile
 xfconf-perl/Xfconf.pm
