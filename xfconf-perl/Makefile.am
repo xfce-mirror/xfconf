@@ -20,7 +20,7 @@ Makefile.perl: Makefile.PL xs_files xfconfperl.maps Makefile
 	        test -f $$f || $(LN_S) $(srcdir)/$$f $$f; \
 	    done; \
 	fi
-	top_builddir="$(top_srcdir)" $(PERL) Makefile.PL PREFIX="$(prefix)"
+	top_builddir="$(top_srcdir)" $(PERL) Makefile.PL PREFIX="$(prefix)" $(PERL_MAKE_OPTIONS)
 
 all-local: Makefile.perl
 	$(MAKE) -f Makefile.perl

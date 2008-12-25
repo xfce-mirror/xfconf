@@ -3,6 +3,8 @@ Xfce 4.6beta3 (Xfce 4.5.93)
 
   * Install xfconfd to $(libexecdir) instead of $(bindir).
   * Fix perl bindings link order on Cygwin (bug 4735).
+  * Allow passing arbitrary options to the perl bindings' Makefile.PL
+    generation script (bug 4735).
 
 
 Xfce 4.6beta2 (Xfce 4.5.92)

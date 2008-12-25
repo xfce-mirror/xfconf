@@ -105,6 +105,14 @@ AC_SUBST([PERL_GLIB_REQUIRED_VERSION])
 AC_SUBST([PERL_EXTUTILS_DEPENDS_REQUIRED_VERSION])
 AC_SUBST([PERL_EXTUTILS_PKGCONFIG_REQUIRED_VERSION])
 
+dnl Options to pass when configuring Perl bindings
+AC_ARG_WITH([perl-options],
+            [AC_HELP_STRING([--with-perl-options=OPTIONS],
+                            [options to pass on command-line when generating Perl bindings build file])],
+            [perl_makeopts="$withval"], [perl_makeopts=""])
+PERL_MAKE_OPTIONS="$perl_makeopts"
+AC_SUBST(PERL_MAKE_OPTIONS)
+
 dnl check alignment for struct returns
 AC_DEFUN([BT_GLIB_CHECK_ALIGNOF],
 [
