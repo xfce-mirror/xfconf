@@ -79,7 +79,7 @@ my $libxfconf_libs = "-L$cwd/../common/.libs -L$cwd/../xfconf/.libs "
 
 our $xfconf = ExtUtils::Depends->new('Xfconf', 'Glib');
 $xfconf->set_inc($pkgcfg{cflags} . " -I. -Ibuild " . $libxfconf_cflags);
-$xfconf->set_libs($pkgcfg{libs} . $libxfconf_libs);
+$xfconf->set_libs($libxfconf_libs . " " . $pkgcfg{libs});
 $xfconf->add_pm('Xfconf.pm' => '$(INST_LIBDIR)/Xfconf.pm');
 #$xfconf->add_pm('Array.pm' => '$(INST_LIBDIR)/Xfconf/Array.pm');
 $xfconf->add_xs(@xs_files);

@@ -1,7 +1,8 @@
-Xfce 4.6rc1 (Xfce 4.5.99.0)
+Xfce 4.6beta3 (Xfce 4.5.93)
 ===========================
 
   * Install xfconfd to $(libexecdir) instead of $(bindir).
+  * Fix perl bindings link order on Cygwin (bug 4735).
 
 
 Xfce 4.6beta2 (Xfce 4.5.92)
