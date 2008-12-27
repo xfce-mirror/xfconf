@@ -91,9 +91,6 @@ enum
     N_SIGS,
 };
 
-static void xfconf_daemon_class_init(XfconfDaemonClass *klass);
-
-static void xfconf_daemon_init(XfconfDaemon *instance);
 static void xfconf_daemon_finalize(GObject *obj);
 
 static DBusHandlerResult xfconf_daemon_handle_dbus_disconnect(DBusConnection *conn,

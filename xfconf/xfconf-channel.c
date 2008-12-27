@@ -98,9 +98,6 @@ enum
     PROP_PROPERTY_BASE,
 };
 
-static void xfconf_channel_class_init(XfconfChannelClass *klass);
-
-static void xfconf_channel_init(XfconfChannel *instance);
 static void xfconf_channel_set_g_property(GObject *object,
                                           guint property_id,
                                           const GValue *value,
@@ -278,7 +275,7 @@ xfconf_channel_finalize(GObject *obj)
 
 
 void
-_xfconf_channel_shutdown()
+_xfconf_channel_shutdown(void)
 {
     if(G_LIKELY(__channel_singletons)) {
         g_hash_table_destroy(__channel_singletons);
@@ -2247,7 +2244,7 @@ out:
 /* this really belongs in xfconf.c, but i don't feel like including
  * xfconf-dbus-bindings.h twice, or copying the ERROR macros */
 gchar **
-xfconf_list_channels()
+xfconf_list_channels(void)
 {
     DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
     gchar **channels = NULL;

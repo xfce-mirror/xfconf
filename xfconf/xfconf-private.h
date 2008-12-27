@@ -20,6 +20,8 @@
 #ifndef __XFCONF_PRIVATE_H__
 #define __XFCONF_PRIVATE_H__
 
+#include <dbus/dbus-glib.h>
+
 typedef struct
 {
     guint n_members;

@@ -52,7 +52,7 @@ static inline gboolean xfconf_channel_is_valid(const gchar *channel,
 
 
 GType
-xfconf_backend_get_type()
+xfconf_backend_get_type(void)
 {
     static GType backend_type = 0;
     

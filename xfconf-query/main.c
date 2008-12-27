@@ -135,19 +135,19 @@ static void
 xfconf_query_get_propname_size (gpointer key, gpointer value, gpointer user_data)
 {
     gint *size = user_data;
-    gchar *property_name = (gchar *)key;
+    gchar *propname = (gchar *)key;
 
-    if ((gint) strlen(property_name) > *size)
-        *size = strlen(property_name);
+    if ((gint) strlen(propname) > *size)
+        *size = strlen(propname);
 
 }
 
 static void
 xfconf_query_list_sorted (gpointer key, gpointer value, gpointer user_data)
 {
-  GSList **list = user_data;
+  GSList **listp = user_data;
   
-  *list = g_slist_insert_sorted (*list, key, (GCompareFunc) g_utf8_collate);
+  *listp = g_slist_insert_sorted (*listp, key, (GCompareFunc) g_utf8_collate);
 }
 
 static void
@@ -245,6 +245,7 @@ main(int argc, char **argv)
     XfconfChannel *channel = NULL;
     gboolean prop_exists;
     gint fd = -1;
+    GOptionContext *context;
 
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
@@ -256,7 +257,7 @@ main(int argc, char **argv)
         return 1;
     }
 
-    GOptionContext *context = g_option_context_new("- xfconf commandline utility");
+    context = g_option_context_new("- xfconf commandline utility");
 
     g_option_context_add_main_entries(context, entries, GETTEXT_PACKAGE);
 
@@ -326,13 +327,15 @@ main(int argc, char **argv)
     
     if (monitor)
     {
+        GMainLoop *loop;
+
         g_signal_connect (G_OBJECT (channel), "property-changed", G_CALLBACK (xfconf_query_monitor), NULL);
         
         g_print ("\n");
         g_print (_("Start monitoring channel '%s':"), channel_name);
         g_print ("\n------------------------------------------------\n\n");
         
-        GMainLoop *loop = g_main_loop_new (NULL, TRUE);
+        loop = g_main_loop_new (NULL, TRUE);
         g_main_loop_run (loop);
         g_main_loop_unref (loop);        
     }
@@ -533,10 +536,11 @@ main(int argc, char **argv)
         if (channel_contents)
         {
             gint size = 0;
+            GSList *sorted_contents = NULL;
+
             if (verbose)
                 g_hash_table_foreach (channel_contents, (GHFunc)xfconf_query_get_propname_size, &size);
             
-            GSList *sorted_contents = NULL;
             g_hash_table_foreach (channel_contents, (GHFunc)xfconf_query_list_sorted, &sorted_contents);
             
             xfconf_query_list_contents (sorted_contents, channel_contents, size);

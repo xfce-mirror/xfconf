@@ -130,9 +130,6 @@ typedef struct
     GValue *list_value;
 } XmlParserState;
 
-static void xfconf_backend_perchannel_xml_class_init(XfconfBackendPerchannelXmlClass *klass);
-
-static void xfconf_backend_perchannel_xml_init(XfconfBackendPerchannelXml *instance);
 static void xfconf_backend_perchannel_xml_finalize(GObject *obj);
 
 static void xfconf_backend_perchannel_xml_backend_init(XfconfBackendInterface *iface);
@@ -1066,7 +1063,7 @@ xfconf_xml_handle_channel(XmlParserState *state,
 
     /* compare versions */
     p = strstr(version, ".");
-    maj_ver_len = p ? p - version : strlen(version);
+    maj_ver_len = p ? (gsize)(p - version) : strlen(version);
     if(maj_ver_len != strlen(FILE_VERSION_MAJOR)
        || strncmp(version, FILE_VERSION_MAJOR, maj_ver_len))
     {

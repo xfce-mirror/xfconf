@@ -28,6 +28,7 @@
 #define DATA_KEY (I_("--xfconf-g-bindings"))
 
 #include "xfconf.h"
+#include "xfconf-private.h"
 #include "xfconf-alias.h"
 #include "xfconf-common-private.h"
 
@@ -359,7 +360,7 @@ xfconf_g_binding_init(XfconfChannel *channel,
 
 
 void
-_xfconf_g_bindings_init()
+_xfconf_g_bindings_init(void)
 {
     if(G_UNLIKELY(__bindings))
         return;
@@ -369,7 +370,7 @@ _xfconf_g_bindings_init()
 }
 
 void
-_xfconf_g_bindings_shutdown()
+_xfconf_g_bindings_shutdown(void)
 {
     if(G_UNLIKELY(!__bindings))
         return;

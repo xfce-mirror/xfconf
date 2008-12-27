@@ -48,7 +48,7 @@ static GQuark xfconf_error_quark = 0;
  **/
 
 GQuark
-xfconf_get_error_quark()
+xfconf_get_error_quark(void)
 {
     if(!xfconf_error_quark)
         xfconf_error_quark = g_quark_from_static_string("xfconf-error-quark");
@@ -60,7 +60,7 @@ xfconf_get_error_quark()
  * dbus error names -- the 'nick' value is used, which can have dashes in it,
  * which dbus doesn't like. */
 GType
-xfconf_error_get_type()
+xfconf_error_get_type(void)
 {
     static GType type = 0;
     

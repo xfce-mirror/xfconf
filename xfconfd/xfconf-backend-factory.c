@@ -40,7 +40,7 @@
 static GHashTable *backends = NULL;
 
 static void
-xfconf_backend_factory_ensure_backends()
+xfconf_backend_factory_ensure_backends(void)
 {
     if(backends)
         return;

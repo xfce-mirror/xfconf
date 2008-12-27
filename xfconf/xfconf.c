@@ -43,7 +43,7 @@ static GHashTable *named_structs = NULL;
 /* private api */
 
 DBusGConnection *
-_xfconf_get_dbus_g_connection()
+_xfconf_get_dbus_g_connection(void)
 {
     if(!xfconf_refcnt) {
         g_critical("xfconf_init() must be called before attempting to use libxfconf!");
@@ -54,7 +54,7 @@ _xfconf_get_dbus_g_connection()
 }
 
 DBusGProxy *
-_xfconf_get_dbus_g_proxy()
+_xfconf_get_dbus_g_proxy(void)
 {
     if(!xfconf_refcnt) {
         g_critical("xfconf_init() must be called before attempting to use libxfconf!");
@@ -80,7 +80,7 @@ _xfconf_named_struct_free(XfconfNamedStruct *ns)
 
 
 static void
-xfconf_static_dbus_init()
+xfconf_static_dbus_init(void)
 {
     static gboolean static_dbus_inited = FALSE;
 
@@ -160,7 +160,7 @@ xfconf_init(GError **error)
  * called an equal number of times to shut down the library.
  **/
 void
-xfconf_shutdown()
+xfconf_shutdown(void)
 {
     if(xfconf_refcnt <= 0) {
         return;

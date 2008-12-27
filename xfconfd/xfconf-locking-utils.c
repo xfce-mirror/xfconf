@@ -45,7 +45,7 @@ static time_t etc_group_mtime = 0;
 static GHashTable *group_cache = NULL;
 
 static void
-xfconf_ensure_group_cache()
+xfconf_ensure_group_cache(void)
 {
     gboolean needs_rebuild = FALSE;
     struct stat st;

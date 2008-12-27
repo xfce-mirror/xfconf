@@ -205,7 +205,7 @@ ushort_value_lcopy(const GValue *value,
 
 
 GType
-xfconf_uint16_get_type()
+xfconf_uint16_get_type(void)
 {
     static GType uint16_type = 0;
     GTypeFundamentalInfo finfo = { 0 };
@@ -263,7 +263,7 @@ xfconf_g_value_set_uint16(GValue *value,
 }
 
 GType
-xfconf_int16_get_type()
+xfconf_int16_get_type(void)
 {
     static GType int16_type = 0;
     GTypeFundamentalInfo finfo = { 0 };
