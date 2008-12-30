@@ -26,7 +26,8 @@ msgstr "hamis"
 msgid "Unable to create configuration directory"
 msgstr "Nem tudom létrehozni a beállító mappát"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:330 xfconfd/xfconf-daemon.c:247
+#: xfconfd/xfconf-backend-perchannel-xml.c:330
+#: xfconfd/xfconf-daemon.c:247
 #, c-format
 msgid "You don't have permission to modify property \"%s\" on channel \"%s\""
 msgstr "Nincs jogod módosítani \"%s\" tulajdonságot e csatornán: \"%s\""
@@ -45,9 +46,9 @@ msgid "Unable to remove channel \"%s\": %s"
 msgstr ""
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1295
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "Érvénytelen típus ehhez: <%s>: \"%s\""
+msgstr "Érvénytelen típus ehhez: <property>: \"%s\""
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1311
 #: xfconfd/xfconf-backend-perchannel-xml.c:1387
@@ -61,9 +62,9 @@ msgid "The type attribute of <value> cannot be an array"
 msgstr ""
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1376
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Érvénytelen típus ehhez: <%s>: \"%s\""
+msgstr "Érvénytelen típus ehhez: <value>: \"%s\""
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1664
 #: xfconfd/xfconf-backend-perchannel-xml.c:1909
@@ -93,9 +94,7 @@ msgstr ""
 
 #: xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
 msgstr ""
 
 #: xfconfd/xfconf-backend.c:135
@@ -115,16 +114,12 @@ msgstr ""
 
 #: xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
 msgstr ""
 
 #: xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified."
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified."
 msgstr ""
 
 #: xfconfd/main.c:132
@@ -132,9 +127,7 @@ msgid "Prints the xfconfd version"
 msgstr ""
 
 #: xfconfd/main.c:134
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
 msgstr ""
 
 #: xfconfd/main.c:154
@@ -255,7 +248,8 @@ msgstr ""
 msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
 msgstr ""
 
-#: xfconf-query/main.c:358 xfconf-query/main.c:376
+#: xfconf-query/main.c:358
+#: xfconf-query/main.c:376
 msgid "(unknown)"
 msgstr ""
 
@@ -293,12 +287,14 @@ msgstr ""
 msgid "You must specify a value type to change an array into a single value.\n"
 msgstr ""
 
-#: xfconf-query/main.c:442 xfconf-query/main.c:504
+#: xfconf-query/main.c:442
+#: xfconf-query/main.c:504
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr ""
 
-#: xfconf-query/main.c:449 xfconf-query/main.c:519
+#: xfconf-query/main.c:449
+#: xfconf-query/main.c:519
 #, c-format
 msgid "Failed to set property.\n"
 msgstr ""
@@ -318,7 +314,8 @@ msgstr ""
 msgid "Channel '%s' contains no properties\n"
 msgstr ""
 
-#: xfconf-query/main.c:561 xfconf-query/main.c:570
+#: xfconf-query/main.c:561
+#: xfconf-query/main.c:570
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr ""
@@ -332,3 +329,4 @@ msgstr ""
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr ""
+
