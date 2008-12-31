@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfconf 0.1.0svn-r28490\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-10 00:11+0100\n"
-"PO-Revision-Date: 2008-11-10 10:58+0100\n"
+"PO-Revision-Date: 2008-12-31 03:40+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr "Nelze zapsat kanál \"%s\": %s"
 #: xfconfd/xfconf-backend-factory.c:70
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Nelze nalézt Xfconf backend typu \"%s\""
+msgstr "Nelze nalézt backend služby Xfconf typu \"%s\""
 
 #: xfconfd/xfconf-backend.c:103
 #, c-format
@@ -131,7 +131,7 @@ msgstr "Zobrazí verzi xfconfd"
 
 #: xfconfd/main.c:134
 msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr "Konfigurovat backendy, které se mají použít. První backend je otevřen pro čtení a zápis, ostatní pouze pro čtení."
+msgstr "Konfigurovat backendy pro použití. První zadaný backend je otevřen pro čtení a zápis, ostatní pouze pro čtení."
 
 #: xfconfd/main.c:154
 msgid "Xfce Configuration Daemon"
@@ -153,12 +153,12 @@ msgstr "Chyba při zpracování voleb: %s\n"
 #: xfconfd/xfconf-daemon.c:463
 #, c-format
 msgid "Another Xfconf daemon is already running"
-msgstr "Již je spuštěn jiný démon Xfconf"
+msgstr "Již je spuštěn jiný démon služby Xfconf"
 
 #: xfconfd/xfconf-daemon.c:499
 #, c-format
 msgid "No backends could be started"
-msgstr "Žádné backendy nemohly být spuštěny"
+msgstr "Nemohly být spuštěny žádné backendy "
 
 #: xfconf-query/main.c:90
 #, c-format
