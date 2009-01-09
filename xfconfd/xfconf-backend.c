@@ -132,7 +132,7 @@ xfconf_property_is_valid(const gchar *property,
             if(error) {
                 g_set_error(error, XFCONF_ERROR,
                             XFCONF_ERROR_INVALID_PROPERTY,
-                            _("Property names cannot have two or more '/' characters in a row"));
+                            _("Property names cannot have two or more consecutive '/' characters"));
             }
             return FALSE;
         }
@@ -395,7 +395,7 @@ xfconf_backend_reset(XfconfBackend *backend,
     if(!recursive && (!*property || (property[0] == '/' && !property[1]))) {
         if(error) {
             g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_INVALID_PROPERTY,
-                        _("The property name can only be empty or \"/\" if a recursive reset was specified."));
+                        _("The property name can only be empty or \"/\" if a recursive reset was specified"));
         }
         return FALSE;
     }

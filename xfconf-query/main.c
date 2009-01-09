@@ -183,15 +183,15 @@ static GOptionEntry entries[] =
         NULL
     },
     {    "channel", 'c', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &channel_name,
-        N_("Pick the channel"),
+        N_("The channel to query/modify"),
         NULL
     },
     {    "property", 'p', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &property_name,
-        N_("Pick the property"),
+        N_("The property to query/modify"),
         NULL
     },
     {    "set", 's', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING_ARRAY, &set_value,
-        N_("Change or set the value of the property"),
+        N_("The new value to set for the property"),
         NULL
     },
     {    "list", 'l', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &list,
@@ -203,7 +203,7 @@ static GOptionEntry entries[] =
         NULL
     },
     {    "create", 'n', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &create,
-        N_("Create new entry"),
+        N_("Create a new property if it does not already exist"),
         NULL
     },
     {    "type", 't', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING_ARRAY, &type,
@@ -354,7 +354,7 @@ main(int argc, char **argv)
 
             if(!xfconf_channel_get_property(channel, property_name, &value))
             {
-                g_print(_("Property \"%s\" doesn't exist on channel \"%s\".\n"),
+                g_print(_("Property \"%s\" does not exist on channel \"%s\".\n"),
                         property_name, channel_name);
                 return 1;
             }
@@ -478,7 +478,7 @@ main(int argc, char **argv)
 
                 if(new_values != new_types)
                 {
-                    g_printerr(_("Have %d new values, but could only determine %d types.\n"),
+                    g_printerr(_("There are %d new values, but only %d types could be determined.\n"),
                                new_values, new_types);
                     return 1;
                 }

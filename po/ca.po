@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-10 00:11+0100\n"
+"POT-Creation-Date: 2009-01-08 18:06-0800\n"
 "PO-Revision-Date: 2008-11-16 10:15+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
@@ -24,57 +24,57 @@ msgstr "cert"
 msgid "false"
 msgstr "fals"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:283
-#, c-format
-msgid "Unable to create configuration directory"
+#: xfconfd/xfconf-backend-perchannel-xml.c:280
+#, fuzzy, c-format
+msgid "Unable to create configuration directory \"%s\""
 msgstr "No s'ha pogut crear el directori de configuració"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:330 xfconfd/xfconf-daemon.c:247
-#, c-format
-msgid "You don't have permission to modify property \"%s\" on channel \"%s\""
+#: xfconfd/xfconf-backend-perchannel-xml.c:328 xfconfd/xfconf-daemon.c:244
+#, fuzzy, c-format
+msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr "No teniu permís de modificació de la propietat «%s» al canal «%s»"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:395
-#: xfconfd/xfconf-backend-perchannel-xml.c:477
-#: xfconfd/xfconf-backend-perchannel-xml.c:638
-#: xfconfd/xfconf-backend-perchannel-xml.c:658
+#: xfconfd/xfconf-backend-perchannel-xml.c:393
+#: xfconfd/xfconf-backend-perchannel-xml.c:475
+#: xfconfd/xfconf-backend-perchannel-xml.c:636
+#: xfconfd/xfconf-backend-perchannel-xml.c:656
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "La propietat «%s» no existeix al canal «%s»"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:605
+#: xfconfd/xfconf-backend-perchannel-xml.c:603
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "No s'ha pogut treure el canal «%s»: %s"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1295
+#: xfconfd/xfconf-backend-perchannel-xml.c:1293
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
 msgstr "Tipus de <propietat> invàlida: «%s»"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1311
-#: xfconfd/xfconf-backend-perchannel-xml.c:1387
+#: xfconfd/xfconf-backend-perchannel-xml.c:1309
+#: xfconfd/xfconf-backend-perchannel-xml.c:1385
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "No s'ha pogut analitzar el tipus «%s» de «%s»"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1367
+#: xfconfd/xfconf-backend-perchannel-xml.c:1365
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr "El tipus d'atribut del <valor> no pot ser una matriu"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1376
+#: xfconfd/xfconf-backend-perchannel-xml.c:1374
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
 msgstr "Tipus de <valor> invàlid: «%s»"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1664
-#: xfconfd/xfconf-backend-perchannel-xml.c:1909
+#: xfconfd/xfconf-backend-perchannel-xml.c:1662
+#: xfconfd/xfconf-backend-perchannel-xml.c:1907
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "El canal «%s» no existeix"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1954
+#: xfconfd/xfconf-backend-perchannel-xml.c:1952
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "No s'ha pogut escriure al canal «%s»: %s"
@@ -104,8 +104,8 @@ msgstr ""
 "9, «_», «-», «<» i «>», així com el separador «/»"
 
 #: xfconfd/xfconf-backend.c:135
-#, c-format
-msgid "Property names cannot have two or more '/' characters in a row"
+#, fuzzy, c-format
+msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr ""
 "Els noms de propietats no poden tenir dos o més caràcters «/» en una fila"
 
@@ -129,16 +129,17 @@ msgstr ""
 "«_» i «-»"
 
 #: xfconfd/xfconf-backend.c:398
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
-"specified."
+"specified"
 msgstr ""
 "El nom de la propietat només pot estar buida o ser «/» si s'ha establert un "
 "reinici recursiu."
 
 #: xfconfd/main.c:132
-msgid "Prints the xfconfd version"
+#, fuzzy
+msgid "Prints the xfconfd version."
 msgstr "Mostra la versió de xfconfd"
 
 #: xfconfd/main.c:134
@@ -166,112 +167,113 @@ msgstr "Informeu dels errors a http://bugs.xfce.org/\n"
 msgid "Error parsing options: %s\n"
 msgstr "S'ha produït un error al analitzar l'opció: %s\n"
 
-#: xfconfd/xfconf-daemon.c:463
+#: xfconfd/xfconf-daemon.c:460
 #, c-format
 msgid "Another Xfconf daemon is already running"
 msgstr "Un altre dimoni Xfconf ja s'està executant"
 
-#: xfconfd/xfconf-daemon.c:499
+#: xfconfd/xfconf-daemon.c:496
 #, c-format
 msgid "No backends could be started"
 msgstr "No es poden iniciar interfícies secundàries"
 
-#: xfconf-query/main.c:90
+#: xfconf-query/main.c:92
 #, c-format
 msgid "Property '%s' changed: %s\n"
 msgstr "La propietat «%s» ha canviat: %s\n"
 
-#: xfconf-query/main.c:95
+#: xfconf-query/main.c:97
 #, c-format
 msgid "Property '%s' changed\n"
 msgstr "S'ha canviat la propietat «%s»\n"
 
-#: xfconf-query/main.c:100
+#: xfconf-query/main.c:102
 #, c-format
 msgid "Property '%s' removed\n"
 msgstr "S'ha tret la propietat «%s»\n"
 
-#: xfconf-query/main.c:109
+#: xfconf-query/main.c:111
 #, c-format
 msgid "Export method not yet implemented"
 msgstr "Mètode d'exportació encara no s'ha implementat"
 
-#: xfconf-query/main.c:123
+#: xfconf-query/main.c:125
 #, c-format
 msgid "Export not yet implemented"
 msgstr "«Exporta» encara no està implementat"
 
-#: xfconf-query/main.c:180
+#: xfconf-query/main.c:182
 msgid "Version information"
 msgstr "Informació de la versió"
 
-#: xfconf-query/main.c:184
-msgid "Pick the channel"
-msgstr "Tria el canal"
+#: xfconf-query/main.c:186
+msgid "The channel to query/modify"
+msgstr ""
 
-#: xfconf-query/main.c:188
-msgid "Pick the property"
-msgstr "Tria la propietat"
+#: xfconf-query/main.c:190
+msgid "The property to query/modify"
+msgstr ""
 
-#: xfconf-query/main.c:192
-msgid "Change or set the value of the property"
+#: xfconf-query/main.c:194
+#, fuzzy
+msgid "The new value to set for the property"
 msgstr "Canvia o fixa el valor de la propietat"
 
-#: xfconf-query/main.c:196
+#: xfconf-query/main.c:198
 msgid "List properties (or channels if -c isn't specified)"
 msgstr "Llista propietats (o canals si -c no s'ha especificat)"
 
-#: xfconf-query/main.c:200
+#: xfconf-query/main.c:202
 msgid "Verbose output"
 msgstr "Sortida detallada"
 
-#: xfconf-query/main.c:204
-msgid "Create new entry"
-msgstr "Crea una nova entrada"
+#: xfconf-query/main.c:206
+msgid "Create a new property if it does not already exist"
+msgstr ""
 
-#: xfconf-query/main.c:208
+#: xfconf-query/main.c:210
 msgid "Specify the property value type"
 msgstr "Definiu el tipus de valor de la propietat"
 
-#: xfconf-query/main.c:212
+#: xfconf-query/main.c:214
 msgid "Reset property"
 msgstr "Reinicia la propietat"
 
-#: xfconf-query/main.c:216
+#: xfconf-query/main.c:218
 msgid "Recursive (use with -r)"
 msgstr "Recursiu (empra amb -r)"
 
-#: xfconf-query/main.c:220
+#: xfconf-query/main.c:222
 msgid "Force array even if only one element"
 msgstr "Força una matriu d'elements encara que només hi hagi un"
 
-#: xfconf-query/main.c:224
+#: xfconf-query/main.c:226
 msgid "Export channel to file"
 msgstr "Exporta el canal al fitxer"
 
-#: xfconf-query/main.c:228
+#: xfconf-query/main.c:230
 msgid "Import channel from file"
 msgstr "Importa el canal des de el fitxer"
 
-#: xfconf-query/main.c:232
+#: xfconf-query/main.c:234
 msgid "Monitor a channel for property changes"
 msgstr "Fa un seguiment dels canvis de les propietats"
 
-#: xfconf-query/main.c:328
+#: xfconf-query/main.c:335
 #, c-format
 msgid "Start monitoring channel '%s':"
 msgstr "Inicia el seguiment del canal «%s»:"
 
-#: xfconf-query/main.c:350
-#, c-format
-msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
-msgstr "La propietat «%s» no hi és al canal «%s».\n"
+#: xfconf-query/main.c:357
+#, fuzzy, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\".\n"
+msgstr "La propietat «%s» no existeix al canal «%s»"
 
-#: xfconf-query/main.c:358 xfconf-query/main.c:376
+#: xfconf-query/main.c:365 xfconf-query/main.c:383
 msgid "(unknown)"
 msgstr "(desconegut)"
 
-#: xfconf-query/main.c:367
+#: xfconf-query/main.c:374
 #, c-format
 msgid ""
 "Value is an array with %d items:\n"
@@ -280,7 +282,7 @@ msgstr ""
 "El valor és una matriu de %d elements:\n"
 "\n"
 
-#: xfconf-query/main.c:390
+#: xfconf-query/main.c:397
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If you would\n"
@@ -289,67 +291,79 @@ msgstr ""
 "La propietat «%s» no hi és al canal «%s». Si voleu crear una \n"
 "nova propietat, empreu l'opció --create.\n"
 
-#: xfconf-query/main.c:398
+#: xfconf-query/main.c:405
 #, c-format
 msgid "When creating a new property, you must specify the value type.\n"
 msgstr "Quan es crea una nova propietat, heu d'establir el tipus de valor.\n"
 
-#: xfconf-query/main.c:408
+#: xfconf-query/main.c:415
 #, c-format
 msgid "Failed to get existing type for value.\n"
 msgstr "No s'ha pogut establir el tipus de valor existent.\n"
 
-#: xfconf-query/main.c:426
+#: xfconf-query/main.c:433
 #, c-format
 msgid "Unable to determine type of value.\n"
 msgstr "No s'ha pogut establi el tipus de valor.\n"
 
-#: xfconf-query/main.c:432
+#: xfconf-query/main.c:439
 #, c-format
 msgid "You must specify a value type to change an array into a single value.\n"
 msgstr ""
 "Heu d'establir un tipus de valor per canviar la matriu a un valor "
 "individual.\n"
 
-#: xfconf-query/main.c:442 xfconf-query/main.c:504
+#: xfconf-query/main.c:449 xfconf-query/main.c:511
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "No s'ha pogut convertir «%s» al tipus «%s»\n"
 
-#: xfconf-query/main.c:449 xfconf-query/main.c:519
+#: xfconf-query/main.c:456 xfconf-query/main.c:526
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "No s'ha pogut especificar la propietat.\n"
 
-#: xfconf-query/main.c:474
-#, c-format
-msgid "Have %d new values, but could only determine %d types.\n"
+#: xfconf-query/main.c:481
+#, fuzzy, c-format
+msgid "There are %d new values, but only %d types could be determined.\n"
 msgstr "Té %d nous valors, però tant sols es poden establir %d tipus.\n"
 
-#: xfconf-query/main.c:495
+#: xfconf-query/main.c:502
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
 msgstr "No s'ha pogut establir el tipus de valor a l'índex %d.\n"
 
-#: xfconf-query/main.c:545
+#: xfconf-query/main.c:553
 #, c-format
 msgid "Channel '%s' contains no properties\n"
 msgstr "El canal «%s» no té propietats\n"
 
-#: xfconf-query/main.c:561 xfconf-query/main.c:570
+#: xfconf-query/main.c:569 xfconf-query/main.c:578
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "No es pot crear el fitxer a exportar «%s»: %s\n"
 
-#: xfconf-query/main.c:590
+#: xfconf-query/main.c:598
 #, c-format
 msgid "Could not open import file \"%s\": %s\n"
 msgstr "No es pot obrir el fitxer a importar «%s»: %s\n"
 
-#: xfconf-query/main.c:599
+#: xfconf-query/main.c:607
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "No es por analitzar el fitxer a importar «%s»: %s\n"
+
+#~ msgid "Pick the channel"
+#~ msgstr "Tria el canal"
+
+#~ msgid "Pick the property"
+#~ msgstr "Tria la propietat"
+
+#~ msgid "Create new entry"
+#~ msgstr "Crea una nova entrada"
+
+#~ msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
+#~ msgstr "La propietat «%s» no hi és al canal «%s».\n"
 
 #~ msgid "Force replace existing any xsettings daemon"
 #~ msgstr "Força la substitució de qualsevol dimoni «xsettings»"

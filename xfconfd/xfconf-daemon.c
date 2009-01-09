@@ -241,7 +241,7 @@ xfconf_set_property(XfconfDaemon *xfconfd,
                 if(error) {
                     g_set_error(error, XFCONF_ERROR,
                                 XFCONF_ERROR_PERMISSION_DENIED,
-                                _("You don't have permission to modify property \"%s\" on channel \"%s\""),
+                                _("Permission denied while modifying property \"%s\" on channel \"%s\""),
                                 property, channel);
                 }
                 return FALSE;

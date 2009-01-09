@@ -277,7 +277,8 @@ xfconf_backend_perchannel_xml_initialize(XfconfBackend *backend,
         if(error) {
             g_set_error(error, XFCONF_ERROR,
                         XFCONF_ERROR_WRITE_FAILURE,
-                        _("Unable to create configuration directory"));
+                        _("Unable to create configuration directory \"%s\""),
+                        path);
         }
         g_free(path);
         return FALSE;
@@ -324,7 +325,7 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
             if(error) {
                 g_set_error(error, XFCONF_ERROR,
                             XFCONF_ERROR_PERMISSION_DENIED,
-                            _("You don't have permission to modify property \"%s\" on channel \"%s\""),
+                            _("Permission denied while modifying property \"%s\" on channel \"%s\""),
                             property, channel_name);
             }
             return FALSE;

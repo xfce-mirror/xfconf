@@ -129,7 +129,7 @@ main(int argc,
     gboolean print_version = FALSE;
     GOptionEntry options[] = {
         { "version", 'V', 0, G_OPTION_ARG_NONE, &print_version,
-            N_("Prints the xfconfd version"), NULL },
+            N_("Prints the xfconfd version."), NULL },
         { "backends", 'b', 0, G_OPTION_ARG_STRING_ARRAY, &backends,
             N_("Configuration backends to use.  The first backend specified " \
                "is opened read/write; the others, read-only."), NULL },
