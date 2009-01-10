@@ -195,7 +195,7 @@ static GOptionEntry entries[] =
         NULL
     },
     {    "list", 'l', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &list,
-        N_("List properties (or channels if -c isn't specified)"),
+        N_("List properties (or channels if -c is not specified)"),
         NULL
     },
     {    "verbose", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &verbose,
@@ -394,15 +394,15 @@ main(int argc, char **argv)
             prop_exists = xfconf_channel_has_property(channel, property_name);
             if(!prop_exists && !create)
             {
-                g_printerr(_("Property \"%s\" does not exist on channel \"%s\".  If you would\n"
-                             "like to create a new property, use the --create option.\n"),
+                g_printerr(_("Property \"%s\" does not exist on channel \"%s\".  If a new\n"
+                             "property should be created, use the --create option.\n"),
                              property_name, channel_name);
                 return 1;
             }
 
             if(!prop_exists && (!type || !type[0]))
             {
-                g_printerr(_("When creating a new property, you must specify the value type.\n"));
+                g_printerr(_("When creating a new property, the value type must be specified.\n"));
                 return 1;
             }
 
@@ -412,7 +412,7 @@ main(int argc, char **argv)
                  * didn't specify one */
                 if(!xfconf_channel_get_property(channel, property_name, &value))
                 {
-                    g_printerr(_("Failed to get existing type for value.\n"));
+                    g_printerr(_("Failed to get the existing type for the value.\n"));
                     return 1;
                 }
             }
@@ -430,13 +430,13 @@ main(int argc, char **argv)
 
                 if(G_TYPE_INVALID == gtype || G_TYPE_NONE == gtype)
                 {
-                    g_printerr(_("Unable to determine type of value.\n"));
+                    g_printerr(_("Unable to determine the type of the value.\n"));
                     return 1;
                 }
 
                 if(XFCONF_TYPE_G_VALUE_ARRAY == gtype)
                 {
-                    g_printerr(_("You must specify a value type to change an array into a single value.\n"));
+                    g_printerr(_("A value type must be specified to change an array into a single value.\n"));
                     return 1;
                 }
 
