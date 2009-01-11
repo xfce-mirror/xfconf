@@ -1,14 +1,14 @@
 # Catalan translations for xfconf package.
 # Copyright (C) 2008 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2008.
+# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2008-2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-08 18:06-0800\n"
-"PO-Revision-Date: 2008-11-16 10:15+0100\n"
+"PO-Revision-Date: 2009-01-11 12:19+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -25,14 +25,15 @@ msgid "false"
 msgstr "fals"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:280
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "No s'ha pogut crear el directori de configuració"
+msgstr "No s'ha pogut crear el directori de configuració «%s»"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:328 xfconfd/xfconf-daemon.c:244
-#, fuzzy, c-format
+#, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "No teniu permís de modificació de la propietat «%s» al canal «%s»"
+msgstr ""
+"S'ha denegat el permís al intentar modificar la propietat «%s» del canal «%s»"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:393
 #: xfconfd/xfconf-backend-perchannel-xml.c:475
@@ -104,10 +105,10 @@ msgstr ""
 "9, «_», «-», «<» i «>», així com el separador «/»"
 
 #: xfconfd/xfconf-backend.c:135
-#, fuzzy, c-format
+#, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr ""
-"Els noms de propietats no poden tenir dos o més caràcters «/» en una fila"
+"Els noms de propietats no poden tenir dos o més caràcters «/» consecutius"
 
 #: xfconfd/xfconf-backend.c:146
 #, c-format
@@ -129,7 +130,7 @@ msgstr ""
 "«_» i «-»"
 
 #: xfconfd/xfconf-backend.c:398
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
@@ -138,9 +139,8 @@ msgstr ""
 "reinici recursiu."
 
 #: xfconfd/main.c:132
-#, fuzzy
 msgid "Prints the xfconfd version."
-msgstr "Mostra la versió de xfconfd"
+msgstr "Mostra la versió de xfconfd."
 
 #: xfconfd/main.c:134
 msgid ""
@@ -208,16 +208,15 @@ msgstr "Informació de la versió"
 
 #: xfconf-query/main.c:186
 msgid "The channel to query/modify"
-msgstr ""
+msgstr "El canal a consultar/modificar"
 
 #: xfconf-query/main.c:190
 msgid "The property to query/modify"
-msgstr ""
+msgstr "La propietat a consultar/modificar"
 
 #: xfconf-query/main.c:194
-#, fuzzy
 msgid "The new value to set for the property"
-msgstr "Canvia o fixa el valor de la propietat"
+msgstr "El nou valor que s'establirà per la propietat"
 
 #: xfconf-query/main.c:198
 msgid "List properties (or channels if -c isn't specified)"
@@ -229,7 +228,7 @@ msgstr "Sortida detallada"
 
 #: xfconf-query/main.c:206
 msgid "Create a new property if it does not already exist"
-msgstr ""
+msgstr "Crea una nova propietat si aquesta no existeix"
 
 #: xfconf-query/main.c:210
 msgid "Specify the property value type"
@@ -265,9 +264,9 @@ msgid "Start monitoring channel '%s':"
 msgstr "Inicia el seguiment del canal «%s»:"
 
 #: xfconf-query/main.c:357
-#, fuzzy, c-format
+#, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr "La propietat «%s» no existeix al canal «%s»"
+msgstr "La propietat «%s» no existeix al canal «%s».\n"
 
 #: xfconf-query/main.c:365 xfconf-query/main.c:383
 msgid "(unknown)"
@@ -324,9 +323,9 @@ msgid "Failed to set property.\n"
 msgstr "No s'ha pogut especificar la propietat.\n"
 
 #: xfconf-query/main.c:481
-#, fuzzy, c-format
+#, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr "Té %d nous valors, però tant sols es poden establir %d tipus.\n"
+msgstr "Hi han %d valors nous, però tant sols es poden establir %d tipus.\n"
 
 #: xfconf-query/main.c:502
 #, c-format

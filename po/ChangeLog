@@ -1,3 +1,9 @@
+2009-01-11  Maximilian Schleiss <maximilian@xfce.org>
+
+	* ca.po: Catalan translation update (Carles Muñoz Gorriz)
+	* es.po: Spanish translation update (Abel Martín)
+	* ja.po: Japanese translation update (Nobuhiro Iwamatsu)
+
 2008-12-31  Michal Várady <miko.vaji@gmail.com>
 
 	* cs.po: Czech translation fixed
@@ -8,7 +14,7 @@
 
 2008-12-08  Piarres Beobide <pi@beobide.net>
 
-        * eu.po: Basque translation update
+	* eu.po: Basque translation update
 
 2008-11-30  Maximilian Schleiss <maximilian@xfce.org>
 
