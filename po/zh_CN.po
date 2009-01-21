@@ -1,0 +1,338 @@
+# Simplicied Chinese translations for xfconf package
+# Copyright (C) 2009, The Xfce development team.
+# This file is distributed under the same license as the xfconf package.
+# Chris K. Zhang <plutino@gmail.com>, 2009
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfconf\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-01-08 18:06-0800\n"
+"PO-Revision-Date: 2009-01-20 21:54-0800\n"
+"Last-Translator: Chris K. Zhang <plutino@gmail.com>\n"
+"Language-Team: Simplified Chinese <xfce-i18n@xfce.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: common/xfconf-gvaluefuncs.c:282
+msgid "true"
+msgstr "对"
+
+#: common/xfconf-gvaluefuncs.c:283
+msgid "false"
+msgstr "错"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:280
+#, c-format
+msgid "Unable to create configuration directory \"%s\""
+msgstr "无法创建配置目录“%s”"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:328 xfconfd/xfconf-daemon.c:244
+#, c-format
+msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
+msgstr "没有修改通道“%2$s”的属性“%1$s”的权限"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:393
+#: xfconfd/xfconf-backend-perchannel-xml.c:475
+#: xfconfd/xfconf-backend-perchannel-xml.c:636
+#: xfconfd/xfconf-backend-perchannel-xml.c:656
+#, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\""
+msgstr "通道“%2$s”没有属性“%1$s”"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:603
+#, c-format
+msgid "Unable to remove channel \"%s\": %s"
+msgstr "无法移除通道“%s”：%s"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1293
+#, c-format
+msgid "Invalid type for <property>: \"%s\""
+msgstr "<属性>类型无效：“%s”"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1309
+#: xfconfd/xfconf-backend-perchannel-xml.c:1385
+#, c-format
+msgid "Unable to parse value of type \"%s\" from \"%s\""
+msgstr "无法将“%2$s”解读为“%1$s”类型的值"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1365
+#, c-format
+msgid "The type attribute of <value> cannot be an array"
+msgstr "<值>的类型属性不能是数组"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1374
+#, c-format
+msgid "Invalid type for <value>: \"%s\""
+msgstr "<值>类型无效：“%s”"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1662
+#: xfconfd/xfconf-backend-perchannel-xml.c:1907
+#, c-format
+msgid "Channel \"%s\" does not exist"
+msgstr "通道“%s”不存在"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1952
+#, c-format
+msgid "Unable to write channel \"%s\": %s"
+msgstr "无法写入通道“%s”：%s"
+
+#: xfconfd/xfconf-backend-factory.c:70
+#, c-format
+msgid "Unable to find Xfconf backend of type \"%s\""
+msgstr "找不到“%s”类型的 Xfconf 后台"
+
+#: xfconfd/xfconf-backend.c:103
+#, c-format
+msgid "Property names must start with a '/' character"
+msgstr "属性名称必须以“/”字符开头"
+
+#: xfconfd/xfconf-backend.c:112
+#, c-format
+msgid "The root element ('/') is not a valid property name"
+msgstr "根元素（“/”）不能做属性名称"
+
+#: xfconfd/xfconf-backend.c:126
+#, c-format
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"属性名称只能包含 ASCII 字符 A-Z, a-z, 0-9, _, -, <, 或者 >, “/”可用做\n"
+"分隔符"
+
+#: xfconfd/xfconf-backend.c:135
+#, c-format
+msgid "Property names cannot have two or more consecutive '/' characters"
+msgstr "属性名称不能有两个以上连续的“/”字符"
+
+#: xfconfd/xfconf-backend.c:146
+#, c-format
+msgid "Property names cannot end with a '/' character"
+msgstr "属性名称不能以“/”字符结束"
+
+#: xfconfd/xfconf-backend.c:163
+#, c-format
+msgid "Channel name cannot be an empty string"
+msgstr "通道名称不能为空"
+
+#: xfconfd/xfconf-backend.c:176
+#, c-format
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr "通道名称只能包含 ASCII 字符 A-Z, a-z, 0-9, _, 或者 －"
+
+#: xfconfd/xfconf-backend.c:398
+#, c-format
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr "只有当指定递归重置以后属性名称才能为空或者“/”"
+
+#: xfconfd/main.c:132
+msgid "Prints the xfconfd version."
+msgstr "输出 xfconfd 的版本号"
+
+#: xfconfd/main.c:134
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
+msgstr "配置要使用的后台。第一个后台可读写，其余的只读。"
+
+#: xfconfd/main.c:154
+msgid "Xfce Configuration Daemon"
+msgstr "Xfce 配置守护进程"
+
+#: xfconfd/main.c:160
+msgid "Xfce configuration daemon"
+msgstr "Xfce 配置守护进程"
+
+#: xfconfd/main.c:162
+msgid "Report bugs to http://bugs.xfce.org/\n"
+msgstr "请到 http://bugs.xfce.org 报告程序漏洞\n"
+
+#: xfconfd/main.c:165
+#, c-format
+msgid "Error parsing options: %s\n"
+msgstr "解读选项“%s”时出错。\n"
+
+#: xfconfd/xfconf-daemon.c:460
+#, c-format
+msgid "Another Xfconf daemon is already running"
+msgstr "另一个 Xfconf 守护进程已经在运行了"
+
+#: xfconfd/xfconf-daemon.c:496
+#, c-format
+msgid "No backends could be started"
+msgstr "无法启动任何后台"
+
+#: xfconf-query/main.c:92
+#, c-format
+msgid "Property '%s' changed: %s\n"
+msgstr "属性“%s”已改变：%s\n"
+
+#: xfconf-query/main.c:97
+#, c-format
+msgid "Property '%s' changed\n"
+msgstr "属性“%s”已改变\n"
+
+#: xfconf-query/main.c:102
+#, c-format
+msgid "Property '%s' removed\n"
+msgstr "属性“%s”已删除\n"
+
+#: xfconf-query/main.c:111
+#, c-format
+msgid "Export method not yet implemented"
+msgstr "还不支持导出功能"
+
+#: xfconf-query/main.c:125
+#, c-format
+msgid "Export not yet implemented"
+msgstr "还不支持导出功能"
+
+#: xfconf-query/main.c:182
+msgid "Version information"
+msgstr "版本信息"
+
+#: xfconf-query/main.c:186
+msgid "The channel to query/modify"
+msgstr "要查询／修改的通道"
+
+#: xfconf-query/main.c:190
+msgid "The property to query/modify"
+msgstr "要查询／修改的属性"
+
+#: xfconf-query/main.c:194
+msgid "The new value to set for the property"
+msgstr "新的属性值"
+
+#: xfconf-query/main.c:198
+msgid "List properties (or channels if -c isn't specified)"
+msgstr "属性列表（如果使用 -c 选项则给出通道列表）"
+
+#: xfconf-query/main.c:202
+msgid "Verbose output"
+msgstr "详细输出"
+
+#: xfconf-query/main.c:206
+msgid "Create a new property if it does not already exist"
+msgstr "如果该属性不存在就新建一个"
+
+#: xfconf-query/main.c:210
+msgid "Specify the property value type"
+msgstr "指定属性值类型"
+
+#: xfconf-query/main.c:214
+msgid "Reset property"
+msgstr "重置属性"
+
+#: xfconf-query/main.c:218
+msgid "Recursive (use with -r)"
+msgstr "使用递归（用 -r 选项时使用）"
+
+#: xfconf-query/main.c:222
+msgid "Force array even if only one element"
+msgstr "即使只有一个元素也使用数组"
+
+#: xfconf-query/main.c:226
+msgid "Export channel to file"
+msgstr "把通道导出到文件"
+
+#: xfconf-query/main.c:230
+msgid "Import channel from file"
+msgstr "从文件导入通道"
+
+#: xfconf-query/main.c:234
+msgid "Monitor a channel for property changes"
+msgstr "监视通道中属性变化"
+
+#: xfconf-query/main.c:335
+#, c-format
+msgid "Start monitoring channel '%s':"
+msgstr "开始监视通道“%s”："
+
+#: xfconf-query/main.c:357
+#, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\".\n"
+msgstr "通道“%2$s”没有属性“%1$s”\n"
+
+#: xfconf-query/main.c:365 xfconf-query/main.c:383
+msgid "(unknown)"
+msgstr "（未知）"
+
+#: xfconf-query/main.c:374
+#, c-format
+msgid ""
+"Value is an array with %d items:\n"
+"\n"
+msgstr "值是一个%d元素的数组:\n\n"
+
+#: xfconf-query/main.c:397
+#, c-format
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\".  If you would\n"
+"like to create a new property, use the --create option.\n"
+msgstr "通道“%2$s”没有属性“%1$s”。如果你要新建属性，请使用 --create 选项\n"
+
+#: xfconf-query/main.c:405
+#, c-format
+msgid "When creating a new property, you must specify the value type.\n"
+msgstr "创建新属性时必须指定值类型\n"
+
+#: xfconf-query/main.c:415
+#, c-format
+msgid "Failed to get existing type for value.\n"
+msgstr "无法读出已有的值类型\n"
+
+#: xfconf-query/main.c:433
+#, c-format
+msgid "Unable to determine type of value.\n"
+msgstr "无法确定值类型\n"
+
+#: xfconf-query/main.c:439
+#, c-format
+msgid "You must specify a value type to change an array into a single value.\n"
+msgstr "把数组改为单一值时必须指定值类型\n"
+
+#: xfconf-query/main.c:449 xfconf-query/main.c:511
+#, c-format
+msgid "Unable to convert \"%s\" to type \"%s\"\n"
+msgstr "无法把“%s”转换成类型“%s”\n"
+
+#: xfconf-query/main.c:456 xfconf-query/main.c:526
+#, c-format
+msgid "Failed to set property.\n"
+msgstr "无法设置属性。\n"
+
+#: xfconf-query/main.c:481
+#, c-format
+msgid "There are %d new values, but only %d types could be determined.\n"
+msgstr "%d 个新值中，只能确定 %d 个的类型。\n"
+
+#: xfconf-query/main.c:502
+#, c-format
+msgid "Unable to determine type of value at index %d.\n"
+msgstr "无法确定第 %d 个值的类型\n"
+
+#: xfconf-query/main.c:553
+#, c-format
+msgid "Channel '%s' contains no properties\n"
+msgstr "通道“%s”没有任何属性\n"
+
+#: xfconf-query/main.c:569 xfconf-query/main.c:578
+#, c-format
+msgid "Could not create export file \"%s\": %s\n"
+msgstr "无法创建导出文件“%s”：%s\n"
+
+#: xfconf-query/main.c:598
+#, c-format
+msgid "Could not open import file \"%s\": %s\n"
+msgstr "无法打开导入文件“%s”：%s\n"
+
+#: xfconf-query/main.c:607
+#, c-format
+msgid "Could not parse import file \"%s\": %s\n"
+msgstr "无法解读导入文件“%s”：%s\n"
