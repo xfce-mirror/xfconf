@@ -29,13 +29,13 @@ msgstr "falsk"
 #: xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Kunne ikke oprette indstillingskatalog \"%s\""
+msgstr "Kan ikke oprette indstillingskatalog \"%s\""
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:328
 #: xfconfd/xfconf-daemon.c:244
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Du har ikke rettigheder til at ændre egenskab \"%s\" for kanal \"%s\""
+msgstr "Du har ikke rettigheder til at ændre egenskab \"%s\" på kanal \"%s\""
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:393
 #: xfconfd/xfconf-backend-perchannel-xml.c:475
