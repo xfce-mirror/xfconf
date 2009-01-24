@@ -25,14 +25,16 @@ msgid "false"
 msgstr "faux"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:280
+#, c-format
 msgid "Unable to create configuration directory \"%s\""
 msgstr "Échec à la création du dossier de configuration \"%s\""
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:328 xfconfd/xfconf-daemon.c:244
+#, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr ""
-"Vous n'avez pas les permissions nécessaires à la modification de la"
-" propriété \"%s\" du canal \"%s\""
+"Vous n'avez pas les permissions nécessaires à la modification de la "
+"propriété \"%s\" du canal \"%s\""
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:393
 #: xfconfd/xfconf-backend-perchannel-xml.c:475
@@ -94,21 +96,21 @@ msgstr "Les noms de propriétés doivent commencer par le caractère '/'"
 msgid "The root element ('/') is not a valid property name"
 msgstr "L'élément à la racine n'est pas un nom de propriété valide"
 
-
 #: xfconfd/xfconf-backend.c:126
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
 msgstr ""
-"Les noms des propriétés ne peuvent contenir que des caractères ASCII parmis"
-"A-Z, a-z, 0-9, '_', '-', '<' et '>', ainsi que '/' comme séparateur"
+"Les noms des propriétés ne peuvent contenir que des caractères ASCII parmisA-"
+"Z, a-z, 0-9, '_', '-', '<' et '>', ainsi que '/' comme séparateur"
 
 #: xfconfd/xfconf-backend.c:135
+#, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr ""
-"Les noms de propriétés ne peuvent pas contenir plusieurs caractères '/'"
-" consécutifs"
+"Les noms de propriétés ne peuvent pas contenir plusieurs caractères '/' "
+"consécutifs"
 
 #: xfconfd/xfconf-backend.c:146
 #, c-format
@@ -126,16 +128,17 @@ msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
 msgstr ""
-"Les noms des canaux ne peuvent contenir que des caractères ASCII parmis A-Z, a-"
-"z, 0-9, '_' et '-'"
+"Les noms des canaux ne peuvent contenir que des caractères ASCII parmis A-Z, "
+"a-z, 0-9, '_' et '-'"
 
 #: xfconfd/xfconf-backend.c:398
+#, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
 msgstr ""
-"Le nom de la propriété ne peut être que vide ou \"/\" si une réinitialisation"
-" récursive a été spécifiée."
+"Le nom de la propriété ne peut être que vide ou \"/\" si une "
+"réinitialisation récursive a été spécifiée."
 
 #: xfconfd/main.c:132
 msgid "Prints the xfconfd version."
@@ -146,8 +149,8 @@ msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
 msgstr ""
-"Backends de configuration à utiliser. Le premier backend est ouvert en"
-" lecture/écriture; les autres ne sont ouverts qu'en lecture."
+"Backends de configuration à utiliser. Le premier backend est ouvert en "
+"lecture/écriture; les autres ne sont ouverts qu'en lecture."
 
 #: xfconfd/main.c:154
 msgid "Xfce Configuration Daemon"
@@ -263,6 +266,7 @@ msgid "Start monitoring channel '%s':"
 msgstr "Commencer à surveiller le canal '%s' :"
 
 #: xfconf-query/main.c:357
+#, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
 msgstr "La propriété \"%s\" n'existe pas dans le canal \"%s\".\n"
 
@@ -323,9 +327,11 @@ msgid "Failed to set property.\n"
 msgstr "Échec à la définition de la propriété.\n"
 
 #: xfconf-query/main.c:481
+#, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr "Il y a %d nouvelles valeurs, mais seulement %d types ont pu être"
-" déterminés.\n"
+msgstr ""
+"Il y a %d nouvelles valeurs, mais seulement %d types ont pu être "
+"déterminés.\n"
 
 #: xfconf-query/main.c:502
 #, c-format

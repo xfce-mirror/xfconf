@@ -30,11 +30,12 @@ msgstr "FALSE"
 msgid "Unable to create configuration directory \"%s\""
 msgstr "設定用ディレクトリを作成できません \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:328
-#: xfconfd/xfconf-daemon.c:244
+#: xfconfd/xfconf-backend-perchannel-xml.c:328 xfconfd/xfconf-daemon.c:244
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "チャンネル \"%2$s\" 上のプロパティ \"%1$s\" を変更している間の権限が拒否されました"
+msgstr ""
+"チャンネル \"%2$s\" 上のプロパティ \"%1$s\" を変更している間の権限が拒否され"
+"ました"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:393
 #: xfconfd/xfconf-backend-perchannel-xml.c:475
@@ -98,8 +99,12 @@ msgstr "ルート要素 (\"/\") は有効なプロパティ名ではありませ
 
 #: xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "プロパティ名に使用できるのは ASCII 文字の A-Z、a-z、0-9、\"_\"、\"-\"、\"<\" および \">\"と、区切り文字として \"/\" です"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"プロパティ名に使用できるのは ASCII 文字の A-Z、a-z、0-9、\"_\"、\"-\"、\"<\" "
+"および \">\"と、区切り文字として \"/\" です"
 
 #: xfconfd/xfconf-backend.c:135
 #, c-format
@@ -118,21 +123,33 @@ msgstr "チャンネル名は空の文字列ではいけません"
 
 #: xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr "チャンネル名には ASCII 文字の A-Z、a-z、0-9、\"_\" および \"-\" のみ使用できます"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr ""
+"チャンネル名には ASCII 文字の A-Z、a-z、0-9、\"_\" および \"-\" のみ使用でき"
+"ます"
 
 #: xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr "再帰的リセットが指定された場合は、プロパティ名は空か \"/\" である必要があります"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr ""
+"再帰的リセットが指定された場合は、プロパティ名は空か \"/\" である必要がありま"
+"す"
 
 #: xfconfd/main.c:132
 msgid "Prints the xfconfd version."
 msgstr "xfconfd バージョンを表示します。"
 
 #: xfconfd/main.c:134
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr "使用する構成バックエンド。指定された最初のバックエンドは読み/書きで、その他は読み込み専用で開かれます。"
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
+msgstr ""
+"使用する構成バックエンド。指定された最初のバックエンドは読み/書きで、その他は"
+"読み込み専用で開かれます。"
 
 #: xfconfd/main.c:154
 msgid "Xfce Configuration Daemon"
@@ -147,7 +164,7 @@ msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "バグを http://bugs.xfce.org/ に報告する\n"
 
 #: xfconfd/main.c:165
-#, fuzzy, c-format
+#, c-format
 msgid "Error parsing options: %s\n"
 msgstr ""
 
@@ -252,8 +269,7 @@ msgstr "チャンネル \"%s\" のモニタリングを開始します:"
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
 msgstr "プロパティ \"%s\" はチャンネル \"%s\" 上に存在しません。\n"
 
-#: xfconf-query/main.c:365
-#: xfconf-query/main.c:383
+#: xfconf-query/main.c:365 xfconf-query/main.c:383
 msgid "(unknown)"
 msgstr "(不明)"
 
@@ -295,14 +311,12 @@ msgstr "値の形式を決定できません。\n"
 msgid "You must specify a value type to change an array into a single value.\n"
 msgstr "配列を単一の値に変更するには、値形式を指定する必要があります。\n"
 
-#: xfconf-query/main.c:449
-#: xfconf-query/main.c:511
+#: xfconf-query/main.c:449 xfconf-query/main.c:511
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "\"%s\" を形式 \"%s\" に変換できません\n"
 
-#: xfconf-query/main.c:456
-#: xfconf-query/main.c:526
+#: xfconf-query/main.c:456 xfconf-query/main.c:526
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "プロパティの設定に失敗しました。\n"
@@ -322,8 +336,7 @@ msgstr "インデックス %d で値の形式を決定できません。\n"
 msgid "Channel '%s' contains no properties\n"
 msgstr "チャンネル \"%s\" にはプロパティが含まれていません\n"
 
-#: xfconf-query/main.c:569
-#: xfconf-query/main.c:578
+#: xfconf-query/main.c:569 xfconf-query/main.c:578
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "エクスポートファイル \"%s\" を作成できませんでした: %s\n"
@@ -337,4 +350,3 @@ msgstr "インポートファイル \"%s\" を開けませんでした: %s\n"
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "インポートファイル \"%s\" を解析できませんでした: %s\n"
-
