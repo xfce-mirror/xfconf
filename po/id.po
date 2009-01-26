@@ -7,21 +7,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-08 18:06-0800\n"
+"POT-Creation-Date: 2009-01-26 02:16-0800\n"
 "PO-Revision-Date: 2008-11-10 21:49+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <translation-team-id@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: common/xfconf-gvaluefuncs.c:282
-msgid "true"
-msgstr "benar"
-
-#: common/xfconf-gvaluefuncs.c:283
-msgid "false"
-msgstr "salah"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:280
 #, fuzzy, c-format
@@ -220,7 +212,8 @@ msgid "The new value to set for the property"
 msgstr "Ubah atau atur nilai properti"
 
 #: xfconf-query/main.c:198
-msgid "List properties (or channels if -c isn't specified)"
+#, fuzzy
+msgid "List properties (or channels if -c is not specified)"
 msgstr "Senarai properti (atau kanal jika -c tak ditentukan)"
 
 #: xfconf-query/main.c:202
@@ -283,32 +276,33 @@ msgstr ""
 "\n"
 
 #: xfconf-query/main.c:397
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Property \"%s\" does not exist on channel \"%s\".  If you would\n"
-"like to create a new property, use the --create option.\n"
+"Property \"%s\" does not exist on channel \"%s\".  If a new\n"
+"property should be created, use the --create option.\n"
 msgstr ""
 "Properti \"%s\" tidak ada di kanal \"%s\".  Jika anda ingin\n"
 "membuat properti baru, gunakan opsi --create.\n"
 
 #: xfconf-query/main.c:405
-#, c-format
-msgid "When creating a new property, you must specify the value type.\n"
+#, fuzzy, c-format
+msgid "When creating a new property, the value type must be specified.\n"
 msgstr "Ketika membuat properti baru, anda harus menentukan tipe nilai.\n"
 
 #: xfconf-query/main.c:415
-#, c-format
-msgid "Failed to get existing type for value.\n"
+#, fuzzy, c-format
+msgid "Failed to get the existing type for the value.\n"
 msgstr "Gagal mendapatkan tipe yang ada untuk nilai.\n"
 
 #: xfconf-query/main.c:433
-#, c-format
-msgid "Unable to determine type of value.\n"
+#, fuzzy, c-format
+msgid "Unable to determine the type of the value.\n"
 msgstr "Tak dapat menentukan tipe nilai.\n"
 
 #: xfconf-query/main.c:439
-#, c-format
-msgid "You must specify a value type to change an array into a single value.\n"
+#, fuzzy, c-format
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
 msgstr ""
 "Anda harus menentukan tipe nilai untuk mengganti larik menjadi nilai "
 "tunggal.\n"
@@ -352,6 +346,12 @@ msgstr "Tak dapat membuka berkas impor \"%s\": %s\n"
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Tak dapat mengurai berkas impor \"%s\": %s\n"
+
+#~ msgid "true"
+#~ msgstr "benar"
+
+#~ msgid "false"
+#~ msgstr "salah"
 
 #~ msgid "Pick the channel"
 #~ msgstr "Pilih kanal"

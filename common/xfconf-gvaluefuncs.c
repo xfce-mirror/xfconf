@@ -279,8 +279,7 @@ _xfconf_string_from_gvalue(GValue *val)
         case G_TYPE_DOUBLE:
             return g_strdup_printf("%f", g_value_get_double(val));
         case G_TYPE_BOOLEAN:
-            return g_strdup(g_value_get_boolean(val) ? _("true")
-                                                     : _("false"));
+            return g_strdup(g_value_get_boolean(val) ? "true" : "false");
         default:
             if(G_VALUE_TYPE(val) == XFCONF_TYPE_UINT16) {
                 return g_strdup_printf("%u",

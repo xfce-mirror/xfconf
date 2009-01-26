@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 0.1.0svn-r28490\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-08 18:06-0800\n"
+"POT-Creation-Date: 2009-01-26 02:16-0800\n"
 "PO-Revision-Date: 2009-01-17 17:24+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech\n"
@@ -15,14 +15,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-
-#: common/xfconf-gvaluefuncs.c:282
-msgid "true"
-msgstr "pravda"
-
-#: common/xfconf-gvaluefuncs.c:283
-msgid "false"
-msgstr "nepravda"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
@@ -218,7 +210,8 @@ msgid "The new value to set for the property"
 msgstr "Nová hodnota pro nastavení vlastnosti"
 
 #: xfconf-query/main.c:198
-msgid "List properties (or channels if -c isn't specified)"
+#, fuzzy
+msgid "List properties (or channels if -c is not specified)"
 msgstr "Seznam vlastností (nebo kanálů, pokud není zadán parametr -c)"
 
 #: xfconf-query/main.c:202
@@ -281,32 +274,33 @@ msgstr ""
 "\n"
 
 #: xfconf-query/main.c:397
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Property \"%s\" does not exist on channel \"%s\".  If you would\n"
-"like to create a new property, use the --create option.\n"
+"Property \"%s\" does not exist on channel \"%s\".  If a new\n"
+"property should be created, use the --create option.\n"
 msgstr ""
 "Vlastnost „%s“ na kanálu „%s“ neexistuje. Pokud chcete\n"
 "vytvořit novou vlastnost, použijte volbu --create.\n"
 
 #: xfconf-query/main.c:405
-#, c-format
-msgid "When creating a new property, you must specify the value type.\n"
+#, fuzzy, c-format
+msgid "When creating a new property, the value type must be specified.\n"
 msgstr "Pi vytváření nové vlastnosti specifikujte typ hodnoty.\n"
 
 #: xfconf-query/main.c:415
-#, c-format
-msgid "Failed to get existing type for value.\n"
+#, fuzzy, c-format
+msgid "Failed to get the existing type for the value.\n"
 msgstr "Získání typu pro hodnotu se nezdařilo.\n"
 
 #: xfconf-query/main.c:433
-#, c-format
-msgid "Unable to determine type of value.\n"
+#, fuzzy, c-format
+msgid "Unable to determine the type of the value.\n"
 msgstr "Nelze učit typ hodnoty.\n"
 
 #: xfconf-query/main.c:439
-#, c-format
-msgid "You must specify a value type to change an array into a single value.\n"
+#, fuzzy, c-format
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
 msgstr "Specifikujte typ hodnoty pro změnu pole na hodnotu.\n"
 
 #: xfconf-query/main.c:449 xfconf-query/main.c:511
@@ -348,6 +342,12 @@ msgstr "Nelze otevřít soubor pro import „%s“: %s\n"
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Nelze zpracovat soubor pro import „%s“: %s\n"
+
+#~ msgid "true"
+#~ msgstr "pravda"
+
+#~ msgid "false"
+#~ msgstr "nepravda"
 
 #~ msgid "Pick the channel"
 #~ msgstr "Vybrat kanál"
