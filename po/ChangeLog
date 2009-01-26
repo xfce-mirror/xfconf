@@ -1,8 +1,20 @@
-2009-01-24 Stephan Arts <stephan@xfce.org>
+2009-01-26	Jannis Pohlmann <jannis@xfce.org>
+
+	* fi.po, zh_CN.po: Update translation files for the release.
+
+2009-01-25  Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
+
+	* fi.po: Update Finnish translation.
+
+2009-01-25  Og Maciel <ogmaciel@gnome.org>
+
+	* pt_BR.po: Updated Brazilian Portuguese translation.
+
+2009-01-24  Stephan Arts <stephan@xfce.org>
 
 	* nl.po: Added Dutch translation (Stephan Arts & Vincent Tunru)
 
-2009-01-23 Per Kongstad <pko@xfce.org>
+2009-01-23  Per Kongstad <pko@xfce.org>
 
 	* da.po: Danish tranlation update 4.5.93 (Per Kongstad)
 
@@ -10,7 +22,7 @@
 
 	* zh_CN.po, LINGUAS: Simplified Chinese translation added (Chris K. Zhang)
 
-2009-01-19 Og Maciel <ogmaciel@gnome.org>
+2009-01-19  Og Maciel <ogmaciel@gnome.org>
 
 	* pt_BR.po: Updated Brazilian Portuguese translation (Henrique P. Machado)
 

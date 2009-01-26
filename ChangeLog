@@ -1,3 +1,36 @@
+2009-01-26 12:57  jannis
+
+	* NEWS, po/ChangeLog, po/nl.po, po/zh_CN.po:
+	  Update NEWS and translation files for the release.
+
+2009-01-26 10:17  kelnos
+
+	* common/xfconf-gvaluefuncs.c, po/ca.po, po/cs.po, po/da.po,
+	  po/de.po, po/es.po, po/eu.po, po/fi.po, po/fr.po, po/hu.po,
+	  po/id.po, po/ja.po, po/nb.po, po/pt_BR.po, po/sv.po, po/tr.po,
+	  po/xfconf.pot:
+	  don't translate "true" or "false" in xfconf-query output
+
+2009-01-25 14:33  jari
+
+	* po/ChangeLog, po/fi.po:
+	  Update Finnish translations.
+
+2009-01-25 14:27  omaciel
+
+	* po/ChangeLog, po/pt_BR.po:
+	  Updated Brazilian Portuguese translation.
+
+2009-01-25 01:13  stephan
+
+	* configure.ac.in:
+	  Remove the svn tag
+
+2009-01-25 00:48  stephan
+
+	* ChangeLog, NEWS, configure.ac.in:
+	  Update version number, NEWS and ChangeLog
+
 2009-01-24 18:25  stephan
 
 	* po/ChangeLog, po/LINGUAS, po/cs.po, po/da.po, po/es.po, po/fr.po,

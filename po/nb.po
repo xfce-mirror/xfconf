@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-08 18:06-0800\n"
+"POT-Creation-Date: 2009-01-26 02:16-0800\n"
 "PO-Revision-Date: 2008-10-22 00:59+0200\n"
 "Last-Translator: Terje Uriansrud <terje@uriansrud.net>\n"
 "Language-Team: Norwegian Bokmal\n"
@@ -15,14 +15,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: common/xfconf-gvaluefuncs.c:282
-msgid "true"
-msgstr "sant"
-
-#: common/xfconf-gvaluefuncs.c:283
-msgid "false"
-msgstr "usant"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:280
 #, fuzzy, c-format
@@ -218,7 +210,8 @@ msgid "The new value to set for the property"
 msgstr "Endre eller sett verdi til egenskap"
 
 #: xfconf-query/main.c:198
-msgid "List properties (or channels if -c isn't specified)"
+#, fuzzy
+msgid "List properties (or channels if -c is not specified)"
 msgstr "Vis egenskapene (eller kanalene hvis -c ikke er angitt))"
 
 #: xfconf-query/main.c:202
@@ -281,32 +274,33 @@ msgstr ""
 "\n"
 
 #: xfconf-query/main.c:397
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Property \"%s\" does not exist on channel \"%s\".  If you would\n"
-"like to create a new property, use the --create option.\n"
+"Property \"%s\" does not exist on channel \"%s\".  If a new\n"
+"property should be created, use the --create option.\n"
 msgstr ""
 "Egenskapen «%s» finnes ikke i kanal «%s». Hvis du vil\n"
 "lage en ny egenskap, bruk '--create' valget.\n"
 
 #: xfconf-query/main.c:405
-#, c-format
-msgid "When creating a new property, you must specify the value type.\n"
+#, fuzzy, c-format
+msgid "When creating a new property, the value type must be specified.\n"
 msgstr "Ved opprettelse av ny egenskap må typen angis.\n"
 
 #: xfconf-query/main.c:415
-#, c-format
-msgid "Failed to get existing type for value.\n"
+#, fuzzy, c-format
+msgid "Failed to get the existing type for the value.\n"
 msgstr "Klarte ikke hente eksisterende type for verdi.\n"
 
 #: xfconf-query/main.c:433
-#, c-format
-msgid "Unable to determine type of value.\n"
+#, fuzzy, c-format
+msgid "Unable to determine the type of the value.\n"
 msgstr "Klarte ikke avgjøre type for verdi.\n"
 
 #: xfconf-query/main.c:439
-#, c-format
-msgid "You must specify a value type to change an array into a single value.\n"
+#, fuzzy, c-format
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
 msgstr "Du må angi type for å endre fra tabell til enkeltverdi.\n"
 
 #: xfconf-query/main.c:449 xfconf-query/main.c:511
@@ -348,6 +342,12 @@ msgstr "Klarte ikke åpne importfilen «%s»: %s\n"
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Klarte ikke tolke importfilen «%s»: %s\n"
+
+#~ msgid "true"
+#~ msgstr "sant"
+
+#~ msgid "false"
+#~ msgstr "usant"
 
 #~ msgid "Pick the channel"
 #~ msgstr "Velg kanal"

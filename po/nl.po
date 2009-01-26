@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.92svn-r28734\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-08 18:06-0800\n"
+"POT-Creation-Date: 2009-01-26 02:16-0800\n"
 "PO-Revision-Date: 2009-01-24 16:20+0100\n"
 "Last-Translator: Vincent Tunru <projects@vinnl.nl>\n"
 "Language-Team: Dutch\n"
@@ -16,24 +16,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: common/xfconf-gvaluefuncs.c:282
-msgid "true"
-msgstr "true"
-
-#: common/xfconf-gvaluefuncs.c:283
-msgid "false"
-msgstr "false"
-
 #: xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
 msgstr "De configuratiemap \"%s\" kon niet gemaakt worden"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:328
-#: xfconfd/xfconf-daemon.c:244
+#: xfconfd/xfconf-backend-perchannel-xml.c:328 xfconfd/xfconf-daemon.c:244
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Onvoldoende rechten voor het bewerken van instelling \"%s\" op kanaal \"%s\""
+msgstr ""
+"Onvoldoende rechten voor het bewerken van instelling \"%s\" op kanaal \"%s\""
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:393
 #: xfconfd/xfconf-backend-perchannel-xml.c:475
@@ -97,13 +89,18 @@ msgstr "Het hoofdonderdeel ('/') is geen geldige instellingsnaam"
 
 #: xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "Instellingsnamen kunnen alleen de ASCII karakters A-Z, a-z, 0-9, '_', '-', '<' en '>', en het scheidingsteken '/' bevatten"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"Instellingsnamen kunnen alleen de ASCII karakters A-Z, a-z, 0-9, '_', '-', "
+"'<' en '>', en het scheidingsteken '/' bevatten"
 
 #: xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Instellingsnamen kunnen niet meerdere opeenvolgende '/' symbolen bevatten"
+msgstr ""
+"Instellingsnamen kunnen niet meerdere opeenvolgende '/' symbolen bevatten"
 
 #: xfconfd/xfconf-backend.c:146
 #, c-format
@@ -117,20 +114,30 @@ msgstr "Kanaalnaam kan geen lege string zijn"
 
 #: xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr "Kanaalnamen kunnen alleen de ASCII karakters A-Z, a-z, 0-9, '_', en '-' bevatten"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr ""
+"Kanaalnamen kunnen alleen de ASCII karakters A-Z, a-z, 0-9, '_', en '-' "
+"bevatten"
 
 #: xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr "De instellingsnaam kan alleen \"/\" of leeg zijn wanneer er een recursieve reset wordt uitgevoerd"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr ""
+"De instellingsnaam kan alleen \"/\" of leeg zijn wanneer er een recursieve "
+"reset wordt uitgevoerd"
 
 #: xfconfd/main.c:132
 msgid "Prints the xfconfd version."
 msgstr "Toont de xfconfd versie."
 
 #: xfconfd/main.c:134
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
 msgstr ""
 
 #: xfconfd/main.c:154
@@ -202,8 +209,10 @@ msgid "The new value to set for the property"
 msgstr "Nieuwe waarde voor de instelling"
 
 #: xfconf-query/main.c:198
-msgid "List properties (or channels if -c isn't specified)"
-msgstr "Geef een lijst van instellingen (of kanalen wanneer -c niet is meegegeven)"
+#, fuzzy
+msgid "List properties (or channels if -c is not specified)"
+msgstr ""
+"Geef een lijst van instellingen (of kanalen wanneer -c niet is meegegeven)"
 
 #: xfconf-query/main.c:202
 msgid "Verbose output"
@@ -251,8 +260,7 @@ msgstr ""
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
 msgstr "Instelling \"%s\" bestaat niet voor kanaal \"%s\".\n"
 
-#: xfconf-query/main.c:365
-#: xfconf-query/main.c:383
+#: xfconf-query/main.c:365 xfconf-query/main.c:383
 msgid "(unknown)"
 msgstr "(onbekend)"
 
@@ -266,42 +274,43 @@ msgstr ""
 "\n"
 
 #: xfconf-query/main.c:397
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Property \"%s\" does not exist on channel \"%s\".  If you would\n"
-"like to create a new property, use the --create option.\n"
+"Property \"%s\" does not exist on channel \"%s\".  If a new\n"
+"property should be created, use the --create option.\n"
 msgstr ""
 "Instelling \"%s\" bestaat niet in kanaal \"%s\". Gebruik de\n"
 "--create optie wanneer u deze instelling wilt aanmaken.\n"
 
 #: xfconf-query/main.c:405
-#, c-format
-msgid "When creating a new property, you must specify the value type.\n"
+#, fuzzy, c-format
+msgid "When creating a new property, the value type must be specified.\n"
 msgstr "Wanneer een instelling wordt gemaakt dient u het type op te geven.\n"
 
 #: xfconf-query/main.c:415
-#, c-format
-msgid "Failed to get existing type for value.\n"
+#, fuzzy, c-format
+msgid "Failed to get the existing type for the value.\n"
 msgstr "Kon bestaand type voor de waarde niet achterhalen.\n"
 
 #: xfconf-query/main.c:433
-#, c-format
-msgid "Unable to determine type of value.\n"
+#, fuzzy, c-format
+msgid "Unable to determine the type of the value.\n"
 msgstr "Kan het type van de waarde niet vaststellen.\n"
 
 #: xfconf-query/main.c:439
-#, c-format
-msgid "You must specify a value type to change an array into a single value.\n"
-msgstr "Een waardetype moet worden ingesteld om een reeks te converteren naar een enkele waarde.\n"
+#, fuzzy, c-format
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
+msgstr ""
+"Een waardetype moet worden ingesteld om een reeks te converteren naar een "
+"enkele waarde.\n"
 
-#: xfconf-query/main.c:449
-#: xfconf-query/main.c:511
+#: xfconf-query/main.c:449 xfconf-query/main.c:511
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "\"%s\" kon niet worden omgezet naar type \"%s\"\n"
 
-#: xfconf-query/main.c:456
-#: xfconf-query/main.c:526
+#: xfconf-query/main.c:456 xfconf-query/main.c:526
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "De instelling kon niet worden opgeslagen.\n"
@@ -309,7 +318,8 @@ msgstr "De instelling kon niet worden opgeslagen.\n"
 #: xfconf-query/main.c:481
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr "Er zijn %d nieuwe waarden, maar slechts %d typen konden worden vastgesteld.\n"
+msgstr ""
+"Er zijn %d nieuwe waarden, maar slechts %d typen konden worden vastgesteld.\n"
 
 #: xfconf-query/main.c:502
 #, c-format
@@ -321,8 +331,7 @@ msgstr "Kan het type van de waarde op index %d niet bepalen.\n"
 msgid "Channel '%s' contains no properties\n"
 msgstr "Kanaal '%s' bevat geen instellingen\n"
 
-#: xfconf-query/main.c:569
-#: xfconf-query/main.c:578
+#: xfconf-query/main.c:569 xfconf-query/main.c:578
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "Het exportbestand \"%s\" kon niet gemaakt worden: %s\n"
@@ -337,3 +346,8 @@ msgstr "Het importbestand \"%s\" kon niet geopend worden: %s\n"
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Het importbestand \"%s\" kon niet gelezen worden: %s\n"
 
+#~ msgid "true"
+#~ msgstr "true"
+
+#~ msgid "false"
+#~ msgstr "false"
