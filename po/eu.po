@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Piarres Beobide <pi@beobide.net>, 2008.
+# Piarres Beobide <pi@beobide.net>, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-26 02:16-0800\n"
-"PO-Revision-Date: 2008-12-08 00:46+0100\n"
+"PO-Revision-Date: 2009-01-27 00:12+0100\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,14 +19,14 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:280
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Ezin da konfigurazio direktorioa sortu"
+msgstr "Ezin da \"%s\" konfigurazio direktorioa sortu"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:328 xfconfd/xfconf-daemon.c:244
-#, fuzzy, c-format
+#, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Ez duzu baimenik \"%s\" propietatea aldatzeko \"%s\" kanalean"
+msgstr "Baimena  ukatua \"%s\" propietatea aldatzeko \"%s\" kanalean"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:393
 #: xfconfd/xfconf-backend-perchannel-xml.c:475
@@ -98,10 +98,9 @@ msgstr ""
 "eta '/' bereizle gisa bakarrik eduki dezakete."
 
 #: xfconfd/xfconf-backend.c:135
-#, fuzzy, c-format
+#, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Propietate izenak ezin dut bi '/' edo gehiago karaktere izan lerro batetan"
+msgstr "Propietate izenak ezin dut bi '/' karaktere edo jarraian gehiago izan"
 
 #: xfconfd/xfconf-backend.c:146
 #, c-format
@@ -123,7 +122,7 @@ msgstr ""
 "ditzakete"
 
 #: xfconfd/xfconf-backend.c:398
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
@@ -132,7 +131,6 @@ msgstr ""
 "errekurtsibo bat zehaztu bada."
 
 #: xfconfd/main.c:132
-#, fuzzy
 msgid "Prints the xfconfd version."
 msgstr "xfconfd bertsio inprimatzen du"
 
@@ -202,19 +200,17 @@ msgstr "Bertsio argibideak"
 
 #: xfconf-query/main.c:186
 msgid "The channel to query/modify"
-msgstr ""
+msgstr "Galdezkatu/eraldatzeko kanala"
 
 #: xfconf-query/main.c:190
 msgid "The property to query/modify"
-msgstr ""
+msgstr "Galdezkatu/eraldatzeko propietatea"
 
 #: xfconf-query/main.c:194
-#, fuzzy
 msgid "The new value to set for the property"
-msgstr "Propietatearen balioa aldatu edo ezarri"
+msgstr "Propietatearentzat ezarritako balio berria"
 
 #: xfconf-query/main.c:198
-#, fuzzy
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Zerrendatu propietateak (edo kanalak -c zehazten ez bada)"
 
@@ -224,7 +220,7 @@ msgstr "Irteera luzea"
 
 #: xfconf-query/main.c:206
 msgid "Create a new property if it does not already exist"
-msgstr ""
+msgstr "Sortu propietate berri bat berau ez bada existitzen"
 
 #: xfconf-query/main.c:210
 msgid "Specify the property value type"
@@ -260,9 +256,9 @@ msgid "Start monitoring channel '%s':"
 msgstr "Hasi '%s' kanala monitorizatzen:"
 
 #: xfconf-query/main.c:357
-#, fuzzy, c-format
+#, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr "\"%s\" propietatea ez dago \"%s\" kanalean"
+msgstr "\"%s\" propietatea ez dago \"%s\" kanalean.\n"
 
 #: xfconf-query/main.c:365 xfconf-query/main.c:383
 msgid "(unknown)"
@@ -278,33 +274,32 @@ msgstr ""
 "\n"
 
 #: xfconf-query/main.c:397
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
 msgstr ""
-"Ez dago \"%s\" propietaterik \"%s2 kanalean. Propietate berri bat\n"
+"Ez dago \"%s\" propietaterik \"%s\" kanalean. Propietate berri bat\n"
 " sortu nahi baduzu, --create aukera erabili.\n"
 
 #: xfconf-query/main.c:405
-#, fuzzy, c-format
+#, c-format
 msgid "When creating a new property, the value type must be specified.\n"
 msgstr "Propietate berri bat sorzean balio mota zehaztu behar duzu.\n"
 
 #: xfconf-query/main.c:415
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get the existing type for the value.\n"
 msgstr "Huts dauden balio motak eskuratzerakoan.\n"
 
 #: xfconf-query/main.c:433
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine the type of the value.\n"
 msgstr "Ezin da jakin balioaren mota.\n"
 
 #: xfconf-query/main.c:439
-#, fuzzy, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
+#, c-format
+msgid "A value type must be specified to change an array into a single value.\n"
 msgstr ""
 "Balio mota bar zehaztu behar duzu, array bat balio soil batetara "
 "bihurtzeko.\n"
@@ -320,7 +315,7 @@ msgid "Failed to set property.\n"
 msgstr "Huts propietatea ezartzean.\n"
 
 #: xfconf-query/main.c:481
-#, fuzzy, c-format
+#, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
 msgstr "%d balio berri ditu, baina %d mota bakarrik antzeman daitezke.\n"
 
@@ -349,20 +344,3 @@ msgstr "Ezinda \"%s\" inportatze fitxategia ireki: %s\n"
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Ezinda \"%s\" inportatze fitxategia analizatu: %s\n"
 
-#~ msgid "true"
-#~ msgstr "egia"
-
-#~ msgid "false"
-#~ msgstr "faltsua"
-
-#~ msgid "Pick the channel"
-#~ msgstr "Hautatu kanala"
-
-#~ msgid "Pick the property"
-#~ msgstr "Hautatu propietatea"
-
-#~ msgid "Create new entry"
-#~ msgstr "Sortu sarrera berri bat"
-
-#~ msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
-#~ msgstr "Ez dago \"%s\" propietaterik \"%s\" kanalean.\n"
