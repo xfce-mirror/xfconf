@@ -49,7 +49,7 @@ xfconf_backend_factory_ensure_backends(void)
     
 #ifdef BUILD_XFCONF_BACKEND_PERCHANNEL_XML
     g_hash_table_insert(backends, XFCONF_BACKEND_PERCHANNEL_XML_TYPE_ID,
-                        GUINT_TO_POINTER(XFCONF_TYPE_BACKEND_PERCHANNEL_XML));
+                        GSIZE_TO_POINTER(XFCONF_TYPE_BACKEND_PERCHANNEL_XML));
 #endif
 }
 
@@ -63,7 +63,7 @@ xfconf_backend_factory_get_backend(const gchar *type,
     
     xfconf_backend_factory_ensure_backends();
     
-    backend_gtype = GPOINTER_TO_UINT(g_hash_table_lookup(backends, type));
+    backend_gtype = GPOINTER_TO_SIZE(g_hash_table_lookup(backends, type));
     if(0 == backend_gtype) {
         if(error) {
             g_set_error(error, XFCONF_ERROR, 0,
