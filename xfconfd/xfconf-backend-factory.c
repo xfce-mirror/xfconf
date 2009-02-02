@@ -45,11 +45,16 @@ xfconf_backend_factory_ensure_backends(void)
     if(backends)
         return;
     
-    backends = g_hash_table_new(g_str_hash, g_str_equal);
+    backends = g_hash_table_new_full(g_str_hash, g_str_equal,
+                                     NULL, (GDestroyNotify)g_free);
     
 #ifdef BUILD_XFCONF_BACKEND_PERCHANNEL_XML
-    g_hash_table_insert(backends, XFCONF_BACKEND_PERCHANNEL_XML_TYPE_ID,
-                        GSIZE_TO_POINTER(XFCONF_TYPE_BACKEND_PERCHANNEL_XML));
+    {
+        GType *gtype = g_new(GType, 1);
+        *gtype = XFCONF_TYPE_BACKEND_PERCHANNEL_XML;
+        g_hash_table_insert(backends, XFCONF_BACKEND_PERCHANNEL_XML_TYPE_ID,
+                            gtype);
+    }
 #endif
 }
 
@@ -59,12 +64,12 @@ xfconf_backend_factory_get_backend(const gchar *type,
                                    GError **error)
 {
     XfconfBackend *backend = NULL;
-    GType backend_gtype;
+    GType *backend_gtype;
     
     xfconf_backend_factory_ensure_backends();
     
-    backend_gtype = GPOINTER_TO_SIZE(g_hash_table_lookup(backends, type));
-    if(0 == backend_gtype) {
+    backend_gtype = g_hash_table_lookup(backends, type);
+    if(!backend_gtype) {
         if(error) {
             g_set_error(error, XFCONF_ERROR, 0,
                         _("Unable to find Xfconf backend of type \"%s\""),
@@ -73,7 +78,7 @@ xfconf_backend_factory_get_backend(const gchar *type,
         return NULL;
     }
     
-    backend = g_object_new(backend_gtype, NULL);
+    backend = g_object_new(*backend_gtype, NULL);
     if(!xfconf_backend_initialize(backend, error)) {
         g_object_unref(G_OBJECT(backend));
         return NULL;
