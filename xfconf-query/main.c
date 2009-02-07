@@ -180,13 +180,13 @@ xfconf_query_list_contents (GSList *sorted_contents, GHashTable *channel_content
 
                     if(item_value)
                     {
-                        if(XFCONF_TYPE_G_VALUE_ARRAY != G_VALUE_TYPE(property_value))
+                        if(XFCONF_TYPE_G_VALUE_ARRAY != G_VALUE_TYPE(item_value))
                         {
                             str_val = _xfconf_string_from_gvalue(item_value);
                         }
                         else
                         {
-                            str_val = "<ARRAY>";
+                            str_val = g_strdup ("<ARRAY>");
                         }
                         if (i > 0)
                             _string = g_strconcat (string, ",", str_val, NULL);
@@ -194,8 +194,7 @@ xfconf_query_list_contents (GSList *sorted_contents, GHashTable *channel_content
                             _string = g_strconcat (string, str_val, NULL);
 
                         g_free (string);
-                        g_free(str_val);
-
+                        g_free(str_val); 
                         string = _string;
                     }
                 }
