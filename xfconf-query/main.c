@@ -156,14 +156,54 @@ xfconf_query_list_contents (GSList *sorted_contents, GHashTable *channel_content
     GSList *li;
     gchar *format = verbose ? g_strdup_printf ("%%-%ds%%s\n", size + 2) : NULL;
     GValue *property_value;
-    gchar *string;
+    gchar *string, *_string = NULL;
+    gchar *str_val;
     
     for (li = sorted_contents; li != NULL; li = li->next)
     {
         if (verbose)
         {
             property_value = g_hash_table_lookup (channel_contents, li->data);
-            string = _xfconf_string_from_gvalue (property_value);
+            if(XFCONF_TYPE_G_VALUE_ARRAY != G_VALUE_TYPE(property_value))
+            {
+                string = _xfconf_string_from_gvalue (property_value);
+            }
+            else
+            {
+                GPtrArray *arr = g_value_get_boxed(property_value);
+                guint i;
+                string = g_strdup ("{");
+
+                for(i = 0; i < arr->len; ++i)
+                {
+                    GValue *item_value = g_ptr_array_index(arr, i);
+
+                    if(item_value)
+                    {
+                        if(XFCONF_TYPE_G_VALUE_ARRAY != G_VALUE_TYPE(property_value))
+                        {
+                            str_val = _xfconf_string_from_gvalue(item_value);
+                        }
+                        else
+                        {
+                            str_val = "<ARRAY>";
+                        }
+                        if (i > 0)
+                            _string = g_strconcat (string, ",", str_val, NULL);
+                        else
+                            _string = g_strconcat (string, str_val, NULL);
+
+                        g_free (string);
+                        g_free(str_val);
+
+                        string = _string;
+                    }
+                }
+                _string = g_strconcat (string, "}", NULL);
+                g_free (string);
+                string = _string;
+
+            }
             g_print (format, (gchar *) li->data, string);
             g_free (string);
         }
