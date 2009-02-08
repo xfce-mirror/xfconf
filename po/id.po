@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-26 02:16-0800\n"
-"PO-Revision-Date: 2008-11-10 21:49+0700\n"
+"PO-Revision-Date: 2009-01-27 22:20+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <translation-team-id@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -16,16 +16,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:280
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Tak dapat membuat direktori konfigurasi"
+msgstr "Tak dapat membuat direktori konfigurasi \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:328 xfconfd/xfconf-daemon.c:244
-#, fuzzy, c-format
+#: xfconfd/xfconf-backend-perchannel-xml.c:328
+#: xfconfd/xfconf-daemon.c:244
+#, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr ""
-"Anda tak memiliki hak akses untuk memodifikasi properti \"%s\" di kanal \"%s"
-"\""
+msgstr "Hak akses ditolak ketika memodifikasi properti \"%s\" di kanal \"%s\""
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:393
 #: xfconfd/xfconf-backend-perchannel-xml.c:475
@@ -89,19 +88,13 @@ msgstr "Elemen root ('/') bukan nama properti yang sah"
 
 #: xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Nama properti hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', "
-"'-', '<' dan '>', serta '/' sebagai pemisah"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Nama properti hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', '-', '<' dan '>', serta '/' sebagai pemisah"
 
 #: xfconfd/xfconf-backend.c:135
-#, fuzzy, c-format
+#, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Nama properti tidak boleh memiliki dua atau lebih karakter '/' dalam satu "
-"baris"
+msgstr "Nama properti tidak boleh memiliki dua atau lebih karakter '/'"
 
 #: xfconfd/xfconf-backend.c:146
 #, c-format
@@ -115,32 +108,21 @@ msgstr "Nama kanal tidak boleh merupakan benang kosong"
 
 #: xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr ""
-"Nama kanal hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', dan '-'"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgstr "Nama kanal hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', dan '-'"
 
 #: xfconfd/xfconf-backend.c:398
-#, fuzzy, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"Nama properti hanya dapat kosong atau \"/\" jika reset rekursif ditentukan."
+#, c-format
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "Nama properti hanya dapat kosong atau \"/\" jika reset rekursif ditentukan"
 
 #: xfconfd/main.c:132
-#, fuzzy
 msgid "Prints the xfconfd version."
-msgstr "Cetak versi xfconfd"
+msgstr "Cetak versi xfconfd."
 
 #: xfconfd/main.c:134
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Ujung-belakang konfigurasi yang digunakan. Ujung-belakang pertama yang "
-"ditentukan dibuka sebagai baca/tulis; sisanya, hanya-baca."
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "Ujung-belakang konfigurasi yang digunakan. Ujung-belakang pertama yang ditentukan dibuka sebagai baca/tulis; sisanya, hanya-baca."
 
 #: xfconfd/main.c:154
 msgid "Xfce Configuration Daemon"
@@ -200,19 +182,17 @@ msgstr "Informasi versi"
 
 #: xfconf-query/main.c:186
 msgid "The channel to query/modify"
-msgstr ""
+msgstr "Kanal untuk kueri/modifikasi"
 
 #: xfconf-query/main.c:190
 msgid "The property to query/modify"
-msgstr ""
+msgstr "Properti untuk kueri/modifikasi"
 
 #: xfconf-query/main.c:194
-#, fuzzy
 msgid "The new value to set for the property"
-msgstr "Ubah atau atur nilai properti"
+msgstr "Nilai baru untuk diatur sebagai properti"
 
 #: xfconf-query/main.c:198
-#, fuzzy
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Senarai properti (atau kanal jika -c tak ditentukan)"
 
@@ -222,7 +202,7 @@ msgstr "Keluaran lengkap"
 
 #: xfconf-query/main.c:206
 msgid "Create a new property if it does not already exist"
-msgstr ""
+msgstr "Buat properti baru jika belum ada properti"
 
 #: xfconf-query/main.c:210
 msgid "Specify the property value type"
@@ -258,11 +238,12 @@ msgid "Start monitoring channel '%s':"
 msgstr "Mulai mengawasi kanal '%s':"
 
 #: xfconf-query/main.c:357
-#, fuzzy, c-format
+#, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr "Properti \"%s\" tidak ada di kanal \"%s\""
+msgstr "Properti \"%s\" tidak ada di kanal \"%s\".\n"
 
-#: xfconf-query/main.c:365 xfconf-query/main.c:383
+#: xfconf-query/main.c:365
+#: xfconf-query/main.c:383
 msgid "(unknown)"
 msgstr "(tak diketahui)"
 
@@ -276,51 +257,50 @@ msgstr ""
 "\n"
 
 #: xfconf-query/main.c:397
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
 msgstr ""
-"Properti \"%s\" tidak ada di kanal \"%s\".  Jika anda ingin\n"
-"membuat properti baru, gunakan opsi --create.\n"
+"Properti \"%s\" tidak ada di kanal \"%s\".  Jika properti baru\n"
+"harus dibuat, gunakan opsi --create.\n"
 
 #: xfconf-query/main.c:405
-#, fuzzy, c-format
+#, c-format
 msgid "When creating a new property, the value type must be specified.\n"
-msgstr "Ketika membuat properti baru, anda harus menentukan tipe nilai.\n"
+msgstr "Ketika membuat properti baru, tipe nilai harus ditentukan.\n"
 
 #: xfconf-query/main.c:415
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get the existing type for the value.\n"
-msgstr "Gagal mendapatkan tipe yang ada untuk nilai.\n"
+msgstr "Gagal untuk mendapatkan tipe yang ada untuk nilai.\n"
 
 #: xfconf-query/main.c:433
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine the type of the value.\n"
-msgstr "Tak dapat menentukan tipe nilai.\n"
+msgstr "Tak dapat menentukan tipe dari nilai.\n"
 
 #: xfconf-query/main.c:439
-#, fuzzy, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
-msgstr ""
-"Anda harus menentukan tipe nilai untuk mengganti larik menjadi nilai "
-"tunggal.\n"
+#, c-format
+msgid "A value type must be specified to change an array into a single value.\n"
+msgstr "Tipe nilai harus ditentukan untuk mengganti larik menjadi nilai tunggal.\n"
 
-#: xfconf-query/main.c:449 xfconf-query/main.c:511
+#: xfconf-query/main.c:449
+#: xfconf-query/main.c:511
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "Tak dapat mengonversi \"%s\" ke tipe \"%s\".\n"
 
-#: xfconf-query/main.c:456 xfconf-query/main.c:526
+#: xfconf-query/main.c:456
+#: xfconf-query/main.c:526
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "Gagal mengatur properti.\n"
 
 #: xfconf-query/main.c:481
-#, fuzzy, c-format
+#, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr "Memiliki %d nilai baru, tapi hanya dapat menentukan %d tipe.\n"
+msgstr "Ada %d nilai baru, tapi hanya %d tipe yang dapat ditentukan.\n"
 
 #: xfconf-query/main.c:502
 #, c-format
@@ -332,7 +312,8 @@ msgstr "Tak dapat menentukan tipe atau nilai pada indeks %d.\n"
 msgid "Channel '%s' contains no properties\n"
 msgstr "Kanal '%s' tak berisi properti\n"
 
-#: xfconf-query/main.c:569 xfconf-query/main.c:578
+#: xfconf-query/main.c:569
+#: xfconf-query/main.c:578
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "Tak dapat membuat berkas ekspor \"%s\": %s\n"
@@ -349,24 +330,18 @@ msgstr "Tak dapat mengurai berkas impor \"%s\": %s\n"
 
 #~ msgid "true"
 #~ msgstr "benar"
-
 #~ msgid "false"
 #~ msgstr "salah"
-
 #~ msgid "Pick the channel"
 #~ msgstr "Pilih kanal"
-
 #~ msgid "Pick the property"
 #~ msgstr "Pilih properti"
-
 #~ msgid "Create new entry"
 #~ msgstr "Buat entri baru"
-
 #~ msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
 #~ msgstr "Properti \"%s\" tidak ada di kanal \"%s\".\n"
-
 #~ msgid "set (change the value)"
 #~ msgstr "atur (ubah nilai)"
-
 #~ msgid "List properties"
 #~ msgstr "Senarai properti"
+

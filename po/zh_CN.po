@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-26 02:16-0800\n"
-"PO-Revision-Date: 2009-01-20 21:54-0800\n"
+"PO-Revision-Date: 2009-01-26 22:56-0800\n"
 "Last-Translator: Chris K. Zhang <plutino@gmail.com>\n"
 "Language-Team: Simplified Chinese <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -202,7 +202,6 @@ msgid "The new value to set for the property"
 msgstr "新的属性值"
 
 #: xfconf-query/main.c:198
-#, fuzzy
 msgid "List properties (or channels if -c is not specified)"
 msgstr "属性列表（如果使用 -c 选项则给出通道列表）"
 
@@ -266,32 +265,32 @@ msgstr ""
 "\n"
 
 #: xfconf-query/main.c:397
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
-msgstr "通道“%2$s”没有属性“%1$s”。如果你要新建属性，请使用 --create 选项\n"
+msgstr "通道“%2$s”没有属性“%1$s”。如果你要新建属性，请使用 --create 选项。\n"
 
 #: xfconf-query/main.c:405
-#, fuzzy, c-format
+#, c-format
 msgid "When creating a new property, the value type must be specified.\n"
-msgstr "创建新属性时必须指定值类型\n"
+msgstr "创建新属性时必须指定数据类型。\n"
 
 #: xfconf-query/main.c:415
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get the existing type for the value.\n"
-msgstr "无法读出已有的值类型\n"
+msgstr "无法读出该值的当前类型。\n"
 
 #: xfconf-query/main.c:433
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine the type of the value.\n"
-msgstr "无法确定值类型\n"
+msgstr "无法确定值的类型。\n"
 
 #: xfconf-query/main.c:439
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "A value type must be specified to change an array into a single value.\n"
-msgstr "把数组改为单一值时必须指定值类型\n"
+msgstr "把数组改为单一值时必须指定值的类型。\n"
 
 #: xfconf-query/main.c:449 xfconf-query/main.c:511
 #, c-format

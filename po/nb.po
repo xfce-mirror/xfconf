@@ -17,12 +17,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:280
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Klarte ikke å lage mappe for konfigurasjon"
+msgstr "Klarte ikke å lage mappe for konfigurasjon «%s»"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:328 xfconfd/xfconf-daemon.c:244
-#, fuzzy, c-format
+#, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr "Du har ikke rettigheter til å endre egenskapen «%s» på kanal «%s»"
 
@@ -96,10 +96,9 @@ msgstr ""
 "'-', '<' og '>', samt '/' kan brukes som skilletegn"
 
 #: xfconfd/xfconf-backend.c:135
-#, fuzzy, c-format
+#, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Navn på egenskaper kan ikke ha to eller flere '/' tegn rett etter hverandre"
+msgstr "Egenskaper kan ikke ha to eller flere '/' tegn rett etter hverandre"
 
 #: xfconfd/xfconf-backend.c:146
 #, c-format
@@ -119,7 +118,7 @@ msgid ""
 msgstr "Kanalnavn kan kun inneholde ASCII tegene A-Z, a-z, 0-9, '_', og '-'"
 
 #: xfconfd/xfconf-backend.c:398
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
@@ -128,7 +127,6 @@ msgstr ""
 "angitt."
 
 #: xfconfd/main.c:132
-#, fuzzy
 msgid "Prints the xfconfd version."
 msgstr "Skriver ut xfconfd versjon"
 
@@ -198,19 +196,17 @@ msgstr "Versjonsinformasjon"
 
 #: xfconf-query/main.c:186
 msgid "The channel to query/modify"
-msgstr ""
+msgstr "Kanalen å søke/endre"
 
 #: xfconf-query/main.c:190
 msgid "The property to query/modify"
-msgstr ""
+msgstr "Egenskapen å søke/endre"
 
 #: xfconf-query/main.c:194
-#, fuzzy
 msgid "The new value to set for the property"
-msgstr "Endre eller sett verdi til egenskap"
+msgstr "Den nye verdien for egenskap"
 
 #: xfconf-query/main.c:198
-#, fuzzy
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Vis egenskapene (eller kanalene hvis -c ikke er angitt))"
 
@@ -220,7 +216,7 @@ msgstr "Fullstendig logg"
 
 #: xfconf-query/main.c:206
 msgid "Create a new property if it does not already exist"
-msgstr ""
+msgstr "Lag ny egenskap hvis den ikke allerede finnes"
 
 #: xfconf-query/main.c:210
 msgid "Specify the property value type"
@@ -256,9 +252,9 @@ msgid "Start monitoring channel '%s':"
 msgstr "Start overvåking av kanal '%s':"
 
 #: xfconf-query/main.c:357
-#, fuzzy, c-format
+#, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr "Egenskapen «%s» finnes ikke på kanal «%s»"
+msgstr "Egenskapen «%s» finnes ikke på kanal «%s»\n"
 
 #: xfconf-query/main.c:365 xfconf-query/main.c:383
 msgid "(unknown)"
@@ -274,7 +270,7 @@ msgstr ""
 "\n"
 
 #: xfconf-query/main.c:397
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
@@ -283,22 +279,22 @@ msgstr ""
 "lage en ny egenskap, bruk '--create' valget.\n"
 
 #: xfconf-query/main.c:405
-#, fuzzy, c-format
+#, c-format
 msgid "When creating a new property, the value type must be specified.\n"
-msgstr "Ved opprettelse av ny egenskap må typen angis.\n"
+msgstr "Ved opprettelse av ny egenskap må type verdi angis.\n"
 
 #: xfconf-query/main.c:415
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get the existing type for the value.\n"
 msgstr "Klarte ikke hente eksisterende type for verdi.\n"
 
 #: xfconf-query/main.c:433
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine the type of the value.\n"
 msgstr "Klarte ikke avgjøre type for verdi.\n"
 
 #: xfconf-query/main.c:439
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "A value type must be specified to change an array into a single value.\n"
 msgstr "Du må angi type for å endre fra tabell til enkeltverdi.\n"
@@ -314,9 +310,9 @@ msgid "Failed to set property.\n"
 msgstr "Klarte ikke sett egenskap.\n"
 
 #: xfconf-query/main.c:481
-#, fuzzy, c-format
+#, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr "Har %d nye verdier, men kunne bare avgjøre %d typer.\n"
+msgstr "Har %d nye verdier, men kunne bare bestemme %d typer.\n"
 
 #: xfconf-query/main.c:502
 #, c-format
