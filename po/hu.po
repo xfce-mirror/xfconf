@@ -14,12 +14,13 @@ msgstr ""
 "X-Poedit-Country: HUNGARY\n"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:280
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Nem tudom létrehozni a beállító mappát"
+msgstr "Nem tudom létrehozni e beállító mappát: \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:328 xfconfd/xfconf-daemon.c:244
-#, fuzzy, c-format
+#: xfconfd/xfconf-backend-perchannel-xml.c:328
+#: xfconfd/xfconf-daemon.c:244
+#, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr "Nincs jogod módosítani \"%s\" tulajdonságot e csatornán: \"%s\""
 
@@ -34,7 +35,7 @@ msgstr "Nincs \"%s\" tulajdonság e csatornán: \"%s\""
 #: xfconfd/xfconf-backend-perchannel-xml.c:603
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr ""
+msgstr "Nem tudom törölni e csatornát: \"%s\": %s"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1293
 #, c-format
@@ -85,9 +86,7 @@ msgstr ""
 
 #: xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
 msgstr ""
 
 #: xfconfd/xfconf-backend.c:135
@@ -107,16 +106,12 @@ msgstr ""
 
 #: xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
 msgstr ""
 
 #: xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
 msgstr ""
 
 #: xfconfd/main.c:132
@@ -124,9 +119,7 @@ msgid "Prints the xfconfd version."
 msgstr ""
 
 #: xfconfd/main.c:134
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
 msgstr ""
 
 #: xfconfd/main.c:154
@@ -243,11 +236,12 @@ msgid "Start monitoring channel '%s':"
 msgstr ""
 
 #: xfconf-query/main.c:357
-#, fuzzy, c-format
+#, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr "Nincs \"%s\" tulajdonság e csatornán: \"%s\""
+msgstr "Nincs \"%s\" tulajdonság e csatornán: \"%s\".\n"
 
-#: xfconf-query/main.c:365 xfconf-query/main.c:383
+#: xfconf-query/main.c:365
+#: xfconf-query/main.c:383
 msgid "(unknown)"
 msgstr ""
 
@@ -282,16 +276,17 @@ msgstr ""
 
 #: xfconf-query/main.c:439
 #, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
+msgid "A value type must be specified to change an array into a single value.\n"
 msgstr ""
 
-#: xfconf-query/main.c:449 xfconf-query/main.c:511
+#: xfconf-query/main.c:449
+#: xfconf-query/main.c:511
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr ""
 
-#: xfconf-query/main.c:456 xfconf-query/main.c:526
+#: xfconf-query/main.c:456
+#: xfconf-query/main.c:526
 #, c-format
 msgid "Failed to set property.\n"
 msgstr ""
@@ -311,7 +306,8 @@ msgstr ""
 msgid "Channel '%s' contains no properties\n"
 msgstr ""
 
-#: xfconf-query/main.c:569 xfconf-query/main.c:578
+#: xfconf-query/main.c:569
+#: xfconf-query/main.c:578
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr ""
@@ -328,6 +324,6 @@ msgstr ""
 
 #~ msgid "true"
 #~ msgstr "igaz"
-
 #~ msgid "false"
 #~ msgstr "hamis"
+
