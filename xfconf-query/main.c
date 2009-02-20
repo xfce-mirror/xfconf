@@ -49,13 +49,13 @@
 
 #include <glib.h>
 
-#if defined(GETTEXT_PACKAGE)
-#include <glib/gi18n-lib.h>
-#else
-#include <glib/gi18n.h>
-#endif
-
 #include <libxfce4util/libxfce4util.h>
+
+#ifdef ENABLE_NLS
+#ifdef HAVE_LOCALE_H
+#include <locale.h>
+#endif
+#endif
 
 #include "xfconf-gvaluefuncs.h"
 #include "xfconf-common-private.h"
@@ -256,6 +256,9 @@ main(int argc, char **argv)
     gint fd = -1;
     GOptionContext *context;
 
+#ifdef ENABLE_NLS
+    setlocale (LC_ALL, "");
+#endif
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
     g_type_init();
