@@ -231,6 +231,7 @@ static GOptionEntry entries[] =
         N_("Force array even if only one element"),
         NULL
     },
+/*
     {   "export", 'x', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &export_file,
         N_("Export channel to file"),
         NULL,
@@ -239,6 +240,7 @@ static GOptionEntry entries[] =
         N_("Import channel from file"),
         NULL,
     },
+*/
     {   "monitor", 'm', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &monitor,
         N_("Monitor a channel for property changes"),
         NULL,
