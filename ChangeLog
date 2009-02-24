@@ -1,3 +1,124 @@
+2009-02-23 09:08  stephan
+
+	* xfconf-query/main.c:
+	  Remove unimplemented import and export functions
+
+2009-02-22 12:42  mmassonnet
+
+	* po/ChangeLog, po/ja.po:
+	  update japanese translation
+
+2009-02-22 10:28  mmassonnet
+
+	* po/ChangeLog, po/LINGUAS, po/ro.po, po/ru.po:
+	  update translations
+
+2009-02-20 23:58  maximilian
+
+	* po/ChangeLog, po/ca.po:
+	  Translations Updates - ca es gl id it pt_PT zh_CN
+
+2009-02-20 18:57  stephan
+
+	* configure.ac.in, xfconf-query/main.c:
+	  Fix Bug #4622, applied patch by Mike Massonnet
+	  <mike.massonnet@gmail.com> (with changes)
+
+2009-02-16 15:54  pko
+
+	* po/ChangeLog, po/da.po:
+	  * da.po: Danish translation update (Per Kongstad) * da.po: Danish
+	  translation update (Per Kongstad) * da.po: Updated Danish
+	  traanslation (Per Kongstad)
+
+2009-02-12 09:14  stephan
+
+	* xfconf-query/main.c:
+	  Revert previous change to xfconf-query, but still clean up the
+	  g_critical assertion
+
+2009-02-11 12:24  mmassonnet
+
+	* po/ChangeLog, po/fr.po:
+	  update french translation
+
+2009-02-11 01:59  sas
+
+	* po/hu.po:
+	  [intl:hu] little updates for 4.6
+
+2009-02-08 08:20  maximilian
+
+	* po/ChangeLog, po/id.po, po/nb.po, po/zh_CN.po:
+	  Translations udaptes - de id ja nb pl zh_CN
+
+2009-02-07 23:18  stephan
+
+	* xfconf-query/main.c:
+	  Fix my previous commit
+
+2009-02-07 20:02  eulex
+
+	* po/ChangeLog, po/sv.po:
+	  xfwm4/trunk/po: * sv.po: Swedish translation update (Daniel
+	  Nylander) xfconf/trunk/po: * sv.po: Swedish translation update
+	  (Daniel Nylander)
+
+2009-02-07 13:52  stephan
+
+	* xfconf-query/main.c:
+	  Now it supports showing array contents inside the verbose-list
+	  view.
+
+2009-02-05 01:20  omaciel
+
+	* po/ChangeLog, po/pt_BR.po:
+	  Updated Brazilian Portuguese translation.
+
+2009-02-03 21:07  maximilian
+
+	* po/ChangeLog, po/es.po:
+	  Translations updates - en_GB es
+
+2009-02-02 05:57  kelnos
+
+	* xfconfd/xfconf-backend-factory.c:
+	  just malloc a GType to store in the hash table rather than
+	  assuming a GType will always fit in a pointer, and/or using the
+	  annoying macros that don't really do what we want (but 4881).
+
+2009-02-01 21:47  stephan
+
+	* xfconfd/xfconf-backend-factory.c:
+	  Replace GUINT_TO_POINTER and GPOINTER_TO_UINT with
+	  GSIZE_TO_POINTER and GPOINTER_TO_SIZE respectively. Fixes
+	  segfault on AMD64 (Bug #4881)
+
+2009-01-31 17:38  erenturkay
+
+	* po/ChangeLog, po/tr.po:
+	  Turkish translation update by Gokmen Gorgen and Samed Beyribey
+
+2009-01-26 23:15  piarres
+
+	* po/ChangeLog, po/eu.po:
+	  Trunk Basque translation update
+
+2009-01-26 20:52  majkl
+
+	* po/ChangeLog, po/cs.po:
+	  Czech translation updated
+
+2009-01-26 20:39  maximilian
+
+	* po/ChangeLog, po/LINGUAS, po/uk.po:
+	  Translations updates - ca fr uk
+
+2009-01-26 12:57  jannis
+
+	* ChangeLog:
+	  Update ChangeLog.
+
 2009-01-26 12:57  jannis
 
 	* NEWS, po/ChangeLog, po/nl.po, po/zh_CN.po:

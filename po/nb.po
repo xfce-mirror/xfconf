@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-26 02:16-0800\n"
+"POT-Creation-Date: 2009-02-24 01:25+0100\n"
 "PO-Revision-Date: 2008-10-22 00:59+0200\n"
 "Last-Translator: Terje Uriansrud <terje@uriansrud.net>\n"
 "Language-Team: Norwegian Bokmal\n"
@@ -71,7 +71,7 @@ msgstr "Kanalen «%s» finnes ikke"
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Klarte ikke lagre kanal «%s»: %s"
 
-#: xfconfd/xfconf-backend-factory.c:70
+#: xfconfd/xfconf-backend-factory.c:75
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "Klarte ikke å finne Xfconf baksystem av typen «%s»"
@@ -190,77 +190,69 @@ msgstr "Eksport metode er ikke implementert ennå"
 msgid "Export not yet implemented"
 msgstr "Eksport ikke implementert ennå"
 
-#: xfconf-query/main.c:182
+#: xfconf-query/main.c:191
 msgid "Version information"
 msgstr "Versjonsinformasjon"
 
-#: xfconf-query/main.c:186
+#: xfconf-query/main.c:195
 msgid "The channel to query/modify"
 msgstr "Kanalen å søke/endre"
 
-#: xfconf-query/main.c:190
+#: xfconf-query/main.c:199
 msgid "The property to query/modify"
 msgstr "Egenskapen å søke/endre"
 
-#: xfconf-query/main.c:194
+#: xfconf-query/main.c:203
 msgid "The new value to set for the property"
 msgstr "Den nye verdien for egenskap"
 
-#: xfconf-query/main.c:198
+#: xfconf-query/main.c:207
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Vis egenskapene (eller kanalene hvis -c ikke er angitt))"
 
-#: xfconf-query/main.c:202
+#: xfconf-query/main.c:211
 msgid "Verbose output"
 msgstr "Fullstendig logg"
 
-#: xfconf-query/main.c:206
+#: xfconf-query/main.c:215
 msgid "Create a new property if it does not already exist"
 msgstr "Lag ny egenskap hvis den ikke allerede finnes"
 
-#: xfconf-query/main.c:210
+#: xfconf-query/main.c:219
 msgid "Specify the property value type"
 msgstr "Angi egenskapens type verdi"
 
-#: xfconf-query/main.c:214
+#: xfconf-query/main.c:223
 msgid "Reset property"
 msgstr "Nullstill egenskap"
 
-#: xfconf-query/main.c:218
+#: xfconf-query/main.c:227
 msgid "Recursive (use with -r)"
 msgstr "Rekursiv (bruk med -r)"
 
-#: xfconf-query/main.c:222
+#: xfconf-query/main.c:231
 msgid "Force array even if only one element"
 msgstr "Tving tabell selv hvis bare ett element"
 
-#: xfconf-query/main.c:226
-msgid "Export channel to file"
-msgstr "Eksporter kanal til fil"
-
-#: xfconf-query/main.c:230
-msgid "Import channel from file"
-msgstr "Importer kanal fra fil"
-
-#: xfconf-query/main.c:234
+#: xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
 msgstr "Overvåk kanal for egenskapsendringer"
 
-#: xfconf-query/main.c:335
+#: xfconf-query/main.c:349
 #, c-format
 msgid "Start monitoring channel '%s':"
 msgstr "Start overvåking av kanal '%s':"
 
-#: xfconf-query/main.c:357
+#: xfconf-query/main.c:371
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
 msgstr "Egenskapen «%s» finnes ikke på kanal «%s»\n"
 
-#: xfconf-query/main.c:365 xfconf-query/main.c:383
+#: xfconf-query/main.c:379 xfconf-query/main.c:397
 msgid "(unknown)"
 msgstr "(ukjent)"
 
-#: xfconf-query/main.c:374
+#: xfconf-query/main.c:388
 #, c-format
 msgid ""
 "Value is an array with %d items:\n"
@@ -269,7 +261,7 @@ msgstr ""
 "Verdien er en tabell med %d elementer:\n"
 "\n"
 
-#: xfconf-query/main.c:397
+#: xfconf-query/main.c:411
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
@@ -278,66 +270,72 @@ msgstr ""
 "Egenskapen «%s» finnes ikke i kanal «%s». Hvis du vil\n"
 "lage en ny egenskap, bruk '--create' valget.\n"
 
-#: xfconf-query/main.c:405
+#: xfconf-query/main.c:419
 #, c-format
 msgid "When creating a new property, the value type must be specified.\n"
 msgstr "Ved opprettelse av ny egenskap må type verdi angis.\n"
 
-#: xfconf-query/main.c:415
+#: xfconf-query/main.c:429
 #, c-format
 msgid "Failed to get the existing type for the value.\n"
 msgstr "Klarte ikke hente eksisterende type for verdi.\n"
 
-#: xfconf-query/main.c:433
+#: xfconf-query/main.c:447
 #, c-format
 msgid "Unable to determine the type of the value.\n"
 msgstr "Klarte ikke avgjøre type for verdi.\n"
 
-#: xfconf-query/main.c:439
+#: xfconf-query/main.c:453
 #, c-format
 msgid ""
 "A value type must be specified to change an array into a single value.\n"
 msgstr "Du må angi type for å endre fra tabell til enkeltverdi.\n"
 
-#: xfconf-query/main.c:449 xfconf-query/main.c:511
+#: xfconf-query/main.c:463 xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "Klarte ikke gjøre om «%s» til type «%s»\n"
 
-#: xfconf-query/main.c:456 xfconf-query/main.c:526
+#: xfconf-query/main.c:470 xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "Klarte ikke sett egenskap.\n"
 
-#: xfconf-query/main.c:481
+#: xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
 msgstr "Har %d nye verdier, men kunne bare bestemme %d typer.\n"
 
-#: xfconf-query/main.c:502
+#: xfconf-query/main.c:516
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
 msgstr "Klarte ikke avgjøre type verdi ved indeks %d.\n"
 
-#: xfconf-query/main.c:553
+#: xfconf-query/main.c:567
 #, c-format
 msgid "Channel '%s' contains no properties\n"
 msgstr "Kanal '%s' inneholder ingen egenskaper\n"
 
-#: xfconf-query/main.c:569 xfconf-query/main.c:578
+#: xfconf-query/main.c:583 xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "Klarte ikke lage eksportfil «%s»: %s\n"
 
-#: xfconf-query/main.c:598
+#: xfconf-query/main.c:612
 #, c-format
 msgid "Could not open import file \"%s\": %s\n"
 msgstr "Klarte ikke åpne importfilen «%s»: %s\n"
 
-#: xfconf-query/main.c:607
+#: xfconf-query/main.c:621
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Klarte ikke tolke importfilen «%s»: %s\n"
+
+#~ msgid "Export channel to file"
+#~ msgstr "Eksporter kanal til fil"
+
+#~ msgid "Import channel from file"
+#~ msgstr "Importer kanal fra fil"
 
 #~ msgid "true"
 #~ msgstr "sant"

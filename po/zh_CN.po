@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-26 02:16-0800\n"
+"POT-Creation-Date: 2009-02-24 01:25+0100\n"
 "PO-Revision-Date: 2009-01-26 22:56-0800\n"
 "Last-Translator: Chris K. Zhang <plutino@gmail.com>\n"
 "Language-Team: Simplified Chinese <xfce-i18n@xfce.org>\n"
@@ -70,7 +70,7 @@ msgstr "通道“%s”不存在"
 msgid "Unable to write channel \"%s\": %s"
 msgstr "无法写入通道“%s”：%s"
 
-#: xfconfd/xfconf-backend-factory.c:70
+#: xfconfd/xfconf-backend-factory.c:75
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "找不到“%s”类型的 Xfconf 后台"
@@ -185,77 +185,69 @@ msgstr "还不支持导出功能"
 msgid "Export not yet implemented"
 msgstr "还不支持导出功能"
 
-#: xfconf-query/main.c:182
+#: xfconf-query/main.c:191
 msgid "Version information"
 msgstr "版本信息"
 
-#: xfconf-query/main.c:186
+#: xfconf-query/main.c:195
 msgid "The channel to query/modify"
 msgstr "要查询／修改的通道"
 
-#: xfconf-query/main.c:190
+#: xfconf-query/main.c:199
 msgid "The property to query/modify"
 msgstr "要查询／修改的属性"
 
-#: xfconf-query/main.c:194
+#: xfconf-query/main.c:203
 msgid "The new value to set for the property"
 msgstr "新的属性值"
 
-#: xfconf-query/main.c:198
+#: xfconf-query/main.c:207
 msgid "List properties (or channels if -c is not specified)"
 msgstr "属性列表（如果使用 -c 选项则给出通道列表）"
 
-#: xfconf-query/main.c:202
+#: xfconf-query/main.c:211
 msgid "Verbose output"
 msgstr "详细输出"
 
-#: xfconf-query/main.c:206
+#: xfconf-query/main.c:215
 msgid "Create a new property if it does not already exist"
 msgstr "如果该属性不存在就新建一个"
 
-#: xfconf-query/main.c:210
+#: xfconf-query/main.c:219
 msgid "Specify the property value type"
 msgstr "指定属性值类型"
 
-#: xfconf-query/main.c:214
+#: xfconf-query/main.c:223
 msgid "Reset property"
 msgstr "重置属性"
 
-#: xfconf-query/main.c:218
+#: xfconf-query/main.c:227
 msgid "Recursive (use with -r)"
 msgstr "使用递归（用 -r 选项时使用）"
 
-#: xfconf-query/main.c:222
+#: xfconf-query/main.c:231
 msgid "Force array even if only one element"
 msgstr "即使只有一个元素也使用数组"
 
-#: xfconf-query/main.c:226
-msgid "Export channel to file"
-msgstr "把通道导出到文件"
-
-#: xfconf-query/main.c:230
-msgid "Import channel from file"
-msgstr "从文件导入通道"
-
-#: xfconf-query/main.c:234
+#: xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
 msgstr "监视通道中属性变化"
 
-#: xfconf-query/main.c:335
+#: xfconf-query/main.c:349
 #, c-format
 msgid "Start monitoring channel '%s':"
 msgstr "开始监视通道“%s”："
 
-#: xfconf-query/main.c:357
+#: xfconf-query/main.c:371
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
 msgstr "通道“%2$s”没有属性“%1$s”\n"
 
-#: xfconf-query/main.c:365 xfconf-query/main.c:383
+#: xfconf-query/main.c:379 xfconf-query/main.c:397
 msgid "(unknown)"
 msgstr "（未知）"
 
-#: xfconf-query/main.c:374
+#: xfconf-query/main.c:388
 #, c-format
 msgid ""
 "Value is an array with %d items:\n"
@@ -264,73 +256,79 @@ msgstr ""
 "值是一个%d元素的数组:\n"
 "\n"
 
-#: xfconf-query/main.c:397
+#: xfconf-query/main.c:411
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
 msgstr "通道“%2$s”没有属性“%1$s”。如果你要新建属性，请使用 --create 选项。\n"
 
-#: xfconf-query/main.c:405
+#: xfconf-query/main.c:419
 #, c-format
 msgid "When creating a new property, the value type must be specified.\n"
 msgstr "创建新属性时必须指定数据类型。\n"
 
-#: xfconf-query/main.c:415
+#: xfconf-query/main.c:429
 #, c-format
 msgid "Failed to get the existing type for the value.\n"
 msgstr "无法读出该值的当前类型。\n"
 
-#: xfconf-query/main.c:433
+#: xfconf-query/main.c:447
 #, c-format
 msgid "Unable to determine the type of the value.\n"
 msgstr "无法确定值的类型。\n"
 
-#: xfconf-query/main.c:439
+#: xfconf-query/main.c:453
 #, c-format
 msgid ""
 "A value type must be specified to change an array into a single value.\n"
 msgstr "把数组改为单一值时必须指定值的类型。\n"
 
-#: xfconf-query/main.c:449 xfconf-query/main.c:511
+#: xfconf-query/main.c:463 xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "无法把“%s”转换成类型“%s”\n"
 
-#: xfconf-query/main.c:456 xfconf-query/main.c:526
+#: xfconf-query/main.c:470 xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "无法设置属性。\n"
 
-#: xfconf-query/main.c:481
+#: xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
 msgstr "%d 个新值中，只能确定 %d 个的类型。\n"
 
-#: xfconf-query/main.c:502
+#: xfconf-query/main.c:516
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
 msgstr "无法确定第 %d 个值的类型\n"
 
-#: xfconf-query/main.c:553
+#: xfconf-query/main.c:567
 #, c-format
 msgid "Channel '%s' contains no properties\n"
 msgstr "通道“%s”没有任何属性\n"
 
-#: xfconf-query/main.c:569 xfconf-query/main.c:578
+#: xfconf-query/main.c:583 xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "无法创建导出文件“%s”：%s\n"
 
-#: xfconf-query/main.c:598
+#: xfconf-query/main.c:612
 #, c-format
 msgid "Could not open import file \"%s\": %s\n"
 msgstr "无法打开导入文件“%s”：%s\n"
 
-#: xfconf-query/main.c:607
+#: xfconf-query/main.c:621
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "无法解读导入文件“%s”：%s\n"
+
+#~ msgid "Export channel to file"
+#~ msgstr "把通道导出到文件"
+
+#~ msgid "Import channel from file"
+#~ msgstr "从文件导入通道"
 
 #~ msgid "true"
 #~ msgstr "对"

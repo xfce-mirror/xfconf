@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-26 02:16-0800\n"
+"POT-Creation-Date: 2009-02-24 01:25+0100\n"
 "PO-Revision-Date: 2009-02-04 20:19-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -72,7 +72,7 @@ msgstr "O canal \"%s\" não existe"
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Não é possível escrever o canal \"%s\": %s"
 
-#: xfconfd/xfconf-backend-factory.c:70
+#: xfconfd/xfconf-backend-factory.c:75
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "Não foi possível encontrar o backend do tipo \"%s\""
@@ -195,77 +195,69 @@ msgstr "Método de exportação ainda não implementado"
 msgid "Export not yet implemented"
 msgstr "Exportação ainda não implementada"
 
-#: xfconf-query/main.c:182
+#: xfconf-query/main.c:191
 msgid "Version information"
 msgstr "Informação da versão"
 
-#: xfconf-query/main.c:186
+#: xfconf-query/main.c:195
 msgid "The channel to query/modify"
 msgstr "O canal para consultar/modificar"
 
-#: xfconf-query/main.c:190
+#: xfconf-query/main.c:199
 msgid "The property to query/modify"
 msgstr "A propriedade para consultar/modificar"
 
-#: xfconf-query/main.c:194
+#: xfconf-query/main.c:203
 msgid "The new value to set for the property"
 msgstr "O novo valor a ser atribuído à propriedade"
 
-#: xfconf-query/main.c:198
+#: xfconf-query/main.c:207
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Lista propriedades (ou canais se -c não for especificado)"
 
-#: xfconf-query/main.c:202
+#: xfconf-query/main.c:211
 msgid "Verbose output"
 msgstr "Saída detalhada"
 
-#: xfconf-query/main.c:206
+#: xfconf-query/main.c:215
 msgid "Create a new property if it does not already exist"
 msgstr "Cria uma nova propriedade se ela ainda não existe"
 
-#: xfconf-query/main.c:210
+#: xfconf-query/main.c:219
 msgid "Specify the property value type"
 msgstr "Especificar o tipo de valor da propriedade"
 
-#: xfconf-query/main.c:214
+#: xfconf-query/main.c:223
 msgid "Reset property"
 msgstr "Redefinir propriedade"
 
-#: xfconf-query/main.c:218
+#: xfconf-query/main.c:227
 msgid "Recursive (use with -r)"
 msgstr "Recursivo (use com -r)"
 
-#: xfconf-query/main.c:222
+#: xfconf-query/main.c:231
 msgid "Force array even if only one element"
 msgstr "Forçar matriz mesmo se houver somente um elemento"
 
-#: xfconf-query/main.c:226
-msgid "Export channel to file"
-msgstr "Exportar canal para arquivo"
-
-#: xfconf-query/main.c:230
-msgid "Import channel from file"
-msgstr "Importar canal do arquivo"
-
-#: xfconf-query/main.c:234
+#: xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
 msgstr "Monitorar um canal por modificações de propriedades"
 
-#: xfconf-query/main.c:335
+#: xfconf-query/main.c:349
 #, c-format
 msgid "Start monitoring channel '%s':"
 msgstr "Começar a monitorar o canal  \"%s\":"
 
-#: xfconf-query/main.c:357
+#: xfconf-query/main.c:371
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
 msgstr "A propriedade \"%s\" não existe no canal \"%s\".\n"
 
-#: xfconf-query/main.c:365 xfconf-query/main.c:383
+#: xfconf-query/main.c:379 xfconf-query/main.c:397
 msgid "(unknown)"
 msgstr "(desconhecido)"
 
-#: xfconf-query/main.c:374
+#: xfconf-query/main.c:388
 #, c-format
 msgid ""
 "Value is an array with %d items:\n"
@@ -274,7 +266,7 @@ msgstr ""
 "O valor é uma matriz com %d itens:\n"
 "\n"
 
-#: xfconf-query/main.c:397
+#: xfconf-query/main.c:411
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
@@ -283,23 +275,23 @@ msgstr ""
 "A propriedade \"%s\" não existe no canal \"%s\". Se você deseja\n"
 "criar uma nova propriedade, use a opção --create.\n"
 
-#: xfconf-query/main.c:405
+#: xfconf-query/main.c:419
 #, c-format
 msgid "When creating a new property, the value type must be specified.\n"
 msgstr ""
 "Ao criar uma nova propriedade, é necessário especificar o tipo do valor.\n"
 
-#: xfconf-query/main.c:415
+#: xfconf-query/main.c:429
 #, c-format
 msgid "Failed to get the existing type for the value.\n"
 msgstr "Falha ao obter o tipo atual para o valor.\n"
 
-#: xfconf-query/main.c:433
+#: xfconf-query/main.c:447
 #, c-format
 msgid "Unable to determine the type of the value.\n"
 msgstr "Não foi possível determinar o tipo do valor.\n"
 
-#: xfconf-query/main.c:439
+#: xfconf-query/main.c:453
 #, c-format
 msgid ""
 "A value type must be specified to change an array into a single value.\n"
@@ -307,46 +299,52 @@ msgstr ""
 "É necessário especificar um tipo de valor para mudar uma matriz para um "
 "valor único.\n"
 
-#: xfconf-query/main.c:449 xfconf-query/main.c:511
+#: xfconf-query/main.c:463 xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "Não foi possível converter \"%s\" para tipo \"%s\"\n"
 
-#: xfconf-query/main.c:456 xfconf-query/main.c:526
+#: xfconf-query/main.c:470 xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "Falha ao definir a propriedade.\n"
 
-#: xfconf-query/main.c:481
+#: xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
 msgstr ""
 "Existem %d novos valores, mas somente %d tipos puderam ser determinados.\n"
 
-#: xfconf-query/main.c:502
+#: xfconf-query/main.c:516
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
 msgstr "Não foi possível determinar o tipo do valor no índice %d.\n"
 
-#: xfconf-query/main.c:553
+#: xfconf-query/main.c:567
 #, c-format
 msgid "Channel '%s' contains no properties\n"
 msgstr "O canal \"%s\" não possui propriedades\n"
 
-#: xfconf-query/main.c:569 xfconf-query/main.c:578
+#: xfconf-query/main.c:583 xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "Não foi possível criar o arquivo de exportação \"%s\": %s\n"
 
-#: xfconf-query/main.c:598
+#: xfconf-query/main.c:612
 #, c-format
 msgid "Could not open import file \"%s\": %s\n"
 msgstr "Não foi possível abrir o arquivo de importação \"%s\": %s\n"
 
-#: xfconf-query/main.c:607
+#: xfconf-query/main.c:621
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Não foi possível analisar o arquivo de importação \"%s\": %s\n"
+
+#~ msgid "Export channel to file"
+#~ msgstr "Exportar canal para arquivo"
+
+#~ msgid "Import channel from file"
+#~ msgstr "Importar canal do arquivo"
 
 #~ msgid "true"
 #~ msgstr "true"

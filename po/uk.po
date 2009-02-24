@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-08 18:06-0800\n"
+"POT-Creation-Date: 2009-02-24 01:25+0100\n"
 "PO-Revision-Date: 2009-01-26 17:24+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -15,15 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-
-#: common/xfconf-gvaluefuncs.c:282
-msgid "true"
-msgstr "правда"
-
-#: common/xfconf-gvaluefuncs.c:283
-msgid "false"
-msgstr "брехня"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
@@ -80,7 +73,7 @@ msgstr "Канал \"%s\" не існує"
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Неможливо записати канал \"%s\": %s"
 
-#: xfconfd/xfconf-backend-factory.c:70
+#: xfconfd/xfconf-backend-factory.c:75
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "Неможливо знайти підтримку Xfconf для типу \"%s\""
@@ -124,7 +117,8 @@ msgstr "Назва каналу не може бути порожньою стр
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr "Назви каналів можуть включати тільки ASCII символи A-Z, a-z, 0-9, '_', і '-'"
+msgstr ""
+"Назви каналів можуть включати тільки ASCII символи A-Z, a-z, 0-9, '_', і '-'"
 
 #: xfconfd/xfconf-backend.c:398
 #, c-format
@@ -144,8 +138,8 @@ msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
 msgstr ""
-"Інструменти конфігурації для використання.  Перший визначений інструмент є"
-" відкриття на читання/запис, інші, тільки для читання."
+"Інструменти конфігурації для використання.  Перший визначений інструмент є "
+"відкриття на читання/запис, інші, тільки для читання."
 
 #: xfconfd/main.c:154
 msgid "Xfce Configuration Daemon"
@@ -199,77 +193,70 @@ msgstr "Метод експорту не може бути застосован�
 msgid "Export not yet implemented"
 msgstr "Експорт не може бути застосовано"
 
-#: xfconf-query/main.c:182
+#: xfconf-query/main.c:191
 msgid "Version information"
 msgstr "Інформація про версію"
 
-#: xfconf-query/main.c:186
+#: xfconf-query/main.c:195
 msgid "The channel to query/modify"
 msgstr "Канал для запиту/зміни"
 
-#: xfconf-query/main.c:190
+#: xfconf-query/main.c:199
 msgid "The property to query/modify"
 msgstr "Властивість для запиту/зміни"
 
-#: xfconf-query/main.c:194
+#: xfconf-query/main.c:203
 msgid "The new value to set for the property"
 msgstr "Нове значення призначено для властивості"
 
-#: xfconf-query/main.c:198
-msgid "List properties (or channels if -c isn't specified)"
+#: xfconf-query/main.c:207
+#, fuzzy
+msgid "List properties (or channels if -c is not specified)"
 msgstr "Список властивостей (або каналів, якщо не вказано -c)"
 
-#: xfconf-query/main.c:202
+#: xfconf-query/main.c:211
 msgid "Verbose output"
 msgstr "Докладний вивід"
 
-#: xfconf-query/main.c:206
+#: xfconf-query/main.c:215
 msgid "Create a new property if it does not already exist"
 msgstr "Створити нову властивість, якщо її ще не існує"
 
-#: xfconf-query/main.c:210
+#: xfconf-query/main.c:219
 msgid "Specify the property value type"
 msgstr "Призначити тип значення для властивості"
 
-#: xfconf-query/main.c:214
+#: xfconf-query/main.c:223
 msgid "Reset property"
 msgstr "Скинути властивість"
 
-#: xfconf-query/main.c:218
+#: xfconf-query/main.c:227
 msgid "Recursive (use with -r)"
 msgstr "Постійно (використовується з -r)"
 
-#: xfconf-query/main.c:222
+#: xfconf-query/main.c:231
 msgid "Force array even if only one element"
 msgstr "Застосовувати масив навіть якщо тільки один елемент"
 
-#: xfconf-query/main.c:226
-msgid "Export channel to file"
-msgstr "Експорт каналу в файл"
-
-#: xfconf-query/main.c:230
-msgid "Import channel from file"
-msgstr "Імпорт каналу з файлу"
-
-#: xfconf-query/main.c:234
+#: xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
 msgstr "Спостерігати за зміною властивостей каналу"
 
-#: xfconf-query/main.c:335
+#: xfconf-query/main.c:349
 #, c-format
 msgid "Start monitoring channel '%s':"
 msgstr "Розпочати спостереження каналу '%s':"
 
-#: xfconf-query/main.c:357
+#: xfconf-query/main.c:371
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
 msgstr "Властивість \"%s\" відсутня в каналі \"%s\".\n"
 
-#: xfconf-query/main.c:365 xfconf-query/main.c:383
+#: xfconf-query/main.c:379 xfconf-query/main.c:397
 msgid "(unknown)"
 msgstr "(невідомо)"
 
-#: xfconf-query/main.c:374
+#: xfconf-query/main.c:388
 #, c-format
 msgid ""
 "Value is an array with %d items:\n"
@@ -278,72 +265,84 @@ msgstr ""
 "Значення є в масиві з %d предметами:\n"
 "\n"
 
-#: xfconf-query/main.c:397
-#, c-format
+#: xfconf-query/main.c:411
+#, fuzzy, c-format
 msgid ""
-"Property \"%s\" does not exist on channel \"%s\".  If you would\n"
-"like to create a new property, use the --create option.\n"
+"Property \"%s\" does not exist on channel \"%s\".  If a new\n"
+"property should be created, use the --create option.\n"
 msgstr ""
 "Властивість \"%s\" відсутня на каналі \"%s\".  Якщо Ви хотіли\n"
 "б створити нову властивість, використовуйте опцію --create.\n"
 
-#: xfconf-query/main.c:405
-#, c-format
-msgid "When creating a new property, you must specify the value type.\n"
+#: xfconf-query/main.c:419
+#, fuzzy, c-format
+msgid "When creating a new property, the value type must be specified.\n"
 msgstr "Під час створення властивості Ви повинні визначити тип значення.\n"
 
-#: xfconf-query/main.c:415
-#, c-format
-msgid "Failed to get existing type for value.\n"
+#: xfconf-query/main.c:429
+#, fuzzy, c-format
+msgid "Failed to get the existing type for the value.\n"
 msgstr "Не вдалось отримати тип значення.\n"
 
-#: xfconf-query/main.c:433
-#, c-format
-msgid "Unable to determine type of value.\n"
+#: xfconf-query/main.c:447
+#, fuzzy, c-format
+msgid "Unable to determine the type of the value.\n"
 msgstr "Неможливо визначити тип значення.\n"
 
-#: xfconf-query/main.c:439
-#, c-format
-msgid "You must specify a value type to change an array into a single value.\n"
+#: xfconf-query/main.c:453
+#, fuzzy, c-format
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
 msgstr "Ви мусите визначити тип значення для зміни масиву в одному значенні.\n"
 
-#: xfconf-query/main.c:449 xfconf-query/main.c:511
+#: xfconf-query/main.c:463 xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "Неможливо конвертувати \"%s\" в тип \"%s\"\n"
 
-#: xfconf-query/main.c:456 xfconf-query/main.c:526
+#: xfconf-query/main.c:470 xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "Не вдалось призначити властивість.\n"
 
-#: xfconf-query/main.c:481
+#: xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
 msgstr "Тут є %d нових значень, але тільки %d типів можна визначити.\n"
 
-#: xfconf-query/main.c:502
+#: xfconf-query/main.c:516
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
 msgstr "Неможливо визначити тип значення в індексі %d.\n"
 
-#: xfconf-query/main.c:553
+#: xfconf-query/main.c:567
 #, c-format
 msgid "Channel '%s' contains no properties\n"
 msgstr "Канал '%s' не має властивостей\n"
 
-#: xfconf-query/main.c:569 xfconf-query/main.c:578
+#: xfconf-query/main.c:583 xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "Неможливо створити файл експорту \"%s\": %s\n"
 
-#: xfconf-query/main.c:598
+#: xfconf-query/main.c:612
 #, c-format
 msgid "Could not open import file \"%s\": %s\n"
 msgstr "Неможливо відкрити файл імпорту \"%s\": %s\n"
 
-#: xfconf-query/main.c:607
+#: xfconf-query/main.c:621
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Неможливо розібрати файл імпорту \"%s\": %s\n"
 
+#~ msgid "true"
+#~ msgstr "правда"
+
+#~ msgid "false"
+#~ msgstr "брехня"
+
+#~ msgid "Export channel to file"
+#~ msgstr "Експорт каналу в файл"
+
+#~ msgid "Import channel from file"
+#~ msgstr "Імпорт каналу з файлу"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 0.1.0svn-r27345\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-26 02:16-0800\n"
+"POT-Creation-Date: 2009-02-24 01:25+0100\n"
 "PO-Revision-Date: 2008-07-18 22:37+0200\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German\n"
@@ -75,7 +75,7 @@ msgstr "Der Kanal »%s« ist nicht vorhanden"
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Kann auf Kanal »%s« nicht schreiben: %s"
 
-#: xfconfd/xfconf-backend-factory.c:70
+#: xfconfd/xfconf-backend-factory.c:75
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "Kein Xfconf-Backend auffindbar für Typ »%s«"
@@ -198,79 +198,71 @@ msgstr "Methode zum Exportieren noch nicht implementiert"
 msgid "Export not yet implemented"
 msgstr "Exportieren noch nicht implementiert"
 
-#: xfconf-query/main.c:182
+#: xfconf-query/main.c:191
 msgid "Version information"
 msgstr "Versionsinformation"
 
-#: xfconf-query/main.c:186
+#: xfconf-query/main.c:195
 msgid "The channel to query/modify"
 msgstr ""
 
-#: xfconf-query/main.c:190
+#: xfconf-query/main.c:199
 msgid "The property to query/modify"
 msgstr ""
 
-#: xfconf-query/main.c:194
+#: xfconf-query/main.c:203
 #, fuzzy
 msgid "The new value to set for the property"
 msgstr "Ändern oder setzen des Wertes einer Eigenschaft"
 
-#: xfconf-query/main.c:198
+#: xfconf-query/main.c:207
 #, fuzzy
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Eigenschaften aufzählen (oder Kanäle, wenn »-c« nicht angegeben ist)"
 
-#: xfconf-query/main.c:202
+#: xfconf-query/main.c:211
 msgid "Verbose output"
 msgstr "Gesprächige Ausgabe"
 
-#: xfconf-query/main.c:206
+#: xfconf-query/main.c:215
 msgid "Create a new property if it does not already exist"
 msgstr ""
 
-#: xfconf-query/main.c:210
+#: xfconf-query/main.c:219
 msgid "Specify the property value type"
 msgstr "Geben Sie den Wertetyp der Eigenschaft an"
 
-#: xfconf-query/main.c:214
+#: xfconf-query/main.c:223
 msgid "Reset property"
 msgstr "Setze Eigenschaft zurück"
 
-#: xfconf-query/main.c:218
+#: xfconf-query/main.c:227
 msgid "Recursive (use with -r)"
 msgstr "Rekursiv (mit »-r« verwenden)"
 
-#: xfconf-query/main.c:222
+#: xfconf-query/main.c:231
 msgid "Force array even if only one element"
 msgstr "Array erzwingen, auc bei nur einem Element"
 
-#: xfconf-query/main.c:226
-msgid "Export channel to file"
-msgstr "Kanal in Datei exportieren"
-
-#: xfconf-query/main.c:230
-msgid "Import channel from file"
-msgstr "Kanal aus Datei importieren"
-
-#: xfconf-query/main.c:234
+#: xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
 msgstr "Einen Kanal auf Änderungen hin überwachen"
 
-#: xfconf-query/main.c:335
+#: xfconf-query/main.c:349
 #, c-format
 msgid "Start monitoring channel '%s':"
 msgstr "Überwache Kanal »%s«:"
 
-#: xfconf-query/main.c:357
+#: xfconf-query/main.c:371
 #, fuzzy, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
 msgstr "Eigenschaft »%s« ist für den Kanal »%s« nicht vorhanden"
 
-#: xfconf-query/main.c:365 xfconf-query/main.c:383
+#: xfconf-query/main.c:379 xfconf-query/main.c:397
 msgid "(unknown)"
 msgstr "(unbekannt)"
 
-#: xfconf-query/main.c:374
+#: xfconf-query/main.c:388
 #, c-format
 msgid ""
 "Value is an array with %d items:\n"
@@ -279,7 +271,7 @@ msgstr ""
 "Wert ist ein Feld mit %d Einträgen:\n"
 "\n"
 
-#: xfconf-query/main.c:397
+#: xfconf-query/main.c:411
 #, fuzzy, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
@@ -288,23 +280,23 @@ msgstr ""
 "Eigenschaft »%s« ist für den Kanal »%s« nicht vorhanden. Möchten Sie\n"
 "eine neue Eigenschaft anlegen, so benutzen Sie die Option »--create«.\n"
 
-#: xfconf-query/main.c:405
+#: xfconf-query/main.c:419
 #, fuzzy, c-format
 msgid "When creating a new property, the value type must be specified.\n"
 msgstr ""
 "Wenn Sie eine neue Eigenschaft anlegen, müssen Sie den Wertetyp angeben.\n"
 
-#: xfconf-query/main.c:415
+#: xfconf-query/main.c:429
 #, fuzzy, c-format
 msgid "Failed to get the existing type for the value.\n"
 msgstr "Konnte vorhandenen Typ des Werts nicht bekommen.\n"
 
-#: xfconf-query/main.c:433
+#: xfconf-query/main.c:447
 #, fuzzy, c-format
 msgid "Unable to determine the type of the value.\n"
 msgstr "Kann Wertetyp nicht bestimmen\n"
 
-#: xfconf-query/main.c:439
+#: xfconf-query/main.c:453
 #, fuzzy, c-format
 msgid ""
 "A value type must be specified to change an array into a single value.\n"
@@ -312,45 +304,51 @@ msgstr ""
 "Sie müssen einen Wertetyp angeben, um ein Feld in einen einzigen Wert "
 "konvertieren zu können.\n"
 
-#: xfconf-query/main.c:449 xfconf-query/main.c:511
+#: xfconf-query/main.c:463 xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "Kann »%s« nicht in Typ »%s« konvertieren\n"
 
-#: xfconf-query/main.c:456 xfconf-query/main.c:526
+#: xfconf-query/main.c:470 xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "Konnte Eigenschaften nicht setzen.\n"
 
-#: xfconf-query/main.c:481
+#: xfconf-query/main.c:495
 #, fuzzy, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
 msgstr "Habe %d neue Werte, kann aber nur %d Typen erkennen.\n"
 
-#: xfconf-query/main.c:502
+#: xfconf-query/main.c:516
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
 msgstr "Kann Wertetyp bei Index %d nicht bestimmen.\n"
 
-#: xfconf-query/main.c:553
+#: xfconf-query/main.c:567
 #, c-format
 msgid "Channel '%s' contains no properties\n"
 msgstr "Kanal »%s« enthält keine Eigenschaften\n"
 
-#: xfconf-query/main.c:569 xfconf-query/main.c:578
+#: xfconf-query/main.c:583 xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "Konnte Exportdatei »%s« nicht anlegen: %s\n"
 
-#: xfconf-query/main.c:598
+#: xfconf-query/main.c:612
 #, c-format
 msgid "Could not open import file \"%s\": %s\n"
 msgstr "Konnte Importdatei »%s« nicht öffnen: %s\n"
 
-#: xfconf-query/main.c:607
+#: xfconf-query/main.c:621
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Konnte Importdatei »%s« nicht ordnungsgemäß lesen: %s\n"
+
+#~ msgid "Export channel to file"
+#~ msgstr "Kanal in Datei exportieren"
+
+#~ msgid "Import channel from file"
+#~ msgstr "Kanal aus Datei importieren"
 
 #~ msgid "true"
 #~ msgstr "wahr"
