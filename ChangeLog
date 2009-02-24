@@ -1,3 +1,12 @@
+2009-02-24 00:46  stephan
+
+	* ChangeLog, NEWS, configure.ac.in, po/ca.po, po/cs.po, po/da.po,
+	  po/de.po, po/es.po, po/eu.po, po/fi.po, po/fr.po, po/hu.po,
+	  po/id.po, po/ja.po, po/nb.po, po/nl.po, po/pt_BR.po, po/ro.po,
+	  po/ru.po, po/sv.po, po/tr.po, po/uk.po, po/xfconf.pot,
+	  po/zh_CN.po:
+	  ==== Xfce 4.6.0 Released ====
+
 2009-02-23 09:08  stephan
 
 	* xfconf-query/main.c:
