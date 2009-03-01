@@ -8,15 +8,14 @@ msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-24 01:25+0100\n"
-"PO-Revision-Date: 2009-01-26 17:24+0200\n"
+"PO-Revision-Date: 2009-02-24 20:24+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
@@ -117,8 +116,7 @@ msgstr "Назва каналу не може бути порожньою стр
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"Назви каналів можуть включати тільки ASCII символи A-Z, a-z, 0-9, '_', і '-'"
+msgstr "Назви каналів можуть включати тільки ASCII символи A-Z, a-z, 0-9, '_', і '-'"
 
 #: xfconfd/xfconf-backend.c:398
 #, c-format
@@ -210,7 +208,6 @@ msgid "The new value to set for the property"
 msgstr "Нове значення призначено для властивості"
 
 #: xfconf-query/main.c:207
-#, fuzzy
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Список властивостей (або каналів, якщо не вказано -c)"
 
@@ -266,34 +263,33 @@ msgstr ""
 "\n"
 
 #: xfconf-query/main.c:411
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
 msgstr ""
-"Властивість \"%s\" відсутня на каналі \"%s\".  Якщо Ви хотіли\n"
-"б створити нову властивість, використовуйте опцію --create.\n"
+"Властивість \"%s\" відсутня на каналі \"%s\".  Якщо бажаєте\n"
+"створити нову, використовуйте опцію --create.\n"
 
 #: xfconf-query/main.c:419
-#, fuzzy, c-format
+#, c-format
 msgid "When creating a new property, the value type must be specified.\n"
-msgstr "Під час створення властивості Ви повинні визначити тип значення.\n"
+msgstr "Для створення властивості Ви повинні визначити тип значення.\n"
 
 #: xfconf-query/main.c:429
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get the existing type for the value.\n"
-msgstr "Не вдалось отримати тип значення.\n"
+msgstr "Не вдалось отримати існуючий тип для значення.\n"
 
 #: xfconf-query/main.c:447
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine the type of the value.\n"
 msgstr "Неможливо визначити тип значення.\n"
 
 #: xfconf-query/main.c:453
-#, fuzzy, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
-msgstr "Ви мусите визначити тип значення для зміни масиву в одному значенні.\n"
+#, c-format
+msgid "A value type must be specified to change an array into a single value.\n"
+msgstr "Тип значення мусить бути зазначений для зміни масиву в одиночному.\n"
 
 #: xfconf-query/main.c:463 xfconf-query/main.c:525
 #, c-format
@@ -335,14 +331,3 @@ msgstr "Неможливо відкрити файл імпорту \"%s\": %s\n
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Неможливо розібрати файл імпорту \"%s\": %s\n"
 
-#~ msgid "true"
-#~ msgstr "правда"
-
-#~ msgid "false"
-#~ msgstr "брехня"
-
-#~ msgid "Export channel to file"
-#~ msgstr "Експорт каналу в файл"
-
-#~ msgid "Import channel from file"
-#~ msgstr "Імпорт каналу з файлу"

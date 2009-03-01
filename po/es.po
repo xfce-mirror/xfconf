@@ -1,14 +1,14 @@
 # Spanish translation of the xfconf package.
 # Copyright (C) 2008 The Xfce development team.
 # This file is distributed under the same license as the xfconf package.
-# Abel Martín <abel.martin.ruiz@gmail.com>, 2008.
+# Abel Martín <abel.martin.ruiz@gmail.com>, 2008-2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-24 01:25+0100\n"
-"PO-Revision-Date: 2009-01-26 23:15+0100\n"
+"PO-Revision-Date: 2009-02-24 13:39+0100\n"
 "Last-Translator: Abel Martín <abel.martin.ruiz@gmail.com>\n"
 "Language-Team: Spanish/ES <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -64,12 +64,12 @@ msgstr "Tipo no válido para <valor>: \"%s\""
 #: xfconfd/xfconf-backend-perchannel-xml.c:1907
 #, c-format
 msgid "Channel \"%s\" does not exist"
-msgstr "El canal  \"%s\" no existe"
+msgstr "El canal \"%s\" no existe"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1952
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "Imposible escribir canal  \"%s\": %s"
+msgstr "Imposible escribir canal \"%s\": %s"
 
 #: xfconfd/xfconf-backend-factory.c:75
 #, c-format
@@ -92,14 +92,14 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
 msgstr ""
-"Los nombres de propiedad sólo pueden incluir los caracteres ASCII A-Z, a-z, "
+"Los nombres de propiedades sólo pueden incluir los caracteres ASCII A-Z, a-z, "
 "0-9, '_', '-', '<' y '>', y también '/' como separador"
 
 #: xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr ""
-"Los nombres de propiedad no pueden tener dos o más caracteres '/' "
+"Los nombres de propiedades no pueden tener dos o más caracteres '/' "
 "consecutivos"
 
 #: xfconfd/xfconf-backend.c:146
@@ -127,8 +127,8 @@ msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
 msgstr ""
-"El nombre de la propiedad sólo puede ser vacío o \"/\" si se especificó una "
-"reinicialización recursiva"
+"El nombre de la propiedad sólo puede ser vacío o \"/\" si se especificó un "
+"reinicio recursivo"
 
 #: xfconfd/main.c:132
 msgid "Prints the xfconfd version."
@@ -236,7 +236,7 @@ msgstr "Recursivo (usar con -r)"
 
 #: xfconf-query/main.c:231
 msgid "Force array even if only one element"
-msgstr "Forzar a vector incluso si sólo hay un elemento"
+msgstr "Forzar como vector incluso si sólo hay un elemento"
 
 #: xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
@@ -320,7 +320,7 @@ msgstr "Imposible determinar el tipo de valor para el índice %d.\n"
 #: xfconf-query/main.c:567
 #, c-format
 msgid "Channel '%s' contains no properties\n"
-msgstr "El canal \"%s\" no contiene ninguna propiedad\n"
+msgstr "El canal '%s' no contiene ninguna propiedad\n"
 
 #: xfconf-query/main.c:583 xfconf-query/main.c:592
 #, c-format
