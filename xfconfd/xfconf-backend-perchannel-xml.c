@@ -1,7 +1,7 @@
 /*
  *  xfconf
  *
- *  Copyright (c) 2007 Brian Tarricone <bjt23@cornell.edu>
+ *  Copyright (c) 2007-2009 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -1933,6 +1933,19 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
 
     if(fputs("</channel>\n", fp) == EOF)
         goto out;
+
+    if(fflush(fp))
+        goto out;
+
+#if defined(HAVE_FDATASYNC)
+    if(fdatasync(fileno(fp)))
+        goto out;
+#elif defined(HAVE_FSYNC)
+    if(fsync(fileno(fp)))
+        goto out;
+#else
+    sync();
+#endif
 
     if(fclose(fp)) {
         fp = NULL;
