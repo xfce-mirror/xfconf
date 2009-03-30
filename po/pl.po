@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfconf 4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-24 01:25+0100\n"
-"PO-Revision-Date: 2009-03-17 17:49+0100\n"
+"PO-Revision-Date: 2009-03-29 01:08+0100\n"
 "Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -201,7 +201,7 @@ msgstr "Wypisuje listę kanałów lub właściwości (z opcją -c)"
 
 #: xfconf-query/main.c:211
 msgid "Verbose output"
-msgstr "Zwiększa ilość wypisywanych informacji"
+msgstr "Wypisuje bardziej szczegółowe komunikaty"
 
 #: xfconf-query/main.c:215
 msgid "Create a new property if it does not already exist"
