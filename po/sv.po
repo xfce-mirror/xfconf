@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-24 01:25+0100\n"
+"POT-Creation-Date: 2009-04-07 23:25+0200\n"
 "PO-Revision-Date: 2009-02-01 19:16+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -66,7 +66,7 @@ msgstr "Ogiltig typ för <value>: \"%s\""
 msgid "Channel \"%s\" does not exist"
 msgstr "Kanalen \"%s\" finns inte"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1952
+#: xfconfd/xfconf-backend-perchannel-xml.c:1965
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Kunde inte skriva kanalen \"%s\": %s"

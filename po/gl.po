@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: xfce-i18n@xfce.org\n"
-"POT-Creation-Date: 2009-02-24 01:25+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-04-07 23:25+0200\n"
 "PO-Revision-Date: 2009-03-08 00:34+0100\n"
 "Last-Translator: Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
@@ -25,8 +25,7 @@ msgstr ""
 msgid "Unable to create configuration directory \"%s\""
 msgstr "Non é posible crear o directorio de datos '%s': %s"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:328
-#: xfconfd/xfconf-daemon.c:244
+#: xfconfd/xfconf-backend-perchannel-xml.c:328 xfconfd/xfconf-daemon.c:244
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr ""
@@ -71,7 +70,7 @@ msgstr "valor '%s' non válido para o tipo de icona"
 msgid "Channel \"%s\" does not exist"
 msgstr "O programa '%s' non existe"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1952
+#: xfconfd/xfconf-backend-perchannel-xml.c:1965
 #, fuzzy, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Non é posible escribir no dispositivo %s"
@@ -79,7 +78,9 @@ msgstr "Non é posible escribir no dispositivo %s"
 #: xfconfd/xfconf-backend-factory.c:75
 #, fuzzy, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Non se pode encontrar o tipo de monitorización do directorio local predeterminado"
+msgstr ""
+"Non se pode encontrar o tipo de monitorización do directorio local "
+"predeterminado"
 
 #: xfconfd/xfconf-backend.c:103
 #, c-format
@@ -89,11 +90,15 @@ msgstr "Os nomes das propiedades deben comezar cun caracter '/'"
 #: xfconfd/xfconf-backend.c:112
 #, fuzzy, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr "'%s' non é un carácter válido despois do nome de elemento de peche '%s'; o carácter permitido é '>'"
+msgstr ""
+"'%s' non é un carácter válido despois do nome de elemento de peche '%s'; o "
+"carácter permitido é '>'"
 
 #: xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
 msgstr ""
 
 #: xfconfd/xfconf-backend.c:135
@@ -113,12 +118,16 @@ msgstr "O nome do programa de inicio non pode estar baleiro"
 
 #: xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
 msgstr ""
 
 #: xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
 msgstr ""
 
 #: xfconfd/main.c:132
@@ -127,7 +136,9 @@ msgid "Prints the xfconfd version."
 msgstr "Usar a versión en liña"
 
 #: xfconfd/main.c:134
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
 msgstr ""
 
 #: xfconfd/main.c:154
@@ -246,8 +257,7 @@ msgstr "_Editar atributos da canle..."
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
 msgstr ""
 
-#: xfconf-query/main.c:379
-#: xfconf-query/main.c:397
+#: xfconf-query/main.c:379 xfconf-query/main.c:397
 msgid "(unknown)"
 msgstr "(descoñecido)"
 
@@ -282,17 +292,16 @@ msgstr "Non foi posible determinar o tipo do valor.\n"
 
 #: xfconf-query/main.c:453
 #, c-format
-msgid "A value type must be specified to change an array into a single value.\n"
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
 msgstr ""
 
-#: xfconf-query/main.c:463
-#: xfconf-query/main.c:525
+#: xfconf-query/main.c:463 xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "Non foi posible converter \"%s\" ó tipo \"%s\"\n"
 
-#: xfconf-query/main.c:470
-#: xfconf-query/main.c:540
+#: xfconf-query/main.c:470 xfconf-query/main.c:540
 #, fuzzy, c-format
 msgid "Failed to set property.\n"
 msgstr "Fallo ó definir CairoRenderContext"
@@ -312,8 +321,7 @@ msgstr ""
 msgid "Channel '%s' contains no properties\n"
 msgstr "O documento non contén páxinas"
 
-#: xfconf-query/main.c:583
-#: xfconf-query/main.c:592
+#: xfconf-query/main.c:583 xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "Non se puido crear o ficheiro de exportación \"%s\": %s\n"
@@ -335,8 +343,9 @@ msgstr "Non se puido analizar o ficheiro de importación \"%s\": %s\n"
 #, fuzzy
 #~ msgid "Import channel from file"
 #~ msgstr "_Importar configuracións desde un ficheiro..."
+
 #~ msgid "false"
 #~ msgstr "falso"
+
 #~ msgid "Create new entry"
 #~ msgstr "Crear unha nova entrada"
-

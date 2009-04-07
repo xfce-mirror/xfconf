@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-24 01:25+0100\n"
+"POT-Creation-Date: 2009-04-07 23:25+0200\n"
 "PO-Revision-Date: 2008-10-22 00:59+0200\n"
 "Last-Translator: Terje Uriansrud <terje@uriansrud.net>\n"
 "Language-Team: Norwegian Bokmal\n"
@@ -66,7 +66,7 @@ msgstr "Ugyldig type for <value>: «%s»"
 msgid "Channel \"%s\" does not exist"
 msgstr "Kanalen «%s» finnes ikke"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1952
+#: xfconfd/xfconf-backend-perchannel-xml.c:1965
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Klarte ikke lagre kanal «%s»: %s"

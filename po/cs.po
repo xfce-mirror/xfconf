@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 0.1.0svn-r28490\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-24 01:25+0100\n"
+"POT-Creation-Date: 2009-04-07 23:25+0200\n"
 "PO-Revision-Date: 2009-01-26 21:50+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech\n"
@@ -66,7 +66,7 @@ msgstr "Neplatný typ pro <value>: „%s“"
 msgid "Channel \"%s\" does not exist"
 msgstr "Kanál „%s“ neexistuje"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1952
+#: xfconfd/xfconf-backend-perchannel-xml.c:1965
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Nelze zapsat kanál „%s“: %s"

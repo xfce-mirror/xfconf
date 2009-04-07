@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-24 01:25+0100\n"
+"POT-Creation-Date: 2009-04-07 23:25+0200\n"
 "PO-Revision-Date: 2009-02-01 11:34+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
@@ -67,7 +67,7 @@ msgstr "Tipus de <valor> invàlid: «%s»"
 msgid "Channel \"%s\" does not exist"
 msgstr "El canal «%s» no existeix"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1952
+#: xfconfd/xfconf-backend-perchannel-xml.c:1965
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "No s'ha pogut escriure al canal «%s»: %s"

@@ -6,20 +6,20 @@
 # ??? Jannis Pohlmann <jannis@xfce.org>, 2008 ???
 # Fabian Nowak <timystery@arcor.de>, 2009.
 # Simon Schneider <simon@schneiderimtal.de>, 2009
-# 
-# 
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 0.1.0svn-r27345\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-24 01:25+0100\n"
+"POT-Creation-Date: 2009-04-07 23:25+0200\n"
 "PO-Revision-Date: 2009-02-25 09:02+0000\n"
 "Last-Translator: Simon Schneider <simon@schneiderimtal.de>\n"
 "Language-Team: German <xfce4-i18n-de@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:280
 #, fuzzy, c-format
@@ -73,7 +73,7 @@ msgstr "Ungültiger Typ für <wert>: »%s«"
 msgid "Channel \"%s\" does not exist"
 msgstr "Der Kanal »%s« ist nicht vorhanden"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1952
+#: xfconfd/xfconf-backend-perchannel-xml.c:1965
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Kann auf Kanal »%s« nicht schreiben: %s"

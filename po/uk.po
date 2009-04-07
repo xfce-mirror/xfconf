@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-24 01:25+0100\n"
+"POT-Creation-Date: 2009-04-07 23:25+0200\n"
 "PO-Revision-Date: 2009-02-24 20:24+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -15,7 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
@@ -67,7 +68,7 @@ msgstr "Неправильний тип для <value>: \"%s\""
 msgid "Channel \"%s\" does not exist"
 msgstr "Канал \"%s\" не існує"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1952
+#: xfconfd/xfconf-backend-perchannel-xml.c:1965
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Неможливо записати канал \"%s\": %s"
@@ -116,7 +117,8 @@ msgstr "Назва каналу не може бути порожньою стр
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr "Назви каналів можуть включати тільки ASCII символи A-Z, a-z, 0-9, '_', і '-'"
+msgstr ""
+"Назви каналів можуть включати тільки ASCII символи A-Z, a-z, 0-9, '_', і '-'"
 
 #: xfconfd/xfconf-backend.c:398
 #, c-format
@@ -288,7 +290,8 @@ msgstr "Неможливо визначити тип значення.\n"
 
 #: xfconf-query/main.c:453
 #, c-format
-msgid "A value type must be specified to change an array into a single value.\n"
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
 msgstr "Тип значення мусить бути зазначений для зміни масиву в одиночному.\n"
 
 #: xfconf-query/main.c:463 xfconf-query/main.c:525
@@ -330,4 +333,3 @@ msgstr "Неможливо відкрити файл імпорту \"%s\": %s\n
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Неможливо розібрати файл імпорту \"%s\": %s\n"
-
