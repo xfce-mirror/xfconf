@@ -3,6 +3,7 @@ Xfce 4.6.1
 
   * Be a bit safer when writing out channel xml files: flush data to disk
     using fdatasync()/fsync() before renaming over the old file.
+  * Updated translations: pl, es, it, gl, pl, pt, uk
 
 
 Xfce 4.6.0
