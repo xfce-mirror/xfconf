@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-04-07 23:25+0200\n"
-"PO-Revision-Date: 2009-04-14 22:36+0100\n"
+"PO-Revision-Date: 2009-04-18 13:16+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Non foi posible crear o directorio de configuración \"%s\""
 #: xfconfd/xfconf-daemon.c:244
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr ""
+msgstr "Denegouse o permiso para modificar a propiedade \"%s\" da canle \"%s\""
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:393
 #: xfconfd/xfconf-backend-perchannel-xml.c:475
@@ -37,7 +37,7 @@ msgstr ""
 #: xfconfd/xfconf-backend-perchannel-xml.c:656
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr ""
+msgstr "A propiedade \"%s\" non existe na canle \"%s\""
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:603
 #, c-format
@@ -58,7 +58,7 @@ msgstr "Non foi posible analizar o valor de tipo \"%s\" de \"%s\""
 #: xfconfd/xfconf-backend-perchannel-xml.c:1365
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr ""
+msgstr "O atributo de tipo de <value> non pode ser unha matriz"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1374
 #, c-format
@@ -119,7 +119,7 @@ msgstr "Os nomes das canles só poden incluír os caracteres ASCII A-Z, a-z, 0-9
 #: xfconfd/xfconf-backend.c:398
 #, c-format
 msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr ""
+msgstr "O nome da propiedade só pode estar baleiro ou ser \"/\" se se especificou un restablecemento recursivo"
 
 #: xfconfd/main.c:132
 msgid "Prints the xfconfd version."
@@ -223,7 +223,7 @@ msgstr "Recursivo (usar con -r)"
 
 #: xfconf-query/main.c:231
 msgid "Force array even if only one element"
-msgstr ""
+msgstr "Forzar que sexa unha matriz incluso se só ten un elemento"
 
 #: xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
@@ -250,6 +250,8 @@ msgid ""
 "Value is an array with %d items:\n"
 "\n"
 msgstr ""
+"O valor é unha matriz con %d elementos:\n"
+"\n"
 
 #: xfconf-query/main.c:411
 #, c-format
@@ -257,6 +259,8 @@ msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
 msgstr ""
+"A propiedade \"%s\" non existe na canle \"%s\". Se se\n"
+"debe crear unha nova propiedade, use a opción --create.\n"
 
 #: xfconf-query/main.c:419
 #, c-format
@@ -276,7 +280,7 @@ msgstr "Non foi posible determinar o tipo do valor.\n"
 #: xfconf-query/main.c:453
 #, c-format
 msgid "A value type must be specified to change an array into a single value.\n"
-msgstr ""
+msgstr "Débese especificar un tipo de valor para converter unha matriz nun valor único.\n"
 
 #: xfconf-query/main.c:463
 #: xfconf-query/main.c:525
