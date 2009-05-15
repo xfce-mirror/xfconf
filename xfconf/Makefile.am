@@ -51,14 +51,19 @@ BUILT_SOURCES = \
 	xfconf-dbus-bindings.h
 
 xfconf-dbus-bindings.h: $(top_srcdir)/common/xfconf-dbus.xml Makefile
-	dbus-binding-tool --mode=glib-client $< > $@
-	sed -i -e 's/^\([[:space:]]\+GValue[[:space:]]\+[^=]\)\+;$/\1 = { 0, };/' $@
-# the above line fixes a bug in dbus-binding-tool's output
+	dbus-binding-tool --mode=glib-client $< > $(@).tmp
+	sed -e 's/^\([[:space:]]\+GValue[[:space:]]\+[^=]\+\).*;$$/\1 = { 0, };/' <$(@).tmp >$@
+	-rm -f $(@).tmp
+# the above fixes a bug in dbus-binding-tool's output
 # dbus-binding-tool doesn't initialise GValues to { 0, } properly
 
 if HAVE_GNUC_VISIBILITY
 TESTS = abicheck.sh
 endif
+
+CLEANFILES = \
+	$(BUILT_SOURCES) \
+	xfconf-dbus-bindings.h.tmp
 
 endif
 
