@@ -1,3 +1,10 @@
+Xfce 4.6.2
+==========
+
+  * Speed up startup of many apps that use bindings by retrieving the
+    initial value of the binding asynchronously.
+
+
 Xfce 4.6.1
 ==========
 

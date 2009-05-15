@@ -31,6 +31,7 @@
 #include "xfconf-private.h"
 #include "xfconf-alias.h"
 #include "xfconf-common-private.h"
+#include "xfconf-dbus-bindings.h"
 
 typedef struct
 {
@@ -43,6 +44,9 @@ typedef struct
     GObject *object;
     gchar *object_property;
     GType object_property_type;
+
+    /* async call to get initial value */
+    DBusGProxyCall *call;
 } XfconfGBinding;
 
 typedef struct
@@ -75,6 +79,9 @@ xfconf_g_binding_free(XfconfGBinding *binding)
 {
     if(G_UNLIKELY(!binding))
         return;
+
+    if(G_UNLIKELY(binding->call))
+        dbus_g_proxy_cancel_call(_xfconf_get_dbus_g_proxy(), binding->call);
 
     if(binding->object) {
         g_signal_handlers_disconnect_by_func(G_OBJECT(binding->object),
@@ -282,6 +289,31 @@ xfconf_g_binding_object_property_changed(GObject *object,
     g_value_unset(&dst_val);
 }
 
+static void
+xfconf_g_binding_initial_value_received(DBusGProxy *proxy,
+                                        GValue value,
+                                        GError *error,
+                                        gpointer user_data)
+{
+    XfconfGBinding *binding = user_data;
+
+    binding->call = NULL;
+
+    if(error) {
+        g_warning("Initial query for property \"%s\" failed: %s",
+                  binding->xfconf_property, error->message);
+        g_error_free(error);
+        return;
+    }
+
+    xfconf_g_binding_channel_property_changed(binding->channel,
+                                              binding->xfconf_property,
+                                              &value,
+                                              binding);
+    g_value_unset(&value);
+}
+
+
 static XfconfGBinding *
 xfconf_g_binding_init(XfconfChannel *channel,
                       const gchar *xfconf_property,
@@ -291,9 +323,8 @@ xfconf_g_binding_init(XfconfChannel *channel,
                       GType object_property_type)
 {
     XfconfGBinding *binding;
-    gchar buf[1024];
+    gchar buf[1024], *channel_name = NULL;
     GSList *bindings;
-    GValue value = { 0, };
 
     binding = g_slice_new0(XfconfGBinding);
     binding->channel = channel;
@@ -340,11 +371,13 @@ xfconf_g_binding_init(XfconfChannel *channel,
                                bindings, (GDestroyNotify)g_slist_free);
     }
 
-    if(xfconf_channel_get_property(channel, xfconf_property, &value)) {
-        xfconf_g_binding_channel_property_changed(channel, xfconf_property,
-                                                  &value, binding);
-        g_value_unset(&value);
-    }
+    g_object_get(G_OBJECT(channel), "channel-name", &channel_name, NULL);
+    binding->call = xfconf_client_get_property_async(_xfconf_get_dbus_g_proxy(),
+                                                     channel_name,
+                                                     xfconf_property,
+                                                     xfconf_g_binding_initial_value_received,
+                                                     binding);
+    g_free(channel_name);
 
     binding->id = ++__last_binding_id;
     if(G_UNLIKELY(binding->id == 0)) {
