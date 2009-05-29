@@ -1,0 +1,326 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfconf\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-04-07 23:25+0200\n"
+"PO-Revision-Date: 2009-04-28 20:20+0500\n"
+"Last-Translator: Muhammad Ali Makki <makki.ma@gmail.com>\n"
+"Language-Team: Urdu <makki.ma@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: Urdu\n"
+"X-Poedit-Country: PAKISTAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:280
+#, c-format
+msgid "Unable to create configuration directory \"%s\""
+msgstr "ترتیبات ڈائریکٹری \"%s\" نہیں بنائی جاسکتی"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:328
+#: xfconfd/xfconf-daemon.c:244
+#, c-format
+msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
+msgstr "چینل \"%s\" پر \"%s\" کی خصوصیات تبدیل کرنے کے دوران اجازہ رکاوٹ"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:393
+#: xfconfd/xfconf-backend-perchannel-xml.c:475
+#: xfconfd/xfconf-backend-perchannel-xml.c:636
+#: xfconfd/xfconf-backend-perchannel-xml.c:656
+#, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\""
+msgstr "چینل \"%s\" پر خاصیت \"%s\" نہیں پائی گئی"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:603
+#, c-format
+msgid "Unable to remove channel \"%s\": %s"
+msgstr "چینل حذف کرنے میں ناکامی \"%s\": %s"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1293
+#, c-format
+msgid "Invalid type for <property>: \"%s\""
+msgstr "نا موزوں نوعیت برائے <خاصیت>: \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1309
+#: xfconfd/xfconf-backend-perchannel-xml.c:1385
+#, c-format
+msgid "Unable to parse value of type \"%s\" from \"%s\""
+msgstr "\"%s\" سے نوعیت \"%s\" کی قدر بیان نہیں کی جاسکتی"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1365
+#, c-format
+msgid "The type attribute of <value> cannot be an array"
+msgstr "نوعیت صفت برائے<value> صف میں نہیں"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1374
+#, c-format
+msgid "Invalid type for <value>: \"%s\""
+msgstr "نا موزوں نوعیت برائے <value>: \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1662
+#: xfconfd/xfconf-backend-perchannel-xml.c:1907
+#, c-format
+msgid "Channel \"%s\" does not exist"
+msgstr "چینل \"%s\" نہیں پایا گیا"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1965
+#, c-format
+msgid "Unable to write channel \"%s\": %s"
+msgstr "چینل نہیں لکھا جاسکتا \"%s\": %s"
+
+#: xfconfd/xfconf-backend-factory.c:75
+#, c-format
+msgid "Unable to find Xfconf backend of type \"%s\""
+msgstr "نوعیت \"%s\" کا Xfconf بیک اینڈ تلاش کرنے میں ناکامی"
+
+#: xfconfd/xfconf-backend.c:103
+#, c-format
+msgid "Property names must start with a '/' character"
+msgstr "لازم ہے کہ خصوصیت کے نام'/' سے شروع ہوں"
+
+#: xfconfd/xfconf-backend.c:112
+#, c-format
+msgid "The root element ('/') is not a valid property name"
+msgstr "روٹ عنصر ('/') موزوں خصوصیت نام نہیں ہے"
+
+#: xfconfd/xfconf-backend.c:126
+#, c-format
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "خصوصیت کے نام میں صرف ASCII حروف ہی ہونے چاہئیں A-Z, a-z, 0-9, '_', '-', '<' اور '>' ساتھ میں '/' بطور جداگار"
+
+#: xfconfd/xfconf-backend.c:135
+#, c-format
+msgid "Property names cannot have two or more consecutive '/' characters"
+msgstr "خصوصیت کے نام میں دو یا اس سے زیادہ متواتر '/' نہیں ہونا چاہیے"
+
+#: xfconfd/xfconf-backend.c:146
+#, c-format
+msgid "Property names cannot end with a '/' character"
+msgstr "خصوصیت کا نام '/' پر ختم نہیں ہونا چاہیے"
+
+#: xfconfd/xfconf-backend.c:163
+#, c-format
+msgid "Channel name cannot be an empty string"
+msgstr "چینل کا نام خالی نہیں ہونا چاہیے"
+
+#: xfconfd/xfconf-backend.c:176
+#, c-format
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgstr "چینل کا نام صرف ASCII حروف پر مشتمل ہونا چاہیے A-Z, a-z, 0-9, '_' اور '-'"
+
+#: xfconfd/xfconf-backend.c:398
+#, c-format
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "خصوصیت کا نام صرف خالی ہوسکتا ہے یا \"/\" اگر تکراری ریزٹ متعین کیا گیا ہو"
+
+#: xfconfd/main.c:132
+msgid "Prints the xfconfd version."
+msgstr "xfconfd ورژن کی طباعت کریں."
+
+#: xfconfd/main.c:134
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "استعمال کے لیے ترتیبات بیک اینڈ. پہلا معینہ بیک ایند پڑھنے/لکھنے کے لیے کھلا ہوا ہے، دوسرا صرف پڑھنے کے لیے."
+
+#: xfconfd/main.c:154
+msgid "Xfce Configuration Daemon"
+msgstr "ایکسفس ترتیبات ڈیمن"
+
+#: xfconfd/main.c:160
+msgid "Xfce configuration daemon"
+msgstr "ایکسفس ترتیبات ڈیمن"
+
+#: xfconfd/main.c:162
+msgid "Report bugs to http://bugs.xfce.org/\n"
+msgstr "بگ رپورٹ کریں تا http://bugs.xfce.org/\n"
+
+#: xfconfd/main.c:165
+#, c-format
+msgid "Error parsing options: %s\n"
+msgstr "اختیارات بیان کرنے میں غلطی: %s\n"
+
+#: xfconfd/xfconf-daemon.c:460
+#, c-format
+msgid "Another Xfconf daemon is already running"
+msgstr "دوسرا Xfconf ڈیمن پہلے ہی چل رہا ہے"
+
+#: xfconfd/xfconf-daemon.c:496
+#, c-format
+msgid "No backends could be started"
+msgstr "کوئی بیک اینڈ نہیں چلایا گیا"
+
+#: xfconf-query/main.c:92
+#, c-format
+msgid "Property '%s' changed: %s\n"
+msgstr "خصوصیت '%s' تبدیل: %s\n"
+
+#: xfconf-query/main.c:97
+#, c-format
+msgid "Property '%s' changed\n"
+msgstr "خصوصیت '%s' تبدیل\n"
+
+#: xfconf-query/main.c:102
+#, c-format
+msgid "Property '%s' removed\n"
+msgstr "خصوصیت '%s' حذف شدہ\n"
+
+#: xfconf-query/main.c:111
+#, c-format
+msgid "Export method not yet implemented"
+msgstr "برآمد میتھڈ ابھی تک لاگو نہیں کیا گیا"
+
+#: xfconf-query/main.c:125
+#, c-format
+msgid "Export not yet implemented"
+msgstr "برآمد ابھی تک لاگو نہیں کی گئی"
+
+#: xfconf-query/main.c:191
+msgid "Version information"
+msgstr "ورژن کی معلومات"
+
+#: xfconf-query/main.c:195
+msgid "The channel to query/modify"
+msgstr "چینل برائے استفسار/تبدیلی"
+
+#: xfconf-query/main.c:199
+msgid "The property to query/modify"
+msgstr "خصوصیت برائے استفسار/تبدیلی"
+
+#: xfconf-query/main.c:203
+msgid "The new value to set for the property"
+msgstr "خصوصیت پر مرتب کرنے کے لیے نئی قدر"
+
+#: xfconf-query/main.c:207
+msgid "List properties (or channels if -c is not specified)"
+msgstr "فہرست خصوصیات (یا چینل اگر -c متعین نہیں ہے)"
+
+#: xfconf-query/main.c:211
+msgid "Verbose output"
+msgstr "پریشان کن ماحاصل"
+
+#: xfconf-query/main.c:215
+msgid "Create a new property if it does not already exist"
+msgstr "اگر پہلے سے موجود نہیں تو نئی خصوصیت بنائیں"
+
+#: xfconf-query/main.c:219
+msgid "Specify the property value type"
+msgstr "خصوصیت کی قدر نوعیت متعین کریں"
+
+#: xfconf-query/main.c:223
+msgid "Reset property"
+msgstr "خصوصیت صاف کریں"
+
+#: xfconf-query/main.c:227
+msgid "Recursive (use with -r)"
+msgstr "تکراری (-r کے ساتھ استعمال)"
+
+#: xfconf-query/main.c:231
+msgid "Force array even if only one element"
+msgstr "صف پر زور دیں چاہے ایک ہی عنصر ہو"
+
+#: xfconf-query/main.c:245
+msgid "Monitor a channel for property changes"
+msgstr "خصوصیت کی تبدیلی کے لیے چینل مانیٹر کریں"
+
+#: xfconf-query/main.c:349
+#, c-format
+msgid "Start monitoring channel '%s':"
+msgstr "چینل '%s' کی مانیٹرنگ شروع کریں:"
+
+#: xfconf-query/main.c:371
+#, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\".\n"
+msgstr "خصوصیت \"%s\" چینل \"%s\" پر موجود نہیں.\n"
+
+#: xfconf-query/main.c:379
+#: xfconf-query/main.c:397
+msgid "(unknown)"
+msgstr "(نامعلوم)"
+
+#: xfconf-query/main.c:388
+#, c-format
+msgid ""
+"Value is an array with %d items:\n"
+"\n"
+msgstr ""
+"قدر %d عناصر کے ساتھ ترتیب میں ہے:\n"
+"\n"
+
+#: xfconf-query/main.c:411
+#, c-format
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\".  If a new\n"
+"property should be created, use the --create option.\n"
+msgstr ""
+"چینل \"%s\" پر خصوصیت \"%s\" موجود نہیں. اگر نئی\n"
+"خصوصیت بنانا لازمی ہو تو --create اختیار استعمال کریں.\n"
+
+#: xfconf-query/main.c:419
+#, c-format
+msgid "When creating a new property, the value type must be specified.\n"
+msgstr "نئی خصوصیت بناتے ہوئے قدر کی نوعیت متعین کرنا لازمی ہے.\n"
+
+#: xfconf-query/main.c:429
+#, c-format
+msgid "Failed to get the existing type for the value.\n"
+msgstr "قدر کی سابقہ نوعیت حاصل کرنے میں ناکامی.\n"
+
+#: xfconf-query/main.c:447
+#, c-format
+msgid "Unable to determine the type of the value.\n"
+msgstr "قدر کی نوعیت کا فیصلہ کرنے میں ناکامی.\n"
+
+#: xfconf-query/main.c:453
+#, c-format
+msgid "A value type must be specified to change an array into a single value.\n"
+msgstr "قدر کی نوعیت متعین کرنا لازمی ہے تاکہ کسی صف کو ایک مفرد قدر میں بدلا جاسکے.\n"
+
+#: xfconf-query/main.c:463
+#: xfconf-query/main.c:525
+#, c-format
+msgid "Unable to convert \"%s\" to type \"%s\"\n"
+msgstr "\"%s\" کو نوعیت \"%s\" میں بدلنے میں ناکامی\n"
+
+#: xfconf-query/main.c:470
+#: xfconf-query/main.c:540
+#, c-format
+msgid "Failed to set property.\n"
+msgstr "خصوصیت سیٹ کرنے میں غلطی.\n"
+
+#: xfconf-query/main.c:495
+#, c-format
+msgid "There are %d new values, but only %d types could be determined.\n"
+msgstr "یہاں %d نئی قدریں ہیں، مگر صرف %d نوعیت بیان ہوسکتی ہے.\n"
+
+#: xfconf-query/main.c:516
+#, c-format
+msgid "Unable to determine type of value at index %d.\n"
+msgstr "فہرست %d پر قدر کی نوعیت کا فیصلہ کرنے میں ناکامی.\n"
+
+#: xfconf-query/main.c:567
+#, c-format
+msgid "Channel '%s' contains no properties\n"
+msgstr "چینل '%s' میں کوئی خصوصیات نہیں\n"
+
+#: xfconf-query/main.c:583
+#: xfconf-query/main.c:592
+#, c-format
+msgid "Could not create export file \"%s\": %s\n"
+msgstr "برآمد فائل نہیں بنائی جاسکتی \"%s\": %s\n"
+
+#: xfconf-query/main.c:612
+#, c-format
+msgid "Could not open import file \"%s\": %s\n"
+msgstr "درآمد فائل نہیں کھولی جاسکتی \"%s\": %s\n"
+
+#: xfconf-query/main.c:621
+#, c-format
+msgid "Could not parse import file \"%s\": %s\n"
+msgstr "درآمد فائل بیان نہیں کی جاسکتی \"%s\": %s\n"
+
