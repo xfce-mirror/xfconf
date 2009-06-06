@@ -324,6 +324,7 @@ xfconf_g_binding_init(XfconfChannel *channel,
 {
     XfconfGBinding *binding;
     gchar buf[1024], *channel_name = NULL;
+    gchar *property_base = NULL, *real_property;
     GSList *bindings;
 
     binding = g_slice_new0(XfconfGBinding);
@@ -371,13 +372,25 @@ xfconf_g_binding_init(XfconfChannel *channel,
                                bindings, (GDestroyNotify)g_slist_free);
     }
 
-    g_object_get(G_OBJECT(channel), "channel-name", &channel_name, NULL);
+    g_object_get(G_OBJECT(channel),
+                 "channel-name", &channel_name,
+                 "property-base", &property_base,
+                 NULL);
+    if(property_base)
+        real_property = g_strconcat(property_base, xfconf_property, NULL);
+    else
+        real_property = (gchar *)xfconf_property;
+
     binding->call = xfconf_client_get_property_async(_xfconf_get_dbus_g_proxy(),
                                                      channel_name,
-                                                     xfconf_property,
+                                                     real_property,
                                                      xfconf_g_binding_initial_value_received,
                                                      binding);
     g_free(channel_name);
+    if(property_base) {
+        g_free(property_base);
+        g_free(real_property);
+    }
 
     binding->id = ++__last_binding_id;
     if(G_UNLIKELY(binding->id == 0)) {
