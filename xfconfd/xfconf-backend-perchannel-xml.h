@@ -35,7 +35,7 @@ G_BEGIN_DECLS
 
 typedef struct _XfconfBackendPerchannelXml         XfconfBackendPerchannelXml;
 
-GType xfconf_backend_perchannel_xml_get_type() G_GNUC_CONST;
+GType xfconf_backend_perchannel_xml_get_type(void) G_GNUC_CONST;
 
 G_END_DECLS
 

@@ -33,7 +33,7 @@ G_BEGIN_DECLS
 
 typedef struct _XfconfDaemon         XfconfDaemon;
 
-GType xfconf_daemon_get_type() G_GNUC_CONST;
+GType xfconf_daemon_get_type(void) G_GNUC_CONST;
 
 XfconfDaemon *xfconf_daemon_new_unique(gchar * const *backend_ids,
                                        GError **error);

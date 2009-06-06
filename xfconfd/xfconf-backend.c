@@ -28,10 +28,10 @@
 
 static void xfconf_backend_base_init(gpointer g_class);
 
-static inline gboolean xfconf_property_is_valid(const gchar *property,
-                                                GError **error);
-static inline gboolean xfconf_channel_is_valid(const gchar *channel,
-                                               GError **error);
+static gboolean xfconf_property_is_valid(const gchar *property,
+                                         GError **error);
+static gboolean xfconf_channel_is_valid(const gchar *channel,
+                                        GError **error);
 
 /**
  * XfconfBackendInterface:
@@ -91,7 +91,7 @@ xfconf_backend_base_init(gpointer g_class)
 
 
 
-static inline gboolean
+static gboolean
 xfconf_property_is_valid(const gchar *property,
                          GError **error)
 {
@@ -151,7 +151,7 @@ xfconf_property_is_valid(const gchar *property,
     return TRUE;
 }
 
-static inline gboolean
+static gboolean
 xfconf_channel_is_valid(const gchar *channel,
                         GError **error)
 {

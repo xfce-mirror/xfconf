@@ -52,7 +52,8 @@ xfconf_backend_factory_ensure_backends(void)
     {
         GType *gtype = g_new(GType, 1);
         *gtype = XFCONF_TYPE_BACKEND_PERCHANNEL_XML;
-        g_hash_table_insert(backends, XFCONF_BACKEND_PERCHANNEL_XML_TYPE_ID,
+        g_hash_table_insert(backends,
+                            (gpointer)XFCONF_BACKEND_PERCHANNEL_XML_TYPE_ID,
                             gtype);
     }
 #endif

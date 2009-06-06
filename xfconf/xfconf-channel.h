@@ -37,7 +37,7 @@ G_BEGIN_DECLS
 
 typedef struct _XfconfChannel         XfconfChannel;
 
-GType xfconf_channel_get_type() G_GNUC_CONST;
+GType xfconf_channel_get_type(void) G_GNUC_CONST;
 
 XfconfChannel *xfconf_channel_get(const gchar *channel_name);
 

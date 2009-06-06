@@ -215,9 +215,9 @@ xfconf_uint16_get_type(void)
         NULL,
         ushort_value_copy,
         NULL,
-        "i",
+        (gchar *)"i",
         ushort_value_collect,
-        "p",
+        (gchar *)"p",
         ushort_value_lcopy
     };
 
@@ -273,9 +273,9 @@ xfconf_int16_get_type(void)
         NULL,
         ushort_value_copy,
         NULL,
-        "i",
+        (gchar *)"i",
         ushort_value_collect,
-        "p",
+        (gchar *)"p",
         ushort_value_lcopy
     };
 

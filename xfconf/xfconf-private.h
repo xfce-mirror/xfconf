@@ -28,14 +28,16 @@ typedef struct
     GType *member_types;
 } XfconfNamedStruct;
 
-DBusGConnection *_xfconf_get_dbus_g_connection();
-DBusGProxy *_xfconf_get_dbus_g_proxy();
+DBusGConnection *_xfconf_get_dbus_g_connection(void);
+DBusGProxy *_xfconf_get_dbus_g_proxy(void);
 
 XfconfNamedStruct *_xfconf_named_struct_lookup(const gchar *struct_name);
 
-void _xfconf_channel_shutdown();
+void _xfconf_channel_shutdown(void);
+const gchar *_xfconf_channel_get_name(XfconfChannel *channel);
+const gchar *_xfconf_channel_get_property_base(XfconfChannel *channel);
 
-void _xfconf_g_bindings_init();
-void _xfconf_g_bindings_shutdown();
+void _xfconf_g_bindings_init(void);
+void _xfconf_g_bindings_shutdown(void);
 
 #endif  /* __XFCONF_PRIVATE_H__ */

@@ -31,13 +31,13 @@
 
 G_BEGIN_DECLS
 
-GType xfconf_uint16_get_type() G_GNUC_CONST;
+GType xfconf_uint16_get_type(void) G_GNUC_CONST;
 
 guint16 xfconf_g_value_get_uint16(const GValue *value);
 void xfconf_g_value_set_uint16(GValue *value,
                                guint16 v_uint16);
 
-GType xfconf_int16_get_type() G_GNUC_CONST;
+GType xfconf_int16_get_type(void) G_GNUC_CONST;
 
 gint16 xfconf_g_value_get_int16(const GValue *value);
 void xfconf_g_value_set_int16(GValue *value,

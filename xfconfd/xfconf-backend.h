@@ -118,7 +118,7 @@ struct _XfconfBackendInterface
     void (*_xb_reserved3)();
 };
 
-GType xfconf_backend_get_type() G_GNUC_CONST;
+GType xfconf_backend_get_type(void) G_GNUC_CONST;
 
 gboolean xfconf_backend_initialize(XfconfBackend *backend,
                                    GError **error);
