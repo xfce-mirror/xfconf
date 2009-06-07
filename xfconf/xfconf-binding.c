@@ -300,8 +300,10 @@ xfconf_g_binding_initial_value_received(DBusGProxy *proxy,
     binding->call = NULL;
 
     if(error) {
+#ifdef XFCONF_ENABLE_CHECKS
         g_warning("Initial query for property \"%s\" failed: %s",
                   binding->xfconf_property, error->message);
+#endif
         g_error_free(error);
         return;
     }
