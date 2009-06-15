@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-04-07 23:25+0200\n"
-"PO-Revision-Date: 2009-01-26 22:56-0800\n"
+"PO-Revision-Date: 2009-06-14 02:43+0800\n"
 "Last-Translator: Chris K. Zhang <plutino@gmail.com>\n"
 "Language-Team: Simplified Chinese <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr "<属性>类型无效：“%s”"
 #: xfconfd/xfconf-backend-perchannel-xml.c:1385
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "无法将“%2$s”解读为“%1$s”类型的值"
+msgstr "无法将“%2$s”解析为“%1$s”类型的值"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1365
 #, c-format
@@ -83,7 +83,7 @@ msgstr "属性名称必须以“/”字符开头"
 #: xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr "根元素（“/”）不能做属性名称"
+msgstr "根元素(“/”)不能做属性名称"
 
 #: xfconfd/xfconf-backend.c:126
 #, c-format
@@ -143,12 +143,12 @@ msgstr "Xfce 配置守护进程"
 
 #: xfconfd/main.c:162
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr "请到 http://bugs.xfce.org 报告程序漏洞\n"
+msgstr "请到 http://bugs.xfce.org/ 报告程序漏洞\n"
 
 #: xfconfd/main.c:165
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr "解读选项“%s”时出错。\n"
+msgstr "解析选项“%s”时出错。\n"
 
 #: xfconfd/xfconf-daemon.c:460
 #, c-format
@@ -191,11 +191,11 @@ msgstr "版本信息"
 
 #: xfconf-query/main.c:195
 msgid "The channel to query/modify"
-msgstr "要查询／修改的通道"
+msgstr "要查询/修改的通道"
 
 #: xfconf-query/main.c:199
 msgid "The property to query/modify"
-msgstr "要查询／修改的属性"
+msgstr "要查询/修改的属性"
 
 #: xfconf-query/main.c:203
 msgid "The new value to set for the property"
@@ -203,7 +203,7 @@ msgstr "新的属性值"
 
 #: xfconf-query/main.c:207
 msgid "List properties (or channels if -c is not specified)"
-msgstr "属性列表（如果使用 -c 选项则给出通道列表）"
+msgstr "属性列表(如果使用 -c 选项则给出通道列表)"
 
 #: xfconf-query/main.c:211
 msgid "Verbose output"
@@ -223,7 +223,7 @@ msgstr "重置属性"
 
 #: xfconf-query/main.c:227
 msgid "Recursive (use with -r)"
-msgstr "使用递归（用 -r 选项时使用）"
+msgstr "使用递归(用 -r 选项时使用)"
 
 #: xfconf-query/main.c:231
 msgid "Force array even if only one element"
@@ -236,7 +236,7 @@ msgstr "监视通道中属性变化"
 #: xfconf-query/main.c:349
 #, c-format
 msgid "Start monitoring channel '%s':"
-msgstr "开始监视通道“%s”："
+msgstr "开始监视通道“%s”:"
 
 #: xfconf-query/main.c:371
 #, c-format
@@ -245,7 +245,7 @@ msgstr "通道“%2$s”没有属性“%1$s”\n"
 
 #: xfconf-query/main.c:379 xfconf-query/main.c:397
 msgid "(unknown)"
-msgstr "（未知）"
+msgstr "(未知)"
 
 #: xfconf-query/main.c:388
 #, c-format
@@ -253,7 +253,7 @@ msgid ""
 "Value is an array with %d items:\n"
 "\n"
 msgstr ""
-"值是一个%d元素的数组:\n"
+"值是一个 %d 元素的数组:\n"
 "\n"
 
 #: xfconf-query/main.c:411
@@ -322,7 +322,7 @@ msgstr "无法打开导入文件“%s”：%s\n"
 #: xfconf-query/main.c:621
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
-msgstr "无法解读导入文件“%s”：%s\n"
+msgstr "无法解析导入文件“%s”：%s\n"
 
 #~ msgid "Export channel to file"
 #~ msgstr "把通道导出到文件"
