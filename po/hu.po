@@ -1,325 +1,340 @@
+# Hungarian translation of xfconf
+# Copyright (C) 2009. Free Software Foundation, Inc.
+# This file is distributed under the same license as the xfconf package.
+#
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: untitled\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-07 23:25+0200\n"
-"PO-Revision-Date: \n"
-"Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
-"Language-Team: Hungarian <debian-l10n-hungarian@lists.d.o>\n"
+"POT-Creation-Date: 2009-06-24 02:52+0200\n"
+"PO-Revision-Date: 2009-06-24 02:51+0200\n"
+"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Language-Team: Hungarian <gnome at gnome dot hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n>1;\n"
-"X-Poedit-Language: Hungarian\n"
-"X-Poedit-Country: HUNGARY\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:280
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Nem tudom létrehozni e beállító mappát: \"%s\""
+msgstr "Nem hozható létre a konfigurációs könyvtár („%s”)"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:328 xfconfd/xfconf-daemon.c:244
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:328
+#: ../xfconfd/xfconf-daemon.c:244
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Nincs jogod módosítani \"%s\" tulajdonságot e csatornán: \"%s\""
+msgstr ""
+"Hozzáférés megtagadva a tulajdonság („%s”) módosítása közben a csatornán („%"
+"s”)"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:393
-#: xfconfd/xfconf-backend-perchannel-xml.c:475
-#: xfconfd/xfconf-backend-perchannel-xml.c:636
-#: xfconfd/xfconf-backend-perchannel-xml.c:656
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:393
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:475
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:636
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:656
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr "Nincs \"%s\" tulajdonság e csatornán: \"%s\""
+msgstr "A tulajdonság („%s”) nem létezik a csatornán („%s”)"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:603
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:603
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr "Nem tudom törölni e csatornát: \"%s\": %s"
+msgstr "A csatorna („%s”) nem távolítható el: %s"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1293
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1293
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "Érvénytelen típus ehhez: <property>: \"%s\""
+msgstr "Érvénytelen típus a <property> elemhez: „%s”"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1309
-#: xfconfd/xfconf-backend-perchannel-xml.c:1385
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1309
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1385
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr ""
+msgstr "Nem dolgozható fel a(z) „%s” típusú érték ebből: „%s”"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1365
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1365
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr ""
+msgstr "A <value> típus attribútuma nem lehet tömb"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1374
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1374
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Érvénytelen típus ehhez: <value>: \"%s\""
+msgstr "Érvénytelen típus a <value> elemhez: „%s”"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1662
-#: xfconfd/xfconf-backend-perchannel-xml.c:1907
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1662
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1907
 #, c-format
 msgid "Channel \"%s\" does not exist"
-msgstr ""
+msgstr "A csatorna („%s”) nem létezik"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1965
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1965
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr ""
+msgstr "Nem lehet írni a csatornába („%s”): %s"
 
-#: xfconfd/xfconf-backend-factory.c:75
+#: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr ""
+msgstr "Nem található „%s” típusú Xfconf háttérprogram"
 
-#: xfconfd/xfconf-backend.c:103
+#: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr ""
+msgstr "A tulajdonságneveknek „/” karakterrel kell kezdődniük"
 
-#: xfconfd/xfconf-backend.c:112
+#: ../xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr ""
+msgstr "A gyökérelem („/”) nem érvényes tulajdonságnév"
 
-#: xfconfd/xfconf-backend.c:126
+#: ../xfconfd/xfconf-backend.c:126
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
 msgstr ""
+"A tulajdonságnevek csak a következő ASCII karaktereket tartalmazhatják: A-Z, "
+"a-z, 0-9, „_”, „-”, „<” és „>”, valamint elválasztóként „/”"
 
-#: xfconfd/xfconf-backend.c:135
+#: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr ""
+"A tulajdonságnevekben nem lehet két vagy több egymást követő „/” karakter"
 
-#: xfconfd/xfconf-backend.c:146
+#: ../xfconfd/xfconf-backend.c:146
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr ""
+msgstr "A tulajdonságnevekben nem végződhetnek „/” karakterre"
 
-#: xfconfd/xfconf-backend.c:163
+#: ../xfconfd/xfconf-backend.c:163
 #, c-format
 msgid "Channel name cannot be an empty string"
-msgstr ""
+msgstr "A csatorna neve nem lehet üres karakterlánc"
 
-#: xfconfd/xfconf-backend.c:176
+#: ../xfconfd/xfconf-backend.c:176
 #, c-format
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
 msgstr ""
+"A csatornanevek csak az A-Z, a-z, 0-9, „_” és „-” ASCII karaktereket "
+"tartalmazhatják"
 
-#: xfconfd/xfconf-backend.c:398
+#: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
 msgstr ""
+"A tulajdonságnév csak akkor lehet üres vagy „/”, ha rekurzív visszaállítás "
+"lett megadva"
 
-#: xfconfd/main.c:132
+#: ../xfconfd/main.c:132
 msgid "Prints the xfconfd version."
-msgstr ""
+msgstr "Az xfconfd verziójának kiírása."
 
-#: xfconfd/main.c:134
+#: ../xfconfd/main.c:134
 msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
 msgstr ""
+"A használandó konfigurációs háttérprogram. Az elsőként megadott olvasásra és "
+"írásra, a többi csak olvasásra lesz megnyitva."
 
-#: xfconfd/main.c:154
+#: ../xfconfd/main.c:154
 msgid "Xfce Configuration Daemon"
-msgstr ""
+msgstr "Xfce konfigurációs démon"
 
-#: xfconfd/main.c:160
+#: ../xfconfd/main.c:160
 msgid "Xfce configuration daemon"
-msgstr ""
+msgstr "Xfce konfigurációs démon"
 
-#: xfconfd/main.c:162
+#: ../xfconfd/main.c:162
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr ""
+msgstr "A hibákat a http://bugs.xfce.org/ oldalon jelentse.\n"
 
-#: xfconfd/main.c:165
+#: ../xfconfd/main.c:165
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr ""
+msgstr "Hiba a kapcsolók feldolgozásakor: %s\n"
 
-#: xfconfd/xfconf-daemon.c:460
+#: ../xfconfd/xfconf-daemon.c:460
 #, c-format
 msgid "Another Xfconf daemon is already running"
-msgstr ""
+msgstr "Már fut egy másik Xfconf démon"
 
-#: xfconfd/xfconf-daemon.c:496
+#: ../xfconfd/xfconf-daemon.c:496
 #, c-format
 msgid "No backends could be started"
-msgstr ""
+msgstr "Nem indíthatók háttérprogramok"
 
-#: xfconf-query/main.c:92
+#: ../xfconf-query/main.c:92
 #, c-format
 msgid "Property '%s' changed: %s\n"
-msgstr ""
+msgstr "A tulajdonság („%s”) módosítva: %s\n"
 
-#: xfconf-query/main.c:97
+#: ../xfconf-query/main.c:97
 #, c-format
 msgid "Property '%s' changed\n"
-msgstr ""
+msgstr "A tulajdonság („%s”) módosítva\n"
 
-#: xfconf-query/main.c:102
+#: ../xfconf-query/main.c:102
 #, c-format
 msgid "Property '%s' removed\n"
-msgstr ""
+msgstr "A tulajdonság („%s”) eltávolítva\n"
 
-#: xfconf-query/main.c:111
+#: ../xfconf-query/main.c:111
 #, c-format
 msgid "Export method not yet implemented"
-msgstr ""
+msgstr "Az exportálási módszer még nincs megvalósítva"
 
-#: xfconf-query/main.c:125
+#: ../xfconf-query/main.c:125
 #, c-format
 msgid "Export not yet implemented"
-msgstr ""
+msgstr "Az exportálás még nincs megvalósítva"
 
-#: xfconf-query/main.c:191
+#: ../xfconf-query/main.c:191
 msgid "Version information"
-msgstr ""
+msgstr "Verzióinformációk"
 
-#: xfconf-query/main.c:195
+#: ../xfconf-query/main.c:195
 msgid "The channel to query/modify"
-msgstr ""
+msgstr "A lekérdezendő/módosítandó csatorna"
 
-#: xfconf-query/main.c:199
+#: ../xfconf-query/main.c:199
 msgid "The property to query/modify"
-msgstr ""
+msgstr "A lekérdezendő/módosítandó tulajdonság"
 
-#: xfconf-query/main.c:203
+#: ../xfconf-query/main.c:203
 msgid "The new value to set for the property"
-msgstr ""
+msgstr "A tulajdonságnak beállítandó új érték"
 
-#: xfconf-query/main.c:207
+#: ../xfconf-query/main.c:207
 msgid "List properties (or channels if -c is not specified)"
-msgstr ""
+msgstr "Tulajdonságok felsorolása (a -c hiányában a csatornáké)"
 
-#: xfconf-query/main.c:211
+#: ../xfconf-query/main.c:211
 msgid "Verbose output"
-msgstr ""
+msgstr "Részletes kimenet"
 
-#: xfconf-query/main.c:215
+#: ../xfconf-query/main.c:215
 msgid "Create a new property if it does not already exist"
-msgstr ""
+msgstr "Új tulajdonság létrehozása ha még nem létezik"
 
-#: xfconf-query/main.c:219
+#: ../xfconf-query/main.c:219
 msgid "Specify the property value type"
-msgstr ""
+msgstr "Adja meg a tulajdonságérték típusát"
 
-#: xfconf-query/main.c:223
+#: ../xfconf-query/main.c:223
 msgid "Reset property"
-msgstr ""
+msgstr "Tulajdonság visszaállítása"
 
-#: xfconf-query/main.c:227
+#: ../xfconf-query/main.c:227
 msgid "Recursive (use with -r)"
-msgstr ""
+msgstr "Rekurzív (használja a -r kapcsolóval)"
 
-#: xfconf-query/main.c:231
+#: ../xfconf-query/main.c:231
 msgid "Force array even if only one element"
-msgstr ""
+msgstr "Tömb kényszerítése egy elem esetén is"
 
-#: xfconf-query/main.c:245
+#: ../xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
-msgstr ""
+msgstr "Tulajdonságváltozások figyelése a csatornán"
 
-#: xfconf-query/main.c:349
+#: ../xfconf-query/main.c:349
 #, c-format
 msgid "Start monitoring channel '%s':"
-msgstr ""
+msgstr "„%s” csatorna figyelésének megkezdése:"
 
-#: xfconf-query/main.c:371
+#: ../xfconf-query/main.c:371
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr "Nincs \"%s\" tulajdonság e csatornán: \"%s\".\n"
+msgstr "A tulajdonság („%s”) nem létezik a csatornán („%s”).\n"
 
-#: xfconf-query/main.c:379 xfconf-query/main.c:397
+#: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
 msgid "(unknown)"
-msgstr ""
+msgstr "(ismeretlen)"
 
-#: xfconf-query/main.c:388
+#: ../xfconf-query/main.c:388
 #, c-format
 msgid ""
 "Value is an array with %d items:\n"
 "\n"
 msgstr ""
+"Az érték egy %d elemű tömb:\n"
+"\n"
 
-#: xfconf-query/main.c:411
+#: ../xfconf-query/main.c:411
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
 msgstr ""
+"A tulajdonság („%s”) nem létezik a csatornán („%s”). Ha új tulajdonságot "
+"akar létrehozni, használja a --create kapcsolót.\n"
 
-#: xfconf-query/main.c:419
+#: ../xfconf-query/main.c:419
 #, c-format
 msgid "When creating a new property, the value type must be specified.\n"
-msgstr ""
+msgstr "Új tulajdonság létrehozásakor meg kell adni az értékének típusát.\n"
 
-#: xfconf-query/main.c:429
+#: ../xfconf-query/main.c:429
 #, c-format
 msgid "Failed to get the existing type for the value.\n"
-msgstr ""
+msgstr "Az érték meglévő típusának lekérése meghiúsult.\n"
 
-#: xfconf-query/main.c:447
+#: ../xfconf-query/main.c:447
 #, c-format
 msgid "Unable to determine the type of the value.\n"
-msgstr ""
+msgstr "Nem állapítható meg az érték típusa.\n"
 
-#: xfconf-query/main.c:453
+#: ../xfconf-query/main.c:453
 #, c-format
 msgid ""
 "A value type must be specified to change an array into a single value.\n"
 msgstr ""
+"Meg kell adni az értéktípust a tömb egyetlen értékké változtatásához.\n"
 
-#: xfconf-query/main.c:463 xfconf-query/main.c:525
+#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
-msgstr ""
+msgstr "„%s” nem alakítható „%s” típusúvá\n"
 
-#: xfconf-query/main.c:470 xfconf-query/main.c:540
+#: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
-msgstr ""
+msgstr "A tulajdonság beállítása meghiúsult.\n"
 
-#: xfconf-query/main.c:495
+#: ../xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr ""
+msgstr "%d új érték van, de csak %d típus határozható meg.\n"
 
-#: xfconf-query/main.c:516
+#: ../xfconf-query/main.c:516
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
-msgstr ""
+msgstr "Nem határozható meg a(z) %d indexű érték típusa.\n"
 
-#: xfconf-query/main.c:567
+#: ../xfconf-query/main.c:567
 #, c-format
 msgid "Channel '%s' contains no properties\n"
-msgstr ""
+msgstr "A csatorna („%s”) nem tartalmaz tulajdonságokat\n"
 
-#: xfconf-query/main.c:583 xfconf-query/main.c:592
+#: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
-msgstr ""
+msgstr "Nem hozható létre az exportálási fájl („%s”): %s\n"
 
-#: xfconf-query/main.c:612
+#: ../xfconf-query/main.c:612
 #, c-format
 msgid "Could not open import file \"%s\": %s\n"
-msgstr ""
+msgstr "Az importálási fájl („%s”) nem nyitható meg: %s\n"
 
-#: xfconf-query/main.c:621
+#: ../xfconf-query/main.c:621
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
-msgstr ""
-
-#~ msgid "true"
-#~ msgstr "igaz"
-
-#~ msgid "false"
-#~ msgstr "hamis"
+msgstr "Az importálási fájl („%s”) nem dolgozhatü fel: %s\n"
