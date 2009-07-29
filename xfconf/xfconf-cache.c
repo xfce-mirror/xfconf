@@ -466,6 +466,10 @@ xfconf_cache_set_property_reply_handler(DBusGProxy *proxy,
         g_critical("Couldn't find current cache item based on pending call (libxfconf bug?)");
         goto out;
     }
+
+    g_hash_table_remove(cache->old_properties, old_item->property);
+    /* don't destroy old_item yet */
+    g_hash_table_steal(cache->pending_calls, old_item->call);
     
     /* NULL this out so we don't try to cancel it in the remove function */
     old_item->call = NULL;
@@ -495,10 +499,8 @@ xfconf_cache_set_property_reply_handler(DBusGProxy *proxy,
     }
 
 out:
-    if(old_item) {
-        g_hash_table_remove(cache->old_properties, old_item->property);
-        g_hash_table_remove(cache->pending_calls, old_item->call);
-    }
+    if(old_item)
+        xfconf_cache_old_item_free(old_item);
 
     xfconf_cache_mutex_unlock(&cache->cache_lock);
 }
