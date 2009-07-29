@@ -12,6 +12,8 @@ libxfconfinclude_HEADERS = \
 libxfconf_0_la_SOURCES = \
 	$(libxfconfinclude_HEADERS) \
 	xfconf-binding.c \
+	xfconf-cache.c \
+	xfconc-cache.h \
 	xfconf-channel.c \
 	xfconf-dbus-bindings.h \
 	xfconf-private.h \
@@ -37,6 +39,7 @@ libxfconf_0_la_LDFLAGS = \
 
 libxfconf_0_la_LIBADD = \
 	$(top_builddir)/common/libxfconf-common.la \
+	$(top_builddir)/common/libxfconf-gvaluefuncs.la \
 	$(GLIB_LIBS) \
 	$(DBUS_LIBS) \
 	$(DBUS_GLIB_LIBS)

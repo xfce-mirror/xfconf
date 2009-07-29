@@ -22,6 +22,26 @@
 
 #include <dbus/dbus-glib.h>
 
+#ifdef XFCONF_ENABLE_CHECKS
+
+#define ERROR_DEFINE  GError *___error = NULL
+#define ERROR         &___error
+#define ERROR_CHECK   G_STMT_START{ \
+    if(___error) { \
+        g_warning("Error check failed at %s():%d: %s", __FUNCTION__, __LINE__, \
+                  ___error->message); \
+        g_error_free(___error); \
+    } \
+}G_STMT_END
+
+#else
+
+#define ERROR_DEFINE  G_STMT_START{ }G_STMT_END
+#define ERROR         NULL
+#define ERROR_CHECK   G_STMT_START{ }G_STMT_END
+
+#endif
+
 typedef struct
 {
     guint n_members;

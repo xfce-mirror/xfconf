@@ -26,7 +26,9 @@
 #endif
 
 #include "xfconf-channel.h"
+#include "xfconf-cache.h"
 #include "xfconf-dbus-bindings.h"
+#include "xfconf-gvaluefuncs.h"
 #include "xfconf-private.h"
 #include "xfconf-marshal.h"
 #include "xfconf-types.h"
@@ -34,34 +36,14 @@
 #include "xfconf.h"
 #include "xfconf-alias.h"
 
+#define IS_SINGLETON_DEFAULT  TRUE
+
 #define ALIGN_VAL(val, align)  ( ((val) + ((align) -1)) & ~((align) - 1) )
 
 #define REAL_PROP(channel, property) ( (channel)->property_base \
                                        ? g_strconcat ((channel)->property_base, \
                                                       (property), NULL) \
                                        : (gchar *)(property) )
-
-#define ERROR_DEFINE  GError *___error = NULL
-#define ERROR         &___error
-
-#ifdef XFCONF_ENABLE_CHECKS
-
-#define ERROR_CHECK   G_STMT_START{ \
-    if(___error) { \
-        g_warning("Error check failed at %s():%d: %s", __FUNCTION__, __LINE__, \
-                  ___error->message); \
-        g_error_free(___error); \
-    } \
-}G_STMT_END
-
-#else
-
-#define ERROR_CHECK   G_STMT_START{ \
-    if(___error) \
-        g_error_free(___error); \
-}G_STMT_END
-
-#endif
 
 /**
  * XfconfChannel:
@@ -72,8 +54,12 @@ struct _XfconfChannel
 {
     GObject parent;
 
+    gboolean is_singleton;
+
     gchar *channel_name;
     gchar *property_base;
+
+    XfconfCache *cache;
 };
 
 typedef struct _XfconfChannelClass
@@ -96,8 +82,12 @@ enum
     PROP0 = 0,
     PROP_CHANNEL_NAME,
     PROP_PROPERTY_BASE,
+    PROP_IS_SINGLETON,
 };
 
+static GObject *xfconf_channel_constructor(GType type,
+                                           guint n_construct_properties,
+                                           GObjectConstructParam *construct_properties);
 static void xfconf_channel_set_g_property(GObject *object,
                                           guint property_id,
                                           const GValue *value,
@@ -108,17 +98,14 @@ static void xfconf_channel_get_g_property(GObject *object,
                                           GParamSpec *pspec);
 static void xfconf_channel_finalize(GObject *obj);
 
-static void xfconf_channel_property_changed(DBusGProxy *proxy,
+static void xfconf_channel_property_changed(XfconfCache *cache,
                                             const gchar *channel_name,
                                             const gchar *property,
                                             const GValue *value,
                                             gpointer user_data);
-static void xfconf_channel_property_removed(DBusGProxy *proxy,
-                                            const gchar *channel_name,
-                                            const gchar *property,
-                                            gpointer user_data);
 
 
+G_LOCK_DEFINE_STATIC(__singletons);
 static guint signals[N_SIGS] = { 0, };
 static GHashTable *__channel_singletons = NULL;
 
@@ -131,6 +118,7 @@ xfconf_channel_class_init(XfconfChannelClass *klass)
 {
     GObjectClass *object_class = (GObjectClass *)klass;
 
+    object_class->constructor = xfconf_channel_constructor;
     object_class->set_property = xfconf_channel_set_g_property;
     object_class->get_property = xfconf_channel_get_g_property;
     object_class->finalize = xfconf_channel_finalize;
@@ -193,18 +181,86 @@ xfconf_channel_class_init(XfconfChannelClass *klass)
                                                         | G_PARAM_STATIC_NAME
                                                         | G_PARAM_STATIC_NICK
                                                         | G_PARAM_STATIC_BLURB));
+
+    /**
+     * XfconfChannel::is-singleton:
+     *
+     * Identifies the instance of the class as a singleton instance
+     * or not.  This is mainly used internally by #XfconfChannel
+     * but may be useful for API users.
+     **/
+    g_object_class_install_property(object_class, PROP_IS_SINGLETON,
+                                    g_param_spec_boolean("is-singleton",
+                                                         "Is Singleton",
+                                                         "Whether or not this instance is a singleton",
+                                                         IS_SINGLETON_DEFAULT,
+                                                         G_PARAM_READWRITE
+                                                         | G_PARAM_CONSTRUCT_ONLY
+                                                         | G_PARAM_STATIC_NAME
+                                                         | G_PARAM_STATIC_NICK
+                                                         | G_PARAM_STATIC_BLURB));
 }
 
 static void
 xfconf_channel_init(XfconfChannel *instance)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
-    dbus_g_proxy_connect_signal(proxy, "PropertyChanged",
-                                G_CALLBACK(xfconf_channel_property_changed),
-                                instance, NULL);
-    dbus_g_proxy_connect_signal(proxy, "PropertyRemoved",
-                                G_CALLBACK(xfconf_channel_property_removed),
-                                instance, NULL);
+}
+
+static GObject *
+xfconf_channel_constructor(GType type,
+                           guint n_construct_properties,
+                           GObjectConstructParam *construct_properties)
+{
+    const gchar *channel_name = NULL;
+    gboolean is_singleton = IS_SINGLETON_DEFAULT;
+    guint i;
+    XfconfChannel *channel;
+
+    for(i = 0; i < n_construct_properties; ++i) {
+        if(!strcmp(g_param_spec_get_name(construct_properties[i].pspec), "channel-name"))
+            channel_name = g_value_get_string(construct_properties[i].value);
+        else if(!strcmp(g_param_spec_get_name(construct_properties[i].pspec), "is-singleton"))
+            is_singleton = g_value_get_boolean(construct_properties[i].value);
+    }
+
+    if(G_UNLIKELY(!channel_name)) {
+        g_warning("Assertion 'channel_name != NULL' failed");
+        return NULL;
+    }
+
+    if(is_singleton) {
+        G_LOCK(__singletons);
+
+        if(!__channel_singletons) {
+            __channel_singletons = g_hash_table_new_full(g_str_hash, g_str_equal,
+                                                         (GDestroyNotify)g_free,
+                                                         (GDestroyNotify)g_object_unref);
+        }
+
+        channel = g_hash_table_lookup(__channel_singletons, channel_name);
+        if(!channel) {
+            channel = XFCONF_CHANNEL(G_OBJECT_CLASS(xfconf_channel_parent_class)->constructor(type,
+                                                                                              n_construct_properties,
+                                                                                              construct_properties));
+            g_hash_table_insert(__channel_singletons, g_strdup(channel_name),
+                                channel);
+        }
+
+        G_UNLOCK(__singletons);
+    } else {
+        channel = XFCONF_CHANNEL(G_OBJECT_CLASS(xfconf_channel_parent_class)->constructor(type,
+                                                                                          n_construct_properties,
+                                                                                          construct_properties));
+    }
+
+    if(!channel->cache) {
+        channel->cache = xfconf_cache_get(channel_name);
+        xfconf_cache_prefetch(channel->cache, channel->property_base, NULL);
+        g_signal_connect(channel->cache, "property-changed",
+                         G_CALLBACK(xfconf_channel_property_changed), channel);
+    }
+
+    return G_OBJECT(channel);
 }
 
 static void
@@ -213,13 +269,21 @@ xfconf_channel_set_g_property(GObject *object,
                               const GValue *value,
                               GParamSpec *pspec)
 {
+    XfconfChannel *channel = XFCONF_CHANNEL(object);
+
     switch(property_id) {
         case PROP_CHANNEL_NAME:
-            XFCONF_CHANNEL(object)->channel_name = g_value_dup_string(value);
+            g_assert(channel->channel_name == NULL);
+            channel->channel_name = g_value_dup_string(value);
             break;
 
         case PROP_PROPERTY_BASE:
-            XFCONF_CHANNEL(object)->property_base = g_value_dup_string(value);
+            g_assert(channel->property_base == NULL);
+            channel->property_base = g_value_dup_string(value);
+            break;
+
+        case PROP_IS_SINGLETON:
+            channel->is_singleton = g_value_get_boolean(value);
             break;
 
         default:
@@ -234,14 +298,19 @@ xfconf_channel_get_g_property(GObject *object,
                               GValue *value,
                               GParamSpec *pspec)
 {
+    XfconfChannel *channel = XFCONF_CHANNEL(object);
+
     switch(property_id) {
         case PROP_CHANNEL_NAME:
-            g_value_set_string(value, XFCONF_CHANNEL(object)->channel_name);
+            g_value_set_string(value, channel->channel_name);
             break;
 
         case PROP_PROPERTY_BASE:
-            g_value_set_string(value, XFCONF_CHANNEL(object)->property_base);
+            g_value_set_string(value, channel->property_base);
             break;
+
+        case PROP_IS_SINGLETON:
+            g_value_set_boolean(value, channel->is_singleton);
 
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, pspec);
@@ -253,21 +322,17 @@ static void
 xfconf_channel_finalize(GObject *obj)
 {
     XfconfChannel *channel = XFCONF_CHANNEL(obj);
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
 
-    dbus_g_proxy_disconnect_signal(proxy, "PropertyChanged",
-                                   G_CALLBACK(xfconf_channel_property_changed),
-                                   channel);
-
-    dbus_g_proxy_disconnect_signal(proxy, "PropertyRemoved",
-                                   G_CALLBACK(xfconf_channel_property_removed),
-                                   channel);
+    g_signal_handlers_disconnect_by_func(channel->cache,
+                                         G_CALLBACK(xfconf_channel_property_changed),
+                                         channel);
+    g_object_unref(G_OBJECT(channel->cache));
 
     g_free(channel->channel_name);
     g_free(channel->property_base);
 
-    if(__channel_singletons)
-        g_hash_table_remove(__channel_singletons, channel);
+    /* no need to remove the channel from the hash table if it's a
+     * singleton, since the hash table owns the channel's only reference */
 
     G_OBJECT_CLASS(xfconf_channel_parent_class)->finalize(obj);
 }
@@ -277,15 +342,17 @@ xfconf_channel_finalize(GObject *obj)
 void
 _xfconf_channel_shutdown(void)
 {
+    G_LOCK(__singletons);
     if(G_LIKELY(__channel_singletons)) {
         g_hash_table_destroy(__channel_singletons);
         __channel_singletons = NULL;
     }
+    G_UNLOCK(__singletons);
 }
 
 
 static void
-xfconf_channel_property_changed(DBusGProxy *proxy,
+xfconf_channel_property_changed(XfconfCache *cache,
                                 const gchar *channel_name,
                                 const gchar *property,
                                 const GValue *value,
@@ -310,53 +377,27 @@ xfconf_channel_property_changed(DBusGProxy *proxy,
                   g_quark_from_string(property), property, value);
 }
 
-static void
-xfconf_channel_property_removed(DBusGProxy *proxy,
-                                const gchar *channel_name,
-                                const gchar *property,
-                                gpointer user_data)
-{
-    XfconfChannel *channel = XFCONF_CHANNEL(user_data);
-    GValue value = { 0, };
-
-    if(strcmp(channel_name, channel->channel_name)
-       || (channel->property_base
-           && !g_str_has_prefix(property, channel->property_base)))
-    {
-        return;
-    }
-
-    if(channel->property_base) {
-        property += strlen(channel->property_base);
-        if(!*property)
-            property = "/";
-    }
-
-    g_signal_emit(G_OBJECT(channel), signals[SIG_PROPERTY_CHANGED],
-                  g_quark_from_string(property), property, &value);
-}
-
-
 
 static gboolean
 xfconf_channel_set_internal(XfconfChannel *channel,
                             const gchar *property,
                             GValue *value)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
     gboolean ret;
     gchar *real_property = REAL_PROP(channel, property);
     ERROR_DEFINE;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, FALSE);
 
-    ret = xfconf_client_set_property(proxy, channel->channel_name, real_property,
-                                     value, ERROR);
+    ret = xfconf_cache_set(channel->cache, real_property, value, ERROR);
     if(!ret)
         ERROR_CHECK;
 
     if(real_property != property)
         g_free(real_property);
+
+    if(ret)
+        g_signal_emit(channel, signals[SIG_PROPERTY_CHANGED], 0, property, value);
 
     return ret;
 }
@@ -366,7 +407,6 @@ xfconf_channel_get_internal(XfconfChannel *channel,
                             const gchar *property,
                             GValue *value)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
     GValue tmp_val = { 0, }, *val;
     gboolean ret;
     gchar *real_property = REAL_PROP(channel, property);
@@ -384,8 +424,7 @@ xfconf_channel_get_internal(XfconfChannel *channel,
     else
         val = value;
 
-    ret = xfconf_client_get_property(proxy, channel->channel_name,
-                                     real_property, val, ERROR);
+    ret = xfconf_cache_lookup(channel->cache, real_property, val, ERROR);
     if(!ret)
         ERROR_CHECK;
 
@@ -468,9 +507,7 @@ xfconf_transform_array(GPtrArray *arr_src,
         else if(!g_value_transform(value_src, value_dest)) {
             g_warning("Unable to convert array member %d from type \"%s\" to type \"%s\"",
                       i, G_VALUE_TYPE_NAME(value_src), g_type_name(gtype));
-            /* avoid pulling in all of libxfconf-gvaluefuncs for _xfconf_gvalue_free() */
-            g_value_unset(value_dest);
-            g_free(value_dest);
+            _xfconf_gvalue_free(value_dest);
             /* reuse i; we're returning anyway */
             for(i = 0; i < arr_dest->len; ++i) {
                 g_value_unset(g_ptr_array_index(arr_dest, i));
@@ -498,11 +535,6 @@ xfconf_transform_array(GPtrArray *arr_src,
  *
  * The reference count of the returned channel is owned by libxfconf.
  *
- * In the future, #XfconfChannel may do client-side read caching;
- * users of this function will of course benefit from caching done
- * on behalf of any caller of the function, unlike callers of
- * xfconf_channel_new().
- *
  * Returns: An #XfconfChannel singleton.
  *
  * Since: 4.5.91
@@ -510,27 +542,9 @@ xfconf_transform_array(GPtrArray *arr_src,
 XfconfChannel *
 xfconf_channel_get(const gchar *channel_name)
 {
-    G_LOCK_DEFINE_STATIC(singletons);
-    XfconfChannel *channel;
-
-    G_LOCK(singletons);
-
-    if(G_UNLIKELY(!__channel_singletons)) {
-        __channel_singletons = g_hash_table_new_full(g_str_hash, g_str_equal,
-                                                     (GDestroyNotify)g_free,
-                                                     (GDestroyNotify)g_object_unref);
-    }
-
-    channel = g_hash_table_lookup(__channel_singletons, channel_name);
-    if(!channel) {
-        channel = xfconf_channel_new(channel_name);
-        g_hash_table_insert(__channel_singletons, g_strdup(channel_name),
-                            channel);
-    }
-
-    G_UNLOCK(singletons);
-
-    return channel;
+    return g_object_new(XFCONF_TYPE_CHANNEL,
+                        "channel-name", channel_name,
+                        NULL);
 }
 
 /**
@@ -556,6 +570,7 @@ xfconf_channel_new(const gchar *channel_name)
 {
     return g_object_new(XFCONF_TYPE_CHANNEL,
                         "channel-name", channel_name,
+                        "is-singleton", FALSE,
                         NULL);
 }
 
@@ -582,6 +597,7 @@ xfconf_channel_new_with_property_base(const gchar *channel_name,
     return g_object_new(XFCONF_TYPE_CHANNEL,
                         "channel-name", channel_name,
                         "property-base", property_base,
+                        "is-singleton", FALSE,
                         NULL);
 }
 
@@ -598,17 +614,13 @@ gboolean
 xfconf_channel_has_property(XfconfChannel *channel,
                             const gchar *property)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
-    gboolean exists = FALSE;
+    gboolean exists;
     gchar *real_property = REAL_PROP(channel, property);
     ERROR_DEFINE;
 
-    if(!xfconf_client_property_exists(proxy, channel->channel_name,
-                                      real_property, &exists, ERROR))
-    {
+    exists = xfconf_cache_lookup(channel->cache, real_property, NULL, ERROR);
+    if(!exists)
         ERROR_CHECK;
-        exists = FALSE;
-    }
 
     if(real_property != property)
         g_free(real_property);
@@ -680,7 +692,6 @@ xfconf_channel_reset_property(XfconfChannel *channel,
                               const gchar *property_base,
                               gboolean recursive)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
     gchar *real_property_base = REAL_PROP(channel, property_base);
     ERROR_DEFINE;
 
@@ -688,11 +699,8 @@ xfconf_channel_reset_property(XfconfChannel *channel,
                      ((property_base && property_base[0] && property_base[1])
                       || recursive));
 
-    if(!xfconf_client_reset_property(proxy, channel->channel_name,
-                                     real_property_base, recursive, ERROR))
-    {
+    if(!xfconf_cache_reset(channel->cache, real_property_base, recursive, ERROR))
         ERROR_CHECK;
-    }
 
     if(real_property_base != property_base)
         g_free(real_property_base);

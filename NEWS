@@ -1,3 +1,11 @@
+Xfce 4.7.0
+==========
+
+  * Add prefetching and caching support to XfconfChannel.  Should speed
+    things up a bit on app startup, and avoid blocking waiting on DBus
+    in other cases.
+
+
 Xfce 4.6.2
 ==========
 
