@@ -337,4 +337,4 @@ msgstr "Az importálási fájl („%s”) nem nyitható meg: %s\n"
 #: ../xfconf-query/main.c:621
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
-msgstr "Az importálási fájl („%s”) nem dolgozhatü fel: %s\n"
+msgstr "Az importálási fájl („%s”) nem dolgozható fel: %s\n"
