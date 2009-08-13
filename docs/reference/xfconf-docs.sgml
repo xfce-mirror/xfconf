@@ -1,10 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
-               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY xfconf-General SYSTEM "xfconf-general.xml">
+
+]>
 <book id="index" xmlns:xi="http://www.w3.org/2003/XInclude">
   <bookinfo>
     <title>Xfconf Reference Manual</title>
   </bookinfo>
+
+  <chapter>
+    <title>Xfconf Usage</title>
+    &xfconf-General;
+    <xi:include href="xfconf-general.xml"/>
+    <xi:include href="xfconf-lockdown.xml"/>
+    <xi:include href="xfconf-backends.xml"/>
+  </chapter>
 
   <chapter>
     <title>Xfconf Core Functionality</title>

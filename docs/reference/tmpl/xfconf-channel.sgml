@@ -40,6 +40,11 @@ configuration keys with the same names.
 
 </para>
 
+<!-- ##### ARG XfconfChannel:is-singleton ##### -->
+<para>
+
+</para>
+
 <!-- ##### ARG XfconfChannel:property-base ##### -->
 <para>
 

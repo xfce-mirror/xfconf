@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<article id="xfconf-lockdown" lang="en">
+  <sect1 id="xfconf-lockdown-s">
+    <title>Property Lockdown (Kiosk Mode)</title>
+
+    <para>
+      The Xfconf daemon supports a so-called "kiosk mode" or "lockdown mode"
+      such that certain configuration properties or certain channels can be
+      locked from user modification.  In this case, the locked values are
+      provided by a system administrator in the form of a settings file (in
+      the same format as the user's settings files) in a system read-only
+      location.
+    </para>
+
+    <para>
+      Not all backends may support kiosk/lockdown mode.  Please see the
+      documentation corresponding to your configuration backend for
+      information on how to lock down user configuration values.
+    </para>
+
+    <para>
+      (If you're unsure which backend, you're probably using the
+      "Per-channel XML" backend.)
+    </para>
+  </sect1>
+</article>
