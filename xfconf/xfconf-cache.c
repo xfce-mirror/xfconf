@@ -717,7 +717,6 @@ xfconf_cache_set(XfconfCache *cache,
             {
                 /* this is bad... */
                 g_propagate_error(error, tmp_error);
-                g_error_free(tmp_error);
                 xfconf_cache_mutex_unlock(&cache->cache_lock);
                 return FALSE;
             }
