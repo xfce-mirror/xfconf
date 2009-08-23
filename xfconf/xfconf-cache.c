@@ -711,9 +711,24 @@ xfconf_cache_set(XfconfCache *cache,
         GError *tmp_error = NULL;
 
         if(!xfconf_cache_lookup_locked(cache, property, &tmp_val, &tmp_error)) {
-            if(G_UNLIKELY(tmp_error->domain != XFCONF_ERROR
-                          || (tmp_error->code != XFCONF_ERROR_CHANNEL_NOT_FOUND
-                              && tmp_error->code != XFCONF_ERROR_PROPERTY_NOT_FOUND)))
+            /* this is just another example of dbus-glib's brain-deadedness.
+             * instead of remapping the remote error back into the local
+             * domain and code, it uses DBUS_GERROR as the domain,
+             * DBUS_GERROR_REMOTE_EXCEPTION as the code, and then "hides"
+             * the full string ("org.xfce.Xfconf.Error.Whatever") in
+             * GError::message after a NUL byte.  so stupid. */
+            const gchar *dbus_error_name = NULL;
+
+            if(G_LIKELY(tmp_error->domain == DBUS_GERROR
+                        && tmp_error->code == DBUS_GERROR_REMOTE_EXCEPTION))
+            {
+                dbus_error_name = dbus_g_error_get_name(tmp_error);
+            }
+
+            if(G_UNLIKELY(!dbus_error_name
+                          || strncmp(dbus_error_name, "org.xfce.Xfconf.Error.", 22)
+                          || (strcmp(dbus_error_name+22, "PropertyNotFound")
+                              && strcmp(dbus_error_name+22, "ChannelNotFound"))))
             {
                 /* this is bad... */
                 g_propagate_error(error, tmp_error);
