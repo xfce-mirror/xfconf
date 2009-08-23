@@ -2004,8 +2004,8 @@ xfconf_channel_get_structv(XfconfChannel *channel,
                                    ALIGNOF_GINT16, g_value_get_int);
                 } else {
 #ifdef XFCONF_ENABLE_CHECKS
-                    g_warning("Unable to handle value type %d (%s) when " \
-                              "setting a struct value", member_types[i],
+                    g_warning("Unable to handle value type %ld (%s) when " \
+                              "setting a struct value", (long)member_types[i],
                               g_type_name(member_types[i]));
 #endif
                     goto out;
@@ -2223,8 +2223,8 @@ xfconf_channel_set_structv(XfconfChannel *channel,
                                    ALIGNOF_GINT16, xfconf_g_value_set_int16);
                 } else {
 #ifdef XFCONF_ENABLE_CHECKS
-                    g_warning("Unable to handle value type %d (%s) when " \
-                              "getting a struct value", member_types[i],
+                    g_warning("Unable to handle value type %ld (%s) when " \
+                              "getting a struct value", (long)member_types[i],
                               g_type_name(member_types[i]));
 #endif
                     goto out;
