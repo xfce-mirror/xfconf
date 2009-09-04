@@ -396,9 +396,6 @@ xfconf_channel_set_internal(XfconfChannel *channel,
     if(real_property != property)
         g_free(real_property);
 
-    if(ret)
-        g_signal_emit(channel, signals[SIG_PROPERTY_CHANGED], 0, property, value);
-
     return ret;
 }
 
