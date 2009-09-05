@@ -6,6 +6,12 @@ Xfce 4.7.0
     in other cases.
 
 
+Xfce 4.6.2
+==========
+
+  * Fix compilation using Sun cc (bug 5477).
+
+
 Xfce 4.6.1
 ==========
 
