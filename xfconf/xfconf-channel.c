@@ -333,9 +333,9 @@ xfconf_channel_dispose(GObject *obj)
                                              G_CALLBACK(xfconf_channel_property_changed),
                                              channel);
         g_object_unref(G_OBJECT(channel->cache));
-
-        G_OBJECT_CLASS(xfconf_channel_parent_class)->dispose(obj);
     }
+
+    G_OBJECT_CLASS(xfconf_channel_parent_class)->dispose(obj);
 }
 
 static void
