@@ -24,18 +24,18 @@
 
 G_BEGIN_DECLS
 
-GType _xfconf_gtype_from_string(const gchar *type) G_GNUC_INTERNAL;
-G_CONST_RETURN gchar *_xfconf_string_from_gtype(GType gtype) G_GNUC_INTERNAL;
+G_GNUC_INTERNAL GType _xfconf_gtype_from_string(const gchar *type);
+G_GNUC_INTERNAL G_CONST_RETURN gchar *_xfconf_string_from_gtype(GType gtype);
 
-gboolean _xfconf_gvalue_from_string(GValue *value,
-                                    const gchar *str) G_GNUC_INTERNAL;
+G_GNUC_INTERNAL gboolean _xfconf_gvalue_from_string(GValue *value,
+                                                    const gchar *str);
 
-gchar *_xfconf_string_from_gvalue(GValue *value) G_GNUC_INTERNAL;
+G_GNUC_INTERNAL gchar *_xfconf_string_from_gvalue(GValue *value);
 
-gboolean _xfconf_gvalue_is_equal(const GValue *value1,
-                                 const GValue *value2) G_GNUC_INTERNAL;
+G_GNUC_INTERNAL gboolean _xfconf_gvalue_is_equal(const GValue *value1,
+                                                 const GValue *value2);
 
-void _xfconf_gvalue_free(GValue *value) G_GNUC_INTERNAL;
+G_GNUC_INTERNAL void _xfconf_gvalue_free(GValue *value);
 
 G_END_DECLS
 
