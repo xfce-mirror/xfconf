@@ -54,7 +54,8 @@ struct _XfconfChannel
 {
     GObject parent;
 
-    gboolean is_singleton;
+    guint32 is_singleton:1,
+            disposed:1;
 
     gchar *channel_name;
     gchar *property_base;
@@ -96,6 +97,7 @@ static void xfconf_channel_get_g_property(GObject *object,
                                           guint property_id,
                                           GValue *value,
                                           GParamSpec *pspec);
+static void xfconf_channel_dispose(GObject *obj);
 static void xfconf_channel_finalize(GObject *obj);
 
 static void xfconf_channel_property_changed(XfconfCache *cache,
@@ -121,6 +123,7 @@ xfconf_channel_class_init(XfconfChannelClass *klass)
     object_class->constructor = xfconf_channel_constructor;
     object_class->set_property = xfconf_channel_set_g_property;
     object_class->get_property = xfconf_channel_get_g_property;
+    object_class->dispose = xfconf_channel_dispose;
     object_class->finalize = xfconf_channel_finalize;
 
     /**
@@ -319,14 +322,26 @@ xfconf_channel_get_g_property(GObject *object,
 }
 
 static void
-xfconf_channel_finalize(GObject *obj)
+xfconf_channel_dispose(GObject *obj)
 {
     XfconfChannel *channel = XFCONF_CHANNEL(obj);
 
-    g_signal_handlers_disconnect_by_func(channel->cache,
-                                         G_CALLBACK(xfconf_channel_property_changed),
-                                         channel);
-    g_object_unref(G_OBJECT(channel->cache));
+    if(!channel->disposed) {
+        channel->disposed = TRUE;
+
+        g_signal_handlers_disconnect_by_func(channel->cache,
+                                             G_CALLBACK(xfconf_channel_property_changed),
+                                             channel);
+        g_object_unref(G_OBJECT(channel->cache));
+
+        G_OBJECT_CLASS(xfconf_channel_parent_class)->dispose(obj);
+    }
+}
+
+static void
+xfconf_channel_finalize(GObject *obj)
+{
+    XfconfChannel *channel = XFCONF_CHANNEL(obj);
 
     g_free(channel->channel_name);
     g_free(channel->property_base);
