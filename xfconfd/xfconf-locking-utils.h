@@ -26,7 +26,7 @@ G_BEGIN_DECLS
 
 #define  XFCONF_DBUS_TYPE_G_DOUBLE_ARRAY  (dbus_g_type_get_collection("GArray", G_TYPE_DOUBLE))
 
-gboolean xfconf_user_is_in_list(const gchar *list) G_GNUC_INTERNAL;
+G_GNUC_INTERNAL gboolean xfconf_user_is_in_list(const gchar *list);
 
 G_END_DECLS
 
