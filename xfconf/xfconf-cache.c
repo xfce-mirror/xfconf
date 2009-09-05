@@ -235,8 +235,7 @@ xfconf_cache_class_init(XfconfCacheClass *klass)
 
     signals[SIG_PROPERTY_CHANGED] = g_signal_new("property-changed",
                                                  XFCONF_TYPE_CACHE,
-                                                 G_SIGNAL_RUN_LAST
-                                                 | G_SIGNAL_DETAILED,
+                                                 G_SIGNAL_RUN_LAST,
                                                  G_STRUCT_OFFSET(XfconfCacheClass,
                                                                  property_changed),
                                                  NULL,
@@ -418,8 +417,8 @@ xfconf_cache_property_changed(DBusGProxy *proxy,
     }
 
     if(changed) {
-        g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED],
-                      g_quark_from_string(property), property, value);
+        g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED], 0,
+                      cache->channel_name, property, value);
     }
 }
 
