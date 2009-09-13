@@ -4,7 +4,8 @@ SUBDIRS = \
 	has-properties \
 	get-properties \
 	reset-properties \
-	property-changed-signal
+	property-changed-signal \
+	object-bindings
 #	list-channels
 
 clean-local:

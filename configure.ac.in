@@ -201,6 +201,7 @@ tests/set-properties/Makefile
 tests/has-properties/Makefile
 tests/get-properties/Makefile
 tests/reset-properties/Makefile
+tests/object-bindings/Makefile
 tests/property-changed-signal/Makefile
 xfconf/Makefile
 xfconf/libxfconf-0.pc
