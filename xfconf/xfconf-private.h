@@ -57,7 +57,6 @@ void _xfconf_channel_shutdown(void);
 const gchar *_xfconf_channel_get_name(XfconfChannel *channel);
 const gchar *_xfconf_channel_get_property_base(XfconfChannel *channel);
 
-void _xfconf_g_bindings_init(void);
 void _xfconf_g_bindings_shutdown(void);
 
 #endif  /* __XFCONF_PRIVATE_H__ */

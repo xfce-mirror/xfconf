@@ -146,8 +146,6 @@ xfconf_init(GError **error)
                             G_TYPE_STRING, G_TYPE_STRING,
                             G_TYPE_INVALID);
 
-    _xfconf_g_bindings_init();
-
     ++xfconf_refcnt;
     return TRUE;
 }
@@ -171,8 +169,8 @@ xfconf_shutdown(void)
         return;
     }
 
-    _xfconf_g_bindings_shutdown();
     _xfconf_channel_shutdown();
+    _xfconf_g_bindings_shutdown();
 
     if(named_structs) {
         g_hash_table_destroy(named_structs);
