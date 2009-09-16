@@ -13,7 +13,7 @@ libxfconf_0_la_SOURCES = \
 	$(libxfconfinclude_HEADERS) \
 	xfconf-binding.c \
 	xfconf-cache.c \
-	xfconc-cache.h \
+	xfconf-cache.h \
 	xfconf-channel.c \
 	xfconf-dbus-bindings.h \
 	xfconf-private.h \
