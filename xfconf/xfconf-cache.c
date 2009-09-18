@@ -506,6 +506,7 @@ out:
 
 
 
+#if 0
 static void
 xfconf_cache_reset_property_reply_handler(DBusGProxy *proxy,
                                           DBusGProxyCall *call,
@@ -535,6 +536,7 @@ out:
 
     xfconf_cache_mutex_unlock(&cache->cache_lock);
 }
+#endif
 
 static void
 xfconf_cache_destroyed(gpointer data,
@@ -794,17 +796,42 @@ xfconf_cache_set(XfconfCache *cache,
     return TRUE;
 }
 
+typedef struct
+{
+    gchar *property_base;
+    gsize property_base_len;
+    GSList *matches;
+} XfconfCacheRecurseData;
+
+static gboolean
+xfconf_cache_collect_properties_recursive(gpointer key,
+                                          gpointer value,
+                                          gpointer user_data)
+{
+    gchar *property_name = key;
+    XfconfCacheRecurseData *rdata = user_data;
+
+    if(!g_ascii_strncasecmp(rdata->property_base, property_name, rdata->property_base_len))
+        rdata->matches = g_slist_prepend(rdata->matches, property_name);
+
+    return FALSE;
+}
+
 gboolean
 xfconf_cache_reset(XfconfCache *cache,
                    const gchar *property_base,
                    gboolean recursive,
                    GError **error)
 {
+    gboolean ret = FALSE;
     DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+#if 0
     XfconfCacheOldItem *old_item = NULL;
+#endif
 
     xfconf_cache_mutex_lock(&cache->cache_lock);
 
+#if 0
     /* it's not really feasible here to look up all the old/new values
      * here, so we're just gonna rely on the normal signals from the
      * daemon to notify us of changes */
@@ -819,11 +846,56 @@ xfconf_cache_reset(XfconfCache *cache,
                                              G_TYPE_STRING, property_base,
                                              G_TYPE_BOOLEAN, recursive,
                                              G_TYPE_INVALID);
-    g_hash_table_insert(cache->pending_calls, old_item->call, old_item);
+    if(old_item->call) {
+        g_hash_table_insert(cache->pending_calls, old_item->call, old_item);
+        ret = TRUE;
+    } else {
+        if(error) {
+            g_set_error(error, DBUS_GERROR, DBUS_GERROR_FAILED,
+                        _("Failed to make ResetProperty DBus call"));
+        }
+    }
+#else
+    /* unfortunately, doing the above asynchronously makes
+     * xfconf_channel_has_property() break, because we have no idea at
+     * this point if a reset is going to remove the property or reset
+     * it to a default.  so, we have to do this sync.  sad. */
+
+    ret = xfconf_client_reset_property(proxy, cache->channel_name,
+                                       property_base, recursive, error);
+
+    if(ret) {
+        /* here we just evict the entry from the cache if we have one.
+         * unfortunately i think it's the best we can do here.  this is
+         * pretty slow because we have to traverse the entire tree if
+         * recursive==TRUE. */
+
+        g_tree_remove(cache->properties, property_base);
+
+        if(recursive) {
+            XfconfCacheRecurseData rdata;
+            GSList *l;
+
+            rdata.property_base = g_strdup_printf("%s/", property_base);
+            rdata.property_base_len = strlen(rdata.property_base);
+            rdata.matches = NULL;
+
+            g_tree_foreach(cache->properties,
+                           xfconf_cache_collect_properties_recursive,
+                           &rdata);
+
+            for(l = rdata.matches; l; l = l->next)
+                g_tree_remove(cache->properties, l->data);
+
+            g_free(rdata.property_base);
+            g_slist_free(rdata.matches);
+        }
+    }
+#endif
 
     xfconf_cache_mutex_unlock(&cache->cache_lock);
 
-    return TRUE;
+    return ret;
 }
 
 void
