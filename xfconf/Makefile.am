@@ -70,7 +70,9 @@ CLEANFILES = \
 
 endif
 
-
 EXTRA_DIST = \
 	abicheck.sh \
 	xfconf.symbols
+
+# required for gtk-doc
+dist-hook: all
