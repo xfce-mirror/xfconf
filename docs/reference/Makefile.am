@@ -58,7 +58,8 @@ INCLUDES = \
 	$(GLIB_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(DBUS_CFLAGS) \
-	$(DBUS_GLIB_CFLAGS)
+	$(DBUS_GLIB_CFLAGS) \
+	$(GTK_DOC_EXTRA_CFLAGS)
 
 GTKDOC_LIBS = \
 	$(top_builddir)/xfconf/libxfconf-$(LIBXFCONF_VERSION_API).la \
