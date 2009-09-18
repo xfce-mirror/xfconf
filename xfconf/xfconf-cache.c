@@ -436,8 +436,8 @@ xfconf_cache_property_removed(DBusGProxy *proxy,
 
     g_tree_remove(cache->properties, property);
 
-    g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED],
-                  g_quark_from_string(property), property, &value);
+    g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED], 0,
+                  cache->channel_name, property, &value);
 }
 
 
