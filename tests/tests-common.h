@@ -55,8 +55,6 @@
     } \
 }G_STMT_END
 
-static GPid xfconfd_pid = -1;
-
 /* don't use static to avoid compiler warnings in tests that don't use
  * all of them */
 const gchar *test_string_property = "/test/stringtest/string";
@@ -76,20 +74,13 @@ const gchar *test_array_property = "/test/arrayprop";
 static inline void xfconf_tests_end();
 
 static inline gboolean
-xfconf_tests_start()
+xfconf_tests_start(void)
 {
-    gchar *argv[2] = { XFCONFD, NULL };
     DBusConnection *dbus_conn;
     DBusMessage *msg, *ret;
     DBusError derror;
     GTimeVal start, now;
     GError *error = NULL;
-
-    if(!g_spawn_async(NULL, argv, NULL, 0, NULL, NULL, &xfconfd_pid, &error)) {
-        g_critical("Failed to launch xfconfd (%s): %s", XFCONFD, error->message);
-        g_error_free(error);
-        return FALSE;
-    }
 
     /* wait until xfconfd finishes starting */
     dbus_error_init(&derror);
@@ -132,15 +123,9 @@ xfconf_tests_start()
 }
 
 static inline void
-xfconf_tests_end()
+xfconf_tests_end(void)
 {
     xfconf_shutdown();
-    
-    if(xfconfd_pid != -1) {
-        kill(xfconfd_pid, SIGTERM);
-        waitpid(xfconfd_pid, NULL, 0);
-        xfconfd_pid = -1;
-    }
 }
 
 #endif  /* __XFCONF_TESTS_COMMON_H__ */

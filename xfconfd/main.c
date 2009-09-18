@@ -127,12 +127,16 @@ main(int argc,
     GOptionContext *opt_ctx;
     gchar **backends = NULL;
     gboolean print_version = FALSE;
+    gboolean do_daemon = FALSE;
     GOptionEntry options[] = {
-        { "version", 'V', 0, G_OPTION_ARG_NONE, &print_version,
+        { "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &print_version,
             N_("Prints the xfconfd version."), NULL },
-        { "backends", 'b', 0, G_OPTION_ARG_STRING_ARRAY, &backends,
+        { "backends", 'b', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING_ARRAY, &backends,
             N_("Configuration backends to use.  The first backend specified " \
                "is opened read/write; the others, read-only."), NULL },
+        { "daemon", 0, G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &do_daemon,
+            N_("Fork into background after starting; only useful for " \
+                "testing purposes"), NULL },
         { NULL, 0, 0, 0, 0, NULL, NULL },
     };
 
@@ -208,6 +212,21 @@ main(int argc,
         return EXIT_FAILURE;
     }
     g_strfreev(backends);
+
+    if(do_daemon) {
+        pid_t child_pid;
+
+        child_pid = fork();
+        if(child_pid < 0) {
+            g_printerr("Failed to fork()\n");
+            return 1;
+        } else if(child_pid > 0) {
+            fprintf(stdout, "XFCONFD_PID=%d; export XFCONFD_PID;", child_pid);
+            exit(0);
+        }
+
+        close(fileno(stdout));
+    }
     
     g_main_loop_run(mloop);
     

@@ -1,15 +1,42 @@
 #!/bin/bash
 
+cleanup() {
+    if [ "$XFCONFD_PID" ]; then
+        kill -TERM $XFCONFD_PID 2>/dev/null
+        sleep 1
+        kill -KILL $XFCONFD_PID 2>/dev/null
+    fi
+
+    kill -TERM $DBUS_SESSION_BUS_PID 2>/dev/null
+    sleep 1
+    kill -KILL $DBUS_SESSION_BUS_PID 2>/dev/null
+}
+
+die() {
+    [ "$1" ] && echo "$1" >&2
+    cleanup
+    exit 1
+}
+
+unset DBUS_SESSION_BUS_ADDRESS
+unset DBUS_SESSION_BUS_PID
+unset XFCONFD_PID
+
 eval `dbus-launch --sh-syntax`
 export DBUS_SESSION_BUS_ADDRESS
 export DBUS_SESSION_BUS_PID
 
+[ "$DBUS_SESSION_BUS_PID" ] || die "DBus failed to start"
+
+trap "die Interrupted" INT
+
+eval `$XFCONFD --daemon 2>/dev/null` || die "Failed to start xfconfd"
+
 export XDG_CONFIG_HOME  # make sure it's exported from the makefile
 export XDG_CONFIG_DIRS=""
 
-./@TEST_NAME@
-ret=$?
+./@TEST_NAME@ || die "Test Failed"
 
-kill -TERM $DBUS_SESSION_BUS_PID
+cleanup
 
-exit $ret
+exit 0

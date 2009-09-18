@@ -1,10 +1,9 @@
 check_SCRIPTS = $(addsuffix .sh,$(check_PROGRAMS))
 
 TESTS = $(check_SCRIPTS)
-TESTS_ENVIRONMENT = XDG_CONFIG_HOME="$(top_builddir)/tests/test-xdg_config_home"
+TESTS_ENVIRONMENT = XDG_CONFIG_HOME="$(top_builddir)/tests/test-xdg_config_home" XFCONFD="$(top_builddir)/xfconfd/xfconfd"
 
 AM_CFLAGS = \
-	-DXFCONFD=\"$(top_builddir)/xfconfd/xfconfd\" \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/tests \
 	$(GLIB_CFLAGS) \
