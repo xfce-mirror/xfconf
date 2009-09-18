@@ -484,7 +484,7 @@ xfconf_cache_set_property_reply_handler(DBusGProxy *proxy,
         if(old_item->item)
             xfconf_cache_item_update(item, &old_item->item->value);
         else {
-            g_tree_remove(cache->properties, item);
+            g_tree_remove(cache->properties, old_item->property);
             item = NULL;
         }
 
