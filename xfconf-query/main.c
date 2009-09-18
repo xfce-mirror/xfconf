@@ -277,13 +277,13 @@ main(int argc, char **argv)
 
     if(!g_option_context_parse(context, &argc, &argv, &cli_error))
     {
-        g_print("option parsing failed: %s\n", cli_error->message);
+        g_printerr("option parsing failed: %s\n", cli_error->message);
         return 1;
     }
 
     if(version)
     {
-        g_print("xfconf-query  %s\n", PACKAGE_VERSION);
+        g_print("xfconf-query %s\n", PACKAGE_VERSION);
         return 0;
     }
 
@@ -309,31 +309,31 @@ main(int argc, char **argv)
     /** Check if the property is specified */
     if(!property_name && !list && !export_file && !import_file && !monitor)
     {
-        g_print("No property specified, aborting...\n");
+        g_printerr("No property specified, aborting...\n");
         return 1;
     }
 
     if (create && reset)
     {
-        g_print("--create and --reset options can not be used together,\naborting...\n");
+        g_printerr("--create and --reset options can not be used together,\naborting...\n");
         return 1;
     }
 
     if ((create || reset) && (list))
     {
-        g_print("--create and --reset options can not be used together with\n --list\naborting...\n");
+        g_printerr("--create and --reset options can not be used together with\n --list\naborting...\n");
         return 1;
     }
 
     if (import_file && export_file)
     {
-        g_print("--import and --export options can not be used together,\naborting...\n");
+        g_printerr("--import and --export options can not be used together,\naborting...\n");
         return 1;
     }
 
     if ((import_file || export_file) && (list || property_name || create || reset))
     {
-        g_print("--import and --export options can not be used together with\n --create, --reset, --property and --list,\naborting...\n");
+        g_printerr("--import and --export options can not be used together with\n --create, --reset, --property and --list,\naborting...\n");
         return 1;
     }
 
@@ -368,8 +368,8 @@ main(int argc, char **argv)
 
             if(!xfconf_channel_get_property(channel, property_name, &value))
             {
-                g_print(_("Property \"%s\" does not exist on channel \"%s\".\n"),
-                        property_name, channel_name);
+                g_printerr(_("Property \"%s\" does not exist on channel \"%s\".\n"),
+                           property_name, channel_name);
                 return 1;
             }
             
