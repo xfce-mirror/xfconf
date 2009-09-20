@@ -55,6 +55,7 @@ typedef struct
 {
     GTimeVal last_used;
     GValue value;
+    gboolean locked;
 } XfconfCacheItem;
 
 static XfconfCacheItem *

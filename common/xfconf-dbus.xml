@@ -30,7 +30,7 @@
                                                  String property)
              
              @channel: A channel/application/namespace name.
-             @propert: A property name.
+             @property: A property name.
              
              Gets a property value, returned as a variant type.
         -->
@@ -39,13 +39,34 @@
             <arg direction="in" name="property" type="s"/>
             <arg direction="out" name="value" type="v"/>
         </method>
-        
+
         <!--
-             Array{String,Variant} org.xfce.Xfconf.GetAllProperties(String channel,
-                                                                    String property_base)
+             Dict{String,Variant} org.xfce.Xfconf.GetPropertyFull(String channel,
+                                                                  String property)
+             @channel: A channel/application/namespace name.
+             @property: A property name.
+
+             Gets a property value and any associated metadata as a
+             dictionary of key-value pairs.  The currently-known keys are:
+
+               * value (Variant): The actual value of the property.
+               * locked (Boolean): Whether or not the property is locked.
+
+             More keys may be added in the future; implementations must
+             ignore keys they do not understand.
+        -->
+        <method name="GetPropertyFull">
+            <arg direction="in" name="channel" type="s"/>
+            <arg direction="in" name="property" type="s"/>
+            <arg direction="out" name="metadata" type="a{s,v}"/>
+        </method>
+
+        <!--
+             Dict{String,Variant} org.xfce.Xfconf.GetAllProperties(String channel,
+                                                                   String property_base)
              
              @channel: A channel/application/namespace name.
-             @property_base: The root of poperties to return.
+             @property_base: The root of properties to return.
              
              Gets all the properties and values that exist in
              @channel that are rooted at @property_base.  Passing
@@ -60,6 +81,32 @@
             <arg direction="in" name="channel" type="s"/>
             <arg direction="in" name="property_base" type="s"/>
             <arg direction="out" name="properties" type="a{sv}"/>
+        </method>
+
+        <!--
+             Dict{String,Dict{String,Variant}} org.xfce.Xfconf.GetAllPropertiesFull(String channel,
+                                                                                    String property_base)
+             @channel: A channel/application/namespace name.
+             @property_base: The root of properties to return.
+
+             Gets all properties and associated "metadata" that exist
+             in @channel that are rooted at @property_base.  Passing
+             "/" or the empty string as @property_base will return
+             all properties in the channel.
+
+             This method works similarly to GetPropertyFull() in that
+             it returns all metadata associated with each property.
+             In this case, the "inner" dicts returned is the same as
+             the single dict returned by GetPropertyFull(), and the
+             "outer" dict's keys are the property names.
+
+             See org.xfce.GetPropertyFull() for an explanation of the
+             metadata keys.
+        -->
+        <method name="GetAllPropertiesFull">
+            <arg direction="in" name="channel" type="s"/>
+            <arg direction="in" name="property_base" type="s"/>
+            <arg direction="out" name="metadata" type="a{sa{sv}}"/>
         </method>
         
         <!--

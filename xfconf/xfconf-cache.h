@@ -63,6 +63,11 @@ gboolean xfconf_cache_reset(XfconfCache *cache,
                             GError **error);
 
 G_GNUC_INTERNAL
+gboolean xfconf_cache_is_locked(XfconfCache *cache,
+                                const gchar *property,
+                                GError **error);
+
+G_GNUC_INTERNAL
 void xfconf_cache_set_max_entries(XfconfCache *cache,
                                   gint max_entries);
 G_GNUC_INTERNAL

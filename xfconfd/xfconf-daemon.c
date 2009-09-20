@@ -44,11 +44,21 @@ static gboolean xfconf_get_property(XfconfDaemon *xfconfd,
                                     const gchar *property,
                                     GValue *value,
                                     GError **error);
+static gboolean xfconf_get_property_full(XfconfDaemon *xfconfd,
+                                         const gchar *channel,
+                                         const gchar *property,
+                                         GHashTable **OUT_metadata,
+                                         GError **error);
 static gboolean xfconf_get_all_properties(XfconfDaemon *xfconfd,
                                           const gchar *channel,
                                           const gchar *property_base,
                                           GHashTable **properties,
                                           GError **error);
+static gboolean xfconf_get_all_properties_full(XfconfDaemon *xfconfd,
+                                               const gchar *channel,
+                                               const gchar *property,
+                                               GHashTable **OUT_metadata,
+                                               GError **error);
 static gboolean xfconf_property_exists(XfconfDaemon *xfconfd,
                                        const gchar *channel,
                                        const gchar *property,
