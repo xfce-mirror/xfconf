@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: untitled\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-24 02:52+0200\n"
+"POT-Creation-Date: 2009-09-27 15:19+0200\n"
 "PO-Revision-Date: 2009-06-24 02:51+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at gnome dot hu>\n"
@@ -16,6 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#: ../xfconf/xfconf-cache.c:855
+#, fuzzy, c-format
+msgid "Failed to make ResetProperty DBus call"
+msgstr "A tulajdonság beállítása meghiúsult.\n"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
@@ -133,11 +138,11 @@ msgstr ""
 "A tulajdonságnév csak akkor lehet üres vagy „/”, ha rekurzív visszaállítás "
 "lett megadva"
 
-#: ../xfconfd/main.c:132
+#: ../xfconfd/main.c:133
 msgid "Prints the xfconfd version."
 msgstr "Az xfconfd verziójának kiírása."
 
-#: ../xfconfd/main.c:134
+#: ../xfconfd/main.c:135
 msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
@@ -145,19 +150,23 @@ msgstr ""
 "A használandó konfigurációs háttérprogram. Az elsőként megadott olvasásra és "
 "írásra, a többi csak olvasásra lesz megnyitva."
 
-#: ../xfconfd/main.c:154
+#: ../xfconfd/main.c:138
+msgid "Fork into background after starting; only useful for testing purposes"
+msgstr ""
+
+#: ../xfconfd/main.c:158
 msgid "Xfce Configuration Daemon"
 msgstr "Xfce konfigurációs démon"
 
-#: ../xfconfd/main.c:160
+#: ../xfconfd/main.c:164
 msgid "Xfce configuration daemon"
 msgstr "Xfce konfigurációs démon"
 
-#: ../xfconfd/main.c:162
+#: ../xfconfd/main.c:166
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "A hibákat a http://bugs.xfce.org/ oldalon jelentse.\n"
 
-#: ../xfconfd/main.c:165
+#: ../xfconfd/main.c:169
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Hiba a kapcsolók feldolgozásakor: %s\n"

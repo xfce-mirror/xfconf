@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-07 23:25+0200\n"
+"POT-Creation-Date: 2009-09-27 15:19+0200\n"
 "PO-Revision-Date: 2009-07-06 16:27+0100\n"
 "Last-Translator: astur <malditoastur@gmail.com>\n"
 "Language-Team: Asturian <alministradores@softastur.org>\n"
@@ -10,77 +10,83 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:280
+#: ../xfconf/xfconf-cache.c:855
+#, fuzzy, c-format
+msgid "Failed to make ResetProperty DBus call"
+msgstr "Fallu al afitar propiedá.\n"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
 msgstr "Nun se puede crear direutoriu de configuración \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:328 xfconfd/xfconf-daemon.c:244
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:328
+#: ../xfconfd/xfconf-daemon.c:244
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr "Permiso denegáu al modificar la propiedá \"%s\" na canal \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:393
-#: xfconfd/xfconf-backend-perchannel-xml.c:475
-#: xfconfd/xfconf-backend-perchannel-xml.c:636
-#: xfconfd/xfconf-backend-perchannel-xml.c:656
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:393
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:475
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:636
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:656
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "La propiedá \"%s\" nun esiste na canal \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:603
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:603
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "Nun se puede desaniciar canal \"%s\": %s"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1293
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1293
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
 msgstr "Tipu incorreutu pa <propiedá>: \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1309
-#: xfconfd/xfconf-backend-perchannel-xml.c:1385
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1309
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1385
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "Imposible procesar el valor de tipu \"%s\" de \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1365
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1365
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr "L'atributu tipu de <valor> nun puede ser un vector"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1374
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1374
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
 msgstr "Tipu non válidu pa <valor>: \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1662
-#: xfconfd/xfconf-backend-perchannel-xml.c:1907
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1662
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1907
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "La canal \"%s\" nun esiste"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1965
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1965
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Imposible escribir canal \"%s\": %s"
 
-#: xfconfd/xfconf-backend-factory.c:75
+#: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "Imposible alcontrar el motor de Xfconf de tipu \"%s\""
 
-#: xfconfd/xfconf-backend.c:103
+#: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Los nomes de propiedaes tienen d'entamar col caráuter '/'"
 
-#: xfconfd/xfconf-backend.c:112
+#: ../xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "L'elementu raíz ('/') nun ye un nome de propiedá válidu"
 
-#: xfconfd/xfconf-backend.c:126
+#: ../xfconfd/xfconf-backend.c:126
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -89,24 +95,24 @@ msgstr ""
 "Los nomes de propiedaes namái pueden incluyir los carauteres ASCII A-Z, a-z, "
 "0-9, '_', '-', '<' y '>', y tamién '/' como separtador"
 
-#: xfconfd/xfconf-backend.c:135
+#: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr ""
 "Los nomes de propiedaes nun pueden tener dos o más carauteres '/' "
 "consecutivos"
 
-#: xfconfd/xfconf-backend.c:146
+#: ../xfconfd/xfconf-backend.c:146
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Los nomes de propiedaes nun pueden acabar col caráuter '/'"
 
-#: xfconfd/xfconf-backend.c:163
+#: ../xfconfd/xfconf-backend.c:163
 #, c-format
 msgid "Channel name cannot be an empty string"
 msgstr "El nome de la canal nun puede ser una cadena balera"
 
-#: xfconfd/xfconf-backend.c:176
+#: ../xfconfd/xfconf-backend.c:176
 #, c-format
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
@@ -115,7 +121,7 @@ msgstr ""
 "Los nomes de canales namái pueden incluyir los carauteres ASCII A-Z, a-z, 0-"
 "9, \"_\" y \"-\""
 
-#: xfconfd/xfconf-backend.c:398
+#: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
@@ -124,11 +130,11 @@ msgstr ""
 "El nome de la propiedá namái puede ser baleru o \"/\" si s'especificó un "
 "reaniciu recursivu"
 
-#: xfconfd/main.c:132
+#: ../xfconfd/main.c:133
 msgid "Prints the xfconfd version."
 msgstr "Imprenta la versión de xfconfd."
 
-#: xfconfd/main.c:134
+#: ../xfconfd/main.c:135
 msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
@@ -136,121 +142,125 @@ msgstr ""
 "Motores de configuración a usar. El primer motor especificáu ábrese en mou "
 "llectura/escritura; los otros, en mou namái llectura."
 
-#: xfconfd/main.c:154
+#: ../xfconfd/main.c:138
+msgid "Fork into background after starting; only useful for testing purposes"
+msgstr ""
+
+#: ../xfconfd/main.c:158
 msgid "Xfce Configuration Daemon"
 msgstr "Degorriu de configuración de Xfce"
 
-#: xfconfd/main.c:160
+#: ../xfconfd/main.c:164
 msgid "Xfce configuration daemon"
 msgstr "Degorriu de configuración de Xfce"
 
-#: xfconfd/main.c:162
+#: ../xfconfd/main.c:166
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Informe d'errores en http://bugs.xfce.org/\n"
 
-#: xfconfd/main.c:165
+#: ../xfconfd/main.c:169
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Fallu al procesar les opciones: %s\n"
 
-#: xfconfd/xfconf-daemon.c:460
+#: ../xfconfd/xfconf-daemon.c:460
 #, c-format
 msgid "Another Xfconf daemon is already running"
 msgstr "Yá ta executándose otru degorriu de Xfconf"
 
-#: xfconfd/xfconf-daemon.c:496
+#: ../xfconfd/xfconf-daemon.c:496
 #, c-format
 msgid "No backends could be started"
 msgstr "Nun pudo aniciase dengún motor"
 
-#: xfconf-query/main.c:92
+#: ../xfconf-query/main.c:92
 #, c-format
 msgid "Property '%s' changed: %s\n"
 msgstr "La propiedá '%s' camudó: %s\n"
 
-#: xfconf-query/main.c:97
+#: ../xfconf-query/main.c:97
 #, c-format
 msgid "Property '%s' changed\n"
 msgstr "La propiedá '%s' camudó\n"
 
-#: xfconf-query/main.c:102
+#: ../xfconf-query/main.c:102
 #, c-format
 msgid "Property '%s' removed\n"
 msgstr "La propiedá '%s' desanicióse\n"
 
-#: xfconf-query/main.c:111
+#: ../xfconf-query/main.c:111
 #, c-format
 msgid "Export method not yet implemented"
 msgstr "Métodu d'esportación entá non implementáu"
 
-#: xfconf-query/main.c:125
+#: ../xfconf-query/main.c:125
 #, c-format
 msgid "Export not yet implemented"
 msgstr "Esportación entá non implementada"
 
-#: xfconf-query/main.c:191
+#: ../xfconf-query/main.c:191
 msgid "Version information"
 msgstr "Información de versión"
 
-#: xfconf-query/main.c:195
+#: ../xfconf-query/main.c:195
 msgid "The channel to query/modify"
 msgstr "La canal a consultar/modificar"
 
-#: xfconf-query/main.c:199
+#: ../xfconf-query/main.c:199
 msgid "The property to query/modify"
 msgstr "La propiedá a consultar/modificar"
 
-#: xfconf-query/main.c:203
+#: ../xfconf-query/main.c:203
 msgid "The new value to set for the property"
 msgstr "El nuevu valor a afitar pa la propiedá"
 
-#: xfconf-query/main.c:207
+#: ../xfconf-query/main.c:207
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Llistar propiedaes (o canales si -c nun s'especifica)"
 
-#: xfconf-query/main.c:211
+#: ../xfconf-query/main.c:211
 msgid "Verbose output"
 msgstr "Salida detallada"
 
-#: xfconf-query/main.c:215
+#: ../xfconf-query/main.c:215
 msgid "Create a new property if it does not already exist"
 msgstr "Crear una nueva propiedá si entá nun esiste"
 
-#: xfconf-query/main.c:219
+#: ../xfconf-query/main.c:219
 msgid "Specify the property value type"
 msgstr "Especificar el tipu de valor de la propiedá"
 
-#: xfconf-query/main.c:223
+#: ../xfconf-query/main.c:223
 msgid "Reset property"
 msgstr "Reafitar propiedá"
 
-#: xfconf-query/main.c:227
+#: ../xfconf-query/main.c:227
 msgid "Recursive (use with -r)"
 msgstr "Recursivu (usar con -r)"
 
-#: xfconf-query/main.c:231
+#: ../xfconf-query/main.c:231
 msgid "Force array even if only one element"
 msgstr "Forciar como vector inclusu si namái hai un elementu"
 
-#: xfconf-query/main.c:245
+#: ../xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
 msgstr "Monitorizar una canal p'alcontrar cambeos de propiedaes"
 
-#: xfconf-query/main.c:349
+#: ../xfconf-query/main.c:349
 #, c-format
 msgid "Start monitoring channel '%s':"
 msgstr "Entamar monitorización de la canal '%s':"
 
-#: xfconf-query/main.c:371
+#: ../xfconf-query/main.c:371
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
 msgstr "La propiedá \"%s\" nun esiste na canal \"%s\".\n"
 
-#: xfconf-query/main.c:379 xfconf-query/main.c:397
+#: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
 msgid "(unknown)"
 msgstr "(desconocíu)"
 
-#: xfconf-query/main.c:388
+#: ../xfconf-query/main.c:388
 #, c-format
 msgid ""
 "Value is an array with %d items:\n"
@@ -259,7 +269,7 @@ msgstr ""
 "El valor ye un vector con %d elementos:\n"
 "\n"
 
-#: xfconf-query/main.c:411
+#: ../xfconf-query/main.c:411
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
@@ -268,22 +278,22 @@ msgstr ""
 "La propiedá \"%s\" nun esiste na canal \"%s\". Si deseya\n"
 "crear una nueva, use la opción --create.\n"
 
-#: xfconf-query/main.c:419
+#: ../xfconf-query/main.c:419
 #, c-format
 msgid "When creating a new property, the value type must be specified.\n"
 msgstr "Al facer una nueva propiedá tien d'especificase el tipu del valor.\n"
 
-#: xfconf-query/main.c:429
+#: ../xfconf-query/main.c:429
 #, c-format
 msgid "Failed to get the existing type for the value.\n"
 msgstr "Fallu al obtener el tipu esistente pal valor.\n"
 
-#: xfconf-query/main.c:447
+#: ../xfconf-query/main.c:447
 #, c-format
 msgid "Unable to determine the type of the value.\n"
 msgstr "Imposible determinar el tipu del valor.\n"
 
-#: xfconf-query/main.c:453
+#: ../xfconf-query/main.c:453
 #, c-format
 msgid ""
 "A value type must be specified to change an array into a single value.\n"
@@ -291,42 +301,42 @@ msgstr ""
 "Tien d'especificase un tipu de valor pa tresformar un vector nún únicu "
 "valor.\n"
 
-#: xfconf-query/main.c:463 xfconf-query/main.c:525
+#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "Imposible convertir \"%s\" a tipu \"%s\"\n"
 
-#: xfconf-query/main.c:470 xfconf-query/main.c:540
+#: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "Fallu al afitar propiedá.\n"
 
-#: xfconf-query/main.c:495
+#: ../xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
 msgstr "Hai %d nuevos valores, pero namái se pudieron determinar %d tipos.\n"
 
-#: xfconf-query/main.c:516
+#: ../xfconf-query/main.c:516
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
 msgstr "Imposible determinar el tipu de valor pal índiz %d.\n"
 
-#: xfconf-query/main.c:567
+#: ../xfconf-query/main.c:567
 #, c-format
 msgid "Channel '%s' contains no properties\n"
 msgstr "La canal '%s' nun contién denguna propiedá\n"
 
-#: xfconf-query/main.c:583 xfconf-query/main.c:592
+#: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "Nun pudo criase'l ficheru d'esportación \"%s\": %s\n"
 
-#: xfconf-query/main.c:612
+#: ../xfconf-query/main.c:612
 #, c-format
 msgid "Could not open import file \"%s\": %s\n"
 msgstr "Nun pudo abrise'l ficheru d'importación \"%s\": %s\n"
 
-#: xfconf-query/main.c:621
+#: ../xfconf-query/main.c:621
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Nun pudo procesase'l ficheru \"%s\": %s\n"
