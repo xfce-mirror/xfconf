@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.99\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-27 15:19+0200\n"
-"PO-Revision-Date: 2009-01-27 14:47+0900\n"
+"POT-Creation-Date: 2009-10-11 17:22+0900\n"
+"PO-Revision-Date: 2009-10-11 17:22+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,9 +18,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../xfconf/xfconf-cache.c:855
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "プロパティの設定に失敗しました。\n"
+msgstr "ResetProperty DBus 呼び出しの作成に失敗しました"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
@@ -151,7 +151,7 @@ msgstr ""
 
 #: ../xfconfd/main.c:138
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "開始後にバックグラウンドに fork します。テスト用です"
 
 #: ../xfconfd/main.c:158
 msgid "Xfce Configuration Daemon"
