@@ -497,10 +497,9 @@ xfconf_cache_set_property_reply_handler(DBusGProxy *proxy,
         xfconf_cache_mutex_lock(&cache->cache_lock);
     }
 
-out:
     if(old_item)
         xfconf_cache_old_item_free(old_item);
-
+out:
     xfconf_cache_mutex_unlock(&cache->cache_lock);
 }
 
