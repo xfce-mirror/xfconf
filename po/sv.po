@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-27 15:19+0200\n"
-"PO-Revision-Date: 2009-02-01 19:16+0100\n"
+"PO-Revision-Date: 2009-12-16 17:13+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -17,9 +17,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ../xfconf/xfconf-cache.c:855
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "Misslyckades med att ställa in egenskap.\n"
+msgstr "Misslyckades med att göra ResetProperty DBus-anrop"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
@@ -94,12 +94,8 @@ msgstr "Rotelementet (\"/\") är inte ett giltigt egenskapsnamn"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Egenskapsnamn får endast innehålla ASCII-tecknen A-Z, a-z, 0-9, \"_\", \"-"
-"\", \"<\" och \">\" såväl som \"/\" som avgränsare"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Egenskapsnamn får endast innehålla ASCII-tecknen A-Z, a-z, 0-9, \"_\", \"-\", \"<\" och \">\" såväl som \"/\" som avgränsare"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -118,36 +114,25 @@ msgstr "Kanalnamn får inte vara en tom sträng"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr ""
-"Kanalnamn får endast innehålla ASCII-tecknen A-Z, a-z, 0-9, \"_\" och \"-\""
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgstr "Kanalnamn får endast innehålla ASCII-tecknen A-Z, a-z, 0-9, \"_\" och \"-\""
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"Egenskapsnamnet får endast vara tomt eller \"/\" om en rekursiv "
-"nollställning angavs"
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "Egenskapsnamnet får endast vara tomt eller \"/\" om en rekursiv nollställning angavs"
 
 #: ../xfconfd/main.c:133
 msgid "Prints the xfconfd version."
 msgstr "Skriver ut xfconfd-versionen."
 
 #: ../xfconfd/main.c:135
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Konfigurationsbakände att använda.  Första bakänden som anges öppnas läs/"
-"skriv; de andra som skivskyddade."
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "Konfigurationsbakände att använda.  Första bakänden som anges öppnas läs/skriv; de andra som skivskyddade."
 
 #: ../xfconfd/main.c:138
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "Grena processen till bakgrunden efter start; endast användbart för testsyfte"
 
 #: ../xfconfd/main.c:158
 msgid "Xfce Configuration Daemon"
@@ -259,7 +244,8 @@ msgstr "Påbörja övervakning av kanalen \"%s\":"
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
 msgstr "Egenskapen \"%s\" finns inte på kanalen \"%s\".\n"
 
-#: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
+#: ../xfconf-query/main.c:379
+#: ../xfconf-query/main.c:397
 msgid "(unknown)"
 msgstr "(okänt)"
 
@@ -298,17 +284,17 @@ msgstr "Kunde inte fastställa typen av värdet.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
-msgstr ""
-"Du måste ange en värdestyp för att ändra en array till ett enda värde.\n"
+msgid "A value type must be specified to change an array into a single value.\n"
+msgstr "Du måste ange en värdestyp för att ändra en array till ett enda värde.\n"
 
-#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
+#: ../xfconf-query/main.c:463
+#: ../xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "Kunde inte konvertera \"%s\" till typen \"%s\"\n"
 
-#: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
+#: ../xfconf-query/main.c:470
+#: ../xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "Misslyckades med att ställa in egenskap.\n"
@@ -328,7 +314,8 @@ msgstr "Kunde inte fastställa typen för värdet på index %d.\n"
 msgid "Channel '%s' contains no properties\n"
 msgstr "Kanalen \"%s\" innehåller inga egenskaper\n"
 
-#: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
+#: ../xfconf-query/main.c:583
+#: ../xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "Kunde inte skapa exportfilen \"%s\": %s\n"
@@ -345,24 +332,18 @@ msgstr "Kunde inte tolka importfilen \"%s\": %s\n"
 
 #~ msgid "Export channel to file"
 #~ msgstr "Exportera kanal till fil"
-
 #~ msgid "Import channel from file"
 #~ msgstr "Importera kanal från fil"
-
 #~ msgid "true"
 #~ msgstr "sant"
-
 #~ msgid "false"
 #~ msgstr "falskt"
-
 #~ msgid "Pick the channel"
 #~ msgstr "Välj kanalen"
-
 #~ msgid "Pick the property"
 #~ msgstr "Välj egenskapen"
-
 #~ msgid "Create new entry"
 #~ msgstr "Skapa ny post"
-
 #~ msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
 #~ msgstr "Egenskapen \"%s\" finns inte på kanalen \"%s\".\n"
+
