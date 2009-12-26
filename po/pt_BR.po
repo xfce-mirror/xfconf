@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-27 15:19+0200\n"
+"POT-Creation-Date: 2009-12-26 12:49+0100\n"
 "PO-Revision-Date: 2009-02-04 20:19-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../xfconf/xfconf-cache.c:855
+#: ../xfconf/xfconf-cache.c:854
 #, fuzzy, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Falha ao definir a propriedade.\n"

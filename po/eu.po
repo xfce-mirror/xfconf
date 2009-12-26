@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-27 15:19+0200\n"
+"POT-Creation-Date: 2009-12-26 12:49+0100\n"
 "PO-Revision-Date: 2009-11-05 11:54+0100\n"
 "Last-Translator: Piarres Beobide <pi+debian@beobide.net>\n"
 "Language-Team: Basque <debian-l10n-basque@lists.debian.org>\n"
@@ -19,7 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: ../xfconf/xfconf-cache.c:855, c-format
+#: ../xfconf/xfconf-cache.c:854
+#, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Huts ResetProperty DBus deia egitean"
 

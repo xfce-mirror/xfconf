@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-27 15:19+0200\n"
+"POT-Creation-Date: 2009-12-26 12:49+0100\n"
 "PO-Revision-Date: 2009-07-06 16:27+0100\n"
 "Last-Translator: astur <malditoastur@gmail.com>\n"
 "Language-Team: Asturian <alministradores@softastur.org>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../xfconf/xfconf-cache.c:855
+#: ../xfconf/xfconf-cache.c:854
 #, fuzzy, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Fallu al afitar propiedá.\n"

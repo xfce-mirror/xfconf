@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-27 15:19+0200\n"
+"POT-Creation-Date: 2009-12-26 12:49+0100\n"
 "PO-Revision-Date: 2009-01-29 18:34+0100\n"
 "Last-Translator: Mike Massonnet <mmassonnet@gmail.com>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 
-#: ../xfconf/xfconf-cache.c:855
+#: ../xfconf/xfconf-cache.c:854
 #, fuzzy, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Échec à la définition de la propriété.\n"

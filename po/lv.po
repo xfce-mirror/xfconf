@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-27 15:19+0200\n"
+"POT-Creation-Date: 2009-12-26 12:49+0100\n"
 "PO-Revision-Date: 2009-10-16 14:35+0100\n"
 "Last-Translator: Rihards Prieditis <rprieditis@gmail.com>\n"
 "Language-Team: Latvian <translation-team-lv@lists.sourceforge.net>\n"
@@ -20,7 +20,8 @@ msgstr ""
 "X-Poedit-Country: Latvia\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: ../xfconf/xfconf-cache.c:855, c-format
+#: ../xfconf/xfconf-cache.c:854
+#, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Neizdevās izpildīt ResetProperty DBus izsaukumu"
 
@@ -347,4 +348,3 @@ msgstr "Nevarēja atvērt importa failu \"%s\": %s\n"
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Nevarēja parsēt importa failu \"%s\": %s\n"
-

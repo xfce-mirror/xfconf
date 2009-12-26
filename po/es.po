@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf 0.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-18 16:28+0000\n"
+"POT-Creation-Date: 2009-12-26 12:49+0100\n"
 "PO-Revision-Date: 2009-12-18 19:15+0100\n"
 "Last-Translator: Abel Martín Ruiz <abel.martin.ruiz@gmail.com>\n"
 "Language-Team: Spanish/ES <xfce-i18n@xfce.org>\n"
@@ -16,7 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:855
+#: ../xfconf/xfconf-cache.c:854
+#, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Fallo al realizar la llamada DBus ResetProperty"
 
@@ -56,6 +57,7 @@ msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "Imposible procesar el valor de tipo \"%s\" de \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1365
+#, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr "El atributo tipo de <valor> no puede ser un vector"
 
@@ -81,44 +83,70 @@ msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "Imposible encontrar el motor de Xfconf de tipo \"%s\""
 
 #: ../xfconfd/xfconf-backend.c:103
+#, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Los nombres de propiedades deben comenzar con el carácter '/'"
 
 #: ../xfconfd/xfconf-backend.c:112
+#, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "El elemento raíz ('/') no es un nombre de propiedad válido"
 
 #: ../xfconfd/xfconf-backend.c:126
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "Los nombres de propiedades sólo pueden incluir los caracteres ASCII A-Z, a-z, 0-9, '_', '-', '<' y '>', y también '/' como separador"
+#, c-format
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"Los nombres de propiedades sólo pueden incluir los caracteres ASCII A-Z, a-"
+"z, 0-9, '_', '-', '<' y '>', y también '/' como separador"
 
 #: ../xfconfd/xfconf-backend.c:135
+#, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Los nombres de propiedades no pueden tener dos o más caracteres '/' consecutivos"
+msgstr ""
+"Los nombres de propiedades no pueden tener dos o más caracteres '/' "
+"consecutivos"
 
 #: ../xfconfd/xfconf-backend.c:146
+#, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Los nombres de propiedades no pueden acabar con el carácter '/'"
 
 #: ../xfconfd/xfconf-backend.c:163
+#, c-format
 msgid "Channel name cannot be an empty string"
 msgstr "El nombre del canal no puede ser una cadena vacía"
 
 #: ../xfconfd/xfconf-backend.c:176
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr "Los nombres de canales sólo pueden incluir los caracteres ASCII A-Z, a-z, 0-9, \"_\" y \"-\""
+#, c-format
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr ""
+"Los nombres de canales sólo pueden incluir los caracteres ASCII A-Z, a-z, 0-"
+"9, \"_\" y \"-\""
 
 #: ../xfconfd/xfconf-backend.c:398
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr "El nombre de la propiedad sólo puede ser vacío o \"/\" si se especificó un reinicio recursivo"
+#, c-format
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr ""
+"El nombre de la propiedad sólo puede ser vacío o \"/\" si se especificó un "
+"reinicio recursivo"
 
 #: ../xfconfd/main.c:133
 msgid "Prints the xfconfd version."
 msgstr "Muestra la versión de xfconfd."
 
 #: ../xfconfd/main.c:135
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr "Motores de configuración a usar. El primer motor especificado se abre en modo lectura/escritura; los otros, en modo sólo lectura."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
+msgstr ""
+"Motores de configuración a usar. El primer motor especificado se abre en "
+"modo lectura/escritura; los otros, en modo sólo lectura."
 
 #: ../xfconfd/main.c:138
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -142,10 +170,12 @@ msgid "Error parsing options: %s\n"
 msgstr "Error al procesar las opciones: %s\n"
 
 #: ../xfconfd/xfconf-daemon.c:460
+#, c-format
 msgid "Another Xfconf daemon is already running"
 msgstr "Ya se está ejecutando otro demonio de Xfconf"
 
 #: ../xfconfd/xfconf-daemon.c:496
+#, c-format
 msgid "No backends could be started"
 msgstr "No se pudo iniciar ningún motor"
 
@@ -165,10 +195,12 @@ msgid "Property '%s' removed\n"
 msgstr "La propiedad '%s' se ha eliminado\n"
 
 #: ../xfconf-query/main.c:111
+#, c-format
 msgid "Export method not yet implemented"
 msgstr "Método de exportación aún no implementado"
 
 #: ../xfconf-query/main.c:125
+#, c-format
 msgid "Export not yet implemented"
 msgstr "Exportación aún no implementada"
 
@@ -230,8 +262,7 @@ msgstr "Comenzar monitorización del canal '%s':"
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
 msgstr "La propiedad \"%s\" no existe en el canal \"%s\".\n"
 
-#: ../xfconf-query/main.c:379
-#: ../xfconf-query/main.c:397
+#: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
 msgid "(unknown)"
 msgstr "(desconocido)"
 
@@ -254,29 +285,35 @@ msgstr ""
 "crear una nueva, use la opción --create.\n"
 
 #: ../xfconf-query/main.c:419
+#, c-format
 msgid "When creating a new property, the value type must be specified.\n"
 msgstr "Al crear una nueva propiedad se debe especificar el tipo del valor.\n"
 
 #: ../xfconf-query/main.c:429
+#, c-format
 msgid "Failed to get the existing type for the value.\n"
 msgstr "Fallo al obtener el tipo existente para el valor.\n"
 
 #: ../xfconf-query/main.c:447
+#, c-format
 msgid "Unable to determine the type of the value.\n"
 msgstr "Imposible determinar el tipo del valor.\n"
 
 #: ../xfconf-query/main.c:453
-msgid "A value type must be specified to change an array into a single value.\n"
-msgstr "Se debe especificar un tipo de valor para transformar un vector en un único valor.\n"
+#, c-format
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
+msgstr ""
+"Se debe especificar un tipo de valor para transformar un vector en un único "
+"valor.\n"
 
-#: ../xfconf-query/main.c:463
-#: ../xfconf-query/main.c:525
+#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "Imposible convertir \"%s\" a tipo \"%s\"\n"
 
-#: ../xfconf-query/main.c:470
-#: ../xfconf-query/main.c:540
+#: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
+#, c-format
 msgid "Failed to set property.\n"
 msgstr "Fallo al establecer propiedad.\n"
 
@@ -295,8 +332,7 @@ msgstr "Imposible determinar el tipo de valor para el índice %d.\n"
 msgid "Channel '%s' contains no properties\n"
 msgstr "El canal '%s' no contiene ninguna propiedad\n"
 
-#: ../xfconf-query/main.c:583
-#: ../xfconf-query/main.c:592
+#: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "No se pudo crear archivo de exportación \"%s\": %s\n"
@@ -313,22 +349,30 @@ msgstr "No se pudo procesar el archivo \"%s\": %s\n"
 
 #~ msgid "Export channel to file"
 #~ msgstr "Exportar canal a archivo"
+
 #~ msgid "Import channel from file"
 #~ msgstr "Importar canal desde archivo"
+
 #~ msgid "true"
 #~ msgstr "verdadero"
+
 #~ msgid "false"
 #~ msgstr "falso"
+
 #~ msgid "Pick the channel"
 #~ msgstr "Elija el canal"
+
 #~ msgid "Pick the property"
 #~ msgstr "Elija la propiedad"
+
 #~ msgid "Create new entry"
 #~ msgstr "Crear una nueva entrada"
+
 #~ msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
 #~ msgstr "La propiedad \"%s\" no existe en el canal \"%s\".\n"
+
 #~ msgid "set (change the value)"
 #~ msgstr "définir (changer la valeur)"
+
 #~ msgid "List properties"
 #~ msgstr "Afficher les propriétés"
-
