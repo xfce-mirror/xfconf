@@ -71,9 +71,9 @@ const gchar *test_bool_property = "/test/booltest/bool";
 const gboolean test_bool = TRUE;
 const gchar *test_array_property = "/test/arrayprop";
 
-static inline void xfconf_tests_end();
+static void xfconf_tests_end();
 
-static inline gboolean
+static gboolean
 xfconf_tests_start(void)
 {
     DBusConnection *dbus_conn;
@@ -122,7 +122,7 @@ xfconf_tests_start(void)
     return TRUE;
 }
 
-static inline void
+static void
 xfconf_tests_end(void)
 {
     xfconf_shutdown();
