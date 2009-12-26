@@ -757,9 +757,12 @@ xfconf_cache_set(XfconfCache *cache,
         /* if we have an old item, it means that a previous set
          * call hasn't returned yet.  let's cancel that call and
          * throw away the current not-yet-committed value of
-         * the property. */
+         * the property.
+         * we also steal the old_item from the pending_calls table
+         * so there are no pending item left. */
         if(old_item->call) {
             dbus_g_proxy_cancel_call(proxy, old_item->call);
+            g_hash_table_steal(cache->pending_calls, old_item->call);
             old_item->call = NULL;
         }
     } else {
