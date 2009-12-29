@@ -131,11 +131,10 @@ xfconf_cache_old_item_free(XfconfCacheOldItem *old_item)
 {
     g_return_if_fail(old_item);
 
-    if(old_item->call) {
-        /* FIXME: maybe should force them to complete */
-        DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
-        dbus_g_proxy_cancel_call(proxy, old_item->call);
-    }
+    /* debug check to make sure the call is properly handled before
+     * freeing the item. it should either been canceled to we wait for
+     * it to finish */
+    g_return_if_fail(!old_item->call);
 
     g_free(old_item->property);
 
@@ -143,6 +142,29 @@ xfconf_cache_old_item_free(XfconfCacheOldItem *old_item)
         xfconf_cache_item_free(old_item->item);
 
     g_slice_free(XfconfCacheOldItem, old_item);
+}
+
+static gboolean
+xfconf_cache_old_item_end_call(gpointer key,
+                               gpointer value,
+                               gpointer user_data)
+{
+    const gchar *channel_name = user_data;
+    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GError *error = NULL;
+    XfconfCacheOldItem *old_item = value;
+
+    g_return_val_if_fail(old_item->call, TRUE);
+
+    if(!dbus_g_proxy_end_call(proxy, old_item->call, &error, G_TYPE_INVALID)) {
+       g_warning("Failed to set property \"%s::%s\": %s",
+                  channel_name, old_item->property, error->message);
+        g_error_free(error);
+    }
+
+    old_item->call = NULL;
+
+    return TRUE;
 }
 
 
@@ -367,6 +389,7 @@ xfconf_cache_finalize(GObject *obj)
 {
     XfconfCache *cache = XFCONF_CACHE(obj);
     DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GHashTable *pending_calls;
 
     dbus_g_proxy_disconnect_signal(proxy, "PropertyChanged",
                                    G_CALLBACK(xfconf_cache_property_changed),
@@ -376,10 +399,17 @@ xfconf_cache_finalize(GObject *obj)
                                    G_CALLBACK(xfconf_cache_property_removed),
                                    cache);
 
+    /* finish pending calls (without emitting signals, therefore we set
+     * the hash table in the cache to %NULL) */
+    pending_calls = cache->pending_calls;
+    cache->pending_calls = NULL;
+    g_hash_table_foreach_remove(pending_calls, xfconf_cache_old_item_end_call,
+                                cache->channel_name);
+    g_hash_table_unref(pending_calls);
+
     g_free(cache->channel_name);
 
     g_tree_destroy(cache->properties);
-    g_hash_table_destroy(cache->pending_calls);
     g_hash_table_destroy(cache->old_properties);
 
     g_static_mutex_free(&cache->cache_lock);
@@ -452,6 +482,9 @@ xfconf_cache_set_property_reply_handler(DBusGProxy *proxy,
     XfconfCacheItem *item;
     GError *error = NULL;
 
+    if(!cache->pending_calls)
+        return;
+
     xfconf_cache_mutex_lock(&cache->cache_lock);
 
     old_item = g_hash_table_lookup(cache->pending_calls, call);
@@ -469,9 +502,7 @@ xfconf_cache_set_property_reply_handler(DBusGProxy *proxy,
     g_hash_table_remove(cache->old_properties, old_item->property);
     /* don't destroy old_item yet */
     g_hash_table_steal(cache->pending_calls, old_item->call);
-    
-    /* NULL this out so we don't try to cancel it in the remove function */
-    old_item->call = NULL;
+
     if(!dbus_g_proxy_end_call(proxy, call, &error, G_TYPE_INVALID)) {
         /* failed to set the value.  reset it to the old value and send
          * a prop changed signal to the channel */
@@ -496,6 +527,9 @@ xfconf_cache_set_property_reply_handler(DBusGProxy *proxy,
                       item ? &item->value : &empty_val);
         xfconf_cache_mutex_lock(&cache->cache_lock);
     }
+
+    /* we handled the call, so set it to %NULL */
+    old_item->call = NULL;
 
     if(old_item)
         xfconf_cache_old_item_free(old_item);
