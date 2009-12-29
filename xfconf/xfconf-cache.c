@@ -132,7 +132,7 @@ xfconf_cache_old_item_free(XfconfCacheOldItem *old_item)
     g_return_if_fail(old_item);
 
     /* debug check to make sure the call is properly handled before
-     * freeing the item. it should either been canceled to we wait for
+     * freeing the item. it should either been cancelled or we wait for
      * it to finish */
     g_return_if_fail(!old_item->call);
 
