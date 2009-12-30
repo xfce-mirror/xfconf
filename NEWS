@@ -1,9 +1,14 @@
 Xfce 4.7.0
 ==========
 
-  * Add prefetching and caching support to XfconfChannel.  Should speed
+  * Add prefetching and caching support to XfconfChannel. Should speed
     things up a bit on app startup, and avoid blocking waiting on DBus
     in other cases.
+  * New simpler (internal) handling of property bindings.
+  * Use new xdt macros, this requires xfce-dev-tools 4.7.2.
+  * New tests for object bindings.
+  * Updated translations: es, kk, ca, sv, hu, ro, gl, ja, cs, lv, ast,
+    zh_CN, ur, ur_PK, da, eu, pt.
 
 
 Xfce 4.6.2
