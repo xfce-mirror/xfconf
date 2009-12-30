@@ -60,10 +60,6 @@ xfconf-dbus-bindings.h: $(top_srcdir)/common/xfconf-dbus.xml Makefile
 # the above fixes a bug in dbus-binding-tool's output
 # dbus-binding-tool doesn't initialise GValues to { 0, } properly
 
-if HAVE_GNUC_VISIBILITY
-TESTS = abicheck.sh
-endif
-
 CLEANFILES = \
 	$(BUILT_SOURCES) \
 	xfconf-dbus-bindings.h.tmp
@@ -76,3 +72,7 @@ EXTRA_DIST = \
 
 # required for gtk-doc
 dist-hook: all
+
+if HAVE_GNUC_VISIBILITY
+TESTS = abicheck.sh
+endif
