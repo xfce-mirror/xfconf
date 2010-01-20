@@ -32,10 +32,12 @@
 #include "xfconf-gvaluefuncs.h"
 #include "xfconf-private.h"
 #include "xfconf-marshal.h"
-//#include "xfconf-types.h"
-//#include "xfconf-common-private.h"
-//#include "xfconf.h"
-//#include "xfconf-alias.h"
+#if 0
+#include "xfconf-types.h"
+#include "xfconf-common-private.h"
+#include "xfconf.h"
+#include "xfconf-alias.h"
+#endif
 
 #define DEFAULT_MAX_ENTRIES  -1  /* no limit */
 #define DEFAULT_MAX_AGE      (60*60)  /* 1 hour */
