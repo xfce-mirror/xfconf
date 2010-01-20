@@ -1,24 +1,24 @@
 # Finnish translation of the xfconf package.
-# Copyright (C) 2008 The Xfce development team.
+# Copyright (C) 2010 The Xfce development team.
 # This file is distributed under the same license as the xfconf package.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008-2009.
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008-2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-26 12:49+0100\n"
-"PO-Revision-Date: 2009-01-25 16:29+0200\n"
+"POT-Creation-Date: 2010-01-20 18:04+0100\n"
+"PO-Revision-Date: 2010-01-20 23:41+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../xfconf/xfconf-cache.c:854
-#, fuzzy, c-format
+#: ../xfconf/xfconf-cache.c:891
+#, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "Asetuksen muutos epäonnistui.\n"
+msgstr "DBus-kutsu ResetProperty epäonnistui"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
@@ -147,7 +147,7 @@ msgstr ""
 
 #: ../xfconfd/main.c:138
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "Haaraudu taustalle käynnistyksen jälkeen; hyötyä vain testauskäytössä"
 
 #: ../xfconfd/main.c:158
 msgid "Xfce Configuration Daemon"
