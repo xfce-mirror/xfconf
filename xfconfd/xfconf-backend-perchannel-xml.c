@@ -542,7 +542,7 @@ nodes_do_prop_reset(GNode *node,
 {
     PropChangeData *pdata = data;
     XfconfProperty *prop = node->data;
-    gchar prop_fullname[4096];
+    gchar prop_fullname[MAX_PROP_PATH];
 
 
     /* we don't signal if |value| isn't set but |system_value| is,
@@ -563,15 +563,15 @@ nodes_do_prop_reset(GNode *node,
 }
 
 static gboolean
-nodes_clean_up (GNode *node,
-                gpointer data)
+nodes_clean_up(GNode *node,
+               gpointer data)
 {
     XfconfProperty *prop = node->data;
 
     /* clean up dangling nodes in tree without system defaults */
     if(!node->children
-       && !G_VALUE_TYPE (&prop->value)
-       && !G_VALUE_TYPE (&prop->system_value)
+       && !G_VALUE_TYPE(&prop->value)
+       && !G_VALUE_TYPE(&prop->system_value)
        && !prop->locked) {
         g_node_unlink(node);
         xfconf_proptree_destroy(node);
