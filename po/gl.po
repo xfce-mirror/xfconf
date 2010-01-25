@@ -1,17 +1,17 @@
 # Galician translation of xfconf
 # Copyright (C) 2009 Leandro Regueiro.
 # This file is distributed under the same license as the Xfce package.
-#
+# 
 # Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>, 2009.
-#
+# 
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en <http://trasno.net>
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-26 12:49+0100\n"
+"POT-Creation-Date: 2010-01-18 12:04+0100\n"
 "PO-Revision-Date: 2009-08-19 12:36+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
@@ -20,10 +20,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:854
-#, fuzzy, c-format
+#: ../xfconf/xfconf-cache.c:891
+#, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "Ocorreu un erro ó definir a propiedade.\n"
+msgstr "Produciuse un erro ao chamar a ResetProperty de DBus"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
@@ -98,18 +98,13 @@ msgstr "O elemento raíz ('/') non é un nome de propiedade válido"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Os nomes de propiedades só poden incluír os caracteres ASCII A-Z, a-z, 0-9, "
-"'_', '-', '<', '>', e tamén '/' coma separador"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Os nomes de propiedades só poden incluír os caracteres ASCII A-Z, a-z, 0-9, '_', '-', '<', '>', e tamén '/' coma separador"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Os nomes das propiedades non poden ter dous ou máis caracteres '/' seguidos"
+msgstr "Os nomes das propiedades non poden ter dous ou máis caracteres '/' seguidos"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -123,37 +118,25 @@ msgstr "O nome da canle non pode estar baleiro"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr ""
-"Os nomes das canles só poden incluír os caracteres ASCII A-Z, a-z, 0-9, '_', "
-"'-'"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgstr "Os nomes das canles só poden incluír os caracteres ASCII A-Z, a-z, 0-9, '_', '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"O nome da propiedade só pode estar baleiro ou ser \"/\" se se especificou un "
-"restablecemento recursivo"
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "O nome da propiedade só pode estar baleiro ou ser \"/\" se se especificou un restablecemento recursivo"
 
 #: ../xfconfd/main.c:133
 msgid "Prints the xfconfd version."
 msgstr "Mostra a versión de xfconfd."
 
 #: ../xfconfd/main.c:135
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Motores de configuración a usar. O primeiro motor especificado ábrese en "
-"modo lectura/escritura; os outros en só lectura."
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "Motores de configuración a usar. O primeiro motor especificado ábrese en modo lectura/escritura; os outros en só lectura."
 
 #: ../xfconfd/main.c:138
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "Facer fork ao segundo plano despois de iniciar: só é útil para facer probas"
 
 #: ../xfconfd/main.c:158
 msgid "Xfce Configuration Daemon"
@@ -290,8 +273,7 @@ msgstr ""
 #: ../xfconf-query/main.c:419
 #, c-format
 msgid "When creating a new property, the value type must be specified.\n"
-msgstr ""
-"Cando se crea unha nova propiedade débese especificar o valor do tipo.\n"
+msgstr "Cando se crea unha nova propiedade débese especificar o valor do tipo.\n"
 
 #: ../xfconf-query/main.c:429
 #, c-format
@@ -305,11 +287,8 @@ msgstr "Non foi posible determinar o tipo do valor.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
-msgstr ""
-"Débese especificar un tipo de valor para converter unha matriz nun valor "
-"único.\n"
+msgid "A value type must be specified to change an array into a single value.\n"
+msgstr "Débese especificar un tipo de valor para converter unha matriz nun valor único.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
@@ -351,11 +330,9 @@ msgstr "Non se puido abrir o ficheiro de importación \"%s\": %s\n"
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Non se puido analizar o ficheiro de importación \"%s\": %s\n"
 
-#, fuzzy
 #~ msgid "Export channel to file"
 #~ msgstr "Seleccione o ficheiro no que se vai exportar"
 
-#, fuzzy
 #~ msgid "Import channel from file"
 #~ msgstr "_Importar configuracións desde un ficheiro..."
 
