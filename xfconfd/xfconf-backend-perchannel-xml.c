@@ -563,6 +563,24 @@ nodes_do_prop_reset(GNode *node,
 }
 
 static gboolean
+nodes_clean_up (GNode *node,
+                gpointer data)
+{
+    XfconfProperty *prop = node->data;
+
+    /* clean up dangling nodes in tree without system defaults */
+    if(!node->children
+       && !G_VALUE_TYPE (&prop->value)
+       && !G_VALUE_TYPE (&prop->system_value)
+       && !prop->locked) {
+        g_node_unlink(node);
+        xfconf_proptree_destroy(node);
+    }
+
+    return FALSE;
+}
+
+static gboolean
 do_reset_channel(XfconfBackend *backend,
                  const gchar *channel_name,
                  GNode *properties,
@@ -664,7 +682,9 @@ xfconf_backend_perchannel_xml_reset(XfconfBackend *backend,
             g_node_traverse(top, G_POST_ORDER, G_TRAVERSE_ALL, -1,
                             nodes_do_prop_reset, &pdata);
 
-            /* FIXME: clean up dangling nodes in tree without system defaults */
+            /* clean up dangling nodes in tree without system defaults */
+            g_node_traverse(top, G_POST_ORDER, G_TRAVERSE_ALL, -1,
+                            nodes_clean_up, NULL);
         } else {
             /* remove the entire channel */
             return do_reset_channel(backend, channel_name,
