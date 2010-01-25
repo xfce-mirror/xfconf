@@ -69,7 +69,7 @@
 #define CONFIG_DIR_STEM  "xfce4/xfconf/" XFCONF_BACKEND_PERCHANNEL_XML_TYPE_ID "/"
 #define CONFIG_FILE_FMT  CONFIG_DIR_STEM "%s.xml"
 #define CACHE_TIMEOUT    (20*60*1000)  /* 20 minutes */
-#define WRITE_TIMEOUT    (5*1000)  /* 5 seconds */
+#define WRITE_TIMEOUT    (5)  /* 5 seconds */
 #define MAX_PROP_PATH    (4096)
 
 struct _XfconfBackendPerchannelXml
@@ -1014,9 +1014,9 @@ xfconf_backend_perchannel_xml_schedule_save(XfconfBackendPerchannelXml *xbpx,
     if(xbpx->save_id)
         g_source_remove(xbpx->save_id);
 
-    xbpx->save_id = g_timeout_add(WRITE_TIMEOUT,
-                                  xfconf_backend_perchannel_xml_save_timeout,
-                                  xbpx);
+    xbpx->save_id = g_timeout_add_seconds(WRITE_TIMEOUT,
+                                          xfconf_backend_perchannel_xml_save_timeout,
+                                          xbpx);
 }
 
 static XfconfChannel *
