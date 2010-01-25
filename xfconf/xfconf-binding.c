@@ -348,9 +348,11 @@ _xfconf_g_bindings_shutdown(void)
         }
         g_slist_free(bindings);
 
+#ifndef NDEBUG
         /* scare the developer a bit */
         g_debug("%d xfconf binding(s) are still connected. Are you sure all xfconf "
                 "channels are released before calling xfconf_shutdown()?", n);
+#endif
 
         G_UNLOCK(__bindings);
     }
