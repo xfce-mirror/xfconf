@@ -1689,7 +1689,8 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
     prop->name = g_strdup("/");
     channel->properties = g_node_new(prop);
 
-    /* read in system files, we do this in reversed order */
+    /* read in system files, we do this in reversed order to properly 
+     * follow the xdg spec, see bug #6079 for more information */
     length = g_strv_length(filenames);
     for(i = length - 1; i >= 0; --i) {
         if(!g_strcmp0(user_file, filenames[i]))
