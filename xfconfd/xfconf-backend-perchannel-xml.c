@@ -1664,7 +1664,7 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
 {
     XfconfChannel *channel = NULL;
     gchar *filename_stem, **filenames, *user_file;
-    gint i;
+    gint i, length;
     XfconfProperty *prop;
 
     TRACE("entering");
@@ -1689,9 +1689,10 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
     prop->name = g_strdup("/");
     channel->properties = g_node_new(prop);
 
-    /* read in system files */
-    for(i = 0; filenames[i]; ++i) {
-        if(user_file && !strcmp(filenames[i], user_file))
+    /* read in system files, we do this in reversed order */
+    length = g_strv_length(filenames);
+    for(i = length - 1; i >= 0; --i) {
+        if(!g_strcmp0(user_file, filenames[i]))
             continue;
         xfconf_backend_perchannel_xml_merge_file(xbpx, filenames[i], TRUE,
                                                  channel, NULL);
