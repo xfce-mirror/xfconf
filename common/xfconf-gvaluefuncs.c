@@ -327,7 +327,7 @@ _xfconf_gvalue_is_equal(const GValue *value1,
         HANDLE_CMP_GV(DOUBLE, double);
 
         case G_TYPE_STRING:
-            return !g_utf8_collate(g_value_get_string(value1), g_value_get_string(value2));
+            return !g_strcmp0(g_value_get_string(value1), g_value_get_string(value2));
 
         default:
             if(G_VALUE_TYPE(value1) == XFCONF_TYPE_INT16)
