@@ -1,3 +1,16 @@
+Xfconf 4.7.1
+============
+
+  * Remove dangling nodes from the tree after a recursive remove.
+  * Use a seconds timeout to reduce system wakeups.
+  * Only print debug messages when compiled with debugging.
+  * Merge xml files in reversed order (bug #6079).
+  * Use g_strcmp0 for comparing strings.
+  * Bump glib depenency to 2.18.
+  * Silent the build.
+  * Updated translations: pt_BR, nl, gl, fi, ru.
+
+
 Xfconf 4.7.0
 ============
 
