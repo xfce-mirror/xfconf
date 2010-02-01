@@ -55,7 +55,7 @@ service_in_files = org.xfce.Xfconf.service.in
 service_DATA = $(service_in_files:.service.in=.service)
 
 %.service: %.service.in
-	sed -e "s,\@libexecdir\@,$(libexecdir),g" < $< > $@
+	$(AM_V_GEN) sed -e "s,\@libexecdir\@,$(libexecdir),g" < $< > $@
 
 CLEANFILES = \
 	$(service_DATA)
@@ -78,7 +78,7 @@ BUILT_SOURCES = \
 	$(xfconf_built_sources)
 
 xfconf-dbus-server.h: $(top_srcdir)/common/xfconf-dbus.xml
-	dbus-binding-tool --mode=glib-server --prefix=xfconf $< > $@
+	$(AM_V_GEN) dbus-binding-tool --mode=glib-server --prefix=xfconf $< > $@
 
 endif
 

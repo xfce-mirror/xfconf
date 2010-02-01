@@ -38,11 +38,11 @@ BUILT_SOURCES = \
 xfconf-marshal.h: stamp-xfconf-marshal.h
 	@true
 stamp-xfconf-marshal.h: $(srcdir)/xfconf-marshal.list Makefile
-	glib-genmarshal --prefix=_xfconf_marshal $(srcdir)/xfconf-marshal.list --header > xfconf-marshal.h
-	echo timestamp > $(@F)
+	$(AM_V_GEN) glib-genmarshal --prefix=_xfconf_marshal $(srcdir)/xfconf-marshal.list --header > xfconf-marshal.h \
+	&& echo timestamp > $(@F)
 xfconf-marshal.c: $(srcdir)/xfconf-marshal.list Makefile
-	echo '#include "xfconf-marshal.h"' > xfconf-marshal.c
-	glib-genmarshal --prefix=_xfconf_marshal $(srcdir)/xfconf-marshal.list --body >> xfconf-marshal.c
+	$(AM_V_GEN) echo '#include "xfconf-marshal.h"' > xfconf-marshal.c \
+	&& glib-genmarshal --prefix=_xfconf_marshal $(srcdir)/xfconf-marshal.list --body >> xfconf-marshal.c
 
 
 
@@ -57,10 +57,10 @@ BUILT_SOURCES += \
 	$(libxfconf_built_sources)
 
 xfconf-alias.h: make-exo-alias.pl $(top_srcdir)/xfconf/xfconf.symbols
-	$(PERL) $(srcdir)/make-exo-alias.pl <$(top_srcdir)/xfconf/xfconf.symbols >xfconf-alias.h
+	$(AM_V_GEN) $(PERL) $(srcdir)/make-exo-alias.pl <$(top_srcdir)/xfconf/xfconf.symbols >xfconf-alias.h
 
 xfconf-aliasdef.c: make-exo-alias.pl $(top_srcdir)/xfconf/xfconf.symbols
-	$(PERL) $(srcdir)/make-exo-alias.pl -def <$(top_srcdir)/xfconf/xfconf.symbols >xfconf-aliasdef.c
+	$(AM_V_GEN) $(PERL) $(srcdir)/make-exo-alias.pl -def <$(top_srcdir)/xfconf/xfconf.symbols >xfconf-aliasdef.c
 
 endif
 

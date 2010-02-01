@@ -54,9 +54,9 @@ BUILT_SOURCES = \
 	xfconf-dbus-bindings.h
 
 xfconf-dbus-bindings.h: $(top_srcdir)/common/xfconf-dbus.xml Makefile
-	dbus-binding-tool --mode=glib-client $< > $(@).tmp
-	sed -e 's/^\([[:space:]]\+GValue[[:space:]]\+[^=]\+\).*;$$/\1 = { 0, };/' <$(@).tmp >$@
-	-rm -f $(@).tmp
+	$(AM_V_GEN) dbus-binding-tool --mode=glib-client $< > $(@).tmp \
+	&& sed -e 's/^\([[:space:]]\+GValue[[:space:]]\+[^=]\+\).*;$$/\1 = { 0, };/' <$(@).tmp >$@ \
+	&& rm -f $(@).tmp
 # the above fixes a bug in dbus-binding-tool's output
 # dbus-binding-tool doesn't initialise GValues to { 0, } properly
 
