@@ -796,7 +796,7 @@ xfconf_proptree_lookup_node(GNode *proptree,
 
     g_return_val_if_fail(PROP_NAME_IS_VALID(name), NULL);
 
-    parts = g_strsplit_set(name+1, "/", -1);
+    parts = g_strsplit(name+1, "/", -1);
     parent = proptree;
 
     for(i = 0; parts[i]; ++i) {
