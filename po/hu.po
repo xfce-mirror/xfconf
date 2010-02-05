@@ -1,26 +1,26 @@
 # Hungarian translation of xfconf
 # Copyright (C) 2009. Free Software Foundation, Inc.
 # This file is distributed under the same license as the xfconf package.
-#
+# 
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: untitled\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-26 12:49+0100\n"
+"POT-Creation-Date: 2010-02-05 00:05+0100\n"
 "PO-Revision-Date: 2009-06-24 02:51+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at gnome dot hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:854
-#, fuzzy, c-format
+#: ../xfconf/xfconf-cache.c:897
+#, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "A tulajdonság beállítása meghiúsult.\n"
+msgstr "A ResetProperty DBus-hívás meghiúsult."
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
@@ -31,51 +31,49 @@ msgstr "Nem hozható létre a konfigurációs könyvtár („%s”)"
 #: ../xfconfd/xfconf-daemon.c:244
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr ""
-"Hozzáférés megtagadva a tulajdonság („%s”) módosítása közben a csatornán („%"
-"s”)"
+msgstr "Hozzáférés megtagadva a tulajdonság („%s”) módosítása közben a csatornán („%s”)"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:393
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:475
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:636
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:656
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:674
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "A tulajdonság („%s”) nem létezik a csatornán („%s”)"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:603
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:621
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "A csatorna („%s”) nem távolítható el: %s"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1293
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1313
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
 msgstr "Érvénytelen típus a <property> elemhez: „%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1309
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1385
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1329
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1405
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "Nem dolgozható fel a(z) „%s” típusú érték ebből: „%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1365
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1385
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr "A <value> típus attribútuma nem lehet tömb"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1374
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1394
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
 msgstr "Érvénytelen típus a <value> elemhez: „%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1662
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1907
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1682
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1929
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "A csatorna („%s”) nem létezik"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1965
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1987
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Nem lehet írni a csatornába („%s”): %s"
@@ -97,18 +95,13 @@ msgstr "A gyökérelem („/”) nem érvényes tulajdonságnév"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"A tulajdonságnevek csak a következő ASCII karaktereket tartalmazhatják: A-Z, "
-"a-z, 0-9, „_”, „-”, „<” és „>”, valamint elválasztóként „/”"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "A tulajdonságnevek csak a következő ASCII karaktereket tartalmazhatják: A-Z, a-z, 0-9, „_”, „-”, „<” és „>”, valamint elválasztóként „/”"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"A tulajdonságnevekben nem lehet két vagy több egymást követő „/” karakter"
+msgstr "A tulajdonságnevekben nem lehet két vagy több egymást követő „/” karakter"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -122,37 +115,25 @@ msgstr "A csatorna neve nem lehet üres karakterlánc"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr ""
-"A csatornanevek csak az A-Z, a-z, 0-9, „_” és „-” ASCII karaktereket "
-"tartalmazhatják"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgstr "A csatornanevek csak az A-Z, a-z, 0-9, „_” és „-” ASCII karaktereket tartalmazhatják"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"A tulajdonságnév csak akkor lehet üres vagy „/”, ha rekurzív visszaállítás "
-"lett megadva"
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "A tulajdonságnév csak akkor lehet üres vagy „/”, ha rekurzív visszaállítás lett megadva"
 
 #: ../xfconfd/main.c:133
 msgid "Prints the xfconfd version."
 msgstr "Az xfconfd verziójának kiírása."
 
 #: ../xfconfd/main.c:135
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"A használandó konfigurációs háttérprogram. Az elsőként megadott olvasásra és "
-"írásra, a többi csak olvasásra lesz megnyitva."
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "A használandó konfigurációs háttérprogram. Az elsőként megadott olvasásra és írásra, a többi csak olvasásra lesz megnyitva."
 
 #: ../xfconfd/main.c:138
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "Indítás a háttérbe, csak tesztelési célokra hasznos"
 
 #: ../xfconfd/main.c:158
 msgid "Xfce Configuration Daemon"
@@ -282,9 +263,7 @@ msgstr ""
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
-msgstr ""
-"A tulajdonság („%s”) nem létezik a csatornán („%s”). Ha új tulajdonságot "
-"akar létrehozni, használja a --create kapcsolót.\n"
+msgstr "A tulajdonság („%s”) nem létezik a csatornán („%s”). Ha új tulajdonságot akar létrehozni, használja a --create kapcsolót.\n"
 
 #: ../xfconf-query/main.c:419
 #, c-format
@@ -303,10 +282,8 @@ msgstr "Nem állapítható meg az érték típusa.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
-msgstr ""
-"Meg kell adni az értéktípust a tömb egyetlen értékké változtatásához.\n"
+msgid "A value type must be specified to change an array into a single value.\n"
+msgstr "Meg kell adni az értéktípust a tömb egyetlen értékké változtatásához.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
