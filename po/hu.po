@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: untitled\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-05 00:05+0100\n"
+"POT-Creation-Date: 2010-02-05 18:05+0100\n"
 "PO-Revision-Date: 2009-06-24 02:51+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at gnome dot hu>\n"
@@ -106,7 +106,7 @@ msgstr "A tulajdonságnevekben nem lehet két vagy több egymást követő „/�
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "A tulajdonságnevekben nem végződhetnek „/” karakterre"
+msgstr "A tulajdonságnevek nem végződhetnek „/” karakterre"
 
 #: ../xfconfd/xfconf-backend.c:163
 #, c-format
