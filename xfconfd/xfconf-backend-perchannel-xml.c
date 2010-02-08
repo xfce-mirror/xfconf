@@ -78,10 +78,9 @@ struct _XfconfBackendPerchannelXml
 
     gchar *config_save_path;
 
-    GTree *channels;
+    GHashTable *channels;
 
     guint save_id;
-    GSList *dirty_channels;
 
     XfconfPropertyChangedFunc prop_changed_func;
     gpointer prop_changed_data;
@@ -96,6 +95,7 @@ typedef struct
 {
     GNode *properties;
     gboolean locked;
+    gboolean dirty;
 } XfconfChannel;
 
 typedef struct
@@ -176,7 +176,7 @@ static void xfconf_backend_perchannel_xml_register_property_changed_func(XfconfB
                                                                          gpointer user_data);
 
 static void xfconf_backend_perchannel_xml_schedule_save(XfconfBackendPerchannelXml *xbpx,
-                                                        const gchar *channel_name);
+                                                        XfconfChannel *channel);
 
 static XfconfChannel *xfconf_backend_perchannel_xml_create_channel(XfconfBackendPerchannelXml *xbpx,
                                                                    const gchar *channel_name);
@@ -223,10 +223,9 @@ xfconf_backend_perchannel_xml_class_init(XfconfBackendPerchannelXmlClass *klass)
 static void
 xfconf_backend_perchannel_xml_init(XfconfBackendPerchannelXml *instance)
 {
-    instance->channels = g_tree_new_full((GCompareDataFunc)g_ascii_strcasecmp,
-                                         NULL,
-                                         (GDestroyNotify)g_free,
-                                         (GDestroyNotify)xfconf_channel_destroy);
+    instance->channels = g_hash_table_new_full(g_str_hash, g_str_equal,
+                                               (GDestroyNotify)g_free,
+                                                (GDestroyNotify)xfconf_channel_destroy);
 }
 
 static void
@@ -237,12 +236,10 @@ xfconf_backend_perchannel_xml_finalize(GObject *obj)
     if(xbpx->save_id) {
         g_source_remove(xbpx->save_id);
         xbpx->save_id = 0;
+        xfconf_backend_perchannel_xml_flush(XFCONF_BACKEND(xbpx), NULL);
     }
 
-    if(xbpx->dirty_channels)
-        xfconf_backend_perchannel_xml_flush(XFCONF_BACKEND(xbpx), NULL);
-
-    g_tree_destroy(xbpx->channels);
+    g_hash_table_destroy(xbpx->channels);
 
     g_free(xbpx->config_save_path);
 
@@ -297,7 +294,7 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
                                   GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    XfconfChannel *channel = g_tree_lookup(xbpx->channels, channel_name);
+    XfconfChannel *channel = g_hash_table_lookup(xbpx->channels, channel_name);
     XfconfProperty *cur_prop;
 
     if(!channel) {
@@ -349,7 +346,7 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
             xbpx->prop_changed_func(backend, channel_name, property, xbpx->prop_changed_data);
     }
 
-    xfconf_backend_perchannel_xml_schedule_save(xbpx, channel_name);
+    xfconf_backend_perchannel_xml_schedule_save(xbpx, channel);
 
     return TRUE;
 }
@@ -362,7 +359,7 @@ xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
                                   GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    XfconfChannel *channel = g_tree_lookup(xbpx->channels, channel_name);
+    XfconfChannel *channel = g_hash_table_lookup(xbpx->channels, channel_name);
     XfconfProperty *cur_prop;
     GValue *value_to_get = NULL;
 
@@ -451,7 +448,7 @@ xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
                                       GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    XfconfChannel *channel = g_tree_lookup(xbpx->channels, channel_name);
+    XfconfChannel *channel = g_hash_table_lookup(xbpx->channels, channel_name);
     GNode *props_tree;
     gchar cur_path[MAX_PROP_PATH], *p;
 
@@ -496,7 +493,7 @@ xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
                                      GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    XfconfChannel *channel = g_tree_lookup(xbpx->channels, channel_name);
+    XfconfChannel *channel = g_hash_table_lookup(xbpx->channels, channel_name);
     XfconfProperty *prop;
 
     if(!channel) {
@@ -582,18 +579,7 @@ do_reset_channel(XfconfBackend *backend,
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
     gchar *filename;
-    GSList *dirty;
     PropChangeData pdata;
-
-    if((dirty = g_slist_find_custom(xbpx->dirty_channels, channel_name,
-                                    (GCompareFunc)g_ascii_strcasecmp)))
-    {
-        xbpx->dirty_channels = g_slist_remove(xbpx->dirty_channels, dirty);
-        if(!xbpx->dirty_channels && xbpx->save_id) {
-            g_source_remove(xbpx->save_id);
-            xbpx->save_id = 0;
-        }
-    }
 
     pdata.xbpx = xbpx;
     pdata.channel_name = channel_name;
@@ -603,7 +589,7 @@ do_reset_channel(XfconfBackend *backend,
     /* we could probably prune the existing proptree, or even just leave
      * it as-is, but it's easier to just kill it.  it'll get reloaded later
      * from the system file (if any) if needed. */
-    g_tree_remove(xbpx->channels, channel_name);
+    g_hash_table_remove(xbpx->channels, channel_name);
 
     /* regardless of whether or not we have a system file, we don't need
      * the user file anymore */
@@ -631,7 +617,7 @@ xfconf_backend_perchannel_xml_reset(XfconfBackend *backend,
                                     GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    XfconfChannel *channel = g_tree_lookup(xbpx->channels, channel_name);
+    XfconfChannel *channel = g_hash_table_lookup(xbpx->channels, channel_name);
 
     if(!channel) {
         channel = xfconf_backend_perchannel_xml_load_channel(xbpx, channel_name,
@@ -686,7 +672,7 @@ xfconf_backend_perchannel_xml_reset(XfconfBackend *backend,
         }
     }
 
-    xfconf_backend_perchannel_xml_schedule_save(xbpx, channel_name);
+    xfconf_backend_perchannel_xml_schedule_save(xbpx, channel);
 
     return TRUE;
 }
@@ -736,7 +722,7 @@ xfconf_backend_perchannel_xml_is_property_locked(XfconfBackend *backend,
                                                  GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    XfconfChannel *channel = g_tree_lookup(xbpx->channels, channel_name);
+    XfconfChannel *channel = g_hash_table_lookup(xbpx->channels, channel_name);
     XfconfProperty *prop = NULL;
 
     if(!channel) {
@@ -752,15 +738,29 @@ xfconf_backend_perchannel_xml_is_property_locked(XfconfBackend *backend,
     return TRUE;
 }
 
+static void
+xfconf_backend_perchannel_xml_flush_get_dirty(gpointer key,
+                                              gpointer value,
+                                              gpointer user_data)
+{
+    XfconfChannel *channel = value;
+    GSList **dirty = user_data;
+    if(channel->dirty)
+        *dirty = g_slist_prepend(*dirty, key);
+}
+
 static gboolean
 xfconf_backend_perchannel_xml_flush(XfconfBackend *backend,
                                     GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    GSList *l;
+    GSList *dirty = NULL, *l;
 
-    for(l = xbpx->dirty_channels; l; l = l->next)
+    g_hash_table_foreach(xbpx->channels, xfconf_backend_perchannel_xml_flush_get_dirty, &dirty);
+
+    for(l = dirty; l; l = l->next)
         xfconf_backend_perchannel_xml_flush_channel(xbpx, l->data, error);
+    g_slist_free(dirty);
 
     TRACE("exiting, flushed all channels");
 
@@ -991,23 +991,12 @@ xfconf_backend_perchannel_xml_save_timeout(gpointer data)
 
 static void
 xfconf_backend_perchannel_xml_schedule_save(XfconfBackendPerchannelXml *xbpx,
-                                            const gchar *channel_name)
+                                            XfconfChannel *channel)
 {
-    if(!g_slist_find_custom(xbpx->dirty_channels, channel_name,
-                            (GCompareFunc)g_ascii_strcasecmp))
-    {
-        gpointer orig_key = NULL, val = NULL;
-
-        if(!g_tree_lookup_extended(xbpx->channels, channel_name, &orig_key, &val)) {
-            g_warning("Attempt to schedule save for a nonexistent channel.");
-            return;
-        }
-
-        xbpx->dirty_channels = g_slist_prepend(xbpx->dirty_channels, orig_key);
-    }
-
     if(xbpx->save_id)
         g_source_remove(xbpx->save_id);
+
+    channel->dirty = TRUE;
 
     xbpx->save_id = g_timeout_add_seconds(WRITE_TIMEOUT,
                                           xfconf_backend_perchannel_xml_save_timeout,
@@ -1021,7 +1010,8 @@ xfconf_backend_perchannel_xml_create_channel(XfconfBackendPerchannelXml *xbpx,
     XfconfChannel *channel;
     XfconfProperty *prop;
 
-    if((channel = g_tree_lookup(xbpx->channels, channel_name))) {
+    channel = g_hash_table_lookup(xbpx->channels, channel_name);
+    if(channel) {
         g_warning("Attempt to create channel when one already exists.");
         return channel;
     }
@@ -1030,7 +1020,7 @@ xfconf_backend_perchannel_xml_create_channel(XfconfBackendPerchannelXml *xbpx,
     prop = g_slice_new0(XfconfProperty);
     prop->name = g_strdup("/");
     channel->properties = g_node_new(prop);
-    g_tree_insert(xbpx->channels, g_ascii_strdown(channel_name, -1), channel);
+    g_hash_table_insert(xbpx->channels, g_ascii_strdown(channel_name, -1), channel);
 
     return channel;
 }
@@ -1688,7 +1678,7 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
                                                  channel, NULL);
     }
 
-    g_tree_insert(xbpx->channels, g_ascii_strdown(channel_name, -1), channel);
+    g_hash_table_insert(xbpx->channels, g_ascii_strdown(channel_name, -1), channel);
 
 out:
     g_strfreev(filenames);
@@ -1900,10 +1890,12 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
                                             GError **error)
 {
     gboolean ret = FALSE;
-    XfconfChannel *channel = g_tree_lookup(xbpx->channels, channel_name);
+    XfconfChannel *channel = g_hash_table_lookup(xbpx->channels, channel_name);
     GNode *child;
     gchar *filename = NULL, *filename_tmp = NULL;
     FILE *fp = NULL;
+
+    DBG("Flushed dirty channel \"%s\"", channel_name);
 
     if(!channel) {
         if(error) {
@@ -1976,6 +1968,8 @@ out:
 
     g_free(filename);
     g_free(filename_tmp);
+
+    channel->dirty = FALSE;
 
     return ret;
 }
