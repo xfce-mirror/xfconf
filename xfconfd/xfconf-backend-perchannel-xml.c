@@ -723,6 +723,7 @@ xfconf_backend_perchannel_xml_list_channels(XfconfBackend *backend,
 
         g_dir_close(dir);
     }
+    g_strfreev(dirs);
 
     return TRUE;
 }
