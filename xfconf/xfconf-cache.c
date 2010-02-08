@@ -658,6 +658,7 @@ xfconf_cache_prefetch(XfconfCache *cache,
         /* FIXME: perhaps change item API to allow 'stealing' a GValue rather
          * than copying all the time */
         g_hash_table_foreach(props, xfconf_cache_prefetch_ht, cache);
+        g_hash_table_destroy(props);
         /* TODO: honor max entries */
         ret = TRUE;
     } else
