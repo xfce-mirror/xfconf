@@ -34,48 +34,43 @@
 #include "xfconf/xfconf-errors.h"
 #include "xfconf-common-private.h"
 
-static gboolean xfconf_set_property(XfconfDaemon *xfconfd,
-                                    const gchar *channel,
-                                    const gchar *property,
-                                    const GValue *value,
-                                    GError **error);
-static gboolean xfconf_get_property(XfconfDaemon *xfconfd,
-                                    const gchar *channel,
-                                    const gchar *property,
-                                    GValue *value,
-                                    GError **error);
-static gboolean xfconf_get_all_properties(XfconfDaemon *xfconfd,
-                                          const gchar *channel,
-                                          const gchar *property_base,
-                                          GHashTable **properties,
-                                          GError **error);
-static gboolean xfconf_property_exists(XfconfDaemon *xfconfd,
-                                       const gchar *channel,
-                                       const gchar *property,
-                                       gboolean *exists,
-                                       GError **error);
-static gboolean xfconf_reset_property(XfconfDaemon *xfconfd,
+static void xfconf_set_property(XfconfDaemon *xfconfd,
+                                const gchar *channel,
+                                const gchar *property,
+                                const GValue *value,
+                                DBusGMethodInvocation *context);
+static void xfconf_get_property(XfconfDaemon *xfconfd,
+                                const gchar *channel,
+                                const gchar *property,
+                                DBusGMethodInvocation *context);
+static void xfconf_get_all_properties(XfconfDaemon *xfconfd,
+                                      const gchar *channel,
+                                      const gchar *property_base,
+                                      DBusGMethodInvocation *context);
+static void xfconf_property_exists(XfconfDaemon *xfconfd,
+                                   const gchar *channel,
+                                   const gchar *property,
+                                   DBusGMethodInvocation *context);
+static void xfconf_reset_property(XfconfDaemon *xfconfd,
+                                  const gchar *channel,
+                                  const gchar *property,
+                                  gboolean recursive,
+                                  DBusGMethodInvocation *context);
+static void xfconf_list_channels(XfconfDaemon *xfconfd,
+                                 DBusGMethodInvocation *context);
+static void xfconf_is_property_locked(XfconfDaemon *xfconfd,
                                       const gchar *channel,
                                       const gchar *property,
-                                      gboolean recursive,
-                                      GError **error);
-static gboolean xfconf_list_channels(XfconfDaemon *xfconfd,
-                                     gchar ***channels,
-                                     GError **error);
-static gboolean xfconf_is_property_locked(XfconfDaemon *xfconfd,
-                                          const gchar *channel,
-                                          const gchar *property,
-                                          gboolean *locked,
-                                          GError **error);
+                                      DBusGMethodInvocation *context);
 
 #include "xfconf-dbus-server.h"
 
 struct _XfconfDaemon
 {
     GObject parent;
-    
+
     DBusGConnection *dbus_conn;
-    
+
     GList *backends;
 };
 
@@ -107,9 +102,9 @@ static void
 xfconf_daemon_class_init(XfconfDaemonClass *klass)
 {
     GObjectClass *object_class = (GObjectClass *)klass;
-    
+
     object_class->finalize = xfconf_daemon_finalize;
-    
+
     signals[SIG_PROPERTY_CHANGED] = g_signal_new(I_("property-changed"),
                                                  XFCONF_TYPE_DAEMON,
                                                  G_SIGNAL_RUN_LAST,
@@ -140,7 +135,7 @@ xfconf_daemon_class_init(XfconfDaemonClass *klass)
 static void
 xfconf_daemon_init(XfconfDaemon *instance)
 {
-    
+
 }
 
 static void
@@ -148,7 +143,7 @@ xfconf_daemon_finalize(GObject *obj)
 {
     XfconfDaemon *xfconfd = XFCONF_DAEMON(obj);
     GList *l;
-    
+
     for(l = xfconfd->backends; l; l = l->next) {
         xfconf_backend_register_property_changed_func(l->data, NULL, NULL);
         xfconf_backend_flush(l->data, NULL);
@@ -162,7 +157,7 @@ xfconf_daemon_finalize(GObject *obj)
                                       xfconfd);
         dbus_g_connection_unref(xfconfd->dbus_conn);
     }
-    
+
     G_OBJECT_CLASS(xfconf_daemon_parent_class)->finalize(obj);
 }
 
@@ -217,14 +212,15 @@ xfconf_daemon_backend_property_changed(XfconfBackend *backend,
     g_idle_add(xfconf_daemon_emit_property_changed_idled, pdata);
 }
 
-static gboolean
+static void
 xfconf_set_property(XfconfDaemon *xfconfd,
                     const gchar *channel,
                     const gchar *property,
                     const GValue *value,
-                    GError **error)
+                    DBusGMethodInvocation *context)
 {
     GList *l;
+    GError *error = NULL;
 
     /* if there's more than one backend, we need to make sure the
      * property isn't locked on ANY of them */
@@ -233,186 +229,220 @@ xfconf_set_property(XfconfDaemon *xfconfd,
             gboolean locked = FALSE;
 
             if(!xfconf_backend_is_property_locked(l->data, channel, property,
-                                                  &locked, error))
-            {
-                return FALSE;
-            }
+                                                  &locked, &error))
+                break;
+
             if(locked) {
-                if(error) {
-                    g_set_error(error, XFCONF_ERROR,
-                                XFCONF_ERROR_PERMISSION_DENIED,
-                                _("Permission denied while modifying property \"%s\" on channel \"%s\""),
-                                property, channel);
-                }
-                return FALSE;
+                g_set_error(&error, XFCONF_ERROR,
+                            XFCONF_ERROR_PERMISSION_DENIED,
+                            _("Permission denied while modifying property \"%s\" on channel \"%s\""),
+                            property, channel);
+                break;
             }
+        }
+
+        /* there is always an error set if something failed or the
+         * property is locked */
+        if(error) {
+            dbus_g_method_return_error(context, error);
+            g_error_free(error);
+            return;
         }
     }
 
     /* only write to first backend */
-    return xfconf_backend_set(xfconfd->backends->data, channel, property,
-                              value, error);
+    if(xfconf_backend_set(xfconfd->backends->data, channel, property,
+                          value, &error))
+    {
+        dbus_g_method_return(context);
+    } else {
+        dbus_g_method_return_error(context, error);
+        g_error_free(error);
+    }
 }
 
-static gboolean
+static void
 xfconf_get_property(XfconfDaemon *xfconfd,
                     const gchar *channel,
                     const gchar *property,
-                    GValue *value,
-                    GError **error)
+                    DBusGMethodInvocation *context)
 {
     GList *l;
+    GValue value = { 0, };
+    GError *error = NULL;
 
-    /* FIXME: presumably, |value| leaks.  how do we fix this?  perhaps
-     * using the org.freedesktop.DBus.GLib.Async annotation? */
-    
     /* check each backend until we find a value */
     for(l = xfconfd->backends; l; l = l->next) {
-        if(xfconf_backend_get(l->data, channel, property, value, error))
-            return TRUE;
-        else if(l->next)
-            g_clear_error(error);
+        if(xfconf_backend_get(l->data, channel, property, &value, &error)) {
+            dbus_g_method_return (context, &value);
+            g_value_unset(&value);
+            return;
+        } else if(l->next)
+            g_clear_error(&error);
     }
-    
-    return FALSE;
+
+    dbus_g_method_return_error(context, error);
+    g_error_free(error);
 }
 
-static gboolean
+static void
 xfconf_get_all_properties(XfconfDaemon *xfconfd,
                           const gchar *channel,
                           const gchar *property_base,
-                          GHashTable **properties,
-                          GError **error)
+                          DBusGMethodInvocation *context)
 {
-    gboolean ret = FALSE;
     GList *l;
-    
-    g_return_val_if_fail(properties && !*properties, FALSE);
-    
-    *properties = g_hash_table_new_full(g_str_hash, g_str_equal,
+    GHashTable *properties;
+    GError *error = NULL;
+    gboolean succeed = FALSE;
+
+    properties = g_hash_table_new_full(g_str_hash, g_str_equal,
                                         (GDestroyNotify)g_free,
                                         (GDestroyNotify)_xfconf_gvalue_free);
-    
+
     /* get all properties from all backends.  if they all fail, return FALSE */
     for(l = xfconfd->backends; l; l = l->next) {
         if(xfconf_backend_get_all(l->data, channel, property_base,
-                                  *properties, error))
-        {
-            ret = TRUE;
-        } else if(l->next)
-            g_clear_error(error);
+                                  properties, &error))
+            succeed = TRUE;
+        else if(l->next) {
+            g_clear_error(&error);
+        }
     }
-    
-    if(!ret) {
-        g_hash_table_destroy(*properties);
-        *properties = NULL;
-    }
-    
-    return ret;
+
+    if(succeed)
+        dbus_g_method_return (context, properties);
+    else
+        dbus_g_method_return_error(context, error);
+
+    if(error)
+        g_error_free(error);
+    g_hash_table_destroy(properties);
 }
 
-static gboolean
+static void
 xfconf_property_exists(XfconfDaemon *xfconfd,
                        const gchar *channel,
                        const gchar *property,
-                       gboolean *exists,
-                       GError **error)
+                       DBusGMethodInvocation *context)
 {
-    gboolean ret = FALSE, exists_tmp = FALSE;
+    gboolean exists = FALSE;
+    gboolean succeed = FALSE;
     GList *l;
-    
+    GError *error = NULL;
+
     /* if at least one backend returns TRUE (regardles if |*exists| gets set
      * to TRUE or FALSE), we'll return TRUE from this function */
-    
-    for(l = xfconfd->backends; l; l = l->next) {
-        if(xfconf_backend_exists(l->data, channel, property, &exists_tmp,
-                                 error))
-        {
-            ret = TRUE;
-            *exists = exists_tmp;
-            if(*exists)
-                return TRUE;
-        } else if(l->next)
-            g_clear_error(error);
+
+    for(l = xfconfd->backends; !exists && l; l = l->next) {
+        if(xfconf_backend_exists(l->data, channel, property, &exists, &error))
+            succeed = TRUE;
+        else if(l->next)
+            g_clear_error(&error);
     }
-    
-    return ret;
+
+    if(succeed)
+        dbus_g_method_return(context, exists);
+    else {
+        dbus_g_method_return_error(context, error);
+        g_error_free(error);
+    }
 }
 
-static gboolean
+static void
 xfconf_reset_property(XfconfDaemon *xfconfd,
                       const gchar *channel,
                       const gchar *property,
                       gboolean recursive,
-                      GError **error)
+                      DBusGMethodInvocation *context)
 {
-    gboolean ret = FALSE;
+    gboolean succeed = FALSE;
     GList *l;
-    
+    GError *error = NULL;
+
     /* while technically all backends but the first should be opened read-only,
      * we need to reset in all backends so the property doesn't reappear
      * later */
-    
+
     for(l = xfconfd->backends; l; l = l->next) {
-        if(xfconf_backend_reset(l->data, channel, property, recursive, error))
-            ret = TRUE;
+        if(xfconf_backend_reset(l->data, channel, property, recursive, &error))
+            succeed = TRUE;
         else if(l->next)
-            g_clear_error(error);
+            g_clear_error(&error);
     }
-    
-    return ret;
+
+    if(succeed)
+        dbus_g_method_return(context);
+    else
+        dbus_g_method_return_error(context, error);
+
+    if(error)
+        g_error_free(error);
 }
 
-static gboolean
+static void
 xfconf_list_channels(XfconfDaemon *xfconfd,
-                     gchar ***channels,
-                     GError **error)
+                     DBusGMethodInvocation *context)
 {
     GSList *lchannels = NULL, *chans_tmp, *lc;
     GList *l;
-    gint i;
+    guint i;
+    gchar **channels;
+    GError *error = NULL;
 
     /* FIXME: with multiple backends, this can cause duplicates */
     for(l = xfconfd->backends; l; l = l->next) {
         chans_tmp = NULL;
-        if(xfconf_backend_list_channels(l->data, &chans_tmp, error))
+        if(xfconf_backend_list_channels(l->data, &chans_tmp, &error))
             lchannels = g_slist_concat(lchannels, chans_tmp);
-        else
-            g_clear_error(error);
+        else if(l->next)
+            g_clear_error(&error);
     }
 
-    *channels = g_malloc(sizeof(gchar *) * (g_slist_length(lchannels) + 1));
-    for(lc = lchannels, i = 0; lc; lc = lc->next, ++i)
-        (*channels)[i] = lc->data;
-    (*channels)[i] = NULL;
-    g_slist_free(lchannels);
+    if(error && !lchannels) {
+        /* no channels and an error, something went wrong */
+        dbus_g_method_return_error(context, error);
+    } else {
+        channels = g_new (gchar *, g_slist_length(lchannels) + 1);
+        for(lc = lchannels, i = 0; lc; lc = lc->next, ++i)
+            channels[i] = lc->data;
+        channels[i] = NULL;
 
-    return TRUE;
+        dbus_g_method_return(context, channels);
+
+        g_strfreev(channels);
+        g_slist_free(lchannels);
+    }
+
+    if(error)
+        g_error_free(error);
 }
 
-static gboolean
-xfconf_is_property_locked(XfconfDaemon *xfconfd,
+static void xfconf_is_property_locked(XfconfDaemon *xfconfd,
                           const gchar *channel,
                           const gchar *property,
-                          gboolean *locked,
-                          GError **error)
+                          DBusGMethodInvocation *context)
 {
     GList *l;
+    gboolean locked = FALSE;
+    GError *error = NULL;
+    gboolean succeed = FALSE;
 
-    *locked = FALSE;
-
-    for(l = xfconfd->backends; l; l = l->next) {
-        if(!xfconf_backend_is_property_locked(l->data, channel, property,
-                                              locked, error))
-        {
-            return FALSE;
-        }
-
-        if(*locked)
-            return TRUE;
+    for(l = xfconfd->backends; !locked && l; l = l->next) {
+        if(xfconf_backend_is_property_locked(l->data, channel, property,
+                                             &locked, &error))
+            succeed = TRUE;
+        else if(l->next)
+            g_clear_error(&error);
     }
 
-    return TRUE;
+    if(succeed)
+        dbus_g_method_return(context, locked);
+    else
+        dbus_g_method_return_error(context, error);
+
+    if(error)
+        g_error_free(error);
 }
 
 
@@ -424,15 +454,15 @@ xfconf_daemon_start(XfconfDaemon *xfconfd,
 {
     int ret;
     DBusError derror;
-    
+
     xfconfd->dbus_conn = dbus_g_bus_get(DBUS_BUS_SESSION, error);
     if(G_UNLIKELY(!xfconfd->dbus_conn))
         return FALSE;
-    
+
     dbus_g_connection_register_g_object(xfconfd->dbus_conn,
                                         "/org/xfce/Xfconf",
                                         G_OBJECT(xfconfd));
-    
+
     dbus_connection_add_filter(dbus_g_connection_get_connection(xfconfd->dbus_conn),
                                xfconf_daemon_handle_dbus_disconnect,
                                xfconfd, NULL);
@@ -451,7 +481,7 @@ xfconf_daemon_start(XfconfDaemon *xfconfd,
             g_set_error(error, DBUS_GERROR, DBUS_GERROR_FAILED,
                         _("Another Xfconf daemon is already running"));
         }
-        
+
         return FALSE;
     }
 
@@ -464,7 +494,7 @@ xfconf_daemon_load_config(XfconfDaemon *xfconfd,
                           GError **error)
 {
     gint i;
-    
+
     for(i = 0; backend_ids[i]; ++i) {
         GError *error1 = NULL;
         XfconfBackend *backend = xfconf_backend_factory_get_backend(backend_ids[i],
@@ -480,7 +510,7 @@ xfconf_daemon_load_config(XfconfDaemon *xfconfd,
                                                           xfconfd);
         }
     }
-                                           
+
     if(!xfconfd->backends) {
         if(error) {
             g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_NO_BACKEND,
@@ -488,9 +518,9 @@ xfconf_daemon_load_config(XfconfDaemon *xfconfd,
         }
         return FALSE;
     }
-    
+
     xfconfd->backends = g_list_reverse(xfconfd->backends);
-    
+
     return TRUE;
 }
 
@@ -526,11 +556,11 @@ xfconf_daemon_new_unique(gchar * const *backend_ids,
                          GError **error)
 {
     XfconfDaemon *xfconfd;
-    
+
     g_return_val_if_fail(backend_ids && backend_ids[0], NULL);
-    
+
     xfconfd = g_object_new(XFCONF_TYPE_DAEMON, NULL);
-    
+
     if(!xfconf_daemon_start(xfconfd, error)
        || !xfconf_daemon_load_config(xfconfd, backend_ids, error))
     {
