@@ -1496,6 +1496,7 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
 
         case ELEM_PROPERTY:
             /* FIXME: use stacks here */
+            g_free(state->list_property);
             state->list_property = NULL;
             state->list_value = NULL;
 
