@@ -50,6 +50,7 @@
 #include <libxfce4util/libxfce4util.h>
 
 #include "xfconf-daemon.h"
+#include "xfconf-backend-factory.h"
 
 #define DEFAULT_BACKEND  "xfce-perchannel-xml"
 
@@ -231,6 +232,8 @@ main(int argc,
     g_main_loop_run(mloop);
     
     g_object_unref(G_OBJECT(xfconfd));
+
+    xfconf_backend_factory_cleanup();
     
     if(signal_watch) {
         g_source_remove(signal_watch);

@@ -87,3 +87,13 @@ xfconf_backend_factory_get_backend(const gchar *type,
     
     return backend;
 }
+
+
+void
+xfconf_backend_factory_cleanup (void)
+{
+  if(backends) {
+      g_hash_table_destroy(backends);
+      backends = NULL;
+  }
+}
