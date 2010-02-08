@@ -1581,78 +1581,65 @@ xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
                                          GError **error)
 {
     gboolean ret = FALSE;
-    gchar *file_contents = NULL;
-    GMarkupParseContext *context = NULL;
+    GMappedFile *mmap_file;
+    gchar *file_contents;
+    gsize length;
+    GMarkupParseContext *context;
+    XmlParserState *state;
+    GError *error2 = NULL;
     GMarkupParser parser = {
         xfconf_backend_perchannel_xml_start_elem,
         xfconf_backend_perchannel_xml_end_elem,
         /* xfconf_backend_perchannel_xml_text_elem, */
         NULL,
     };
-    XmlParserState state;
-    int fd = -1;
-    struct stat st;
-#ifdef HAVE_MMAP
-    void *addr = NULL;
-#endif
 
     TRACE("entering (%s)", filename);
 
-    memset(&state, 0, sizeof(XmlParserState));
-    state.channel = channel;
-    state.xbpx = xbpx;
-    state.cur_elem = ELEM_NONE;
-    state.is_system_file = is_system_file;
-
-    fd = open(filename, O_RDONLY, 0);
-    if(fd < 0)
-        goto out;
-
-    if(fstat(fd, &st))
-        goto out;
-
-#ifdef HAVE_MMAP
-    addr = mmap(NULL, st.st_size, PROT_READ, MAP_FILE | MAP_SHARED, fd, 0);
-    if(addr != MAP_FAILED)
-        file_contents = addr;
-#endif
-
-    if(!file_contents) {
-        file_contents = g_malloc(st.st_size);
-        if(read(fd, file_contents, st.st_size) != st.st_size)
-            goto out;
+    /* we first try to load a mapped file, if this fails (no mmap
+     * implementation is a possible cause) we fall back to normal file
+     * loading */
+    mmap_file = g_mapped_file_new(filename, FALSE, NULL);
+    if(G_LIKELY(mmap_file != NULL)) {
+        file_contents = g_mapped_file_get_contents(mmap_file);
+        length = g_mapped_file_get_length(mmap_file);
+        DBG("successfully loaded mapped file");
+    } else if(!g_file_get_contents(filename, &file_contents, &length, error)) {
+        return FALSE;
     }
 
-    DBG("got file(size=%lu): %s", st.st_size, file_contents);
+    state = g_slice_new0(XmlParserState);
+    state->channel = channel;
+    state->xbpx = xbpx;
+    state->cur_elem = ELEM_NONE;
+    state->is_system_file = is_system_file;
 
-    context = g_markup_parse_context_new(&parser, 0, &state, NULL);
-    if(!g_markup_parse_context_parse(context, file_contents, st.st_size, error)
-       || !g_markup_parse_context_end_parse(context, error))
-    {
+    DBG("got file(size=%lu): %s", length, file_contents);
+
+    context = g_markup_parse_context_new(&parser, 0, state, NULL);
+    if(g_markup_parse_context_parse(context, file_contents, length, &error2)
+       && g_markup_parse_context_end_parse(context, &error2)) {
+        ret = TRUE;
+    } else {
         g_warning("Error parsing xfconf config file \"%s\": %s", filename,
-                  error && *error ? (*error)->message : "(?)");
-        goto out;
+                  error2 ? error2->message : "(?)");
+        if(error)
+          *error = error2;
+        else
+          g_error_free(error2);
     }
 
-    ret = TRUE;
-
-out:
     TRACE("exiting");
+
+    g_slice_free(XmlParserState, state);
 
     if(context)
         g_markup_parse_context_free(context);
 
-#ifdef HAVE_MMAP
-    if(addr) {
-        munmap(addr, st.st_size);
-        file_contents = NULL;
-    }
-#endif
-
-    g_free(file_contents);
-
-    if(fd >= 0)
-        close(fd);
+    if(mmap_file)
+        g_mapped_file_free(mmap_file);
+    else
+        g_free(file_contents);
 
     return ret;
 }
