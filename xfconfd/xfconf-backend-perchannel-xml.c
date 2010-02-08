@@ -309,10 +309,7 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
 #endif
         if(!channel) {
 #ifdef XFCONF_ENABLE_CHECKS
-            if(error && *error) {
-                g_error_free(*error);
-                *error = NULL;
-            }
+            g_clear_error(error);
 #endif
             channel = xfconf_backend_perchannel_xml_create_channel(xbpx,
                                                                    channel_name);
@@ -511,10 +508,7 @@ xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
 #endif
         if(!channel) {
 #ifdef XFCONF_ENABLE_CHECKS
-            if(error && *error) {
-                g_error_free(*error);
-                *error = NULL;
-            }
+            g_clear_error(error);
 #endif
 
             *exists = FALSE;

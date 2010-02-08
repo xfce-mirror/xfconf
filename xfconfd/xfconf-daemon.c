@@ -270,10 +270,8 @@ xfconf_get_property(XfconfDaemon *xfconfd,
     for(l = xfconfd->backends; l; l = l->next) {
         if(xfconf_backend_get(l->data, channel, property, value, error))
             return TRUE;
-        else if(l->next && error && *error) {
-            g_error_free(*error);
-            *error = NULL;
-        }
+        else if(l->next)
+            g_clear_error(error);
     }
     
     return FALSE;
@@ -301,10 +299,8 @@ xfconf_get_all_properties(XfconfDaemon *xfconfd,
                                   *properties, error))
         {
             ret = TRUE;
-        } else if(l->next && error && *error) {
-            g_error_free(*error);
-            *error = NULL;
-        }
+        } else if(l->next)
+            g_clear_error(error);
     }
     
     if(!ret) {
@@ -336,10 +332,8 @@ xfconf_property_exists(XfconfDaemon *xfconfd,
             *exists = exists_tmp;
             if(*exists)
                 return TRUE;
-        } else if(l->next && error && *error) {
-            g_error_free(*error);
-            *error = NULL;
-        }
+        } else if(l->next)
+            g_clear_error(error);
     }
     
     return ret;
@@ -362,10 +356,8 @@ xfconf_reset_property(XfconfDaemon *xfconfd,
     for(l = xfconfd->backends; l; l = l->next) {
         if(xfconf_backend_reset(l->data, channel, property, recursive, error))
             ret = TRUE;
-        else if(l->next && error && *error) {
-            g_error_free(*error);
-            *error = NULL;
-        }
+        else if(l->next)
+            g_clear_error(error);
     }
     
     return ret;
@@ -385,7 +377,7 @@ xfconf_list_channels(XfconfDaemon *xfconfd,
         chans_tmp = NULL;
         if(xfconf_backend_list_channels(l->data, &chans_tmp, error))
             lchannels = g_slist_concat(lchannels, chans_tmp);
-        else if(error)
+        else
             g_clear_error(error);
     }
 
@@ -480,8 +472,7 @@ xfconf_daemon_load_config(XfconfDaemon *xfconfd,
         if(!backend) {
             g_warning("Unable to start backend \"%s\": %s", backend_ids[i],
                       error1->message);
-            g_error_free(error1);
-            error1 = NULL;
+            g_clear_error(&error1);
         } else {
             xfconfd->backends = g_list_prepend(xfconfd->backends, backend);
             xfconf_backend_register_property_changed_func(backend,
