@@ -217,7 +217,7 @@ xfconf_channel_constructor(GType type,
     const gchar *channel_name = NULL;
     gboolean is_singleton = IS_SINGLETON_DEFAULT;
     guint i;
-    XfconfChannel *channel;
+    XfconfChannel *channel = NULL;
 
     for(i = 0; i < n_construct_properties; ++i) {
         if(!strcmp(g_param_spec_get_name(construct_properties[i].pspec), "channel-name"))
@@ -238,9 +238,9 @@ xfconf_channel_constructor(GType type,
             __channel_singletons = g_hash_table_new_full(g_str_hash, g_str_equal,
                                                          (GDestroyNotify)g_free,
                                                          (GDestroyNotify)g_object_unref);
-        }
+        } else
+            channel = g_hash_table_lookup(__channel_singletons, channel_name);
 
-        channel = g_hash_table_lookup(__channel_singletons, channel_name);
         if(!channel) {
             channel = XFCONF_CHANNEL(G_OBJECT_CLASS(xfconf_channel_parent_class)->constructor(type,
                                                                                               n_construct_properties,
