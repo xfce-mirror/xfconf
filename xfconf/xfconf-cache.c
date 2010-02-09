@@ -39,8 +39,10 @@
 #include "xfconf-alias.h"
 #endif
 
+#if 0
 #define DEFAULT_MAX_ENTRIES  -1  /* no limit */
 #define DEFAULT_MAX_AGE      (60*60)  /* 1 hour */
+#endif
 
 #define ALIGN_VAL(val, align)  ( ((val) + ((align) -1)) & ~((align) - 1) )
 
@@ -184,8 +186,10 @@ struct _XfconfCache
 
     gchar *channel_name;
 
+#if 0
     gint max_entries;
     gint max_age;
+#endif
 
     GTree *properties;
 
@@ -215,8 +219,10 @@ enum
 {
     PROP0 = 0,
     PROP_CHANNEL_NAME,
+#if 0
     PROP_MAX_ENTRIES,
     PROP_MAX_AGE,
+#endif
 };
 
 static void xfconf_cache_set_g_property(GObject *object,
@@ -278,7 +284,7 @@ xfconf_cache_class_init(XfconfCacheClass *klass)
                                                         | G_PARAM_STATIC_NAME
                                                         | G_PARAM_STATIC_NICK
                                                         | G_PARAM_STATIC_BLURB));
-
+#if 0
     g_object_class_install_property(object_class, PROP_MAX_ENTRIES,
                                     g_param_spec_int("max-entries",
                                                      "Maximum entries",
@@ -302,6 +308,7 @@ xfconf_cache_class_init(XfconfCacheClass *klass)
                                                      | G_PARAM_STATIC_NAME
                                                      | G_PARAM_STATIC_NICK
                                                      | G_PARAM_STATIC_BLURB));
+#endif
 }
 
 static void
@@ -342,7 +349,7 @@ xfconf_cache_set_g_property(GObject *object,
             g_free(cache->channel_name);
             cache->channel_name = g_value_dup_string(value);
             break;
-
+#if 0
         case PROP_MAX_ENTRIES:
             xfconf_cache_set_max_entries(cache, g_value_get_int(value));
             break;
@@ -350,7 +357,7 @@ xfconf_cache_set_g_property(GObject *object,
         case PROP_MAX_AGE:
             xfconf_cache_set_max_age(cache, g_value_get_int(value));
             break;
-
+#endif
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, pspec);
             break;
@@ -369,7 +376,7 @@ xfconf_cache_get_g_property(GObject *object,
         case PROP_CHANNEL_NAME:
             g_value_set_string(value, cache->channel_name);
             break;
-
+#if 0
         case PROP_MAX_ENTRIES:
             g_value_set_int(value, cache->max_entries);
             break;
@@ -377,7 +384,7 @@ xfconf_cache_get_g_property(GObject *object,
         case PROP_MAX_AGE:
             g_value_set_int(value, cache->max_age);
             break;
-
+#endif
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, pspec);
             break;
@@ -901,6 +908,7 @@ xfconf_cache_reset(XfconfCache *cache,
     return ret;
 }
 
+#if 0
 void
 xfconf_cache_set_max_entries(XfconfCache *cache,
                              gint max_entries)
@@ -932,3 +940,4 @@ xfconf_cache_get_max_age(XfconfCache *cache)
 {
     return cache->max_age;
 }
+#endif

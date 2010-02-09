@@ -61,7 +61,7 @@ gboolean xfconf_cache_reset(XfconfCache *cache,
                             const gchar *property_base,
                             gboolean recursive,
                             GError **error);
-
+#if 0
 G_GNUC_INTERNAL
 void xfconf_cache_set_max_entries(XfconfCache *cache,
                                   gint max_entries);
@@ -73,7 +73,7 @@ void xfconf_cache_set_max_age(XfconfCache *cache,
                               gint max_age);
 G_GNUC_INTERNAL
 gint xfconf_cache_get_max_age(XfconfCache *cache);
-
+#endif
 G_END_DECLS
 
 #endif  /* __XFCONF_CACHE_H__ */
