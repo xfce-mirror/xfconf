@@ -32,9 +32,9 @@
 #include "xfconf-gvaluefuncs.h"
 #include "xfconf-private.h"
 #include "xfconf-marshal.h"
+#include "xfconf-common-private.h"
 #if 0
 #include "xfconf-types.h"
-#include "xfconf-common-private.h"
 #include "xfconf.h"
 #include "xfconf-alias.h"
 #endif
@@ -261,7 +261,7 @@ xfconf_cache_class_init(XfconfCacheClass *klass)
     object_class->get_property = xfconf_cache_get_g_property;
     object_class->finalize = xfconf_cache_finalize;
 
-    signals[SIG_PROPERTY_CHANGED] = g_signal_new("property-changed",
+    signals[SIG_PROPERTY_CHANGED] = g_signal_new(I_("property-changed"),
                                                  XFCONF_TYPE_CACHE,
                                                  G_SIGNAL_RUN_LAST,
                                                  G_STRUCT_OFFSET(XfconfCacheClass,
