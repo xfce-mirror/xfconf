@@ -241,8 +241,6 @@ static void xfconf_cache_property_removed(DBusGProxy *proxy,
 
 
 static guint signals[N_SIGS] = { 0, };
-G_LOCK_DEFINE_STATIC(singletons);
-static GHashTable *singletons = NULL;
 
 
 G_DEFINE_TYPE(XfconfCache, xfconf_cache, G_TYPE_OBJECT)
@@ -416,11 +414,6 @@ xfconf_cache_finalize(GObject *obj)
 
     g_static_mutex_free(&cache->cache_lock);
 
-    G_LOCK(singletons);
-    if(singletons)
-        g_hash_table_remove(singletons, cache);
-    G_UNLOCK(singletons);
-
     G_OBJECT_CLASS(xfconf_cache_parent_class)->finalize(obj);
 }
 
@@ -577,47 +570,14 @@ out:
 }
 #endif
 
-static void
-xfconf_cache_destroyed(gpointer data,
-                       GObject *where_the_object_was)
-{
-    gchar *channel_name = data;
-
-    G_LOCK(singletons);
-    g_hash_table_remove(singletons, channel_name);
-    G_UNLOCK(singletons);
-}
-
 
 
 XfconfCache *
-xfconf_cache_get(const gchar *channel_name)
+xfconf_cache_new(const gchar *channel_name)
 {
-    XfconfCache *cache;
-
-    G_LOCK(singletons);
-
-    if(!singletons) {
-        singletons = g_hash_table_new_full(g_str_hash, g_str_equal,
-                                           (GDestroyNotify)g_free, NULL);
-    }
-
-    cache = g_hash_table_lookup(singletons, channel_name);
-    if(cache)
-        g_object_ref(G_OBJECT(cache));
-    else {
-        gchar *tmp = g_strdup(channel_name);
-
-        cache = g_object_new(XFCONF_TYPE_CACHE,
-                             "channel-name", channel_name,
-                             NULL);
-        g_hash_table_insert(singletons, tmp, cache);
-        g_object_weak_ref(G_OBJECT(cache), xfconf_cache_destroyed, tmp);
-    }
-
-    G_UNLOCK(singletons);
-
-    return cache;
+    return g_object_new(XFCONF_TYPE_CACHE,
+                        "channel-name", channel_name,
+                        NULL);
 }
 
 static void

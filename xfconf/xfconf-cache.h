@@ -37,7 +37,7 @@ G_GNUC_INTERNAL
 GType xfconf_cache_get_type(void) G_GNUC_CONST;
 
 G_GNUC_INTERNAL
-XfconfCache *xfconf_cache_get(const gchar *channel_name);
+XfconfCache *xfconf_cache_new(const gchar *channel_name) G_GNUC_MALLOC;
 
 G_GNUC_INTERNAL
 gboolean xfconf_cache_prefetch(XfconfCache *cache,

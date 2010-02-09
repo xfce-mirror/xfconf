@@ -257,7 +257,7 @@ xfconf_channel_constructor(GType type,
     }
 
     if(!channel->cache) {
-        channel->cache = xfconf_cache_get(channel_name);
+        channel->cache = xfconf_cache_new(channel_name);
         xfconf_cache_prefetch(channel->cache, channel->property_base, NULL);
         g_signal_connect(channel->cache, "property-changed",
                          G_CALLBACK(xfconf_channel_property_changed), channel);
@@ -573,6 +573,10 @@ xfconf_channel_get(const gchar *channel_name)
  * useful in some cases where you want to tie an #XfconfChannel's
  * lifetime (and thus the lifetime of connected signals and bound
  * #GObject properties) to the lifetime of another object.
+ *
+ * Also note that each channel has its own cache, so if you create
+ * 2 new channels with the same name, it will double the dbus traffic,
+ * so in this cases it is highly recommended to use xfconf_channel_get().
  *
  * Returns: A new #XfconfChannel.  Release with g_object_unref()
  *          when no longer needed.
