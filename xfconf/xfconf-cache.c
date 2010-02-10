@@ -57,7 +57,9 @@ static void xfconf_cache_mutex_unlock(GStaticMutex *mtx) { g_static_mutex_unlock
 
 typedef struct
 {
+#if 0
     GTimeVal last_used;
+#endif
     GValue *value;
 } XfconfCacheItem;
 
@@ -70,7 +72,9 @@ xfconf_cache_item_new(const GValue *value,
     g_return_val_if_fail(value, NULL);
 
     item = g_slice_new0(XfconfCacheItem);
+#if 0
     g_get_current_time(&item->last_used);
+#endif
 
     if(G_LIKELY(steal)) {
         item->value = (GValue *) value;
@@ -90,7 +94,9 @@ xfconf_cache_item_update(XfconfCacheItem *item,
     if(value && _xfconf_gvalue_is_equal(item->value, value))
         return FALSE;
 
+#if 0
     g_get_current_time(&item->last_used);
+#endif
 
     if(value) {
         g_value_unset(item->value);
@@ -676,8 +682,10 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
                     item = NULL;
             }
         }
+#if 0
         if(item)
             xfconf_cache_item_update(item, NULL);
+#endif
     }
 
     return !!item;
