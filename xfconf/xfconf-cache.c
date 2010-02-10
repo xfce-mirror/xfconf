@@ -599,20 +599,13 @@ xfconf_cache_prefetch_ht(gpointer key,
                          gpointer value,
                          gpointer user_data)
 {
-    gchar *property = key;
-    GValue *val = value;
     XfconfCache *cache = XFCONF_CACHE(user_data);
     XfconfCacheItem *item;
 
-    item = g_tree_lookup(cache->properties, property);
-    if(item) {
-        xfconf_cache_item_update(item, val);
-        return FALSE;
-    } else {
-        item = xfconf_cache_item_new(val, TRUE);
-        g_tree_insert(cache->properties, property, item);
-        return TRUE;
-    }
+    item = xfconf_cache_item_new(value, TRUE);
+    g_tree_insert(cache->properties, key, item);
+
+    return TRUE;
 }
 
 gboolean
@@ -624,6 +617,8 @@ xfconf_cache_prefetch(XfconfCache *cache,
     GHashTable *props = NULL;
     DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
     GError *tmp_error = NULL;
+
+    g_return_val_if_fail(g_tree_nnodes(cache->properties) == 0, FALSE);
 
     xfconf_cache_mutex_lock(&cache->cache_lock);
 
