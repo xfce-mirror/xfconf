@@ -1600,7 +1600,7 @@ xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
     state->cur_elem = ELEM_NONE;
     state->is_system_file = is_system_file;
 
-    DBG("got file(size=%lu): %s", length, file_contents);
+    DBG("got file(size=%"G_GSIZE_FORMAT"): %s", length, file_contents);
 
     context = g_markup_parse_context_new(&parser, 0, state, NULL);
     if(g_markup_parse_context_parse(context, file_contents, length, &error2)
