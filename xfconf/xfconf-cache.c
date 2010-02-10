@@ -58,11 +58,12 @@ static void xfconf_cache_mutex_unlock(GStaticMutex *mtx) { g_static_mutex_unlock
 typedef struct
 {
     GTimeVal last_used;
-    GValue value;
+    GValue *value;
 } XfconfCacheItem;
 
 static XfconfCacheItem *
-xfconf_cache_item_new(const GValue *value)
+xfconf_cache_item_new(const GValue *value,
+                      gboolean steal)
 {
     XfconfCacheItem *item;
 
@@ -70,8 +71,14 @@ xfconf_cache_item_new(const GValue *value)
 
     item = g_slice_new0(XfconfCacheItem);
     g_get_current_time(&item->last_used);
-    g_value_init(&item->value, G_VALUE_TYPE(value));
-    g_value_copy(value, &item->value);
+
+    if(G_LIKELY(steal)) {
+        item->value = (GValue *) value;
+    } else {
+        item->value = g_new0(GValue, 1);
+        g_value_init(item->value, G_VALUE_TYPE(value));
+        g_value_copy(value, item->value);
+    }
 
     return item;
 }
@@ -80,15 +87,15 @@ static gboolean
 xfconf_cache_item_update(XfconfCacheItem *item,
                          const GValue *value)
 {
-    if(value && _xfconf_gvalue_is_equal(&item->value, value))
+    if(value && _xfconf_gvalue_is_equal(item->value, value))
         return FALSE;
 
     g_get_current_time(&item->last_used);
 
     if(value) {
-        g_value_unset(&item->value);
-        g_value_init(&item->value, G_VALUE_TYPE(value));
-        g_value_copy(value, &item->value);
+        g_value_unset(item->value);
+        g_value_init(item->value, G_VALUE_TYPE(value));
+        g_value_copy(value, item->value);
 
         return TRUE;
     }
@@ -101,8 +108,8 @@ xfconf_cache_item_free(XfconfCacheItem *item)
 {
     g_return_if_fail(item);
 
-    g_value_unset(&item->value);
-
+    g_value_unset(item->value);
+    g_free(item->value);
     g_slice_free(XfconfCacheItem, item);
 }
 
@@ -444,7 +451,7 @@ xfconf_cache_property_changed(DBusGProxy *proxy,
     if(item)
         changed = xfconf_cache_item_update(item, value);
     else {
-        item = xfconf_cache_item_new(value);
+        item = xfconf_cache_item_new(value, FALSE);
         g_tree_insert(cache->properties, g_strdup(property), item);
     }
 
@@ -519,7 +526,7 @@ xfconf_cache_set_property_reply_handler(DBusGProxy *proxy,
         g_error_free(error);
 
         if(old_item->item)
-            xfconf_cache_item_update(item, &old_item->item->value);
+            xfconf_cache_item_update(item, old_item->item->value);
         else {
             g_tree_remove(cache->properties, old_item->property);
             item = NULL;
@@ -530,7 +537,7 @@ xfconf_cache_set_property_reply_handler(DBusGProxy *proxy,
         g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED],
                       g_quark_from_string(old_item->property),
                       cache->channel_name, old_item->property,
-                      item ? &item->value : &empty_val);
+                      item ? item->value : &empty_val);
         xfconf_cache_mutex_lock(&cache->cache_lock);
     }
 
@@ -587,7 +594,7 @@ xfconf_cache_new(const gchar *channel_name)
                         NULL);
 }
 
-static void
+static gboolean
 xfconf_cache_prefetch_ht(gpointer key,
                          gpointer value,
                          gpointer user_data)
@@ -598,11 +605,13 @@ xfconf_cache_prefetch_ht(gpointer key,
     XfconfCacheItem *item;
 
     item = g_tree_lookup(cache->properties, property);
-    if(item)
+    if(item) {
         xfconf_cache_item_update(item, val);
-    else {
-        item = xfconf_cache_item_new(val);
-        g_tree_insert(cache->properties, g_strdup(property), item);
+        return FALSE;
+    } else {
+        item = xfconf_cache_item_new(val, TRUE);
+        g_tree_insert(cache->properties, property, item);
+        return TRUE;
     }
 }
 
@@ -622,9 +631,7 @@ xfconf_cache_prefetch(XfconfCache *cache,
                                         property_base ? property_base : "/",
                                         &props, &tmp_error))
     {
-        /* FIXME: perhaps change item API to allow 'stealing' a GValue rather
-         * than copying all the time */
-        g_hash_table_foreach(props, xfconf_cache_prefetch_ht, cache);
+        g_hash_table_foreach_steal(props, xfconf_cache_prefetch_ht, cache);
         g_hash_table_destroy(props);
         /* TODO: honor max entries */
         ret = TRUE;
@@ -654,7 +661,7 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
         if(xfconf_client_get_property(proxy, cache->channel_name,
                                       property, &tmpval, &tmp_error))
         {
-            item = xfconf_cache_item_new(&tmpval);
+            item = xfconf_cache_item_new(&tmpval, FALSE);
             g_tree_insert(cache->properties, g_strdup(property), item);
             g_value_unset(&tmpval);
             /* TODO: check tree for evictions */
@@ -665,12 +672,12 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
     if(item) {
         if(value) {
             if(!G_VALUE_TYPE(value))
-                g_value_init(value, G_VALUE_TYPE(&item->value));
+                g_value_init(value, G_VALUE_TYPE(item->value));
 
-            if(G_VALUE_TYPE(value) == G_VALUE_TYPE(&item->value))
-                g_value_copy(&item->value, value);
+            if(G_VALUE_TYPE(value) == G_VALUE_TYPE(item->value))
+                g_value_copy(item->value, value);
             else {
-                if(!g_value_transform(&item->value, value))
+                if(!g_value_transform(item->value, value))
                     item = NULL;
             }
         }
@@ -754,7 +761,7 @@ xfconf_cache_set(XfconfCache *cache,
 
     if(item) {
         /* if the value isn't changing, there's no reason to continue */
-        if(_xfconf_gvalue_is_equal(&item->value, value)) {
+        if(_xfconf_gvalue_is_equal(item->value, value)) {
             xfconf_cache_mutex_unlock(&cache->cache_lock);
             return TRUE;
         }
@@ -776,7 +783,7 @@ xfconf_cache_set(XfconfCache *cache,
     } else {
         old_item = xfconf_cache_old_item_new(property);
         if(item)
-            old_item->item = xfconf_cache_item_new(&item->value);
+            old_item->item = xfconf_cache_item_new(item->value, FALSE);
         g_hash_table_insert(cache->old_properties, old_item->property, old_item);
     }
 
@@ -794,7 +801,7 @@ xfconf_cache_set(XfconfCache *cache,
     if(item)
         xfconf_cache_item_update(item, value);
     else {
-        item = xfconf_cache_item_new(value);
+        item = xfconf_cache_item_new(value, FALSE);
         g_tree_insert(cache->properties, g_strdup(property), item);
     }
 
