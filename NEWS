@@ -1,3 +1,19 @@
+Xfconf 4.7.2
+============
+
+  * Disable cache singletons and improve some code now we know the
+    tree is always empty during prefetch. This is only a disadvantage
+    when creating multiple new channels with the same name, but
+    in that case channels singletons should be used.
+  * Lots of memory leaks plugged. Valgrind log is clean now.
+  * Fix memory corruption during file loading and use mmap.
+  * Properly handle dirty channels in the daemon and avoid excessive
+    saving of channels.
+  * Disable unimplemented code in the properties cache.
+  * Steal values during cache prefetch to avoid a lot of copying.
+  * Updated translations: hu.
+
+
 Xfconf 4.7.1
 ============
 
