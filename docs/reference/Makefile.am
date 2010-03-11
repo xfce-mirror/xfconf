@@ -18,7 +18,7 @@ DOC_SOURCE_DIR=../..
 MKDB_OPTIONS=--sgml-mode --output-format=xml
 
 # Extra options to supply to gtkdoc-fixref
-FIXXREF_OPTIONS=
+FIXXREF_OPTIONS=--module=$(DOC_MODULE)
 
 # Used for dependencies
 HFILE_GLOB = \
