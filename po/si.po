@@ -110,7 +110,7 @@ msgstr ""
 #: ../xfconfd/xfconf-backend.c:163
 #, c-format
 msgid "Channel name cannot be an empty string"
-msgstr ""
+msgstr "නාලිකා නම හිස්ව තැබිය නොහැක"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
@@ -124,7 +124,7 @@ msgstr ""
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
-msgstr ""
+msgstr "xfconfd වෙළුම මුද්‍රණය කරන්න."
 
 #: ../xfconfd/main.c:136
 msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
@@ -136,7 +136,7 @@ msgstr ""
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
-msgstr ""
+msgstr "Xfce සැකසුම් විඹුද්දකයා"
 
 #: ../xfconfd/main.c:165
 msgid "Xfce configuration daemon"
