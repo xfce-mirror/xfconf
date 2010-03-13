@@ -246,7 +246,7 @@ msgstr ""
 
 #: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
 msgid "(unknown)"
-msgstr ""
+msgstr "(නොදන්නා)"
 
 #: ../xfconf-query/main.c:388
 #, c-format
