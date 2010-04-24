@@ -63,7 +63,9 @@ INCLUDES = \
 
 GTKDOC_LIBS = \
 	$(top_builddir)/xfconf/libxfconf-$(LIBXFCONF_VERSION_API).la \
-	$(top_builddir)/xfconfd/xfconfd-xfconf-backend.o
+	$(top_builddir)/xfconfd/xfconfd-xfconf-backend.o \
+	$(GLIB_LIBS) \
+	$(GOBJECT_LIBS)
 
 include $(top_srcdir)/gtk-doc.make
 
