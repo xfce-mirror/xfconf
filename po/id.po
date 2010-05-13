@@ -2,12 +2,12 @@
 # Copyright (C) 2008 THE xfconf'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfconf package.
 # Andhika Padmawan <andhika.padmawan@gmail.com>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-07 23:25+0200\n"
+"POT-Creation-Date: 2010-05-13 10:12+0000\n"
 "PO-Revision-Date: 2009-01-27 22:20+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <translation-team-id@lists.sourceforge.net>\n"
@@ -15,243 +15,234 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:280
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
 msgstr "Tak dapat membuat direktori konfigurasi \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:328 xfconfd/xfconf-daemon.c:244
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:328
+#: ../xfconfd/xfconf-daemon.c:244
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr "Hak akses ditolak ketika memodifikasi properti \"%s\" di kanal \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:393
-#: xfconfd/xfconf-backend-perchannel-xml.c:475
-#: xfconfd/xfconf-backend-perchannel-xml.c:636
-#: xfconfd/xfconf-backend-perchannel-xml.c:656
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:393
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:475
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:636
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:656
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Properti \"%s\" tidak ada di kanal \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:603
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:603
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "Tak dapat menghapus kanal \"%s\": %s"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1293
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1293
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
 msgstr "Tipe tidak sah untuk <properti>: \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1309
-#: xfconfd/xfconf-backend-perchannel-xml.c:1385
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1309
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1385
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "Tak dapat mengurai nilai tipe \"%s\" dari \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1365
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1365
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr "Atribut tipe dari <nilai> tidak mungkin sebuah larik"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1374
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1374
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
 msgstr "Tipe tidak sah untuk <nilai>: \"%s\""
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1662
-#: xfconfd/xfconf-backend-perchannel-xml.c:1907
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1662
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1907
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "Kanal \"%s\" tidak ada"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1965
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1965
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Tak dapat menulis kanal \"%s\": %s"
 
-#: xfconfd/xfconf-backend-factory.c:75
+#: ../xfconfd/xfconf-backend-factory.c:75
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "Tak dapat menemukan ujung-belakang tipe \"%s\""
 
-#: xfconfd/xfconf-backend.c:103
+#: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Nama properti harus dimulai dengan karakter '/'"
 
-#: xfconfd/xfconf-backend.c:112
+#: ../xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Elemen root ('/') bukan nama properti yang sah"
 
-#: xfconfd/xfconf-backend.c:126
+#: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Nama properti hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', "
-"'-', '<' dan '>', serta '/' sebagai pemisah"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Nama properti hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', '-', '<' dan '>', serta '/' sebagai pemisah"
 
-#: xfconfd/xfconf-backend.c:135
+#: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Nama properti tidak boleh memiliki dua atau lebih karakter '/'"
 
-#: xfconfd/xfconf-backend.c:146
+#: ../xfconfd/xfconf-backend.c:146
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Nama properti tidak boleh berakhiran karakter '/'"
 
-#: xfconfd/xfconf-backend.c:163
+#: ../xfconfd/xfconf-backend.c:163
 #, c-format
 msgid "Channel name cannot be an empty string"
 msgstr "Nama kanal tidak boleh merupakan benang kosong"
 
-#: xfconfd/xfconf-backend.c:176
+#: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr ""
-"Nama kanal hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', dan '-'"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgstr "Nama kanal hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', dan '-'"
 
-#: xfconfd/xfconf-backend.c:398
+#: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"Nama properti hanya dapat kosong atau \"/\" jika reset rekursif ditentukan"
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "Nama properti hanya dapat kosong atau \"/\" jika reset rekursif ditentukan"
 
-#: xfconfd/main.c:132
+#: ../xfconfd/main.c:133
 msgid "Prints the xfconfd version."
 msgstr "Cetak versi xfconfd."
 
-#: xfconfd/main.c:134
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Ujung-belakang konfigurasi yang digunakan. Ujung-belakang pertama yang "
-"ditentukan dibuka sebagai baca/tulis; sisanya, hanya-baca."
+#: ../xfconfd/main.c:135
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "Ujung-belakang konfigurasi yang digunakan. Ujung-belakang pertama yang ditentukan dibuka sebagai baca/tulis; sisanya, hanya-baca."
 
-#: xfconfd/main.c:154
+#: ../xfconfd/main.c:138
+msgid "Fork into background after starting; only useful for testing purposes"
+msgstr "Teruskan ke latar belakang setelah berjalan: hanya berguna untuk tujuan uji coba"
+
+#: ../xfconfd/main.c:158
 msgid "Xfce Configuration Daemon"
 msgstr "Jurik Konfigurasi Xfce"
 
-#: xfconfd/main.c:160
+#: ../xfconfd/main.c:164
 msgid "Xfce configuration daemon"
 msgstr "Jurik konfigurasi Xfce"
 
-#: xfconfd/main.c:162
+#: ../xfconfd/main.c:166
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Laporkan kutu ke http://bugs.xfce.org/\n"
 
-#: xfconfd/main.c:165
+#: ../xfconfd/main.c:169
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Opsi penguraian galat: %s\n"
 
-#: xfconfd/xfconf-daemon.c:460
+#: ../xfconfd/xfconf-daemon.c:460
 #, c-format
 msgid "Another Xfconf daemon is already running"
 msgstr "Jurik Xfconf lain telah berjalan"
 
-#: xfconfd/xfconf-daemon.c:496
+#: ../xfconfd/xfconf-daemon.c:496
 #, c-format
 msgid "No backends could be started"
 msgstr "Tak ada ujung-belakang yang dapat dijalankan"
 
-#: xfconf-query/main.c:92
+#: ../xfconf-query/main.c:92
 #, c-format
 msgid "Property '%s' changed: %s\n"
 msgstr "Properti \"%s\" diubah: %s\n"
 
-#: xfconf-query/main.c:97
+#: ../xfconf-query/main.c:97
 #, c-format
 msgid "Property '%s' changed\n"
 msgstr "Properti '%s' berubah\n"
 
-#: xfconf-query/main.c:102
+#: ../xfconf-query/main.c:102
 #, c-format
 msgid "Property '%s' removed\n"
 msgstr "Properti '%s' dihapus\n"
 
-#: xfconf-query/main.c:111
+#: ../xfconf-query/main.c:111
 #, c-format
 msgid "Export method not yet implemented"
 msgstr "Metode ekspor belum diimplementasikan"
 
-#: xfconf-query/main.c:125
+#: ../xfconf-query/main.c:125
 #, c-format
 msgid "Export not yet implemented"
 msgstr "Ekspor belum diimplementasikan"
 
-#: xfconf-query/main.c:191
+#: ../xfconf-query/main.c:191
 msgid "Version information"
 msgstr "Informasi versi"
 
-#: xfconf-query/main.c:195
+#: ../xfconf-query/main.c:195
 msgid "The channel to query/modify"
 msgstr "Kanal untuk kueri/modifikasi"
 
-#: xfconf-query/main.c:199
+#: ../xfconf-query/main.c:199
 msgid "The property to query/modify"
 msgstr "Properti untuk kueri/modifikasi"
 
-#: xfconf-query/main.c:203
+#: ../xfconf-query/main.c:203
 msgid "The new value to set for the property"
 msgstr "Nilai baru untuk diatur sebagai properti"
 
-#: xfconf-query/main.c:207
+#: ../xfconf-query/main.c:207
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Senarai properti (atau kanal jika -c tak ditentukan)"
 
-#: xfconf-query/main.c:211
+#: ../xfconf-query/main.c:211
 msgid "Verbose output"
 msgstr "Keluaran lengkap"
 
-#: xfconf-query/main.c:215
+#: ../xfconf-query/main.c:215
 msgid "Create a new property if it does not already exist"
 msgstr "Buat properti baru jika belum ada properti"
 
-#: xfconf-query/main.c:219
+#: ../xfconf-query/main.c:219
 msgid "Specify the property value type"
 msgstr "Tentukan tipe nilai properti"
 
-#: xfconf-query/main.c:223
+#: ../xfconf-query/main.c:223
 msgid "Reset property"
 msgstr "Reset properti"
 
-#: xfconf-query/main.c:227
+#: ../xfconf-query/main.c:227
 msgid "Recursive (use with -r)"
 msgstr "Rekursif (gunakan dengan -r)"
 
-#: xfconf-query/main.c:231
+#: ../xfconf-query/main.c:231
 msgid "Force array even if only one element"
 msgstr "Paksa larik bahkan jika hanya satu elemen"
 
-#: xfconf-query/main.c:245
+#: ../xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
 msgstr "Monitor kanal untuk perubahan properti"
 
-#: xfconf-query/main.c:349
+#: ../xfconf-query/main.c:349
 #, c-format
 msgid "Start monitoring channel '%s':"
 msgstr "Mulai mengawasi kanal '%s':"
 
-#: xfconf-query/main.c:371
+#: ../xfconf-query/main.c:371
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
 msgstr "Properti \"%s\" tidak ada di kanal \"%s\".\n"
 
-#: xfconf-query/main.c:379 xfconf-query/main.c:397
+#: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
 msgid "(unknown)"
 msgstr "(tak diketahui)"
 
-#: xfconf-query/main.c:388
+#: ../xfconf-query/main.c:388
 #, c-format
 msgid ""
 "Value is an array with %d items:\n"
@@ -260,7 +251,7 @@ msgstr ""
 "Nilai adalah larik dengan %d item:\n"
 "\n"
 
-#: xfconf-query/main.c:411
+#: ../xfconf-query/main.c:411
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
@@ -269,64 +260,62 @@ msgstr ""
 "Properti \"%s\" tidak ada di kanal \"%s\".  Jika properti baru\n"
 "harus dibuat, gunakan opsi --create.\n"
 
-#: xfconf-query/main.c:419
+#: ../xfconf-query/main.c:419
 #, c-format
 msgid "When creating a new property, the value type must be specified.\n"
 msgstr "Ketika membuat properti baru, tipe nilai harus ditentukan.\n"
 
-#: xfconf-query/main.c:429
+#: ../xfconf-query/main.c:429
 #, c-format
 msgid "Failed to get the existing type for the value.\n"
 msgstr "Gagal untuk mendapatkan tipe yang ada untuk nilai.\n"
 
-#: xfconf-query/main.c:447
+#: ../xfconf-query/main.c:447
 #, c-format
 msgid "Unable to determine the type of the value.\n"
 msgstr "Tak dapat menentukan tipe dari nilai.\n"
 
-#: xfconf-query/main.c:453
+#: ../xfconf-query/main.c:453
 #, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
-msgstr ""
-"Tipe nilai harus ditentukan untuk mengganti larik menjadi nilai tunggal.\n"
+msgid "A value type must be specified to change an array into a single value.\n"
+msgstr "Tipe nilai harus ditentukan untuk mengganti larik menjadi nilai tunggal.\n"
 
-#: xfconf-query/main.c:463 xfconf-query/main.c:525
+#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "Tak dapat mengonversi \"%s\" ke tipe \"%s\".\n"
 
-#: xfconf-query/main.c:470 xfconf-query/main.c:540
+#: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "Gagal mengatur properti.\n"
 
-#: xfconf-query/main.c:495
+#: ../xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
 msgstr "Ada %d nilai baru, tapi hanya %d tipe yang dapat ditentukan.\n"
 
-#: xfconf-query/main.c:516
+#: ../xfconf-query/main.c:516
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
 msgstr "Tak dapat menentukan tipe atau nilai pada indeks %d.\n"
 
-#: xfconf-query/main.c:567
+#: ../xfconf-query/main.c:567
 #, c-format
 msgid "Channel '%s' contains no properties\n"
 msgstr "Kanal '%s' tak berisi properti\n"
 
-#: xfconf-query/main.c:583 xfconf-query/main.c:592
+#: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "Tak dapat membuat berkas ekspor \"%s\": %s\n"
 
-#: xfconf-query/main.c:612
+#: ../xfconf-query/main.c:612
 #, c-format
 msgid "Could not open import file \"%s\": %s\n"
 msgstr "Tak dapat membuka berkas impor \"%s\": %s\n"
 
-#: xfconf-query/main.c:621
+#: ../xfconf-query/main.c:621
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Tak dapat mengurai berkas impor \"%s\": %s\n"
