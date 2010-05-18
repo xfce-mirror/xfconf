@@ -5,3 +5,4 @@ xfconfd/xfconf-backend.c
 xfconfd/main.c
 xfconfd/xfconf-daemon.c
 xfconf-query/main.c
+xfconf/xfconf-channel.c

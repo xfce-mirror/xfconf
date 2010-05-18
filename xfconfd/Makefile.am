@@ -81,3 +81,6 @@ xfconf-dbus-server.h: $(top_srcdir)/common/xfconf-dbus.xml
 	dbus-binding-tool --mode=glib-server --prefix=xfconf $< > $@
 
 endif
+
+# required for gtk-doc
+dist-hook: all

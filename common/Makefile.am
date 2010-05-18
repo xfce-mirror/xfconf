@@ -73,3 +73,6 @@ EXTRA_DIST = \
 	xfconf-dbus.xml \
 	xfconf-marshal.list \
 	xfconf-types.c
+
+# required for gtk-doc
+dist-hook: all

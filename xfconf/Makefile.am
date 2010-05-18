@@ -53,13 +53,15 @@ BUILT_SOURCES = \
 xfconf-dbus-bindings.h: $(top_srcdir)/common/xfconf-dbus.xml Makefile
 	dbus-binding-tool --mode=glib-client $< > $@
 
-if HAVE_GNUC_VISIBILITY
-TESTS = abicheck.sh
 endif
-
-endif
-
 
 EXTRA_DIST = \
 	abicheck.sh \
 	xfconf.symbols
+
+if HAVE_GNUC_VISIBILITY
+TESTS = abicheck.sh
+endif
+
+# required for gtk-doc
+dist-hook: all
