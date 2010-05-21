@@ -1,7 +1,13 @@
 Xfce 4.6.2
 ==========
 
-  * Fix compilation using Sun cc (bug 5477).
+  * Fix compilation with Sun cc (bug #5477).
+  * Build fixes for GIT.
+  * Fix make distcheck.
+  * Merge xml files in reversed order (bug #6079).
+  * Fix test framework.
+  * Translation updates (gl, lv, ur, ur_PK, ro, hu, ast, da, pt, cs,
+    nl, uk, eu, it, kk, zh_CN, ca, ja, pr_BR, id, fi, de, ru, de).
 
 
 Xfce 4.6.1
