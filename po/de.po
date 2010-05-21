@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 0.1.0svn-r27345\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-14 10:12+0000\n"
+"POT-Creation-Date: 2010-05-21 16:12+0000\n"
 "PO-Revision-Date: 2009-02-25 09:02+0000\n"
 "Last-Translator: Simon Schneider <simon@schneiderimtal.de>\n"
 "Language-Team: German <xfce4-i18n-de@xfce.org>\n"
@@ -199,9 +199,8 @@ msgid "The property to query/modify"
 msgstr "Eigenschaft zum auslesen/bearbeiten"
 
 #: ../xfconf-query/main.c:203
-#, fuzzy
 msgid "The new value to set for the property"
-msgstr "Ändern oder setzen des Wertes einer Eigenschaft"
+msgstr "Neuer Wert für die Eigenschaft"
 
 #: ../xfconf-query/main.c:207
 #, fuzzy
