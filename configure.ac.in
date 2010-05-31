@@ -71,6 +71,9 @@ XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.6.0])
 XDT_CHECK_PACKAGE([DBUS], [dbus-1], [1.0.0])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.72])
 
+dnl check for perl bindings for --disable-perl-bindings and make-exo-alias.pl
+AC_PATH_PROGS([PERL], [perl5.8 perl5.6 perl5 perl])
+
 dnl see if we can build the perl bindings
 AC_ARG_ENABLE([perl-bindings],
               [AC_HELP_STRING([--disable-perl-bindings],
@@ -80,7 +83,6 @@ PERL_GLIB_REQUIRED_VERSION=1.020
 PERL_EXTUTILS_DEPENDS_REQUIRED_VERSION=0.300
 PERL_EXTUTILS_PKGCONFIG_REQUIRED_VERSION=1.000
 if test "x$use_perl" != "xno"; then
-    AC_PATH_PROGS([PERL], [perl5.8 perl5.6 perl5 perl])
     if test "$PERL"; then
         # we need Glib, as well as a few support modules
         AC_MSG_CHECKING([for perl modules: ExtUtils::Depends, ExtUtils::PkgConfig, Glib])
