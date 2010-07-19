@@ -1673,7 +1673,7 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
      * follow the xdg spec, see bug #6079 for more information */
     length = g_strv_length(filenames);
     for(i = length - 1; i >= 0; --i) {
-        if(!g_strcmp0(user_file, filenames[i]))
+        if(user_file && !strcmp(user_file, filenames[i]))
             continue;
         xfconf_backend_perchannel_xml_merge_file(xbpx, filenames[i], TRUE,
                                                  channel, NULL);
