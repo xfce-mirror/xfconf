@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-19 18:05+0100\n"
-"PO-Revision-Date: 2010-02-20 00:23+0600\n"
+"PO-Revision-Date: 2010-08-03 10:17+0600\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "\"%s\" баптаулар бумасын жасау мүмкін еме�
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "\"%s\" қасиетін \"%s\" каналында түзету үшін құқық жоқ"
+msgstr "\"%s\" қасиетін \"%s\" каналында түзету үшін рұқсат жоқ"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -80,7 +80,7 @@ msgstr "\"%s\" каналын жазу мүмкін емес: %s"
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Xfconf үшін \"%s\" түріндегі бэкенд табу мүмкі немес"
+msgstr "Xfconf үшін \"%s\" түріндегі бэкенд табу мүмкін емес"
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
@@ -90,12 +90,12 @@ msgstr "Қасиеттердің атаулары '/' таңбасынан ба�
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr "Түбірлік ('/') элементі  is not a valid property name"
+msgstr "Түбірлік ('/') элементі  дұрыс қасиет аты емес"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
 msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "Қасиеттің атында тек ASCII-дің таңбалары A-Z, a-z, 0-9, '_', '-', '<' және '>' болуы керек, оған қоса ажыратқыш ретінде '/' таңбасы"
+msgstr "Қасиеттің атында тек ASCII-дің таңбалары A-Z, a-z, 0-9, '_', '-', '<' және '>', оған қоса ажыратқыш ретінде '/' таңбасы болуы керек"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -302,12 +302,12 @@ msgstr "Қасиетті орнату сәтсіз аяқталды.\n"
 #: ../xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr "Қазір %d жаңа мәндер бар, бірақ тек %d түрлерді анықтауға болады.\n"
+msgstr "Қазір %d жаңа мән бар, бірақ тек %d түрлерді анықтауға болады.\n"
 
 #: ../xfconf-query/main.c:516
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
-msgstr "%d орнында ьұрған мәннің түрін анықтау мүмкін емес.\n"
+msgstr "%d орнында тұрған мәннің түрін анықтау мүмкін емес.\n"
 
 #: ../xfconf-query/main.c:567
 #, c-format
