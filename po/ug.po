@@ -24,7 +24,7 @@ msgstr "تەڭشەك مۇندەرىجىسى \"%s\" نى قۇرغىلى بولم�
 #: xfconfd/xfconf-backend-perchannel-xml.c:328 xfconfd/xfconf-daemon.c:244
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr ""
+msgstr "قانال \"%2$s\" دىكى خاسلىق \"%1$s\" نى ئۆزگەرتىۋاتقاندا ھوقۇق چەكلەندى"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:393
 #: xfconfd/xfconf-backend-perchannel-xml.c:475
@@ -53,7 +53,7 @@ msgstr ""
 #: xfconfd/xfconf-backend-perchannel-xml.c:1365
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr ""
+msgstr "<value> نىڭ تىپ خاسلىقى array بولسا بولمايدۇ"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1374
 #, c-format
@@ -74,7 +74,7 @@ msgstr "قانال \"%s\" نىڭغا يازغىلى بولمىدى: %s"
 #: xfconfd/xfconf-backend-factory.c:75
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr ""
+msgstr "تىپ \"%s\"  نىڭ Xfconf backend نى تاپقىلى بولمىدى"
 
 #: xfconfd/xfconf-backend.c:103
 #, c-format
@@ -206,7 +206,7 @@ msgstr "خاسلىق (-c كۆرسىتىلمىگەندە قانال ) نى تىز
 
 #: xfconf-query/main.c:211
 msgid "Verbose output"
-msgstr ""
+msgstr "تەپسىلىي چىقىرىش "
 
 #: xfconf-query/main.c:215
 msgid "Create a new property if it does not already exist"
@@ -226,11 +226,11 @@ msgstr ""
 
 #: xfconf-query/main.c:231
 msgid "Force array even if only one element"
-msgstr ""
+msgstr "   array "
 
 #: xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
-msgstr ""
+msgstr "كۆرسىتىلگەن قانالنىڭ خاسلىق ئۆزگىرىشىنى كۆزەت"
 
 #: xfconf-query/main.c:349
 #, c-format
@@ -296,7 +296,7 @@ msgstr "خاسلىقنى تەڭشەش مەغلۇپ بولدى.\n"
 #: xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr ""
+msgstr "%d دانە يېڭى قىممەت بولسىمۇ، ئاران %d دانە تىپنى بېكىتەلىدى.\n"
 
 #: xfconf-query/main.c:516
 #, c-format
@@ -322,15 +322,3 @@ msgstr "ئىمپورت ھۆججىتى \"%s\" نى ئاچقىلى بولمىدى:
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "ئىمپورت ھۆججىتى \"%s\" نى ئانالىز قىلالمىدى: %s\n"
-
-#~ msgid "Export channel to file"
-#~ msgstr "チャンネルをファイルにエクスポートする"
-
-#~ msgid "Import channel from file"
-#~ msgstr "チャンネルをファイルからインポートする"
-
-#~ msgid "true"
-#~ msgstr "TRUE"
-
-#~ msgid "false"
-#~ msgstr "FALSE"
