@@ -1,3 +1,13 @@
+Xfconf 4.7.3
+============
+
+  * Use G_GSIZE_FORMAT in the DBG message.
+  * Add doc module to fixxref options (bug #6304).
+  * Link the gtkdoc scanner to GObject and Glib (bug #6407).
+  * Check for perl outside bindings option for alias script (bug #6481).
+  * Move xfconfd from $libexecdir to $libdir.
+  * Updated translations: kk, bn, uk, si, it, sk, fr, id, zh_TW, de.
+
 Xfconf 4.7.2
 ============
 
