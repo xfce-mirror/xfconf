@@ -30,7 +30,7 @@ msgstr "تەڭشەك مۇندەرىجىسى \"%s\" نى قۇرغىلى بولم�
 #: ../xfconfd/xfconf-daemon.c:244
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr ""
+msgstr "خاسلىق \"%s\"(قانال \"%s\" نىڭ) نى ئۆزگەرتىشكە ھوقۇق يەتمىدى"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:393
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:475
@@ -54,12 +54,12 @@ msgstr "خاسلىق <property> نىڭ تىپى ئىناۋەتسىز: \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1385
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr ""
+msgstr "تىپ \"%s\" (\"%s\" دىن كەلگەن) نىڭ قىممىتىنى يېيىشقا بولمىدى"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1365
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr ""
+msgstr "<value> نىڭ تىپ خاسلىقى array بولسا بولمايدۇ"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1374
 #, c-format
@@ -80,7 +80,7 @@ msgstr "قانال \"%s\" نىڭغا يازغىلى بولمىدى: %s"
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr ""
+msgstr "تىپ \"%s\" نىڭ Xfconf backend نى تاپقىلى بولمىدى"
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
@@ -136,11 +136,11 @@ msgstr "xfconfd نەشرىنى بېسىپ چىقىرىدۇ."
 msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
-msgstr ""
+msgstr "ئىشلىتىلىدىغان سەپلىمە backend لىرى. باشتىكىسىنى ئوقۇپ-يېزىشقا بولىدۇ. قالغانلىرىنى ئوقۇشقىلا بولىدۇ."
 
 #: ../xfconfd/main.c:138
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "قوزغالغاندىن كېيىن ئارقىدا ئىجرا بولىدۇ؛ بۇ پەقەت سىناشقىلا قۇلايلىق."
 
 #: ../xfconfd/main.c:158
 msgid "Xfce Configuration Daemon"
@@ -216,7 +216,7 @@ msgstr "خاسلىق (-c كۆرسىتىلمىگەندە قانال ) نى تىز
 
 #: ../xfconf-query/main.c:211
 msgid "Verbose output"
-msgstr ""
+msgstr "تەپسىلىي چىقىرىش"
 
 #: ../xfconf-query/main.c:215
 msgid "Create a new property if it does not already exist"
@@ -236,11 +236,11 @@ msgstr ""
 
 #: ../xfconf-query/main.c:231
 msgid "Force array even if only one element"
-msgstr ""
+msgstr "بىرلا ئېلېمېنت بولسىمۇ ئۇنى array غا مەجبۇرلا"
 
 #: ../xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
-msgstr ""
+msgstr "قانالنىڭ خاسلىقىنىڭ ئۆزگىرىشىنى كۆزىتىدۇ"
 
 #: ../xfconf-query/main.c:349
 #, c-format
@@ -280,12 +280,12 @@ msgstr "يېڭى خاسلىق قۇرغان ۋاقىتتا، ئۇنىڭ قىمم�
 #: ../xfconf-query/main.c:429
 #, c-format
 msgid "Failed to get the existing type for the value.\n"
-msgstr "قىممەت تىپىنىنى ئېلىش مەغلۇپ بولدى\n"
+msgstr "قىممەت تىپىنى ئېلىش مەغلۇپ بولدى\n"
 
 #: ../xfconf-query/main.c:447
 #, c-format
 msgid "Unable to determine the type of the value.\n"
-msgstr "قىممەت تىپىنىنى ئېنىقلىغىلى بولمىدى.\n"
+msgstr "قىممەت تىپىنى ئېنىقلىغىلى بولمىدى.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
@@ -306,12 +306,12 @@ msgstr "خاسلىقنى تەڭشەش مەغلۇپ بولدى.\n"
 #: ../xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr ""
+msgstr "يېڭى قىممەتتىن %d بار. بىراق ئۇنىڭ ئىچىدىن %d نىڭ تىپى ئېنىقلاندى.\n"
 
 #: ../xfconf-query/main.c:516
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
-msgstr "ئىندەكىسى %d بولغان قىممەتنىڭ تىپىنى  ئېنىقلىيالمىدى.\n"
+msgstr "ئىندىكىسى %d بولغان قىممەتنىڭ تىپىنى  ئېنىقلىيالمىدى.\n"
 
 #: ../xfconf-query/main.c:567
 #, c-format
@@ -332,15 +332,3 @@ msgstr "ئىمپورت ھۆججىتى \"%s\" نى ئاچقىلى بولمىدى:
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "ئىمپورت ھۆججىتى \"%s\" نى ئانالىز قىلالمىدى: %s\n"
-
-#~ msgid "Export channel to file"
-#~ msgstr "チャンネルをファイルにエクスポートする"
-
-#~ msgid "Import channel from file"
-#~ msgstr "チャンネルをファイルからインポートする"
-
-#~ msgid "true"
-#~ msgstr "TRUE"
-
-#~ msgid "false"
-#~ msgstr "FALSE"
