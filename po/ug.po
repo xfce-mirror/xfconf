@@ -19,7 +19,7 @@ msgstr ""
 #: ../xfconf/xfconf-cache.c:854
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr ""
+msgstr "ResetProperty DBus نى چاقىرىش مەغلۇپ بولدى"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:280
 #, c-format
@@ -126,7 +126,7 @@ msgstr "قانال ئاتىدا پەقەتلا ASCII دىكى  A-Z، a-z، 0-9،
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
+msgstr "ئەگەر چوڭقۇرلار ئەسلىگە قايتۇرۇش بېكىتىلگەن بولسا، خاسلىق ئاتى قۇرۇق ياكى \"/\" بولۇشى كېرەك."
 
 #: ../xfconfd/main.c:133
 msgid "Prints the xfconfd version."
@@ -232,7 +232,7 @@ msgstr "خاسلىقنى ئەسلىگە قايتۇرۇش"
 
 #: ../xfconf-query/main.c:227
 msgid "Recursive (use with -r)"
-msgstr ""
+msgstr "چوڭقۇرلاش(-r نى ئىشلىتىڭ)"
 
 #: ../xfconf-query/main.c:231
 msgid "Force array even if only one element"
