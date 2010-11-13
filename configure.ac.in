@@ -168,7 +168,7 @@ AC_SUBST([GTK_DOC_EXTRA_CFLAGS])
 AC_ARG_ENABLE([checks],
               AC_HELP_STRING([--enable-checks],
                              [Enables some runtime checks for libxfconf that print debugging information at a slight cost to library code size and speed]),
-              [enable_checks=yes])
+              [enable_checks=$enableval])
 if test "x$enable_checks" = "xyes"; then
     AC_DEFINE([XFCONF_ENABLE_CHECKS], [1],
               [Define if runtime checks should be performed])
@@ -183,7 +183,7 @@ XDT_FEATURE_LINKER_OPTS
 AC_ARG_ENABLE([profiling],
               AC_HELP_STRING([--enable-profiling],
                              [Enable gprof profiling support]),
-              [enable_profiling=yes])
+              [enable_profiling=$enableval])
 if test "x$enable_profiling" = "xyes"; then
     AC_DEFINE([XFCONF_ENABLE_PROFILING], [1],
               [Define if gprof profiling should be compiled in])
