@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-10 10:05+0000\n"
+"POT-Creation-Date: 2010-11-30 05:09+0000\n"
 "PO-Revision-Date: 2009-09-17 20:09+0200\n"
 "Last-Translator: Robert Hartl <hartl.robert@gmail.com>\n"
 "Language-Team: slovak <sk-i18n@lists.linux.sk>\n"
@@ -240,7 +240,7 @@ msgstr "Zahájiť sledovanie kanálu „%s“:"
 #: ../xfconf-query/main.c:371
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr ""
+msgstr "Vlastnosť \"%s\" neexistuje na kanáli \"%s\".\n"
 
 #: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
 msgid "(unknown)"
@@ -260,7 +260,7 @@ msgstr ""
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
-msgstr ""
+msgstr "Vlastnosť \"%s\" neexistuje na kanáli \"%s\". Ak sa má nová vlastnosť vytvoriť, použite voľbu --create.\n"
 
 #: ../xfconf-query/main.c:419
 #, c-format
