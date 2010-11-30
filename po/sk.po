@@ -41,12 +41,12 @@ msgstr ""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr ""
+msgstr "Nie je možné odstrániť kanál \"%s\": %s"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr ""
+msgstr "Neplatný typ pre <property>: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
@@ -62,7 +62,7 @@ msgstr ""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr ""
+msgstr "Neplatný typ pre <value>: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
