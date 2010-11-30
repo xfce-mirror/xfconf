@@ -17,7 +17,7 @@ msgstr ""
 #: ../xfconf/xfconf-cache.c:875
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr ""
+msgstr "Nepodarilo sa volanie DBus na ResetProperty"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
@@ -28,7 +28,7 @@ msgstr "Nedá sa vytvoriť adresár konfigurácie \"%s\""
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr ""
+msgstr "Prístup pri zmene vlastnosti \"%s\" na kanáli \"%s\" bol zamietunutý"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -36,7 +36,7 @@ msgstr ""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:654
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr ""
+msgstr "Vlastnosť \"%s\" na kanáli \"%s\" neexistuje"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
@@ -52,12 +52,12 @@ msgstr "Neplatný typ pre <property>: \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr ""
+msgstr "Nie je možné spracovať hodnoty typu „%s“ z „%s“"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr ""
+msgstr "Typ atribútu <value> nemôže byť pole"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
@@ -93,12 +93,12 @@ msgstr "Koreňový element ('/') nie je platný názov vlastnosti"
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
 msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr ""
+msgstr "Názvy vlastností môžu obsahovať iba ASCII znaky A-Z, a-z, 0-9, '_', '-', '<' a '>' a tiež '/' ako oddeľovač"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
+msgstr "Názvy vlastností nemôžu obsahovať dva a viac po sebe nasledujúcich znakov '/'"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -113,12 +113,12 @@ msgstr "Názov kanála nemôže byť prázdny reťazec"
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
 msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr ""
+msgstr "Názvy kanálov môžu obsahovať iba ASCII znaky A-Z, a-z, 0-9, '_' a '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr ""
+msgstr "Názov vlastnosti môže byť prázdny alebo \"/\" iba ak bol spresnený rekurzívny reset"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -157,7 +157,7 @@ msgstr "Už je spustený iný démon služby Xfconf"
 #: ../xfconfd/xfconf-daemon.c:517
 #, c-format
 msgid "No backends could be started"
-msgstr ""
+msgstr "Nemohli byť spustené žiadne backendy"
 
 #: ../xfconf-query/main.c:92
 #, c-format
@@ -177,12 +177,12 @@ msgstr "Vlastnosť '%s' bola odstránená\n"
 #: ../xfconf-query/main.c:111
 #, c-format
 msgid "Export method not yet implemented"
-msgstr ""
+msgstr "Exportná metóda zatiaľ nebola implementovaná"
 
 #: ../xfconf-query/main.c:125
 #, c-format
 msgid "Export not yet implemented"
-msgstr ""
+msgstr "Export zatiaľ nebol implementovaný "
 
 #: ../xfconf-query/main.c:191
 msgid "Version information"
@@ -198,7 +198,7 @@ msgstr ""
 
 #: ../xfconf-query/main.c:203
 msgid "The new value to set for the property"
-msgstr ""
+msgstr "Nová hodnota pre nastavenie vlastnosti"
 
 #: ../xfconf-query/main.c:207
 msgid "List properties (or channels if -c is not specified)"
@@ -226,7 +226,7 @@ msgstr "Rekurzívne (použiť s parametrom -r)"
 
 #: ../xfconf-query/main.c:231
 msgid "Force array even if only one element"
-msgstr ""
+msgstr "Vynútiť pole iba v prípade jedného prvku"
 
 #: ../xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
@@ -265,7 +265,7 @@ msgstr "Vlastnosť \"%s\" neexistuje na kanáli \"%s\". Ak sa má nová vlastnos
 #: ../xfconf-query/main.c:419
 #, c-format
 msgid "When creating a new property, the value type must be specified.\n"
-msgstr ""
+msgstr "Pri vytváraní novej vlastnosti musí byť spresnený typ hodnoty.\n"
 
 #: ../xfconf-query/main.c:429
 #, c-format
@@ -280,7 +280,7 @@ msgstr "Nedá sa určiť typ hodnoty.\n"
 #: ../xfconf-query/main.c:453
 #, c-format
 msgid "A value type must be specified to change an array into a single value.\n"
-msgstr ""
+msgstr "Pre zmenu poľa na hodnotu je nutné spresniť typ hodnoty.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
@@ -295,7 +295,7 @@ msgstr "Nepodarilo sa nastaviť vlastnosti.\n"
 #: ../xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr ""
+msgstr "Existuje %d nových hodnôt, ale je možné určiť iba %d typov\n"
 
 #: ../xfconf-query/main.c:516
 #, c-format
