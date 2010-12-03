@@ -1,3 +1,9 @@
+Xfconf 4.7.4
+============
+
+  * Don't enable options with --disable-<option> (bug #6820).
+  * Updated translations: ug, sk, pt.
+
 Xfconf 4.7.3
 ============
 
