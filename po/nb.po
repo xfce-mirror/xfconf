@@ -2,12 +2,12 @@
 # Copyright (C) 2008 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Terje Uriansrud <terje@uriansrud.net>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-26 12:49+0100\n"
+"POT-Creation-Date: 2010-12-09 05:10+0000\n"
 "PO-Revision-Date: 2008-10-22 00:59+0200\n"
 "Last-Translator: Terje Uriansrud <terje@uriansrud.net>\n"
 "Language-Team: Norwegian Bokmal\n"
@@ -16,63 +16,63 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:854
-#, fuzzy, c-format
+#: ../xfconf/xfconf-cache.c:875
+#, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "Klarte ikke sett egenskap.\n"
+msgstr ""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:280
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
 msgstr "Klarte ikke å lage mappe for konfigurasjon «%s»"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:328
-#: ../xfconfd/xfconf-daemon.c:244
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:322
+#: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr "Du har ikke rettigheter til å endre egenskapen «%s» på kanal «%s»"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:393
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:475
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:636
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:656
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:387
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:469
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:634
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Egenskapen «%s» finnes ikke på kanal «%s»"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:603
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "Klarte ikke fjerne kanal «%s»: %s"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1293
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
 msgstr "Ugyldig type for <property>: «%s»"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1309
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1385
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "Klarte ikke tolke verdi av typen «%s» fra «%s»"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1365
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr "Typeattributten til <value> kan ikke være en tabell"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1374
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
 msgstr "Ugyldig type for <value>: «%s»"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1662
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1907
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "Kanalen «%s» finnes ikke"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1965
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Klarte ikke lagre kanal «%s»: %s"
@@ -94,12 +94,8 @@ msgstr "Rotelementet ('/') er ikke et gyldig egenskapnavn"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Navn på egenskaper kan kun inneholde ASCII karakterene A-Z, a-z, 0-9, '_', "
-"'-', '<' og '>', samt '/' kan brukes som skilletegn"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Navn på egenskaper kan kun inneholde ASCII karakterene A-Z, a-z, 0-9, '_', '-', '<' og '>', samt '/' kan brukes som skilletegn"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -118,59 +114,49 @@ msgstr "Kanalnavn kan ikke være en tom streng"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
 msgstr "Kanalnavn kan kun inneholde ASCII tegene A-Z, a-z, 0-9, '_', og '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"Navn på egenskaper kan kun være tom eller «/» hvis en rekursiv fjerning ble "
-"angitt."
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "Navn på egenskaper kan kun være tom eller «/» hvis en rekursiv fjerning ble angitt."
 
-#: ../xfconfd/main.c:133
+#: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Skriver ut xfconfd versjon"
 
-#: ../xfconfd/main.c:135
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Bakgrunnskonfigurasjon som skal brukes. Den første spesifisert brukes til "
-"lesing og skriving; de øvrige brukes kun til lesing."
+#: ../xfconfd/main.c:136
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "Bakgrunnskonfigurasjon som skal brukes. Den første spesifisert brukes til lesing og skriving; de øvrige brukes kun til lesing."
 
-#: ../xfconfd/main.c:138
+#: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
 msgstr ""
 
-#: ../xfconfd/main.c:158
+#: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
 msgstr "Xfce Konfigurasjonsprosess"
 
-#: ../xfconfd/main.c:164
+#: ../xfconfd/main.c:165
 msgid "Xfce configuration daemon"
 msgstr "Xfce konfigurasjonsprosess"
 
-#: ../xfconfd/main.c:166
+#: ../xfconfd/main.c:167
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Rapporter feil til http://bugs.xfce.org/\n"
 
-#: ../xfconfd/main.c:169
+#: ../xfconfd/main.c:170
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Fail ved tolking av: %s\n"
 
-#: ../xfconfd/xfconf-daemon.c:460
+#: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "Another Xfconf daemon is already running"
 msgstr "En annen Xfconf prosess kjører allerede"
 
-#: ../xfconfd/xfconf-daemon.c:496
+#: ../xfconfd/xfconf-daemon.c:517
 #, c-format
 msgid "No backends could be started"
 msgstr "Ingen baksystemer kunne startes"
@@ -297,8 +283,7 @@ msgstr "Klarte ikke avgjøre type for verdi.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
+msgid "A value type must be specified to change an array into a single value.\n"
 msgstr "Du må angi type for å endre fra tabell til enkeltverdi.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
