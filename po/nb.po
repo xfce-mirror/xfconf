@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-09 05:10+0000\n"
+"POT-Creation-Date: 2010-12-10 17:10+0000\n"
 "PO-Revision-Date: 2008-10-22 00:59+0200\n"
 "Last-Translator: Terje Uriansrud <terje@uriansrud.net>\n"
 "Language-Team: Norwegian Bokmal\n"
@@ -19,7 +19,7 @@ msgstr ""
 #: ../xfconf/xfconf-cache.c:875
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr ""
+msgstr "Klarte ikke utføre ResetProperty DBus kall"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
@@ -132,7 +132,7 @@ msgstr "Bakgrunnskonfigurasjon som skal brukes. Den første spesifisert brukes t
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "Forgren i bakgrunnen etter start; bare nyttig for testformål"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
