@@ -1,80 +1,80 @@
-# Romanian translations for xfconf package.
+# Romanian translation for xfconf package.
 # Copyright (C) 2009 THE xfconf'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfconf package.
-# Mișu Moldovan <dumol@xfce.org>, 2009.
-#
+# Mișu Moldovan <dumol@xfce.org>, 2009-2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf 4.6\n"
+"Project-Id-Version: xfconf 4.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-26 12:49+0100\n"
-"PO-Revision-Date: 2009-02-03 23:36+0200\n"
+"POT-Creation-Date: 2011-01-05 11:10+0000\n"
+"PO-Revision-Date: 2011-01-05 16:09+0200\n"
 "Last-Translator: Mișu Moldovan <dumol@xfce.org>\n"
-"Language-Team: Romanian\n"
+"Language-Team: Romanian <debian-l10n-romanian@lists.debian.org>\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);;\n"
 
-#: ../xfconf/xfconf-cache.c:854
-#, fuzzy, c-format
+#: ../xfconf/xfconf-cache.c:875
+#, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "Nu s-a putut defini proprietatea.\n"
+msgstr "Nu s-a putut face un apel DBus de tip ResetProperty."
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:280
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Nu s-a putut crea directorul preferințelor „%s”"
+msgstr "Nu s-a putut crea directorul cu preferințe „%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:328
-#: ../xfconfd/xfconf-daemon.c:244
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:322
+#: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr ""
 "Drepturi insuficiente pentru modificarea proprietății „%s” în canalul „%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:393
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:475
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:636
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:656
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:387
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:469
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:634
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Proprietatea „%s” nu există în canalul „%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:603
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "Nu s-a putut șterge canalul „%s”: %s"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1293
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
 msgstr "Tip invalid pentru <property>: „%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1309
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1385
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "Nu s-a putut prelucra valoarea tipului „%s” pentru „%s”"
+msgstr "Nu s-a putut prelucra valoarea de tip „%s” pentru „%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1365
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "Tipul atributului pentru <value> nu poate fi o matrice"
+msgstr "Atributul tip pentru <value> nu poate fi o matrice"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1374
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Tip pentru <valeu>: „%s”"
+msgstr "Tip nevalid pentru <value>: „%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1662
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1907
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "Canalul „%s” nu există"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1965
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Nu s-a putut scrie canalul „%s”: %s"
@@ -82,7 +82,7 @@ msgstr "Nu s-a putut scrie canalul „%s”: %s"
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Nu s-a putut găsi suportul Xfconf pentru tipul „%s”"
+msgstr "Nu s-a putut găsi un backend de tip „%s” pentru Xfconf"
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
@@ -106,7 +106,9 @@ msgstr ""
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Numele de proprietăți au două sau mai multe caractere „/” consecutive"
+msgstr ""
+"Numele de proprietăți nu pot avea două sau mai multe caractere „/” "
+"consecutive"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -136,48 +138,48 @@ msgstr ""
 "Numele proprietății nu poate fi gol ori „/” dacă s-a specificat o "
 "reinițializare recursivă"
 
-#: ../xfconfd/main.c:133
+#: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
-msgstr "Arată versiunea xfconfd"
+msgstr "Arată versiunea xfconfd."
 
-#: ../xfconfd/main.c:135
+#: ../xfconfd/main.c:136
 msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
 msgstr ""
-"Suporturi de configurare ce pot fi utilizate. Primul backend specificat este "
-"deschis pentru citire și scriere, celelalte, doar pentru citire."
+"Backend-uri de configurare ce pot fi utilizate. Primul backend specificat "
+"este deschis pentru citire și scriere, iar celelalte, doar pentru citire."
 
-#: ../xfconfd/main.c:138
+#: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "Clonare în fundal după pornire (opțiune utilă doar pentru testare)"
 
-#: ../xfconfd/main.c:158
+#: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
 msgstr "Demonul preferințelor Xfce"
 
-#: ../xfconfd/main.c:164
+#: ../xfconfd/main.c:165
 msgid "Xfce configuration daemon"
 msgstr "Demonul preferințelor Xfce"
 
-#: ../xfconfd/main.c:166
+#: ../xfconfd/main.c:167
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Raportați problemele la http://bugs.xfce.org\n"
 
-#: ../xfconfd/main.c:169
+#: ../xfconfd/main.c:170
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Eroare la prelucrarea opțiunilor: %s\n"
 
-#: ../xfconfd/xfconf-daemon.c:460
+#: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "Another Xfconf daemon is already running"
 msgstr "Un alt demon Xfconf este deja pornit"
 
-#: ../xfconfd/xfconf-daemon.c:496
+#: ../xfconfd/xfconf-daemon.c:517
 #, c-format
 msgid "No backends could be started"
-msgstr "Nu s-a putut inițializa nici un suport"
+msgstr "Nu s-a putut inițializa niciun backend"
 
 #: ../xfconf-query/main.c:92
 #, c-format
@@ -234,7 +236,7 @@ msgstr "Creează o nouă proprietate dacă aceasta nu există deja"
 
 #: ../xfconf-query/main.c:219
 msgid "Specify the property value type"
-msgstr "Specifică tipul valorii proprietății"
+msgstr "Specifică tipul de valoare a proprietății"
 
 #: ../xfconf-query/main.c:223
 msgid "Reset property"
@@ -287,7 +289,7 @@ msgstr ""
 #: ../xfconf-query/main.c:419
 #, c-format
 msgid "When creating a new property, the value type must be specified.\n"
-msgstr "Când creați o nouă proprietate trebuie specificat tipul valorii.\n"
+msgstr "Când creați o nouă proprietate, trebuie specificat tipul valorii.\n"
 
 #: ../xfconf-query/main.c:429
 #, c-format
@@ -303,8 +305,7 @@ msgstr "Nu s-a putut determina tipul valorii.\n"
 #, c-format
 msgid ""
 "A value type must be specified to change an array into a single value.\n"
-msgstr ""
-"Un tip de valoare trebuie specificat pentru a schimba o matrice într-o "
+msgstr "Trebuie specificat un tip de valoare pentru a schimba o matrice într-o "
 "valoare unică.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
@@ -325,12 +326,12 @@ msgstr "Există %d noi valori, dar doar %d tipuri au putut fi determinate.\n"
 #: ../xfconf-query/main.c:516
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
-msgstr "Nu s-a putut tipul valorii pentru indexul %d.\n"
+msgstr "Nu s-a putut determina tipul valorii la indexul %d.\n"
 
 #: ../xfconf-query/main.c:567
 #, c-format
 msgid "Channel '%s' contains no properties\n"
-msgstr "Canalul „%s” nu conține nici o proprietate\n"
+msgstr "Canalul „%s” nu conține nicio proprietate\n"
 
 #: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
 #, c-format
@@ -346,9 +347,3 @@ msgstr "Nu s-a putut deschide fișierul de import „%s”: %s\n"
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Nu s-a putut prelucra fișierul de import „%s”: %s\n"
-
-#~ msgid "Export channel to file"
-#~ msgstr "Exportă canalul în fișier"
-
-#~ msgid "Import channel from file"
-#~ msgstr "Importă canalul din fișier"
