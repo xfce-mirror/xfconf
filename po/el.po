@@ -1,3 +1,4 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
@@ -9,19 +10,18 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\\n\n"
-"X-Poedit-Language: Greek\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\\n\\nX-Poedit-Language: Greek\n"
 "X-Poedit-Country: GREECE\n"
 
 #: ../xfconf/xfconf-cache.c:875
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr ""
+msgstr "Απέτυχε η κλήση DBus ResetProperty"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr ""
+msgstr "Δεν ήταν δυνατή η δημιουργία του καταλόγου ρυθμίσεων \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
@@ -35,84 +35,84 @@ msgstr ""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:654
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr ""
+msgstr "Η ιδιότητα \"%s\" δεν υπάρχει στο κανάλι \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr ""
+msgstr "Δεν ήταν δυνατή η διαγραφή του καναλιού \"%s \": %s"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr ""
+msgstr "Μη έγκυρος τύπος για <property>: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr ""
+msgstr "Δεν ήταν δυνατή η ανάγνωση της τιμής του τύπου \"%s\" από το \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr ""
+msgstr "Η ιδιότητα τύπου του <value> δε μπορεί να είναι array"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr ""
+msgstr "Μη έγκυρος τύπος για <value>: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
-msgstr ""
+msgstr "Το κανάλι \"%s\" δεν υπάρχει"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr ""
+msgstr "Δεν ήταν δυνατή η εγγραφή του καναλιού \"%s\": \"%s\""
 
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr ""
+msgstr "Δεν ήταν δυνατή η εύρεση συστήματος υποστήριξης του Xfconf τύπου \"%s\""
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr ""
+msgstr "Τα ονόματα ιδιοτήτων πρέπει να ξεκινούν με το χαρακτήρα '/'"
 
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr ""
+msgstr "Το ριζικό στοιχείο ('/') δεν είναι έγκυρο όνομα ιδιότητας"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
 msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr ""
+msgstr "Τα ονόματα ιδιοτήτων μπορούν να περιλαμβάνουν μόνο τους χαρακτήρες ASCII A-Z, a-z, 0-9, '_', '-', '<' και '>', καθώς και τον '/' σαν διαχωριστικό"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
+msgstr "Τα ονόματα ιδιοτήτων δε μπορούν να έχουν δύο ή περισσότερους συνεχόμενους χαρακτήρες '/'"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr ""
+msgstr "Τα ονόματα ιδιοτήτων δε μπορούν να τελειώνουν με το χαρακτήρα '/'"
 
 #: ../xfconfd/xfconf-backend.c:163
 #, c-format
 msgid "Channel name cannot be an empty string"
-msgstr ""
+msgstr "Το όνομα του καναλιού δε μπορεί να είναι κενό"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
 msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr ""
+msgstr "Τα ονόματα καναλιών μπορούν να περιλαμβάνουν μόνο τους χαρακτήρες ASCII A-Z, a-z, 0-9, '_', και '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
@@ -121,11 +121,11 @@ msgstr ""
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
-msgstr ""
+msgstr "Εμφανίζει την έκδοση του xfconfd"
 
 #: ../xfconfd/main.c:136
 msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr ""
+msgstr "Ρυθμίζει ποια συστήματα υποστήριξης θα χρησιμοποιηθούν. Το πρώτο που ορίζεται θα ανοίγει για ανάγνωση/εγγραφή, και τα υπόλοιπα μόνο για ανάγνωση."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -133,91 +133,91 @@ msgstr ""
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
-msgstr ""
+msgstr "Υπηρεσία ρυθμίσεων του Xfce"
 
 #: ../xfconfd/main.c:165
 msgid "Xfce configuration daemon"
-msgstr ""
+msgstr "Υπηρεσία ρυθμίσεων του Xfce"
 
 #: ../xfconfd/main.c:167
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr ""
+msgstr "Αναφέρετε σφάλματα στο http://bugs.xfce.org/\n"
 
 #: ../xfconfd/main.c:170
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr ""
+msgstr "Σφάλμα ανάγνωσης επιλογών: %s\n"
 
 #: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "Another Xfconf daemon is already running"
-msgstr ""
+msgstr "Μια υπηρεσία Xfconf  εκτελείται ήδη"
 
 #: ../xfconfd/xfconf-daemon.c:517
 #, c-format
 msgid "No backends could be started"
-msgstr ""
+msgstr "Δεν ήταν δυνατή η εκκίνηση συστημάτων υποστήριξης"
 
 #: ../xfconf-query/main.c:92
 #, c-format
 msgid "Property '%s' changed: %s\n"
-msgstr ""
+msgstr "Η ιδιότητα '%s' άλλαξε: %s\n"
 
 #: ../xfconf-query/main.c:97
 #, c-format
 msgid "Property '%s' changed\n"
-msgstr ""
+msgstr "Η ιδιότητα '%s' άλλαξε\n"
 
 #: ../xfconf-query/main.c:102
 #, c-format
 msgid "Property '%s' removed\n"
-msgstr ""
+msgstr "Η ιδιότητα '%s' αφαιρέθηκε\n"
 
 #: ../xfconf-query/main.c:111
 #, c-format
 msgid "Export method not yet implemented"
-msgstr ""
+msgstr "Δεν έχει προστεθεί μέθοδος εξαγωγής"
 
 #: ../xfconf-query/main.c:125
 #, c-format
 msgid "Export not yet implemented"
-msgstr ""
+msgstr "Δεν έχει προστεθεί εξαγωγή"
 
 #: ../xfconf-query/main.c:191
 msgid "Version information"
-msgstr ""
+msgstr "Πληροφορίες έκδοσης"
 
 #: ../xfconf-query/main.c:195
 msgid "The channel to query/modify"
-msgstr ""
+msgstr "Κανάλι προς ερώτημα/τροποποίηση"
 
 #: ../xfconf-query/main.c:199
 msgid "The property to query/modify"
-msgstr ""
+msgstr "Ιδιότητα προς ερώτημα/τροποποίηση"
 
 #: ../xfconf-query/main.c:203
 msgid "The new value to set for the property"
-msgstr ""
+msgstr "Η νέα τιμή που θα οριστεί στην ιδιότητα"
 
 #: ../xfconf-query/main.c:207
 msgid "List properties (or channels if -c is not specified)"
-msgstr ""
+msgstr "Λίστα ιδιοτήτων (ή καναλιών αν δεν έχει οριστεί -c)"
 
 #: ../xfconf-query/main.c:211
 msgid "Verbose output"
-msgstr ""
+msgstr "Αναλυτική έξοδος"
 
 #: ../xfconf-query/main.c:215
 msgid "Create a new property if it does not already exist"
-msgstr ""
+msgstr "Δημιουργία νέας ιδιότητας αν δεν υπάρχει ήδη"
 
 #: ../xfconf-query/main.c:219
 msgid "Specify the property value type"
-msgstr ""
+msgstr "Ορισμός τύπου τιμής ιδιότητας"
 
 #: ../xfconf-query/main.c:223
 msgid "Reset property"
-msgstr ""
+msgstr "Επαναφορά ιδιότητας"
 
 #: ../xfconf-query/main.c:227
 msgid "Recursive (use with -r)"
@@ -229,20 +229,19 @@ msgstr ""
 
 #: ../xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
-msgstr ""
+msgstr "Παρακολούθηση καναλιού για αλλαγές ιδιοτήτων"
 
 #: ../xfconf-query/main.c:349
 #, c-format
 msgid "Start monitoring channel '%s':"
-msgstr ""
+msgstr "Έναρξη παρακολούθησης καναλιού '%s':"
 
 #: ../xfconf-query/main.c:371
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr ""
+msgstr "Η ιδιότητα \"%s\" δεν υπάρχει στο κανάλι \"%s\".\n"
 
-#: ../xfconf-query/main.c:379
-#: ../xfconf-query/main.c:397
+#: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
 msgid "(unknown)"
 msgstr "(άγνωστο)"
 
@@ -259,6 +258,8 @@ msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
 msgstr ""
+"Η ιδιότητα \"%s\" δεν υπάρχει στο κανάλι \"%s\". Αν πρέπει να\n"
+"δημιουργηθεί νέα ιδιότητα, χρησιμοποιήστε την επιλογή --create.\n"
 
 #: ../xfconf-query/main.c:419
 #, c-format
@@ -280,14 +281,12 @@ msgstr ""
 msgid "A value type must be specified to change an array into a single value.\n"
 msgstr ""
 
-#: ../xfconf-query/main.c:463
-#: ../xfconf-query/main.c:525
+#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr ""
 
-#: ../xfconf-query/main.c:470
-#: ../xfconf-query/main.c:540
+#: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
 msgstr ""
@@ -307,8 +306,7 @@ msgstr ""
 msgid "Channel '%s' contains no properties\n"
 msgstr ""
 
-#: ../xfconf-query/main.c:583
-#: ../xfconf-query/main.c:592
+#: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr ""
@@ -322,4 +320,3 @@ msgstr ""
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr ""
-
