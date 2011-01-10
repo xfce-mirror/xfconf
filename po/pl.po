@@ -2,80 +2,80 @@
 # Polskie tłumaczenia dla pakietu PACKAGE.
 # Copyright (C) 2009 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#  <piotr.sokol@10g.pl>, 2009.
+# Piotr Sokół <psokol@jabster.pl>, 2009, 2011.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf 4.6.0\n"
+"Project-Id-Version: xfconf 4.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-26 12:49+0100\n"
-"PO-Revision-Date: 2009-03-29 01:08+0100\n"
-"Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
-"Language-Team: Polish\n"
+"POT-Creation-Date: 2011-01-10 11:11+0000\n"
+"PO-Revision-Date: 2011-01-10 14:16+0100\n"
+"Last-Translator: Piotr Sokół <psokol@jabster.pl>\n"
+"Language-Team: Polish <>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : ((n%10>=2 && n%10<=4 && (n"
+"%100<10 || n%100>=20)) ? 1 : 2));\n"
 
-#: ../xfconf/xfconf-cache.c:854
+#: ../xfconf/xfconf-cache.c:875
 #, fuzzy, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "Nie udało się ustawić właściwości.\n"
+msgstr "Nie udało się wywołać ResetProperty systemu DBus"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:280
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
 msgstr "Nie można utworzyć katalogu konfiguracji „%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:328
-#: ../xfconfd/xfconf-daemon.c:244
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:322
+#: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr ""
 "Odmówiono dostępu podczas modyfikowania właściwości „%s” na kanale „%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:393
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:475
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:636
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:656
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:387
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:469
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:634
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Właściwość „%s” nie istnieje na kanale „%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:603
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "Nie można usunąć kanału „%s”: %s"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1293
-#, fuzzy, c-format
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
+#, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "Niepoprawny typ dla <property>: „%s”"
+msgstr "Niepoprawny typ właściwości: „%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1309
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1385
-#, fuzzy, c-format
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
+#, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "Nie można przetworzyć wartości typu „%s” z „%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1365
-#, fuzzy, c-format
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
+#, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "Typ wartości <value> nie może być tablicą"
+msgstr "Typ wartości nie może być tablicą"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1374
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Niepoprawny typ dla <value>: „%s”"
+msgstr "Niepoprawny typ wartości: „%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1662
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1907
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "Kanał „%s” nie istnieje"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1965
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Nie można zapisać kanału „%s”: %s"
@@ -130,53 +130,57 @@ msgstr ""
 "Nazwy kanałów mogą zawierać następujące znaki ASCII: A-Z, a-z, 0-9, '_' i '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr "Nazwa właściwości może być pusta lub "
+msgstr ""
+"Nazwa właściwości może być pusta lub określona jako znak „/”, tylko w "
+"przypadku rekursywnego zerowania."
 
-#: ../xfconfd/main.c:133
-#, fuzzy
+#: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
-msgstr "Wypisuje informacje o wersji i kończy"
+msgstr "Wypisuje informacje o wersji xfconfd"
 
-#: ../xfconfd/main.c:135
+#: ../xfconfd/main.c:136
 msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
 msgstr ""
+"Moduły obsługi konfiguracji. Pierwszy moduł służy do zapisywania i "
+"odczytywania, inne tylko do odczytywania."
 
-#: ../xfconfd/main.c:138
+#: ../xfconfd/main.c:139
+#, fuzzy
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "Uruchamia w tle. Użyteczne tylko do celów testowych."
 
-#: ../xfconfd/main.c:158
+#: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
 msgstr "Usługa konfiguracji Xfce"
 
-#: ../xfconfd/main.c:164
+#: ../xfconfd/main.c:165
 msgid "Xfce configuration daemon"
 msgstr "Usługa konfiguracji Xfce"
 
-#: ../xfconfd/main.c:166
+#: ../xfconfd/main.c:167
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr "Proszę zgłaszać błędy na http://bugs.xfce.org/\n"
+msgstr "Proszę zgłaszać błędy pod adresem http://bugs.xfce.org/\n"
 
-#: ../xfconfd/main.c:169
+#: ../xfconfd/main.c:170
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr "Błąd przetwarzania opcji: %s\n"
+msgstr "Wystąpił błąd podczas przetwarzania opcji: %s\n"
 
-#: ../xfconfd/xfconf-daemon.c:460
+#: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "Another Xfconf daemon is already running"
 msgstr "W tej chwili jest uruchomiona inna usługa Xfconf"
 
-#: ../xfconfd/xfconf-daemon.c:496
-#, fuzzy, c-format
+#: ../xfconfd/xfconf-daemon.c:517
+#, c-format
 msgid "No backends could be started"
-msgstr "Nie udało się uruchomić obsługi"
+msgstr "Nie udało się uruchomić modułu obsługi"
 
 #: ../xfconf-query/main.c:92
 #, c-format
@@ -299,7 +303,7 @@ msgid "Unable to determine the type of the value.\n"
 msgstr "Nie można określić typu wartości.\n"
 
 #: ../xfconf-query/main.c:453
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "A value type must be specified to change an array into a single value.\n"
 msgstr ""
@@ -318,10 +322,10 @@ msgstr "Nie udało się ustawić właściwości.\n"
 #: ../xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr ""
+msgstr "Określono %d nowych wartości i tylko %d typów.\n"
 
 #: ../xfconf-query/main.c:516
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine type of value at index %d.\n"
 msgstr "Nie można określić typu wartości dla indeksu %d.\n"
 
