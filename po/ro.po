@@ -2,12 +2,13 @@
 # Copyright (C) 2009 THE xfconf'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfconf package.
 # Mișu Moldovan <dumol@xfce.org>, 2009-2011.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-05 11:10+0000\n"
-"PO-Revision-Date: 2011-01-05 16:09+0200\n"
+"PO-Revision-Date: 2011-01-12 11:36+0200\n"
 "Last-Translator: Mișu Moldovan <dumol@xfce.org>\n"
 "Language-Team: Romanian <debian-l10n-romanian@lists.debian.org>\n"
 "Language: ro\n"
@@ -50,7 +51,7 @@ msgstr "Nu s-a putut șterge canalul „%s”: %s"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "Tip invalid pentru <property>: „%s”"
+msgstr "Tip incorect pentru <property>: „%s”"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
@@ -66,7 +67,7 @@ msgstr "Atributul tip pentru <value> nu poate fi o matrice"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Tip nevalid pentru <value>: „%s”"
+msgstr "Tip incorect pentru <value>: „%s”"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
