@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-27 17:10+0000\n"
-"PO-Revision-Date: 2010-12-28 18:08-0000\n"
+"PO-Revision-Date: 2010-12-30 16:58-0000\n"
 "Last-Translator: كريم أولاد الشلحة <herr.linux88@gmail.com>\n"
 "Language-Team: Arabic <herr.linux88@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgstr "القنات \"%s\" غير موجودة"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "تفعيل متابة القنات \"%s\": %s"
+msgstr "غير قادر غلى كتابة القنات \"%s\": %s"
 
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
@@ -267,28 +267,28 @@ msgstr ""
 #: ../xfconf-query/main.c:419
 #, c-format
 msgid "When creating a new property, the value type must be specified.\n"
-msgstr ""
+msgstr "عنذ إنشاء خصائص جديدة, نوع القيمة يجب أن يحدد.\n"
 
 #: ../xfconf-query/main.c:429
 #, c-format
 msgid "Failed to get the existing type for the value.\n"
-msgstr ""
+msgstr "فشل الحصول على النوع القيمة.\n"
 
 #: ../xfconf-query/main.c:447
 #, c-format
 msgid "Unable to determine the type of the value.\n"
-msgstr ""
+msgstr "عاجز عن تحديد نوع القيمة.\n"
 
 #: ../xfconf-query/main.c:453
-#, c-format
+#, fuzzy, c-format
 msgid "A value type must be specified to change an array into a single value.\n"
-msgstr ""
+msgstr "نوع القيمة يجب أن يحدد لتغير نظام إلى قيمة وحيدة.into"
 
 #: ../xfconf-query/main.c:463
 #: ../xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
-msgstr ""
+msgstr "غير قادر على تحويل \"%s\" إلى النوع \"%s\"\n"
 
 #: ../xfconf-query/main.c:470
 #: ../xfconf-query/main.c:540
@@ -299,31 +299,31 @@ msgstr "فشل تعيين خصائص.\n"
 #: ../xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr ""
+msgstr "هذه %d قيمة جديدة, لكن %d بمكن تحديد النوع فقط.\n"
 
 #: ../xfconf-query/main.c:516
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
-msgstr ""
+msgstr "عاجز عن تحديد نوع القيمة في الارشيف %d.\n"
 
 #: ../xfconf-query/main.c:567
 #, c-format
 msgid "Channel '%s' contains no properties\n"
-msgstr ""
+msgstr "قناة '%s' لا تحتوي على خصائص\n"
 
 #: ../xfconf-query/main.c:583
 #: ../xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
-msgstr ""
+msgstr "لا يمكن إنشاء ملف التصدير \"%s\": %s\n"
 
 #: ../xfconf-query/main.c:612
 #, c-format
 msgid "Could not open import file \"%s\": %s\n"
-msgstr ""
+msgstr "لا يمكن فتح الملف المستورد \"%s\": %s\n"
 
 #: ../xfconf-query/main.c:621
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
-msgstr ""
+msgstr "لا يمكن تحليل الملف المستورد \"%s\": %s\n"
 
