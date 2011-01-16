@@ -2,77 +2,79 @@
 # Copyright (C) 2009 Ilya Shestopalov
 # This file is distributed under the same license as the xfconf package.
 # Ilya <yast4ik@yahoo.com>, 2009.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-26 18:04+0100\n"
+"POT-Creation-Date: 2011-01-16 15:52+0100\n"
 "PO-Revision-Date: 2009-01-31 12:57+0300\n"
 "Last-Translator: Ilya Shestopalov <yast4ik@yahoo.com>\n"
 "Language-Team: Russian\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../xfconf/xfconf-cache.c:897
+#: ../xfconf/xfconf-cache.c:875
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Не удалось удалить свойство через DBus"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:280
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
 msgstr "Не удалось создать директорию конфигурации \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:328
-#: ../xfconfd/xfconf-daemon.c:244
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:322
+#: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr "Недостаточно прав для изменения свойств \"%s\" на канале \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:393
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:475
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:387
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:469
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:634
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:654
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:674
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Свойство \"%s\" отсутствует на канале \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:621
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "Не получилось удалить канал \"%s\": %s"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1313
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
 msgstr "Неправильный тип для <property>: \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1329
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1405
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "Не получилось  определить значение типа \"%s\" из \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1385
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr "Тип атрибута <value> не может быть массивом"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1394
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
 msgstr "Неправильный тип для <value>: \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1682
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1927
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "Канал \"%s\" не существует"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1985
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Не удалось записать канал \"%s\": %s"
@@ -94,13 +96,19 @@ msgstr "Элемент root («/») не является правильным �
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "Названия свойств могут включать только символы ASCII A-Z, a-z, 0-9, '_', '-', '<' и '>', так же как и «/» как разделитель"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"Названия свойств могут включать только символы ASCII A-Z, a-z, 0-9, '_', "
+"'-', '<' и '>', так же как и «/» как разделитель"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Названия свойств не могут включать более два или более последовательных знаков «/»"
+msgstr ""
+"Названия свойств не могут включать более два или более последовательных "
+"знаков «/»"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -114,49 +122,61 @@ msgstr "Название канала не может быть пустой ст
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr "Названия каналов могут включать только символы ASCII A-Z, a-z, 0-9, '_', и '-'"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr ""
+"Названия каналов могут включать только символы ASCII A-Z, a-z, 0-9, '_', и "
+"'-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr "Название свойства может быть только пустым или \"/\" если был выбран рекурсивный сброс"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr ""
+"Название свойства может быть только пустым или \"/\" если был выбран "
+"рекурсивный сброс"
 
-#: ../xfconfd/main.c:133
+#: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Показать версию Xfconf"
 
-#: ../xfconfd/main.c:135
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr "Бэкенд конфигурации для использования. Первый указанный бэкенд открыт для чтения/записи; остальные только для чтения"
+#: ../xfconfd/main.c:136
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
+msgstr ""
+"Бэкенд конфигурации для использования. Первый указанный бэкенд открыт для "
+"чтения/записи; остальные только для чтения"
 
-#: ../xfconfd/main.c:138
+#: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
 msgstr "Поместить на задний план после запуска (полезно для тестовых целей)"
 
-#: ../xfconfd/main.c:158
+#: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
 msgstr "Диспетчер конфигурации Xfce"
 
-#: ../xfconfd/main.c:164
+#: ../xfconfd/main.c:165
 msgid "Xfce configuration daemon"
 msgstr "Диспетчер конфигурации Xfce"
 
-#: ../xfconfd/main.c:166
+#: ../xfconfd/main.c:167
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Отправляйте сообщения об ошибке на http://bugs.xfce.org/\n"
 
-#: ../xfconfd/main.c:169
+#: ../xfconfd/main.c:170
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Невозможно определить опции: %s\n"
 
-#: ../xfconfd/xfconf-daemon.c:460
+#: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "Another Xfconf daemon is already running"
 msgstr "Другой диспетчер конфигурации Xfce уже запущен"
 
-#: ../xfconfd/xfconf-daemon.c:496
+#: ../xfconfd/xfconf-daemon.c:517
 #, c-format
 msgid "No backends could be started"
 msgstr "Не удалось запустить бэкенд"
@@ -283,8 +303,11 @@ msgstr "Не удалось определить тип значения.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
-msgid "A value type must be specified to change an array into a single value.\n"
-msgstr "Тип значения должен быть установлен для преобразования массива в одно значение.\n"
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
+msgstr ""
+"Тип значения должен быть установлен для преобразования массива в одно "
+"значение.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format

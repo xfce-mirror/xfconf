@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-19 18:05+0100\n"
+"POT-Creation-Date: 2011-01-16 15:52+0100\n"
 "PO-Revision-Date: 2010-08-03 10:17+0600\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
+"Language: kk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -94,13 +95,19 @@ msgstr "Түбірлік ('/') элементі  дұрыс қасиет аты 
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "Қасиеттің атында тек ASCII-дің таңбалары A-Z, a-z, 0-9, '_', '-', '<' және '>', оған қоса ажыратқыш ретінде '/' таңбасы болуы керек"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"Қасиеттің атында тек ASCII-дің таңбалары A-Z, a-z, 0-9, '_', '-', '<' және "
+"'>', оған қоса ажыратқыш ретінде '/' таңбасы болуы керек"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Қасиет аттарында қатар тұрған екі немесе одан да көп '/' таңбалары болмауы керек"
+msgstr ""
+"Қасиет аттарында қатар тұрған екі немесе одан да көп '/' таңбалары болмауы "
+"керек"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -114,25 +121,38 @@ msgstr "Каналдың аты бос жол бола алмайды"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr "Каналдардың аттарында тек ASCII таңбалары A-Z, a-z, 0-9, '_', және '-' болуы керек"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr ""
+"Каналдардың аттарында тек ASCII таңбалары A-Z, a-z, 0-9, '_', және '-' болуы "
+"керек"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr "Қасиеттің аты бос немесе \"/\" болудың шарты - тек рекурсивті тастау орнатылған кезде"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr ""
+"Қасиеттің аты бос немесе \"/\" болудың шарты - тек рекурсивті тастау "
+"орнатылған кезде"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Экранға xfconfd нұсқасын шығарады."
 
 #: ../xfconfd/main.c:136
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr "Қолдану үшін бэкендтерді баптау. Біріншісі оқу/жазу үшін; қалғандары тек оқу үшін."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
+msgstr ""
+"Қолдану үшін бэкендтерді баптау. Біріншісі оқу/жазу үшін; қалғандары тек оқу "
+"үшін."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr "Қосылудан кейін фонда жұмыс істеу; тек сынау мақсатымен қолданылу керек"
+msgstr ""
+"Қосылудан кейін фонда жұмыс істеу; тек сынау мақсатымен қолданылу керек"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -244,8 +264,7 @@ msgstr "'%s' каналын бақылауды бастау:"
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
 msgstr "\"%s\" қасиеті \"%s\" каналында жоқ болып тұр.\n"
 
-#: ../xfconf-query/main.c:379
-#: ../xfconf-query/main.c:397
+#: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
 msgid "(unknown)"
 msgstr "(белгісіз)"
 
@@ -284,17 +303,16 @@ msgstr "Мәннің түрін анықтау сәтсіз аяқталды.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
-msgid "A value type must be specified to change an array into a single value.\n"
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
 msgstr "Массивті бірлік мәнге айналдыру үшін мәннің түрі көрсетілуі керек.\n"
 
-#: ../xfconf-query/main.c:463
-#: ../xfconf-query/main.c:525
+#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "\"%s\" жаңа \"%s\" түріне айналдыру сәтсіз аяқталды\n"
 
-#: ../xfconf-query/main.c:470
-#: ../xfconf-query/main.c:540
+#: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "Қасиетті орнату сәтсіз аяқталды.\n"
@@ -314,8 +332,7 @@ msgstr "%d орнында тұрған мәннің түрін анықтау м
 msgid "Channel '%s' contains no properties\n"
 msgstr "'%s' каналында бірде-бір қасиеттері жоқ\n"
 
-#: ../xfconf-query/main.c:583
-#: ../xfconf-query/main.c:592
+#: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "\"%s\" экспорт файлын жасау мүмкін емес: %s\n"
@@ -329,4 +346,3 @@ msgstr "\"%s\" импорт файлын ашу мүмкі немес: %s\n"
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "\"%s\" импорт файлын өндеу мүмкін емес: %s\n"
-

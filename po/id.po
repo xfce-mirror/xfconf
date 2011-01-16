@@ -2,15 +2,16 @@
 # Copyright (C) 2008 THE xfconf'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfconf package.
 # Andhika Padmawan <andhika.padmawan@gmail.com>, 2008.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-24 10:07+0000\n"
+"POT-Creation-Date: 2011-01-16 15:52+0100\n"
 "PO-Revision-Date: 2009-01-27 22:20+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <translation-team-id@lists.sourceforge.net>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -93,8 +94,12 @@ msgstr "Elemen root ('/') bukan nama properti yang sah"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "Nama properti hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', '-', '<' dan '>', serta '/' sebagai pemisah"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"Nama properti hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', "
+"'-', '<' dan '>', serta '/' sebagai pemisah"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -113,25 +118,37 @@ msgstr "Nama kanal tidak boleh merupakan benang kosong"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr "Nama kanal hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', dan '-'"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr ""
+"Nama kanal hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', dan '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr "Nama properti hanya dapat kosong atau \"/\" jika reset rekursif ditentukan"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr ""
+"Nama properti hanya dapat kosong atau \"/\" jika reset rekursif ditentukan"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Cetak versi xfconfd."
 
 #: ../xfconfd/main.c:136
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr "Ujung-belakang konfigurasi yang digunakan. Ujung-belakang pertama yang ditentukan dibuka sebagai baca/tulis; sisanya, hanya-baca."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
+msgstr ""
+"Ujung-belakang konfigurasi yang digunakan. Ujung-belakang pertama yang "
+"ditentukan dibuka sebagai baca/tulis; sisanya, hanya-baca."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr "Membuat cabang ke latar setelah memulai; hanya berguna untuk keperluan pengujian"
+msgstr ""
+"Membuat cabang ke latar setelah memulai; hanya berguna untuk keperluan "
+"pengujian"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -282,8 +299,10 @@ msgstr "Tak dapat menentukan tipe dari nilai.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
-msgid "A value type must be specified to change an array into a single value.\n"
-msgstr "Tipe nilai harus ditentukan untuk mengganti larik menjadi nilai tunggal.\n"
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
+msgstr ""
+"Tipe nilai harus ditentukan untuk mengganti larik menjadi nilai tunggal.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format

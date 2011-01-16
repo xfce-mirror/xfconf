@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-27 17:10+0000\n"
+"POT-Creation-Date: 2011-01-16 15:52+0100\n"
 "PO-Revision-Date: 2010-12-30 16:58-0000\n"
 "Last-Translator: كريم أولاد الشلحة <herr.linux88@gmail.com>\n"
 "Language-Team: Arabic <herr.linux88@gmail.com>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -95,7 +96,9 @@ msgstr ""
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
 msgstr ""
 
 #: ../xfconfd/xfconf-backend.c:135
@@ -115,12 +118,16 @@ msgstr ""
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
 msgstr ""
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
 msgstr ""
 
 #: ../xfconfd/main.c:134
@@ -128,7 +135,9 @@ msgid "Prints the xfconfd version."
 msgstr "طباعة نسخة xfconfd."
 
 #: ../xfconfd/main.c:136
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
 msgstr ""
 
 #: ../xfconfd/main.c:139
@@ -245,8 +254,7 @@ msgstr ""
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
 msgstr ""
 
-#: ../xfconf-query/main.c:379
-#: ../xfconf-query/main.c:397
+#: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
 msgid "(unknown)"
 msgstr "(مجهول)"
 
@@ -281,17 +289,16 @@ msgstr "عاجز عن تحديد نوع القيمة.\n"
 
 #: ../xfconf-query/main.c:453
 #, fuzzy, c-format
-msgid "A value type must be specified to change an array into a single value.\n"
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
 msgstr "نوع القيمة يجب أن يحدد لتغير نظام إلى قيمة وحيدة.into"
 
-#: ../xfconf-query/main.c:463
-#: ../xfconf-query/main.c:525
+#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "غير قادر على تحويل \"%s\" إلى النوع \"%s\"\n"
 
-#: ../xfconf-query/main.c:470
-#: ../xfconf-query/main.c:540
+#: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "فشل تعيين خصائص.\n"
@@ -311,8 +318,7 @@ msgstr "عاجز عن تحديد نوع القيمة في الارشيف %d.\n"
 msgid "Channel '%s' contains no properties\n"
 msgstr "قناة '%s' لا تحتوي على خصائص\n"
 
-#: ../xfconf-query/main.c:583
-#: ../xfconf-query/main.c:592
+#: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "لا يمكن إنشاء ملف التصدير \"%s\": %s\n"
@@ -326,4 +332,3 @@ msgstr "لا يمكن فتح الملف المستورد \"%s\": %s\n"
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "لا يمكن تحليل الملف المستورد \"%s\": %s\n"
-

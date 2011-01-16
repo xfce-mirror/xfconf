@@ -22,6 +22,9 @@ resources.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### FUNCTION xfconf_init ##### -->
 <para>
 
@@ -36,6 +39,7 @@ resources.
 
 </para>
 
+@void: 
 
 
 <!-- ##### FUNCTION xfconf_named_struct_register ##### -->

@@ -19,6 +19,9 @@ these primitive types are provided here.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### SECTION Image ##### -->
+
+
 <!-- ##### FUNCTION xfconf_g_value_get_int16 ##### -->
 <para>
 

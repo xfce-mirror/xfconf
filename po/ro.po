@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-05 11:10+0000\n"
+"POT-Creation-Date: 2011-01-16 15:52+0100\n"
 "PO-Revision-Date: 2011-01-12 11:36+0200\n"
 "Last-Translator: Mișu Moldovan <dumol@xfce.org>\n"
 "Language-Team: Romanian <debian-l10n-romanian@lists.debian.org>\n"
@@ -306,7 +306,8 @@ msgstr "Nu s-a putut determina tipul valorii.\n"
 #, c-format
 msgid ""
 "A value type must be specified to change an array into a single value.\n"
-msgstr "Trebuie specificat un tip de valoare pentru a schimba o matrice într-o "
+msgstr ""
+"Trebuie specificat un tip de valoare pentru a schimba o matrice într-o "
 "valoare unică.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525

@@ -2,15 +2,16 @@
 # Copyright (C) 2008 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Terje Uriansrud <terje@uriansrud.net>, 2008.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-10 17:10+0000\n"
+"POT-Creation-Date: 2011-01-16 15:52+0100\n"
 "PO-Revision-Date: 2008-10-22 00:59+0200\n"
 "Last-Translator: Terje Uriansrud <terje@uriansrud.net>\n"
 "Language-Team: Norwegian Bokmal\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -94,8 +95,12 @@ msgstr "Rotelementet ('/') er ikke et gyldig egenskapnavn"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "Navn på egenskaper kan kun inneholde ASCII karakterene A-Z, a-z, 0-9, '_', '-', '<' og '>', samt '/' kan brukes som skilletegn"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"Navn på egenskaper kan kun inneholde ASCII karakterene A-Z, a-z, 0-9, '_', "
+"'-', '<' og '>', samt '/' kan brukes som skilletegn"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -114,21 +119,31 @@ msgstr "Kanalnavn kan ikke være en tom streng"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
 msgstr "Kanalnavn kan kun inneholde ASCII tegene A-Z, a-z, 0-9, '_', og '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr "Navn på egenskaper kan kun være tom eller «/» hvis en rekursiv fjerning ble angitt."
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr ""
+"Navn på egenskaper kan kun være tom eller «/» hvis en rekursiv fjerning ble "
+"angitt."
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Skriver ut xfconfd versjon"
 
 #: ../xfconfd/main.c:136
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr "Bakgrunnskonfigurasjon som skal brukes. Den første spesifisert brukes til lesing og skriving; de øvrige brukes kun til lesing."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
+msgstr ""
+"Bakgrunnskonfigurasjon som skal brukes. Den første spesifisert brukes til "
+"lesing og skriving; de øvrige brukes kun til lesing."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -283,7 +298,8 @@ msgstr "Klarte ikke avgjøre type for verdi.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
-msgid "A value type must be specified to change an array into a single value.\n"
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
 msgstr "Du må angi type for å endre fra tabell til enkeltverdi.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525

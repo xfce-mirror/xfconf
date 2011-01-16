@@ -2,18 +2,18 @@ dnl configure.ac
 dnl
 dnl xfconf - dbus-based configuration daemon and library for xfce
 dnl
-dnl Copyright (c) 2007 Brian Tarricone <bjt23@cornell.edu>
+dnl Copyright (c) 2007-2011 Brian Tarricone <bjt23@cornell.edu>
 dnl
 
 dnl version info
 m4_define([libxfconf_verinfo], [2:0:0])
 m4_define([libxfconf_version_api], [0])
 m4_define([xfconf_version_major], [4])
-m4_define([xfconf_version_minor], [7])
-m4_define([xfconf_version_micro], [5])
+m4_define([xfconf_version_minor], [8])
+m4_define([xfconf_version_micro], [0])
 m4_define([xfconf_version_nano], [])
 m4_define([xfconf_version_build], [@REVISION@])
-m4_define([xfconf_version_tag], [git])
+m4_define([xfconf_version_tag], [])
 m4_define([xfconf_version], [xfconf_version_major().xfconf_version_minor().xfconf_version_micro()ifelse(xfconf_version_nano(), [], [], [.xfconf_version_nano()])ifelse(xfconf_version_tag(), [git], [xfconf_version_tag()-xfconf_version_build()], [xfconf_version_tag()])])
 
 m4_define([xfconf_default_debug], [ifelse(xfconf_version_tag(), [git], [yes], [minimum])])
@@ -67,7 +67,7 @@ dnl XDT_CHECK_LIBX11_REQUIRE
 
 dnl required
 XDT_CHECK_PACKAGE([GLIB], [gobject-2.0], [2.18.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.6.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.8.0])
 XDT_CHECK_PACKAGE([DBUS], [dbus-1], [1.0.0])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.72])
 

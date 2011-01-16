@@ -6,16 +6,17 @@
 # ??? Jannis Pohlmann <jannis@xfce.org>, 2008 ???
 # Fabian Nowak <timystery@arcor.de>, 2009.
 # Simon Schneider <simon@schneiderimtal.de>, 2009
-# 
-# 
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 0.1.0svn-r27345\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-23 16:07+0000\n"
+"POT-Creation-Date: 2011-01-16 15:52+0100\n"
 "PO-Revision-Date: 2009-02-25 09:02+0000\n"
 "Last-Translator: Simon Schneider <simon@schneiderimtal.de>\n"
 "Language-Team: German <xfce4-i18n-de@xfce.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,7 +36,9 @@ msgstr "Kann Verzeichnis »%s« für die Einstellungen nicht anlegen."
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Sie haben keine ausreichenden Rechte, um die Eigenschaft »%s« auf Kanal »%s« zu ändern."
+msgstr ""
+"Sie haben keine ausreichenden Rechte, um die Eigenschaft »%s« auf Kanal »%s« "
+"zu ändern."
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -99,13 +102,18 @@ msgstr "Das Basiselement ('/') ist keine gültige Eigenschaft"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "Eigenschaften können nur die ASCII-Zeichen A-Z, a-z, 0-9, '_', '-', '<'und '>' sowie '/' als Trennelement enthalten"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"Eigenschaften können nur die ASCII-Zeichen A-Z, a-z, 0-9, '_', '-', '<'und "
+"'>' sowie '/' als Trennelement enthalten"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Eigenschaften können '/' nicht zwei oder mehr Mal hintereinander enthalten"
+msgstr ""
+"Eigenschaften können '/' nicht zwei oder mehr Mal hintereinander enthalten"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -119,21 +127,33 @@ msgstr "Kanalbezeichner können nicht leer sein"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr "Kanalbezeichner können nur die ASCII-Zeichen A-Z, a-z, 0-9, '_' und '-' enthalten"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr ""
+"Kanalbezeichner können nur die ASCII-Zeichen A-Z, a-z, 0-9, '_' und '-' "
+"enthalten"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr "Die Eigenschaft kann nur dann leer oder »/« sein, wenn rekursives Rücksetzen angegeben wurde"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr ""
+"Die Eigenschaft kann nur dann leer oder »/« sein, wenn rekursives Rücksetzen "
+"angegeben wurde"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Gibt die Version von xfconfd aus."
 
 #: ../xfconfd/main.c:136
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr "Konfigurations-Backend, das verwendet werden soll. Das erste angegebene Backend wird schreibend und lesend geöffnet, die übrigen nur lesend."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
+msgstr ""
+"Konfigurations-Backend, das verwendet werden soll. Das erste angegebene "
+"Backend wird schreibend und lesend geöffnet, die übrigen nur lesend."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -274,7 +294,8 @@ msgstr ""
 #: ../xfconf-query/main.c:419
 #, c-format
 msgid "When creating a new property, the value type must be specified.\n"
-msgstr "Wenn Sie eine neue Eigenschaft anlegen, müssen Sie den Wertetyp angeben.\n"
+msgstr ""
+"Wenn Sie eine neue Eigenschaft anlegen, müssen Sie den Wertetyp angeben.\n"
 
 #: ../xfconf-query/main.c:429
 #, c-format
@@ -288,8 +309,11 @@ msgstr "Kann Wertetyp nicht bestimmen\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
-msgid "A value type must be specified to change an array into a single value.\n"
-msgstr "Sie müssen einen Wertetyp angeben, um ein Feld in einen einzigen Wert konvertieren zu können.\n"
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
+msgstr ""
+"Sie müssen einen Wertetyp angeben, um ein Feld in einen einzigen Wert "
+"konvertieren zu können.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
@@ -372,4 +396,5 @@ msgstr "Konnte Importdatei »%s« nicht ordnungsgemäß lesen: %s\n"
 #~ "Try %s --help to see a full list of available command line options.\n"
 #~ msgstr ""
 #~ "%s: %s\n"
-#~ "Versuchen Sie »%s --help«, um die vollständige Liste verfügbarer Optionen für die Befehlszeile zu sehen.\n"
+#~ "Versuchen Sie »%s --help«, um die vollständige Liste verfügbarer Optionen "
+#~ "für die Befehlszeile zu sehen.\n"

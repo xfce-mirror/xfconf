@@ -2,77 +2,79 @@
 # Copyright (C) 2009 THE xfconf'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfconf package.
 # Stephan Arts <stephan@xfce.org>, 2009.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.92svn-r28734\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-14 06:05+0100\n"
+"POT-Creation-Date: 2011-01-16 15:52+0100\n"
 "PO-Revision-Date: 2009-01-24 16:20+0100\n"
 "Last-Translator: Vincent Tunru <projects@vinnl.nl>\n"
 "Language-Team: Dutch\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:891
+#: ../xfconf/xfconf-cache.c:875
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Mislukt ResetProperty DBus call te maken"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:280
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
 msgstr "De configuratiemap \"%s\" kon niet gemaakt worden"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:328
-#: ../xfconfd/xfconf-daemon.c:244
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:322
+#: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Onvoldoende rechten voor het bewerken van instelling \"%s\" op kanaal \"%s\""
+msgstr ""
+"Onvoldoende rechten voor het bewerken van instelling \"%s\" op kanaal \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:393
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:475
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:636
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:656
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:387
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:469
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:634
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Instelling \"%s\" bestaat niet in kanaal \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:603
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "Kanaal \"%s\" kan niet verwijderd worden: %s"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1293
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
 msgstr "Ongeldig type voor <property>: \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1309
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1385
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "De waarde van type \"%s\" kon niet worden herleid uit \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1365
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr "De type-instelling van <value> kan geen array zijn"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1374
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
 msgstr "Ongeldig type voor <value>: \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1662
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1907
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "Kanaal \"%s\" bestaat niet"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1965
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Er kan niet worden geschreven naar kanaal \"%s\": %s"
@@ -94,13 +96,18 @@ msgstr "Het hoofdonderdeel ('/') is geen geldige instellingsnaam"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "Instellingsnamen kunnen alleen de ASCII karakters A-Z, a-z, 0-9, '_', '-', '<' en '>', en het scheidingsteken '/' bevatten"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"Instellingsnamen kunnen alleen de ASCII karakters A-Z, a-z, 0-9, '_', '-', "
+"'<' en '>', en het scheidingsteken '/' bevatten"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Instellingsnamen kunnen niet meerdere opeenvolgende '/' symbolen bevatten"
+msgstr ""
+"Instellingsnamen kunnen niet meerdere opeenvolgende '/' symbolen bevatten"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -114,49 +121,60 @@ msgstr "Kanaalnaam kan geen lege string zijn"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr "Kanaalnamen kunnen alleen de ASCII karakters A-Z, a-z, 0-9, '_', en '-' bevatten"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr ""
+"Kanaalnamen kunnen alleen de ASCII karakters A-Z, a-z, 0-9, '_', en '-' "
+"bevatten"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr "De instellingsnaam kan alleen \"/\" of leeg zijn wanneer er een recursieve reset wordt uitgevoerd"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr ""
+"De instellingsnaam kan alleen \"/\" of leeg zijn wanneer er een recursieve "
+"reset wordt uitgevoerd"
 
-#: ../xfconfd/main.c:133
+#: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Toont de xfconfd versie."
 
-#: ../xfconfd/main.c:135
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+#: ../xfconfd/main.c:136
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
 msgstr ""
 
-#: ../xfconfd/main.c:138
+#: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr "Plaats in de achtergrond na de start, alleen nuttig voor testdoeleinden"
+msgstr ""
+"Plaats in de achtergrond na de start, alleen nuttig voor testdoeleinden"
 
-#: ../xfconfd/main.c:158
+#: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
 msgstr "Xfce Configuratiedaemon"
 
-#: ../xfconfd/main.c:164
+#: ../xfconfd/main.c:165
 msgid "Xfce configuration daemon"
 msgstr "Xfce configuratiedaemon"
 
-#: ../xfconfd/main.c:166
+#: ../xfconfd/main.c:167
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Meld fouten op http://bugs.xfce.org/\n"
 
-#: ../xfconfd/main.c:169
+#: ../xfconfd/main.c:170
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Kon de opties niet verwerken: %s\n"
 
-#: ../xfconfd/xfconf-daemon.c:460
+#: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "Another Xfconf daemon is already running"
 msgstr "Een andere Xfconf-daemon is al actief"
 
-#: ../xfconfd/xfconf-daemon.c:496
+#: ../xfconfd/xfconf-daemon.c:517
 #, c-format
 msgid "No backends could be started"
 msgstr ""
@@ -204,7 +222,8 @@ msgstr "Nieuwe waarde voor de instelling"
 
 #: ../xfconf-query/main.c:207
 msgid "List properties (or channels if -c is not specified)"
-msgstr "Geef een lijst van instellingen (of kanalen wanneer -c niet is meegegeven)"
+msgstr ""
+"Geef een lijst van instellingen (of kanalen wanneer -c niet is meegegeven)"
 
 #: ../xfconf-query/main.c:211
 msgid "Verbose output"
@@ -283,8 +302,11 @@ msgstr "Kan het type van de waarde niet vaststellen.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
-msgid "A value type must be specified to change an array into a single value.\n"
-msgstr "Een waardetype moet worden ingesteld om een reeks te converteren naar een enkele waarde.\n"
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
+msgstr ""
+"Een waardetype moet worden ingesteld om een reeks te converteren naar een "
+"enkele waarde.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
@@ -299,7 +321,8 @@ msgstr "De instelling kon niet worden opgeslagen.\n"
 #: ../xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr "Er zijn %d nieuwe waarden, maar slechts %d typen konden worden vastgesteld.\n"
+msgstr ""
+"Er zijn %d nieuwe waarden, maar slechts %d typen konden worden vastgesteld.\n"
 
 #: ../xfconf-query/main.c:516
 #, c-format
