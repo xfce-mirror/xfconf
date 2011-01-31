@@ -6,14 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 15:52+0100\n"
+"POT-Creation-Date: 2011-01-31 11:27+0000\n"
 "PO-Revision-Date: 2009-09-17 20:09+0200\n"
 "Last-Translator: Robert Hartl <hartl.robert@gmail.com>\n"
 "Language-Team: slovak <sk-i18n@lists.linux.sk>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
+"Language: \n"
 
 #: ../xfconf/xfconf-cache.c:875
 #, c-format
@@ -93,18 +93,13 @@ msgstr "Koreňový element ('/') nie je platný názov vlastnosti"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Názvy vlastností môžu obsahovať iba ASCII znaky A-Z, a-z, 0-9, '_', '-', '<' "
-"a '>' a tiež '/' ako oddeľovač"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Názvy vlastností môžu obsahovať iba ASCII znaky A-Z, a-z, 0-9, '_', '-', '<' a '>' a tiež '/' ako oddeľovač"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Názvy vlastností nemôžu obsahovať dva a viac po sebe nasledujúcich znakov '/'"
+msgstr "Názvy vlastností nemôžu obsahovať dva a viac po sebe nasledujúcich znakov '/'"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -118,33 +113,25 @@ msgstr "Názov kanála nemôže byť prázdny reťazec"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
 msgstr "Názvy kanálov môžu obsahovať iba ASCII znaky A-Z, a-z, 0-9, '_' a '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"Názov vlastnosti môže byť prázdny alebo \"/\" iba ak bol spresnený "
-"rekurzívny reset"
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "Názov vlastnosti môže byť prázdny alebo \"/\" iba ak bol spresnený rekurzívny reset"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Zobrazí verziu xfconfd"
 
 #: ../xfconfd/main.c:136
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "Konfigurovať backendy pre použitie. Prvý zadaný backend je spustený pre čítanie a zápis, ostatné len pre čítanie."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "Po spustení preniesť proces na pozadie; táto voľba je užitočná iba pre testovanie"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -204,11 +191,11 @@ msgstr "Informácie o verzii"
 
 #: ../xfconf-query/main.c:195
 msgid "The channel to query/modify"
-msgstr ""
+msgstr "Kanál pre zaslanie dopytu alebo modifikácie"
 
 #: ../xfconf-query/main.c:199
 msgid "The property to query/modify"
-msgstr ""
+msgstr "Vlastnosť pre zaslanie dopytu alebo modifikácie"
 
 #: ../xfconf-query/main.c:203
 msgid "The new value to set for the property"
@@ -274,9 +261,7 @@ msgstr ""
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
-msgstr ""
-"Vlastnosť \"%s\" neexistuje na kanáli \"%s\". Ak sa má nová vlastnosť "
-"vytvoriť, použite voľbu --create.\n"
+msgstr "Vlastnosť \"%s\" neexistuje na kanáli \"%s\". Ak sa má nová vlastnosť vytvoriť, použite voľbu --create.\n"
 
 #: ../xfconf-query/main.c:419
 #, c-format
@@ -295,8 +280,7 @@ msgstr "Nedá sa určiť typ hodnoty.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
+msgid "A value type must be specified to change an array into a single value.\n"
 msgstr "Pre zmenu poľa na hodnotu je nutné spresniť typ hodnoty.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
