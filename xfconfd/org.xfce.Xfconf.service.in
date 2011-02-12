@@ -1,3 +1,3 @@
 [D-BUS Service]
 Name=org.xfce.Xfconf
-Exec=@libdir@/xfce4/xfconf/xfconfd
+Exec=@HELPERDIR@/xfce4/xfconf/xfconfd
