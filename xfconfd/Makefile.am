@@ -1,5 +1,5 @@
 
-xfconfddir = $(libdir)/xfce4/xfconf
+xfconfddir = $(HELPER_PATH_PREFIX)/xfce4/xfconf
 xfconfd_PROGRAMS = xfconfd
 
 xfconf_backend_sources =
@@ -56,7 +56,7 @@ service_in_files = org.xfce.Xfconf.service.in
 service_DATA = $(service_in_files:.service.in=.service)
 
 %.service: %.service.in
-	$(AM_V_GEN) sed -e "s,\@libdir\@,$(libdir),g" < $< > $@
+	$(AM_V_GEN) sed -e "s,\@HELPERDIR\@,$(HELPER_PATH_PREFIX),g" < $< > $@
 
 CLEANFILES = \
 	$(service_DATA)
