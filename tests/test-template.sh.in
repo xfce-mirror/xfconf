@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 cleanup() {
     if [ "$XFCONFD_PID" ]; then
