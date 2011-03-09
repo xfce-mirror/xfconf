@@ -18,6 +18,13 @@ die() {
     exit 1
 }
 
+# some buildbots have problems with the tests (dbus not
+# working properly without an X11 server).
+if [ -n "$XFCONF_SKIP_TESTS" ]; then
+  echo "Warning: Tests disabled, skipping @TEST_NAME@" >&2
+  exit 0
+fi
+
 unset DBUS_SESSION_BUS_ADDRESS
 unset DBUS_SESSION_BUS_PID
 unset XFCONFD_PID
