@@ -1,27 +1,27 @@
 # translation of xfconf.po to Turkish
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Server Acim <sacim@kde.org.tr>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 15:52+0100\n"
+"POT-Creation-Date: 2011-03-17 19:01+0000\n"
 "PO-Revision-Date: 2009-01-30 21:21+0200\n"
 "Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
 "Language-Team: Turkish <yerellestirme@kde.org.tr>\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Language: tr\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../xfconf/xfconf-cache.c:875
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "Özellik ayarlanamadı.\n"
+msgstr "ResetProperty DBus çağrısı yapılamadı"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
@@ -96,12 +96,8 @@ msgstr "Kök ögesi ('/') geçerli bir isme sahip değildir"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Özellik isimleri sadece aşağıda listenen ASCII karakterlerini içerebilir:A-"
-"Z, a-z, 0-9, '_', '-', '<' ve '>', ve ayraç olarak  '/'"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Özellik isimleri sadece aşağıda listenen ASCII karakterlerini içerebilir:A-Z, a-z, 0-9, '_', '-', '<' ve '>', ve ayraç olarak  '/'"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -120,33 +116,21 @@ msgstr "Kanal ismi bir boş dizge olamaz"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr ""
-"Kanal isimleri sadece şu ASCII karakterlerini içerebilir: A-Z, a-z, 0-9, "
-"'_', ve '-'"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgstr "Kanal isimleri sadece şu ASCII karakterlerini içerebilir: A-Z, a-z, 0-9, '_', ve '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"Eğer özyineli yenileme belirlenmişse, özellik isimleri sadece boş olabilir "
-"veya \"/\" karakterinden oluşabilir."
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "Eğer özyineli yenileme belirlenmişse, özellik isimleri sadece boş olabilir veya \"/\" karakterinden oluşabilir."
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "xfconfd sürüm bilgisini gösterir."
 
 #: ../xfconfd/main.c:136
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Kullanılacak yapılandırma çıkışları. Belirtilen ilk çıktı okuma/yazma olarak "
-"açılır; diğerleri sadece-okunur olarak."
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "Kullanılacak yapılandırma çıkışları. Belirtilen ilk çıktı okuma/yazma olarak açılır; diğerleri sadece-okunur olarak."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -301,11 +285,8 @@ msgstr "Değerin türü belirlenemiyor.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
-msgstr ""
-"Bir diziyi tekil değere dönüştürmek istiyorsanız bir değer türü "
-"belirlemelisiniz.\n"
+msgid "A value type must be specified to change an array into a single value.\n"
+msgstr "Bir diziyi tekil değere dönüştürmek istiyorsanız bir değer türü belirlemelisiniz.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
