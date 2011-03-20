@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-17 19:01+0000\n"
+"POT-Creation-Date: 2011-03-19 23:31+0000\n"
 "PO-Revision-Date: 2009-01-30 21:21+0200\n"
 "Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
 "Language-Team: Turkish <yerellestirme@kde.org.tr>\n"
@@ -134,7 +134,7 @@ msgstr "Kullanılacak yapılandırma çıkışları. Belirtilen ilk çıktı oku
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "Başlangıçtan sonra arkaplanı çatalla; sadece test amaçlı faydalıdır"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
