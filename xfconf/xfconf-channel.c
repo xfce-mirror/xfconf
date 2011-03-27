@@ -330,7 +330,7 @@ xfconf_channel_dispose(GObject *obj)
         channel->disposed = TRUE;
 
         g_signal_handlers_disconnect_by_func(channel->cache,
-                                             G_CALLBACK(xfconf_channel_property_changed),
+                                             xfconf_channel_property_changed,
                                              channel);
         g_object_unref(G_OBJECT(channel->cache));
     }

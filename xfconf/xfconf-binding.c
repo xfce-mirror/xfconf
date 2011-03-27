@@ -583,12 +583,12 @@ xfconf_g_property_unbind_all(gpointer channel_or_object)
     if(XFCONF_IS_CHANNEL(channel_or_object)) {
         n = g_signal_handlers_disconnect_matched(channel_or_object, G_SIGNAL_MATCH_FUNC,
                                                  0, 0, NULL,
-                                                 G_CALLBACK(xfconf_g_property_channel_notify),
+                                                 xfconf_g_property_channel_notify,
                                                  NULL);
     } else {
         n = g_signal_handlers_disconnect_matched(channel_or_object, G_SIGNAL_MATCH_FUNC,
                                                  0, 0, NULL,
-                                                 G_CALLBACK(xfconf_g_property_object_notify),
+                                                 xfconf_g_property_object_notify,
                                                  NULL);
     }
 
