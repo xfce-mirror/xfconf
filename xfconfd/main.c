@@ -67,7 +67,7 @@ static void
 sighandler(int sig)
 {
     guint32 sigstate;
-    gint avoid_gcc_warning;
+    gint avoid_gcc_warning G_GNUC_UNUSED;
     
     switch(sig) {
         case SIGUSR1:
@@ -78,7 +78,7 @@ sighandler(int sig)
             sigstate = SIGNAL_QUIT;
             break;
     }
-    
+
     avoid_gcc_warning = write(signal_pipe[1], &sigstate, sizeof(sigstate));
 }
 
