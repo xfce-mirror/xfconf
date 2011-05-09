@@ -2,19 +2,19 @@
 # Copyright (C) 2009 THE xfconf'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfconf package.
 # Stephan Arts <stephan@xfce.org>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.92svn-r28734\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 15:52+0100\n"
+"POT-Creation-Date: 2011-05-09 04:30+0000\n"
 "PO-Revision-Date: 2009-01-24 16:20+0100\n"
 "Last-Translator: Vincent Tunru <projects@vinnl.nl>\n"
 "Language-Team: Dutch\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../xfconf/xfconf-cache.c:875
@@ -31,8 +31,7 @@ msgstr "De configuratiemap \"%s\" kon niet gemaakt worden"
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr ""
-"Onvoldoende rechten voor het bewerken van instelling \"%s\" op kanaal \"%s\""
+msgstr "Onvoldoende rechten voor het bewerken van instelling \"%s\" op kanaal \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -96,18 +95,13 @@ msgstr "Het hoofdonderdeel ('/') is geen geldige instellingsnaam"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Instellingsnamen kunnen alleen de ASCII karakters A-Z, a-z, 0-9, '_', '-', "
-"'<' en '>', en het scheidingsteken '/' bevatten"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Instellingsnamen kunnen alleen de ASCII karakters A-Z, a-z, 0-9, '_', '-', '<' en '>', en het scheidingsteken '/' bevatten"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Instellingsnamen kunnen niet meerdere opeenvolgende '/' symbolen bevatten"
+msgstr "Instellingsnamen kunnen niet meerdere opeenvolgende '/' symbolen bevatten"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -121,36 +115,25 @@ msgstr "Kanaalnaam kan geen lege string zijn"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr ""
-"Kanaalnamen kunnen alleen de ASCII karakters A-Z, a-z, 0-9, '_', en '-' "
-"bevatten"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgstr "Kanaalnamen kunnen alleen de ASCII karakters A-Z, a-z, 0-9, '_', en '-' bevatten"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"De instellingsnaam kan alleen \"/\" of leeg zijn wanneer er een recursieve "
-"reset wordt uitgevoerd"
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "De instellingsnaam kan alleen \"/\" of leeg zijn wanneer er een recursieve reset wordt uitgevoerd"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Toont de xfconfd versie."
 
 #: ../xfconfd/main.c:136
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "Configuratiemachines die u kunt gebruiken. De eerst opgegeven machine wordt lezen/schrijven geopend; de andere alleen-lezen."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
-"Plaats in de achtergrond na de start, alleen nuttig voor testdoeleinden"
+msgstr "Plaats in de achtergrond na de start, alleen nuttig voor testdoeleinden"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -177,7 +160,7 @@ msgstr "Een andere Xfconf-daemon is al actief"
 #: ../xfconfd/xfconf-daemon.c:517
 #, c-format
 msgid "No backends could be started"
-msgstr ""
+msgstr "Geen configuratiemachines konden worden gestart."
 
 #: ../xfconf-query/main.c:92
 #, c-format
@@ -222,8 +205,7 @@ msgstr "Nieuwe waarde voor de instelling"
 
 #: ../xfconf-query/main.c:207
 msgid "List properties (or channels if -c is not specified)"
-msgstr ""
-"Geef een lijst van instellingen (of kanalen wanneer -c niet is meegegeven)"
+msgstr "Geef een lijst van instellingen (of kanalen wanneer -c niet is meegegeven)"
 
 #: ../xfconf-query/main.c:211
 msgid "Verbose output"
@@ -302,11 +284,8 @@ msgstr "Kan het type van de waarde niet vaststellen.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
-msgstr ""
-"Een waardetype moet worden ingesteld om een reeks te converteren naar een "
-"enkele waarde.\n"
+msgid "A value type must be specified to change an array into a single value.\n"
+msgstr "Een waardetype moet worden ingesteld om een reeks te converteren naar een enkele waarde.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
@@ -321,8 +300,7 @@ msgstr "De instelling kon niet worden opgeslagen.\n"
 #: ../xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr ""
-"Er zijn %d nieuwe waarden, maar slechts %d typen konden worden vastgesteld.\n"
+msgstr "Er zijn %d nieuwe waarden, maar slechts %d typen konden worden vastgesteld.\n"
 
 #: ../xfconf-query/main.c:516
 #, c-format
