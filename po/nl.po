@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.92svn-r28734\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-09 04:30+0000\n"
+"POT-Creation-Date: 2011-05-09 16:36+0000\n"
 "PO-Revision-Date: 2009-01-24 16:20+0100\n"
-"Last-Translator: Vincent Tunru <projects@vinnl.nl>\n"
+"Last-Translator: Pjotr\n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -20,18 +20,19 @@ msgstr ""
 #: ../xfconf/xfconf-cache.c:875
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "Mislukt ResetProperty DBus call te maken"
+msgstr "Kon geen ResetProperty DBus call maken"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "De configuratiemap \"%s\" kon niet gemaakt worden"
+msgstr "Kon de configuratiemap \"%s\" niet maken"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Onvoldoende rechten voor het bewerken van instelling \"%s\" op kanaal \"%s\""
+msgstr ""
+"Onvoldoende rechten voor het bewerken van eigenschap \"%s\" op kanaal \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -39,12 +40,12 @@ msgstr "Onvoldoende rechten voor het bewerken van instelling \"%s\" op kanaal \"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:654
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr "Instelling \"%s\" bestaat niet in kanaal \"%s\""
+msgstr "Eigenschap \"%s\" bestaat niet in kanaal \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr "Kanaal \"%s\" kan niet verwijderd worden: %s"
+msgstr "Kon kanaal \"%s\" niet verwijderen: %s"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
@@ -76,37 +77,42 @@ msgstr "Kanaal \"%s\" bestaat niet"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "Er kan niet worden geschreven naar kanaal \"%s\": %s"
+msgstr "Kon niet worden schrijven naar kanaal \"%s\": %s"
 
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Er kan geen Xfconf backend gevonden worden van het type \"%s\""
+msgstr "Kon geen Xfconf backend vinden van het type \"%s\""
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Instellingsnamen moeten beginnen met een '/' symbool"
+msgstr "Instellingsnamen moeten beginnen met een '/' teken"
 
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr "Het hoofdonderdeel ('/') is geen geldige instellingsnaam"
+msgstr "Het root-element ('/') is geen geldige eigenschapnaam"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "Instellingsnamen kunnen alleen de ASCII karakters A-Z, a-z, 0-9, '_', '-', '<' en '>', en het scheidingsteken '/' bevatten"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"Eigenschapnamen kunnen alleen de ASCII tekens A-Z, a-z, 0-9, '_', '-', "
+"'<' en '>', en het scheidingsteken '/' bevatten"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Instellingsnamen kunnen niet meerdere opeenvolgende '/' symbolen bevatten"
+msgstr ""
+"Eigenschapnamen kunnen niet twee of meer opeenvolgende '/' tekens bevatten"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Instellingsnamen kunnen niet eindigen met een '/' symbool"
+msgstr "Eigenschapnamen kunnen niet eindigen met een '/' teken"
 
 #: ../xfconfd/xfconf-backend.c:163
 #, c-format
@@ -115,25 +121,38 @@ msgstr "Kanaalnaam kan geen lege string zijn"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr "Kanaalnamen kunnen alleen de ASCII karakters A-Z, a-z, 0-9, '_', en '-' bevatten"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr ""
+"Kanaalnamen kunnen alleen de ASCII tekens A-Z, a-z, 0-9, '_', en '-' "
+"bevatten"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr "De instellingsnaam kan alleen \"/\" of leeg zijn wanneer er een recursieve reset wordt uitgevoerd"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr ""
+"De eigenschapnaam kan alleen \"/\" of leeg zijn wanneer er een recursieve "
+"reset wordt uitgevoerd"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Toont de xfconfd versie."
 
 #: ../xfconfd/main.c:136
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr "Configuratiemachines die u kunt gebruiken. De eerst opgegeven machine wordt lezen/schrijven geopend; de andere alleen-lezen."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
+msgstr ""
+"Configuratiemachines die u kunt gebruiken. De eerst opgegeven machine wordt "
+"lezen/schrijven geopend; de andere, alleen-lezen."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr "Plaats in de achtergrond na de start, alleen nuttig voor testdoeleinden"
+msgstr ""
+"Plaats in de achtergrond na de start, alleen nuttig voor proefdoeleinden"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -165,27 +184,27 @@ msgstr "Geen configuratiemachines konden worden gestart."
 #: ../xfconf-query/main.c:92
 #, c-format
 msgid "Property '%s' changed: %s\n"
-msgstr "Instelling '%s' is gewijzigd: %s\n"
+msgstr "Eigenschap '%s' is gewijzigd: %s\n"
 
 #: ../xfconf-query/main.c:97
 #, c-format
 msgid "Property '%s' changed\n"
-msgstr "Instelling '%s' is gewijzigd\n"
+msgstr "Eigenschap '%s' is gewijzigd\n"
 
 #: ../xfconf-query/main.c:102
 #, c-format
 msgid "Property '%s' removed\n"
-msgstr "Instelling '%s' is verwijderd\n"
+msgstr "Eigenschap '%s' is verwijderd\n"
 
 #: ../xfconf-query/main.c:111
 #, c-format
 msgid "Export method not yet implemented"
-msgstr "De exporteer-functie is nog niet geïmplementeerd"
+msgstr "De uitvoermethode is nog niet geïmplementeerd"
 
 #: ../xfconf-query/main.c:125
 #, c-format
 msgid "Export not yet implemented"
-msgstr "Exporteren is nog niet geïmplementeerd"
+msgstr "Uitvoeren is nog niet geïmplementeerd"
 
 #: ../xfconf-query/main.c:191
 msgid "Version information"
@@ -197,15 +216,16 @@ msgstr "Het kanaal om raad te plegen/te bewerken"
 
 #: ../xfconf-query/main.c:199
 msgid "The property to query/modify"
-msgstr "De instelling om te raadplegen/bewerken"
+msgstr "De eigenschap om te raadplegen/bewerken"
 
 #: ../xfconf-query/main.c:203
 msgid "The new value to set for the property"
-msgstr "Nieuwe waarde voor de instelling"
+msgstr "Nieuwe waarde voor de eigenschap"
 
 #: ../xfconf-query/main.c:207
 msgid "List properties (or channels if -c is not specified)"
-msgstr "Geef een lijst van instellingen (of kanalen wanneer -c niet is meegegeven)"
+msgstr ""
+"Geef een lijst van eigenschappen (of kanalen wanneer -c niet is meegegeven)"
 
 #: ../xfconf-query/main.c:211
 msgid "Verbose output"
@@ -213,11 +233,11 @@ msgstr "Gedetailleerde uitvoer"
 
 #: ../xfconf-query/main.c:215
 msgid "Create a new property if it does not already exist"
-msgstr "Maak een nieuwe instelling wanneer deze nog niet bestaat"
+msgstr "Maak een nieuwe eigenschap wanneer deze nog niet bestaat"
 
 #: ../xfconf-query/main.c:219
 msgid "Specify the property value type"
-msgstr "Specificeer het type van de instelling"
+msgstr "Specificeer het type van de eigenschap"
 
 #: ../xfconf-query/main.c:223
 msgid "Reset property"
@@ -233,17 +253,17 @@ msgstr "Forceer een reeks ook wanneer er slechts één element is"
 
 #: ../xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
-msgstr "Monitor een kanaal voor eigenschap veranderingen"
+msgstr "Monitor een kanaal voor eigenschapveranderingen"
 
 #: ../xfconf-query/main.c:349
 #, c-format
 msgid "Start monitoring channel '%s':"
-msgstr "Start controle kanaal '%s':"
+msgstr "Start controlekanaal '%s':"
 
 #: ../xfconf-query/main.c:371
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr "Instelling \"%s\" bestaat niet voor kanaal \"%s\".\n"
+msgstr "Eigenschap \"%s\" bestaat niet voor kanaal \"%s\".\n"
 
 #: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
 msgid "(unknown)"
@@ -264,13 +284,13 @@ msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
 msgstr ""
-"Instelling \"%s\" bestaat niet in kanaal \"%s\". Gebruik de\n"
-"--create optie wanneer u deze instelling wilt aanmaken.\n"
+"Eigenschap \"%s\" bestaat niet in kanaal \"%s\". Gebruik de\n"
+"--create optie wanneer u deze eigenschap wil aanmaken.\n"
 
 #: ../xfconf-query/main.c:419
 #, c-format
 msgid "When creating a new property, the value type must be specified.\n"
-msgstr "Wanneer een instelling wordt gemaakt dient u het type op te geven.\n"
+msgstr "Wanneer een eigenschap wordt gemaakt dient u het waardetype op te geven.\n"
 
 #: ../xfconf-query/main.c:429
 #, c-format
@@ -284,8 +304,11 @@ msgstr "Kan het type van de waarde niet vaststellen.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
-msgid "A value type must be specified to change an array into a single value.\n"
-msgstr "Een waardetype moet worden ingesteld om een reeks te converteren naar een enkele waarde.\n"
+msgid ""
+"A value type must be specified to change an array into a single value.\n"
+msgstr ""
+"Een waardetype moet worden ingesteld om een reeks te converteren naar een "
+"enkele waarde.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
@@ -295,12 +318,13 @@ msgstr "\"%s\" kon niet worden omgezet naar type \"%s\"\n"
 #: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
-msgstr "De instelling kon niet worden opgeslagen.\n"
+msgstr "De eigenschap kon niet worden opgeslagen.\n"
 
 #: ../xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr "Er zijn %d nieuwe waarden, maar slechts %d typen konden worden vastgesteld.\n"
+msgstr ""
+"Er zijn %d nieuwe waarden, maar slechts %d typen konden worden vastgesteld.\n"
 
 #: ../xfconf-query/main.c:516
 #, c-format
@@ -310,17 +334,17 @@ msgstr "Kan het type van de waarde op index %d niet bepalen.\n"
 #: ../xfconf-query/main.c:567
 #, c-format
 msgid "Channel '%s' contains no properties\n"
-msgstr "Kanaal '%s' bevat geen instellingen\n"
+msgstr "Kanaal '%s' bevat geen eigenschappen\n"
 
 #: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
-msgstr "Het exportbestand \"%s\" kon niet gemaakt worden: %s\n"
+msgstr "Het uitvoerbestand \"%s\" kon niet gemaakt worden: %s\n"
 
 #: ../xfconf-query/main.c:612
 #, c-format
 msgid "Could not open import file \"%s\": %s\n"
-msgstr "Het importbestand \"%s\" kon niet geopend worden: %s\n"
+msgstr "Het invoerbestand \"%s\" kon niet geopend worden: %s\n"
 
 #: ../xfconf-query/main.c:621
 #, c-format
@@ -328,10 +352,10 @@ msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Het importbestand \"%s\" kon niet gelezen worden: %s\n"
 
 #~ msgid "Export channel to file"
-#~ msgstr "Kanaal naar bestand exporteren"
+#~ msgstr "Kanaal naar bestand uitvoeren"
 
 #~ msgid "Import channel from file"
-#~ msgstr "Kanaal uit bestand importeren"
+#~ msgstr "Kanaal uit bestand invoeren"
 
 #~ msgid "true"
 #~ msgstr "true"
