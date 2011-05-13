@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.92svn-r28734\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-13 10:36+0000\n"
+"POT-Creation-Date: 2011-05-13 16:35+0000\n"
 "PO-Revision-Date: 2009-01-24 16:20+0100\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch\n"
@@ -133,12 +133,12 @@ msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
 msgstr ""
-"De eigenschapnaam kan alleen \"/\" of leeg zijn wanneer er een recursieve "
-"reset wordt uitgevoerd"
+"De eigenschapnaam kan alleen leeg of \"/\" zijn, als er een recursieve "
+"terugbrenging naar de standaardinstellingen werd gespecificeerd"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
-msgstr "Toont de xfconfd-versie."
+msgstr "Drukt de versie van xfconfd af."
 
 #: ../xfconfd/main.c:136
 msgid ""
@@ -151,7 +151,7 @@ msgstr ""
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
 msgstr ""
-"Plaats in de achtergrond na de start, alleen nuttig voor proefdoeleinden"
+"Vork in de achtergrond na het starten, alleen nuttig voor proefdoeleinden"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -159,7 +159,7 @@ msgstr "Achtergronddienst van Xfce Configuratie"
 
 #: ../xfconfd/main.c:165
 msgid "Xfce configuration daemon"
-msgstr "Achtergronddienst van Xfce configuratie"
+msgstr "Achtergronddienst van Xfce-configuratie"
 
 #: ../xfconfd/main.c:167
 msgid "Report bugs to http://bugs.xfce.org/\n"
@@ -183,27 +183,27 @@ msgstr "Geen configuratiemachines konden worden gestart."
 #: ../xfconf-query/main.c:92
 #, c-format
 msgid "Property '%s' changed: %s\n"
-msgstr "Eigenschap '%s' is gewijzigd: %s\n"
+msgstr "Eigenschap '%s' gewijzigd: %s\n"
 
 #: ../xfconf-query/main.c:97
 #, c-format
 msgid "Property '%s' changed\n"
-msgstr "Eigenschap '%s' is gewijzigd\n"
+msgstr "Eigenschap '%s' gewijzigd\n"
 
 #: ../xfconf-query/main.c:102
 #, c-format
 msgid "Property '%s' removed\n"
-msgstr "Eigenschap '%s' is verwijderd\n"
+msgstr "Eigenschap '%s' verwijderd\n"
 
 #: ../xfconf-query/main.c:111
 #, c-format
 msgid "Export method not yet implemented"
-msgstr "De uitvoermethode is nog niet geïmplementeerd"
+msgstr "Uitvoermethode nog niet geïmplementeerd"
 
 #: ../xfconf-query/main.c:125
 #, c-format
 msgid "Export not yet implemented"
-msgstr "Uitvoeren is nog niet geïmplementeerd"
+msgstr "Uitvoeren nog niet geïmplementeerd"
 
 #: ../xfconf-query/main.c:191
 msgid "Version information"
@@ -211,20 +211,20 @@ msgstr "Versie-informatie"
 
 #: ../xfconf-query/main.c:195
 msgid "The channel to query/modify"
-msgstr "Het kanaal om te raadplegen/te bewerken"
+msgstr "Het kanaal om te doorzoeken/bewerken"
 
 #: ../xfconf-query/main.c:199
 msgid "The property to query/modify"
-msgstr "De eigenschap om te raadplegen/bewerken"
+msgstr "De eigenschap om te doorzoeken/bewerken"
 
 #: ../xfconf-query/main.c:203
 msgid "The new value to set for the property"
-msgstr "Nieuwe waarde voor de eigenschap"
+msgstr "De nieuwe waarde om in te stellen voor de eigenschap"
 
 #: ../xfconf-query/main.c:207
 msgid "List properties (or channels if -c is not specified)"
 msgstr ""
-"Geef een lijst van eigenschappen (of kanalen wanneer -c niet is meegegeven)"
+"Geef een lijst van eigenschappen (of kanalen wanneer -c niet is gespecificeerd)"
 
 #: ../xfconf-query/main.c:211
 msgid "Verbose output"
@@ -236,7 +236,7 @@ msgstr "Maak een nieuwe eigenschap wanneer deze nog niet bestaat"
 
 #: ../xfconf-query/main.c:219
 msgid "Specify the property value type"
-msgstr "Specificeer het type van de eigenschap"
+msgstr "Specificeer het waardetype van de eigenschap"
 
 #: ../xfconf-query/main.c:223
 msgid "Reset property"
@@ -290,7 +290,7 @@ msgstr ""
 #, c-format
 msgid "When creating a new property, the value type must be specified.\n"
 msgstr ""
-"Wanneer een eigenschap wordt gemaakt dient u het waardetype op te geven.\n"
+"Wanneer een nieuwe eigenschap wordt gemaakt, dient u het waardetype op te geven.\n"
 
 #: ../xfconf-query/main.c:429
 #, c-format
@@ -307,18 +307,18 @@ msgstr "Kan het type van de waarde niet vaststellen.\n"
 msgid ""
 "A value type must be specified to change an array into a single value.\n"
 msgstr ""
-"Een waardetype moet worden ingesteld om een reeks te converteren naar een "
+"Een waardetype moet worden ingesteld om een reeks te veranderen in een "
 "enkele waarde.\n"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
-msgstr "\"%s\" kon niet worden omgezet naar type \"%s\"\n"
+msgstr "Kon \"%s\" niet omzetten naar type \"%s\"\n"
 
 #: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
-msgstr "De eigenschap kon niet worden opgeslagen.\n"
+msgstr "Kon de eigenschap niet instellen.\n"
 
 #: ../xfconf-query/main.c:495
 #, c-format
@@ -339,17 +339,17 @@ msgstr "Kanaal '%s' bevat geen eigenschappen\n"
 #: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
-msgstr "Het uitvoerbestand \"%s\" kon niet gemaakt worden: %s\n"
+msgstr "Kon het uitvoerbestand \"%s\" niet maken: %s\n"
 
 #: ../xfconf-query/main.c:612
 #, c-format
 msgid "Could not open import file \"%s\": %s\n"
-msgstr "Het invoerbestand \"%s\" kon niet geopend worden: %s\n"
+msgstr "Kon het invoerbestand \"%s\" niet openen: %s\n"
 
 #: ../xfconf-query/main.c:621
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
-msgstr "Het invoerbestand \"%s\" kon niet gelezen worden: %s\n"
+msgstr "Kon het invoerbestand \"%s\" niet lezen: %s\n"
 
 #~ msgid "Export channel to file"
 #~ msgstr "Kanaal naar bestand uitvoeren"
@@ -358,7 +358,7 @@ msgstr "Het invoerbestand \"%s\" kon niet gelezen worden: %s\n"
 #~ msgstr "Kanaal uit bestand invoeren"
 
 #~ msgid "true"
-#~ msgstr "true"
+#~ msgstr "waar"
 
 #~ msgid "false"
-#~ msgstr "false"
+#~ msgstr "onwaar"
