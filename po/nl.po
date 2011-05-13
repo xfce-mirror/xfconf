@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.92svn-r28734\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-11 10:12+0000\n"
+"POT-Creation-Date: 2011-05-13 04:12+0000\n"
 "PO-Revision-Date: 2009-01-24 16:20+0100\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch\n"
@@ -40,7 +40,7 @@ msgstr ""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:654
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr "Eigenschap \"%s\" bestaat niet in kanaal \"%s\""
+msgstr "Eigenschap \"%s\" bestaat niet op kanaal \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
@@ -77,17 +77,17 @@ msgstr "Kanaal \"%s\" bestaat niet"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "Kon niet worden schrijven naar kanaal \"%s\": %s"
+msgstr "Kon kanaal \"%s\" niet schrijven: %s"
 
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Kon geen Xfconf backend vinden van het type \"%s\""
+msgstr "Kon geen Xfconf-backend vinden van het type \"%s\""
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Instellingsnamen moeten beginnen met een '/' teken"
+msgstr "Eigenschapnamen moeten beginnen met een '/' teken"
 
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
@@ -117,7 +117,7 @@ msgstr "Eigenschapnamen kunnen niet eindigen met een '/' teken"
 #: ../xfconfd/xfconf-backend.c:163
 #, c-format
 msgid "Channel name cannot be an empty string"
-msgstr "Kanaalnaam kan geen lege string zijn"
+msgstr "Kanaalnaam kan geen leeg tekstsnoer zijn"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
@@ -125,7 +125,7 @@ msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
 msgstr ""
-"Kanaalnamen kunnen alleen de ASCII tekens A-Z, a-z, 0-9, '_', en '-' bevatten"
+"Kanaalnamen kunnen alleen de ASCII-tekens A-Z, a-z, 0-9, '_', en '-' bevatten"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
@@ -138,7 +138,7 @@ msgstr ""
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
-msgstr "Toont de xfconfd versie."
+msgstr "Toont de xfconfd-versie."
 
 #: ../xfconfd/main.c:136
 msgid ""
@@ -155,11 +155,11 @@ msgstr ""
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
-msgstr "Xfce Configuratiedaemon"
+msgstr "Achtergronddienst van Xfce Configuratie"
 
 #: ../xfconfd/main.c:165
 msgid "Xfce configuration daemon"
-msgstr "Xfce configuratiedaemon"
+msgstr "Achtergronddienst van Xfce configuratie"
 
 #: ../xfconfd/main.c:167
 msgid "Report bugs to http://bugs.xfce.org/\n"
@@ -173,7 +173,7 @@ msgstr "Kon de opties niet verwerken: %s\n"
 #: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "Another Xfconf daemon is already running"
-msgstr "Een andere Xfconf-daemon is al actief"
+msgstr "Een andere Xfconf-achtergronddienst is al actief"
 
 #: ../xfconfd/xfconf-daemon.c:517
 #, c-format
@@ -211,7 +211,7 @@ msgstr "Versie-informatie"
 
 #: ../xfconf-query/main.c:194
 msgid "The channel to query/modify"
-msgstr "Het kanaal om raad te plegen/te bewerken"
+msgstr "Het kanaal om te raadplegen/te bewerken"
 
 #: ../xfconf-query/main.c:198
 msgid "The property to query/modify"
@@ -240,7 +240,7 @@ msgstr "Specificeer het type van de eigenschap"
 
 #: ../xfconf-query/main.c:222
 msgid "Reset property"
-msgstr "Instelling beginwaarde geven"
+msgstr "Eigenschap standaardwaarde geven"
 
 #: ../xfconf-query/main.c:226
 msgid "Recursive (use with -r)"
@@ -252,12 +252,12 @@ msgstr "Forceer een reeks ook wanneer er slechts één element is"
 
 #: ../xfconf-query/main.c:244
 msgid "Monitor a channel for property changes"
-msgstr "Monitor een kanaal voor eigenschapveranderingen"
+msgstr "Bewaak een kanaal voor eigenschapveranderingen"
 
 #: ../xfconf-query/main.c:348
 #, c-format
 msgid "Start monitoring channel '%s':"
-msgstr "Start controlekanaal '%s':"
+msgstr "Start bewakingskanaal '%s':"
 
 #: ../xfconf-query/main.c:370
 #, c-format
@@ -349,7 +349,7 @@ msgstr "Het invoerbestand \"%s\" kon niet geopend worden: %s\n"
 #: ../xfconf-query/main.c:620
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
-msgstr "Het importbestand \"%s\" kon niet gelezen worden: %s\n"
+msgstr "Het invoerbestand \"%s\" kon niet gelezen worden: %s\n"
 
 #~ msgid "Export channel to file"
 #~ msgstr "Kanaal naar bestand uitvoeren"
