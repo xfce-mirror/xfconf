@@ -234,8 +234,7 @@ main(int argc, char **argv)
         return 1;
     }
 
-    context = g_option_context_new("- xfconf commandline utility");
-
+    context = g_option_context_new(_("- Xfconf commandline utility"));
     g_option_context_add_main_entries(context, entries, GETTEXT_PACKAGE);
 
     if(!g_option_context_parse(context, &argc, &argv, &cli_error))
@@ -246,8 +245,14 @@ main(int argc, char **argv)
 
     if(version)
     {
-        g_print("xfconf-query %s\n", PACKAGE_VERSION);
-        return 0;
+        g_print("xfconf-query");
+        g_print(" %s\n\n", PACKAGE_VERSION);
+        g_print("%s\n", "Copyright (c) 2008-2011");
+        g_print("\t%s\n\n", _("The Xfce development team. All rights reserved."));
+        g_print(_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
+        g_print("\n");
+
+        return EXIT_SUCCESS;
     }
 
     /** Check if the channel is specified */
