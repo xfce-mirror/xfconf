@@ -2,24 +2,24 @@
 # Copyright (C) 2008 THE xfconf'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfconf package.
 # Per Kongstad <p_kongstad@op.pl>, 2008, 09.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 15:52+0100\n"
+"POT-Creation-Date: 2011-05-25 20:56+0000\n"
 "PO-Revision-Date: 2009-10-04 16:25+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
-"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
 "X-Poedit-Language: Danish\n"
-"X-Poedit-Country: DENMARK\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Country: DENMARK\n"
 
-#: ../xfconf/xfconf-cache.c:875
+#: ../xfconf/xfconf-cache.c:876
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Kunne ikke lave kald til ResetProperty DBus"
@@ -38,7 +38,7 @@ msgstr "Du har ikke rettigheder til at ændre egenskab \"%s\" på kanal \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Egenskab \"%s\" findes ikke på kanal \"%s\""
@@ -97,12 +97,8 @@ msgstr "Rodelementet ('/') er ikke et gyldigt egenskabnavn"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Egenskabnavne kan kun indeholde ASCII-karakterne A-Z, a-z, 0-9, '_', '-', "
-"'<' og '>', samt  '/'  som adskiller"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Egenskabnavne kan kun indeholde ASCII-karakterne A-Z, a-z, 0-9, '_', '-', '<' og '>', samt  '/'  som adskiller"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -121,31 +117,21 @@ msgstr "Kanalnavn kan ikke være tom streng"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
 msgstr "Kanalnavne kan kun indeholde ASCII-tegnene A-Z, a-z, 0-9, '_', og '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"Egenskabsnavne kan kun være tomme eller \"/\" hvis rekursiv nulstilling blev "
-"angivet"
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "Egenskabsnavne kan kun være tomme eller \"/\" hvis rekursiv nulstilling blev angivet"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Udskriver xfconfd-versionen."
 
 #: ../xfconfd/main.c:136
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Underliggende indstilling til anvendelse.  Den første underliggende der "
-"angives er åbnet med læse/skrive; alle andre kun med læse."
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "Underliggende indstilling til anvendelse.  Den første underliggende der angives er åbnet med læse/skrive; alle andre kun med læse."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -178,172 +164,198 @@ msgstr "En anden Xfconf-dæmon kører allerede"
 msgid "No backends could be started"
 msgstr "Ingen underliggende kunne startes"
 
-#: ../xfconf-query/main.c:92
-#, c-format
-msgid "Property '%s' changed: %s\n"
-msgstr "Egenskab '%s' ændret: %s\n"
+#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
+msgid "set"
+msgstr "indstil"
 
-#: ../xfconf-query/main.c:97
-#, c-format
-msgid "Property '%s' changed\n"
-msgstr "Egenskab '%s' ændret\n"
+#: ../xfconf-query/main.c:100
+msgid "reset"
+msgstr "nulstil"
 
-#: ../xfconf-query/main.c:102
-#, c-format
-msgid "Property '%s' removed\n"
-msgstr "Egenskab '%s' fjernet\n"
-
-#: ../xfconf-query/main.c:111
-#, c-format
-msgid "Export method not yet implemented"
-msgstr "Eksportmetode er endnu ikke understøttet"
-
-#: ../xfconf-query/main.c:125
-#, c-format
-msgid "Export not yet implemented"
-msgstr "Eksport er endnu ikke understøttet"
-
-#: ../xfconf-query/main.c:191
+#: ../xfconf-query/main.c:176
 msgid "Version information"
 msgstr "Versionsinformation"
 
-#: ../xfconf-query/main.c:195
+#: ../xfconf-query/main.c:180
 msgid "The channel to query/modify"
 msgstr "Kanalen til forespørgsel/ændring"
 
-#: ../xfconf-query/main.c:199
+#: ../xfconf-query/main.c:184
 msgid "The property to query/modify"
 msgstr "Egenskaben til forespørgsel/ændring"
 
-#: ../xfconf-query/main.c:203
+#: ../xfconf-query/main.c:188
 msgid "The new value to set for the property"
 msgstr "Den nye værdi til indstilling af egenskab"
 
-#: ../xfconf-query/main.c:207
+#: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Vis egenskaber (eller kanaler hvis -c ikke er angivet)"
 
-#: ../xfconf-query/main.c:211
+#: ../xfconf-query/main.c:196
 msgid "Verbose output"
 msgstr "Uddybende uddata"
 
-#: ../xfconf-query/main.c:215
+#: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
 msgstr "Opret en ny egenskab hvis den ikke allerede findes"
 
-#: ../xfconf-query/main.c:219
+#: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
 msgstr "Angiv egenskabværditype"
 
-#: ../xfconf-query/main.c:223
+#: ../xfconf-query/main.c:208
 msgid "Reset property"
 msgstr "Nulstil egenskab"
 
-#: ../xfconf-query/main.c:227
+#: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
 msgstr "Rekursivt (brug med -r)"
 
-#: ../xfconf-query/main.c:231
+#: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
 msgstr "Tving tabel selv ved kun et element"
 
-#: ../xfconf-query/main.c:245
+#: ../xfconf-query/main.c:220
+msgid "Invert an existing boolean property"
+msgstr ""
+
+#: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
 msgstr "Overvåg en kanal for egenskabsændringer"
 
-#: ../xfconf-query/main.c:349
+#: ../xfconf-query/main.c:246
 #, c-format
-msgid "Start monitoring channel '%s':"
-msgstr "Begynd at overvåge kanal '%s':"
+msgid "Failed to init libxfconf: %s"
+msgstr ""
 
-#: ../xfconf-query/main.c:371
+#: ../xfconf-query/main.c:251
+msgid "- Xfconf commandline utility"
+msgstr ""
+
+#: ../xfconf-query/main.c:256
 #, c-format
-msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr "Egenskab \"%s\" findes ikke på kanal \"%s\".\n"
+msgid "Option parsing failed: %s"
+msgstr ""
 
-#: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
+#: ../xfconf-query/main.c:266
+msgid "The Xfce development team. All rights reserved."
+msgstr "Udviklingsholdet Xfce. Alle rettigheder forbeholdes."
+
+#: ../xfconf-query/main.c:267
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr "Rapportér fejl til <%s>."
+
+#: ../xfconf-query/main.c:279
+msgid "Channels:"
+msgstr "Kanaler:"
+
+#: ../xfconf-query/main.c:295
+msgid "No property specified"
+msgstr ""
+
+#: ../xfconf-query/main.c:301
+msgid "--create and --reset options can not be used together"
+msgstr ""
+
+#: ../xfconf-query/main.c:307
+msgid "--create and --reset options can not be used together with --list"
+msgstr ""
+
+#: ../xfconf-query/main.c:319
+#, c-format
+msgid "Start monitoring channel \"%s\":"
+msgstr "Begynd at overvåge kanal \"%s\":"
+
+#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:527
+msgid "Failed to set property"
+msgstr "Kunne ikke indstille egenskab"
+
+#: ../xfconf-query/main.c:357
+msgid "--toggle only works with boolean values"
+msgstr ""
+
+#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(ukendt)"
 
-#: ../xfconf-query/main.c:388
+#: ../xfconf-query/main.c:375
 #, c-format
-msgid ""
-"Value is an array with %d items:\n"
-"\n"
-msgstr ""
-"Værdi er en tabel med %d elementer:\n"
-"\n"
+msgid "Value is an array with %d items:"
+msgstr "Værdi er en tabel med %d elementer:"
 
-#: ../xfconf-query/main.c:411
-#, c-format
-msgid ""
-"Property \"%s\" does not exist on channel \"%s\".  If a new\n"
-"property should be created, use the --create option.\n"
+#: ../xfconf-query/main.c:399
+#, fuzzy, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
 msgstr ""
 "Egenskab \"%s\" findes ikke på denne kanal \"%s\".  Hvis du ønsker\n"
 "at oprette en ny egenskab brug indstillingen --create.\n"
 
-#: ../xfconf-query/main.c:419
-#, c-format
-msgid "When creating a new property, the value type must be specified.\n"
-msgstr "Når der oprettes en ny egenskab, skal du angive værditypen.\n"
+#: ../xfconf-query/main.c:407
+msgid "When creating a new property, the value type must be specified"
+msgstr "Når der oprettes en ny egenskab, skal du angive værditypen"
 
-#: ../xfconf-query/main.c:429
-#, c-format
-msgid "Failed to get the existing type for the value.\n"
-msgstr "Kunne ikke få den eksisterende type for værdien.\n"
+#: ../xfconf-query/main.c:417
+msgid "Failed to get the existing type for the value"
+msgstr "Kunne ikke få den eksisterende type for værdien"
 
-#: ../xfconf-query/main.c:447
-#, c-format
-msgid "Unable to determine the type of the value.\n"
-msgstr "Kunne ikke afgøre typen af værdien.\n"
+#: ../xfconf-query/main.c:435
+msgid "Unable to determine the type of the value"
+msgstr "Kunne ikke bestemme typen af værdien"
 
-#: ../xfconf-query/main.c:453
-#, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
-msgstr ""
-"Du skal angive en værditype for at ændre en tabel til en enkeltværdi.\n"
+#: ../xfconf-query/main.c:441
+#, fuzzy
+msgid "A value type must be specified to change an array into a single value"
+msgstr "Du skal angive en værditype for at ændre en tabel til en enkeltværdi.\n"
 
-#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
+#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
-msgid "Unable to convert \"%s\" to type \"%s\"\n"
-msgstr "Kunne ikke konvertere \"%s\" til type \"%s\"\n"
+msgid "Unable to convert \"%s\" to type \"%s\""
+msgstr "Kunne ikke konvertere \"%s\" til type \"%s\""
 
-#: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
+#: ../xfconf-query/main.c:483
 #, c-format
-msgid "Failed to set property.\n"
-msgstr "Kunne ikke sætte egenskab.\n"
+msgid "There are %d new values, but only %d types could be determined"
+msgstr "Har %d nye værdier, men kunne kun afgøre %d typer"
 
-#: ../xfconf-query/main.c:495
+#: ../xfconf-query/main.c:504
 #, c-format
-msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr "Har %d nye værdier, men kunne kun afgøre %d typer.\n"
+msgid "Unable to determine type of value at index %d"
+msgstr "Kunne ikke afgøre type af værdi ved indeks %d"
 
-#: ../xfconf-query/main.c:516
+#: ../xfconf-query/main.c:554
 #, c-format
-msgid "Unable to determine type of value at index %d.\n"
-msgstr "Kunne ikke afgøre type af værdi ved indeks %d.\n"
+msgid "Channel \"%s\" contains no properties"
+msgstr "Kanal \"%s\" indeholder ingen egenskaber"
 
-#: ../xfconf-query/main.c:567
-#, c-format
-msgid "Channel '%s' contains no properties\n"
-msgstr "Kanal '%s' indeholder ingen egenskaber\n"
+#~ msgid "Property '%s' changed: %s\n"
+#~ msgstr "Egenskab '%s' ændret: %s\n"
 
-#: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
-#, c-format
-msgid "Could not create export file \"%s\": %s\n"
-msgstr "Kunne ikke oprette eksportfil \"%s\": %s\n"
+#~ msgid "Property '%s' changed\n"
+#~ msgstr "Egenskab '%s' ændret\n"
 
-#: ../xfconf-query/main.c:612
-#, c-format
-msgid "Could not open import file \"%s\": %s\n"
-msgstr "Kunne ikke åbne importfil \"%s\": %s\n"
+#~ msgid "Property '%s' removed\n"
+#~ msgstr "Egenskab '%s' fjernet\n"
 
-#: ../xfconf-query/main.c:621
-#, c-format
-msgid "Could not parse import file \"%s\": %s\n"
-msgstr "Kunne ikke fortolke importfil \"%s\": %s\n"
+#~ msgid "Export method not yet implemented"
+#~ msgstr "Eksportmetode er endnu ikke understøttet"
+
+#~ msgid "Export not yet implemented"
+#~ msgstr "Eksport er endnu ikke understøttet"
+
+#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
+#~ msgstr "Egenskab \"%s\" findes ikke på kanal \"%s\".\n"
+
+#~ msgid "Could not create export file \"%s\": %s\n"
+#~ msgstr "Kunne ikke oprette eksportfil \"%s\": %s\n"
+
+#~ msgid "Could not open import file \"%s\": %s\n"
+#~ msgstr "Kunne ikke åbne importfil \"%s\": %s\n"
+
+#~ msgid "Could not parse import file \"%s\": %s\n"
+#~ msgstr "Kunne ikke fortolke importfil \"%s\": %s\n"
 
 #~ msgid "Export channel to file"
 #~ msgstr "Eksportér kanal til fil"
