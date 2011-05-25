@@ -1,4 +1,15 @@
 
+INCLUDES = \
+	-I$(top_srcdir) \
+	-I$(top_srcdir)/common \
+	-I$(top_builddir) \
+	-I$(top_builddir)/common \
+	-DG_LOG_DOMAIN=\"xfconfd\" \
+	-DLIBXFCONF_COMPILATION \
+	-DBINDIR=\"$(bindir)\" \
+	-DLOCALEDIR=\"$(localedir)\" \
+	$(PLATFORM_CPPFLAGS)
+
 xfconfddir = $(HELPER_PATH_PREFIX)/xfce4/xfconf
 xfconfd_PROGRAMS = xfconfd
 
@@ -25,18 +36,14 @@ xfconfd_SOURCES = \
 	$(top_srcdir)/common/xfconf-types.c
 
 xfconfd_CFLAGS = \
-	-DG_LOG_DOMAIN=\"xfconfd\" \
-	-DLIBXFCONF_COMPILATION \
-	-DBINDIR=\"$(bindir)\" \
-	-DLOCALEDIR=\"$(localedir)\" \
-	-I$(top_srcdir) \
-	-I$(top_srcdir)/common \
-	-I$(top_builddir) \
-	-I$(top_builddir)/common \
 	$(GLIB_CFLAGS) \
 	$(DBUS_CFLAGS) \
 	$(DBUS_GLIB_CFLAGS) \
-	$(LIBXFCE4UTIL_CFLAGS)
+	$(LIBXFCE4UTIL_CFLAGS) \
+	$(PLATFORM_CFLAGS)
+
+xfconfd_LDFLAGS = \
+	$(PLATFORM_LDFLAGS)
 
 if ENABLE_PROFILING
 xfconfd_CFLAGS += -pg
@@ -49,7 +56,6 @@ xfconfd_LDADD = \
 	$(DBUS_LIBS) \
 	$(DBUS_GLIB_LIBS) \
 	$(LIBXFCE4UTIL_LIBS)
-
 
 servicedir = $(datadir)/dbus-1/services
 service_in_files = org.xfce.Xfconf.service.in

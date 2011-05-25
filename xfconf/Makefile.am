@@ -1,4 +1,13 @@
 
+INCLUDES = \
+	-I$(top_srcdir) \
+	-I$(top_srcdir)/common \
+	-I$(top_builddir) \
+	-I$(top_builddir)/common \
+	-DLIBXFCONF_COMPILATION \
+	-DG_LOG_DOMAIN=\"xfconf\" \
+	$(PLATFORM_CPPFLAGS)
+
 lib_LTLIBRARIES = libxfconf-0.la
 
 libxfconfincludedir = $(includedir)/xfce4/xfconf-$(LIBXFCONF_VERSION_API)/xfconf
@@ -21,21 +30,17 @@ libxfconf_0_la_SOURCES = \
 	$(top_srcdir)/common/xfconf-types.c
 
 libxfconf_0_la_CFLAGS = \
-	-I$(top_srcdir) \
-	-I$(top_srcdir)/common \
-	-I$(top_builddir) \
-	-I$(top_builddir)/common \
-	-DLIBXFCONF_COMPILATION \
-	-DG_LOG_DOMAIN=\"xfconf\" \
 	$(GLIB_CFLAGS) \
 	$(DBUS_CFLAGS) \
-	$(DBUS_GLIB_CFLAGS)
+	$(DBUS_GLIB_CFLAGS) \
+	$(PLATFORM_CFLAGS)
 
 libxfconf_0_la_LDFLAGS = \
 	-export-dynamic \
 	-version-info $(LIBXFCONF_VERINFO) \
 	-export-symbols-regex "^[^_].*" \
-	-no-undefined
+	-no-undefined \
+	$(PLATFORM_LDFLAGS)
 
 libxfconf_0_la_LIBADD = \
 	$(top_builddir)/common/libxfconf-common.la \

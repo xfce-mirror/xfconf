@@ -1,4 +1,10 @@
 
+INCLUDES = \
+	-I$(top_srcdir) \
+	-DLIBXFCONF_COMPILATION \
+	-DG_LOG_DOMAIN=\"xfconf-common\" \
+	$(PLATFORM_CPPFLAGS)
+
 noinst_LTLIBRARIES = \
 	libxfconf-common.la \
 	libxfconf-gvaluefuncs.la
@@ -9,24 +15,34 @@ libxfconf_common_la_SOURCES = \
 	xfconf-marshal.h
 
 libxfconf_common_la_CFLAGS = \
-	-DLIBXFCONF_COMPILATION \
-	-I$(top_srcdir) \
-	$(GLIB_CFLAGS)
+	$(GLIB_CFLAGS) \
+	$(PLATFORM_CFLAGS)
+
+libxfconf_common_la_LDFLAGS = \
+	$(PLATFORM_LDFLAGS)
+
+libxfconf_common_la_LIBADD = \
+	$(GLIB_LIBS)
 
 libxfconf_built_sources = \
 	xfconf-alias.h \
 	xfconf-aliasdef.c
-
 
 libxfconf_gvaluefuncs_la_SOURCES = \
 	xfconf-gvaluefuncs.c \
 	xfconf-gvaluefuncs.h
 
 libxfconf_gvaluefuncs_la_CFLAGS = \
-	-DLIBXFCONF_COMPILATION \
-	-I$(top_srcdir) \
 	$(GLIB_CFLAGS) \
-	$(DBUS_GLIB_CFLAGS)
+	$(DBUS_GLIB_CFLAGS) \
+	$(PLATFORM_CFLAGS)
+
+libxfconf_gvaluefuncs_la_LDFLAGS = \
+	$(PLATFORM_LDFLAGS)
+
+libxfconf_gvaluefuncs_la_LIBADD = \
+	$(GLIB_LIBS) \
+	$(DBUS_GLIB_LIBS)
 
 
 if MAINTAINER_MODE
