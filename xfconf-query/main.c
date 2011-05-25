@@ -73,8 +73,6 @@ static gchar *channel_name = NULL;
 static gchar *property_name = NULL;
 static gchar **set_value = NULL;
 static gchar **type = NULL;
-static gchar *import_file = NULL;
-static gchar *export_file = NULL;
 
 static void
 xfconf_query_monitor (XfconfChannel *channel, const gchar *changed_property, GValue *property_value)
@@ -101,34 +99,6 @@ xfconf_query_monitor (XfconfChannel *channel, const gchar *changed_property, GVa
     {
         g_print (_("Property '%s' removed\n"), changed_property);
     }
-}
-
-static gboolean
-xfconf_query_import_channel (XfconfChannel *channel, gint fd, GError **error)
-{
-    if (error != NULL)
-    {
-        g_set_error (error, G_FILE_ERROR, 1, _("Export method not yet implemented"));
-    }
-    else
-    {
-        g_warning ("--import: Method not implemented");
-    }
-    return FALSE;
-}
-
-static gboolean
-xfconf_query_export_channel (XfconfChannel *channel, gint fd, GError **error)
-{
-    if (error != NULL)
-    {
-        g_set_error (error, G_FILE_ERROR, 1, _("Export not yet implemented"));
-    }
-    else
-    {
-        g_warning ("--export: Method not implemented");
-    }
-    return FALSE;
 }
 
 static void
@@ -235,16 +205,6 @@ static GOptionEntry entries[] =
         N_("Invert an existing boolean property"),
         NULL
     },
-/*
-    {   "export", 'x', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &export_file,
-        N_("Export channel to file"),
-        NULL,
-    },
-    {   "import", 'i', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &import_file,
-        N_("Import channel from file"),
-        NULL,
-    },
-*/
     {   "monitor", 'm', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &monitor,
         N_("Monitor a channel for property changes"),
         NULL,
@@ -259,7 +219,6 @@ main(int argc, char **argv)
     GError *error= NULL;
     XfconfChannel *channel = NULL;
     gboolean prop_exists;
-    gint fd = -1;
     GOptionContext *context;
 
 #ifdef ENABLE_NLS
@@ -311,7 +270,7 @@ main(int argc, char **argv)
     }
 
     /** Check if the property is specified */
-    if(!property_name && !list && !export_file && !import_file && !monitor)
+    if(!property_name && !list && !monitor)
     {
         g_printerr("No property specified, aborting...\n");
         return 1;
@@ -326,18 +285,6 @@ main(int argc, char **argv)
     if ((create || reset) && (list))
     {
         g_printerr("--create and --reset options can not be used together with\n --list\naborting...\n");
-        return 1;
-    }
-
-    if (import_file && export_file)
-    {
-        g_printerr("--import and --export options can not be used together,\naborting...\n");
-        return 1;
-    }
-
-    if ((import_file || export_file) && (list || property_name || create || reset))
-    {
-        g_printerr("--import and --export options can not be used together with\n --create, --reset, --property and --list,\naborting...\n");
         return 1;
     }
 
@@ -584,64 +531,6 @@ main(int argc, char **argv)
         {
             g_print(_("Channel '%s' contains no properties\n"), channel_name);
         }
-    }
-
-    if (export_file)
-    {
-        if (!strcmp(export_file, "-"))
-        {
-            /* Use stdout */
-            fd = fileno (stdout);
-        }
-        else
-        {
-            fd = open (export_file, O_CREAT | O_EXCL | O_WRONLY, 0);
-            if (fd < 0)
-            {
-                g_printerr (_("Could not create export file \"%s\": %s\n"), export_file, strerror (errno));
-                return 1;
-            }
-        }
-
-        if (!xfconf_query_export_channel (channel, fd, &error))
-        {
-            if (fd != fileno (stdout))
-                close (fd);
-            g_printerr (_("Could not create export file \"%s\": %s\n"), export_file, error->message);
-            g_error_free (error);
-            return 1;
-        }
-        if (fd != fileno (stdout))
-            close (fd);
-    }
-
-    if (import_file)
-    {
-        if (!strcmp(import_file, "-"))
-        {
-            /* Use stdin */
-            fd = fileno (stdin);
-        }
-        else
-        {
-            fd = open (import_file, O_RDONLY, 0);
-            if (fd < 0)
-            {
-                g_printerr (_("Could not open import file \"%s\": %s\n"), import_file, strerror (errno));
-                return 1;
-            }
-        }
-
-        if (!xfconf_query_import_channel (channel, fd, &error))
-        {
-            if (fd != fileno (stdin))
-                close (fd);
-            g_printerr (_("Could not parse import file \"%s\": %s\n"), import_file, error->message);
-            g_error_free (error);
-            return 1;
-        }
-        if (fd != fileno (stdin))
-            close (fd);
     }
 
     return 0;
