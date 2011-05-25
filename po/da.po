@@ -257,11 +257,11 @@ msgstr "Ingen egenskab angivet"
 
 #: ../xfconf-query/main.c:301
 msgid "--create and --reset options can not be used together"
-msgstr ""
+msgstr "--create og --reset tilvalg kan ikke bruges samtidigt"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
+msgstr "--create og --reset kan ikke bruges sammen med  --list"
 
 #: ../xfconf-query/main.c:319
 #, c-format
