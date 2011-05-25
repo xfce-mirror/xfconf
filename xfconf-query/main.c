@@ -97,7 +97,7 @@ xfconf_query_monitor (XfconfChannel *channel, const gchar *changed_property, GVa
     }
     else
     {
-        g_print(_("%s: %s\n"), _("reset"), changed_property);
+        g_print("%s: %s\n", _("reset"), changed_property);
     }
 }
 
