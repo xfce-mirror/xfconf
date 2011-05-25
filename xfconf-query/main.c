@@ -78,26 +78,26 @@ static void
 xfconf_query_monitor (XfconfChannel *channel, const gchar *changed_property, GValue *property_value)
 {
     gchar *string;
-    
-    if (property_name && !g_str_has_prefix (changed_property, property_name))
+
+    if(property_name && !g_str_has_prefix(changed_property, property_name))
         return;
 
-    if (property_value && G_IS_VALUE (property_value))
+    if(property_value && G_IS_VALUE (property_value))
     {
-        if (verbose)
+        if(verbose)
         {
-           string = _xfconf_string_from_gvalue (property_value);
-           g_print (_("Property '%s' changed: %s\n"), changed_property, string);
-           g_free (string);
+             string = _xfconf_string_from_gvalue(property_value);
+             g_print("%s: %s (%s)\n", _("set"), changed_property, string);
+             g_free(string);
        }
        else
        {
-           g_print (_("Property '%s' changed\n"), changed_property);
+             g_print("%s: %s\n", _("set"), changed_property);
        }
     }
     else
     {
-        g_print (_("Property '%s' removed\n"), changed_property);
+        g_print(_("%s: %s\n"), _("reset"), changed_property);
     }
 }
 
@@ -116,7 +116,7 @@ static void
 xfconf_query_list_sorted (gpointer key, gpointer value, gpointer user_data)
 {
   GSList **listp = user_data;
-  
+
   *listp = g_slist_insert_sorted (*listp, key, (GCompareFunc) g_utf8_collate);
 }
 
@@ -127,7 +127,7 @@ xfconf_query_list_contents (GSList *sorted_contents, GHashTable *channel_content
     gchar *format = verbose ? g_strdup_printf ("%%-%ds%%s\n", size + 2) : NULL;
     GValue *property_value;
     gchar *string;
-    
+
     for (li = sorted_contents; li != NULL; li = li->next)
     {
         if (verbose)
@@ -151,8 +151,23 @@ xfconf_query_list_contents (GSList *sorted_contents, GHashTable *channel_content
             g_print ("%s\n", (gchar *) li->data);
         }
     }
-    
+
     g_free (format);
+}
+
+static void
+xfconf_query_printerr(const gchar *message,
+                      ...)
+{
+    va_list args;
+    gchar *str;
+
+    va_start(args, message);
+    str = g_strdup_vprintf(message, args);
+    va_end(args);
+
+    g_printerr("%s.\n", str);
+    g_free(str);
 }
 
 static GOptionEntry entries[] =
@@ -212,10 +227,9 @@ static GOptionEntry entries[] =
     { NULL }
 };
 
-int 
+int
 main(int argc, char **argv)
 {
-    GError *cli_error = NULL;
     GError *error= NULL;
     XfconfChannel *channel = NULL;
     gboolean prop_exists;
@@ -229,18 +243,19 @@ main(int argc, char **argv)
     g_type_init();
     if(!xfconf_init(&error))
     {
-        g_critical("Failed to init libxfconf: %s\n", error->message);
+        xfconf_query_printerr(_("Failed to init libxfconf: %s"), error->message);
         g_error_free(error);
-        return 1;
+        return EXIT_FAILURE;
     }
 
     context = g_option_context_new(_("- Xfconf commandline utility"));
     g_option_context_add_main_entries(context, entries, GETTEXT_PACKAGE);
 
-    if(!g_option_context_parse(context, &argc, &argv, &cli_error))
+    if(!g_option_context_parse(context, &argc, &argv, &error))
     {
-        g_printerr("option parsing failed: %s\n", cli_error->message);
-        return 1;
+        xfconf_query_printerr(_("Option parsing failed: %s"), error->message);
+        g_error_free(error);
+        return EXIT_FAILURE;
     }
 
     if(version)
@@ -261,7 +276,7 @@ main(int argc, char **argv)
         gchar **channels;
         gint i;
 
-        g_print("Channels:\n");
+        g_print("%s\n", _("Channels:"));
 
         channels = xfconf_list_channels();
         if(G_LIKELY(channels)) {
@@ -269,45 +284,44 @@ main(int argc, char **argv)
                 g_print("  %s\n", channels[i]);
             g_strfreev(channels);
         } else
-            return 1;
+            return EXIT_FAILURE;
 
-        return 0;
+        return EXIT_SUCCESS;
     }
 
     /** Check if the property is specified */
     if(!property_name && !list && !monitor)
     {
-        g_printerr("No property specified, aborting...\n");
-        return 1;
+        xfconf_query_printerr(_("No property specified"));
+        return EXIT_FAILURE;
     }
 
     if (create && reset)
     {
-        g_printerr("--create and --reset options can not be used together,\naborting...\n");
-        return 1;
+        xfconf_query_printerr(_("--create and --reset options can not be used together"));
+        return EXIT_FAILURE;
     }
 
     if ((create || reset) && (list))
     {
-        g_printerr("--create and --reset options can not be used together with\n --list\naborting...\n");
-        return 1;
+        xfconf_query_printerr(_("--create and --reset options can not be used together with --list"));
+        return EXIT_FAILURE;
     }
 
     channel = xfconf_channel_new(channel_name);
-    
+
     if (monitor)
     {
         GMainLoop *loop;
 
         g_signal_connect (G_OBJECT (channel), "property-changed", G_CALLBACK (xfconf_query_monitor), NULL);
-        
-        g_print ("\n");
-        g_print (_("Start monitoring channel '%s':"), channel_name);
-        g_print ("\n------------------------------------------------\n\n");
-        
+
+        g_print (_("Start monitoring channel \"%s\":"), channel_name);
+        g_print ("\n\n");
+
         loop = g_main_loop_new (NULL, TRUE);
         g_main_loop_run (loop);
-        g_main_loop_unref (loop);        
+        g_main_loop_unref (loop);
     }
 
     if (property_name && !list)
@@ -324,23 +338,26 @@ main(int argc, char **argv)
 
             if(!xfconf_channel_get_property(channel, property_name, &value))
             {
-                g_printerr(_("Property \"%s\" does not exist on channel \"%s\".\n"),
-                           property_name, channel_name);
-                return 1;
+                xfconf_query_printerr(_("Property \"%s\" does not exist on channel \"%s\""),
+                                      property_name, channel_name);
+                return EXIT_FAILURE;
             }
 
             if (toggle)
             {
                 if(G_VALUE_HOLDS_BOOLEAN(&value))
                 {
-                    xfconf_channel_set_bool (channel, property_name, !g_value_get_boolean (&value));
-                    return 0;
+                    if(xfconf_channel_set_bool(channel, property_name, !g_value_get_boolean(&value)))
+                        return EXIT_SUCCESS;
+                    else
+                        xfconf_query_printerr(_("Failed to set property"));
                 }
                 else
                 {
-                    g_printerr("%s\n%s", _("--toggle only works with boolean values"), _("aborting..."));
-                    return 1;
+                    xfconf_query_printerr(_("--toggle only works with boolean values"));
                 }
+
+                return EXIT_FAILURE;
             }
 
             if(XFCONF_TYPE_G_VALUE_ARRAY != G_VALUE_TYPE(&value))
@@ -355,7 +372,8 @@ main(int argc, char **argv)
                 GPtrArray *arr = g_value_get_boxed(&value);
                 guint i;
 
-                g_print(_("Value is an array with %d items:\n\n"), arr->len);
+                g_print(_("Value is an array with %d items:"), arr->len);
+                g_print("\n\n");
 
                 for(i = 0; i < arr->len; ++i)
                 {
@@ -378,16 +396,16 @@ main(int argc, char **argv)
             prop_exists = xfconf_channel_has_property(channel, property_name);
             if(!prop_exists && !create)
             {
-                g_printerr(_("Property \"%s\" does not exist on channel \"%s\".  If a new\n"
-                             "property should be created, use the --create option.\n"),
-                             property_name, channel_name);
-                return 1;
+                xfconf_query_printerr(_("Property \"%s\" does not exist on channel \"%s\". If a new "
+                                      "property should be created, use the --create option"),
+                                      property_name, channel_name);
+                return EXIT_FAILURE;
             }
 
             if(!prop_exists && (!type || !type[0]))
             {
-                g_printerr(_("When creating a new property, the value type must be specified.\n"));
-                return 1;
+                xfconf_query_printerr(_("When creating a new property, the value type must be specified"));
+                return EXIT_FAILURE;
             }
 
             if(prop_exists && !(type && type[0]))
@@ -396,8 +414,8 @@ main(int argc, char **argv)
                  * didn't specify one */
                 if(!xfconf_channel_get_property(channel, property_name, &value))
                 {
-                    g_printerr(_("Failed to get the existing type for the value.\n"));
-                    return 1;
+                    xfconf_query_printerr(_("Failed to get the existing type for the value"));
+                    return EXIT_FAILURE;
                 }
             }
 
@@ -414,14 +432,14 @@ main(int argc, char **argv)
 
                 if(G_TYPE_INVALID == gtype || G_TYPE_NONE == gtype)
                 {
-                    g_printerr(_("Unable to determine the type of the value.\n"));
-                    return 1;
+                    xfconf_query_printerr(_("Unable to determine the type of the value"));
+                    return EXIT_FAILURE;
                 }
 
                 if(XFCONF_TYPE_G_VALUE_ARRAY == gtype)
                 {
-                    g_printerr(_("A value type must be specified to change an array into a single value.\n"));
-                    return 1;
+                    xfconf_query_printerr(_("A value type must be specified to change an array into a single value"));
+                    return EXIT_FAILURE;
                 }
 
                 if(G_VALUE_TYPE(&value))
@@ -430,15 +448,15 @@ main(int argc, char **argv)
                 g_value_init(&value, gtype);
                 if(!_xfconf_gvalue_from_string(&value, set_value[0]))
                 {
-                    g_printerr(_("Unable to convert \"%s\" to type \"%s\"\n"),
-                                   set_value[0], g_type_name(gtype));
-                    return 1;
+                    xfconf_query_printerr(_("Unable to convert \"%s\" to type \"%s\""),
+                                          set_value[0], g_type_name(gtype));
+                    return EXIT_FAILURE;
                 }
 
                 if(!xfconf_channel_set_property(channel, property_name, &value))
                 {
-                    g_printerr(_("Failed to set property.\n"));
-                    return 1;
+                    xfconf_query_printerr(_("Failed to set property"));
+                    return EXIT_FAILURE;
                 }
             }
             else
@@ -462,9 +480,9 @@ main(int argc, char **argv)
 
                 if(new_values != new_types)
                 {
-                    g_printerr(_("There are %d new values, but only %d types could be determined.\n"),
-                               new_values, new_types);
-                    return 1;
+                    xfconf_query_printerr(_("There are %d new values, but only %d types could be determined"),
+                                          new_values, new_types);
+                    return EXIT_FAILURE;
                 }
 
                 arr_new = g_ptr_array_sized_new(new_values);
@@ -483,18 +501,17 @@ main(int argc, char **argv)
 
                     if(G_TYPE_INVALID == gtype || G_TYPE_NONE == gtype)
                     {
-                        g_printerr(_("Unable to determine type of value at index %d.\n"),
-                                   i);
-                        return 1;
+                        xfconf_query_printerr(_("Unable to determine type of value at index %d"), i);
+                        return EXIT_FAILURE;
                     }
 
                     value_new = g_new0(GValue, 1);
                     g_value_init(value_new, gtype);
                     if(!_xfconf_gvalue_from_string(value_new, set_value[i]))
                     {
-                        g_printerr(_("Unable to convert \"%s\" to type \"%s\"\n"),
-                                   set_value[i], g_type_name(gtype));
-                        return 1;
+                        xfconf_query_printerr(_("Unable to convert \"%s\" to type \"%s\""),
+                                              set_value[i], g_type_name(gtype));
+                        return EXIT_FAILURE;
                     }
                     g_ptr_array_add(arr_new, value_new);
                 }
@@ -507,8 +524,8 @@ main(int argc, char **argv)
 
                 if(!xfconf_channel_set_property(channel, property_name, &value))
                 {
-                    g_printerr(_("Failed to set property.\n"));
-                    return 1;
+                    xfconf_query_printerr(_("Failed to set property"));
+                    return EXIT_FAILURE;
                 }
             }
         }
@@ -524,19 +541,20 @@ main(int argc, char **argv)
 
             if (verbose)
                 g_hash_table_foreach (channel_contents, (GHFunc)xfconf_query_get_propname_size, &size);
-            
+
             g_hash_table_foreach (channel_contents, (GHFunc)xfconf_query_list_sorted, &sorted_contents);
-            
+
             xfconf_query_list_contents (sorted_contents, channel_contents, size);
-            
+
             g_slist_free (sorted_contents);
             g_hash_table_destroy (channel_contents);
         }
         else
         {
-            g_print(_("Channel '%s' contains no properties\n"), channel_name);
+            g_print(_("Channel \"%s\" contains no properties"), channel_name);
+            g_print(".\n");
         }
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
