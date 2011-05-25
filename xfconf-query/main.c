@@ -68,6 +68,7 @@ static gboolean reset = FALSE;
 static gboolean recursive = FALSE;
 static gboolean force_array = FALSE;
 static gboolean monitor = FALSE;
+static gboolean toggle = FALSE;
 static gchar *channel_name = NULL;
 static gchar *property_name = NULL;
 static gchar **set_value = NULL;
@@ -230,6 +231,10 @@ static GOptionEntry entries[] =
         N_("Force array even if only one element"),
         NULL
     },
+    {   "toggle", 'T', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &toggle,
+        N_("Invert an existing boolean property"),
+        NULL
+    },
 /*
     {   "export", 'x', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING, &export_file,
         N_("Export channel to file"),
@@ -371,7 +376,21 @@ main(int argc, char **argv)
                            property_name, channel_name);
                 return 1;
             }
-            
+
+            if (toggle)
+            {
+                if(G_VALUE_HOLDS_BOOLEAN(&value))
+                {
+                    xfconf_channel_set_bool (channel, property_name, !g_value_get_boolean (&value));
+                    return 0;
+                }
+                else
+                {
+                    g_printerr("%s\n%s", _("--toggle only works with boolean values"), _("aborting..."));
+                    return 1;
+                }
+            }
+
             if(XFCONF_TYPE_G_VALUE_ARRAY != G_VALUE_TYPE(&value))
             {
                 gchar *str_val = _xfconf_string_from_gvalue(&value);
