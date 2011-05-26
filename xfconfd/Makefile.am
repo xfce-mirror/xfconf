@@ -1,9 +1,6 @@
 
 INCLUDES = \
 	-I$(top_srcdir) \
-	-I$(top_srcdir)/common \
-	-I$(top_builddir) \
-	-I$(top_builddir)/common \
 	-DG_LOG_DOMAIN=\"xfconfd\" \
 	-DLIBXFCONF_COMPILATION \
 	-DBINDIR=\"$(bindir)\" \

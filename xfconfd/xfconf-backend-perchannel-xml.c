@@ -57,9 +57,9 @@
 #include "xfconf-backend-perchannel-xml.h"
 #include "xfconf-backend.h"
 #include "xfconf-locking-utils.h"
-#include "xfconf-gvaluefuncs.h"
+#include "common/xfconf-gvaluefuncs.h"
 #include "xfconf/xfconf-types.h"
-#include "xfconf-common-private.h"
+#include "common/xfconf-common-private.h"
 
 #define FILE_VERSION_MAJOR  "1"
 #define FILE_VERSION_MINOR  "0"

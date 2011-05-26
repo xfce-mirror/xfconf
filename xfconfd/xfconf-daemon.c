@@ -29,10 +29,10 @@
 #include "xfconf-daemon.h"
 #include "xfconf-backend-factory.h"
 #include "xfconf-backend.h"
-#include "xfconf-marshal.h"
-#include "xfconf-gvaluefuncs.h"
+#include "common/xfconf-marshal.h"
+#include "common/xfconf-gvaluefuncs.h"
 #include "xfconf/xfconf-errors.h"
-#include "xfconf-common-private.h"
+#include "common/xfconf-common-private.h"
 
 static void xfconf_set_property(XfconfDaemon *xfconfd,
                                 const gchar *channel,

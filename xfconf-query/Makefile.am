@@ -1,6 +1,6 @@
 
 INCLUDES = \
-	-I$(top_srcdir)/common \
+	-I$(top_srcdir) \
 	-DG_LOG_DOMAIN=\"xfconf-query\" \
 	-DDATADIR=\"$(datadir)\" \
 	-DSRCDIR=\"$(top_srcdir)\" \

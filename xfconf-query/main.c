@@ -56,8 +56,8 @@
 #endif
 #endif
 
-#include "xfconf-gvaluefuncs.h"
-#include "xfconf-common-private.h"
+#include "common/xfconf-gvaluefuncs.h"
+#include "common/xfconf-common-private.h"
 #include "xfconf/xfconf.h"
 
 static gboolean version = FALSE;

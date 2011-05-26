@@ -29,13 +29,13 @@
 #include "xfconf-channel.h"
 #include "xfconf-cache.h"
 #include "xfconf-dbus-bindings.h"
-#include "xfconf-gvaluefuncs.h"
+#include "common/xfconf-gvaluefuncs.h"
 #include "xfconf-private.h"
-#include "xfconf-marshal.h"
+#include "common/xfconf-marshal.h"
 #include "xfconf-types.h"
-#include "xfconf-common-private.h"
+#include "common/xfconf-common-private.h"
 #include "xfconf.h"
-#include "xfconf-alias.h"
+#include "common/xfconf-alias.h"
 
 #define IS_SINGLETON_DEFAULT  TRUE
 

@@ -31,7 +31,7 @@
 #include <dbus/dbus-glib.h>
 
 #include "xfconf.h"
-#include "xfconf-marshal.h"
+#include "common/xfconf-marshal.h"
 #include "xfconf-private.h"
 #include "common/xfconf-alias.h"
 

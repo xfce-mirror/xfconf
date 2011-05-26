@@ -29,8 +29,8 @@
 
 #include "xfconf.h"
 #include "xfconf-private.h"
-#include "xfconf-alias.h"
-#include "xfconf-common-private.h"
+#include "common/xfconf-alias.h"
+#include "common/xfconf-common-private.h"
 
 
 typedef struct

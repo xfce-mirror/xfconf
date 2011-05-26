@@ -1,9 +1,6 @@
 
 INCLUDES = \
 	-I$(top_srcdir) \
-	-I$(top_srcdir)/common \
-	-I$(top_builddir) \
-	-I$(top_builddir)/common \
 	-DLIBXFCONF_COMPILATION \
 	-DG_LOG_DOMAIN=\"xfconf\" \
 	$(PLATFORM_CPPFLAGS)
