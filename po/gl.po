@@ -168,11 +168,11 @@ msgstr "Non se puido iniciar ningún motor"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
-msgstr ""
+msgstr "definir"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
-msgstr ""
+msgstr "restaurar"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
@@ -220,7 +220,7 @@ msgstr "Forzar que sexa unha matriz incluso se só ten un elemento"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
-msgstr ""
+msgstr "Inverter unha propiedade booleana existente"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
@@ -233,7 +233,7 @@ msgstr "Produciuse un erro ao iniciar libxfconf: %s"
 
 #: ../xfconf-query/main.c:251
 msgid "- Xfconf commandline utility"
-msgstr ""
+msgstr "- Utilidade de liña de ordes de Xfconf"
 
 #: ../xfconf-query/main.c:256
 #, c-format
@@ -242,7 +242,7 @@ msgstr "Produciuse un erro ao analizar a opción: %s"
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
-msgstr ""
+msgstr "O equipo de desenvolvemento de Xfce. Todos os dereitos reservados."
 
 #: ../xfconf-query/main.c:267
 #, c-format
@@ -259,7 +259,7 @@ msgstr "Non se especificou ningunha propiedade"
 
 #: ../xfconf-query/main.c:301
 msgid "--create and --reset options can not be used together"
-msgstr ""
+msgstr "As opcións --create e --reset non se poden usar xuntas"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
@@ -277,18 +277,16 @@ msgstr "Produciuse un erro ao definir a propiedade"
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
-msgstr ""
+msgstr "--toggle só funciona con valores booleanos"
 
 #: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(descoñecido)"
 
 #: ../xfconf-query/main.c:375
-#, fuzzy, c-format
+#, c-format
 msgid "Value is an array with %d items:"
-msgstr ""
-"O valor é unha matriz con %d elementos:\n"
-"\n"
+msgstr "O valor é unha matriz con %d elementos:"
 
 #: ../xfconf-query/main.c:399
 #, fuzzy, c-format
@@ -298,19 +296,16 @@ msgstr ""
 "debe crear unha nova propiedade, use a opción --create.\n"
 
 #: ../xfconf-query/main.c:407
-#, fuzzy
 msgid "When creating a new property, the value type must be specified"
-msgstr "Cando se crea unha nova propiedade débese especificar o valor do tipo.\n"
+msgstr "Cando se crea unha nova propiedade débese especificar o tipo do valor"
 
 #: ../xfconf-query/main.c:417
-#, fuzzy
 msgid "Failed to get the existing type for the value"
-msgstr "Non foi posible obter o tipo do valor.\n"
+msgstr "Non foi posible obter o tipo do valor"
 
 #: ../xfconf-query/main.c:435
-#, fuzzy
 msgid "Unable to determine the type of the value"
-msgstr "Non foi posible determinar o tipo do valor.\n"
+msgstr "Non foi posible determinar o tipo do valor"
 
 #: ../xfconf-query/main.c:441
 #, fuzzy
@@ -318,9 +313,9 @@ msgid "A value type must be specified to change an array into a single value"
 msgstr "Débese especificar un tipo de valor para converter unha matriz nun valor único.\n"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "Non foi posible converter \"%s\" ó tipo \"%s\"\n"
+msgstr "Non foi posible converter «%s» ao tipo «%s»"
 
 #: ../xfconf-query/main.c:483
 #, fuzzy, c-format
