@@ -2,22 +2,21 @@
 # Copyright (C) YEAR THE xfconf'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfconf package.
 # Cristian Marchi <cri.penta@gmail.com>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 15:52+0100\n"
+"POT-Creation-Date: 2011-05-27 16:11+0000\n"
 "PO-Revision-Date: 2010-03-11 10:16+0100\n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
-"Language-Team: Italian Translation Team <xfce-it-translators@googlegroups."
-"com>\n"
-"Language: \n"
+"Language-Team: Italian Translation Team <xfce-it-translators@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
-#: ../xfconf/xfconf-cache.c:875
+#: ../xfconf/xfconf-cache.c:876
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Chiamata al DBus ResetProperty non riuscita"
@@ -31,13 +30,12 @@ msgstr "Impossibile creare la cartella di configurazione «%s»"
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr ""
-"Permesse negato mentre si stava modificando la proprietà «%s» nel canale «%s»"
+msgstr "Permesse negato mentre si stava modificando la proprietà «%s» nel canale «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "La proprietà «%s» non esiste nel canale «%s»"
@@ -96,18 +94,13 @@ msgstr "L'elemento radice («/») non è un nome di proprietà valido "
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"I nomi delle proprietà possono contenere solamente i seguenti caratteri "
-"ASCII: A-Z, a-z, 0-9, _, -, <, > e / come separatore"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "I nomi delle proprietà possono contenere solamente i seguenti caratteri ASCII: A-Z, a-z, 0-9, _, -, <, > e / come separatore"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"I nomi delle proprietà non possono avere due o più caratteri «/» consecutivi"
+msgstr "I nomi delle proprietà non possono avere due o più caratteri «/» consecutivi"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -121,39 +114,25 @@ msgstr "Il nome del canale non può essere una stringa vuota"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr ""
-"I nomi dei canali possono contenere solamente i seguenti caratteri ASCII: A-"
-"Z, a-z, 0-9,_ e -"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgstr "I nomi dei canali possono contenere solamente i seguenti caratteri ASCII: A-Z, a-z, 0-9,_ e -"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"Il nome della proprietà può solo essere vuoto o «/» se è stato specificato "
-"un ripristino ricorsivo"
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "Il nome della proprietà può solo essere vuoto o «/» se è stato specificato un ripristino ricorsivo"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Visualizza la versione di xfconfd"
 
 #: ../xfconfd/main.c:136
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"I backend di configurazione da utilizzare. Il primo specificato è aperto in "
-"lettura e scrittura; gli altri, in sola lettura."
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "I backend di configurazione da utilizzare. Il primo specificato è aperto in lettura e scrittura; gli altri, in sola lettura."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
-"Esegue il fork in background dopo l'avvio; utile solamente per eseguire "
-"delle prove"
+msgstr "Esegue il fork in background dopo l'avvio; utile solamente per eseguire delle prove"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -182,173 +161,192 @@ msgstr "Un altro demone di Xfconf è già in esecuzione"
 msgid "No backends could be started"
 msgstr "Nessun backend può essere avviato"
 
-#: ../xfconf-query/main.c:92
-#, c-format
-msgid "Property '%s' changed: %s\n"
-msgstr "Proprietà «%s» modificata: %s\n"
+#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
+msgid "set"
+msgstr ""
 
-#: ../xfconf-query/main.c:97
-#, c-format
-msgid "Property '%s' changed\n"
-msgstr "Proprietà «%s» modificata\n"
+#: ../xfconf-query/main.c:100
+msgid "reset"
+msgstr ""
 
-#: ../xfconf-query/main.c:102
-#, c-format
-msgid "Property '%s' removed\n"
-msgstr "Proprietà «%s» rimossa\n"
-
-#: ../xfconf-query/main.c:111
-#, c-format
-msgid "Export method not yet implemented"
-msgstr "Metodo di esportazione non ancora implementato"
-
-#: ../xfconf-query/main.c:125
-#, c-format
-msgid "Export not yet implemented"
-msgstr "Esportazione non ancora implementata"
-
-#: ../xfconf-query/main.c:191
+#: ../xfconf-query/main.c:176
 msgid "Version information"
 msgstr "Informazioni sulla versione"
 
-#: ../xfconf-query/main.c:195
+#: ../xfconf-query/main.c:180
 msgid "The channel to query/modify"
 msgstr "Il canale da interrogare o modificare"
 
-#: ../xfconf-query/main.c:199
+#: ../xfconf-query/main.c:184
 msgid "The property to query/modify"
 msgstr "La proprietà da interrogare o modificare"
 
-#: ../xfconf-query/main.c:203
+#: ../xfconf-query/main.c:188
 msgid "The new value to set for the property"
 msgstr "Il nuovo valore a cui impostare la proprietà"
 
-#: ../xfconf-query/main.c:207
+#: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Elenca le proprietà (o i canali se non è specificato -c)"
 
-#: ../xfconf-query/main.c:211
+#: ../xfconf-query/main.c:196
 msgid "Verbose output"
 msgstr "Output prolisso"
 
-#: ../xfconf-query/main.c:215
+#: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
 msgstr "Crea una nuova proprietà se non esiste già"
 
-#: ../xfconf-query/main.c:219
+#: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
 msgstr "Specifica il tipo di valore della proprietà"
 
-#: ../xfconf-query/main.c:223
+#: ../xfconf-query/main.c:208
 msgid "Reset property"
 msgstr "Ripristina la proprietà"
 
-#: ../xfconf-query/main.c:227
+#: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
 msgstr "Ricorsivo (usare con -r)"
 
-#: ../xfconf-query/main.c:231
+#: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
 msgstr "Forza array anche se è presente un solo elemento"
 
-#: ../xfconf-query/main.c:245
+#: ../xfconf-query/main.c:220
+msgid "Invert an existing boolean property"
+msgstr ""
+
+#: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
 msgstr "Controlla un canale per i cambiamenti di proprietà"
 
-#: ../xfconf-query/main.c:349
+#: ../xfconf-query/main.c:246
 #, c-format
-msgid "Start monitoring channel '%s':"
+msgid "Failed to init libxfconf: %s"
+msgstr ""
+
+#: ../xfconf-query/main.c:251
+msgid "- Xfconf commandline utility"
+msgstr ""
+
+#: ../xfconf-query/main.c:256
+#, c-format
+msgid "Option parsing failed: %s"
+msgstr ""
+
+#: ../xfconf-query/main.c:266
+msgid "The Xfce development team. All rights reserved."
+msgstr "Il gruppo di sviluppo di Xfce. Tutti i diritti riservati."
+
+#: ../xfconf-query/main.c:267
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr "Segnalare i bug a <%s>."
+
+#: ../xfconf-query/main.c:279
+msgid "Channels:"
+msgstr "Canali:"
+
+#: ../xfconf-query/main.c:295
+msgid "No property specified"
+msgstr "Nessuna proprietà specificata"
+
+#: ../xfconf-query/main.c:301
+msgid "--create and --reset options can not be used together"
+msgstr ""
+
+#: ../xfconf-query/main.c:307
+msgid "--create and --reset options can not be used together with --list"
+msgstr ""
+
+#: ../xfconf-query/main.c:319
+#, c-format
+msgid "Start monitoring channel \"%s\":"
 msgstr "Inizia a controllare il canale «%s»:"
 
-#: ../xfconf-query/main.c:371
-#, c-format
-msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr "La proprietà «%s» non esiste nel canale «%s».\n"
+#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:527
+msgid "Failed to set property"
+msgstr "Impossibile impostare la proprietà"
 
-#: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
+#: ../xfconf-query/main.c:357
+msgid "--toggle only works with boolean values"
+msgstr ""
+
+#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(sconosciuto)"
 
-#: ../xfconf-query/main.c:388
+#: ../xfconf-query/main.c:375
 #, c-format
-msgid ""
-"Value is an array with %d items:\n"
-"\n"
-msgstr ""
-"Il valore è un array con %d elementi:\n"
-"\n"
+msgid "Value is an array with %d items:"
+msgstr "Il valore è un array con %d elementi:"
 
-#: ../xfconf-query/main.c:411
+#: ../xfconf-query/main.c:399
 #, c-format
-msgid ""
-"Property \"%s\" does not exist on channel \"%s\".  If a new\n"
-"property should be created, use the --create option.\n"
-msgstr ""
-"La proprietà «%s» non esiste nel canale «%s». Se si intende\n"
-"creare una nuova proprietà, usare l'opzione --create.\n"
+msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
+msgstr "La proprietà «%s» non esiste nel canale «%s». Se si intende creare una nuova proprietà, usare l'opzione --create"
 
-#: ../xfconf-query/main.c:419
-#, c-format
-msgid "When creating a new property, the value type must be specified.\n"
-msgstr ""
-"Quando si crea una nuova proprietà, deve essere specificato il tipo di "
-"valore.\n"
+#: ../xfconf-query/main.c:407
+msgid "When creating a new property, the value type must be specified"
+msgstr "Quando si crea una nuova proprietà, deve essere specificato il tipo di valore"
 
-#: ../xfconf-query/main.c:429
-#, c-format
-msgid "Failed to get the existing type for the value.\n"
-msgstr "Impossibile ottenere il tipo esistente per il valore.\n"
+#: ../xfconf-query/main.c:417
+msgid "Failed to get the existing type for the value"
+msgstr "Impossibile ottenere il tipo esistente per il valore"
 
-#: ../xfconf-query/main.c:447
-#, c-format
-msgid "Unable to determine the type of the value.\n"
-msgstr "Impossibile determinare il tipo del valore.\n"
+#: ../xfconf-query/main.c:435
+msgid "Unable to determine the type of the value"
+msgstr "Impossibile determinare il tipo del valore"
 
-#: ../xfconf-query/main.c:453
-#, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
-msgstr ""
-"Deve essere specificato un tipo di valore per modificare un array in un "
-"valore singolo.\n"
+#: ../xfconf-query/main.c:441
+msgid "A value type must be specified to change an array into a single value"
+msgstr "Deve essere specificato un tipo di valore per modificare un array in un valore singolo"
 
-#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
+#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
-msgid "Unable to convert \"%s\" to type \"%s\"\n"
-msgstr "Impossibile convertire «%s» nel tipo «%s»\n"
+msgid "Unable to convert \"%s\" to type \"%s\""
+msgstr "Impossibile convertire «%s» nel tipo «%s»"
 
-#: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
+#: ../xfconf-query/main.c:483
 #, c-format
-msgid "Failed to set property.\n"
-msgstr "Impossibile impostare la proprietà.\n"
+msgid "There are %d new values, but only %d types could be determined"
+msgstr "Sono presenti %d nuovi valori, ma solo %d tipi possono essere determinati"
 
-#: ../xfconf-query/main.c:495
+#: ../xfconf-query/main.c:504
 #, c-format
-msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr ""
-"Sono presenti %d nuovi valori, ma solo %d tipi possono essere determinati.\n"
+msgid "Unable to determine type of value at index %d"
+msgstr "Impossibile determinare il tipo di valore all'indice %d"
 
-#: ../xfconf-query/main.c:516
+#: ../xfconf-query/main.c:554
 #, c-format
-msgid "Unable to determine type of value at index %d.\n"
-msgstr "Impossibile determinare il tipo di valore all'indice %d.\n"
+msgid "Channel \"%s\" contains no properties"
+msgstr "Il canale «%s» non contiene alcuna proprietà"
 
-#: ../xfconf-query/main.c:567
-#, c-format
-msgid "Channel '%s' contains no properties\n"
-msgstr "Il canale «%s» non contiene alcuna proprietà\n"
+#~ msgid "Property '%s' changed: %s\n"
+#~ msgstr "Proprietà «%s» modificata: %s\n"
 
-#: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
-#, c-format
-msgid "Could not create export file \"%s\": %s\n"
-msgstr "Impossibile creare il file da esportare «%s»: %s\n"
+#~ msgid "Property '%s' changed\n"
+#~ msgstr "Proprietà «%s» modificata\n"
 
-#: ../xfconf-query/main.c:612
-#, c-format
-msgid "Could not open import file \"%s\": %s\n"
-msgstr "Impossibile aprire il file da importare «%s»: %s\n"
+#~ msgid "Property '%s' removed\n"
+#~ msgstr "Proprietà «%s» rimossa\n"
 
-#: ../xfconf-query/main.c:621
-#, c-format
-msgid "Could not parse import file \"%s\": %s\n"
-msgstr "Impossibile analizzare il file da importare «%s»: %s\n"
+#~ msgid "Export method not yet implemented"
+#~ msgstr "Metodo di esportazione non ancora implementato"
+
+#~ msgid "Export not yet implemented"
+#~ msgstr "Esportazione non ancora implementata"
+
+#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
+#~ msgstr "La proprietà «%s» non esiste nel canale «%s».\n"
+
+#~ msgid "Could not create export file \"%s\": %s\n"
+#~ msgstr "Impossibile creare il file da esportare «%s»: %s\n"
+
+#~ msgid "Could not open import file \"%s\": %s\n"
+#~ msgstr "Impossibile aprire il file da importare «%s»: %s\n"
+
+#~ msgid "Could not parse import file \"%s\": %s\n"
+#~ msgstr "Impossibile analizzare il file da importare «%s»: %s\n"
