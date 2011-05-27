@@ -1,13 +1,14 @@
 # Dutch translations for xfconf package.
-# Copyright (C) 2009 THE xfconf'S COPYRIGHT HOLDER
+# Copyright (C) The Xfce development team.
 # This file is distributed under the same license as the xfconf package.
 # Stephan Arts <stephan@xfce.org>, 2009.
-#
+# Pjotr, 2011.
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-26 16:36+0000\n"
+"POT-Creation-Date: 2011-05-27 04:35+0000\n"
 "PO-Revision-Date: 2009-01-24 16:20+0100\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch\n"
