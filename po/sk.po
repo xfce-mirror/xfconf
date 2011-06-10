@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 4.6.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-06-10 04:36+0000\n"
-"PO-Revision-Date: 2011-06-10 10:05+0100\n"
+"PO-Revision-Date: 2011-06-10 10:11+0100\n"
 "Last-Translator: Tomáš Vadina <kyberdev@gmail.com>\n"
 "Language-Team: slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Nedá sa vytvoriť adresár konfigurácie \"%s\""
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Prístup pri zmene vlastnosti \"%s\" na kanáli \"%s\" bol zamietunutý"
+msgstr "Prístup pri zmene vlastnosti \"%s\" na kanále \"%s\" bol zamietunutý"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -38,7 +38,7 @@ msgstr "Prístup pri zmene vlastnosti \"%s\" na kanáli \"%s\" bol zamietunutý"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:654
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr "Vlastnosť \"%s\" na kanáli \"%s\" neexistuje"
+msgstr "Vlastnosť \"%s\" na kanále \"%s\" neexistuje"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
@@ -232,17 +232,17 @@ msgstr "Vynútiť pole iba v prípade jedného prvku"
 
 #: ../xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
-msgstr "Sledovať zmeny vlastností kanálu"
+msgstr "Sledovať zmeny vlastností kanála"
 
 #: ../xfconf-query/main.c:349
 #, c-format
 msgid "Start monitoring channel '%s':"
-msgstr "Zahájiť sledovanie kanálu „%s“:"
+msgstr "Zahájiť sledovanie kanála „%s“:"
 
 #: ../xfconf-query/main.c:371
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr "Vlastnosť \"%s\" neexistuje na kanáli \"%s\".\n"
+msgstr "Vlastnosť \"%s\" neexistuje na kanále \"%s\".\n"
 
 #: ../xfconf-query/main.c:379
 #: ../xfconf-query/main.c:397
@@ -263,7 +263,7 @@ msgstr ""
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
-msgstr "Vlastnosť \"%s\" neexistuje na kanáli \"%s\". Ak sa má nová vlastnosť vytvoriť, použite voľbu --create.\n"
+msgstr "Vlastnosť \"%s\" neexistuje na kanále \"%s\". Ak sa má nová vlastnosť vytvoriť, použite voľbu --create.\n"
 
 #: ../xfconf-query/main.c:419
 #, c-format
