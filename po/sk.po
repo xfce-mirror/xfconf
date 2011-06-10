@@ -2,20 +2,24 @@
 # Copyright (C) 2008 xfconf's Stephan Arts, Brian Tarricone
 # This file is distributed under the same license as the Xfconf package.
 # Robert Hartl <hartl.robert@gmail.com>, 2009.
+# Tomáš Vadina <kyberdev@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 15:52+0100\n"
-"PO-Revision-Date: 2009-09-17 20:09+0200\n"
-"Last-Translator: Robert Hartl <hartl.robert@gmail.com>\n"
+"POT-Creation-Date: 2011-06-08 04:13+0000\n"
+"PO-Revision-Date: 2011-06-10 10:03+0100\n"
+"Last-Translator: Tomáš Vadina <kyberdev@gmail.com>\n"
 "Language-Team: slovak <sk-i18n@lists.linux.sk>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8-bit\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
+"X-Poedit-Language: Slovak\n"
+"X-Poedit-Country: SLOVAKIA\n"
 
-#: ../xfconf/xfconf-cache.c:875
+#: ../xfconf/xfconf-cache.c:876
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Nepodarilo sa volanie DBus na ResetProperty"
@@ -29,15 +33,16 @@ msgstr "Nedá sa vytvoriť adresár konfigurácie \"%s\""
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Prístup pri zmene vlastnosti \"%s\" na kanáli \"%s\" bol zamietunutý"
+msgstr "Prístup pri zmene vlastnosti \"%s\" na kanále \"%s\" bol zamietnutý"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:654
+#: ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr "Vlastnosť \"%s\" na kanáli \"%s\" neexistuje"
+msgstr "Vlastnosť \"%s\" na kanále \"%s\" neexistuje"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
@@ -69,12 +74,12 @@ msgstr "Neplatný typ pre <value>: \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
-msgstr "Kánal \"%s\" neexistuje"
+msgstr "Kanál \"%s\" neexistuje"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "Nemožno zapísať kanál \"%s\": %s"
+msgstr "Nie je možné zapísať kanál \"%s\": %s"
 
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
@@ -93,18 +98,13 @@ msgstr "Koreňový element ('/') nie je platný názov vlastnosti"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Názvy vlastností môžu obsahovať iba ASCII znaky A-Z, a-z, 0-9, '_', '-', '<' "
-"a '>' a tiež '/' ako oddeľovač"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Názvy vlastností môžu obsahovať iba ASCII znaky A-Z, a-z, 0-9, '_', '-', '<' a '>' a tiež '/' ako oddeľovač"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Názvy vlastností nemôžu obsahovať dva a viac po sebe nasledujúcich znakov '/'"
+msgstr "Názvy vlastností nemôžu obsahovať dva a viac po sebe nasledujúcich znakov '/'"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -118,33 +118,25 @@ msgstr "Názov kanála nemôže byť prázdny reťazec"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
 msgstr "Názvy kanálov môžu obsahovať iba ASCII znaky A-Z, a-z, 0-9, '_' a '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"Názov vlastnosti môže byť prázdny alebo \"/\" iba ak bol spresnený "
-"rekurzívny reset"
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "Názov vlastnosti môže byť prázdny alebo \"/\" iba ak bol spresnený rekurzívny reset"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
-msgstr "Zobrazí verziu xfconfd"
+msgstr "Zobrazí verziu xfconfd."
 
 #: ../xfconfd/main.c:136
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "Nastavovať backendy pre použitie. Prvý zadaný backend je otvorený pre čítanie a zápis, ostatné iba pre čítanie."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "Po spustení preniesť proces do pozadia; táto možnosť je užitočná iba pre testovanie"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -173,168 +165,196 @@ msgstr "Už je spustený iný démon služby Xfconf"
 msgid "No backends could be started"
 msgstr "Nemohli byť spustené žiadne backendy"
 
-#: ../xfconf-query/main.c:92
-#, c-format
-msgid "Property '%s' changed: %s\n"
-msgstr "Vlastnosť '%s' bola zmenená: %s\n"
+#: ../xfconf-query/main.c:90
+#: ../xfconf-query/main.c:95
+msgid "set"
+msgstr "nastaviť"
 
-#: ../xfconf-query/main.c:97
-#, c-format
-msgid "Property '%s' changed\n"
-msgstr "Vlastnosť '%s' bola zmenená\n"
+#: ../xfconf-query/main.c:100
+msgid "reset"
+msgstr "vymazať"
 
-#: ../xfconf-query/main.c:102
-#, c-format
-msgid "Property '%s' removed\n"
-msgstr "Vlastnosť '%s' bola odstránená\n"
-
-#: ../xfconf-query/main.c:111
-#, c-format
-msgid "Export method not yet implemented"
-msgstr "Exportná metóda zatiaľ nebola implementovaná"
-
-#: ../xfconf-query/main.c:125
-#, c-format
-msgid "Export not yet implemented"
-msgstr "Export zatiaľ nebol implementovaný "
-
-#: ../xfconf-query/main.c:191
+#: ../xfconf-query/main.c:176
 msgid "Version information"
 msgstr "Informácie o verzii"
 
-#: ../xfconf-query/main.c:195
+#: ../xfconf-query/main.c:180
 msgid "The channel to query/modify"
-msgstr ""
+msgstr "Kanál pre zaslanie požiadavky/zmeny"
 
-#: ../xfconf-query/main.c:199
+#: ../xfconf-query/main.c:184
 msgid "The property to query/modify"
-msgstr ""
+msgstr "Vlastnosť pre zaslanie požiadavky/zmeny"
 
-#: ../xfconf-query/main.c:203
+#: ../xfconf-query/main.c:188
 msgid "The new value to set for the property"
 msgstr "Nová hodnota pre nastavenie vlastnosti"
 
-#: ../xfconf-query/main.c:207
+#: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Zoznam vlastností (alebo kanálov, ak nie je zadaný parameter -c)"
 
-#: ../xfconf-query/main.c:211
+#: ../xfconf-query/main.c:196
 msgid "Verbose output"
 msgstr "Podrobný výstup"
 
-#: ../xfconf-query/main.c:215
+#: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
 msgstr "Vytvorí novú vlastnosť, ak ešte neexistuje"
 
-#: ../xfconf-query/main.c:219
+#: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
 msgstr "Špecifikovať typ hodnoty vlastnosti"
 
-#: ../xfconf-query/main.c:223
+#: ../xfconf-query/main.c:208
 msgid "Reset property"
 msgstr "Reštartovať vlastnosť"
 
-#: ../xfconf-query/main.c:227
+#: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
 msgstr "Rekurzívne (použiť s parametrom -r)"
 
-#: ../xfconf-query/main.c:231
+#: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
 msgstr "Vynútiť pole iba v prípade jedného prvku"
 
-#: ../xfconf-query/main.c:245
+#: ../xfconf-query/main.c:220
+msgid "Invert an existing boolean property"
+msgstr "Invertovať existujúce vlastnosti dátového typu boolean"
+
+#: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
-msgstr "Sledovať zmeny vlastností kanálu"
+msgstr "Sledovať zmeny vlastností kanála"
 
-#: ../xfconf-query/main.c:349
+#: ../xfconf-query/main.c:246
 #, c-format
-msgid "Start monitoring channel '%s':"
-msgstr "Zahájiť sledovanie kanálu „%s“:"
+msgid "Failed to init libxfconf: %s"
+msgstr "Inicializácia libxfconf zlyhala: %s"
 
-#: ../xfconf-query/main.c:371
+#: ../xfconf-query/main.c:251
+msgid "- Xfconf commandline utility"
+msgstr "- nástroj príkazového riadka Xfconf"
+
+#: ../xfconf-query/main.c:256
 #, c-format
-msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr "Vlastnosť \"%s\" neexistuje na kanáli \"%s\".\n"
+msgid "Option parsing failed: %s"
+msgstr "Možnosť analýzy zlyhala: %s"
 
-#: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
+#: ../xfconf-query/main.c:266
+msgid "The Xfce development team. All rights reserved."
+msgstr "Vývojový tím Xfce. Všetky práva vyhradené."
+
+#: ../xfconf-query/main.c:267
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr "Chyby hláste na <%s>."
+
+#: ../xfconf-query/main.c:279
+msgid "Channels:"
+msgstr "Kanály:"
+
+#: ../xfconf-query/main.c:295
+msgid "No property specified"
+msgstr "Vlastnosť neurčená"
+
+#: ../xfconf-query/main.c:301
+msgid "--create and --reset options can not be used together"
+msgstr "--create a --reset možnosti nemôžu byť použité súčasne"
+
+#: ../xfconf-query/main.c:307
+msgid "--create and --reset options can not be used together with --list"
+msgstr "--create a --reset možnosti nemôžu byť použité súčasne s --list"
+
+#: ../xfconf-query/main.c:319
+#, c-format
+msgid "Start monitoring channel \"%s\":"
+msgstr "Zahájiť sledovanie kanála \"%s\":"
+
+#: ../xfconf-query/main.c:353
+#: ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:527
+msgid "Failed to set property"
+msgstr "Nepodarilo sa nastaviť vlastnosti"
+
+#: ../xfconf-query/main.c:357
+msgid "--toggle only works with boolean values"
+msgstr "--toggle funguje iba s hodnotami dátového typu boolean"
+
+#: ../xfconf-query/main.c:366
+#: ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(neznámy)"
 
-#: ../xfconf-query/main.c:388
+#: ../xfconf-query/main.c:375
 #, c-format
-msgid ""
-"Value is an array with %d items:\n"
-"\n"
-msgstr ""
-"Hodnota je pole %d položiek:\n"
-"\n"
+msgid "Value is an array with %d items:"
+msgstr "Hodnota je pole s %d položkami:"
 
-#: ../xfconf-query/main.c:411
+#: ../xfconf-query/main.c:399
 #, c-format
-msgid ""
-"Property \"%s\" does not exist on channel \"%s\".  If a new\n"
-"property should be created, use the --create option.\n"
-msgstr ""
-"Vlastnosť \"%s\" neexistuje na kanáli \"%s\". Ak sa má nová vlastnosť "
-"vytvoriť, použite voľbu --create.\n"
+msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
+msgstr "Vlastnosť \"%s\" neexistuje na kanále \"%s\". Ak sa má nová vlastnosť vytvoriť, použite možnosť --create"
 
-#: ../xfconf-query/main.c:419
-#, c-format
-msgid "When creating a new property, the value type must be specified.\n"
-msgstr "Pri vytváraní novej vlastnosti musí byť spresnený typ hodnoty.\n"
+#: ../xfconf-query/main.c:407
+msgid "When creating a new property, the value type must be specified"
+msgstr "Pri vytváraní novej vlastnosti musí byť spresnený typ hodnoty"
 
-#: ../xfconf-query/main.c:429
-#, c-format
-msgid "Failed to get the existing type for the value.\n"
-msgstr "Nepodarilo sa získať existujúci typ pre hodnoty.\n"
+#: ../xfconf-query/main.c:417
+msgid "Failed to get the existing type for the value"
+msgstr "Nepodarilo sa získať existujúci typ pre hodnotu"
 
-#: ../xfconf-query/main.c:447
-#, c-format
-msgid "Unable to determine the type of the value.\n"
-msgstr "Nedá sa určiť typ hodnoty.\n"
+#: ../xfconf-query/main.c:435
+msgid "Unable to determine the type of the value"
+msgstr "Nedá sa určiť typ hodnoty"
 
-#: ../xfconf-query/main.c:453
-#, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
-msgstr "Pre zmenu poľa na hodnotu je nutné spresniť typ hodnoty.\n"
+#: ../xfconf-query/main.c:441
+msgid "A value type must be specified to change an array into a single value"
+msgstr "Pre zmenu poľa na hodnotu je nutné spresniť typ hodnoty"
 
-#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
+#: ../xfconf-query/main.c:451
+#: ../xfconf-query/main.c:512
 #, c-format
-msgid "Unable to convert \"%s\" to type \"%s\"\n"
-msgstr "Nemožno skonvertovať \"%s\" na typ \"%s\"\n"
+msgid "Unable to convert \"%s\" to type \"%s\""
+msgstr "Nie je možné skonvertovať \"%s\" na typ \"%s\""
 
-#: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
+#: ../xfconf-query/main.c:483
 #, c-format
-msgid "Failed to set property.\n"
-msgstr "Nepodarilo sa nastaviť vlastnosti.\n"
+msgid "There are %d new values, but only %d types could be determined"
+msgstr "Existuje %d nových hodnôt, ale je možné určiť iba %d typov"
 
-#: ../xfconf-query/main.c:495
+#: ../xfconf-query/main.c:504
 #, c-format
-msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr "Existuje %d nových hodnôt, ale je možné určiť iba %d typov\n"
+msgid "Unable to determine type of value at index %d"
+msgstr "Nie je možné určiť typ hodnoty na indexe %d."
 
-#: ../xfconf-query/main.c:516
+#: ../xfconf-query/main.c:554
 #, c-format
-msgid "Unable to determine type of value at index %d.\n"
-msgstr "Nemožno určiť typ hodnoty na indexe %d.\n"
+msgid "Channel \"%s\" contains no properties"
+msgstr "Kanál \"%s\" neobsahuje žiadne vlastnosti"
 
-#: ../xfconf-query/main.c:567
-#, c-format
-msgid "Channel '%s' contains no properties\n"
-msgstr "Kanál „%s“ neobsahuje žiadne vlastnosti\n"
+#~ msgid "Property '%s' changed: %s\n"
+#~ msgstr "Vlastnosť '%s' bola zmenená: %s\n"
 
-#: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
-#, c-format
-msgid "Could not create export file \"%s\": %s\n"
-msgstr "Nedá sa vytvoriť súbor súbor pre export \"%s\": %s\n"
+#~ msgid "Property '%s' changed\n"
+#~ msgstr "Vlastnosť '%s' bola zmenená\n"
 
-#: ../xfconf-query/main.c:612
-#, c-format
-msgid "Could not open import file \"%s\": %s\n"
-msgstr "Nedá sa otvoriť súbor pre import \"%s\": %s\n"
+#~ msgid "Property '%s' removed\n"
+#~ msgstr "Vlastnosť '%s' bola odstránená\n"
 
-#: ../xfconf-query/main.c:621
-#, c-format
-msgid "Could not parse import file \"%s\": %s\n"
-msgstr "Nedá sa spracovať súbor pre import \"%s\": %s\n"
+#~ msgid "Export method not yet implemented"
+#~ msgstr "Exportná metóda zatiaľ nebola implementovaná"
+
+#~ msgid "Export not yet implemented"
+#~ msgstr "Export zatiaľ nebol implementovaný "
+
+#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
+#~ msgstr "Vlastnosť \"%s\" neexistuje na kanáli \"%s\".\n"
+
+#~ msgid "Could not create export file \"%s\": %s\n"
+#~ msgstr "Nedá sa vytvoriť súbor pre export \"%s\": %s\n"
+
+#~ msgid "Could not open import file \"%s\": %s\n"
+#~ msgstr "Nedá sa otvoriť súbor pre import \"%s\": %s\n"
+
+#~ msgid "Could not parse import file \"%s\": %s\n"
+#~ msgstr "Nedá sa spracovať súbor pre import \"%s\": %s\n"
