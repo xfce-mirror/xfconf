@@ -100,7 +100,7 @@ _xfconf_gtype_from_string(const gchar *type)
     return G_TYPE_INVALID;
 }
 
-G_CONST_RETURN gchar *
+const gchar *
 _xfconf_string_from_gtype(GType gtype)
 {
     switch(gtype) {

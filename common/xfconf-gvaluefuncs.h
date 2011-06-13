@@ -26,7 +26,7 @@
 G_BEGIN_DECLS
 
 G_GNUC_INTERNAL GType _xfconf_gtype_from_string(const gchar *type);
-G_GNUC_INTERNAL G_CONST_RETURN gchar *_xfconf_string_from_gtype(GType gtype);
+G_GNUC_INTERNAL const gchar *_xfconf_string_from_gtype(GType gtype);
 
 G_GNUC_INTERNAL gboolean _xfconf_gvalue_from_string(GValue *value,
                                                     const gchar *str);
