@@ -267,9 +267,9 @@ msgid "--create and --reset options can not be used together with --list"
 msgstr "--create und --reset können nicht gleichzeitig mit --list benutzt werden"
 
 #: ../xfconf-query/main.c:319
-#, fuzzy, c-format
+#, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "Kanal »%s« wird überwacht:"
+msgstr "Überwachung von Kanal »%s« wird gestartet:"
 
 #: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
@@ -297,24 +297,20 @@ msgstr ""
 "Eigenschaft anzulegen, nutzen Sie die Option --create«."
 
 #: ../xfconf-query/main.c:407
-#, fuzzy
 msgid "When creating a new property, the value type must be specified"
-msgstr "Wenn Sie eine neue Eigenschaft anlegen, müssen Sie den Wertetyp angeben.\n"
+msgstr "Wenn Sie eine neue Eigenschaft anlegen, müssen Sie den Wertetyp angeben."
 
 #: ../xfconf-query/main.c:417
-#, fuzzy
 msgid "Failed to get the existing type for the value"
-msgstr "Fehler beim Auslesen des vorhandenen Wertetyps.\n"
+msgstr "Fehler beim Auslesen des vorhandenen Wertetyps."
 
 #: ../xfconf-query/main.c:435
-#, fuzzy
 msgid "Unable to determine the type of the value"
-msgstr "Wertetyp kann nicht bestimmt werden\n"
+msgstr "Wertetyp kann nicht bestimmt werden"
 
 #: ../xfconf-query/main.c:441
-#, fuzzy
 msgid "A value type must be specified to change an array into a single value"
-msgstr "Sie müssen einen Wertetyp angeben, um ein Array in einen einzigen Wert konvertieren zu können.\n"
+msgstr "Sie müssen einen Wertetyp angeben, um ein Array in einen einzigen Wert konvertieren zu können."
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
