@@ -168,7 +168,7 @@ msgstr ""
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
-msgstr ""
+msgstr "Remise à zéro"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
@@ -225,7 +225,7 @@ msgstr "Surveiller les changements de propriétés d'un canal"
 #: ../xfconf-query/main.c:246
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr ""
+msgstr "Echec de l'initialisation de libxfconf : %s"
 
 #: ../xfconf-query/main.c:251
 msgid "- Xfconf commandline utility"
