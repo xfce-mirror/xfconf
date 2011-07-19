@@ -163,12 +163,10 @@ msgid "No backends could be started"
 msgstr "No se pudo iniciar ningún motor"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
-#, fuzzy
 msgid "set"
-msgstr "conjunto"
+msgstr "ajustar"
 
 #: ../xfconf-query/main.c:100
-#, fuzzy
 msgid "reset"
 msgstr "reajustar"
 
@@ -217,9 +215,8 @@ msgid "Force array even if only one element"
 msgstr "Forzar como vector incluso si sólo hay un elemento"
 
 #: ../xfconf-query/main.c:220
-#, fuzzy
 msgid "Invert an existing boolean property"
-msgstr "Invertir una propiedad booleana existentes"
+msgstr "Invertir una propiedad booleana existente"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
@@ -228,11 +225,11 @@ msgstr "Monitorizar un canal para encontrar cambios de propiedades"
 #: ../xfconf-query/main.c:246
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr ""
+msgstr "Falló al iniciar libxfconf: %s"
 
 #: ../xfconf-query/main.c:251
 msgid "- Xfconf commandline utility"
-msgstr ""
+msgstr "- Xfconf utilidad de línea de comandos"
 
 #: ../xfconf-query/main.c:256
 #, c-format
@@ -241,12 +238,12 @@ msgstr ""
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
-msgstr ""
+msgstr "El equipo de desarrollo de Xfce. Todos los derechos reservados."
 
 #: ../xfconf-query/main.c:267
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr ""
+msgstr "Por favor reporte errores a <%s>"
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
@@ -254,41 +251,38 @@ msgstr "Canales:"
 
 #: ../xfconf-query/main.c:295
 msgid "No property specified"
-msgstr ""
+msgstr "No hay propiedad especificada"
 
 #: ../xfconf-query/main.c:301
 msgid "--create and --reset options can not be used together"
-msgstr ""
+msgstr "Las opciones --create y --reset no se pueden usar juntas"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
+msgstr "Las opciones --create y --reset no se pueden usar juntas con --list"
 
 #: ../xfconf-query/main.c:319
-#, fuzzy, c-format
+#, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "Comenzar monitorización del canal '%s':"
+msgstr "Comenzar monitorización del canal \"%s\":"
 
 #: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
-#, fuzzy
 msgid "Failed to set property"
-msgstr "Fallo al establecer propiedad.\n"
+msgstr "Fallo al establecer propiedad."
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
-msgstr ""
+msgstr "--toggle únicamente funciona con valores booleanos"
 
 #: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(desconocido)"
 
 #: ../xfconf-query/main.c:375
-#, fuzzy, c-format
+#, c-format
 msgid "Value is an array with %d items:"
-msgstr ""
-"El valor es un vector con %d elementos:\n"
-"\n"
+msgstr "El valor es un vector con %d elementos:"
 
 #: ../xfconf-query/main.c:399
 #, fuzzy, c-format
@@ -303,14 +297,12 @@ msgid "When creating a new property, the value type must be specified"
 msgstr "Al crear una nueva propiedad se debe especificar el tipo del valor.\n"
 
 #: ../xfconf-query/main.c:417
-#, fuzzy
 msgid "Failed to get the existing type for the value"
-msgstr "Fallo al obtener el tipo existente para el valor.\n"
+msgstr "Fallo al obtener el tipo existente para el valor."
 
 #: ../xfconf-query/main.c:435
-#, fuzzy
 msgid "Unable to determine the type of the value"
-msgstr "Imposible determinar el tipo del valor.\n"
+msgstr "Imposible determinar el tipo del valor."
 
 #: ../xfconf-query/main.c:441
 #, fuzzy
@@ -318,9 +310,9 @@ msgid "A value type must be specified to change an array into a single value"
 msgstr "Se debe especificar un tipo de valor para transformar un vector en un único valor.\n"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "Imposible convertir \"%s\" a tipo \"%s\"\n"
+msgstr "Imposible convertir \"%s\" al tipo \"%s\""
 
 #: ../xfconf-query/main.c:483
 #, fuzzy, c-format
@@ -328,14 +320,14 @@ msgid "There are %d new values, but only %d types could be determined"
 msgstr "Hay %d nuevos valores, pero sólo se pudieron determinar %d tipos.\n"
 
 #: ../xfconf-query/main.c:504
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "Imposible determinar el tipo de valor para el índice %d.\n"
+msgstr "Imposible determinar el tipo de valor para el índice %d."
 
 #: ../xfconf-query/main.c:554
-#, fuzzy, c-format
+#, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "El canal '%s' no contiene ninguna propiedad\n"
+msgstr "El canal \\'%s'\\ no contiene ninguna propiedad"
 
 #~ msgid "Property '%s' changed: %s\n"
 #~ msgstr "La propiedad '%s' ha cambiado: %s\n"
