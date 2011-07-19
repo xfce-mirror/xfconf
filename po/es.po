@@ -234,7 +234,7 @@ msgstr "- Xfconf utilidad de línea de comandos"
 #: ../xfconf-query/main.c:256
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr ""
+msgstr "Falló el análisis de la opción:% s"
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
@@ -285,16 +285,13 @@ msgid "Value is an array with %d items:"
 msgstr "El valor es un vector con %d elementos:"
 
 #: ../xfconf-query/main.c:399
-#, fuzzy, c-format
+#, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
-msgstr ""
-"La propiedad \"%s\" no existe en el canal \"%s\". Si desea\n"
-"crear una nueva, use la opción --create.\n"
+msgstr "La propiedad \"%s\" no existe en el canal \"%s\". Si desea crear una nueva, use la opción --create."
 
 #: ../xfconf-query/main.c:407
-#, fuzzy
 msgid "When creating a new property, the value type must be specified"
-msgstr "Al crear una nueva propiedad se debe especificar el tipo del valor.\n"
+msgstr "Al crear una nueva propiedad se debe especificar el tipo del valor."
 
 #: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
@@ -305,9 +302,8 @@ msgid "Unable to determine the type of the value"
 msgstr "Imposible determinar el tipo del valor."
 
 #: ../xfconf-query/main.c:441
-#, fuzzy
 msgid "A value type must be specified to change an array into a single value"
-msgstr "Se debe especificar un tipo de valor para transformar un vector en un único valor.\n"
+msgstr "Se debe especificar un tipo de valor para transformar un vector en un único valor."
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
@@ -315,9 +311,9 @@ msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "Imposible convertir \"%s\" al tipo \"%s\""
 
 #: ../xfconf-query/main.c:483
-#, fuzzy, c-format
+#, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "Hay %d nuevos valores, pero sólo se pudieron determinar %d tipos.\n"
+msgstr "Hay %d nuevos valores, pero sólo se pudieron determinar %d tipos."
 
 #: ../xfconf-query/main.c:504
 #, c-format
