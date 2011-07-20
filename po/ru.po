@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-19 10:14+0000\n"
-"PO-Revision-Date: 2011-07-19 18:05+0300\n"
+"PO-Revision-Date: 2011-07-20 10:51+0300\n"
 "Last-Translator: Artem Zolochevskiy <artem.zolochevskiy@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -309,7 +309,7 @@ msgstr "Не удалось определить тип значения"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr "Для преобразования массива в одно значение значения должен быть задан тип значения "
+msgstr "Для преобразования массива в одно значение должен быть задан тип значения"
 
 #: ../xfconf-query/main.c:451
 #: ../xfconf-query/main.c:512
