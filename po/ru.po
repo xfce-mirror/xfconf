@@ -1,27 +1,28 @@
-# Russian translation of xfconf.
-# Copyright (C) 2009 Ilya Shestopalov
+# Russian translations for xfconf package.
+# Copyright (C) 2009-2011 The Xfce development team.
 # This file is distributed under the same license as the xfconf package.
-# Ilya <yast4ik@yahoo.com>, 2009.
+# Ilya Shestopalov <yast4ik@yahoo.com>, 2009.
+# Denis Koryavov <dkoryavov@yandex.ru>, 2010.
+# Artem Zolochevskiy <artem.zolochevskiy@gmail.com>, 2011.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: xfconf 4.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 15:52+0100\n"
-"PO-Revision-Date: 2009-01-31 12:57+0300\n"
-"Last-Translator: Ilya Shestopalov <yast4ik@yahoo.com>\n"
+"POT-Creation-Date: 2011-07-20 04:37+0000\n"
+"PO-Revision-Date: 2011-07-20 10:34+0300\n"
+"Last-Translator: Artem Zolochevskiy <artem.zolochevskiy@gmail.com>\n"
 "Language-Team: Russian\n"
-"Language: \n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../xfconf/xfconf-cache.c:875
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "Не удалось удалить свойство через DBus"
+msgstr "Не удалось выполнить ResetProperty через DBus"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
@@ -32,7 +33,7 @@ msgstr "Не удалось создать директорию конфигур
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Недостаточно прав для изменения свойств \"%s\" на канале \"%s\""
+msgstr "Недостаточно прав для изменения свойства \"%s\" на канале \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -45,7 +46,7 @@ msgstr "Свойство \"%s\" отсутствует на канале \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr "Не получилось удалить канал \"%s\": %s"
+msgstr "Не удалось удалить канал \"%s\": %s"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
@@ -56,7 +57,7 @@ msgstr "Неправильный тип для <property>: \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "Не получилось  определить значение типа \"%s\" из \"%s\""
+msgstr "Не удалось определить значение типа \"%s\" из \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
@@ -87,33 +88,27 @@ msgstr "Не удалось найти бэкенд Xfconf типа \"%s\""
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Названия свойств должны начинаться с символа «/»"
+msgstr "Названия свойств должны начинаться с символа '/'"
 
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr "Элемент root («/») не является правильным названием для свойства"
+msgstr "Элемент root ('/') не является правильным названием для свойства"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Названия свойств могут включать только символы ASCII A-Z, a-z, 0-9, '_', "
-"'-', '<' и '>', так же как и «/» как разделитель"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Названия свойств могут включать только символы ASCII A-Z, a-z, 0-9, '_', '-', '<' и '>', так же как и '/' как разделитель"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Названия свойств не могут включать более два или более последовательных "
-"знаков «/»"
+msgstr "Названия свойств не могут включать более двух и более последовательных знаков '/'"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Названия свойств не могут заканчиваться на «/»"
+msgstr "Названия свойств не могут заканчиваться на '/'"
 
 #: ../xfconfd/xfconf-backend.c:163
 #, c-format
@@ -122,37 +117,25 @@ msgstr "Название канала не может быть пустой ст
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr ""
-"Названия каналов могут включать только символы ASCII A-Z, a-z, 0-9, '_', и "
-"'-'"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgstr "Названия каналов могут включать только символы ASCII A-Z, a-z, 0-9, '_' и '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"Название свойства может быть только пустым или \"/\" если был выбран "
-"рекурсивный сброс"
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "Название свойства может быть только пустым или \"/\" если был выбран рекурсивный сброс"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
-msgstr "Показать версию Xfconf"
+msgstr "Показать версию Xfconf."
 
 #: ../xfconfd/main.c:136
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Бэкенд конфигурации для использования. Первый указанный бэкенд открыт для "
-"чтения/записи; остальные только для чтения"
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "Бэкенд конфигурации для использования. Первый указанный бэкенд открыт для чтения/записи, остальные только для чтения."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr "Поместить на задний план после запуска (полезно для тестовых целей)"
+msgstr "Выполнять в фоновом режиме после запуска (полезно только для тестовых целей)"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -164,12 +147,12 @@ msgstr "Диспетчер конфигурации Xfce"
 
 #: ../xfconfd/main.c:167
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr "Отправляйте сообщения об ошибке на http://bugs.xfce.org/\n"
+msgstr "Отправляйте сообщения об ошибках на http://bugs.xfce.org/\n"
 
 #: ../xfconfd/main.c:170
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr "Невозможно определить опции: %s\n"
+msgstr "Ошибка разбора синтаксиса: %s\n"
 
 #: ../xfconfd/xfconf-daemon.c:482
 #, c-format
@@ -232,7 +215,7 @@ msgstr "Подробный вывод"
 
 #: ../xfconf-query/main.c:215
 msgid "Create a new property if it does not already exist"
-msgstr "Создать новое свойство, если оно уже не существует"
+msgstr "Создать новое свойство, если оно ещё не существует"
 
 #: ../xfconf-query/main.c:219
 msgid "Specify the property value type"
@@ -262,9 +245,10 @@ msgstr "Начать следить за каналом '%s':"
 #: ../xfconf-query/main.c:371
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr "Свойство \"%s\" не существует на канале \"%s\".\n"
+msgstr "Свойство \"%s\" отсутствует на канале \"%s\".\n"
 
-#: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
+#: ../xfconf-query/main.c:379
+#: ../xfconf-query/main.c:397
 msgid "(unknown)"
 msgstr "(неизвестно)"
 
@@ -283,13 +267,13 @@ msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
 msgstr ""
-"Свойство \"%s\" не существует на канале \"%s\". Если новое\n"
-"свойство должно быть создано, то используйте --create option.\n"
+"Свойство \"%s\" не существует на канале \"%s\". Если должно\n"
+"быть создано новое свойство, то используйте параметр --create.\n"
 
 #: ../xfconf-query/main.c:419
 #, c-format
 msgid "When creating a new property, the value type must be specified.\n"
-msgstr "Когда создаёте новое свойство, указывайте тип значения.\n"
+msgstr "При создании нового свойства, указывайте тип значения.\n"
 
 #: ../xfconf-query/main.c:429
 #, c-format
@@ -303,18 +287,17 @@ msgstr "Не удалось определить тип значения.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
-msgstr ""
-"Тип значения должен быть установлен для преобразования массива в одно "
-"значение.\n"
+msgid "A value type must be specified to change an array into a single value.\n"
+msgstr "Для преобразования массива в одно значение значения должен быть задан тип значения.\n"
 
-#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
+#: ../xfconf-query/main.c:463
+#: ../xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
 msgstr "Не удалось преобразовать \"%s\" в тип \"%s\"\n"
 
-#: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
+#: ../xfconf-query/main.c:470
+#: ../xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
 msgstr "Не удалось установить свойство.\n"
@@ -322,7 +305,7 @@ msgstr "Не удалось установить свойство.\n"
 #: ../xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr "Указано %d новых значений, но только %d типов могут быть определены.\n"
+msgstr "Имеется %d новых значений, но определены могут быть только %d типов.\n"
 
 #: ../xfconf-query/main.c:516
 #, c-format
@@ -334,7 +317,8 @@ msgstr "Не удалось определить тип значения в ин
 msgid "Channel '%s' contains no properties\n"
 msgstr "Канал '%s' не имеет свойств\n"
 
-#: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
+#: ../xfconf-query/main.c:583
+#: ../xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
 msgstr "Не удалось создать файл экспорта \"%s\": %s\n"
@@ -348,9 +332,3 @@ msgstr "Не удалось открыть файл импорта \"%s\": %s\n"
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
 msgstr "Не удалось прочитать структуру файла импорта \"%s\": %s\n"
-
-#~ msgid "Export channel to file"
-#~ msgstr "Экспортировать канал в файл"
-
-#~ msgid "Import channel from file"
-#~ msgstr "Импортировать канал из файла"
