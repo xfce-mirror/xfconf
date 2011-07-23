@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-05 10:14+0000\n"
+"POT-Creation-Date: 2011-07-22 22:13+0000\n"
 "PO-Revision-Date: 2009-01-29 18:34+0100\n"
 "Last-Translator: Mike Massonnet <mmassonnet@gmail.com>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
@@ -163,8 +163,9 @@ msgid "No backends could be started"
 msgstr "Aucun backend n'a pu être démarré"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
+#, fuzzy
 msgid "set"
-msgstr ""
+msgstr "Modifier"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
@@ -215,8 +216,9 @@ msgid "Force array even if only one element"
 msgstr "Forcer l'utilisation d'un ensemble même si il n'y a q'un élément"
 
 #: ../xfconf-query/main.c:220
+#, fuzzy
 msgid "Invert an existing boolean property"
-msgstr ""
+msgstr "Inverser une propriété booléenne existante"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
@@ -232,9 +234,9 @@ msgid "- Xfconf commandline utility"
 msgstr ""
 
 #: ../xfconf-query/main.c:256
-#, c-format
+#, c-format, fuzzy
 msgid "Option parsing failed: %s"
-msgstr ""
+msgstr "Analyse de l'option échouée : %s"
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
