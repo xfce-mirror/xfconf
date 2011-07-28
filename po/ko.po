@@ -21,18 +21,18 @@ msgstr ""
 #: ../xfconf/xfconf-cache.c:875
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr ""
+msgstr "ResetProperty DBus 콜을 만드는데 실패했습니다"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr ""
+msgstr "환경설정 디렉토리 \"%s\"을(를) 생성할 수 없습니다"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr ""
+msgstr "프로퍼티 \"%s\"을(를) 채널 \"%s\"에서 수정하는 동안 권한이 거부되었습니다"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -40,39 +40,39 @@ msgstr ""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:654
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr ""
+msgstr "프로퍼티 \"%s\"은(는) 채널 \"%s\"에 존재하지 않습니다"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr ""
+msgstr "채널 \"%s\"을(를) 삭제할 수 없습니다: %s"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr ""
+msgstr "잘못된 <property> 유형입니다: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr ""
+msgstr "유형 \"%s\"의 값을 \"%s\"(으)로부터 해석할 수 없습니다"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr ""
+msgstr "<value>의 속성 유형은 배열이 될 수 없습니다"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr ""
+msgstr "잘못된 <value> 유형입니다: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
-msgstr ""
+msgstr "채널 \"%s\"이(가) 존재하지 않습니다"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
@@ -82,172 +82,171 @@ msgstr "채널 \"%s\"에 기록할 수 없습니다: %s"
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr ""
+msgstr "유형 \"%s\"에 대한 Xfconf 백엔드를 찾을 수 없습니다"
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr ""
+msgstr "프로퍼티 이름은 '/' 문자로 시작해야 합니다"
 
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr ""
+msgstr "루트 엘리먼트 ('/') 는 올바른 프로퍼티 이름이 아닙니다"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
 msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr ""
+msgstr "프로퍼티 이름은 ASCII 문자 A-Z, a-z, 0-9, '_', '-', '<' 그리고 '>', '/' 와 같은 구분자만이 포함될 수 있습니다"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
+msgstr "프로퍼티 이름은 둘 이상의 연속적인 '/' 문자를 가질 수 없습니다"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr ""
+msgstr "프로퍼티 이름은 '/' 문자로 끝날 수 없습니다"
 
 #: ../xfconfd/xfconf-backend.c:163
 #, c-format
 msgid "Channel name cannot be an empty string"
-msgstr ""
+msgstr "채널 이름은 빈 문자열이 될 수 없습니다"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
 msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr ""
+msgstr "채널 이름은 ASCII 문자 A-Z, a-z, 0-9, '_', 그리고 '-' 만 포함될 수 있습니다"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr ""
+msgstr "프로퍼티 이름은 비거나 재귀적 리셋이 정의되었을 경우 \"/\" 만 될 수 있습니다"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
-msgstr ""
+msgstr "xfconfd 버전을 출력합니다."
 
 #: ../xfconfd/main.c:136
 msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr ""
+msgstr "사용하기 위한 환경설정 백엔드입니다. 정의된 첫번째 백엔드는 읽기/쓰기로 열려 있습니다. 이에 반해 다른 요소들은 읽기전용입니다."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "시작한 후 백그라운드로 쪼갭니다. 이것은 시험 목적일 경우에만 유용합니다"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
-msgstr ""
+msgstr "Xfce 환경설정 데몬"
 
 #: ../xfconfd/main.c:165
 msgid "Xfce configuration daemon"
-msgstr ""
+msgstr "Xfce 환경설정 데몬"
 
 #: ../xfconfd/main.c:167
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr ""
+msgstr "http://bugs.xfce.org로 버그를 보고하여 주십시오\n"
 
 #: ../xfconfd/main.c:170
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr ""
+msgstr "옵션 해석 오류: %s\n"
 
 #: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "Another Xfconf daemon is already running"
-msgstr ""
+msgstr "다른 Xfconf 데몬이 이미 실행중입니다"
 
 #: ../xfconfd/xfconf-daemon.c:517
 #, c-format
 msgid "No backends could be started"
-msgstr ""
+msgstr "어떤 백엔드도 시작될 수 없었습니다"
 
 #: ../xfconf-query/main.c:92
 #, c-format
 msgid "Property '%s' changed: %s\n"
-msgstr ""
+msgstr "프로퍼티 '%s'가 변경되었습니다: %s\n"
 
 #: ../xfconf-query/main.c:97
 #, c-format
 msgid "Property '%s' changed\n"
-msgstr ""
+msgstr "프로퍼티 '%s'가 변경되었습니다\n"
 
 #: ../xfconf-query/main.c:102
 #, c-format
 msgid "Property '%s' removed\n"
-msgstr ""
+msgstr "프로퍼티 '%s'가 제거되었습니다\n"
 
 #: ../xfconf-query/main.c:111
 #, c-format
 msgid "Export method not yet implemented"
-msgstr ""
+msgstr "내보내기 동작이 아직 구현되지 않았습니다"
 
 #: ../xfconf-query/main.c:125
 #, c-format
 msgid "Export not yet implemented"
-msgstr ""
+msgstr "내보내기가 아직 구현되지 않았습니다"
 
 #: ../xfconf-query/main.c:191
 msgid "Version information"
-msgstr ""
+msgstr "버전 정보"
 
 #: ../xfconf-query/main.c:195
 msgid "The channel to query/modify"
-msgstr ""
+msgstr "요청/수정을 위한 채널"
 
 #: ../xfconf-query/main.c:199
 msgid "The property to query/modify"
-msgstr ""
+msgstr "요청/수정을 위한 프로퍼티"
 
 #: ../xfconf-query/main.c:203
 msgid "The new value to set for the property"
-msgstr ""
+msgstr "프로퍼티를 설정할 새 값"
 
 #: ../xfconf-query/main.c:207
 msgid "List properties (or channels if -c is not specified)"
-msgstr ""
+msgstr "목록 프로퍼티 (또는 -c가 정의되었을 경우 채널)"
 
 #: ../xfconf-query/main.c:211
 msgid "Verbose output"
-msgstr ""
+msgstr "상세 출력"
 
 #: ../xfconf-query/main.c:215
 msgid "Create a new property if it does not already exist"
-msgstr ""
+msgstr "프로퍼티가 이미 존재하지 않는 경우 새로운 프로퍼티를 생성"
 
 #: ../xfconf-query/main.c:219
 msgid "Specify the property value type"
-msgstr ""
+msgstr "프로퍼티 값 유형을 정의"
 
 #: ../xfconf-query/main.c:223
 msgid "Reset property"
-msgstr ""
+msgstr "프로퍼티 재설정"
 
 #: ../xfconf-query/main.c:227
 msgid "Recursive (use with -r)"
-msgstr ""
+msgstr "재귀적 실행 (-r 과 함께 사용)"
 
 #: ../xfconf-query/main.c:231
 msgid "Force array even if only one element"
-msgstr ""
+msgstr "단 한 가지의 요소만 있을 경우 배열로 강제"
 
 #: ../xfconf-query/main.c:245
 msgid "Monitor a channel for property changes"
-msgstr ""
+msgstr "프로퍼티 변경을 위한 채널 감시"
 
 #: ../xfconf-query/main.c:349
 #, c-format
 msgid "Start monitoring channel '%s':"
-msgstr ""
+msgstr "채널 '%s' 감시 시작:"
 
 #: ../xfconf-query/main.c:371
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr ""
+msgstr "프로퍼티 \"%s\" 가 채널 \"%s\"에 존재하지 않습니다.\n"
 
-#: ../xfconf-query/main.c:379
-#: ../xfconf-query/main.c:397
+#: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
 msgid "(unknown)"
 msgstr "(알 수 없음)"
 
@@ -257,6 +256,8 @@ msgid ""
 "Value is an array with %d items:\n"
 "\n"
 msgstr ""
+"값은 %d개의 항목을 가진 배열입니다:\n"
+"\n"
 
 #: ../xfconf-query/main.c:411
 #, c-format
@@ -264,67 +265,65 @@ msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
 msgstr ""
+"프로퍼티 \"%s\"는 채널 \"%s\"에 존재하지 않습니다. 만약 새로운\n"
+"프로퍼티를 만들어야 한다면 --create 옵션을 사용하십시오.\n"
 
 #: ../xfconf-query/main.c:419
 #, c-format
 msgid "When creating a new property, the value type must be specified.\n"
-msgstr ""
+msgstr "새로운 프로퍼티를 생성할때, 값 유형이 정의되어야 합니다.\n"
 
 #: ../xfconf-query/main.c:429
 #, c-format
 msgid "Failed to get the existing type for the value.\n"
-msgstr ""
+msgstr "값의 존재하는 유형을 가져오는데 실패했습니다.\n"
 
 #: ../xfconf-query/main.c:447
 #, c-format
 msgid "Unable to determine the type of the value.\n"
-msgstr ""
+msgstr "값의 유형을 결정할 수 없습니다.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
 msgid "A value type must be specified to change an array into a single value.\n"
-msgstr ""
+msgstr "값의 유형은 배열로부터 단이 값으로 변경하기 위해 정의되어야 합니다.\n"
 
-#: ../xfconf-query/main.c:463
-#: ../xfconf-query/main.c:525
+#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
-msgstr ""
+msgstr "\"%s\"를 유형 \"%s\"로 변경할 수 없습니다\n"
 
-#: ../xfconf-query/main.c:470
-#: ../xfconf-query/main.c:540
+#: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
 #, c-format
 msgid "Failed to set property.\n"
-msgstr ""
+msgstr "프로퍼티를 설정하는데 실패했습니다.\n"
 
 #: ../xfconf-query/main.c:495
 #, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr ""
+msgstr "%d개의 새로운 값들이 있지만, %d 유형으로만 결정될 수 있었습니다.\n"
 
 #: ../xfconf-query/main.c:516
 #, c-format
 msgid "Unable to determine type of value at index %d.\n"
-msgstr ""
+msgstr "인덱스 %d번의 값의 유형을 결정할 수 없습니다.\n"
 
 #: ../xfconf-query/main.c:567
 #, c-format
 msgid "Channel '%s' contains no properties\n"
-msgstr ""
+msgstr "채널 '%s'에 어떠한 프로퍼티도 포함되지 않았습니다\n"
 
-#: ../xfconf-query/main.c:583
-#: ../xfconf-query/main.c:592
+#: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
 #, c-format
 msgid "Could not create export file \"%s\": %s\n"
-msgstr ""
+msgstr "내보내는 파일 \"%s\"을(를) 생성할 수 없습니다: %s\n"
 
 #: ../xfconf-query/main.c:612
 #, c-format
 msgid "Could not open import file \"%s\": %s\n"
-msgstr ""
+msgstr "가져오는 파일 \"%s\"을(를) 열 수 없습니다: %s\n"
 
 #: ../xfconf-query/main.c:621
 #, c-format
 msgid "Could not parse import file \"%s\": %s\n"
-msgstr ""
-
+msgstr "가져오는 파일 \"%s\"을(를) 해석할 수 없습니다: %s\n"
