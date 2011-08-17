@@ -174,7 +174,7 @@ msgstr "сбросить"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
-msgstr "Версия"
+msgstr "Информация о версии"
 
 #: ../xfconf-query/main.c:180
 msgid "The channel to query/modify"
