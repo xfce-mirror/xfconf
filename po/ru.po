@@ -191,7 +191,7 @@ msgstr "Экспорт ещё не внедрён"
 
 #: ../xfconf-query/main.c:191
 msgid "Version information"
-msgstr "Версия"
+msgstr "Информация о версии"
 
 #: ../xfconf-query/main.c:195
 msgid "The channel to query/modify"
