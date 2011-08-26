@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-26 04:38+0000\n"
+"POT-Creation-Date: 2011-08-26 10:40+0000\n"
 "PO-Revision-Date: 2011-07-20 10:51+0300\n"
 "Last-Translator: Artem Zolochevskiy <artem.zolochevskiy@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -88,27 +88,27 @@ msgstr "Не удалось найти бэкенд Xfconf типа «%s»"
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Названия свойств должны начинаться с символа '/'"
+msgstr "Названия свойств должны начинаться с символа «/»"
 
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr "Элемент root ('/') не является правильным названием для свойства"
+msgstr "Элемент root («/») не является правильным названием для свойства"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
 msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "Названия свойств могут включать только символы ASCII A-Z, a-z, 0-9, '_', '-', '<' и '>', так же как и '/' как разделитель"
+msgstr "Названия свойств могут включать только символы ASCII A-Z, a-z, 0-9, «_», «-», «<» и «>», так же как и «/» как разделитель"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Названия свойств не могут включать более двух и более последовательных знаков '/'"
+msgstr "Названия свойств не могут включать более двух и более последовательных знаков «/»"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Названия свойств не могут заканчиваться на '/'"
+msgstr "Названия свойств не могут заканчиваться на «/»"
 
 #: ../xfconfd/xfconf-backend.c:163
 #, c-format
@@ -118,7 +118,7 @@ msgstr "Название канала не может быть пустой ст
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
 msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr "Названия каналов могут включать только символы ASCII A-Z, a-z, 0-9, '_' и '-'"
+msgstr "Названия каналов могут включать только символы ASCII A-Z, a-z, 0-9, «_» и «-»"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
@@ -167,17 +167,17 @@ msgstr "Не удалось запустить бэкенд"
 #: ../xfconf-query/main.c:92
 #, c-format
 msgid "Property '%s' changed: %s\n"
-msgstr "Свойство '%s' изменено: %s\n"
+msgstr "Свойство «%s» изменено: %s\n"
 
 #: ../xfconf-query/main.c:97
 #, c-format
 msgid "Property '%s' changed\n"
-msgstr "Свойство '%s' изменено\n"
+msgstr "Свойство «%s» изменено\n"
 
 #: ../xfconf-query/main.c:102
 #, c-format
 msgid "Property '%s' removed\n"
-msgstr "Свойство '%s' удалено\n"
+msgstr "Свойство «%s» удалено\n"
 
 #: ../xfconf-query/main.c:111
 #, c-format
@@ -240,7 +240,7 @@ msgstr "Следить за изменением свойств на канал�
 #: ../xfconf-query/main.c:349
 #, c-format
 msgid "Start monitoring channel '%s':"
-msgstr "Начать следить за каналом '%s':"
+msgstr "Начать следить за каналом «%s»:"
 
 #: ../xfconf-query/main.c:371
 #, c-format
@@ -312,7 +312,7 @@ msgstr "Не удалось определить тип значения в ин
 #: ../xfconf-query/main.c:567
 #, c-format
 msgid "Channel '%s' contains no properties\n"
-msgstr "Канал '%s' не имеет свойств\n"
+msgstr "Канал «%s» не имеет свойств\n"
 
 #: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
 #, c-format
