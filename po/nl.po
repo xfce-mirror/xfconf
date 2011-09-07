@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-17 10:37+0000\n"
-"PO-Revision-Date: 2011-06-15 16:20+0200\n"
+"POT-Creation-Date: 2011-09-07 16:39+0000\n"
+"PO-Revision-Date: 2011-09-07 16:20+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
 "MIME-Version: 1.0\n"
@@ -259,7 +259,7 @@ msgstr "Bewaak een kanaal voor eigenschapveranderingen"
 #: ../xfconf-query/main.c:349
 #, c-format
 msgid "Start monitoring channel '%s':"
-msgstr "Start bewakingkanaal '%s':"
+msgstr "Start bewakingskanaal '%s':"
 
 #: ../xfconf-query/main.c:371
 #, c-format
@@ -358,7 +358,7 @@ msgstr "Kon het invoerbestand \"%s\" niet lezen: %s\n"
 #~ msgstr "Kanaal naar bestand uitvoeren"
 
 #~ msgid "Import channel from file"
-#~ msgstr "Kanaal uit bestand invoeren"
+#~ msgstr "Kanaal vanuit bestand invoeren"
 
 #~ msgid "true"
 #~ msgstr "waar"
