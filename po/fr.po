@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-25 22:13+0000\n"
+"POT-Creation-Date: 2011-09-25 16:14+0000\n"
 "PO-Revision-Date: 2009-01-29 18:34+0100\n"
 "Last-Translator: Mike Massonnet <mmassonnet@gmail.com>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
@@ -31,9 +31,7 @@ msgstr "Échec à la création du dossier de configuration \"%s\""
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr ""
-"Vous n'avez pas les permissions nécessaires à la modification de la "
-"propriété \"%s\" du canal \"%s\""
+msgstr "Vous n'avez pas les permissions nécessaires à la modification de la propriété \"%s\" du canal \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -97,19 +95,13 @@ msgstr "L'élément à la racine n'est pas un nom de propriété valide"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Les noms des propriétés ne peuvent contenir que des caractères ASCII parmisA-"
-"Z, a-z, 0-9, '_', '-', '<' et '>', ainsi que '/' comme séparateur"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Les noms des propriétés ne peuvent contenir que des caractères ASCII parmisA-Z, a-z, 0-9, '_', '-', '<' et '>', ainsi que '/' comme séparateur"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Les noms de propriétés ne peuvent pas contenir plusieurs caractères '/' "
-"consécutifs"
+msgstr "Les noms de propriétés ne peuvent pas contenir plusieurs caractères '/' consécutifs"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -123,38 +115,25 @@ msgstr "Le nom du canal ne peut pas être vide"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr ""
-"Les noms des canaux ne peuvent contenir que des caractères ASCII parmis A-Z, "
-"a-z, 0-9, '_' et '-'"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgstr "Les noms des canaux ne peuvent contenir que des caractères ASCII parmis A-Z, a-z, 0-9, '_' et '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"Le nom de la propriété ne peut être que vide ou \"/\" si une "
-"réinitialisation récursive a été spécifiée."
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "Le nom de la propriété ne peut être que vide ou \"/\" si une réinitialisation récursive a été spécifiée."
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Affiche la version de xfconfd."
 
 #: ../xfconfd/main.c:136
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Backends de configuration à utiliser. Le premier backend est ouvert en "
-"lecture/écriture; les autres ne sont ouverts qu'en lecture."
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "Backends de configuration à utiliser. Le premier backend est ouvert en lecture/écriture; les autres ne sont ouverts qu'en lecture."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
-"Passer en arrière plan après démarrage; utile seulement pour les essais"
+msgstr "Passer en arrière plan après démarrage; utile seulement pour les essais"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -251,8 +230,9 @@ msgid "Failed to init libxfconf: %s"
 msgstr "Echec de l'initialisation de libxfconf : %s"
 
 #: ../xfconf-query/main.c:251
+#, fuzzy
 msgid "- Xfconf commandline utility"
-msgstr ""
+msgstr "- Utilitaire en ligne de commande Xfconf"
 
 #: ../xfconf-query/main.c:256
 #, fuzzy, c-format
@@ -278,14 +258,11 @@ msgstr "Aucune propriété spécifiée"
 
 #: ../xfconf-query/main.c:301
 msgid "--create and --reset options can not be used together"
-msgstr ""
-"Les options --create et --reset ne peuvent pas être utilisées en même temps"
+msgstr "Les options --create et --reset ne peuvent pas être utilisées en même temps"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
-"Les options --create et --reset  ne peuvent être utilisées en même temps que "
-"l'option --list"
+msgstr "Les options --create et --reset  ne peuvent être utilisées en même temps que l'option --list"
 
 #: ../xfconf-query/main.c:319
 #, fuzzy, c-format
@@ -315,9 +292,7 @@ msgstr ""
 
 #: ../xfconf-query/main.c:399
 #, fuzzy, c-format
-msgid ""
-"Property \"%s\" does not exist on channel \"%s\". If a new property should "
-"be created, use the --create option"
+msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
 msgstr ""
 "La propriété \"%s\" n'existe pas dans le canal \"%s\". Si une nouvelle\n"
 "propriété doit être créer, utilisez l'option --create.\n"
@@ -325,8 +300,7 @@ msgstr ""
 #: ../xfconf-query/main.c:407
 #, fuzzy
 msgid "When creating a new property, the value type must be specified"
-msgstr ""
-"Le type de valeur de la propriété doit être spécifié lors de sa création.\n"
+msgstr "Le type de valeur de la propriété doit être spécifié lors de sa création.\n"
 
 #: ../xfconf-query/main.c:417
 #, fuzzy
@@ -341,9 +315,7 @@ msgstr "Impossible de déterminer le type de la valeur.\n"
 #: ../xfconf-query/main.c:441
 #, fuzzy
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
-"Un type de valeur doit être spécifié pour changer un tableau en une valeur "
-"simple.\n"
+msgstr "Un type de valeur doit être spécifié pour changer un tableau en une valeur simple.\n"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, fuzzy, c-format
@@ -353,9 +325,7 @@ msgstr "Échec lors de la conversion de \"%s\" vers le type \"%s\"\n"
 #: ../xfconf-query/main.c:483
 #, fuzzy, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr ""
-"Il y a %d nouvelles valeurs, mais seulement %d types ont pu être "
-"déterminés.\n"
+msgstr "Il y a %d nouvelles valeurs, mais seulement %d types ont pu être déterminés.\n"
 
 #: ../xfconf-query/main.c:504
 #, fuzzy, c-format
