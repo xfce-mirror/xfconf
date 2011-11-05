@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the  xconf package.
 # Ivica Kolić <ikoli@yahoo.com>, 2011.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xconf\n"
@@ -11,15 +11,14 @@ msgstr ""
 "PO-Revision-Date: 2011-05-21 08:59+0200\n"
 "Last-Translator: Ivica Kolić <ikoli@yahoo.com>\n"
 "Language-Team: Croatian <ikoli@yahoo.com>\n"
-"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Country: CROATIA\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-Language: Croatian\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Country: CROATIA\n"
 
 #: ../xfconf/xfconf-cache.c:875
 #, c-format
@@ -251,9 +250,9 @@ msgid "Monitor a channel for property changes"
 msgstr ""
 
 #: ../xfconf-query/main.c:349
-#, fuzzy, c-format
+#, c-format
 msgid "Start monitoring channel '%s':"
-msgstr "Započnite praćenje kanala \"% s\":"
+msgstr "Započnite praćenje kanala '%s':"
 
 #: ../xfconf-query/main.c:371
 #, c-format
@@ -272,7 +271,7 @@ msgid ""
 msgstr ""
 
 #: ../xfconf-query/main.c:411
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\".  If a new\n"
 "property should be created, use the --create option.\n"
@@ -281,19 +280,19 @@ msgstr ""
 "koristite opciju --create"
 
 #: ../xfconf-query/main.c:419
-#, fuzzy, c-format
+#, c-format
 msgid "When creating a new property, the value type must be specified.\n"
-msgstr "Pri stvaranju novoga svojstva tip vrijednosti mora biti određen"
+msgstr "Pri stvaranju novoga svojstva tip vrijednosti mora biti određen.\n"
 
 #: ../xfconf-query/main.c:429
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get the existing type for the value.\n"
-msgstr "Nije moguće odrediti tip vrijednosti"
+msgstr "Nije moguće odrediti tip vrijednosti.\n"
 
 #: ../xfconf-query/main.c:447
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine the type of the value.\n"
-msgstr "Nije moguće odrediti tip vrijednosti"
+msgstr "Nije moguće odrediti tip vrijednosti.\n"
 
 #: ../xfconf-query/main.c:453
 #, c-format
@@ -302,29 +301,29 @@ msgid ""
 msgstr ""
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to convert \"%s\" to type \"%s\"\n"
-msgstr "Nije moguće pretvoriti \"%s\" u tip \"%s\""
+msgstr "Nije moguće pretvoriti \"%s\" u tip \"%s\"\n"
 
 #: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to set property.\n"
-msgstr "Neuspjelo postavljanje svojstva"
+msgstr "Neuspjelo postavljanje svojstva.\n"
 
 #: ../xfconf-query/main.c:495
-#, fuzzy, c-format
+#, c-format
 msgid "There are %d new values, but only %d types could be determined.\n"
-msgstr "Postoje %d nove vrijednosti ali samo %d tipovi mogu biti određeni"
+msgstr "Postoje %d nove vrijednosti ali samo %d tipovi mogu biti određeni.\n"
 
 #: ../xfconf-query/main.c:516
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine type of value at index %d.\n"
-msgstr "Nije moguće odrediti tip vrijednosti u indeksu %d"
+msgstr "Nije moguće odrediti tip vrijednosti u indeksu %d.\n"
 
 #: ../xfconf-query/main.c:567
-#, fuzzy, c-format
+#, c-format
 msgid "Channel '%s' contains no properties\n"
-msgstr "Kanal \"%s\" ne sadržava svojstva"
+msgstr "Kanal \"%s\" ne sadržava svojstva\n"
 
 #: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
 #, c-format
@@ -337,9 +336,9 @@ msgid "Could not open import file \"%s\": %s\n"
 msgstr "Ne mogu otvoriti datoteku uvoza \"%s\": %s\n"
 
 #: ../xfconf-query/main.c:621
-#, fuzzy, c-format
+#, c-format
 msgid "Could not parse import file \"%s\": %s\n"
-msgstr "Ne mogu otvoriti datoteku uvoza \"%s\": %s\n"
+msgstr ""
 
 #~ msgid "set"
 #~ msgstr "postavi"
