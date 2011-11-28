@@ -2,19 +2,19 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-10 16:12+0000\n"
+"POT-Creation-Date: 2011-11-28 21:48+0100\n"
 "PO-Revision-Date: 2010-12-30 16:58-0000\n"
 "Last-Translator: كريم أولاد الشلحة <herr.linux88@gmail.com>\n"
 "Language-Team: Arabic <herr.linux88@gmail.com>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ar\n"
 "X-Poedit-Language: Arabic\n"
 "X-Poedit-Country: MOROCCO\n"
 
@@ -37,7 +37,7 @@ msgstr "صلاحيات غير كافية لتحرير الخصائص \"%s\" في
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "خصائص \"%s\" لا توجد في القناة \"%s\""
@@ -96,7 +96,9 @@ msgstr ""
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
 msgstr ""
 
 #: ../xfconfd/xfconf-backend.c:135
@@ -116,12 +118,16 @@ msgstr ""
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
 msgstr ""
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
 msgstr ""
 
 #: ../xfconfd/main.c:134
@@ -129,7 +135,9 @@ msgid "Prints the xfconfd version."
 msgstr "طباعة نسخة xfconfd."
 
 #: ../xfconfd/main.c:136
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
 msgstr ""
 
 #: ../xfconfd/main.c:139
@@ -163,163 +171,187 @@ msgstr ""
 msgid "No backends could be started"
 msgstr ""
 
-#: ../xfconf-query/main.c:91
-#, c-format
-msgid "Property '%s' changed: %s\n"
+#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
+msgid "set"
 msgstr ""
 
-#: ../xfconf-query/main.c:96
-#, c-format
-msgid "Property '%s' changed\n"
-msgstr "تم تغير خصائص '%s'\n"
-
-#: ../xfconf-query/main.c:101
-#, c-format
-msgid "Property '%s' removed\n"
-msgstr "تم حذف خصائص '%s'\n"
-
-#: ../xfconf-query/main.c:110
-#, c-format
-msgid "Export method not yet implemented"
+#: ../xfconf-query/main.c:100
+msgid "reset"
 msgstr ""
 
-#: ../xfconf-query/main.c:124
-#, c-format
-msgid "Export not yet implemented"
-msgstr ""
-
-#: ../xfconf-query/main.c:190
+#: ../xfconf-query/main.c:176
 msgid "Version information"
 msgstr "معلومات الإصدار"
 
-#: ../xfconf-query/main.c:194
+#: ../xfconf-query/main.c:180
 msgid "The channel to query/modify"
 msgstr "قنات الإستعلام/التعديل"
 
-#: ../xfconf-query/main.c:198
+#: ../xfconf-query/main.c:184
 msgid "The property to query/modify"
 msgstr "خصائص الإستعلام/التعديل"
 
-#: ../xfconf-query/main.c:202
+#: ../xfconf-query/main.c:188
 msgid "The new value to set for the property"
 msgstr ""
 
-#: ../xfconf-query/main.c:206
+#: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
 msgstr ""
 
-#: ../xfconf-query/main.c:210
+#: ../xfconf-query/main.c:196
 msgid "Verbose output"
 msgstr "مخرج مطول"
 
-#: ../xfconf-query/main.c:214
+#: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
 msgstr ""
 
-#: ../xfconf-query/main.c:218
+#: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
 msgstr "حدد قيمة الخصائص"
 
-#: ../xfconf-query/main.c:222
+#: ../xfconf-query/main.c:208
 msgid "Reset property"
 msgstr "إعادة تعيين الخصائص"
 
-#: ../xfconf-query/main.c:226
+#: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
 msgstr ""
 
-#: ../xfconf-query/main.c:230
+#: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
 msgstr ""
 
-#: ../xfconf-query/main.c:244
+#: ../xfconf-query/main.c:220
+msgid "Invert an existing boolean property"
+msgstr ""
+
+#: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
 msgstr ""
 
-#: ../xfconf-query/main.c:348
+#: ../xfconf-query/main.c:246
 #, c-format
-msgid "Start monitoring channel '%s':"
+msgid "Failed to init libxfconf: %s"
 msgstr ""
 
-#: ../xfconf-query/main.c:370
-#, c-format
-msgid "Property \"%s\" does not exist on channel \"%s\".\n"
+#: ../xfconf-query/main.c:251
+msgid "- Xfconf commandline utility"
 msgstr ""
 
-#: ../xfconf-query/main.c:378 ../xfconf-query/main.c:396
+#: ../xfconf-query/main.c:256
+#, c-format
+msgid "Option parsing failed: %s"
+msgstr ""
+
+#: ../xfconf-query/main.c:266
+msgid "The Xfce development team. All rights reserved."
+msgstr ""
+
+#: ../xfconf-query/main.c:267
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr ""
+
+#: ../xfconf-query/main.c:279
+msgid "Channels:"
+msgstr ""
+
+#: ../xfconf-query/main.c:295
+msgid "No property specified"
+msgstr ""
+
+#: ../xfconf-query/main.c:301
+msgid "--create and --reset options can not be used together"
+msgstr ""
+
+#: ../xfconf-query/main.c:307
+msgid "--create and --reset options can not be used together with --list"
+msgstr ""
+
+#: ../xfconf-query/main.c:319
+#, fuzzy, c-format
+msgid "Start monitoring channel \"%s\":"
+msgstr "غير قادر غلى كتابة القنات \"%s\": %s"
+
+#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:527
+#, fuzzy
+msgid "Failed to set property"
+msgstr "فشل تعيين خصائص.\n"
+
+#: ../xfconf-query/main.c:357
+msgid "--toggle only works with boolean values"
+msgstr ""
+
+#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(مجهول)"
 
-#: ../xfconf-query/main.c:387
+#: ../xfconf-query/main.c:375
 #, c-format
-msgid ""
-"Value is an array with %d items:\n"
-"\n"
+msgid "Value is an array with %d items:"
 msgstr ""
 
-#: ../xfconf-query/main.c:410
+#: ../xfconf-query/main.c:399
 #, c-format
 msgid ""
-"Property \"%s\" does not exist on channel \"%s\".  If a new\n"
-"property should be created, use the --create option.\n"
+"Property \"%s\" does not exist on channel \"%s\". If a new property should "
+"be created, use the --create option"
 msgstr ""
 
-#: ../xfconf-query/main.c:418
-#, c-format
-msgid "When creating a new property, the value type must be specified.\n"
+#: ../xfconf-query/main.c:407
+#, fuzzy
+msgid "When creating a new property, the value type must be specified"
 msgstr "عنذ إنشاء خصائص جديدة, نوع القيمة يجب أن يحدد.\n"
 
-#: ../xfconf-query/main.c:428
-#, c-format
-msgid "Failed to get the existing type for the value.\n"
+#: ../xfconf-query/main.c:417
+#, fuzzy
+msgid "Failed to get the existing type for the value"
 msgstr "فشل الحصول على النوع القيمة.\n"
 
-#: ../xfconf-query/main.c:446
-#, c-format
-msgid "Unable to determine the type of the value.\n"
+#: ../xfconf-query/main.c:435
+#, fuzzy
+msgid "Unable to determine the type of the value"
 msgstr "عاجز عن تحديد نوع القيمة.\n"
 
-#: ../xfconf-query/main.c:452
-#, fuzzy, c-format
-msgid "A value type must be specified to change an array into a single value.\n"
+#: ../xfconf-query/main.c:441
+#, fuzzy
+msgid "A value type must be specified to change an array into a single value"
 msgstr "نوع القيمة يجب أن يحدد لتغير نظام إلى قيمة وحيدة.into"
 
-#: ../xfconf-query/main.c:462 ../xfconf-query/main.c:524
-#, c-format
-msgid "Unable to convert \"%s\" to type \"%s\"\n"
+#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
+#, fuzzy, c-format
+msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "غير قادر على تحويل \"%s\" إلى النوع \"%s\"\n"
 
-#: ../xfconf-query/main.c:469 ../xfconf-query/main.c:539
-#, c-format
-msgid "Failed to set property.\n"
-msgstr "فشل تعيين خصائص.\n"
-
-#: ../xfconf-query/main.c:494
-#, c-format
-msgid "There are %d new values, but only %d types could be determined.\n"
+#: ../xfconf-query/main.c:483
+#, fuzzy, c-format
+msgid "There are %d new values, but only %d types could be determined"
 msgstr "هذه %d قيمة جديدة, لكن %d بمكن تحديد النوع فقط.\n"
 
-#: ../xfconf-query/main.c:515
-#, c-format
-msgid "Unable to determine type of value at index %d.\n"
+#: ../xfconf-query/main.c:504
+#, fuzzy, c-format
+msgid "Unable to determine type of value at index %d"
 msgstr "عاجز عن تحديد نوع القيمة في الارشيف %d.\n"
 
-#: ../xfconf-query/main.c:566
-#, c-format
-msgid "Channel '%s' contains no properties\n"
+#: ../xfconf-query/main.c:554
+#, fuzzy, c-format
+msgid "Channel \"%s\" contains no properties"
 msgstr "قناة '%s' لا تحتوي على خصائص\n"
 
-#: ../xfconf-query/main.c:582 ../xfconf-query/main.c:591
-#, c-format
-msgid "Could not create export file \"%s\": %s\n"
-msgstr "لا يمكن إنشاء ملف التصدير \"%s\": %s\n"
+#~ msgid "Property '%s' changed\n"
+#~ msgstr "تم تغير خصائص '%s'\n"
 
-#: ../xfconf-query/main.c:611
-#, c-format
-msgid "Could not open import file \"%s\": %s\n"
-msgstr "لا يمكن فتح الملف المستورد \"%s\": %s\n"
+#~ msgid "Property '%s' removed\n"
+#~ msgstr "تم حذف خصائص '%s'\n"
 
-#: ../xfconf-query/main.c:620
-#, c-format
-msgid "Could not parse import file \"%s\": %s\n"
-msgstr "لا يمكن تحليل الملف المستورد \"%s\": %s\n"
+#~ msgid "Could not create export file \"%s\": %s\n"
+#~ msgstr "لا يمكن إنشاء ملف التصدير \"%s\": %s\n"
+
+#~ msgid "Could not open import file \"%s\": %s\n"
+#~ msgstr "لا يمكن فتح الملف المستورد \"%s\": %s\n"
+
+#~ msgid "Could not parse import file \"%s\": %s\n"
+#~ msgstr "لا يمكن تحليل الملف المستورد \"%s\": %s\n"

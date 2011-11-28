@@ -2,19 +2,20 @@
 # Copyright (C) YEAR THE xfconf'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfconf package.
 # Cristian Marchi <cri.penta@gmail.com>, 2009.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-27 16:11+0000\n"
+"POT-Creation-Date: 2011-11-28 21:48+0100\n"
 "PO-Revision-Date: 2010-03-11 10:16+0100\n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
-"Language-Team: Italian Translation Team <xfce-it-translators@googlegroups.com>\n"
+"Language-Team: Italian Translation Team <xfce-it-translators@googlegroups."
+"com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 
 #: ../xfconf/xfconf-cache.c:876
 #, c-format
@@ -30,7 +31,8 @@ msgstr "Impossibile creare la cartella di configurazione «%s»"
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Permesse negato mentre si stava modificando la proprietà «%s» nel canale «%s»"
+msgstr ""
+"Permesse negato mentre si stava modificando la proprietà «%s» nel canale «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -94,13 +96,18 @@ msgstr "L'elemento radice («/») non è un nome di proprietà valido "
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "I nomi delle proprietà possono contenere solamente i seguenti caratteri ASCII: A-Z, a-z, 0-9, _, -, <, > e / come separatore"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"I nomi delle proprietà possono contenere solamente i seguenti caratteri "
+"ASCII: A-Z, a-z, 0-9, _, -, <, > e / come separatore"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "I nomi delle proprietà non possono avere due o più caratteri «/» consecutivi"
+msgstr ""
+"I nomi delle proprietà non possono avere due o più caratteri «/» consecutivi"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -114,25 +121,39 @@ msgstr "Il nome del canale non può essere una stringa vuota"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr "I nomi dei canali possono contenere solamente i seguenti caratteri ASCII: A-Z, a-z, 0-9,_ e -"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr ""
+"I nomi dei canali possono contenere solamente i seguenti caratteri ASCII: A-"
+"Z, a-z, 0-9,_ e -"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr "Il nome della proprietà può solo essere vuoto o «/» se è stato specificato un ripristino ricorsivo"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr ""
+"Il nome della proprietà può solo essere vuoto o «/» se è stato specificato "
+"un ripristino ricorsivo"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Visualizza la versione di xfconfd"
 
 #: ../xfconfd/main.c:136
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr "I backend di configurazione da utilizzare. Il primo specificato è aperto in lettura e scrittura; gli altri, in sola lettura."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
+msgstr ""
+"I backend di configurazione da utilizzare. Il primo specificato è aperto in "
+"lettura e scrittura; gli altri, in sola lettura."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr "Esegue il fork in background dopo l'avvio; utile solamente per eseguire delle prove"
+msgstr ""
+"Esegue il fork in background dopo l'avvio; utile solamente per eseguire "
+"delle prove"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -258,7 +279,8 @@ msgstr "le opzioni --create e --reset non possono essere usate insieme"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr "le opzioni --create e --reset non possono essere usate insieme con --list"
+msgstr ""
+"le opzioni --create e --reset non possono essere usate insieme con --list"
 
 #: ../xfconf-query/main.c:319
 #, c-format
@@ -285,12 +307,17 @@ msgstr "Il valore è un array con %d elementi:"
 
 #: ../xfconf-query/main.c:399
 #, c-format
-msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
-msgstr "La proprietà «%s» non esiste nel canale «%s». Se si intende creare una nuova proprietà, usare l'opzione --create"
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\". If a new property should "
+"be created, use the --create option"
+msgstr ""
+"La proprietà «%s» non esiste nel canale «%s». Se si intende creare una nuova "
+"proprietà, usare l'opzione --create"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
-msgstr "Quando si crea una nuova proprietà, deve essere specificato il tipo di valore"
+msgstr ""
+"Quando si crea una nuova proprietà, deve essere specificato il tipo di valore"
 
 #: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
@@ -302,7 +329,9 @@ msgstr "Impossibile determinare il tipo del valore"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr "Deve essere specificato un tipo di valore per modificare un array in un valore singolo"
+msgstr ""
+"Deve essere specificato un tipo di valore per modificare un array in un "
+"valore singolo"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
@@ -312,7 +341,8 @@ msgstr "Impossibile convertire «%s» nel tipo «%s»"
 #: ../xfconf-query/main.c:483
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "Sono presenti %d nuovi valori, ma solo %d tipi possono essere determinati"
+msgstr ""
+"Sono presenti %d nuovi valori, ma solo %d tipi possono essere determinati"
 
 #: ../xfconf-query/main.c:504
 #, c-format

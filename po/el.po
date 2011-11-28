@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 15:52+0100\n"
+"POT-Creation-Date: 2011-11-28 21:48+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: George Vasilakos <forfolias@linuxteam.cs.teilar.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\\n\\nX-Poedit-Language: Greek\\nX-"
 "Poedit-Country: GREECE\n"
 
-#: ../xfconf/xfconf-cache.c:875
+#: ../xfconf/xfconf-cache.c:876
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Απέτυχε η κλήση DBus ResetProperty"
@@ -34,7 +34,7 @@ msgstr ""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Η ιδιότητα \"%s\" δεν υπάρχει στο κανάλι \"%s\""
@@ -179,172 +179,207 @@ msgstr "Μια υπηρεσία Xfconf  εκτελείται ήδη"
 msgid "No backends could be started"
 msgstr "Δεν ήταν δυνατή η εκκίνηση συστημάτων υποστήριξης"
 
-#: ../xfconf-query/main.c:92
-#, c-format
-msgid "Property '%s' changed: %s\n"
-msgstr "Η ιδιότητα '%s' άλλαξε: %s\n"
+#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
+msgid "set"
+msgstr ""
 
-#: ../xfconf-query/main.c:97
-#, c-format
-msgid "Property '%s' changed\n"
-msgstr "Η ιδιότητα '%s' άλλαξε\n"
+#: ../xfconf-query/main.c:100
+msgid "reset"
+msgstr ""
 
-#: ../xfconf-query/main.c:102
-#, c-format
-msgid "Property '%s' removed\n"
-msgstr "Η ιδιότητα '%s' αφαιρέθηκε\n"
-
-#: ../xfconf-query/main.c:111
-#, c-format
-msgid "Export method not yet implemented"
-msgstr "Δεν έχει προστεθεί μέθοδος εξαγωγής"
-
-#: ../xfconf-query/main.c:125
-#, c-format
-msgid "Export not yet implemented"
-msgstr "Δεν έχει προστεθεί εξαγωγή"
-
-#: ../xfconf-query/main.c:191
+#: ../xfconf-query/main.c:176
 msgid "Version information"
 msgstr "Πληροφορίες έκδοσης"
 
-#: ../xfconf-query/main.c:195
+#: ../xfconf-query/main.c:180
 msgid "The channel to query/modify"
 msgstr "Κανάλι προς ερώτημα/τροποποίηση"
 
-#: ../xfconf-query/main.c:199
+#: ../xfconf-query/main.c:184
 msgid "The property to query/modify"
 msgstr "Ιδιότητα προς ερώτημα/τροποποίηση"
 
-#: ../xfconf-query/main.c:203
+#: ../xfconf-query/main.c:188
 msgid "The new value to set for the property"
 msgstr "Η νέα τιμή που θα οριστεί στην ιδιότητα"
 
-#: ../xfconf-query/main.c:207
+#: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Λίστα ιδιοτήτων (ή καναλιών αν δεν έχει οριστεί -c)"
 
-#: ../xfconf-query/main.c:211
+#: ../xfconf-query/main.c:196
 msgid "Verbose output"
 msgstr "Αναλυτική έξοδος"
 
-#: ../xfconf-query/main.c:215
+#: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
 msgstr "Δημιουργία νέας ιδιότητας αν δεν υπάρχει ήδη"
 
-#: ../xfconf-query/main.c:219
+#: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
 msgstr "Ορισμός τύπου τιμής ιδιότητας"
 
-#: ../xfconf-query/main.c:223
+#: ../xfconf-query/main.c:208
 msgid "Reset property"
 msgstr "Επαναφορά ιδιότητας"
 
-#: ../xfconf-query/main.c:227
+#: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
 msgstr "Αναδρομικά (χρήση με το -r)"
 
-#: ../xfconf-query/main.c:231
+#: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
 msgstr "Εξαναγκασμός χρήσης πίνακα ακόμη και για ένα στοιχείο"
 
-#: ../xfconf-query/main.c:245
+#: ../xfconf-query/main.c:220
+msgid "Invert an existing boolean property"
+msgstr ""
+
+#: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
 msgstr "Παρακολούθηση καναλιού για αλλαγές ιδιοτήτων"
 
-#: ../xfconf-query/main.c:349
+#: ../xfconf-query/main.c:246
 #, c-format
-msgid "Start monitoring channel '%s':"
+msgid "Failed to init libxfconf: %s"
+msgstr ""
+
+#: ../xfconf-query/main.c:251
+msgid "- Xfconf commandline utility"
+msgstr ""
+
+#: ../xfconf-query/main.c:256
+#, c-format
+msgid "Option parsing failed: %s"
+msgstr ""
+
+#: ../xfconf-query/main.c:266
+msgid "The Xfce development team. All rights reserved."
+msgstr ""
+
+#: ../xfconf-query/main.c:267
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr ""
+
+#: ../xfconf-query/main.c:279
+msgid "Channels:"
+msgstr ""
+
+#: ../xfconf-query/main.c:295
+msgid "No property specified"
+msgstr ""
+
+#: ../xfconf-query/main.c:301
+msgid "--create and --reset options can not be used together"
+msgstr ""
+
+#: ../xfconf-query/main.c:307
+msgid "--create and --reset options can not be used together with --list"
+msgstr ""
+
+#: ../xfconf-query/main.c:319
+#, fuzzy, c-format
+msgid "Start monitoring channel \"%s\":"
 msgstr "Έναρξη παρακολούθησης καναλιού '%s':"
 
-#: ../xfconf-query/main.c:371
-#, c-format
-msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr "Η ιδιότητα \"%s\" δεν υπάρχει στο κανάλι \"%s\".\n"
+#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:527
+#, fuzzy
+msgid "Failed to set property"
+msgstr "Αποτυχία ορισμού ιδιότητας.\n"
 
-#: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
+#: ../xfconf-query/main.c:357
+msgid "--toggle only works with boolean values"
+msgstr ""
+
+#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(άγνωστο)"
 
-#: ../xfconf-query/main.c:388
-#, c-format
-msgid ""
-"Value is an array with %d items:\n"
-"\n"
+#: ../xfconf-query/main.c:375
+#, fuzzy, c-format
+msgid "Value is an array with %d items:"
 msgstr ""
 "Η τιμή είναι ένας πίνακας με %d αντικείμενα:\n"
 "\n"
 
-#: ../xfconf-query/main.c:411
-#, c-format
+#: ../xfconf-query/main.c:399
+#, fuzzy, c-format
 msgid ""
-"Property \"%s\" does not exist on channel \"%s\".  If a new\n"
-"property should be created, use the --create option.\n"
+"Property \"%s\" does not exist on channel \"%s\". If a new property should "
+"be created, use the --create option"
 msgstr ""
 "Η ιδιότητα \"%s\" δεν υπάρχει στο κανάλι \"%s\". Αν πρέπει να\n"
 "δημιουργηθεί νέα ιδιότητα, χρησιμοποιήστε την επιλογή --create.\n"
 
-#: ../xfconf-query/main.c:419
-#, c-format
-msgid "When creating a new property, the value type must be specified.\n"
+#: ../xfconf-query/main.c:407
+#, fuzzy
+msgid "When creating a new property, the value type must be specified"
 msgstr ""
 "Όταν δημιουργείται μια νέα ιδιότητα, πρέπει να ορίζεται ο τύπος της τιμής "
 "της.\n"
 
-#: ../xfconf-query/main.c:429
-#, c-format
-msgid "Failed to get the existing type for the value.\n"
+#: ../xfconf-query/main.c:417
+#, fuzzy
+msgid "Failed to get the existing type for the value"
 msgstr "Αποτυχία λήψης του υπάρχοντος τύπου για την τιμή.\n"
 
-#: ../xfconf-query/main.c:447
-#, c-format
-msgid "Unable to determine the type of the value.\n"
+#: ../xfconf-query/main.c:435
+#, fuzzy
+msgid "Unable to determine the type of the value"
 msgstr "Αδύνατος ο προσδιορισμός του τύπου της τιμής.\n"
 
-#: ../xfconf-query/main.c:453
-#, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
+#: ../xfconf-query/main.c:441
+#, fuzzy
+msgid "A value type must be specified to change an array into a single value"
 msgstr ""
 "Πρέπει να οριστεί ένας τύπος τιμής ώστε να αλλάξει ένας πίνακας σε μια απλή "
 "τιμή.\n"
 
-#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
-#, c-format
-msgid "Unable to convert \"%s\" to type \"%s\"\n"
+#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
+#, fuzzy, c-format
+msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "Αδύνατη η μετατροπή του \"%s\" στον τύπο \"%s\"\n"
 
-#: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
-#, c-format
-msgid "Failed to set property.\n"
-msgstr "Αποτυχία ορισμού ιδιότητας.\n"
-
-#: ../xfconf-query/main.c:495
-#, c-format
-msgid "There are %d new values, but only %d types could be determined.\n"
+#: ../xfconf-query/main.c:483
+#, fuzzy, c-format
+msgid "There are %d new values, but only %d types could be determined"
 msgstr "Υπάρχουν %d νέες τιμές, αλλά μόνο %d είδη μπορούν να καθοριστούν.\n"
 
-#: ../xfconf-query/main.c:516
-#, c-format
-msgid "Unable to determine type of value at index %d.\n"
+#: ../xfconf-query/main.c:504
+#, fuzzy, c-format
+msgid "Unable to determine type of value at index %d"
 msgstr "Αδύνατος ο προσδιορισμός του τύπου της τιμής στο δείκτη %d.\n"
 
-#: ../xfconf-query/main.c:567
-#, c-format
-msgid "Channel '%s' contains no properties\n"
+#: ../xfconf-query/main.c:554
+#, fuzzy, c-format
+msgid "Channel \"%s\" contains no properties"
 msgstr "Το κανάλι '%s' δεν περιέχει ιδιότητες\n"
 
-#: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
-#, c-format
-msgid "Could not create export file \"%s\": %s\n"
-msgstr "Δεν είναι δυνατή η δημιουργία του αρχείου εξαγωγής \"%s\": %s\n"
+#~ msgid "Property '%s' changed: %s\n"
+#~ msgstr "Η ιδιότητα '%s' άλλαξε: %s\n"
 
-#: ../xfconf-query/main.c:612
-#, c-format
-msgid "Could not open import file \"%s\": %s\n"
-msgstr "Δεν ήταν δυνατό το άνοιγμα του αρχείου εισαγωγής \"%s\": %s\n"
+#~ msgid "Property '%s' changed\n"
+#~ msgstr "Η ιδιότητα '%s' άλλαξε\n"
 
-#: ../xfconf-query/main.c:621
-#, c-format
-msgid "Could not parse import file \"%s\": %s\n"
-msgstr "Δεν είναι δυνατή η ανάλυση του αρχείου εισαγωγής \"%s\": %s\n"
+#~ msgid "Property '%s' removed\n"
+#~ msgstr "Η ιδιότητα '%s' αφαιρέθηκε\n"
+
+#~ msgid "Export method not yet implemented"
+#~ msgstr "Δεν έχει προστεθεί μέθοδος εξαγωγής"
+
+#~ msgid "Export not yet implemented"
+#~ msgstr "Δεν έχει προστεθεί εξαγωγή"
+
+#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
+#~ msgstr "Η ιδιότητα \"%s\" δεν υπάρχει στο κανάλι \"%s\".\n"
+
+#~ msgid "Could not create export file \"%s\": %s\n"
+#~ msgstr "Δεν είναι δυνατή η δημιουργία του αρχείου εξαγωγής \"%s\": %s\n"
+
+#~ msgid "Could not open import file \"%s\": %s\n"
+#~ msgstr "Δεν ήταν δυνατό το άνοιγμα του αρχείου εισαγωγής \"%s\": %s\n"
+
+#~ msgid "Could not parse import file \"%s\": %s\n"
+#~ msgstr "Δεν είναι δυνατή η ανάλυση του αρχείου εισαγωγής \"%s\": %s\n"

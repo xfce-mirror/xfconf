@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 15:52+0100\n"
+"POT-Creation-Date: 2011-11-28 21:48+0100\n"
 "PO-Revision-Date: 2010-08-03 10:17+0600\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: ../xfconf/xfconf-cache.c:875
+#: ../xfconf/xfconf-cache.c:876
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "ResetProperty DBus шақыруы сәтсіз аяқталды"
@@ -36,7 +36,7 @@ msgstr "\"%s\" қасиетін \"%s\" каналында түзету үшін 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "\"%s\" қасиеті \"%s\" каналында жоқ болып тұр"
@@ -181,168 +181,203 @@ msgstr "Xfconf қызметінің басқа нұсқасы қосулы тұ�
 msgid "No backends could be started"
 msgstr "Бірде-бір бэкендті орындау мүмкін емес"
 
-#: ../xfconf-query/main.c:92
-#, c-format
-msgid "Property '%s' changed: %s\n"
-msgstr "'%s' қасиеті өзгертілді: %s\n"
+#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
+msgid "set"
+msgstr ""
 
-#: ../xfconf-query/main.c:97
-#, c-format
-msgid "Property '%s' changed\n"
-msgstr "'%s' қасиеті өзгертілді\n"
+#: ../xfconf-query/main.c:100
+msgid "reset"
+msgstr ""
 
-#: ../xfconf-query/main.c:102
-#, c-format
-msgid "Property '%s' removed\n"
-msgstr "'%s' қасиеті өшірілді\n"
-
-#: ../xfconf-query/main.c:111
-#, c-format
-msgid "Export method not yet implemented"
-msgstr "Экспорт тәсілі әлі іске асырылмаған"
-
-#: ../xfconf-query/main.c:125
-#, c-format
-msgid "Export not yet implemented"
-msgstr "Экспорт әлі іске асырылмаған"
-
-#: ../xfconf-query/main.c:191
+#: ../xfconf-query/main.c:176
 msgid "Version information"
 msgstr "Нұсқа ақпараты"
 
-#: ../xfconf-query/main.c:195
+#: ../xfconf-query/main.c:180
 msgid "The channel to query/modify"
 msgstr "Сұрау/өзгерту үшін канал"
 
-#: ../xfconf-query/main.c:199
+#: ../xfconf-query/main.c:184
 msgid "The property to query/modify"
 msgstr "Сұрау/өзгерту үшін қасиет"
 
-#: ../xfconf-query/main.c:203
+#: ../xfconf-query/main.c:188
 msgid "The new value to set for the property"
 msgstr "Қасиет үшін жаңа орнатылатын мән"
 
-#: ../xfconf-query/main.c:207
+#: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Қасиеттерді тізіп шығу (-c көрсетілмесе, каналдарды)"
 
-#: ../xfconf-query/main.c:211
+#: ../xfconf-query/main.c:196
 msgid "Verbose output"
 msgstr "Кеңейтілген шығыс"
 
-#: ../xfconf-query/main.c:215
+#: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
 msgstr "Жоқ болса жаңа қасиетті жасау"
 
-#: ../xfconf-query/main.c:219
+#: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
 msgstr "Қасиет мәнінің түрін көрсету"
 
-#: ../xfconf-query/main.c:223
+#: ../xfconf-query/main.c:208
 msgid "Reset property"
 msgstr "Қасиетті тастау"
 
-#: ../xfconf-query/main.c:227
+#: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
 msgstr "Рекурсивті (-r қоса қолдану)"
 
-#: ../xfconf-query/main.c:231
+#: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
 msgstr "Бір элемент болса да, мәжбүрлі массив ретінде орнату"
 
-#: ../xfconf-query/main.c:245
+#: ../xfconf-query/main.c:220
+msgid "Invert an existing boolean property"
+msgstr ""
+
+#: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
 msgstr "Каналды қасиеттердің өзгеруіне бақылау"
 
-#: ../xfconf-query/main.c:349
+#: ../xfconf-query/main.c:246
 #, c-format
-msgid "Start monitoring channel '%s':"
+msgid "Failed to init libxfconf: %s"
+msgstr ""
+
+#: ../xfconf-query/main.c:251
+msgid "- Xfconf commandline utility"
+msgstr ""
+
+#: ../xfconf-query/main.c:256
+#, c-format
+msgid "Option parsing failed: %s"
+msgstr ""
+
+#: ../xfconf-query/main.c:266
+msgid "The Xfce development team. All rights reserved."
+msgstr ""
+
+#: ../xfconf-query/main.c:267
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr ""
+
+#: ../xfconf-query/main.c:279
+msgid "Channels:"
+msgstr ""
+
+#: ../xfconf-query/main.c:295
+msgid "No property specified"
+msgstr ""
+
+#: ../xfconf-query/main.c:301
+msgid "--create and --reset options can not be used together"
+msgstr ""
+
+#: ../xfconf-query/main.c:307
+msgid "--create and --reset options can not be used together with --list"
+msgstr ""
+
+#: ../xfconf-query/main.c:319
+#, fuzzy, c-format
+msgid "Start monitoring channel \"%s\":"
 msgstr "'%s' каналын бақылауды бастау:"
 
-#: ../xfconf-query/main.c:371
-#, c-format
-msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-msgstr "\"%s\" қасиеті \"%s\" каналында жоқ болып тұр.\n"
+#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:527
+#, fuzzy
+msgid "Failed to set property"
+msgstr "Қасиетті орнату сәтсіз аяқталды.\n"
 
-#: ../xfconf-query/main.c:379 ../xfconf-query/main.c:397
+#: ../xfconf-query/main.c:357
+msgid "--toggle only works with boolean values"
+msgstr ""
+
+#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(белгісіз)"
 
-#: ../xfconf-query/main.c:388
-#, c-format
-msgid ""
-"Value is an array with %d items:\n"
-"\n"
+#: ../xfconf-query/main.c:375
+#, fuzzy, c-format
+msgid "Value is an array with %d items:"
 msgstr ""
 "Мән %d элементі массив болып тұр:\n"
 "\n"
 
-#: ../xfconf-query/main.c:411
-#, c-format
+#: ../xfconf-query/main.c:399
+#, fuzzy, c-format
 msgid ""
-"Property \"%s\" does not exist on channel \"%s\".  If a new\n"
-"property should be created, use the --create option.\n"
+"Property \"%s\" does not exist on channel \"%s\". If a new property should "
+"be created, use the --create option"
 msgstr ""
 "\"%s\" қасиеті \"%s\" каналында жоқ болып тұр. Егер жаңа\n"
 "қасиетті жасау керек болса, --create опциясын қолданыңыз.\n"
 
-#: ../xfconf-query/main.c:419
-#, c-format
-msgid "When creating a new property, the value type must be specified.\n"
+#: ../xfconf-query/main.c:407
+#, fuzzy
+msgid "When creating a new property, the value type must be specified"
 msgstr "Жаңа қасиетті жасаған кезде, оның мәннің түрі көрсетілуі керек.\n"
 
-#: ../xfconf-query/main.c:429
-#, c-format
-msgid "Failed to get the existing type for the value.\n"
+#: ../xfconf-query/main.c:417
+#, fuzzy
+msgid "Failed to get the existing type for the value"
 msgstr "Мәннің бар болып тұрған түрін анықтау сәтсіз аяқталды.\n"
 
-#: ../xfconf-query/main.c:447
-#, c-format
-msgid "Unable to determine the type of the value.\n"
+#: ../xfconf-query/main.c:435
+#, fuzzy
+msgid "Unable to determine the type of the value"
 msgstr "Мәннің түрін анықтау сәтсіз аяқталды.\n"
 
-#: ../xfconf-query/main.c:453
-#, c-format
-msgid ""
-"A value type must be specified to change an array into a single value.\n"
+#: ../xfconf-query/main.c:441
+#, fuzzy
+msgid "A value type must be specified to change an array into a single value"
 msgstr "Массивті бірлік мәнге айналдыру үшін мәннің түрі көрсетілуі керек.\n"
 
-#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:525
-#, c-format
-msgid "Unable to convert \"%s\" to type \"%s\"\n"
+#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
+#, fuzzy, c-format
+msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "\"%s\" жаңа \"%s\" түріне айналдыру сәтсіз аяқталды\n"
 
-#: ../xfconf-query/main.c:470 ../xfconf-query/main.c:540
-#, c-format
-msgid "Failed to set property.\n"
-msgstr "Қасиетті орнату сәтсіз аяқталды.\n"
-
-#: ../xfconf-query/main.c:495
-#, c-format
-msgid "There are %d new values, but only %d types could be determined.\n"
+#: ../xfconf-query/main.c:483
+#, fuzzy, c-format
+msgid "There are %d new values, but only %d types could be determined"
 msgstr "Қазір %d жаңа мән бар, бірақ тек %d түрлерді анықтауға болады.\n"
 
-#: ../xfconf-query/main.c:516
-#, c-format
-msgid "Unable to determine type of value at index %d.\n"
+#: ../xfconf-query/main.c:504
+#, fuzzy, c-format
+msgid "Unable to determine type of value at index %d"
 msgstr "%d орнында тұрған мәннің түрін анықтау мүмкін емес.\n"
 
-#: ../xfconf-query/main.c:567
-#, c-format
-msgid "Channel '%s' contains no properties\n"
+#: ../xfconf-query/main.c:554
+#, fuzzy, c-format
+msgid "Channel \"%s\" contains no properties"
 msgstr "'%s' каналында бірде-бір қасиеттері жоқ\n"
 
-#: ../xfconf-query/main.c:583 ../xfconf-query/main.c:592
-#, c-format
-msgid "Could not create export file \"%s\": %s\n"
-msgstr "\"%s\" экспорт файлын жасау мүмкін емес: %s\n"
+#~ msgid "Property '%s' changed: %s\n"
+#~ msgstr "'%s' қасиеті өзгертілді: %s\n"
 
-#: ../xfconf-query/main.c:612
-#, c-format
-msgid "Could not open import file \"%s\": %s\n"
-msgstr "\"%s\" импорт файлын ашу мүмкі немес: %s\n"
+#~ msgid "Property '%s' changed\n"
+#~ msgstr "'%s' қасиеті өзгертілді\n"
 
-#: ../xfconf-query/main.c:621
-#, c-format
-msgid "Could not parse import file \"%s\": %s\n"
-msgstr "\"%s\" импорт файлын өндеу мүмкін емес: %s\n"
+#~ msgid "Property '%s' removed\n"
+#~ msgstr "'%s' қасиеті өшірілді\n"
+
+#~ msgid "Export method not yet implemented"
+#~ msgstr "Экспорт тәсілі әлі іске асырылмаған"
+
+#~ msgid "Export not yet implemented"
+#~ msgstr "Экспорт әлі іске асырылмаған"
+
+#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
+#~ msgstr "\"%s\" қасиеті \"%s\" каналында жоқ болып тұр.\n"
+
+#~ msgid "Could not create export file \"%s\": %s\n"
+#~ msgstr "\"%s\" экспорт файлын жасау мүмкін емес: %s\n"
+
+#~ msgid "Could not open import file \"%s\": %s\n"
+#~ msgstr "\"%s\" импорт файлын ашу мүмкі немес: %s\n"
+
+#~ msgid "Could not parse import file \"%s\": %s\n"
+#~ msgstr "\"%s\" импорт файлын өндеу мүмкін емес: %s\n"

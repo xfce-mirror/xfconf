@@ -4,19 +4,19 @@
 # Og Maciel <ogmaciel@gnome.org>, 2008, 2009.
 # Fábio Nogueira <deb-user-ba@ubuntu.com>, 2008.
 # Henrique P. Machado <zehrique@gmail.com>, 2008-2009
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-27 04:15+0000\n"
+"POT-Creation-Date: 2011-11-28 21:48+0100\n"
 "PO-Revision-Date: 2009-02-04 20:19-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
 
 #: ../xfconf/xfconf-cache.c:876
 #, c-format
@@ -96,13 +96,19 @@ msgstr "O elemento root (\"/\") não é um nome de propriedade válido"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "Nomes de propriedades só podem incluir os caracteres ASCII A-Z, a-z, 0-9, \"_\", \"-\", \"<\" e \">\", assim como também o \"/\" como um separador"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr ""
+"Nomes de propriedades só podem incluir os caracteres ASCII A-Z, a-z, 0-9, \"_"
+"\", \"-\", \"<\" e \">\", assim como também o \"/\" como um separador"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Nomes de propriedades não podem ter dois ou mais caracteres \"/\" em sequência"
+msgstr ""
+"Nomes de propriedades não podem ter dois ou mais caracteres \"/\" em "
+"sequência"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -116,25 +122,38 @@ msgstr "O nome do canal não pode ser vazio"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr "Nomes de canais só podem incluir os caracteres ASCII A-Z, a-z, 0-9, \"_\" e \"-\""
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr ""
+"Nomes de canais só podem incluir os caracteres ASCII A-Z, a-z, 0-9, \"_\" e "
+"\"-\""
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr "O nome da propriedade só pode ser vazio ou \"/\" se uma redefinição recursiva foi especificada"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr ""
+"O nome da propriedade só pode ser vazio ou \"/\" se uma redefinição "
+"recursiva foi especificada"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Imprime a versão do xfconfd."
 
 #: ../xfconfd/main.c:136
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr "Backends de configuração a usar. O primeiro backend especificado é aberto no modo de escrita e leitura; os outros somente de leitura."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened read/"
+"write; the others, read-only."
+msgstr ""
+"Backends de configuração a usar. O primeiro backend especificado é aberto no "
+"modo de escrita e leitura; os outros somente de leitura."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr "Bifurcar para o segundo plano depois de iniciar; somente útil durante testes"
+msgstr ""
+"Bifurcar para o segundo plano depois de iniciar; somente útil durante testes"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -260,7 +279,8 @@ msgstr "As opções --create e --reset não podem ser usadas em conjunto"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr "As opções --create e --reset não podem ser usadas em conjunto com --list"
+msgstr ""
+"As opções --create e --reset não podem ser usadas em conjunto com --list"
 
 #: ../xfconf-query/main.c:319
 #, c-format
@@ -287,12 +307,17 @@ msgstr "O valor é uma matriz com %d itens:"
 
 #: ../xfconf-query/main.c:399
 #, c-format
-msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
-msgstr "A propriedade \"%s\" não existe no canal \"%s\". Se você deseja criar uma nova propriedade, use a opção --create"
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\". If a new property should "
+"be created, use the --create option"
+msgstr ""
+"A propriedade \"%s\" não existe no canal \"%s\". Se você deseja criar uma "
+"nova propriedade, use a opção --create"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
-msgstr "Ao criar uma nova propriedade, é necessário especificar o tipo do valor"
+msgstr ""
+"Ao criar uma nova propriedade, é necessário especificar o tipo do valor"
 
 #: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
@@ -304,7 +329,9 @@ msgstr "Não foi possível determinar o tipo do valor"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr "É necessário especificar um tipo de valor para mudar uma matriz para um valor único"
+msgstr ""
+"É necessário especificar um tipo de valor para mudar uma matriz para um "
+"valor único"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
@@ -314,7 +341,8 @@ msgstr "Não é possível converter \"%s\" para tipo \"%s\""
 #: ../xfconf-query/main.c:483
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "Existem %d novos valores, mas somente %d tipos puderam ser determinados"
+msgstr ""
+"Existem %d novos valores, mas somente %d tipos puderam ser determinados"
 
 #: ../xfconf-query/main.c:504
 #, c-format
