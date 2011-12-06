@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf.xfce-4-8.untitled\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-05 06:51+0000\n"
+"POT-Creation-Date: 2011-12-06 07:42+0000\n"
 "PO-Revision-Date: 2011-12-03 07:53+0000\n"
 "Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
@@ -132,7 +132,7 @@ msgstr ""
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
-msgstr ""
+msgstr "Prenta xfconfd útgáfuna."
 
 #: ../xfconfd/main.c:136
 msgid ""
@@ -172,19 +172,19 @@ msgid "No backends could be started"
 msgstr ""
 
 #: ../xfconf-query/main.c:92
-#, c-format
+#, c-format, fuzzy
 msgid "Property '%s' changed: %s\n"
-msgstr ""
+msgstr "Eiginleiknum '%s' breytt: %s\n"
 
 #: ../xfconf-query/main.c:97
-#, c-format
+#, c-format, fuzzy
 msgid "Property '%s' changed\n"
-msgstr ""
+msgstr "Eiginleiknum '%s' breytt\n"
 
 #: ../xfconf-query/main.c:102
-#, c-format
+#, c-format, fuzzy
 msgid "Property '%s' removed\n"
-msgstr ""
+msgstr "Eiginleikinn '%s' fjarlægður\n"
 
 #: ../xfconf-query/main.c:111
 #, c-format
