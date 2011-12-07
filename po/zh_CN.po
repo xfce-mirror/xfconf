@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-06 01:33+0000\n"
+"POT-Creation-Date: 2011-12-07 08:03+0000\n"
 "PO-Revision-Date: 2009-10-20 23:13+0800\n"
 "Last-Translator: Chipong Luo <chipong_l@yahoo.com>\n"
 "Language-Team: Chinese (simplified) <xfce-i18n@xfce.org>\n"
@@ -100,9 +100,9 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
 msgstr ""
-"属性名称只能包含 ASCII 字符 A 至 Z、"
-"a 至 z、0 至 9、_、-、< 或 >，此外 ‘/’ "
-"用作分隔符"
+"属性名称只能包含 ASCII 字符 A 至 Z、a "
+"至 z、0 至 9、_、-、< 或 >，此外 ‘/’ 用"
+"作分隔符"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -125,16 +125,15 @@ msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
 msgstr ""
-"频道名只能包含 ASCII 字符 A 至 Z、"
-"a 至 z、0 至 9、‘_’或 ‘-’"
+"频道名只能包含 ASCII 字符 A 至 Z、a "
+"至 z、0 至 9、‘_’或 ‘-’"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"只有当指定递归重置后属性名才能为空或 “/”"
+msgstr "只有当指定递归重置后属性名才能为空或 “/”"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -324,8 +323,7 @@ msgstr "未能确定值的类型"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
-"把数组更改为单一值时必须指定值的类型"
+msgstr "把数组更改为单一值时必须指定值的类型"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
