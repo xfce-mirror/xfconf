@@ -511,6 +511,10 @@ xfconf_cache_set_property_reply_handler(DBusGProxy *proxy,
         goto out;
     }
 
+    g_hash_table_remove(cache->old_properties, old_item->property);
+    /* don't destroy old_item yet */
+    g_hash_table_steal(cache->pending_calls, old_item->call);
+
     item = g_tree_lookup(cache->properties, old_item->property);
     if(G_UNLIKELY(!item)) {
 #ifndef NDEBUG
@@ -518,10 +522,6 @@ xfconf_cache_set_property_reply_handler(DBusGProxy *proxy,
 #endif
         goto out;
     }
-
-    g_hash_table_remove(cache->old_properties, old_item->property);
-    /* don't destroy old_item yet */
-    g_hash_table_steal(cache->pending_calls, old_item->call);
 
     if(!dbus_g_proxy_end_call(proxy, call, &error, G_TYPE_INVALID)) {
         /* failed to set the value.  reset it to the old value and send
