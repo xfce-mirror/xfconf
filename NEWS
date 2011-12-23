@@ -1,3 +1,13 @@
+Xfconf 4.8.1
+============
+
+  * Fix double free crash (bug #8169).
+  * Fix compiler warnings on solaris.
+  * Avoid gcc 4.6 compiler warning.
+  * Allow installation of the helpers in a custom location.
+  * Updated translations: hr, is, ko, ms, nl, ru, sk, te, tr, zh_CN.
+
+
 Xfconf 4.8.0
 ============
 
@@ -7,7 +17,7 @@ Xfconf 4.8.0
 Xfconf 4.7.5
 ============
 
-  * Updated translations: he, nb, en+GB, pt, ar.
+  * Updated translations: he, nb, en_GB, pt, ar.
 
 
 Xfconf 4.7.4
@@ -109,7 +119,7 @@ Xfce 4.6beta3 (Xfce 4.5.93)
     Daniel Nylander (sv), Terje Uriansrud (nb), Carles Muñoz Gorriz (ca),
     Abel Martín (es), Maximilian Schleiss (fr), Og Maciel (pt_BR),
     Eren Turkay (tr)
-    
+
 
 Xfce 4.6beta2 (Xfce 4.5.92)
 ===========================
