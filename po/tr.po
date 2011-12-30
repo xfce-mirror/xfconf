@@ -1,27 +1,27 @@
 # translation of xfconf.po to Turkish
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Server Acim <sacim@kde.org.tr>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
+"POT-Creation-Date: 2011-12-30 11:09+0000\n"
 "PO-Revision-Date: 2009-01-30 21:21+0200\n"
 "Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
 "Language-Team: Turkish <yerellestirme@kde.org.tr>\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: tr\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../xfconf/xfconf-cache.c:876
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "Özellik ayarlanamadı.\n"
+msgstr "ResetProperty DBus çağrısı yapılamadı"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
@@ -182,12 +182,14 @@ msgid "No backends could be started"
 msgstr "Hiç bir geride süren işlev başlatılamadı"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
+#, fuzzy
 msgid "set"
-msgstr ""
+msgstr "ayarla"
 
 #: ../xfconf-query/main.c:100
+#, fuzzy
 msgid "reset"
-msgstr ""
+msgstr "yeniden ayarla"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
@@ -235,7 +237,7 @@ msgstr "Bir öge de olsa, sıralamaya zorla"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
-msgstr ""
+msgstr "Varolan bir boolean özelliği ters çevir"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
@@ -244,37 +246,39 @@ msgstr "Özellik değişiklikleri için bir kanal izleyin"
 #: ../xfconf-query/main.c:246
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr ""
+msgstr "libxfconf başlatılması başarısız: %s"
 
 #: ../xfconf-query/main.c:251
+#, fuzzy
 msgid "- Xfconf commandline utility"
-msgstr ""
+msgstr "- Xconf komut satırı özelliği"
 
 #: ../xfconf-query/main.c:256
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr ""
+msgstr "Seçenek ayrıştırması başarısız: %s"
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
-msgstr ""
+msgstr "Xfec geliştirme ekibi. Tüm hakları saklıdır."
 
 #: ../xfconf-query/main.c:267
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr ""
+msgstr "Lütfen hataları <%s> e bildiriniz."
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
-msgstr ""
+msgstr "Kanallar:"
 
 #: ../xfconf-query/main.c:295
+#, fuzzy
 msgid "No property specified"
-msgstr ""
+msgstr "Hiçbir özellik belirtilmedi"
 
 #: ../xfconf-query/main.c:301
 msgid "--create and --reset options can not be used together"
-msgstr ""
+msgstr "--create ve --reset seçenekleri birlikte kullanılamaz"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
@@ -293,7 +297,7 @@ msgstr "Özellik ayarlanamadı.\n"
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
-msgstr ""
+msgstr "--toggle sadece boolean değerlerle çalışır"
 
 #: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
@@ -328,7 +332,7 @@ msgstr "Değer için var olan tür alınamadı.\n"
 #: ../xfconf-query/main.c:435
 #, fuzzy
 msgid "Unable to determine the type of the value"
-msgstr "Değerin türü belirlenemiyor.\n"
+msgstr "Değerin türü belirlenemiyor"
 
 #: ../xfconf-query/main.c:441
 #, fuzzy
@@ -340,22 +344,22 @@ msgstr ""
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, fuzzy, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "Bunu \"%s\" bu türe dönüştürme işlemi \"%s\" başarılamadı\n"
+msgstr "\"%s\" i \"%s\" türüne  dönüştürme işlemi başarısız"
 
 #: ../xfconf-query/main.c:483
 #, fuzzy, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "%d yeni değer var; ama sadece %d tür belirlenebildi.\n"
+msgstr "%d yeni değer var, ama sadece %d tür belirlenebildi"
 
 #: ../xfconf-query/main.c:504
 #, fuzzy, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "%d listesindeki değer türü belirlenemedi.\n"
+msgstr "%d indeksindeki değerin türü belirlenemedi"
 
 #: ../xfconf-query/main.c:554
 #, fuzzy, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "Bu kanal %s herhangi bir özellik içermiyor\n"
+msgstr "Kanal %s herhangi bir özellik içermiyor"
 
 #~ msgid "Property '%s' changed: %s\n"
 #~ msgstr "'%s' özelliği değiştirildi: %s\n"
