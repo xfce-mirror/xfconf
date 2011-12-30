@@ -272,7 +272,6 @@ msgid "Channels:"
 msgstr "Kanallar:"
 
 #: ../xfconf-query/main.c:295
-#, fuzzy
 msgid "No property specified"
 msgstr "Hiçbir özellik belirtilmedi"
 
@@ -281,8 +280,9 @@ msgid "--create and --reset options can not be used together"
 msgstr "--create ve --reset seçenekleri birlikte kullanılamaz"
 
 #: ../xfconf-query/main.c:307
+#, fuzzy
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
+msgstr "--create ve --reset seçenekleri --list ile birlikte kullanılamaz"
 
 #: ../xfconf-query/main.c:319
 #, fuzzy, c-format
@@ -291,9 +291,8 @@ msgstr "'%s' kanalını izlemeyi başlat:"
 
 #: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
-#, fuzzy
 msgid "Failed to set property"
-msgstr "Özellik ayarlanamadı.\n"
+msgstr "Özellik ayarlanamadı"
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
