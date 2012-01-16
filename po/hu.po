@@ -1,27 +1,27 @@
 # Hungarian translation of xfconf
-# Copyright (C) 2009. Free Software Foundation, Inc.
+# Copyright (C) 2009, 2012. Free Software Foundation, Inc.
 # This file is distributed under the same license as the xfconf package.
 #
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2009.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2009, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: untitled\n"
+"Project-Id-Version: xfconf master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2009-06-24 02:51+0200\n"
+"POT-Creation-Date: 2012-01-16 00:45+0000\n"
+"PO-Revision-Date: 2012-01-16 03:38+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
-"Language-Team: Hungarian <gnome at gnome dot hu>\n"
+"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../xfconf/xfconf-cache.c:876
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "A ResetProperty DBus-hívás meghiúsult."
+msgstr "A ResetProperty D-Bus-hívás meghiúsult"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
@@ -108,8 +108,7 @@ msgstr ""
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"A tulajdonságnevekben nem lehet két vagy több egymást követő „/” karakter"
+msgstr "A tulajdonságnevekben nem lehet két vagy több egymást követő „/” karakter"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -184,11 +183,11 @@ msgstr "Nem indíthatók háttérprogramok"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
-msgstr ""
+msgstr "beállítás"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
-msgstr ""
+msgstr "visszaállítás"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
@@ -236,7 +235,7 @@ msgstr "Tömb kényszerítése egy elem esetén is"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
-msgstr ""
+msgstr "Meglévő logikai tulajdonság megfordítása"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
@@ -245,117 +244,109 @@ msgstr "Tulajdonságváltozások figyelése a csatornán"
 #: ../xfconf-query/main.c:246
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr ""
+msgstr "A libxfconf előkészítése meghiúsult: %s"
 
 #: ../xfconf-query/main.c:251
 msgid "- Xfconf commandline utility"
-msgstr ""
+msgstr "- Xfconf parancssori segédprogram"
 
 #: ../xfconf-query/main.c:256
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr ""
+msgstr "A kapcsolófeldolgozás sikertelen: %s"
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
-msgstr ""
+msgstr "Az Xfce fejlesztőcsapata. Minden jog fenntartva."
 
 #: ../xfconf-query/main.c:267
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr ""
+msgstr "A hibákat ide jelentse: <%s>."
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
-msgstr ""
+msgstr "Csatornák:"
 
 #: ../xfconf-query/main.c:295
 msgid "No property specified"
-msgstr ""
+msgstr "Nincs kiválasztva tulajdonság"
 
 #: ../xfconf-query/main.c:301
 msgid "--create and --reset options can not be used together"
-msgstr ""
+msgstr "a --create és --reset kapcsolók nem használhatók együtt"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
+msgstr "a --create és --reset kapcsolók nem használhatók a --list kapcsolóval együtt"
 
 #: ../xfconf-query/main.c:319
-#, fuzzy, c-format
+#, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "„%s” csatorna figyelésének megkezdése:"
 
 #: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
-#, fuzzy
 msgid "Failed to set property"
-msgstr "A tulajdonság beállítása meghiúsult.\n"
+msgstr "A tulajdonság beállítása meghiúsult"
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
-msgstr ""
+msgstr "A --toggle csak logikai értékekre használható"
 
 #: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(ismeretlen)"
 
 #: ../xfconf-query/main.c:375
-#, fuzzy, c-format
+#, c-format
 msgid "Value is an array with %d items:"
-msgstr ""
-"Az érték egy %d elemű tömb:\n"
-"\n"
+msgstr "Az érték egy %d elemű tömb:"
 
 #: ../xfconf-query/main.c:399
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr ""
 "A tulajdonság („%s”) nem létezik a csatornán („%s”). Ha új tulajdonságot "
-"akar létrehozni, használja a --create kapcsolót.\n"
+"akar létrehozni, akkor használja a --create kapcsolót"
 
 #: ../xfconf-query/main.c:407
-#, fuzzy
 msgid "When creating a new property, the value type must be specified"
-msgstr "Új tulajdonság létrehozásakor meg kell adni az értékének típusát.\n"
+msgstr "Új tulajdonság létrehozásakor meg kell adni az értékének típusát"
 
 #: ../xfconf-query/main.c:417
-#, fuzzy
 msgid "Failed to get the existing type for the value"
-msgstr "Az érték meglévő típusának lekérése meghiúsult.\n"
+msgstr "Az érték meglévő típusának lekérése meghiúsult"
 
 #: ../xfconf-query/main.c:435
-#, fuzzy
 msgid "Unable to determine the type of the value"
-msgstr "Nem állapítható meg az érték típusa.\n"
+msgstr "Nem állapítható meg az érték típusa"
 
 #: ../xfconf-query/main.c:441
-#, fuzzy
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
-"Meg kell adni az értéktípust a tömb egyetlen értékké változtatásához.\n"
+msgstr "Meg kell adni az értéktípust a tömb egyetlen értékké változtatásához"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "„%s” nem alakítható „%s” típusúvá\n"
+msgstr "„%s” nem alakítható „%s” típusúvá"
 
 #: ../xfconf-query/main.c:483
-#, fuzzy, c-format
+#, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "%d új érték van, de csak %d típus határozható meg.\n"
+msgstr "%d új érték van, de csak %d típus határozható meg"
 
 #: ../xfconf-query/main.c:504
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "Nem határozható meg a(z) %d indexű érték típusa.\n"
+msgstr "Nem határozható meg a(z) %d indexű érték típusa"
 
 #: ../xfconf-query/main.c:554
-#, fuzzy, c-format
+#, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "A csatorna („%s”) nem tartalmaz tulajdonságokat\n"
+msgstr "A csatorna („%s”) nem tartalmaz tulajdonságokat"
 
 #~ msgid "Property '%s' changed: %s\n"
 #~ msgstr "A tulajdonság („%s”) módosítva: %s\n"
@@ -383,3 +374,4 @@ msgstr "A csatorna („%s”) nem tartalmaz tulajdonságokat\n"
 
 #~ msgid "Could not parse import file \"%s\": %s\n"
 #~ msgstr "Az importálási fájl („%s”) nem dolgozható fel: %s\n"
+
