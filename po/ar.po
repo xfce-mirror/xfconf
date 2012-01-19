@@ -2,21 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
+"POT-Creation-Date: 2012-01-19 19:03+0000\n"
 "PO-Revision-Date: 2010-12-30 16:58-0000\n"
 "Last-Translator: كريم أولاد الشلحة <herr.linux88@gmail.com>\n"
 "Language-Team: Arabic <herr.linux88@gmail.com>\n"
-"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Arabic\n"
 "X-Poedit-Country: MOROCCO\n"
+"Language: ar\n"
+"X-Poedit-Language: Arabic\n"
 
 #: ../xfconf/xfconf-cache.c:876
 #, c-format
@@ -56,7 +56,7 @@ msgstr "نوع فير موتوق لـ <property>: \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr ""
+msgstr "غير قادر على تحليل قيمة النوع \"%s\" من \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
@@ -82,7 +82,7 @@ msgstr "غير قادر غلى كتابة القنات \"%s\": %s"
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr ""
+msgstr "غير قادر على العثور على خلفية Xfconf لنوع \"%s\""
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
@@ -164,7 +164,7 @@ msgstr "خطأ أتناء تحليل الخيارات: %s\n"
 #: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "Another Xfconf daemon is already running"
-msgstr ""
+msgstr "برنامج Xfconf اخر يعمل حاليا"
 
 #: ../xfconfd/xfconf-daemon.c:517
 #, c-format
@@ -173,11 +173,11 @@ msgstr ""
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
-msgstr ""
+msgstr "تعيين"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
-msgstr ""
+msgstr "إعادة تعيين"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
@@ -193,11 +193,11 @@ msgstr "خصائص الإستعلام/التعديل"
 
 #: ../xfconf-query/main.c:188
 msgid "The new value to set for the property"
-msgstr ""
+msgstr "القيمة الجديد لتعيينها للخصائص"
 
 #: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
-msgstr ""
+msgstr "قائمة الخصائص أو القنوات غذا كان -c لم يتم تعيينه)"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
@@ -229,34 +229,34 @@ msgstr ""
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
-msgstr ""
+msgstr "قناة لمراقبة تغيرات الخصائص"
 
 #: ../xfconf-query/main.c:246
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr ""
+msgstr "فشل بدء libxfconf: %s"
 
 #: ../xfconf-query/main.c:251
 msgid "- Xfconf commandline utility"
-msgstr ""
+msgstr "- Xfconf أداة سطر الأوامر"
 
 #: ../xfconf-query/main.c:256
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr ""
+msgstr "فشل خيار التحليل: %s"
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
-msgstr ""
+msgstr "فريق تطوير الإكسفسي. كل الحقوق محفوظة."
 
 #: ../xfconf-query/main.c:267
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr ""
+msgstr "الرجاء الإيلاغ عن الخلل إلى <%s>."
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
-msgstr ""
+msgstr "قنوات"
 
 #: ../xfconf-query/main.c:295
 msgid "No property specified"
