@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-19 19:03+0000\n"
+"POT-Creation-Date: 2012-01-24 20:18+0000\n"
 "PO-Revision-Date: 2010-12-30 16:58-0000\n"
 "Last-Translator: كريم أولاد الشلحة <herr.linux88@gmail.com>\n"
 "Language-Team: Arabic <herr.linux88@gmail.com>\n"
@@ -19,9 +19,9 @@ msgstr ""
 "X-Poedit-Language: Arabic\n"
 
 #: ../xfconf/xfconf-cache.c:876
-#, c-format
+#, c-format, fuzzy
 msgid "Failed to make ResetProperty DBus call"
-msgstr ""
+msgstr "فشل القيام بإعادة تعيين الخصائص DBus call"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
@@ -59,9 +59,9 @@ msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "غير قادر على تحليل قيمة النوع \"%s\" من \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
-#, c-format
+#, c-format, fuzzy
 msgid "The type attribute of <value> cannot be an array"
-msgstr ""
+msgstr "نوع ميزة <value> لا يمكن أن تكون مصفوفة"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
@@ -87,48 +87,48 @@ msgstr "غير قادر على العثور على خلفية Xfconf لنوع \"
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr ""
+msgstr "أسماء الخصائص يجب ان تبدء بالرمز '/'"
 
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr ""
+msgstr "عنصر الجذر ('/') ليس إسم خصائص سليم"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
+msgstr "يمكن لأسماء الخصائص أن تحتوي فقط على رموز ASCII  وهي A-Z, a-z, 0-9, '_', '-', '<' و '>', فضلا عن '/' كفاصل"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
+msgstr "أسماء الخصائص لا يمكن ان تحتوي على رمزين او اكثر متتالية من '/'"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr ""
+msgstr "أسماء الخصائص لا يمكن ان تنتهي بالرمز '/'"
 
 #: ../xfconfd/xfconf-backend.c:163
 #, c-format
 msgid "Channel name cannot be an empty string"
-msgstr ""
+msgstr "إسم القناة لا يمكن ان يكون سلسلة فارغة"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
+msgstr "يمكن لأسماء القنوات ان تحتوي فقط على رموز ASCII  وهي A-Z, a-z, 0-9, '_', و '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
+msgstr "يمكن لإسم الخصائص أن يكون فارغا أو \"/\" إذا تمت إعادة تعيين متكررة"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -138,11 +138,11 @@ msgstr "طباعة نسخة xfconfd."
 msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
-msgstr ""
+msgstr "إعداد الواجهات الخلفية. الواجهة الخلفية المحددة أولا يتم فتحها قراءة/كتابة؛ غير ذلك, يتم فتحه قراءة-فقط."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "تفرع إلى الخلفية بعد البدء; يستعمل لأغراض تجريبية فقط"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -169,7 +169,7 @@ msgstr "برنامج Xfconf اخر يعمل حاليا"
 #: ../xfconfd/xfconf-daemon.c:517
 #, c-format
 msgid "No backends could be started"
-msgstr ""
+msgstr "لا يمكن بدء الواجهة الخلفية"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
@@ -205,7 +205,7 @@ msgstr "مخرج مطول"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
-msgstr ""
+msgstr "إنشاء إسم الخصائص جديد إن لم يكن موجودا أصلا"
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
@@ -217,15 +217,16 @@ msgstr "إعادة تعيين الخصائص"
 
 #: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
-msgstr ""
+msgstr "Recursive (يستعمل بـ -r)"
 
 #: ../xfconf-query/main.c:216
+#, fuzzy
 msgid "Force array even if only one element"
-msgstr ""
+msgstr "إجبار المصفوفة حتى لو كان عنصر واحد فقط"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
-msgstr ""
+msgstr "عكس خصائص قيمة منطقية موجودة"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
@@ -260,30 +261,29 @@ msgstr "قنوات"
 
 #: ../xfconf-query/main.c:295
 msgid "No property specified"
-msgstr ""
+msgstr "لم يتم تحديد الخصائص"
 
 #: ../xfconf-query/main.c:301
 msgid "--create and --reset options can not be used together"
-msgstr ""
+msgstr "--create و --reset خيارات لا يمكن إستعمالها معا"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
+msgstr "--create و --reset خيارات لا يمكن إستعمالها معا مع  --list"
 
 #: ../xfconf-query/main.c:319
-#, fuzzy, c-format
+#, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "غير قادر غلى كتابة القنات \"%s\": %s"
+msgstr "بدء مراقبة القناة \"%s\":"
 
 #: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
-#, fuzzy
 msgid "Failed to set property"
-msgstr "فشل تعيين خصائص.\n"
+msgstr "فشل تعيين الخصائص"
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
-msgstr ""
+msgstr "--toggle تعمل فقط مع القيم المنطقية"
 
 #: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
@@ -292,54 +292,51 @@ msgstr "(مجهول)"
 #: ../xfconf-query/main.c:375
 #, c-format
 msgid "Value is an array with %d items:"
-msgstr ""
+msgstr "القيمة هي مصفوفة مع %d عناصر:"
 
 #: ../xfconf-query/main.c:399
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
+msgstr "الخصائص \"%s\" غير موجودة في القناة \"%s\". إذا كان يجب إنشاء خصائص جديدة, إستعمل خيار --create"
 
 #: ../xfconf-query/main.c:407
-#, fuzzy
 msgid "When creating a new property, the value type must be specified"
-msgstr "عنذ إنشاء خصائص جديدة, نوع القيمة يجب أن يحدد.\n"
+msgstr "عنذ إنشاء خصائص جديدة, نوع القيمة يجب أن يحدد"
 
 #: ../xfconf-query/main.c:417
-#, fuzzy
 msgid "Failed to get the existing type for the value"
-msgstr "فشل الحصول على النوع القيمة.\n"
+msgstr "فشل الحصول على النوع القيمة الموجودة حاليا"
 
 #: ../xfconf-query/main.c:435
-#, fuzzy
 msgid "Unable to determine the type of the value"
-msgstr "عاجز عن تحديد نوع القيمة.\n"
+msgstr "عاجز عن تحديد نوع القيمة"
 
 #: ../xfconf-query/main.c:441
 #, fuzzy
 msgid "A value type must be specified to change an array into a single value"
-msgstr "نوع القيمة يجب أن يحدد لتغير نظام إلى قيمة وحيدة.into"
+msgstr "نوع القيمة يجب أن يحدد لتغير مصفوفة إلى قيمة وحيدة"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "غير قادر على تحويل \"%s\" إلى النوع \"%s\"\n"
+msgstr "غير قادر على تحويل \"%s\" إلى النوع \"%s\""
 
 #: ../xfconf-query/main.c:483
-#, fuzzy, c-format
+#, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "هذه %d قيمة جديدة, لكن %d بمكن تحديد النوع فقط.\n"
+msgstr "هنالك %d قيم جديدة, لكن فقط %d قيم يمكن تحديدها"
 
 #: ../xfconf-query/main.c:504
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "عاجز عن تحديد نوع القيمة في الارشيف %d.\n"
+msgstr "عاجز عن تحديد نوع القيمة في الأرشيف %d"
 
 #: ../xfconf-query/main.c:554
-#, fuzzy, c-format
+#, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "قناة '%s' لا تحتوي على خصائص\n"
+msgstr "قناة '%s' لا تحتوي على خصائص"
 
 #~ msgid "Property '%s' changed\n"
 #~ msgstr "تم تغير خصائص '%s'\n"
