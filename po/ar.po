@@ -7,19 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-24 20:18+0000\n"
+"POT-Creation-Date: 2012-01-29 10:30+0000\n"
 "PO-Revision-Date: 2010-12-30 16:58-0000\n"
 "Last-Translator: كريم أولاد الشلحة <herr.linux88@gmail.com>\n"
 "Language-Team: Arabic <herr.linux88@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Country: MOROCCO\n"
 "Language: ar\n"
 "X-Poedit-Language: Arabic\n"
+"X-Poedit-Country: MOROCCO\n"
 
 #: ../xfconf/xfconf-cache.c:876
-#, c-format, fuzzy
+#, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "فشل القيام بإعادة تعيين الخصائص DBus call"
 
@@ -59,9 +59,9 @@ msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "غير قادر على تحليل قيمة النوع \"%s\" من \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
-#, c-format, fuzzy
+#, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "نوع ميزة <value> لا يمكن أن تكون مصفوفة"
+msgstr "نوع الميزة <value> لا يمكن أن تكون مصفوفة"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
@@ -99,7 +99,9 @@ msgstr "عنصر الجذر ('/') ليس إسم خصائص سليم"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr "يمكن لأسماء الخصائص أن تحتوي فقط على رموز ASCII  وهي A-Z, a-z, 0-9, '_', '-', '<' و '>', فضلا عن '/' كفاصل"
+msgstr ""
+"يمكن لأسماء الخصائص أن تحتوي فقط على رموز ASCII  وهي A-Z, a-z, 0-9, '_', "
+"'-', '<' و '>', فضلا عن '/' كفاصل"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -121,7 +123,9 @@ msgstr "إسم القناة لا يمكن ان يكون سلسلة فارغة"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr "يمكن لأسماء القنوات ان تحتوي فقط على رموز ASCII  وهي A-Z, a-z, 0-9, '_', و '-'"
+msgstr ""
+"يمكن لأسماء القنوات ان تحتوي فقط على رموز ASCII  وهي A-Z, a-z, 0-9, '_', و "
+"'-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
@@ -138,7 +142,9 @@ msgstr "طباعة نسخة xfconfd."
 msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
-msgstr "إعداد الواجهات الخلفية. الواجهة الخلفية المحددة أولا يتم فتحها قراءة/كتابة؛ غير ذلك, يتم فتحه قراءة-فقط."
+msgstr ""
+"إعداد الواجهات الخلفية. الواجهة الخلفية المحددة أولا يتم فتحها قراءة/كتابة؛ "
+"غير ذلك, يتم فتحه قراءة-فقط."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -220,7 +226,6 @@ msgid "Recursive (use with -r)"
 msgstr "Recursive (يستعمل بـ -r)"
 
 #: ../xfconf-query/main.c:216
-#, fuzzy
 msgid "Force array even if only one element"
 msgstr "إجبار المصفوفة حتى لو كان عنصر واحد فقط"
 
@@ -299,7 +304,9 @@ msgstr "القيمة هي مصفوفة مع %d عناصر:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr "الخصائص \"%s\" غير موجودة في القناة \"%s\". إذا كان يجب إنشاء خصائص جديدة, إستعمل خيار --create"
+msgstr ""
+"الخصائص \"%s\" غير موجودة في القناة \"%s\". إذا كان يجب إنشاء خصائص جديدة, "
+"إستعمل خيار --create"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
@@ -314,7 +321,6 @@ msgid "Unable to determine the type of the value"
 msgstr "عاجز عن تحديد نوع القيمة"
 
 #: ../xfconf-query/main.c:441
-#, fuzzy
 msgid "A value type must be specified to change an array into a single value"
 msgstr "نوع القيمة يجب أن يحدد لتغير مصفوفة إلى قيمة وحيدة"
 
