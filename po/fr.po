@@ -2,7 +2,7 @@
 # Copyright (C) 2008-2009 The Xfce development team.
 # This file is distributed under the same license as the xfconf package.
 # Maximilian Schleiss <maximilian@xfce.org>, 2008-2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
@@ -36,8 +36,7 @@ msgstr "Vous n'avez pas les permissions nécessaires à la modification de la pr
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
-#: ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "La propriété \"%s\" n'existe pas dans le canal \"%s\""
@@ -97,7 +96,7 @@ msgstr "L'élément à la racine n'est pas un nom de propriété valide"
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
 msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "Les noms des propriétés ne peuvent contenir que des caractères ASCII parmisA-Z, a-z, 0-9, '_', '-', '<' et '>', ainsi que '/' comme séparateur"
+msgstr "Les noms des propriétés ne peuvent contenir que des caractères ASCII parmi A-Z, a-z, 0-9, '_', '-', '<' et '>', ainsi que '/' comme séparateur"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -107,7 +106,7 @@ msgstr "Les noms de propriétés ne peuvent pas contenir plusieurs caractères '
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Les noms de propriétés ne peuvent pas se terminer par le caractère '/'"
+msgstr "Les noms de propriété ne peuvent pas se terminer par le caractère '/'"
 
 #: ../xfconfd/xfconf-backend.c:163
 #, c-format
@@ -117,7 +116,7 @@ msgstr "Le nom du canal ne peut pas être vide"
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
 msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr "Les noms des canaux ne peuvent contenir que des caractères ASCII parmis A-Z, a-z, 0-9, '_' et '-'"
+msgstr "Les noms des canaux ne peuvent contenir que des caractères ASCII parmi A-Z, a-z, 0-9, '_' et '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
@@ -163,8 +162,7 @@ msgstr "Un autre démon Xfconf est en cours d'exécution"
 msgid "No backends could be started"
 msgstr "Aucun backend n'a pu être démarré"
 
-#: ../xfconf-query/main.c:90
-#: ../xfconf-query/main.c:95
+#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
 msgstr "définir"
 
@@ -214,7 +212,7 @@ msgstr "Récursif (utiliser -r)"
 
 #: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
-msgstr "Forcer l'utilisation d'un ensemble même si il n'y a q'un élément"
+msgstr "Forcer l'utilisation d'un ensemble même si il n'y a qu’un élément"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
@@ -227,7 +225,7 @@ msgstr "Surveiller les changements de propriétés d'un canal"
 #: ../xfconf-query/main.c:246
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr "Echec de l'initialisation de libxfconf : %s"
+msgstr "Échec de l'initialisation de libxfconf : %s"
 
 #: ../xfconf-query/main.c:251
 msgid "- Xfconf commandline utility"
@@ -261,15 +259,14 @@ msgstr "Les options --create et --reset ne peuvent pas être utilisées en même
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr "Les options --create et --reset  ne peuvent être utilisées en même temps que l'option --list"
+msgstr "Les options --create et --reset  ne peuvent pas être utilisées en même temps que l'option --list"
 
 #: ../xfconf-query/main.c:319
 #, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "Commencer à surveiller le canal\"%s\" :"
+msgstr "Commencer à surveiller le canal \"%s\" :"
 
-#: ../xfconf-query/main.c:353
-#: ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
 msgid "Failed to set property"
 msgstr "Échec à la définition de la propriété."
@@ -278,8 +275,7 @@ msgstr "Échec à la définition de la propriété."
 msgid "--toggle only works with boolean values"
 msgstr "--afficher uniquement les travaux avec des valeurs booléennes"
 
-#: ../xfconf-query/main.c:366
-#: ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(inconnu)"
 
@@ -309,8 +305,7 @@ msgstr "Impossible de déterminer le type de la valeur."
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Un type de valeur doit être spécifié pour changer une rangée en une valeur simple."
 
-#: ../xfconf-query/main.c:451
-#: ../xfconf-query/main.c:512
+#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "Impossible de convertir \"%s\" vers le type \"%s\""
