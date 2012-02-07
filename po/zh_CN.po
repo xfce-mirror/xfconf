@@ -4,13 +4,13 @@
 # the xfconf package.
 # Chris K. Zhang <plutino@gmail.com>, 2009.
 # Hunt Xu <mhuntxu@gmail.com>, 2009.
-# Chipong Luo <chipong_l@yahoo.com>, 2011.
+# Chipong Luo <chipong_l@yahoo.com>, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-07 08:03+0000\n"
+"POT-Creation-Date: 2012-02-07 09:06+0000\n"
 "PO-Revision-Date: 2009-10-20 23:13+0800\n"
 "Last-Translator: Chipong Luo <chipong_l@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <xfce-i18n@xfce.org>\n"
@@ -67,7 +67,7 @@ msgstr "<值> 的类型属性不能是数组"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "<值>类型无效：“%s”"
+msgstr "<值> 类型无效：“%s”"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
@@ -101,9 +101,9 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
 msgstr ""
-"属性名称只能包含 ASCII 字符 A 至 Z、a "
-"至 z、0 至 9、_、-、< 或 >，此外 ‘/’ 用"
-"作分隔符"
+"属性名称只能包含 ASCII 字符 A 至 Z、a 至 "
+"z、0 至 9、_、-、< 或 >，此外 ‘/’ 用作"
+"分隔符"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -126,15 +126,16 @@ msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
 msgstr ""
-"频道名只能包含 ASCII 字符 A 至 Z、a "
-"至 z、0 至 9、‘_’或 ‘-’"
+"频道名只能包含 ASCII 字符 A 至 Z、a 至 "
+"z、0 至 9、‘_’或 ‘-’"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr "只有当指定递归重置后属性名才能为空或 “/”"
+msgstr ""
+"只有当指定递归重置后属性名才能为空或 “/”"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -145,12 +146,12 @@ msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
 msgstr ""
-"要使用的配置后端。第一个指定的后端可打开"
-"来读取/写入；其余的只读。"
+"要使用的配置后端。第一个指定的后端可打开来"
+"读取/写入；其余的只读。"
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr "启动后转至后台；只对测试目的有用"
+msgstr "启动后转入后台；只对测试目的有用"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -213,7 +214,7 @@ msgstr "冗长输出"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
-msgstr "如果属性还未存在则创建一个新的"
+msgstr "如果属性还未存在则创建一个新属性"
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
@@ -237,7 +238,7 @@ msgstr "反转已存在的真假值属性"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
-msgstr "监视频道中属性更改"
+msgstr "监视频道中的属性更改"
 
 #: ../xfconf-query/main.c:246
 #, c-format
@@ -246,7 +247,7 @@ msgstr "无法初始化 libxfconf：%s"
 
 #: ../xfconf-query/main.c:251
 msgid "- Xfconf commandline utility"
-msgstr "- Xfconf 命令行实用程序"
+msgstr "-Xfconf 命令行实用程序"
 
 #: ../xfconf-query/main.c:256
 #, c-format
