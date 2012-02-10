@@ -1,16 +1,17 @@
-# Simplicied Chinese translations for xfconf package
-# Copyright (C) 2009, The Xfce development team.
-# This file is distributed under the same license as the xfconf package.
+# Simplified Chinese translations for
+# the xfconf package.
+# This file is distributed under the same license as
+# the xfconf package.
 # Chris K. Zhang <plutino@gmail.com>, 2009.
 # Hunt Xu <mhuntxu@gmail.com>, 2009.
-# Chipong Luo <chipong_l@yahoo.com, 2011.
+# Chipong Luo <chipong.luo@yahoo.com>, 2011, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: Xfconf\n"
+"Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-20 22:40+0000\n"
+"POT-Creation-Date: 2012-02-10 06:45+0000\n"
 "PO-Revision-Date: 2009-10-20 23:13+0800\n"
-"Last-Translator: Chipong Luo <chipong_l@yahoo.com>\n"
+"Last-Translator: Chipong Luo <chipong.luo@yahoo.com>\n"
 "Language-Team: Simplified Chinese <xfce-i18n@xfce.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -99,8 +100,8 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
 msgstr ""
-"属性名称只能包含 ASCII 字符 A-Z 、 a-z 、 0-9 、 ‘_’ 、 ‘-’ 、 "
-"‘<’ 和 ‘>’ ，而 ‘/’ 作为分隔符"
+"属性名称只能包含 ASCII 字符 A-Z 、 a-z 、 0-9 、 ‘_’ 、 ‘-’ 、 ‘<’ 和 ‘>’ ，"
+"而 ‘/’ 作为分隔符"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
