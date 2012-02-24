@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# كريم أولاد الشلحة <herr.linux88@gmail.com>, 2012.
 # 
 msgid ""
 msgstr ""
@@ -253,7 +253,7 @@ msgstr "فشل خيار التحليل: %s"
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
-msgstr "فريق تطوير الإكسفسي. كل الحقوق محفوظة."
+msgstr "فريق تطوير الإكسفس. كل الحقوق محفوظة."
 
 #: ../xfconf-query/main.c:267
 #, c-format
