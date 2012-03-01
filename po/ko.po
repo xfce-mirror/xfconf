@@ -150,7 +150,7 @@ msgstr "Xfce 환경설정 데몬"
 
 #: ../xfconfd/main.c:167
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr "http://bugs.xfce.org로 버그를 보고하여 주십시오\n"
+msgstr "http://bugs.xfce.org로 버그를 알려주십시오\n"
 
 #: ../xfconfd/main.c:170
 #, c-format
@@ -249,7 +249,7 @@ msgstr "Xfce 개발 팀. All rights reserved."
 #: ../xfconf-query/main.c:267
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr "<%s>로 버그를 보고하여 주시기 바랍니다."
+msgstr "<%s>로 버그를 알려주시기 바랍니다."
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
