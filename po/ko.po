@@ -299,7 +299,7 @@ msgstr "\"%s\" 프로퍼티는 \"%s\" 채널에 존재하지 않습니다. 만�
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
-msgstr "새로운 프로퍼티를 생성할때, 값 유형이 정의되어야 합니다"
+msgstr "새로운 프로퍼티를 생성할 때, 값 유형이 정의되어야 합니다"
 
 #: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
