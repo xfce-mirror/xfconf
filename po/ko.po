@@ -101,7 +101,7 @@ msgstr "루트 요소('/')는 올바른 프로퍼티 이름이 아닙니다"
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
 msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
-msgstr "프로퍼티 이름은 ASCII 문자 A-Z, a-z, 0-9, '_', '-', '<' 그리고 '>', '/' 와 같은 구분기호만이 포함될 수 있습니다"
+msgstr "프로퍼티 이름은 ASCII 문자 A-Z, a-z, 0-9, '_', '-', '<' 그리고 '>', '/' 와 같은 구분기호만을 포함할 수 있습니다"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -121,7 +121,7 @@ msgstr "채널 이름은 빈 문자열이 될 수 없습니다"
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
 msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
-msgstr "채널 이름은 ASCII 문자 A-Z, a-z, 0-9, '_', 그리고 '-'만 포함될 수 있습니다"
+msgstr "채널 이름은 ASCII 문자 A-Z, a-z, 0-9, '_', 그리고 '-'만 포함할 수 있습니다"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
@@ -165,7 +165,7 @@ msgstr "다른 Xfconf 데몬이 이미 실행중입니다"
 #: ../xfconfd/xfconf-daemon.c:517
 #, c-format
 msgid "No backends could be started"
-msgstr "어떤 백엔드도 시작될 수 없었습니다"
+msgstr "어떤 백엔드도 시작할 수 없었습니다"
 
 #: ../xfconf-query/main.c:90
 #: ../xfconf-query/main.c:95
@@ -322,7 +322,7 @@ msgstr "\"%s\"을(를) \"%s\" 유형으로 변환할 수 없습니다"
 #: ../xfconf-query/main.c:483
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "%d개의 새로운 값들이 있지만, %d 유형으로만 결정될 수 있었습니다"
+msgstr "%d개의 새로운 값들이 있지만, %d 유형으로만 결정할 수 있었습니다"
 
 #: ../xfconf-query/main.c:504
 #, c-format
