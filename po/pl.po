@@ -2,21 +2,20 @@
 # Copyright (C) 2009 THE xfconf COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfconf package.
 # Piotr Sokół <psokol@jabster.pl>, 2009, 2011.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-25 14:08+0000\n"
+"POT-Creation-Date: 2012-03-14 12:57+0000\n"
 "PO-Revision-Date: 2011-11-27 13:42+0100\n"
 "Last-Translator: Piotr Sokół <psokol@jabster.pl>\n"
 "Language-Team: Polish <>\n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : ((n%10>=2 && n%10<=4 && (n"
-"%100<10 || n%100>=20)) ? 1 : 2));\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : ((n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20)) ? 1 : 2));\n"
 
 #: ../xfconf/xfconf-cache.c:876
 #, c-format
@@ -183,11 +182,11 @@ msgstr "Nie udało się uruchomić modułu obsługi"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
-msgstr ""
+msgstr "ustaw"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
-msgstr ""
+msgstr "zresetuj"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
