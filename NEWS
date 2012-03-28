@@ -1,3 +1,35 @@
+Xfconf 4.9.0
+============
+
+  * Use sh as interpreter in tests.
+  * Add hook to skip the xfconf tests.
+  * Make the abicheck work on Solaris and PPC64 (bug #7416).
+  * Fix licenses and use new FSF address.
+  * Fix compiler warnings on Solaris.
+  * Avoid GCC 4.6 compiler warning.
+  * Add toggle option to xfconf-query.
+  * Remove unusable import and export options from xfconf-query.
+  * Translate all error strings in xfconf-query.
+  * Cleanup Makefile.am files a bit.
+  * Improve --version output in xfconf-query.
+  * Cleanup #includes.
+  * Drop usage of the G_CONST_RETURN macro.
+  * Translation updates: ar, ast, bn, ca, cs, da, de, el, en_GB, es,
+    eu, fi, fr, gl, he, hr, hu, id, is, it, ja, kk, ko, lt, lv, ms,
+    nb, nl, nn, pa, pl, pt, pt_BR, ro, ru, si, sk, sv, te, tr, ug, uk,
+    ur, ur_PK, zh_CN, zh_TW.
+
+
+Xfconf 4.8.1
+============
+
+  * Fix double free crash (bug #8169).
+  * Fix compiler warnings on solaris.
+  * Avoid gcc 4.6 compiler warning.
+  * Allow installation of the helpers in a custom location.
+  * Updated translations: hr, is, ko, ms, nl, ru, sk, te, tr, zh_CN.
+
+
 Xfconf 4.8.0
 ============
 
@@ -109,7 +141,7 @@ Xfce 4.6beta3 (Xfce 4.5.93)
     Daniel Nylander (sv), Terje Uriansrud (nb), Carles Muñoz Gorriz (ca),
     Abel Martín (es), Maximilian Schleiss (fr), Og Maciel (pt_BR),
     Eren Turkay (tr)
-    
+
 
 Xfce 4.6beta2 (Xfce 4.5.92)
 ===========================
