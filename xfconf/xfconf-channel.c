@@ -1018,7 +1018,8 @@ xfconf_channel_set_string(XfconfChannel *channel,
     GValue val = { 0, };
     gboolean ret;
 
-    g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && value, FALSE);
+    g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, FALSE);
+    g_return_val_if_fail(g_utf8_validate(value, -1, NULL), FALSE);
 
     g_value_init(&val, G_TYPE_STRING);
     g_value_set_static_string(&val, value);
@@ -1320,7 +1321,11 @@ xfconf_channel_set_property(XfconfChannel *channel,
     GPtrArray *arr_new = NULL;
     gboolean ret;
 
-    g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && value,
+    g_return_val_if_fail(XFCONF_IS_CHANNEL(channel)
+                         && property
+                         && G_IS_VALUE(value), FALSE);
+    g_return_val_if_fail(!G_VALUE_HOLDS_STRING(value)
+                         || g_utf8_validate(g_value_get_string(value), -1, NULL),
                          FALSE);
 
     /* intercept uint16/int16 since dbus-glib doesn't know how to send
