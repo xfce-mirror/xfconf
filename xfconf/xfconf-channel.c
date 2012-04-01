@@ -1021,7 +1021,7 @@ xfconf_channel_set_string(XfconfChannel *channel,
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && value, FALSE);
 
     g_value_init(&val, G_TYPE_STRING);
-    g_value_set_string(&val, value);
+    g_value_set_static_string(&val, value);
 
     ret = xfconf_channel_set_internal(channel, property, &val);
 
