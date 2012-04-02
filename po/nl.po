@@ -325,11 +325,11 @@ msgstr ""
 
 #: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
-msgstr "Kon bestaand type voor de waarde niet achterhalen."
+msgstr "Kon bestaand type voor de waarde niet achterhalen"
 
 #: ../xfconf-query/main.c:435
 msgid "Unable to determine the type of the value"
-msgstr "Kan het type van de waarde niet vaststellen."
+msgstr "Kan het type van de waarde niet vaststellen"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
