@@ -3,19 +3,19 @@
 # This file is distributed under the same license as the xfconf package.
 # Stephan Arts <stephan@xfce.org>, 2009.
 # Pjotr, 2011.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
+"POT-Creation-Date: 2012-04-02 09:21+0000\n"
 "PO-Revision-Date: 2011-09-09 16:20+0100\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch\n"
-"Language: nl (Dutch)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl (Dutch)\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../xfconf/xfconf-cache.c:876
@@ -26,7 +26,7 @@ msgstr "Kon geen ResetProperty DBus call maken"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Kon de configuratiemap \"%s\" niet maken"
+msgstr "Kon configuratiemap '%s' niet aanmaken"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
@@ -41,23 +41,23 @@ msgstr ""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr "Eigenschap \"%s\" bestaat niet op kanaal \"%s\""
+msgstr "Eigenschap '%s' bestaat niet op kanaal '%s'"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr "Kon kanaal \"%s\" niet verwijderen: %s"
+msgstr "Kon kanaal '%s' niet verwijderen: %s"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "Ongeldig type voor <property>: \"%s\""
+msgstr "Ongeldig type voor <property>: '%s'"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "De waarde van type \"%s\" kon niet worden herleid uit \"%s\""
+msgstr "De waarde van type '%s' kon niet worden herleid uit '%s'"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
@@ -67,28 +67,28 @@ msgstr "De type-instelling van <value> kan geen reeks zijn"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Ongeldig type voor <value>: \"%s\""
+msgstr "Ongeldig type voor <value>: '%s'"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
-msgstr "Kanaal \"%s\" bestaat niet"
+msgstr "Kanaal '%s' bestaat niet"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "Kon kanaal \"%s\" niet schrijven: %s"
+msgstr "Kon kanaal '%s' niet schrijven: %s"
 
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Kon geen Xfconf-dienst vinden van het type \"%s\""
+msgstr "Kon geen Xfconf-dienst vinden van het type '%s'"
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Eigenschapnamen moeten beginnen met een '/' teken"
+msgstr "Eigenschapnamen moeten beginnen met het teken '/'"
 
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
@@ -113,7 +113,7 @@ msgstr ""
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Eigenschapnamen kunnen niet eindigen met een '/' teken"
+msgstr "Eigenschapnamen kunnen niet eindigen met een '/'-teken"
 
 #: ../xfconfd/xfconf-backend.c:163
 #, c-format
@@ -179,15 +179,15 @@ msgstr "Een andere Xfconf-achtergronddienst is al actief"
 #: ../xfconfd/xfconf-daemon.c:517
 #, c-format
 msgid "No backends could be started"
-msgstr "Er konden geen configuratiediensten worden gestart."
+msgstr "Er konden geen configuratiediensten worden gestart"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
-msgstr "Instellen"
+msgstr "instellen"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
-msgstr "Terugzetten op beginwaarde"
+msgstr "terugzetten op standaardwaarde"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
@@ -213,7 +213,7 @@ msgstr ""
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
-msgstr "Gedetailleerde uitvoer"
+msgstr "Breedsprakige uitvoer"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
@@ -225,7 +225,7 @@ msgstr "Specificeer het waardetype van de eigenschap"
 
 #: ../xfconf-query/main.c:208
 msgid "Reset property"
-msgstr "Eigenschap standaardwaarde geven"
+msgstr "Eigenschap terugzetten op standaardwaarde"
 
 #: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
@@ -241,7 +241,7 @@ msgstr "Keer een bestaande booleaanse eigenschap om"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
-msgstr "Bewaak een kanaal voor eigenschapveranderingen"
+msgstr "Bewaak een kanaal op eigenschapveranderingen"
 
 #: ../xfconf-query/main.c:246
 #, c-format
@@ -288,7 +288,7 @@ msgstr ""
 #: ../xfconf-query/main.c:319
 #, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "Start bewakingskanaal \"%s\":"
+msgstr "Start bewakingskanaal '%s':"
 
 #: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
@@ -340,7 +340,7 @@ msgstr ""
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "Kon \"%s\" niet omzetten naar type \"%s\""
+msgstr "Kon '%s' niet omzetten naar type '%s'"
 
 #: ../xfconf-query/main.c:483
 #, c-format
@@ -356,7 +356,7 @@ msgstr "Kan het type van de waarde op index %d niet bepalen"
 #: ../xfconf-query/main.c:554
 #, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "Kanaal \"%s\" bevat geen eigenschappen"
+msgstr "Kanaal '%s' bevat geen eigenschappen"
 
 #~ msgid "Property '%s' changed: %s\n"
 #~ msgstr "Eigenschap '%s' gewijzigd: %s\n"
