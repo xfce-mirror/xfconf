@@ -3,7 +3,7 @@
 # Copyright (C) 2002-2010 The Xfce development team.
 # This file is distributed under the same license as the xfconf package.
 #
-# Seong-ho, Cho <darkcircle.0426@gmail.com>
+# Seong-ho, Cho <darkcircle.0426@gmail.com>, 2011, 2012.
 #
 msgid ""
 msgstr ""
@@ -35,7 +35,7 @@ msgstr "환경설정 디렉터리 \"%s\"을(를) 만들 수 없습니다"
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "\"%s\" 프로퍼티를 \"%s\" 채널에서 수정하는 동안 권한이 거부되었습니다"
+msgstr "\"%s\" 프로퍼티를 \"%s\" 채널에서 수정하는 동안 권한을 거부했습니다"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -126,7 +126,7 @@ msgstr "채널 이름은 ASCII 문자 A-Z, a-z, 0-9, '_', 그리고 '-'만 포�
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
-msgstr "프로퍼티 이름은 비거나 재귀적 리셋이 정의되었을 경우 \"/\"만 될 수 있습니다"
+msgstr "프로퍼티 이름은 재귀적 리셋을 정의했을 경우 비우거나 \"/\"만 쓸 수 있습니다"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -194,7 +194,7 @@ msgstr "프로퍼티를 설정할 새 값"
 
 #: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
-msgstr "목록 프로퍼티 (또는 -c가 정의되었을 경우 채널)"
+msgstr "목록 프로퍼티 (또는 -c를 정의했을 경우 채널)"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
@@ -299,7 +299,7 @@ msgstr "\"%s\" 프로퍼티는 \"%s\" 채널에 존재하지 않습니다. 만�
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
-msgstr "새로운 프로퍼티를 생성할 때, 값 유형이 정의되어야 합니다"
+msgstr "새로운 프로퍼티를 생성할 때, 값 유형을 정의해야 합니다"
 
 #: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
@@ -311,7 +311,7 @@ msgstr "값의 유형을 결정할 수 없습니다"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr "값의 유형은 배열로부터 단일 값으로 바꾸기 위해 정의되어야 합니다"
+msgstr "값의 유형은 배열로부터 단일 값으로 바꾸기 위해 정의해야 합니다"
 
 #: ../xfconf-query/main.c:451
 #: ../xfconf-query/main.c:512
@@ -332,5 +332,5 @@ msgstr "인덱스 %d번의 값의 유형을 결정할 수 없습니다"
 #: ../xfconf-query/main.c:554
 #, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "\"%s\" 채널에 어떠한 프로퍼티도 포함되지 않았습니다"
+msgstr "\"%s\" 채널에 어떠한 프로퍼티도 포함하지 않았습니다"
 
