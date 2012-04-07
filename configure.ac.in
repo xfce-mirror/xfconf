@@ -76,10 +76,10 @@ dnl Check for X11 installed
 dnl XDT_CHECK_LIBX11_REQUIRE
 
 dnl required
-XDT_CHECK_PACKAGE([GLIB], [gobject-2.0], [2.18.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.8.0])
-XDT_CHECK_PACKAGE([DBUS], [dbus-1], [1.0.0])
-XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.72])
+XDT_CHECK_PACKAGE([GLIB], [gobject-2.0], [2.24.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.9.0])
+XDT_CHECK_PACKAGE([DBUS], [dbus-1], [1.1.0])
+XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.84])
 
 dnl check for perl bindings for --disable-perl-bindings and make-exo-alias.pl
 AC_PATH_PROGS([PERL], [perl5.8 perl5.6 perl5 perl])
