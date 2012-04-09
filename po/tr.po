@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-30 11:09+0000\n"
+"POT-Creation-Date: 2012-04-09 14:30+0000\n"
 "PO-Revision-Date: 2009-01-30 21:21+0200\n"
 "Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
 "Language-Team: Turkish <yerellestirme@kde.org.tr>\n"
@@ -182,12 +182,10 @@ msgid "No backends could be started"
 msgstr "Hiç bir geride süren işlev başlatılamadı"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
-#, fuzzy
 msgid "set"
 msgstr "ayarla"
 
 #: ../xfconf-query/main.c:100
-#, fuzzy
 msgid "reset"
 msgstr "yeniden ayarla"
 
@@ -249,7 +247,6 @@ msgid "Failed to init libxfconf: %s"
 msgstr "libxfconf başlatılması başarısız: %s"
 
 #: ../xfconf-query/main.c:251
-#, fuzzy
 msgid "- Xfconf commandline utility"
 msgstr "- Xconf komut satırı özelliği"
 
@@ -280,14 +277,13 @@ msgid "--create and --reset options can not be used together"
 msgstr "--create ve --reset seçenekleri birlikte kullanılamaz"
 
 #: ../xfconf-query/main.c:307
-#, fuzzy
 msgid "--create and --reset options can not be used together with --list"
-msgstr "--create ve --reset seçenekleri --list ile birlikte kullanılamaz"
+msgstr "--create ve --reset seçenekleri --list seçeneği ile birlikte kullanılamaz"
 
 #: ../xfconf-query/main.c:319
-#, fuzzy, c-format
+#, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "'%s' kanalını izlemeyi başlat:"
+msgstr "'%s' kanalını izlemeye başla:"
 
 #: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
@@ -310,7 +306,7 @@ msgstr ""
 "\n"
 
 #: ../xfconf-query/main.c:399
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
@@ -319,19 +315,17 @@ msgstr ""
 "oluşturmak isterseniz --create seçeneğini kullanın.\n"
 
 #: ../xfconf-query/main.c:407
-#, fuzzy
 msgid "When creating a new property, the value type must be specified"
-msgstr "Yeni bir özellik oluştururken, değer türünü belirlemelisiniz.\n"
+msgstr "Yeni bir özellik oluştururken, değer türünü belirlemelisiniz"
 
 #: ../xfconf-query/main.c:417
 #, fuzzy
 msgid "Failed to get the existing type for the value"
-msgstr "Değer için var olan tür alınamadı.\n"
+msgstr "Değer için varolan tür alınamadı"
 
 #: ../xfconf-query/main.c:435
-#, fuzzy
 msgid "Unable to determine the type of the value"
-msgstr "Değerin türü belirlenemiyor"
+msgstr "Değerin türü belirlenemedi"
 
 #: ../xfconf-query/main.c:441
 #, fuzzy
@@ -346,17 +340,17 @@ msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "\"%s\" i \"%s\" türüne  dönüştürme işlemi başarısız"
 
 #: ../xfconf-query/main.c:483
-#, fuzzy, c-format
+#, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr "%d yeni değer var, ama sadece %d tür belirlenebildi"
 
 #: ../xfconf-query/main.c:504
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr "%d indeksindeki değerin türü belirlenemedi"
 
 #: ../xfconf-query/main.c:554
-#, fuzzy, c-format
+#, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanal %s herhangi bir özellik içermiyor"
 
