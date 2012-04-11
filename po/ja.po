@@ -1,16 +1,17 @@
 # Japanese translations for xfconf package. 
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) 2008-2012 xfconf'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the xfconf package.
 # Yuko Iwamatsu <nigauri@gmail.com>, 2008.
 # Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008-2009.
+# Masato Hashimoto <cabezon.hashimoto@gmail.com>, 2009-2012.
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.99\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2009-10-11 17:22+0900\n"
+"POT-Creation-Date: 2012-04-11 22:26+0900\n"
+"PO-Revision-Date: 2012-04-11 22:26+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-i18n@xfce.org>\n"
 "Language: ja\n"
@@ -32,14 +33,13 @@ msgstr "設定用ディレクトリを作成できません \"%s\""
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr ""
-"チャンネル \"%2$s\" 上のプロパティ \"%1$s\" を変更している間の権限が拒否され"
-"ました"
+msgstr "チャンネル \"%2$s\" 上のプロパティ \"%1$s\" を変更している間の権限が拒否されました"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
+#: ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "プロパティ \"%s\" はチャンネル \"%s\" 上に存在しません"
@@ -98,12 +98,8 @@ msgstr "ルート要素 (\"/\") は有効なプロパティ名ではありませ
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"プロパティ名に使用できるのは ASCII 文字の A-Z、a-z、0-9、\"_\"、\"-\"、\"<\" "
-"および \">\"と、区切り文字として \"/\" です"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "プロパティ名に使用できるのは ASCII 文字の A-Z、a-z、0-9、\"_\"、\"-\"、\"<\" および \">\"と、区切り文字として \"/\" です"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -122,33 +118,21 @@ msgstr "チャンネル名は空の文字列ではいけません"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr ""
-"チャンネル名には ASCII 文字の A-Z、a-z、0-9、\"_\" および \"-\" のみ使用でき"
-"ます"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgstr "チャンネル名には ASCII 文字の A-Z、a-z、0-9、\"_\" および \"-\" のみ使用できます"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"再帰的リセットが指定された場合は、プロパティ名は空か \"/\" である必要がありま"
-"す"
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "再帰的リセットが指定された場合は、プロパティ名は空か \"/\" である必要があります"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "xfconfd バージョンを表示する。"
 
 #: ../xfconfd/main.c:136
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"使用する構成バックエンド。指定された最初のバックエンドは読み/書きで、その他は"
-"読み込み専用で開かれます。"
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "使用する構成バックエンド。指定された最初のバックエンドは読み/書きで、その他は読み込み専用で開かれます。"
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -181,13 +165,14 @@ msgstr "別の Xfconf デーモンがすでに実行中です"
 msgid "No backends could be started"
 msgstr "バックエンドはひとつも開始できませんでした"
 
-#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
+#: ../xfconf-query/main.c:90
+#: ../xfconf-query/main.c:95
 msgid "set"
-msgstr ""
+msgstr "set"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
-msgstr ""
+msgstr "reset"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
@@ -235,161 +220,117 @@ msgstr "要素がひとつのみの場合でも配列を強制する"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
-msgstr ""
+msgstr "既存のブーリアン値を反転する"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
-msgstr "指定したチャンネルのプロパティ変更をモニタする"
+msgstr "指定したチャンネルのプロパティ変更をモニターする"
 
 #: ../xfconf-query/main.c:246
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr ""
+msgstr "libxfconf の初期化に失敗しました: %s"
 
 #: ../xfconf-query/main.c:251
 msgid "- Xfconf commandline utility"
-msgstr ""
+msgstr "- Xfconf コマンドラインユーティリティ"
 
 #: ../xfconf-query/main.c:256
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr ""
+msgstr "オプションの解析に失敗しました: %s"
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
-msgstr ""
+msgstr "The Xfce development team. All rights reserved."
 
 #: ../xfconf-query/main.c:267
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr ""
+msgstr "バグの報告は <%s> までおねがいします。"
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
-msgstr ""
+msgstr "チャンネル:"
 
 #: ../xfconf-query/main.c:295
 msgid "No property specified"
-msgstr ""
+msgstr "プロパティが指定されていません"
 
 #: ../xfconf-query/main.c:301
 msgid "--create and --reset options can not be used together"
-msgstr ""
+msgstr "--create および --reset オプションは同時に使用できません"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
+msgstr "--create および --reset オプションは --list と同時に使用できません"
 
 #: ../xfconf-query/main.c:319
-#, fuzzy, c-format
+#, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "チャンネル \"%s\" のモニタリングを開始します:"
 
-#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:353
+#: ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
-#, fuzzy
 msgid "Failed to set property"
-msgstr "プロパティの設定に失敗しました。\n"
+msgstr "プロパティの設定に失敗しました。"
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
-msgstr ""
+msgstr "--toggle はブーリアン値にのみ機能します"
 
-#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:366
+#: ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(不明)"
 
 #: ../xfconf-query/main.c:375
-#, fuzzy, c-format
+#, c-format
 msgid "Value is an array with %d items:"
-msgstr ""
-"値が %d 項目の配列になっています:\n"
-"\n"
+msgstr "値が %d 項目の配列になっています:"
 
 #: ../xfconf-query/main.c:399
-#, fuzzy, c-format
-msgid ""
-"Property \"%s\" does not exist on channel \"%s\". If a new property should "
-"be created, use the --create option"
+#, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
 msgstr ""
 "プロパティ \"%s\" はチャンネル \"%s\" 上に存在しません。新規プロパティを\n"
-"作成したい場合は、--create オプションを使用します。\n"
+"作成したい場合は --create オプションを使用します。"
 
 #: ../xfconf-query/main.c:407
-#, fuzzy
 msgid "When creating a new property, the value type must be specified"
-msgstr "新規プロパティを作成する時は、値のデータ型を指定する必要があります。\n"
+msgstr "新規プロパティを作成する時は、値のデータ型を指定する必要があります。"
 
 #: ../xfconf-query/main.c:417
-#, fuzzy
 msgid "Failed to get the existing type for the value"
-msgstr "値の既存のデータ型を取得できませんでした。\n"
+msgstr "値の既存のデータ型を取得できませんでした。"
 
 #: ../xfconf-query/main.c:435
-#, fuzzy
 msgid "Unable to determine the type of the value"
-msgstr "値のデータ型を決定できません。\n"
+msgstr "値のデータ型を決定できません。"
 
 #: ../xfconf-query/main.c:441
-#, fuzzy
 msgid "A value type must be specified to change an array into a single value"
-msgstr "配列を単一の値に変更するには、値のデータ型を指定する必要があります。\n"
+msgstr "配列を単一の値に変更するには、値のデータ型を指定する必要があります。"
 
-#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
-#, fuzzy, c-format
+#: ../xfconf-query/main.c:451
+#: ../xfconf-query/main.c:512
+#, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "\"%s\" を形式 \"%s\" に変換できません\n"
+msgstr "\"%s\" をデータ型 \"%s\" に変換できません"
 
 #: ../xfconf-query/main.c:483
-#, fuzzy, c-format
+#, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "%d 個の新規値がありますが、%d 個の形式しか決定できませんでした。\n"
+msgstr "%d 個の新規値がありますが、%d 個のデータ型しか決定できませんでした。"
 
 #: ../xfconf-query/main.c:504
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "インデックス %d で値の形式を決定できません。\n"
+msgstr "インデックス %d のデータ型を決定できません。"
 
 #: ../xfconf-query/main.c:554
-#, fuzzy, c-format
+#, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "チャンネル \"%s\" にはプロパティが含まれていません\n"
+msgstr "チャンネル \"%s\" にはプロパティが含まれていません"
 
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "プロパティ \"%s\" は変更されました: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "プロパティ \"%s\" を変更しました\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "プロパティ \"%s\" を削除しました\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "エクスポートメソッドが未実装です"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "エクスポートが未実装です"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "プロパティ \"%s\" はチャンネル \"%s\" 上に存在しません。\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "エクスポートファイル \"%s\" を作成できませんでした: %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "インポートファイル \"%s\" を開けませんでした: %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "インポートファイル \"%s\" を解析できませんでした: %s\n"
-
-#~ msgid "Export channel to file"
-#~ msgstr "チャンネルをファイルにエクスポートする"
-
-#~ msgid "Import channel from file"
-#~ msgstr "チャンネルをファイルからインポートする"
-
-#~ msgid "true"
-#~ msgstr "TRUE"
-
-#~ msgid "false"
-#~ msgstr "FALSE"
