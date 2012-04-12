@@ -1,17 +1,17 @@
 # European Portuguese translation of the xfconf package.
 # Copyright (C) 2008 The Xfce development team.
 # This file is distributed under the same license as the xfconf package.
-# Nuno Miguel <nunis@netcabo.pt>, 2008.
+# Nuno Miguel <nunomgue@gmail.com>, 2008-2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2012-01-18 12:36-0000\n"
-"Last-Translator: Sérgio Marques <smarquespt@gmail.com>\n"
+"PO-Revision-Date: 2012-04-11 15:43+0100\n"
+"Last-Translator: Nuno Miguel <nunomgue@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -127,11 +127,11 @@ msgstr "O nome da propriedade só pode ser vazio ou \"/\" se indicar um reposiç
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
-msgstr "Imprime a versão do xfconfd"
+msgstr "Imprime a versão do xfconfd."
 
 #: ../xfconfd/main.c:136
 msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr "A infraestrutura utilizada. A 1.ª infraestrutura especificada é aberta no modo de escrita/leitura e as seguintes no modo de leitura"
+msgstr "A configuração de infraestrutura usada. A primeira infraestrutura especificada é aberta em leitura/escrita, as outras só de leitura."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -246,7 +246,7 @@ msgstr "A equipa de desenvolvimento do Xfce. Todos os direitos reservados."
 #: ../xfconf-query/main.c:267
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr "Por favor, reporte os erros em <%s>"
+msgstr "Por favor, reporte os erros em <%s>."
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
