@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-14 12:57+0000\n"
+"POT-Creation-Date: 2012-04-12 05:45+0000\n"
 "PO-Revision-Date: 2011-11-27 13:42+0100\n"
 "Last-Translator: Piotr Sokół <psokol@jabster.pl>\n"
 "Language-Team: Polish <>\n"
@@ -155,11 +155,11 @@ msgstr "Uruchamia w tle. Użyteczne tylko do celów testowych."
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
-msgstr "Usługa konfiguracji Xfce"
+msgstr "Demon konfiguracji Xfce"
 
 #: ../xfconfd/main.c:165
 msgid "Xfce configuration daemon"
-msgstr "Usługa konfiguracji Xfce"
+msgstr "Demon konfiguracji Xfce"
 
 #: ../xfconfd/main.c:167
 msgid "Report bugs to http://bugs.xfce.org/\n"
@@ -173,7 +173,7 @@ msgstr "Błąd przetwarzania opcji: %s\n"
 #: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "Another Xfconf daemon is already running"
-msgstr "W tej chwili jest uruchomiona inna usługa Xfconf"
+msgstr "W tej chwili jest uruchomiona inny demon Xfconf"
 
 #: ../xfconfd/xfconf-daemon.c:517
 #, c-format
@@ -226,7 +226,7 @@ msgstr "Przywraca domyślną właściwość"
 
 #: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
-msgstr "Wykonuje akcję rekursywnie (do użycia z opcją -r)"
+msgstr "Wykonuje czynność rekursywnie (do użycia z opcją -r)"
 
 #: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
@@ -238,7 +238,7 @@ msgstr "Przełącza istniejącą wartość logiczną właściwości"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
-msgstr "Monitoruje zmiany właściwości kanału"
+msgstr "Śledzi zmiany właściwości kanału"
 
 #: ../xfconf-query/main.c:246
 #, c-format
@@ -283,12 +283,12 @@ msgstr "Opcje --create i --reset nie mogą być użyte wraz z opcją --list"
 #: ../xfconf-query/main.c:319
 #, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "Monitorowanie kanału „%s”:"
+msgstr "Rozpoczęcie śledzenia zmian kanału „%s”:"
 
 #: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
 msgid "Failed to set property"
-msgstr "Nie udało się ustawić właściwości"
+msgstr "Nie udało się skonfigurować właściwości"
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
@@ -301,7 +301,7 @@ msgstr "(nieznany)"
 #: ../xfconf-query/main.c:375
 #, c-format
 msgid "Value is an array with %d items:"
-msgstr "Typ jest tablicą z %d elementami:"
+msgstr "Wartość jest tablicą z %d elementami:"
 
 #: ../xfconf-query/main.c:399
 #, c-format
