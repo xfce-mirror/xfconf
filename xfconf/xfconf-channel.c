@@ -2195,8 +2195,13 @@ xfconf_channel_set_structv(XfconfChannel *channel,
                 break;
 
             case G_TYPE_CHAR:
+#if GLIB_CHECK_VERSION (2, 32, 0)
+                GET_STRUCT_VAL(gchar, G_TYPE_CHAR, ALIGNOF_GCHAR,
+                               g_value_set_schar);
+#else
                 GET_STRUCT_VAL(gchar, G_TYPE_CHAR, ALIGNOF_GCHAR,
                                g_value_set_char);
+#endif
                 break;
 
             case G_TYPE_UINT:
