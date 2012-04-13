@@ -1,3 +1,14 @@
+4.9.1
+=====
+- Use LT_PREREQ and LT_INIT.
+- UTF-8 check xfconf strings.
+- Do not dup strings in xfconf_channel_set_string.
+- Bump package dependency versions.
+- Fix comment in perl package info (bug #8661).
+- Don't use deprecated g_value_set_char (bug #8690).
+- Translation updates: German, Greek, Japanese, Korean, Dutch
+  (Flemish), Polish, Portuguese, Turkish.
+
 4.9.0
 =====
 - Use sh as interpreter in tests.
