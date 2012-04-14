@@ -302,9 +302,7 @@ msgstr "(bilinmiyor)"
 #: ../xfconf-query/main.c:375
 #, c-format
 msgid "Value is an array with %d items:"
-msgstr ""
-"Değer, %d unsurlarından oluşan bir sıradır:\n"
-"\n"
+msgstr "Değer, %d unsurlarından oluşan bir sıradır:"
 
 #: ../xfconf-query/main.c:399
 #, c-format
@@ -331,7 +329,7 @@ msgstr "Değerin türü belirlenemedi"
 msgid "A value type must be specified to change an array into a single value"
 msgstr ""
 "Bir diziyi tekil değere dönüştürmek istiyorsanız bir değer türü "
-"belirlemelisiniz.\n"
+"belirlemelisiniz."
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
