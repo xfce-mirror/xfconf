@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-02 09:21+0000\n"
+"POT-Creation-Date: 2012-04-16 19:00+0000\n"
 "PO-Revision-Date: 2011-09-09 16:20+0100\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch\n"
@@ -26,7 +26,7 @@ msgstr "Kon geen ResetProperty DBus call maken"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Kon configuratiemap '%s' niet aanmaken"
+msgstr "Kan configuratiemap '%s' niet aanmaken"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
