@@ -1976,8 +1976,13 @@ xfconf_channel_get_structv(XfconfChannel *channel,
                 break;
 
             case G_TYPE_CHAR:
+#if GLIB_CHECK_VERSION (2, 32, 0)
+                SET_STRUCT_VAL(gchar, G_TYPE_CHAR, ALIGNOF_GCHAR,
+                               g_value_get_schar);
+#else
                 SET_STRUCT_VAL(gchar, G_TYPE_CHAR, ALIGNOF_GCHAR,
                                g_value_get_char);
+#endif
                 break;
 
             case G_TYPE_UINT:
