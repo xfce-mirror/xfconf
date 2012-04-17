@@ -34,6 +34,7 @@ xfconfd_SOURCES = \
 
 xfconfd_CFLAGS = \
 	$(GLIB_CFLAGS) \
+	$(GTHREAD_CFLAGS) \
 	$(DBUS_CFLAGS) \
 	$(DBUS_GLIB_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
@@ -50,6 +51,7 @@ xfconfd_LDADD = \
 	$(top_builddir)/common/libxfconf-common.la \
 	$(top_builddir)/common/libxfconf-gvaluefuncs.la \
 	$(GLIB_LIBS) \
+	$(GTHREAD_LIBS) \
 	$(DBUS_LIBS) \
 	$(DBUS_GLIB_LIBS) \
 	$(LIBXFCE4UTIL_LIBS)
