@@ -60,7 +60,7 @@ msgstr "잘못된 <property> 유형입니다: \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "\"%s\" 유형의 값을 \"%s\"(으)로부터 해석할 수 없습니다"
+msgstr "\"%s\" 유형의 값을 \"%s\"에서 해석할 수 없습니다"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
@@ -311,7 +311,7 @@ msgstr "값의 유형을 결정할 수 없습니다"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr "값의 유형은 배열로부터 단일 값으로 바꾸기 위해 정의해야 합니다"
+msgstr "값의 유형은 배열에서 단일 값으로 바꾸기 위해 정의해야 합니다"
 
 #: ../xfconf-query/main.c:451
 #: ../xfconf-query/main.c:512
