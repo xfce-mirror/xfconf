@@ -1623,7 +1623,7 @@ xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
         g_markup_parse_context_free(context);
 
     if(mmap_file)
-        g_mapped_file_free(mmap_file);
+        g_mapped_file_unref(mmap_file);
     else
         g_free(file_contents);
 
