@@ -1461,7 +1461,11 @@ xfconf_channel_get_array_valist(XfconfChannel *channel,
 
         switch(cur_value_type) {
             HANDLE_CASE(guchar, UCHAR, uchar)
+#if GLIB_CHECK_VERSION (2, 32, 0)
+            HANDLE_CASE(gchar, CHAR, schar)
+#else
             HANDLE_CASE(gchar, CHAR, char)
+#endif
             HANDLE_CASE(guint32, UINT, uint)
             HANDLE_CASE(gint32, INT, int)
             HANDLE_CASE(guint64, UINT64, uint64)
@@ -1637,7 +1641,11 @@ xfconf_channel_set_array_valist(XfconfChannel *channel,
 
         switch(cur_value_type) {
             HANDLE_CASE(guchar, UCHAR, uchar)
+#if GLIB_CHECK_VERSION (2, 32, 0)
+            HANDLE_CASE(gchar, CHAR, schar)
+#else
             HANDLE_CASE(gchar, CHAR, char)
+#endif
             HANDLE_CASE(guint32, UINT, uint)
             HANDLE_CASE(gint32, INT, int)
             HANDLE_CASE(guint64, UINT64, uint64)
