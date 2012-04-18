@@ -326,7 +326,11 @@ _xfconf_gvalue_is_equal(const GValue *value1,
         case G_TYPE_ ## TYPE: \
             return g_value_get_ ## getter(value1) == g_value_get_ ## getter(value2)
 
+#if GLIB_CHECK_VERSION (2, 32, 0)
+        HANDLE_CMP_GV(CHAR, schar);
+#else
         HANDLE_CMP_GV(CHAR, char);
+#endif
         HANDLE_CMP_GV(UCHAR, uchar);
         HANDLE_CMP_GV(BOOLEAN, boolean);
         HANDLE_CMP_GV(INT, int);
