@@ -454,6 +454,13 @@ xfconf_cache_property_changed(DBusGProxy *proxy,
     if(strcmp(channel_name, cache->channel_name))
         return;
 
+    /* if a call was cancelled, we still receive a property-changed from
+     * that value, in that case, abort the emission of the signal. we can
+     * detect this because the new reply is not processed yet and thus
+     * there is still an old_prop in the hash table */
+    if(g_hash_table_lookup(cache->old_properties, property))
+        return;
+
     item = g_tree_lookup(cache->properties, property);
     if(item)
         changed = xfconf_cache_item_update(item, value);
