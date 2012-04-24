@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
-"Report-Msgid-Bugs-To: <xfce-i18n@xfce.org>\n"
-"POT-Creation-Date: 2012-04-20 09:15+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-23 00:30+0000\n"
 "PO-Revision-Date: 2009-10-20 23:13+0800\n"
 "Last-Translator: Chipong Luo <chipong.luo@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <xfce-i18n-cn@xfce.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:883
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "无法建立 ResetProperty DBus 呼叫"
@@ -132,21 +132,21 @@ msgstr "频道名只能包含 ASCII 字符 A 至 Z、a 至 z、0 至 9、‘_’
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr "只有当指定递归重置后属性名才能为空或 “/”"
+msgstr "只有在指定递归重置后属性名才能为空或 “/”"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
-msgstr "列印 xfconfd 的版本"
+msgstr "列印 xfconfd 的版本。"
 
 #: ../xfconfd/main.c:136
 msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
-msgstr "要使用的配置后端。第一个指定的后端可打开来读取/写入；其余的只读。"
+msgstr "要使用的配置后端。第一个指定的后端可用于读取/写入；其余的只读。"
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr "启动后转入后台；只对测试目的有用"
+msgstr "启动后转入后台；仅用于测试目的"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -158,12 +158,12 @@ msgstr "Xfce 配置守护进程"
 
 #: ../xfconfd/main.c:167
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr "向 http://bugs.xfce.org/ 报告缺陷\n"
+msgstr "向 https://bugzilla.xfce.org/ 报告缺陷\n"
 
 #: ../xfconfd/main.c:170
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr "解析选项出错：%s\n"
+msgstr "解析选项时出错：%s\n"
 
 #: ../xfconfd/xfconf-daemon.c:482
 #, c-format
@@ -201,7 +201,7 @@ msgstr "为属性设置的新值"
 
 #: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
-msgstr "列出属性(未指定 -c 时为频道)"
+msgstr "列出属性(或频道，如果未指定 -c)"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
@@ -221,7 +221,7 @@ msgstr "重置属性"
 
 #: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
-msgstr "递归(用 -r 使用)"
+msgstr "递归(使用 -r)"
 
 #: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
@@ -310,7 +310,7 @@ msgstr "创建新属性时必须指定值类型"
 
 #: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
-msgstr "无法获取已存在的值的类型"
+msgstr "无法获取已存在值的类型"
 
 #: ../xfconf-query/main.c:435
 msgid "Unable to determine the type of the value"
@@ -318,12 +318,12 @@ msgstr "未能确定值的类型"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr "把数组更改为单一值时必须指定值的类型"
+msgstr "要将数组更改为单一值，必须指定值的类型"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "未能把 “%s” 转换成类型 “%s”"
+msgstr "未能将 “%s” 转换成类型 “%s”"
 
 #: ../xfconf-query/main.c:483
 #, c-format
