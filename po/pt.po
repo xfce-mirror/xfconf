@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2012-04-11 15:43+0100\n"
+"PO-Revision-Date: 2012-04-26 23:29+0100\n"
 "Last-Translator: Nuno Miguel <nunomgue@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -223,7 +223,7 @@ msgstr "Inverter a propriedade booleana existente"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
-msgstr "Monitorizar modificações de propriedades dos canais"
+msgstr "Monitorizar um canal por mudanças de propriedades"
 
 #: ../xfconf-query/main.c:246
 #, c-format
