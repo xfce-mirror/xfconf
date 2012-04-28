@@ -751,10 +751,8 @@ xfconf_cache_set(XfconfCache *cache,
                 dbus_error_name = dbus_g_error_get_name(tmp_error);
             }
 
-            if(G_UNLIKELY(!dbus_error_name
-                          || strncmp(dbus_error_name, "org.xfce.Xfconf.Error.", 22)
-                          || (strcmp(dbus_error_name+22, "PropertyNotFound")
-                              && strcmp(dbus_error_name+22, "ChannelNotFound"))))
+            if(g_strcmp0(dbus_error_name, "org.xfce.Xfconf.Error.PropertyNotFound") != 0
+               && g_strcmp0(dbus_error_name, "org.xfce.Xfconf.Error.ChannelNotFound") != 0)
             {
                 /* this is bad... */
                 g_propagate_error(error, tmp_error);

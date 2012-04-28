@@ -1,3 +1,14 @@
+4.10.0
+======
+- Don't emit property-changed on cancelled calls.
+- Accept NULL as a string value (bug #8726).
+- Check abicheck.sh to be more portable (bug #8702).
+- Fix more deprecated g_value_set_char (bug #8690).
+- Explicitly link against gthread (bug #8713).
+- Drop deprecated g_mapped_file_free.
+- Translation updates: English (United Kingdom), Korean, Dutch
+  (Flemish), Portuguese, Romanian, Turkish, Chinese (China).
+
 4.9.1
 =====
 - Use LT_PREREQ and LT_INIT.
