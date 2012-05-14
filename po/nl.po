@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the xfconf package.
 # Stephan Arts <stephan@xfce.org>, 2009.
 # Pjotr, 2011.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-14 06:27+0000\n"
-"PO-Revision-Date: 2011-09-09 16:20+0100\n"
-"Last-Translator: Pjotr\n"
+"PO-Revision-Date: 2012-05-14 12:35+0100\n"
+"Last-Translator: Pjotr <pjotrvertaalt@gmail.com>\n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,13 +32,13 @@ msgstr "Kan configuratiemap '%s' niet aanmaken"
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr ""
-"Onvoldoende rechten voor het bewerken van eigenschap \"%s\" op kanaal \"%s\""
+msgstr "Onvoldoende rechten voor het bewerken van eigenschap '%s' op kanaal '%s'"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
+#: ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Eigenschap '%s' bestaat niet op kanaal '%s'"
@@ -97,18 +97,13 @@ msgstr "Het root-element ('/') is geen geldige eigenschapnaam"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Eigenschapnamen kunnen alleen de ASCII-tekens A-Z, a-z, 0-9, '_', '-', '<' "
-"en '>', en het scheidingsteken '/' bevatten"
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Eigenschapnamen kunnen alleen de ASCII-tekens A-Z, a-z, 0-9, '_', '-', '<' en '>', en het scheidingsteken '/' bevatten"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Eigenschapnamen kunnen niet twee of meer opeenvolgende '/' tekens bevatten"
+msgstr "Eigenschapnamen kunnen niet twee of meer opeenvolgende '/' tekens bevatten"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -122,37 +117,25 @@ msgstr "Kanaalnaam kan geen leeg tekstsnoer zijn"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr ""
-"Kanaalnamen kunnen alleen de ASCII-tekens A-Z, a-z, 0-9, '_', en '-' bevatten"
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgstr "Kanaalnamen kunnen alleen de ASCII-tekens A-Z, a-z, 0-9, '_', en '-' bevatten"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
-msgstr ""
-"De eigenschapnaam kan alleen leeg of \"/\" zijn, als er een recursieve "
-"terugbrenging naar de standaardinstellingen werd gespecificeerd"
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "De eigenschapnaam kan alleen leeg of '/' zijn, als er een recursieve terugbrenging naar de standaardinstellingen werd gespecificeerd"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
 msgstr "Drukt de versie van xfconfd af."
 
 #: ../xfconfd/main.c:136
-msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Configuratiediensten die u kunt gebruiken. De eerst opgegeven dienst wordt "
-"lezen/schrijven geopend; de andere, alleen-lezen."
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "Configuratiediensten die u kunt gebruiken. De eerst opgegeven dienst wordt lezen/schrijven geopend; de andere, alleen-lezen."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
-"Vork in de achtergrond na het starten, alleen nuttig voor proefdoeleinden"
+msgstr "Vork in de achtergrond na het starten, alleen nuttig voor proefdoeleinden"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -174,14 +157,15 @@ msgstr "Kon de opties niet lezen: %s\n"
 #: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "Another Xfconf daemon is already running"
-msgstr "Een andere Xfconf-achtergronddienst is al actief"
+msgstr "Er is al een andere Xfconf-achtergronddienst actief"
 
 #: ../xfconfd/xfconf-daemon.c:517
 #, c-format
 msgid "No backends could be started"
 msgstr "Er konden geen configuratiediensten worden gestart"
 
-#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
+#: ../xfconf-query/main.c:90
+#: ../xfconf-query/main.c:95
 msgid "set"
 msgstr "instellen"
 
@@ -207,9 +191,7 @@ msgstr "De nieuwe waarde om in te stellen voor de eigenschap"
 
 #: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
-msgstr ""
-"Geef een lijst van eigenschappen (of kanalen wanneer -c niet is "
-"gespecificeerd)"
+msgstr "Geef een lijst van eigenschappen (of kanalen wanneer -c niet is gespecificeerd)"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
@@ -276,21 +258,19 @@ msgstr "Geen eigenschap opgegeven"
 
 #: ../xfconf-query/main.c:301
 msgid "--create and --reset options can not be used together"
-msgstr ""
-"Opties voor --create en --reset kunnen niet gezamenlijk worden gebruikt"
+msgstr "Opties voor --create en --reset kunnen niet gezamenlijk worden gebruikt"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
-"Opties voor --create en --reset kunnen niet gezamenlijk worden gebruikt met "
-"--list"
+msgstr "Opties voor --create en --reset kunnen niet gezamenlijk worden gebruikt met --list"
 
 #: ../xfconf-query/main.c:319
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "Start bewakingskanaal '%s':"
 
-#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:353
+#: ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
 msgid "Failed to set property"
 msgstr "Kon de eigenschap niet instellen"
@@ -299,7 +279,8 @@ msgstr "Kon de eigenschap niet instellen"
 msgid "--toggle only works with boolean values"
 msgstr "--toggle werkt alleen met booleaanse waarden"
 
-#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:366
+#: ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(onbekend)"
 
@@ -310,18 +291,12 @@ msgstr "Waarde is een reeks met %d elementen:"
 
 #: ../xfconf-query/main.c:399
 #, c-format
-msgid ""
-"Property \"%s\" does not exist on channel \"%s\". If a new property should "
-"be created, use the --create option"
-msgstr ""
-"Eigenschap \"%s\" bestaat niet in kanaal \"%s\". Gebruik de --create optie "
-"wanneer u deze eigenschap wil aanmaken."
+msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
+msgstr "Eigenschap '%s' bestaat niet in kanaal '%s'. Gebruik de --create optie wanneer u deze eigenschap wil aanmaken."
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
-msgstr ""
-"Wanneer een nieuwe eigenschap wordt gemaakt, dient u het waardetype op te "
-"geven."
+msgstr "Wanneer een nieuwe eigenschap wordt gemaakt, dient u het waardetype op te geven."
 
 #: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
@@ -333,11 +308,10 @@ msgstr "Kan het type van de waarde niet vaststellen"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
-"Een waardetype moet worden ingesteld om een reeks te veranderen in een "
-"enkele waarde."
+msgstr "Er moet een waardetype worden ingesteld om een reeks te veranderen in een enkele waarde."
 
-#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
+#: ../xfconf-query/main.c:451
+#: ../xfconf-query/main.c:512
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "Kon '%s' niet omzetten naar type '%s'"
@@ -345,8 +319,7 @@ msgstr "Kon '%s' niet omzetten naar type '%s'"
 #: ../xfconf-query/main.c:483
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr ""
-"Er zijn %d nieuwe waarden, maar slechts %d typen konden worden vastgesteld."
+msgstr "Er zijn %d nieuwe waarden, maar slechts %d typen konden worden vastgesteld."
 
 #: ../xfconf-query/main.c:504
 #, c-format
@@ -374,16 +347,16 @@ msgstr "Kanaal '%s' bevat geen eigenschappen"
 #~ msgstr "Uitvoeren nog niet geïmplementeerd"
 
 #~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "Eigenschap \"%s\" bestaat niet voor kanaal \"%s\".\n"
+#~ msgstr "Eigenschap '%s' bestaat niet voor kanaal '%s'.\n"
 
 #~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "Kon het uitvoerbestand \"%s\" niet maken: %s\n"
+#~ msgstr "Kon het uitvoerbestand '%s' niet maken: %s\n"
 
 #~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "Kon het invoerbestand \"%s\" niet openen: %s\n"
+#~ msgstr "Kon het invoerbestand '%s' niet openen: %s\n"
 
 #~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "Kon het invoerbestand \"%s\" niet lezen: %s\n"
+#~ msgstr "Kon het invoerbestand '%s' niet lezen: %s\n"
 
 #~ msgid "Export channel to file"
 #~ msgstr "Kanaal naar bestand uitvoeren"
