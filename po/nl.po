@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-16 19:00+0000\n"
+"POT-Creation-Date: 2012-05-14 06:27+0000\n"
 "PO-Revision-Date: 2011-09-09 16:20+0100\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Language: nl (Dutch)\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Kon geen ResetProperty DBus call maken"
