@@ -1,9 +1,9 @@
-# Uyghur translations for xfconf package. 
+# Uyghur translations for xfconf package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Gheyret T.Kenji <gheyret@gmail.com>, 2010.
-# 
-# 
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf 4.5.99\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../xfconf/xfconf-cache.c:876
@@ -25,7 +25,7 @@ msgstr "ResetProperty DBus نى چاقىرىش مەغلۇپ بولدى"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "تەڭشەك مۇندەرىجىسى \"%s\" نى قۇرغىلى بولمىدى "
+msgstr "تەڭشەك مۇندەرىجىسى \"%s\" نى قۇرغىلى بولمىدى"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
@@ -98,16 +98,12 @@ msgstr "root ئېلېمېنت (\"/\") ئىناۋەتلىك خاسلىق ئاتى
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"خاسلىق ئاتىدا پەقەتلا ASCII دىكى A-Z، a-z، 0-9، \"_\"، \"-\"، \"<\" ۋە  \">"
-"\" ھەرپلىرىنى، بۆلگۈچ قىلىپ \"/\" نىلا ئىشلەتكىلى بولىدۇ"
+msgstr "خاسلىق ئاتىدا پەقەتلا ASCII دىكى A-Z، a-z، 0-9، \"_\"، \"-\"، \"<\" ۋە  \">\" ھەرپلىرىنى، بۆلگۈچ قىلىپ \"/\" نىلا ئىشلەتكىلى بولىدۇ"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"خاسلىق ئاتىغا ئارقىمۇ-ئارقا كەلگەن ئىككىدىن ياكى ئۇنىڭدىن ئارتۇق \"/\" نى "
-"ئىشلىتىشكە بولمايدۇ"
+msgstr "خاسلىق ئاتىغا ئارقىمۇ-ئارقا كەلگەن ئىككىدىن ياكى ئۇنىڭدىن ئارتۇق \"/\" نى ئىشلىتىشكە بولمايدۇ"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -124,18 +120,14 @@ msgstr "قانال ئاتى قۇرۇق بولسا بولمايدۇ"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"قانال ئاتىدا پەقەتلا ASCII دىكى  A-Z، a-z، 0-9، \"_\" ۋە  \"-\" نىلا "
-"ئىشلىتىشكە بولىدۇ"
+msgstr "قانال ئاتىدا پەقەتلا ASCII دىكى  A-Z، a-z، 0-9، \"_\" ۋە  \"-\" نىلا ئىشلىتىشكە بولىدۇ"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"ئەگەر چوڭقۇرلار ئەسلىگە قايتۇرۇش بېكىتىلگەن بولسا، خاسلىق ئاتى قۇرۇق ياكى \"/"
-"\" بولۇشى كېرەك."
+msgstr "ئەگەر چوڭقۇرلار ئەسلىگە قايتۇرۇش بېكىتىلگەن بولسا، خاسلىق ئاتى قۇرۇق ياكى \"/\" بولۇشى كېرەك."
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -145,9 +137,7 @@ msgstr "xfconfd نەشرىنى بېسىپ چىقىرىدۇ."
 msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
-msgstr ""
-"ئىشلىتىلىدىغان سەپلىمە backend لىرى. باشتىكىسىنى ئوقۇپ-يېزىشقا بولىدۇ. "
-"قالغانلىرىنى ئوقۇشقىلا بولىدۇ."
+msgstr "ئىشلىتىلىدىغان سەپلىمە backend لىرى. باشتىكىسىنى ئوقۇپ-يېزىشقا بولىدۇ. قالغانلىرىنى ئوقۇشقىلا بولىدۇ."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -256,12 +246,12 @@ msgstr ""
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
-msgstr ""
+msgstr "Xfce ئىجادىيەت گۇرۇپپىسى. All rights reserved."
 
 #: ../xfconf-query/main.c:267
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr ""
+msgstr "كەمتۈكنى <%s> غا دوكلات قىلىڭ."
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
@@ -280,15 +270,14 @@ msgid "--create and --reset options can not be used together with --list"
 msgstr ""
 
 #: ../xfconf-query/main.c:319
-#, fuzzy, c-format
+#, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "قانال  \"%s\" نى كۆرسىتىشنى باشلا:"
+msgstr ""
 
 #: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
-#, fuzzy
 msgid "Failed to set property"
-msgstr "خاسلىقنى تەڭشەش مەغلۇپ بولدى.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
@@ -299,61 +288,52 @@ msgid "(unknown)"
 msgstr "(نامەلۇم)"
 
 #: ../xfconf-query/main.c:375
-#, fuzzy, c-format
+#, c-format
 msgid "Value is an array with %d items:"
 msgstr ""
-"ھازىرقى قىممەت %d دانە تۈرى بار array ئىكەن:\n"
-"\n"
 
 #: ../xfconf-query/main.c:399
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr ""
-"خاسلىق \"%s\" قانال \"%s\" نىڭدا يوق ئىكەن. يېڭىدىن ياساش توغرا كەلسە\n"
-"--create تاللانمىسى ئىشلىتىلسۇن.\n"
 
 #: ../xfconf-query/main.c:407
-#, fuzzy
 msgid "When creating a new property, the value type must be specified"
-msgstr "يېڭى خاسلىق قۇرغان ۋاقىتتا، ئۇنىڭ قىممىتى چوقۇم بەلگىلىنىشى كېرەك\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:417
-#, fuzzy
 msgid "Failed to get the existing type for the value"
-msgstr "قىممەت تىپىنى ئېلىش مەغلۇپ بولدى\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:435
-#, fuzzy
 msgid "Unable to determine the type of the value"
-msgstr "قىممەت تىپىنى ئېنىقلىغىلى بولمىدى.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:441
-#, fuzzy
 msgid "A value type must be specified to change an array into a single value"
 msgstr ""
-"array نى بىرلا قىممەتكە ئايلاندۇرۇش ئۈچۈن قىممەت تىپى بەلگىلىنىشى كېرەك.\n"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "\"%s\" نى  \"%s\" تىپقا ئايلاندۇرغىلى بولمىدى\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:483
-#, fuzzy, c-format
+#, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "يېڭى قىممەتتىن %d بار. بىراق ئۇنىڭ ئىچىدىن %d نىڭ تىپى ئېنىقلاندى.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:504
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "ئىندىكىسى %d بولغان قىممەتنىڭ تىپىنى  ئېنىقلىيالمىدى.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:554
-#, fuzzy, c-format
+#, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "قانال \"%s\" نىڭ خاسلىقى يوق ئىكەن.\n"
+msgstr ""
 
 #~ msgid "Property '%s' changed: %s\n"
 #~ msgstr "خاسلىق \"%s\" ئۆزگەرتىلدى: %s\n"
