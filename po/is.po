@@ -1,21 +1,22 @@
+# translation of is.po to Icelandic
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Sveinn í Felli <sveinki@nett.is>, 2011.
+# Sveinn í Felli <sveinki@nett.is>, 2011, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: is\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-29 17:45+0000\n"
-"PO-Revision-Date: 2011-11-29 21:03+0000\n"
+"PO-Revision-Date: 2012-07-02 15:29+0000\n"
 "Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.1\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ../xfconf/xfconf-cache.c:876
 #, c-format
@@ -44,7 +45,7 @@ msgstr ""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr ""
+msgstr "Mistókst að fjarlægja rás \"%s\": %s"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
@@ -71,12 +72,12 @@ msgstr ""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
-msgstr ""
+msgstr "Rás \"%s\" er ekki til"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr ""
+msgstr "Mistókst að skrifa inn rás \"%s\": %s"
 
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
@@ -113,14 +114,14 @@ msgstr ""
 #: ../xfconfd/xfconf-backend.c:163
 #, c-format
 msgid "Channel name cannot be an empty string"
-msgstr ""
+msgstr "Heiti rásar getur ekki verið auður strengur"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
+msgstr "Heiti rása geta aðeins innihaldið ASCII stafi A-Z, a - z, 0-9, '_', og '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
@@ -131,7 +132,7 @@ msgstr ""
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
-msgstr ""
+msgstr "Birta útgáfu xfconfd."
 
 #: ../xfconfd/main.c:136
 msgid ""
@@ -153,7 +154,7 @@ msgstr ""
 
 #: ../xfconfd/main.c:167
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr ""
+msgstr "Tilkynna villur til http://bugs.xfce.org/\n"
 
 #: ../xfconfd/main.c:170
 #, c-format
@@ -212,7 +213,7 @@ msgstr ""
 
 #: ../xfconf-query/main.c:208
 msgid "Reset property"
-msgstr ""
+msgstr "Endursetja eiginleika"
 
 #: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
@@ -246,7 +247,7 @@ msgstr ""
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
-msgstr ""
+msgstr "Xfce þróunarteymið. Allur réttur áskilinn."
 
 #: ../xfconf-query/main.c:267
 #, c-format
@@ -255,7 +256,7 @@ msgstr "Tilkynntu villur til <%s>."
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
-msgstr ""
+msgstr "Rásir:"
 
 #: ../xfconf-query/main.c:295
 msgid "No property specified"
