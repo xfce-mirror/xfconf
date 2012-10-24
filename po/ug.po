@@ -59,7 +59,7 @@ msgstr "تىپ «%s» («%s» دىن كەلگەن) نىڭ قىممىتىنى ي�
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "<value> نىڭ تىپ خاسلىقى array بولسا بولمايدۇ"
+msgstr "<value> نىڭ تىپ خاسلىقى تىزىق بولسا بولمايدۇ"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
