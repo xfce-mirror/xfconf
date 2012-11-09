@@ -2,37 +2,40 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # كريم أولاد الشلحة <herr.linux88@gmail.com>, 2012.
-# 
+# محمد الحرقان <malham1@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-29 10:30+0000\n"
-"PO-Revision-Date: 2010-12-30 16:58-0000\n"
-"Last-Translator: كريم أولاد الشلحة <herr.linux88@gmail.com>\n"
-"Language-Team: Arabic <herr.linux88@gmail.com>\n"
+"POT-Creation-Date: 2012-11-09 11:51+0000\n"
+"PO-Revision-Date: 2012-11-09 15:41+0300\n"
+"Last-Translator: محمد الحرقان <malham1@gmail.com>\n"
+"Language-Team: http://www.vertaal.com.ar/files/factory/ar/list/\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-Poedit-Language: Arabic\n"
 "X-Poedit-Country: MOROCCO\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "فشل القيام بإعادة تعيين الخصائص DBus call"
+msgstr "فشل إعادة تعيين خصائص DBus call"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "غير قادرعلى إنشاء دلبل التكوين \"%s\""
+msgstr "غير قادرعلى إنشاء مجلد إعداد \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "صلاحيات غير كافية لتحرير الخصائص \"%s\" في القناة \"%s\""
+msgstr "صلاحيات غير كافية لتحرير خصائص \"%s\" في القناة \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -50,7 +53,7 @@ msgstr "غير قادر على حذف القناة \"%s\": %s"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "نوع فير موتوق لـ <property>: \"%s\""
+msgstr "نوع غير صحيح <property>: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
@@ -66,18 +69,18 @@ msgstr "نوع الميزة <value> لا يمكن أن تكون مصفوفة"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "نوع غير سليم <القيمة>: \"%s\""
+msgstr "نوع غير سليم <value>: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
-msgstr "القنات \"%s\" غير موجودة"
+msgstr "القناة \"%s\" غير موجودة"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "غير قادر غلى كتابة القنات \"%s\": %s"
+msgstr "غير قادر على كتابة القناة \"%s\": %s"
 
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
@@ -100,8 +103,8 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
 msgstr ""
-"يمكن لأسماء الخصائص أن تحتوي فقط على رموز ASCII  وهي A-Z, a-z, 0-9, '_', "
-"'-', '<' و '>', فضلا عن '/' كفاصل"
+"يمكن أن تتضمن أسماء الخصائص فقط الأحرف A-Z, 0-9, '_', '-', '<' and '>', as "
+"فضلا عن '/' كفاصل"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -123,16 +126,14 @@ msgstr "إسم القناة لا يمكن ان يكون سلسلة فارغة"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"يمكن لأسماء القنوات ان تحتوي فقط على رموز ASCII  وهي A-Z, a-z, 0-9, '_', و "
-"'-'"
+msgstr "يمكن لأسماء القنوات ان تحتوي فقط على رموز ASCII وهي A-Z,0-9, '_', و '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr "يمكن لإسم الخصائص أن يكون فارغا أو \"/\" إذا تمت إعادة تعيين متكررة"
+msgstr "يمكن لإسم الخصائص أن يكون فارغا أو \"/\" إذا تم تعيين إعادة متكررة"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -143,8 +144,8 @@ msgid ""
 "Configuration backends to use.  The first backend specified is opened read/"
 "write; the others, read-only."
 msgstr ""
-"إعداد الواجهات الخلفية. الواجهة الخلفية المحددة أولا يتم فتحها قراءة/كتابة؛ "
-"غير ذلك, يتم فتحه قراءة-فقط."
+"إعداد الواجهات الخلفية.  الواجهة الخلفية المحددة الأولى تتم فتحها "
+"قراءة/كتابة؛ الأخرى, يتم فتحه قراءة-فقط."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -203,7 +204,7 @@ msgstr "القيمة الجديد لتعيينها للخصائص"
 
 #: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
-msgstr "قائمة الخصائص أو القنوات غذا كان -c لم يتم تعيينه)"
+msgstr "قائمة الخصائص (أو القنوات إذا كان -c لم يتم تعيينه)"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
@@ -211,7 +212,7 @@ msgstr "مخرج مطول"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
-msgstr "إنشاء إسم الخصائص جديد إن لم يكن موجودا أصلا"
+msgstr "إنشاء إسم خصائص جديد إن لم يكن موجودا أصلا"
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
@@ -262,7 +263,7 @@ msgstr "الرجاء الإيلاغ عن الخلل إلى <%s>."
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
-msgstr "قنوات"
+msgstr "قنوات:"
 
 #: ../xfconf-query/main.c:295
 msgid "No property specified"
@@ -274,7 +275,7 @@ msgstr "--create و --reset خيارات لا يمكن إستعمالها معا
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr "--create و --reset خيارات لا يمكن إستعمالها معا مع  --list"
+msgstr "--create و --reset خيارات لا يمكن إستعمالها معا مع --list"
 
 #: ../xfconf-query/main.c:319
 #, c-format
@@ -310,7 +311,7 @@ msgstr ""
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
-msgstr "عنذ إنشاء خصائص جديدة, نوع القيمة يجب أن يحدد"
+msgstr "عند إنشاء خصائص جديدة, يجب تحديد نوع القيمة"
 
 #: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
@@ -342,7 +343,7 @@ msgstr "عاجز عن تحديد نوع القيمة في الأرشيف %d"
 #: ../xfconf-query/main.c:554
 #, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "قناة '%s' لا تحتوي على خصائص"
+msgstr "قناة \"%s\" لا تحتوي على خصائص"
 
 #~ msgid "Property '%s' changed\n"
 #~ msgstr "تم تغير خصائص '%s'\n"
