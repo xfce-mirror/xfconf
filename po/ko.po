@@ -3,15 +3,15 @@
 # Copyright (C) 2002-2010 The Xfce development team.
 # This file is distributed under the same license as the xfconf package.
 #
-# Seong-ho, Cho <darkcircle.0426@gmail.com>, 2011, 2012.
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
-"Report-Msgid-Bugs-To: xfce-i18n <xfce-i18n@xfce.org>\n"
+"Report-Msgid-Bugs-To: https://bugzilla.xfce.org/enter_bug.cgi?product=Xfconf\n"
 "POT-Creation-Date: 2011-09-12 16:14+0000\n"
 "PO-Revision-Date: 2012-02-21 14:44+0900\n"
-"Last-Translator: Seong-ho, Cho <darkcircle.0426@gmail.com>\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: xfce-i18n <xfce-i18n@xfce.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -54,23 +54,23 @@ msgstr "\"%s\"채널을 제거할 수 없습니다: %s"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "잘못된 <property> 유형입니다: \"%s\""
+msgstr "잘못된 <property> 형식입니다: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "\"%s\" 유형의 값을 \"%s\"에서 해석할 수 없습니다"
+msgstr "\"%s\" 형식의 값을 \"%s\"에서 해석할 수 없습니다"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "<value>의 속성 유형은 배열이 될 수 없습니다"
+msgstr "<value>의 속성 형식은 배열이 될 수 없습니다"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "잘못된 <value> 유형입니다: \"%s\""
+msgstr "잘못된 <value> 형식입니다: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
@@ -86,7 +86,7 @@ msgstr "\"%s\" 채널에 기록할 수 없습니다: %s"
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "\"%s\" 유형에 대한 Xfconf 백엔드를 찾을 수 없습니다"
+msgstr "\"%s\" 형식에 대한 Xfconf 백엔드를 찾을 수 없습니다"
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
@@ -134,7 +134,7 @@ msgstr "xfconfd 버전을 출력합니다."
 
 #: ../xfconfd/main.c:136
 msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
-msgstr "사용하기 위한 환경설정 백엔드입니다. 정의된 첫번째 백엔드는 읽기/쓰기로 열려 있습니다. 이에 반해 다른 요소들은 읽기전용입니다."
+msgstr "사용하기 위한 환경설정 백엔드입니다. 정의된 첫번째 백엔드는 읽기/쓰기로 열려 있습니다. 이에 반해 다른 요소는 읽기전용입니다."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -194,7 +194,7 @@ msgstr "프로퍼티를 설정할 새 값"
 
 #: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
-msgstr "목록 프로퍼티 (또는 -c를 정의했을 경우 채널)"
+msgstr "목록 프로퍼티(또는 -c를 정의했을 경우 채널)"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
@@ -206,7 +206,7 @@ msgstr "프로퍼티가 이미 존재하지 않는 경우 새로운 프로퍼티
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
-msgstr "프로퍼티 값 유형을 정의"
+msgstr "프로퍼티 값 형식을 정의"
 
 #: ../xfconf-query/main.c:208
 msgid "Reset property"
@@ -222,7 +222,7 @@ msgstr "단 한 가지의 요소만 있을 경우 배열로 강제"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
-msgstr "존재하는 부울린 속성 반전"
+msgstr "기존 부울린 속성 반전"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
@@ -249,7 +249,7 @@ msgstr "Xfce 개발 팀. All rights reserved."
 #: ../xfconf-query/main.c:267
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr "<%s>로 버그를 알려주시기 바랍니다."
+msgstr "<%s>로 버그를 알려주십시오."
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
@@ -265,7 +265,7 @@ msgstr "--create와 --reset 옵션은 함께 사용할 수 없습니다"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr "--create와 --reset 옵션은 --list와 함께 사용할 수 없습니다"
+msgstr "--create와 --reset 옵션은 --list와 사용할 수 없습니다"
 
 #: ../xfconf-query/main.c:319
 #, c-format
@@ -280,7 +280,7 @@ msgstr "프로퍼티를 설정하는데 실패했습니다"
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
-msgstr "--toggle은 부울린 값에만 적용됩니다"
+msgstr "--toggle은 부울린 값에만 동작합니다"
 
 #: ../xfconf-query/main.c:366
 #: ../xfconf-query/main.c:385
@@ -299,35 +299,35 @@ msgstr "\"%s\" 프로퍼티는 \"%s\" 채널에 존재하지 않습니다. 새�
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
-msgstr "새로운 프로퍼티를 생성할 때, 값 유형을 정의해야 합니다"
+msgstr "새로운 프로퍼티를 생성할 때, 값 형식을 정의해야 합니다"
 
 #: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
-msgstr "값의 존재하는 유형을 가져오는데 실패했습니다"
+msgstr "값의 기존 형식을 가져오는데 실패했습니다"
 
 #: ../xfconf-query/main.c:435
 msgid "Unable to determine the type of the value"
-msgstr "값의 유형을 결정할 수 없습니다"
+msgstr "값 형식을 결정할 수 없습니다"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr "값의 유형은 배열에서 단일 값으로 바꾸기 위해 정의해야 합니다"
+msgstr "값 형식은 배열에서 단일 값으로 바꾸려면 정의해야 합니다"
 
 #: ../xfconf-query/main.c:451
 #: ../xfconf-query/main.c:512
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "\"%s\"을(를) \"%s\" 유형으로 변환할 수 없습니다"
+msgstr "\"%s\"을(를) \"%s\" 형식으로 변환할 수 없습니다"
 
 #: ../xfconf-query/main.c:483
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "%d개의 새로운 값이 있지만, %d 유형으로만 결정할 수 있었습니다"
+msgstr "%d개의 새로운 값이 있지만, %d 형식으로만 결정할 수 있었습니다"
 
 #: ../xfconf-query/main.c:504
 #, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "인덱스 %d번의 값의 유형을 결정할 수 없습니다"
+msgstr "인덱스 %d번의 값 형식을 결정할 수 없습니다"
 
 #: ../xfconf-query/main.c:554
 #, c-format
