@@ -13,9 +13,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-check_SCRIPTS = $(addsuffix .sh,$(check_PROGRAMS))
-
-TESTS = $(check_SCRIPTS)
+TESTS = $(check_PROGRAMS)
 TESTS_ENVIRONMENT = XDG_CONFIG_HOME="$(top_builddir)/tests/test-xdg_config_home" XFCONFD="$(top_builddir)/xfconfd/xfconfd"
 
 AM_CFLAGS = \
@@ -27,8 +25,3 @@ AM_CFLAGS = \
 LIBS = \
 	$(top_builddir)/xfconf/libxfconf-$(LIBXFCONF_VERSION_API).la
 
-%.sh: $(top_srcdir)/tests/test-template.sh.in Makefile
-	sed -e 's/@TEST_NAME@/$@/; s/\.sh//;' <$(top_srcdir)/tests/test-template.sh.in >$@
-	chmod 755 $@
-
-CLEANFILES = $(check_SCRIPTS)
