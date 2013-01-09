@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-27 10:06+0000\n"
-"PO-Revision-Date: 2012-12-28 14:13+0200\n"
-"Last-Translator: cybercop <cybercop_montana@abv.bg>\n"
+"POT-Creation-Date: 2013-01-09 03:03+0000\n"
+"PO-Revision-Date: 2013-01-09 11:34+0200\n"
+"Last-Translator: Cybercop <cybercop_montana@abv.bg>\n"
 "Language-Team: Bulgarian\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -156,7 +156,7 @@ msgstr "Опции за грешка при анализ: %s\n"
 #: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "Another Xfconf daemon is already running"
-msgstr "Друг диспечер на конфигурацията на Xfce сече е стартиран"
+msgstr "Друг диспечер на конфигурацията на Xfce вече е стартиран"
 
 #: ../xfconfd/xfconf-daemon.c:517
 #, c-format
@@ -307,7 +307,7 @@ msgstr "Не може да бъде определен типът на знач�
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr "За преубразуване стойността на масива, трябва да бъде зададен типът стойност"
+msgstr "За преобразуване стойността на масива, трябва да бъде зададен типът стойност"
 
 #: ../xfconf-query/main.c:451
 #: ../xfconf-query/main.c:512
