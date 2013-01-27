@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-09 03:03+0000\n"
-"PO-Revision-Date: 2013-01-09 11:34+0200\n"
+"POT-Creation-Date: 2013-01-27 04:24+0000\n"
+"PO-Revision-Date: 2013-01-27 11:19+0200\n"
 "Last-Translator: Cybercop <cybercop_montana@abv.bg>\n"
 "Language-Team: Bulgarian\n"
 "Language: bg\n"
@@ -161,7 +161,7 @@ msgstr "Друг диспечер на конфигурацията на Xfce в
 #: ../xfconfd/xfconf-daemon.c:517
 #, c-format
 msgid "No backends could be started"
-msgstr "Неуспех при стартирането на back-end"
+msgstr "Неуспех при стартиране на фоновият режим"
 
 #: ../xfconf-query/main.c:90
 #: ../xfconf-query/main.c:95
@@ -202,7 +202,7 @@ msgstr "Създаване на ново свойство, ако все още 
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
-msgstr "Задаване типът стойност на свойството"
+msgstr "Определя типът стойност на свойството"
 
 #: ../xfconf-query/main.c:208
 msgid "Reset property"
@@ -218,7 +218,7 @@ msgstr "Използване на масив дори когато се съст
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
-msgstr "Сменяне на значението на съществуващо логическо свойство"
+msgstr "Преобразуване на значението на съществуващо логическо свойство"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
@@ -257,11 +257,11 @@ msgstr "Не е указано свойство"
 
 #: ../xfconf-query/main.c:301
 msgid "--create and --reset options can not be used together"
-msgstr "параметрите --създаване и --рестартиране на могат да се използват заедно"
+msgstr "параметрите --създаване и --рестартиране не могат да се използват заедно"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr "параметрите --създаване и --рестартиране на могат да се използват заедно с --list"
+msgstr "параметрите --създаване и --рестартиране нe могат да се използват заедно с --list"
 
 #: ../xfconf-query/main.c:319
 #, c-format
@@ -295,7 +295,7 @@ msgstr "Свойство \"%s\" не съществува на канал\"%s\".
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
-msgstr "При създаване на нова опция, указвайте типа стойност"
+msgstr "При създаване на нова опция, посочвайте типа стойност"
 
 #: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
