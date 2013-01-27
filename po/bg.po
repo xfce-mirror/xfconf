@@ -1,0 +1,332 @@
+# Bulgarian translations for xfconf package.
+# Copyright (C) 2009-2011 The Xfce development team.
+# This file is distributed under the same license as the xfconf package.
+# Kiril Kiriov (Cybercop) <cybercop_montana@abv.bg>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfconf\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-27 04:21+0000\n"
+"PO-Revision-Date: 2013-01-27 11:23+0200\n"
+"Last-Translator: Cybercop <cybercop_montana@abv.bg>\n"
+"Language-Team: Bulgarian\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../xfconf/xfconf-cache.c:897
+#, c-format
+msgid "Failed to make ResetProperty DBus call"
+msgstr "Неуспешно изпълнение на ResetProperty чрез DBus"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:277
+#, c-format
+msgid "Unable to create configuration directory \"%s\""
+msgstr "Не може да бъде създадена конфигурацията на директория \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:322
+#: ../xfconfd/xfconf-daemon.c:238
+#, c-format
+msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
+msgstr "Недостатъчно права за изпълнение на свойство \"%s\" на канал \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:387
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:469
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:634
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
+#: ../xfconf-query/main.c:341
+#, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\""
+msgstr "Свойство \"%s\" отсъства на канал \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:601
+#, c-format
+msgid "Unable to remove channel \"%s\": %s"
+msgstr "Не може да бъде премахнат канал \"%s\": %s"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
+#, c-format
+msgid "Invalid type for <property>: \"%s\""
+msgstr "Неправилен тип за <свойство>: \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
+#, c-format
+msgid "Unable to parse value of type \"%s\" from \"%s\""
+msgstr "Не може да се определи стойност на тип \"%s\" от \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
+#, c-format
+msgid "The type attribute of <value> cannot be an array"
+msgstr "Типът на атрибут <стойност> не може да бъде масив"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
+#, c-format
+msgid "Invalid type for <value>: \"%s\""
+msgstr "Неправилен тип <стойност>: \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
+#, c-format
+msgid "Channel \"%s\" does not exist"
+msgstr "Канал \"%s\" не существува"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
+#, c-format
+msgid "Unable to write channel \"%s\": %s"
+msgstr "Не може да бъда записан канал \"%s\": %s"
+
+#: ../xfconfd/xfconf-backend-factory.c:76
+#, c-format
+msgid "Unable to find Xfconf backend of type \"%s\""
+msgstr "Не може да бъде открита backend Xfconf от типа \"%s\""
+
+#: ../xfconfd/xfconf-backend.c:103
+#, c-format
+msgid "Property names must start with a '/' character"
+msgstr "Името на свойството трябва да започва със символ '/'"
+
+#: ../xfconfd/xfconf-backend.c:112
+#, c-format
+msgid "The root element ('/') is not a valid property name"
+msgstr "Елемент root ('/')  не е валидно име на това свойство"
+
+#: ../xfconfd/xfconf-backend.c:126
+#, c-format
+msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgstr "Имената на свойствата могат да включват само символи  A-Z, a-z, 0-9, '_', '-', '<' and '>', като е добре да има '/' за разделител"
+
+#: ../xfconfd/xfconf-backend.c:135
+#, c-format
+msgid "Property names cannot have two or more consecutive '/' characters"
+msgstr "Имената на свойствата не могат да съдържат два и повече последователни знака  '/'"
+
+#: ../xfconfd/xfconf-backend.c:146
+#, c-format
+msgid "Property names cannot end with a '/' character"
+msgstr "Имената на свойствата не могат да завършват със знака '/'"
+
+#: ../xfconfd/xfconf-backend.c:163
+#, c-format
+msgid "Channel name cannot be an empty string"
+msgstr "Името на канала не може да остане празно"
+
+#: ../xfconfd/xfconf-backend.c:176
+#, c-format
+msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgstr "Името на канала може да включва само ASCII символи A-Z, a-z, 0-9, '_', and '-'"
+
+#: ../xfconfd/xfconf-backend.c:398
+#, c-format
+msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgstr "Името на свойството може да бъде само празно или \"/\" ако е посочено рекурсивно рестартиране"
+
+#: ../xfconfd/main.c:134
+msgid "Prints the xfconfd version."
+msgstr "Отпечатване на версията на Xfconf."
+
+#: ../xfconfd/main.c:136
+msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgstr "Конфигурация за полването на back-end. Първите указания на back-end са отворени за четене/запис, а следващите - само за четене."
+
+#: ../xfconfd/main.c:139
+msgid "Fork into background after starting; only useful for testing purposes"
+msgstr "Изпълнение във фонов режим след стартиране (подходящо единствено за тестове)"
+
+#: ../xfconfd/main.c:159
+msgid "Xfce Configuration Daemon"
+msgstr "Диспечер на конфигурацията на Xfce"
+
+#: ../xfconfd/main.c:165
+msgid "Xfce configuration daemon"
+msgstr "Диспечер на конфигурацията на Xfce"
+
+#: ../xfconfd/main.c:167
+msgid "Report bugs to http://bugs.xfce.org/\n"
+msgstr "Докладвайте грешки в http://bugs.xfce.org/\n"
+
+#: ../xfconfd/main.c:170
+#, c-format
+msgid "Error parsing options: %s\n"
+msgstr "Опции за грешка при анализ: %s\n"
+
+#: ../xfconfd/xfconf-daemon.c:482
+#, c-format
+msgid "Another Xfconf daemon is already running"
+msgstr "Друг диспечер на конфигурацията на Xfce вече е стартиран"
+
+#: ../xfconfd/xfconf-daemon.c:517
+#, c-format
+msgid "No backends could be started"
+msgstr "Неуспех при стартиране на фоновият режим"
+
+#: ../xfconf-query/main.c:90
+#: ../xfconf-query/main.c:95
+msgid "set"
+msgstr "задаване"
+
+#: ../xfconf-query/main.c:100
+msgid "reset"
+msgstr "рестартиране"
+
+#: ../xfconf-query/main.c:176
+msgid "Version information"
+msgstr "Информация за версията"
+
+#: ../xfconf-query/main.c:180
+msgid "The channel to query/modify"
+msgstr "Канал за заявка/промяна"
+
+#: ../xfconf-query/main.c:184
+msgid "The property to query/modify"
+msgstr "Свойства на заявка/промяна"
+
+#: ../xfconf-query/main.c:188
+msgid "The new value to set for the property"
+msgstr "Нова стойност, зададена за свойството"
+
+#: ../xfconf-query/main.c:192
+msgid "List properties (or channels if -c is not specified)"
+msgstr "Списък на свойствата (или каналите, когато не са оказани свойства)"
+
+#: ../xfconf-query/main.c:196
+msgid "Verbose output"
+msgstr "Изход в режим с подробности"
+
+#: ../xfconf-query/main.c:200
+msgid "Create a new property if it does not already exist"
+msgstr "Създаване на ново свойство, ако все още не съществува"
+
+#: ../xfconf-query/main.c:204
+msgid "Specify the property value type"
+msgstr "Определя типът стойност на свойството"
+
+#: ../xfconf-query/main.c:208
+msgid "Reset property"
+msgstr "Рестартиране на свойство"
+
+#: ../xfconf-query/main.c:212
+msgid "Recursive (use with -r)"
+msgstr "Рекурсивно (използва се с -r)"
+
+#: ../xfconf-query/main.c:216
+msgid "Force array even if only one element"
+msgstr "Използване на масив дори когато се състои само от един елемент"
+
+#: ../xfconf-query/main.c:220
+msgid "Invert an existing boolean property"
+msgstr "Преобразуване на значението на съществуващо логическо свойство"
+
+#: ../xfconf-query/main.c:224
+msgid "Monitor a channel for property changes"
+msgstr "Наблюдение за изменението на свойствата на канала"
+
+#: ../xfconf-query/main.c:246
+#, c-format
+msgid "Failed to init libxfconf: %s"
+msgstr "Грешка при инициализацията на libxfconf: %s"
+
+#: ../xfconf-query/main.c:251
+msgid "- Xfconf commandline utility"
+msgstr "- Xfconf помощтна програма за работа в команден ред"
+
+#: ../xfconf-query/main.c:256
+#, c-format
+msgid "Option parsing failed: %s"
+msgstr "Неуспешeн вариант на синтаксиса: %s"
+
+#: ../xfconf-query/main.c:266
+msgid "The Xfce development team. All rights reserved."
+msgstr "Екипът по разработка на Xfce. Всички права са запазени."
+
+#: ../xfconf-query/main.c:267
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr "Моля, докладвайте грешки на <%s>."
+
+#: ../xfconf-query/main.c:279
+msgid "Channels:"
+msgstr "Канали:"
+
+#: ../xfconf-query/main.c:295
+msgid "No property specified"
+msgstr "Не е указано свойство"
+
+#: ../xfconf-query/main.c:301
+msgid "--create and --reset options can not be used together"
+msgstr "параметрите --създаване и --рестартиране не могат да се използват заедно"
+
+#: ../xfconf-query/main.c:307
+msgid "--create and --reset options can not be used together with --list"
+msgstr "параметрите --създаване и --рестартиране на могат да се използват заедно с --list"
+
+#: ../xfconf-query/main.c:319
+#, c-format
+msgid "Start monitoring channel \"%s\":"
+msgstr "Стартиране наблюдението на канал \"%s\":"
+
+#: ../xfconf-query/main.c:353
+#: ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:527
+msgid "Failed to set property"
+msgstr "Не може да бъде зададено свойство"
+
+#: ../xfconf-query/main.c:357
+msgid "--toggle only works with boolean values"
+msgstr "--toggle работи само с логически значения"
+
+#: ../xfconf-query/main.c:366
+#: ../xfconf-query/main.c:385
+msgid "(unknown)"
+msgstr "(неизвестно)"
+
+#: ../xfconf-query/main.c:375
+#, c-format
+msgid "Value is an array with %d items:"
+msgstr "Стойността представлява масив с %d елемента:"
+
+#: ../xfconf-query/main.c:399
+#, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
+msgstr "Свойство \"%s\" не съществува на канал\"%s\".Ако трябва да бъде създадено ново свойство, тогава използвайте --създаване на опция"
+
+#: ../xfconf-query/main.c:407
+msgid "When creating a new property, the value type must be specified"
+msgstr "При създаване на нова опция, посочвайте типа стойност"
+
+#: ../xfconf-query/main.c:417
+msgid "Failed to get the existing type for the value"
+msgstr "Неуспех при получаване на съществуващ тип за стойност"
+
+#: ../xfconf-query/main.c:435
+msgid "Unable to determine the type of the value"
+msgstr "Не може да бъде определен типът на значение"
+
+#: ../xfconf-query/main.c:441
+msgid "A value type must be specified to change an array into a single value"
+msgstr "За преобразуване стойността на масива, трябва да бъде зададен типът стойност"
+
+#: ../xfconf-query/main.c:451
+#: ../xfconf-query/main.c:512
+#, c-format
+msgid "Unable to convert \"%s\" to type \"%s\""
+msgstr "Не може да бъде преобразувано \"%s\" в тип \"%s\""
+
+#: ../xfconf-query/main.c:483
+#, c-format
+msgid "There are %d new values, but only %d types could be determined"
+msgstr "Налице са %d нови стойности, но определени могат да бъдат само %d типа"
+
+#: ../xfconf-query/main.c:504
+#, c-format
+msgid "Unable to determine type of value at index %d"
+msgstr "Не може да бъде определен типът стойност в индекс %d"
+
+#: ../xfconf-query/main.c:554
+#, c-format
+msgid "Channel \"%s\" contains no properties"
+msgstr "Канал \"%s\" не съдържа свойства"
+
