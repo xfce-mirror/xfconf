@@ -2,22 +2,22 @@
 # Copyright (C) 2008, 2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the xfconf package.
 # Daniel Nylander <po@danielnylander.se>, 2008, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
+"POT-Creation-Date: 2013-03-19 16:15+0000\n"
 "PO-Revision-Date: 2009-12-16 17:13+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
-"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sv\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Misslyckades med att göra ResetProperty DBus-anrop"
@@ -180,11 +180,11 @@ msgstr "Inga bakändar kunde startas"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
-msgstr ""
+msgstr "ställ in"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
-msgstr ""
+msgstr "återställ"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
@@ -232,7 +232,7 @@ msgstr "Tvinga array även om endast ett element"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
-msgstr ""
+msgstr "Invertera en existerande logiskt egenskap"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
@@ -248,63 +248,62 @@ msgid "- Xfconf commandline utility"
 msgstr ""
 
 #: ../xfconf-query/main.c:256
-#, c-format
+#, c-format, fuzzy
 msgid "Option parsing failed: %s"
-msgstr ""
+msgstr "Tolkning av alternativ misslyckades: %s"
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
-msgstr ""
+msgstr "Xfce utecklingsteam. Alla rättigheter förbehålls."
 
 #: ../xfconf-query/main.c:267
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr ""
+msgstr "Var vänlig och rapportera buggar till <%s>."
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
-msgstr ""
+msgstr "Kanaler:"
 
 #: ../xfconf-query/main.c:295
 msgid "No property specified"
-msgstr ""
+msgstr "Ingen egenskap specifierad"
 
 #: ../xfconf-query/main.c:301
 msgid "--create and --reset options can not be used together"
-msgstr ""
+msgstr "--create och --reset kan inte användas tillsammans"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
+msgstr "--create och --reset kan inte användas tillsammans med --list"
 
 #: ../xfconf-query/main.c:319
-#, fuzzy, c-format
+#, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "Påbörja övervakning av kanalen \"%s\":"
 
 #: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
-#, fuzzy
 msgid "Failed to set property"
-msgstr "Misslyckades med att ställa in egenskap.\n"
+msgstr "Misslyckades med att ställa in egenskap"
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
-msgstr ""
+msgstr "--toggle fungerar enbart med logiska värden"
 
 #: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(okänt)"
 
 #: ../xfconf-query/main.c:375
-#, fuzzy, c-format
+#, c-format
 msgid "Value is an array with %d items:"
 msgstr ""
 "Värdet är en array med %d objekt:\n"
 "\n"
 
 #: ../xfconf-query/main.c:399
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
@@ -313,45 +312,41 @@ msgstr ""
 "skapa en ny egenskap så använd flaggan --create.\n"
 
 #: ../xfconf-query/main.c:407
-#, fuzzy
 msgid "When creating a new property, the value type must be specified"
-msgstr "Du måste ange värdestypen när du skapar en ny egenskap.\n"
+msgstr "Du måste ange värdestypen när du skapar en ny egenskap"
 
 #: ../xfconf-query/main.c:417
-#, fuzzy
 msgid "Failed to get the existing type for the value"
-msgstr "Misslyckades med att få befintlig typ för värdet.\n"
+msgstr "Misslyckades med att få befintlig typ för värdet"
 
 #: ../xfconf-query/main.c:435
-#, fuzzy
 msgid "Unable to determine the type of the value"
-msgstr "Kunde inte fastställa typen av värdet.\n"
+msgstr "Kunde inte fastställa typen av värdet"
 
 #: ../xfconf-query/main.c:441
-#, fuzzy
 msgid "A value type must be specified to change an array into a single value"
 msgstr ""
 "Du måste ange en värdestyp för att ändra en array till ett enda värde.\n"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "Kunde inte konvertera \"%s\" till typen \"%s\"\n"
+msgstr "Kunde inte konvertera \"%s\" till typen \"%s\""
 
 #: ../xfconf-query/main.c:483
-#, fuzzy, c-format
+#, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "Det finns %d nya värden, men kunde %d typer kunde fastställas.\n"
+msgstr "Det finns %d nya värden, men kunde %d typer kunde fastställas"
 
 #: ../xfconf-query/main.c:504
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "Kunde inte fastställa typen för värdet på index %d.\n"
+msgstr "Kunde inte fastställa typen för värdet på index %d"
 
 #: ../xfconf-query/main.c:554
-#, fuzzy, c-format
+#, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "Kanalen \"%s\" innehåller inga egenskaper\n"
+msgstr "Kanalen \"%s\" innehåller inga egenskaper"
 
 #~ msgid "Property '%s' changed: %s\n"
 #~ msgstr "Egenskapen \"%s\" ändrades: %s\n"
