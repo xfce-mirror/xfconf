@@ -290,7 +290,7 @@ msgstr "(알 수 없음)"
 #: ../xfconf-query/main.c:375
 #, c-format
 msgid "Value is an array with %d items:"
-msgstr "값은 %d개의 항목을 가진 배열입니다:"
+msgstr "값은 항목 %d개를 가진 배열입니다:"
 
 #: ../xfconf-query/main.c:399
 #, c-format
@@ -322,7 +322,7 @@ msgstr "\"%s\"을(를) \"%s\" 형식으로 변환할 수 없습니다"
 #: ../xfconf-query/main.c:483
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "%d개의 새로운 값이 있지만, %d 형식으로만 결정할 수 있었습니다"
+msgstr "새로운 값 %d개가 있지만, %d 형식으로만 결정할 수 있었습니다"
 
 #: ../xfconf-query/main.c:504
 #, c-format
