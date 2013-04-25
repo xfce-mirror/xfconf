@@ -2,7 +2,7 @@
 # Copyright (C) The Xfce development team.
 # This file is distributed under the same license as the xfconf package.
 # Stephan Arts <stephan@xfce.org>, 2009.
-# Pjotr, 2011.
+# Pjotr pjotrvertaalt@gmail.com , 2011, 2013.
 # 
 msgid ""
 msgstr ""
@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-16 19:00+0000\n"
 "PO-Revision-Date: 2011-09-09 16:20+0100\n"
-"Last-Translator: Pjotr\n"
+"Last-Translator: Pjotr pjotrvertaalt@gmail.com\n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +33,7 @@ msgstr "Kan configuratiemap '%s' niet aanmaken"
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr ""
-"Onvoldoende rechten voor het bewerken van eigenschap \"%s\" op kanaal \"%s\""
+"Onvoldoende rechten voor het bewerken van eigenschap '%s' op kanaal '%s'"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -134,7 +134,7 @@ msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
 msgstr ""
-"De eigenschapnaam kan alleen leeg of \"/\" zijn, als er een recursieve "
+"De eigenschapnaam kan alleen leeg of '/' zijn, als er een recursieve "
 "terugbrenging naar de standaardinstellingen werd gespecificeerd"
 
 #: ../xfconfd/main.c:134
@@ -187,7 +187,7 @@ msgstr "instellen"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
-msgstr "terugzetten op standaardwaarde"
+msgstr "terugzetten op standaardwaarden"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
@@ -314,13 +314,13 @@ msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr ""
-"Eigenschap \"%s\" bestaat niet in kanaal \"%s\". Gebruik de --create optie "
+"Eigenschap '%s' bestaat niet in kanaal '%s'. Gebruik de --create optie "
 "wanneer u deze eigenschap wil aanmaken."
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
 msgstr ""
-"Wanneer een nieuwe eigenschap wordt gemaakt, dient u het waardetype op te "
+"Wanneer er een nieuwe eigenschap wordt gemaakt, dient u het waardetype op te "
 "geven."
 
 #: ../xfconf-query/main.c:417
@@ -334,7 +334,7 @@ msgstr "Kan het type van de waarde niet vaststellen"
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
 msgstr ""
-"Een waardetype moet worden ingesteld om een reeks te veranderen in een "
+"Er moet een waardetype worden ingesteld om een reeks te veranderen in een "
 "enkele waarde."
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
