@@ -159,7 +159,7 @@ main(int argc,
     g_set_application_name(_("Xfce Configuration Daemon"));
     g_set_prgname(G_LOG_DOMAIN);
 
-#ifn GLIB_CHECK_VERSION(2,36,0)
+#if !GLIB_CHECK_VERSION(2,36,0)
     g_type_init();
 #endif
     
