@@ -158,7 +158,10 @@ main(int argc,
     
     g_set_application_name(_("Xfce Configuration Daemon"));
     g_set_prgname(G_LOG_DOMAIN);
+
+#ifn GLIB_CHECK_VERSION(2,36,0)
     g_type_init();
+#endif
     
     opt_ctx = g_option_context_new(NULL);
     g_option_context_set_translation_domain(opt_ctx, PACKAGE);

@@ -240,7 +240,10 @@ main(int argc, char **argv)
 #endif
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
+#ifn GLIB_CHECK_VERSION(2,36,0)
     g_type_init();
+#endif
+
     if(!xfconf_init(&error))
     {
         xfconf_query_printerr(_("Failed to init libxfconf: %s"), error->message);
