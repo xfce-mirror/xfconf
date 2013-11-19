@@ -1,29 +1,26 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2009-04-28 20:20+0500\n"
-"Last-Translator: Muhammad Ali Makki <makki.ma@gmail.com>\n"
-"Language-Team: Urdu <makki.ma@gmail.com>\n"
-"Language: ur\n"
+"POT-Creation-Date: 2013-07-02 22:48+0200\n"
+"PO-Revision-Date: 2013-11-19 10:53+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Urdu (http://www.transifex.com/projects/p/xfce/language/ur/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-Language: Urdu\n"
-"X-Poedit-Country: PAKISTAN\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"Language: ur\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:876
-#, fuzzy, c-format
+#: ../xfconf/xfconf-cache.c:897
+#, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "خصوصیت سیٹ کرنے میں غلطی.\n"
+msgstr ""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
@@ -101,9 +98,7 @@ msgstr "روٹ عنصر ('/') موزوں خصوصیت نام نہیں ہے"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"خصوصیت کے نام میں صرف ASCII حروف ہی ہونے چاہئیں A-Z, a-z, 0-9, '_', '-', '<' "
-"اور '>' ساتھ میں '/' بطور جداگار"
+msgstr "خصوصیت کے نام میں صرف ASCII حروف ہی ہونے چاہئیں A-Z, a-z, 0-9, '_', '-', '<' اور '>' ساتھ میں '/' بطور جداگار"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -125,16 +120,14 @@ msgstr "چینل کا نام خالی نہیں ہونا چاہیے"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"چینل کا نام صرف ASCII حروف پر مشتمل ہونا چاہیے A-Z, a-z, 0-9, '_' اور '-'"
+msgstr "چینل کا نام صرف ASCII حروف پر مشتمل ہونا چاہیے A-Z, a-z, 0-9, '_' اور '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"خصوصیت کا نام صرف خالی ہوسکتا ہے یا \"/\" اگر تکراری ریزٹ متعین کیا گیا ہو"
+msgstr "خصوصیت کا نام صرف خالی ہوسکتا ہے یا \"/\" اگر تکراری ریزٹ متعین کیا گیا ہو"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -142,11 +135,9 @@ msgstr "xfconfd ورژن کی طباعت کریں."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"استعمال کے لیے ترتیبات بیک اینڈ. پہلا معینہ بیک ایند پڑھنے/لکھنے کے لیے کھلا "
-"ہوا ہے، دوسرا صرف پڑھنے کے لیے."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "استعمال کے لیے ترتیبات بیک اینڈ. پہلا معینہ بیک ایند پڑھنے/لکھنے کے لیے کھلا ہوا ہے، دوسرا صرف پڑھنے کے لیے."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -279,15 +270,14 @@ msgid "--create and --reset options can not be used together with --list"
 msgstr ""
 
 #: ../xfconf-query/main.c:319
-#, fuzzy, c-format
+#, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "چینل '%s' کی مانیٹرنگ شروع کریں:"
+msgstr ""
 
 #: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
-#, fuzzy
 msgid "Failed to set property"
-msgstr "خصوصیت سیٹ کرنے میں غلطی.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
@@ -298,86 +288,49 @@ msgid "(unknown)"
 msgstr "(نامعلوم)"
 
 #: ../xfconf-query/main.c:375
-#, fuzzy, c-format
+#, c-format
 msgid "Value is an array with %d items:"
 msgstr ""
-"قدر %d عناصر کے ساتھ ترتیب میں ہے:\n"
-"\n"
 
 #: ../xfconf-query/main.c:399
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr ""
-"چینل \"%s\" پر خصوصیت \"%s\" موجود نہیں. اگر نئی\n"
-"خصوصیت بنانا لازمی ہو تو --create اختیار استعمال کریں.\n"
 
 #: ../xfconf-query/main.c:407
-#, fuzzy
 msgid "When creating a new property, the value type must be specified"
-msgstr "نئی خصوصیت بناتے ہوئے قدر کی نوعیت متعین کرنا لازمی ہے.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:417
-#, fuzzy
 msgid "Failed to get the existing type for the value"
-msgstr "قدر کی سابقہ نوعیت حاصل کرنے میں ناکامی.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:435
-#, fuzzy
 msgid "Unable to determine the type of the value"
-msgstr "قدر کی نوعیت کا فیصلہ کرنے میں ناکامی.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:441
-#, fuzzy
 msgid "A value type must be specified to change an array into a single value"
 msgstr ""
-"قدر کی نوعیت متعین کرنا لازمی ہے تاکہ کسی صف کو ایک مفرد قدر میں بدلا "
-"جاسکے.\n"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "\"%s\" کو نوعیت \"%s\" میں بدلنے میں ناکامی\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:483
-#, fuzzy, c-format
+#, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "یہاں %d نئی قدریں ہیں، مگر صرف %d نوعیت بیان ہوسکتی ہے.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:504
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "فہرست %d پر قدر کی نوعیت کا فیصلہ کرنے میں ناکامی.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:554
-#, fuzzy, c-format
+#, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "چینل '%s' میں کوئی خصوصیات نہیں\n"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "خصوصیت '%s' تبدیل: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "خصوصیت '%s' تبدیل\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "خصوصیت '%s' حذف شدہ\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "برآمد میتھڈ ابھی تک لاگو نہیں کیا گیا"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "برآمد ابھی تک لاگو نہیں کی گئی"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "خصوصیت \"%s\" چینل \"%s\" پر موجود نہیں.\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "برآمد فائل نہیں بنائی جاسکتی \"%s\": %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "درآمد فائل نہیں کھولی جاسکتی \"%s\": %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "درآمد فائل بیان نہیں کی جاسکتی \"%s\": %s\n"
+msgstr ""
