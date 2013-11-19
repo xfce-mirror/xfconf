@@ -1,24 +1,23 @@
-# European Portuguese translation of the xfconf package.
-# Copyright (C) 2008 The Xfce development team.
-# This file is distributed under the same license as the xfconf package.
-# Nuno Miguel <nunomgue@gmail.com>, 2008-2012.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2012-04-26 23:29+0100\n"
-"Last-Translator: Nuno Miguel <nunomgue@gmail.com>\n"
-"Language-Team: \n"
-"Language: pt\n"
+"POT-Creation-Date: 2013-07-02 22:48+0200\n"
+"PO-Revision-Date: 2013-11-19 10:53+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Portuguese (http://www.transifex.com/projects/p/xfce/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Portuguese\n"
-"X-Poedit-Country: PORTUGAL\n"
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:897
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Falha ao invocar ResetProperty DBus"
@@ -37,8 +36,7 @@ msgstr "Permissão negada ao modificar a propriedade \"%s\" no canal \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
-#: ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "A propriedade \"%s\" não existe no canal \"%s\""
@@ -97,7 +95,9 @@ msgstr "O elemento root ('/') não é um nome de propriedade válido"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
 msgstr "Os nomes de propriedades só podem incluir os caracteres ASCII A-Z, a-z, 0-9, '_', '-', '<' e '>' e '/' como separador"
 
 #: ../xfconfd/xfconf-backend.c:135
@@ -117,12 +117,16 @@ msgstr "O nome do canal não pode estar vazio"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
 msgstr "Os nomes de canais só podem incluir os caracteres ASCII A-Z, a-z, 0-9, '_' e '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
 msgstr "O nome da propriedade só pode ser vazio ou \"/\" se indicar um reposição recursiva"
 
 #: ../xfconfd/main.c:134
@@ -130,7 +134,9 @@ msgid "Prints the xfconfd version."
 msgstr "Imprime a versão do xfconfd."
 
 #: ../xfconfd/main.c:136
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
 msgstr "A configuração de infraestrutura usada. A primeira infraestrutura especificada é aberta em leitura/escrita, as outras só de leitura."
 
 #: ../xfconfd/main.c:139
@@ -164,8 +170,7 @@ msgstr "Um outro serviço Xfconf já está em execução"
 msgid "No backends could be started"
 msgstr "Nenhuma infraestrutura iniciada"
 
-#: ../xfconf-query/main.c:90
-#: ../xfconf-query/main.c:95
+#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
 msgstr "definir"
 
@@ -269,8 +274,7 @@ msgstr "--create e --reset não podem ser utilizadas em simultâneo com --list"
 msgid "Start monitoring channel \"%s\":"
 msgstr "Iniciar monitorização do canal \"%s\":"
 
-#: ../xfconf-query/main.c:353
-#: ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
 msgid "Failed to set property"
 msgstr "Falha ao definir a propriedade"
@@ -279,8 +283,7 @@ msgstr "Falha ao definir a propriedade"
 msgid "--toggle only works with boolean values"
 msgstr "--toggle só funciona com valores booleanos"
 
-#: ../xfconf-query/main.c:366
-#: ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(desconhecido)"
 
@@ -291,7 +294,9 @@ msgstr "O valor é uma matriz com %d itens:"
 
 #: ../xfconf-query/main.c:399
 #, c-format
-msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\". If a new property should "
+"be created, use the --create option"
 msgstr "A propriedade \"%s\" não existe no canal \"%s\". Para criar uma nova propriedade, utilize a opção --create"
 
 #: ../xfconf-query/main.c:407
@@ -310,8 +315,7 @@ msgstr "Incapaz de determinar o tipo de valor"
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Deve especificar o tipo de valor para converter uma matriz num valor único"
 
-#: ../xfconf-query/main.c:451
-#: ../xfconf-query/main.c:512
+#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "Incapaz de converter \"%s\" para o tipo \"%s\""
@@ -330,77 +334,3 @@ msgstr "Incapaz de determinar o tipo de valor no índice %d"
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "O canal \"%s\" não possui propriedades"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "Propriedade '%s' alterada: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "Propriedade '%s' alterada\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "Propriedade '%s' removida\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "Método de exportação ainda não implementado"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "Exportação ainda não implementada"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "A propriedade \"%s\" não existe no canal \"%s\".\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "Incapaz de criar o ficheiro de exportação \"%s\": %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "Incapaz de abrir o ficheiro de importação \"%s\": %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "Incapaz de analisar o ficheiro de importação \"%s\": %s\n"
-
-#~ msgid "Export channel to file"
-#~ msgstr "Exportar canal para ficheiro"
-
-#~ msgid "Import channel from file"
-#~ msgstr "Importar canal do ficheiro"
-
-#~ msgid "true"
-#~ msgstr "verdade"
-
-#~ msgid "false"
-#~ msgstr "falso"
-
-#~ msgid "Pick the channel"
-#~ msgstr "Escolha o canal"
-
-#~ msgid "Pick the property"
-#~ msgstr "Escolha a propriedade"
-
-#~ msgid "Create new entry"
-#~ msgstr "Criar nova entrada"
-
-#~ msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
-#~ msgstr "A propriedade \"%s\" não existe no canal \"%s\".\n"
-
-#~ msgid "Force replace existing any xsettings daemon"
-#~ msgstr "Forçar a substituição de qualquer serviço xsettings"
-
-#~ msgid "Start in debug mode (don't fork to the background)"
-#~ msgstr "Iniciar em modo de depuração (não bifurcar para o segundo plano)"
-
-#~ msgid ""
-#~ "%s: %s\n"
-#~ "Try %s --help to see a full list of available command line options.\n"
-#~ msgstr ""
-#~ "%s: %s\n"
-#~ "Tente %s --help para ver uma lista completa dos comandos de linha de "
-#~ "comando disponíveis.\n"
-
-#~ msgid "set (change the value)"
-#~ msgstr "defina (modifique o valor)"
-
-#~ msgid "List properties"
-#~ msgstr "Listar propriedades"
-
-#~ msgid "ERROR: Could not convert value\n"
-#~ msgstr "ERRO: Incapaz de converter o valor\n"
