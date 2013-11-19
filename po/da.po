@@ -1,25 +1,23 @@
-# Danish translation of xfconf.
-# Copyright (C) 2008 THE xfconf'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfconf package.
-# Per Kongstad <p_kongstad@op.pl>, 2008, 09.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf 4.7.0\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2009-10-04 16:25+0100\n"
-"Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
-"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
-"Language: da\n"
+"POT-Creation-Date: 2013-07-02 22:48+0200\n"
+"PO-Revision-Date: 2013-11-19 10:53+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Danish (http://www.transifex.com/projects/p/xfce/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Danish\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-Country: DENMARK\n"
+"Language: da\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:897
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Kunne ikke lave kald til ResetProperty DBus"
@@ -100,9 +98,7 @@ msgstr "Rodelementet ('/') er ikke et gyldigt egenskabnavn"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Egenskabnavne kan kun indeholde ASCII-karakterne A-Z, a-z, 0-9, '_', '-', "
-"'<' og '>', samt  '/'  som adskiller"
+msgstr "Egenskabnavne kan kun indeholde ASCII-karakterne A-Z, a-z, 0-9, '_', '-', '<' og '>', samt  '/'  som adskiller"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -131,9 +127,7 @@ msgstr "Kanalnavne kan kun indeholde ASCII-tegnene A-Z, a-z, 0-9, '_', og '-'"
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"Egenskabsnavne kan kun være tomme eller \"/\" hvis rekursiv nulstilling blev "
-"angivet"
+msgstr "Egenskabsnavne kan kun være tomme eller \"/\" hvis rekursiv nulstilling blev angivet"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -141,11 +135,9 @@ msgstr "Udskriver xfconfd-versionen."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Underliggende indstilling til anvendelse.  Den første underliggende der "
-"angives er åbnet med læse/skrive; alle andre kun med læse."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Underliggende indstilling til anvendelse.  Den første underliggende der angives er åbnet med læse/skrive; alle andre kun med læse."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -305,9 +297,7 @@ msgstr "Værdi er en tabel med %d elementer:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"Egenskab \"%s\" findes ikke på denne kanal \"%s\".  Hvis du ønsker at "
-"oprette en ny egenskab brug indstillingen --create tilvalg"
+msgstr "Egenskab \"%s\" findes ikke på denne kanal \"%s\".  Hvis du ønsker at oprette en ny egenskab brug indstillingen --create tilvalg"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
@@ -344,36 +334,3 @@ msgstr "Kunne ikke afgøre type af værdi ved indeks %d"
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanal \"%s\" indeholder ingen egenskaber"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "Egenskab '%s' ændret: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "Egenskab '%s' ændret\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "Egenskab '%s' fjernet\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "Eksportmetode er endnu ikke understøttet"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "Eksport er endnu ikke understøttet"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "Egenskab \"%s\" findes ikke på kanal \"%s\".\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "Kunne ikke oprette eksportfil \"%s\": %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "Kunne ikke åbne importfil \"%s\": %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "Kunne ikke fortolke importfil \"%s\": %s\n"
-
-#~ msgid "Export channel to file"
-#~ msgstr "Eksportér kanal til fil"
-
-#~ msgid "Import channel from file"
-#~ msgstr "Importér kanal fra fil"
