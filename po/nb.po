@@ -1,23 +1,24 @@
-# Norwegian Bokmal translations for PACKAGE package.
-# Copyright (C) 2008 THE PACKAGE'S COPYRIGHT HOLDER
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Terje Uriansrud <terje@uriansrud.net>, 2008.
-#
+# 
+# Translators:
+# Terje Uriansrud <terje@uriansrud.net>, 2008
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf 4.5.90\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2008-10-22 00:59+0200\n"
-"Last-Translator: Terje Uriansrud <terje@uriansrud.net>\n"
-"Language-Team: Norwegian Bokmal\n"
-"Language: \n"
+"POT-Creation-Date: 2013-07-02 22:48+0200\n"
+"PO-Revision-Date: 2013-11-19 10:53+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/xfce/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:897
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Klarte ikke utføre ResetProperty DBus kall"
@@ -98,9 +99,7 @@ msgstr "Rotelementet ('/') er ikke et gyldig egenskapnavn"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Navn på egenskaper kan kun inneholde ASCII karakterene A-Z, a-z, 0-9, '_', "
-"'-', '<' og '>', samt '/' kan brukes som skilletegn"
+msgstr "Navn på egenskaper kan kun inneholde ASCII karakterene A-Z, a-z, 0-9, '_', '-', '<' og '>', samt '/' kan brukes som skilletegn"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -129,9 +128,7 @@ msgstr "Kanalnavn kan kun inneholde ASCII tegene A-Z, a-z, 0-9, '_', og '-'"
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"Navn på egenskaper kan kun være tom eller «/» hvis en rekursiv fjerning ble "
-"angitt."
+msgstr "Navn på egenskaper kan kun være tom eller «/» hvis en rekursiv fjerning ble angitt."
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -139,11 +136,9 @@ msgstr "Skriver ut xfconfd versjon"
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Bakgrunnskonfigurasjon som skal brukes. Den første spesifisert brukes til "
-"lesing og skriving; de øvrige brukes kun til lesing."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Bakgrunnskonfigurasjon som skal brukes. Den første spesifisert brukes til lesing og skriving; de øvrige brukes kun til lesing."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -276,15 +271,14 @@ msgid "--create and --reset options can not be used together with --list"
 msgstr ""
 
 #: ../xfconf-query/main.c:319
-#, fuzzy, c-format
+#, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "Start overvåking av kanal '%s':"
+msgstr ""
 
 #: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
-#, fuzzy
 msgid "Failed to set property"
-msgstr "Klarte ikke sett egenskap.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
@@ -295,108 +289,49 @@ msgid "(unknown)"
 msgstr "(ukjent)"
 
 #: ../xfconf-query/main.c:375
-#, fuzzy, c-format
+#, c-format
 msgid "Value is an array with %d items:"
 msgstr ""
-"Verdien er en tabell med %d elementer:\n"
-"\n"
 
 #: ../xfconf-query/main.c:399
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr ""
-"Egenskapen «%s» finnes ikke i kanal «%s». Hvis du vil\n"
-"lage en ny egenskap, bruk '--create' valget.\n"
 
 #: ../xfconf-query/main.c:407
-#, fuzzy
 msgid "When creating a new property, the value type must be specified"
-msgstr "Ved opprettelse av ny egenskap må type verdi angis.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:417
-#, fuzzy
 msgid "Failed to get the existing type for the value"
-msgstr "Klarte ikke hente eksisterende type for verdi.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:435
-#, fuzzy
 msgid "Unable to determine the type of the value"
-msgstr "Klarte ikke avgjøre type for verdi.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:441
-#, fuzzy
 msgid "A value type must be specified to change an array into a single value"
-msgstr "Du må angi type for å endre fra tabell til enkeltverdi.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "Klarte ikke gjøre om «%s» til type «%s»\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:483
-#, fuzzy, c-format
+#, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "Har %d nye verdier, men kunne bare bestemme %d typer.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:504
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "Klarte ikke avgjøre type verdi ved indeks %d.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:554
-#, fuzzy, c-format
+#, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "Kanal '%s' inneholder ingen egenskaper\n"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "Egenskap '%s' endret: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "Egenskap '%s' endret\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "Egenskap '%s' fjernet\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "Eksport metode er ikke implementert ennå"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "Eksport ikke implementert ennå"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "Egenskapen «%s» finnes ikke på kanal «%s»\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "Klarte ikke lage eksportfil «%s»: %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "Klarte ikke åpne importfilen «%s»: %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "Klarte ikke tolke importfilen «%s»: %s\n"
-
-#~ msgid "Export channel to file"
-#~ msgstr "Eksporter kanal til fil"
-
-#~ msgid "Import channel from file"
-#~ msgstr "Importer kanal fra fil"
-
-#~ msgid "true"
-#~ msgstr "sant"
-
-#~ msgid "false"
-#~ msgstr "usant"
-
-#~ msgid "Pick the channel"
-#~ msgstr "Velg kanal"
-
-#~ msgid "Pick the property"
-#~ msgstr "Velg egenskap"
-
-#~ msgid "Create new entry"
-#~ msgstr "Lag nytt element"
-
-#~ msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
-#~ msgstr "Egenskap «%s» finnes ikke på kanal «%s».\n"
+msgstr ""
