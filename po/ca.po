@@ -1,26 +1,24 @@
-# Catalan translations for xfconf package.
-# Copyright (C) 2008 THE PACKAGE'S COPYRIGHT HOLDER
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2008-2009, 2011.
-#
+# 
+# Translators:
+# carlesmu <carlesmu@internautas.org>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-18 12:27+0000\n"
-"PO-Revision-Date: 2011-12-18 14:45+0100\n"
-"Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
-"Language-Team: Catalan <xfce-i18n@xfce.org>\n"
-"Language: ca\n"
+"POT-Creation-Date: 2013-07-02 23:18+0200\n"
+"PO-Revision-Date: 2013-11-19 14:49+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Catalan (http://www.transifex.com/projects/p/xfce/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: catalan\n"
-"X-Poedit-Country: ANDORRA\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "No s'ha pogut cridar a ResetProperty de DBus"
@@ -34,8 +32,7 @@ msgstr "No s'ha pogut crear el directori de configuració «%s»"
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr ""
-"S'ha denegat el permís al intentar modificar la propietat «%s» del canal «%s»"
+msgstr "S'ha denegat el permís al intentar modificar la propietat «%s» del canal «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -102,15 +99,12 @@ msgstr "L'element arrel («/») no és un nom vàlid de propietat"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Els noms de propietats només poden incloure els caràcters ASCII A-Z, a-z, "
-"0-9, «_», «-», «<» i «>», així com el separador «/»"
+msgstr "Els noms de propietats només poden incloure els caràcters ASCII A-Z, a-z, 0-9, «_», «-», «<» i «>», així com el separador «/»"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Els noms de propietats no poden tenir dos o més caràcters «/» consecutius"
+msgstr "Els noms de propietats no poden tenir dos o més caràcters «/» consecutius"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -127,18 +121,14 @@ msgstr "El nom de canal no pot ser una cadena buida"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"Els noms de canals només poden incloure els caràcters ASCII A-Z, a-z, 0-9, "
-"«_» i «-»"
+msgstr "Els noms de canals només poden incloure els caràcters ASCII A-Z, a-z, 0-9, «_» i «-»"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"El nom de la propietat només pot estar buida o ser «/» si s'ha establert un "
-"reinici recursiu"
+msgstr "El nom de la propietat només pot estar buida o ser «/» si s'ha establert un reinici recursiu"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -146,16 +136,13 @@ msgstr "Mostra la versió de xfconfd."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Configuració d'interfícies secundàries a emprar. La primera s'obre com de "
-"lectura i escriptura; les altres, s'obren només com de lectura."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Configuració d'interfícies secundàries a emprar. La primera s'obre com de lectura i escriptura; les altres, s'obren només com de lectura."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
-"Bifurca en segon pla just després d'iniciar; només és útil si voleu testejar"
+msgstr "Bifurca en segon pla just després d'iniciar; només és útil si voleu testejar"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -311,9 +298,7 @@ msgstr "El valor és una matriu de %d elements:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"La propietat «%s» no hi és al canal «%s». Si s'ha de crear una nova "
-"propietat, empreu l'opció --create"
+msgstr "La propietat «%s» no hi és al canal «%s». Si s'ha de crear una nova propietat, empreu l'opció --create"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
@@ -329,9 +314,7 @@ msgstr "No s'ha pogut determinar el tipus de valor"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
-"S'ha d'especificar un tipus de valor per canviar la matriu a un valor "
-"individual"
+msgstr "S'ha d'especificar un tipus de valor per canviar la matriu a un valor individual"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
@@ -352,73 +335,3 @@ msgstr "No s'ha pogut establir el tipus de valor a l'índex %d"
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "El canal «%s» no té propietats"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "La propietat «%s» ha canviat: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "S'ha canviat la propietat «%s»\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "S'ha tret la propietat «%s»\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "Mètode d'exportació encara no s'ha implementat"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "«Exporta» encara no està implementat"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "La propietat «%s» no existeix al canal «%s».\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "No es pot crear el fitxer a exportar «%s»: %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "No es pot obrir el fitxer a importar «%s»: %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "No es por analitzar el fitxer a importar «%s»: %s\n"
-
-#~ msgid "Export channel to file"
-#~ msgstr "Exporta el canal al fitxer"
-
-#~ msgid "Import channel from file"
-#~ msgstr "Importa el canal des de el fitxer"
-
-#~ msgid "true"
-#~ msgstr "cert"
-
-#~ msgid "false"
-#~ msgstr "fals"
-
-#~ msgid "Pick the channel"
-#~ msgstr "Tria el canal"
-
-#~ msgid "Pick the property"
-#~ msgstr "Tria la propietat"
-
-#~ msgid "Create new entry"
-#~ msgstr "Crea una nova entrada"
-
-#~ msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
-#~ msgstr "La propietat «%s» no hi és al canal «%s».\n"
-
-#~ msgid "Force replace existing any xsettings daemon"
-#~ msgstr "Força la substitució de qualsevol dimoni «xsettings»"
-
-#~ msgid "Start in debug mode (don't fork to the background)"
-#~ msgstr "Inicia en mode de depuració (no bifurca el procés al segon pla)"
-
-#~ msgid ""
-#~ "%s: %s\n"
-#~ "Try %s --help to see a full list of available command line options.\n"
-#~ msgstr ""
-#~ "%s: %s\n"
-#~ "Feu %s --help per veure la llista complerta d'opcions disponibles.\n"
-
-#~ msgid "set (change the value)"
-#~ msgstr "Estableix (canvia el valor)"
-
-#~ msgid "List properties"
-#~ msgstr "Llista les propietats"
