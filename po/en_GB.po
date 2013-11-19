@@ -1,22 +1,24 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Jeff Bailes <thepizzaking@gmail.com>, 2010.
 # 
+# Translators:
+# Jeff Bailes <thepizzaking@gmail.com>, 2010
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf 4.8\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-19 04:30+0000\n"
-"PO-Revision-Date: 2010-12-13 19:30+1100\n"
-"Last-Translator: Jeff Bailes <thepizzaking@gmail.com>\n"
-"Language-Team: en_GB\n"
+"POT-Creation-Date: 2013-07-02 23:18+0200\n"
+"PO-Revision-Date: 2013-11-19 14:49+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/xfce/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Failed to make ResetProperty DBus call"
@@ -97,9 +99,7 @@ msgstr "The root element ('/') is not a valid property name"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
+msgstr "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -121,18 +121,14 @@ msgstr "Channel name cannot be an empty string"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
+msgstr "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"The property name can only be empty or \"/\" if a recursive reset was "
-"specified"
+msgstr "The property name can only be empty or \"/\" if a recursive reset was specified"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -140,11 +136,9 @@ msgstr "Prints the xfconfd version."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -304,9 +298,7 @@ msgstr "Value is an array with %d items:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"Property \"%s\" does not exist on channel \"%s\". If a new property should "
-"be created, use the --create option"
+msgstr "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
@@ -322,8 +314,7 @@ msgstr "Unable to determine the type of the value"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
-"A value type must be specified to change an array into a single value."
+msgstr "A value type must be specified to change an array into a single value."
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
@@ -344,30 +335,3 @@ msgstr "Unable to determine type of value at index %d"
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Channel \"%s\" contains no properties"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "Property '%s' changed: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "Property '%s' changed\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "Property '%s' removed\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "Export method not yet implemented"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "Export not yet implemented"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "Property \"%s\" does not exist on channel \"%s\".\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "Could not create export file \"%s\": %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "Could not open import file \"%s\": %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "Could not parse import file \"%s\": %s\n"
