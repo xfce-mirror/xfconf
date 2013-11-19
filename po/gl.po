@@ -1,27 +1,24 @@
-# Galician translation of xfconf
-# Copyright (C) 2009 Leandro Regueiro.
-# This file is distributed under the same license as the Xfce package.
-#
-# Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>, 2009.
-#
-# Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
-# colaborar connosco, podes atopar máis información en <http://trasno.net>
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>, 2009
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2009-08-19 12:36+0100\n"
-"Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
-"Language-Team: Galician <proxecto@trasno.net>\n"
-"Language: gl\n"
+"POT-Creation-Date: 2013-07-02 22:48+0200\n"
+"PO-Revision-Date: 2013-11-19 10:53+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Galician (http://www.transifex.com/projects/p/xfce/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:897
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Produciuse un erro ao chamar a ResetProperty de DBus"
@@ -102,15 +99,12 @@ msgstr "O elemento raíz ('/') non é un nome de propiedade válido"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Os nomes de propiedades só poden incluír os caracteres ASCII A-Z, a-z, 0-9, "
-"'_', '-', '<', '>', e tamén '/' coma separador"
+msgstr "Os nomes de propiedades só poden incluír os caracteres ASCII A-Z, a-z, 0-9, '_', '-', '<', '>', e tamén '/' coma separador"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Os nomes das propiedades non poden ter dous ou máis caracteres '/' seguidos"
+msgstr "Os nomes das propiedades non poden ter dous ou máis caracteres '/' seguidos"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -127,18 +121,14 @@ msgstr "O nome da canle non pode estar baleiro"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"Os nomes das canles só poden incluír os caracteres ASCII A-Z, a-z, 0-9, '_', "
-"'-'"
+msgstr "Os nomes das canles só poden incluír os caracteres ASCII A-Z, a-z, 0-9, '_', '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"O nome da propiedade só pode estar baleiro ou ser \"/\" se se especificou un "
-"restablecemento recursivo"
+msgstr "O nome da propiedade só pode estar baleiro ou ser \"/\" se se especificou un restablecemento recursivo"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -146,16 +136,13 @@ msgstr "Mostra a versión de xfconfd."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Motores de configuración a usar. O primeiro motor especificado ábrese en "
-"modo lectura/escritura; os outros en só lectura."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Motores de configuración a usar. O primeiro motor especificado ábrese en modo lectura/escritura; os outros en só lectura."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
-"Facer fork ao segundo plano despois de iniciar: só é útil para facer probas"
+msgstr "Facer fork ao segundo plano despois de iniciar: só é útil para facer probas"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -311,9 +298,7 @@ msgstr "O valor é unha matriz con %d elementos:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"A propiedade «%s» non existe na canle «%s». Se se debe crearse unha nova "
-"propiedade use a opción --create"
+msgstr "A propiedade «%s» non existe na canle «%s». Se se debe crearse unha nova propiedade use a opción --create"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
@@ -329,9 +314,7 @@ msgstr "Non foi posible determinar o tipo do valor"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
-"Débese especificar un tipo de valor para converter unha matriz nun valor "
-"único"
+msgstr "Débese especificar un tipo de valor para converter unha matriz nun valor único"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
@@ -352,42 +335,3 @@ msgstr "Non foi posible determinar o tipo do valor da posición %d"
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "A canle «%s» non contén propiedades"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "A propiedade '%s' modificouse: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "A propiedade '%s' modificouse\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "Eliminouse a propiedade '%s'\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "O método de exportación non está implementado aínda"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "A exportación non está implementada aínda"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "A propiedade \"%s\" non existe na canle \"%s\".\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "Non se puido crear o ficheiro de exportación \"%s\": %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "Non se puido abrir o ficheiro de importación \"%s\": %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "Non se puido analizar o ficheiro de importación \"%s\": %s\n"
-
-#~ msgid "Export channel to file"
-#~ msgstr "Seleccione o ficheiro no que se vai exportar"
-
-#~ msgid "Import channel from file"
-#~ msgstr "_Importar configuracións desde un ficheiro..."
-
-#~ msgid "false"
-#~ msgstr "falso"
-
-#~ msgid "Create new entry"
-#~ msgstr "Crear unha nova entrada"
