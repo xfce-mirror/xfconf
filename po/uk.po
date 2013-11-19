@@ -1,25 +1,24 @@
-# Ukrainian translation of xfconf.
-# Copyright (C) 2008 Dmitry Nikitin
-# This file is distributed under the same license as the xfconf package.
-#
-# Dmitry Nikitin <luckas_fb@mail.ru>, 2009.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Dmitry Nikitin <luckas_fb@mail.ru>, 2009
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2009-02-24 20:24+0200\n"
-"Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
-"Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
-"Language: uk\n"
+"POT-Creation-Date: 2013-07-02 22:48+0200\n"
+"PO-Revision-Date: 2013-11-19 10:53+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/xfce/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: KBabel 1.11.4\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:897
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Не вдалося зробити ResetProperty виклик DBus"
@@ -100,9 +99,7 @@ msgstr "Елемент з назвою root ('/') не є правильною �
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Правильні назви можуть включати тільки ASCII символи A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', а також '/' в якості роздільника"
+msgstr "Правильні назви можуть включати тільки ASCII символи A-Z, a-z, 0-9, '_', '-', '<' and '>', а також '/' в якості роздільника"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -124,17 +121,14 @@ msgstr "Назва каналу не може бути порожньою стр
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"Назви каналів можуть включати тільки ASCII символи A-Z, a-z, 0-9, '_', і '-'"
+msgstr "Назви каналів можуть включати тільки ASCII символи A-Z, a-z, 0-9, '_', і '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"Правильна назва може бути тільки бути пустою або \"/\" якщо постійне "
-"скидання визначено."
+msgstr "Правильна назва може бути тільки бути пустою або \"/\" якщо постійне скидання визначено."
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -142,17 +136,13 @@ msgstr "Показати версію xfconfd."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Інструменти конфігурації для використання.  Перший визначений інструмент є "
-"відкриття на читання/запис, інші, тільки для читання."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Інструменти конфігурації для використання.  Перший визначений інструмент є відкриття на читання/запис, інші, тільки для читання."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
-"Перевести у фоновий процес після запуску; використовується тільки для цілей "
-"тестування"
+msgstr "Перевести у фоновий процес після запуску; використовується тільки для цілей тестування"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -278,8 +268,7 @@ msgstr "--create та --reset опції не можуть застосовув�
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
-"--create та --reset опції не можуть застосовуватись одночасно із --list"
+msgstr "--create та --reset опції не можуть застосовуватись одночасно із --list"
 
 #: ../xfconf-query/main.c:319
 #, c-format
@@ -309,9 +298,7 @@ msgstr "Значення є в масиві з %d предметами:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"Властивість \"%s\" відсутня на каналі \"%s\". Якщо бажаєте\n"
-"створити нову, використовуйте опцію --create"
+msgstr "Властивість \"%s\" відсутня на каналі \"%s\". Якщо бажаєте\nстворити нову, використовуйте опцію --create"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
@@ -348,30 +335,3 @@ msgstr "Неможливо визначити тип значення в інд�
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Канал \"%s\" не має властивостей"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "Властивість '%s' змінено: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "Властивість '%s' змінено\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "Властивість '%s' видалено\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "Метод експорту не може бути застосовано"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "Експорт не може бути застосовано"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "Властивість \"%s\" відсутня в каналі \"%s\".\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "Неможливо створити файл експорту \"%s\": %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "Неможливо відкрити файл імпорту \"%s\": %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "Неможливо розібрати файл імпорту \"%s\": %s\n"
