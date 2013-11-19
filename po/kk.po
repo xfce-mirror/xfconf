@@ -1,23 +1,24 @@
-# xfconf to kazakh.
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2009.
-#
+# 
+# Translators:
+# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2009
 msgid ""
 msgstr ""
-"Project-Id-Version: trunk\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2011-12-17 22:27+0600\n"
-"Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
-"Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
-"Language: kk\n"
+"POT-Creation-Date: 2013-07-02 23:18+0200\n"
+"PO-Revision-Date: 2013-11-19 14:49+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Kazakh (http://www.transifex.com/projects/p/xfce/language/kk/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Language: kk\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "ResetProperty DBus шақыруы сәтсіз аяқталды"
@@ -36,8 +37,7 @@ msgstr "\"%s\" қасиетін \"%s\" арнасында түзету үшін 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
-#: ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "\"%s\" қасиеті \"%s\" арнасында жоқ болып тұр"
@@ -96,7 +96,9 @@ msgstr "Түбірлік ('/') элементі  дұрыс қасиет аты 
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
 msgstr "Қасиеттің атында тек ASCII-дің таңбалары A-Z, a-z, 0-9, '_', '-', '<' және '>', оған қоса ажыратқыш ретінде '/' таңбасы болуы керек"
 
 #: ../xfconfd/xfconf-backend.c:135
@@ -116,12 +118,16 @@ msgstr "Арнаның аты бос жол бола алмайды"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
 msgstr "Арналардың аттарында тек ASCII таңбалары A-Z, a-z, 0-9, '_', және '-' болуы керек"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
 msgstr "Қасиеттің аты бос немесе \"/\" болудың шарты - тек рекурсивті тастау орнатылған кезде"
 
 #: ../xfconfd/main.c:134
@@ -129,7 +135,9 @@ msgid "Prints the xfconfd version."
 msgstr "Экранға xfconfd нұсқасын шығарады."
 
 #: ../xfconfd/main.c:136
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
 msgstr "Қолдану үшін бэкендтерді баптау. Біріншісі оқу/жазу үшін; қалғандары тек оқу үшін."
 
 #: ../xfconfd/main.c:139
@@ -163,8 +171,7 @@ msgstr "Xfconf қызметінің басқа нұсқасы қосулы тұ�
 msgid "No backends could be started"
 msgstr "Бірде-бір бэкендті орындау мүмкін емес"
 
-#: ../xfconf-query/main.c:90
-#: ../xfconf-query/main.c:95
+#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
 msgstr "орнату"
 
@@ -268,8 +275,7 @@ msgstr "--create пен --reset опцияларын --list опциясымен
 msgid "Start monitoring channel \"%s\":"
 msgstr "\"%s\"  арнасын бақылауды бастау:"
 
-#: ../xfconf-query/main.c:353
-#: ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
 msgid "Failed to set property"
 msgstr "Қасиетті орнату сәтсіз аяқталды"
@@ -278,8 +284,7 @@ msgstr "Қасиетті орнату сәтсіз аяқталды"
 msgid "--toggle only works with boolean values"
 msgstr "--toggle тек логикалық мәндермен жұмыс істейді"
 
-#: ../xfconf-query/main.c:366
-#: ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(белгісіз)"
 
@@ -290,7 +295,9 @@ msgstr "Мән %d элементі массив болып тұр:"
 
 #: ../xfconf-query/main.c:399
 #, c-format
-msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\". If a new property should "
+"be created, use the --create option"
 msgstr "\"%s\" қасиеті \"%s\" арнасында жоқ болып тұр. Егер жаңа қасиетті жасау керек болса, --create опциясын қолданыңыз"
 
 #: ../xfconf-query/main.c:407
@@ -309,8 +316,7 @@ msgstr "Мәннің түрін анықтау сәтсіз аяқталды"
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Массивті бірлік мәнге айналдыру үшін мәннің түрі көрсетілуі керек"
 
-#: ../xfconf-query/main.c:451
-#: ../xfconf-query/main.c:512
+#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "\"%s\" жаңа \"%s\" түріне айналдыру мүмкін емес"
@@ -329,30 +335,3 @@ msgstr "%d орнында тұрған мәннің түрін анықтау м
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "\"%s\" арнасында қасиеттер жоқ"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "'%s' қасиеті өзгертілді: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "'%s' қасиеті өзгертілді\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "'%s' қасиеті өшірілді\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "Экспорт тәсілі әлі іске асырылмаған"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "Экспорт әлі іске асырылмаған"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "\"%s\" қасиеті \"%s\" каналында жоқ болып тұр.\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "\"%s\" экспорт файлын жасау мүмкін емес: %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "\"%s\" импорт файлын ашу мүмкі немес: %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "\"%s\" импорт файлын өндеу мүмкін емес: %s\n"
