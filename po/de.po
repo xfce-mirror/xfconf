@@ -1,30 +1,26 @@
-# German translations for xfconf package
-# German messages for xfconf.
-# Copyright (C) 2008 THE xfconf'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfconf package.
-# Fabian Nowak <timystery@arcor.de>, 2008.
-# ??? Jannis Pohlmann <jannis@xfce.org>, 2008 ???
-# Fabian Nowak <timystery@arcor.de>, 2009.
-# Simon Schneider <simon@schneiderimtal.de>, 2009.
-# Mario Blättermann <mario.blaettermann@gmail.com>, 2012.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Fabian Nowak <timystery@arcor.de>, 2008-2009
+# Mario Blättermann <mario.blaettermann@gmail.com>, 2012
+# Simon Schneider <simon@schneiderimtal.de>, 2009
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf master\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-29 06:45+0000\n"
-"PO-Revision-Date: 2012-03-29 11:51+0100\n"
-"Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
-"Language-Team: German <xfce4-i18n-de@xfce.org>\n"
-"Language: de\n"
+"POT-Creation-Date: 2013-07-02 23:18+0200\n"
+"PO-Revision-Date: 2013-11-19 14:49+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: German (http://www.transifex.com/projects/p/xfce/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "D-Bus-Aufruf »ResetProperty« konnte nicht ausgeführt werden"
@@ -43,8 +39,7 @@ msgstr "Sie haben keine ausreichenden Rechte, um die Eigenschaft »%s« auf Kana
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
-#: ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Eigenschaft »%s« ist für den Kanal »%s« nicht vorhanden"
@@ -103,7 +98,9 @@ msgstr "Das Basiselement (»/«) ist kein gültiger Eigenschaftsname"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
 msgstr "Eigenschaftsnamen können nur die ASCII-Zeichen A-Z, a-z, 0-9, »_«, »-«, »<« und »>« sowie »/« als Trennelement enthalten"
 
 #: ../xfconfd/xfconf-backend.c:135
@@ -123,12 +120,16 @@ msgstr "Kanalbezeichner können nicht leer sein"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
 msgstr "Kanalbezeichner können nur die ASCII-Zeichen A-Z, a-z, 0-9, »_« und »-« enthalten"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
 msgstr "Die Eigenschaft kann nur dann leer oder »/« sein, wenn rekursives Rücksetzen angegeben wurde"
 
 #: ../xfconfd/main.c:134
@@ -136,7 +137,9 @@ msgid "Prints the xfconfd version."
 msgstr "Gibt die Version von xfconfd aus."
 
 #: ../xfconfd/main.c:136
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
 msgstr "Konfigurations-Backend, das verwendet werden soll. Das erste angegebene Backend wird schreibend und lesend geöffnet, die übrigen nur lesend."
 
 #: ../xfconfd/main.c:139
@@ -170,8 +173,7 @@ msgstr "Es läuft bereits ein anderer Xfconf-Dienst"
 msgid "No backends could be started"
 msgstr "Es konnten keine Backends gestartet werden"
 
-#: ../xfconf-query/main.c:90
-#: ../xfconf-query/main.c:95
+#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
 msgstr "setzen"
 
@@ -275,8 +277,7 @@ msgstr "--create und --reset können nicht gleichzeitig mit --list benutzt werde
 msgid "Start monitoring channel \"%s\":"
 msgstr "Überwachung von Kanal »%s« wird gestartet:"
 
-#: ../xfconf-query/main.c:353
-#: ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
 msgid "Failed to set property"
 msgstr "Fehler beim Setzen der Eigenschaft"
@@ -285,8 +286,7 @@ msgstr "Fehler beim Setzen der Eigenschaft"
 msgid "--toggle only works with boolean values"
 msgstr "--toggle funktioniert nur mit booleschen Werten (Wahrheitswerten)"
 
-#: ../xfconf-query/main.c:366
-#: ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(unbekannt)"
 
@@ -297,10 +297,10 @@ msgstr "Wert ist ein Feld mit %d Einträgen:"
 
 #: ../xfconf-query/main.c:399
 #, c-format
-msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
-msgstr ""
-"Die Eigenschaft »%s« ist in dem Kanal »%s« nicht vorhanden. Um eine neue\n"
-"Eigenschaft anzulegen, nutzen Sie die Option --create«"
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\". If a new property should "
+"be created, use the --create option"
+msgstr "Die Eigenschaft »%s« ist in dem Kanal »%s« nicht vorhanden. Um eine neue\nEigenschaft anzulegen, nutzen Sie die Option --create«"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
@@ -318,8 +318,7 @@ msgstr "Wertetyp kann nicht bestimmt werden"
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Sie müssen einen Wertetyp angeben, um ein Array in einen einzigen Wert umwandeln zu können."
 
-#: ../xfconf-query/main.c:451
-#: ../xfconf-query/main.c:512
+#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "»%s« konnte nicht in Typ »%s« umgewandelt werden"
@@ -338,74 +337,3 @@ msgstr "Wertetyp bei Index %d kann nicht bestimmt werden."
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanal »%s« enthält keine Eigenschaften"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "Eigenschaft »%s« wurde geändert: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "Eigenschaft »%s« geändert\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "Eigenschaft »%s« entfernt\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "Methode zum Exportieren noch nicht implementiert"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "Exportieren noch nicht implementiert"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "Eigenschaft »%s« ist auf dem Kanal »%s« nicht vorhanden.\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "Konnte Exportdatei »%s« nicht anlegen: %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "Konnte Importdatei »%s« nicht öffnen: %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "Konnte Importdatei »%s« nicht ordnungsgemäß lesen: %s\n"
-
-#~ msgid "Export channel to file"
-#~ msgstr "Kanal in Datei exportieren"
-
-#~ msgid "Import channel from file"
-#~ msgstr "Kanal aus Datei importieren"
-
-#~ msgid "true"
-#~ msgstr "wahr"
-
-#~ msgid "false"
-#~ msgstr "falsch"
-
-#~ msgid "Pick the channel"
-#~ msgstr "Kanal aussuchen"
-
-#~ msgid "Pick the property"
-#~ msgstr "Eigenschaft aussuchen"
-
-#~ msgid "Create new entry"
-#~ msgstr "Neuen Eintrag anlegen"
-
-#~ msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
-#~ msgstr "Eigenschaft »%s« existiert nicht auf Kanal »%s«.\n"
-
-#~ msgid "set (change the value)"
-#~ msgstr "setzen (den Wert verändern)"
-
-#~ msgid "List properties"
-#~ msgstr "Eigenschaften aufführen"
-
-#~ msgid "Force replace existing any xsettings daemon"
-#~ msgstr "Erzwinge das Ersetzen jedes vorhandenen Daemons für xsettings"
-
-#~ msgid "Start in debug mode (don't fork to the background)"
-#~ msgstr "Im Debugmodus starten (nicht im Hintergrund ausführen)"
-
-#~ msgid ""
-#~ "%s: %s\n"
-#~ "Try %s --help to see a full list of available command line options.\n"
-#~ msgstr ""
-#~ "%s: %s\n"
-#~ "Versuchen Sie »%s --help«, um die vollständige Liste verfügbarer Optionen "
-#~ "für die Befehlszeile zu sehen.\n"
