@@ -1,25 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# كريم أولاد الشلحة <herr.linux88@gmail.com>, 2012.
-# محمد الحرقان <malham1@gmail.com>, 2012.
+# 
+# Translators:
+# Karim Oulad Chalha <herr.linux88@gmail.com>, 2012
+# محمد الحرقان <malham1@gmail.com>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-09 11:51+0000\n"
-"PO-Revision-Date: 2012-11-09 15:41+0300\n"
-"Last-Translator: محمد الحرقان <malham1@gmail.com>\n"
-"Language-Team: http://www.vertaal.com.ar/files/factory/ar/list/\n"
-"Language: ar\n"
+"POT-Creation-Date: 2013-07-02 23:18+0200\n"
+"PO-Revision-Date: 2013-11-19 14:49+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Arabic (http://www.transifex.com/projects/p/xfce/language/ar/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Virtaal 0.7.1\n"
-"X-Poedit-Language: Arabic\n"
-"X-Poedit-Country: MOROCCO\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: ../xfconf/xfconf-cache.c:881
 #, c-format
@@ -102,9 +100,7 @@ msgstr "عنصر الجذر ('/') ليس إسم خصائص سليم"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"يمكن أن تتضمن أسماء الخصائص فقط الأحرف A-Z, 0-9, '_', '-', '<' and '>', as "
-"فضلا عن '/' كفاصل"
+msgstr "يمكن أن تتضمن أسماء الخصائص فقط الأحرف A-Z, 0-9, '_', '-', '<' and '>', as فضلا عن '/' كفاصل"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -141,11 +137,9 @@ msgstr "طباعة نسخة xfconfd."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"إعداد الواجهات الخلفية.  الواجهة الخلفية المحددة الأولى تتم فتحها "
-"قراءة/كتابة؛ الأخرى, يتم فتحه قراءة-فقط."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "إعداد الواجهات الخلفية.  الواجهة الخلفية المحددة الأولى تتم فتحها قراءة/كتابة؛ الأخرى, يتم فتحه قراءة-فقط."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -305,9 +299,7 @@ msgstr "القيمة هي مصفوفة مع %d عناصر:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"الخصائص \"%s\" غير موجودة في القناة \"%s\". إذا كان يجب إنشاء خصائص جديدة, "
-"إستعمل خيار --create"
+msgstr "الخصائص \"%s\" غير موجودة في القناة \"%s\". إذا كان يجب إنشاء خصائص جديدة, إستعمل خيار --create"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
@@ -344,18 +336,3 @@ msgstr "عاجز عن تحديد نوع القيمة في الأرشيف %d"
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "قناة \"%s\" لا تحتوي على خصائص"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "تم تغير خصائص '%s'\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "تم حذف خصائص '%s'\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "لا يمكن إنشاء ملف التصدير \"%s\": %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "لا يمكن فتح الملف المستورد \"%s\": %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "لا يمكن تحليل الملف المستورد \"%s\": %s\n"
