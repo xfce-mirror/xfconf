@@ -1,22 +1,24 @@
-# Indonesian translations for xfconf package.
-# Copyright (C) 2008 THE xfconf'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfconf package.
-# Andhika Padmawan <andhika.padmawan@gmail.com>, 2008.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Andhika Padmawan <andhika.padmawan@gmail.com>, 2008
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2009-01-27 22:20+0700\n"
-"Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
-"Language-Team: Indonesian <translation-team-id@lists.sourceforge.net>\n"
-"Language: id\n"
+"POT-Creation-Date: 2013-07-02 22:48+0200\n"
+"PO-Revision-Date: 2013-11-19 10:53+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Indonesian (http://www.transifex.com/projects/p/xfce/language/id/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: id\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:897
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Gagal memanggil fungsi ResetProperty pada DBus"
@@ -97,9 +99,7 @@ msgstr "Elemen root ('/') bukan nama properti yang sah"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Nama properti hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', "
-"'-', '<' dan '>', serta '/' sebagai pemisah"
+msgstr "Nama properti hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', '-', '<' dan '>', serta '/' sebagai pemisah"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -121,16 +121,14 @@ msgstr "Nama kanal tidak boleh merupakan benang kosong"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"Nama kanal hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', dan '-'"
+msgstr "Nama kanal hanya dapat menyertakan karakter ASCII A-Z, a-z, 0-9, '_', dan '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"Nama properti hanya dapat kosong atau \"/\" jika reset rekursif ditentukan"
+msgstr "Nama properti hanya dapat kosong atau \"/\" jika reset rekursif ditentukan"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -138,17 +136,13 @@ msgstr "Cetak versi xfconfd."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Ujung-belakang konfigurasi yang digunakan. Ujung-belakang pertama yang "
-"ditentukan dibuka sebagai baca/tulis; sisanya, hanya-baca."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Ujung-belakang konfigurasi yang digunakan. Ujung-belakang pertama yang ditentukan dibuka sebagai baca/tulis; sisanya, hanya-baca."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
-"Membuat cabang ke latar setelah memulai; hanya berguna untuk keperluan "
-"pengujian"
+msgstr "Membuat cabang ke latar setelah memulai; hanya berguna untuk keperluan pengujian"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -274,8 +268,7 @@ msgstr "Opsi --create dan --reset tak dapat digunakan secara bersamaan"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
-"Opsi --create dan --reset tak dapat digunakan secara bersamaan dengan --list"
+msgstr "Opsi --create dan --reset tak dapat digunakan secara bersamaan dengan --list"
 
 #: ../xfconf-query/main.c:319
 #, c-format
@@ -305,9 +298,7 @@ msgstr "Nilai adalah larik dengan %d item:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"Properti \"%s\" tidak ada di kanal \"%s\".  Jika properti baru harus dibuat, "
-"gunakan opsi --create"
+msgstr "Properti \"%s\" tidak ada di kanal \"%s\".  Jika properti baru harus dibuat, gunakan opsi --create"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
@@ -323,8 +314,7 @@ msgstr "Tak dapat menentukan tipe dari nilai"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
-"Tipe nilai harus ditentukan untuk mengganti larik menjadi nilai tunggal"
+msgstr "Tipe nilai harus ditentukan untuk mengganti larik menjadi nilai tunggal"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
@@ -345,60 +335,3 @@ msgstr "Tak dapat menentukan tipe atau nilai pada indeks %d"
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanal \"%s\" tak berisi properti"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "Properti \"%s\" diubah: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "Properti '%s' berubah\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "Properti '%s' dihapus\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "Metode ekspor belum diimplementasikan"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "Ekspor belum diimplementasikan"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "Properti \"%s\" tidak ada di kanal \"%s\".\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "Tak dapat membuat berkas ekspor \"%s\": %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "Tak dapat membuka berkas impor \"%s\": %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "Tak dapat mengurai berkas impor \"%s\": %s\n"
-
-#~ msgid "Export channel to file"
-#~ msgstr "Ekspor kanal ke berkas"
-
-#~ msgid "Import channel from file"
-#~ msgstr "Impor kanal dari berkas"
-
-#~ msgid "true"
-#~ msgstr "benar"
-
-#~ msgid "false"
-#~ msgstr "salah"
-
-#~ msgid "Pick the channel"
-#~ msgstr "Pilih kanal"
-
-#~ msgid "Pick the property"
-#~ msgstr "Pilih properti"
-
-#~ msgid "Create new entry"
-#~ msgstr "Buat entri baru"
-
-#~ msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
-#~ msgstr "Properti \"%s\" tidak ada di kanal \"%s\".\n"
-
-#~ msgid "set (change the value)"
-#~ msgstr "atur (ubah nilai)"
-
-#~ msgid "List properties"
-#~ msgstr "Senarai properti"
