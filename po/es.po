@@ -1,23 +1,23 @@
-# Spanish translation of the xfconf package.
-# Copyright (C) 2008 The Xfce development team.
-# This file is distributed under the same license as the xfconf package.
-# Abel Martín <abel.martin.ruiz@gmail.com>, 2008-2009.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: Xfconf 0.0.0\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2009-12-18 19:15+0100\n"
-"Last-Translator: Abel Martín Ruiz <abel.martin.ruiz@gmail.com>\n"
-"Language-Team: Spanish/ES <xfce-i18n@xfce.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-07-02 23:18+0200\n"
+"PO-Revision-Date: 2013-11-19 14:49+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/xfce/language/es/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Fallo al realizar la llamada DBus ResetProperty"
@@ -98,16 +98,12 @@ msgstr "El elemento raíz ('/') no es un nombre de propiedad válido"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Los nombres de propiedades sólo pueden incluir los caracteres ASCII A-Z, a-"
-"z, 0-9, '_', '-', '<' y '>', y también '/' como separador"
+msgstr "Los nombres de propiedades sólo pueden incluir los caracteres ASCII A-Z, a-z, 0-9, '_', '-', '<' y '>', y también '/' como separador"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Los nombres de propiedades no pueden tener dos o más caracteres '/' "
-"consecutivos"
+msgstr "Los nombres de propiedades no pueden tener dos o más caracteres '/' consecutivos"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -124,18 +120,14 @@ msgstr "El nombre del canal no puede ser una cadena vacía"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"Los nombres de canales sólo pueden incluir los caracteres ASCII A-Z, a-z, "
-"0-9, \"_\" y \"-\""
+msgstr "Los nombres de canales sólo pueden incluir los caracteres ASCII A-Z, a-z, 0-9, \"_\" y \"-\""
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"El nombre de la propiedad sólo puede ser vacío o \"/\" si se especificó un "
-"reinicio recursivo"
+msgstr "El nombre de la propiedad sólo puede ser vacío o \"/\" si se especificó un reinicio recursivo"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -143,11 +135,9 @@ msgstr "Muestra la versión de xfconfd."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Motores de configuración a usar. El primer motor especificado se abre en "
-"modo lectura/escritura; los otros, en modo sólo lectura."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Motores de configuración a usar. El primer motor especificado se abre en modo lectura/escritura; los otros, en modo sólo lectura."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -307,9 +297,7 @@ msgstr "El valor es un vector con %d elementos:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"La propiedad \"%s\" no existe en el canal \"%s\". Si desea crear una nueva, "
-"use la opción --create."
+msgstr "La propiedad \"%s\" no existe en el canal \"%s\". Si desea crear una nueva, use la opción --create."
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
@@ -325,9 +313,7 @@ msgstr "Imposible determinar el tipo del valor."
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
-"Se debe especificar un tipo de valor para transformar un vector en un único "
-"valor."
+msgstr "Se debe especificar un tipo de valor para transformar un vector en un único valor."
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
@@ -348,60 +334,3 @@ msgstr "Imposible determinar el tipo de valor para el índice %d."
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "El canal \\'%s'\\ no contiene ninguna propiedad"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "La propiedad '%s' ha cambiado: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "La propiedad '%s' ha cambiado\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "La propiedad '%s' se ha eliminado\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "Método de exportación aún no implementado"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "Exportación aún no implementada"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "La propiedad \"%s\" no existe en el canal \"%s\".\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "No se pudo crear archivo de exportación \"%s\": %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "No se pudo abrir el archivo de importación \"%s\": %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "No se pudo procesar el archivo \"%s\": %s\n"
-
-#~ msgid "Export channel to file"
-#~ msgstr "Exportar canal a archivo"
-
-#~ msgid "Import channel from file"
-#~ msgstr "Importar canal desde archivo"
-
-#~ msgid "true"
-#~ msgstr "verdadero"
-
-#~ msgid "false"
-#~ msgstr "falso"
-
-#~ msgid "Pick the channel"
-#~ msgstr "Elija el canal"
-
-#~ msgid "Pick the property"
-#~ msgstr "Elija la propiedad"
-
-#~ msgid "Create new entry"
-#~ msgstr "Crear una nueva entrada"
-
-#~ msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
-#~ msgstr "La propiedad \"%s\" no existe en el canal \"%s\".\n"
-
-#~ msgid "set (change the value)"
-#~ msgstr "définir (changer la valeur)"
-
-#~ msgid "List properties"
-#~ msgstr "Afficher les propriétés"
