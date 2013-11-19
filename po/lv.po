@@ -1,27 +1,24 @@
-# xconf Latvian Translation.
-# Copyright (C) 2009 Xfce team
-# This file is distributed under the same license as the xconf package.
-#
-# Rihards Prieditis <rprieditis@gmail.com>, 2009.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Rihards Priedītis <rprieditis@gmail.com>, 2009
 msgid ""
 msgstr ""
-"Project-Id-Version: xconf\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2009-10-16 14:35+0100\n"
-"Last-Translator: Rihards Prieditis <rprieditis@gmail.com>\n"
-"Language-Team: Latvian <translation-team-lv@lists.sourceforge.net>\n"
-"Language: lv\n"
+"POT-Creation-Date: 2013-07-02 22:48+0200\n"
+"PO-Revision-Date: 2013-11-19 10:53+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Latvian (http://www.transifex.com/projects/p/xfce/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
-"2);\n"
-"X-Poedit-Language: Latvian\n"
-"X-Poedit-Country: Latvia\n"
-"X-Generator: Lokalize 1.0\n"
+"Language: lv\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:897
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Neizdevās izpildīt ResetProperty DBus izsaukumu"
@@ -102,16 +99,12 @@ msgstr "Saknes elements (\"/\") nav derīgs īpašības nosaukums"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Īpašības nosaukumos var iekļaut tikai ASCII rakstzīmes A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', kā arī '/', kā atdalītāju"
+msgstr "Īpašības nosaukumos var iekļaut tikai ASCII rakstzīmes A-Z, a-z, 0-9, '_', '-', '<' and '>', kā arī '/', kā atdalītāju"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Īpašības nosaukumi nevar saturēt divas, vai vairāk, pēc kārtas, \"/\" "
-"rakstzīmes "
+msgstr "Īpašības nosaukumi nevar saturēt divas, vai vairāk, pēc kārtas, \"/\" rakstzīmes "
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -128,18 +121,14 @@ msgstr "Kanāla nosaukums nevar būt tukša virkne"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"Kanāla nosaukumos var lietot tikai ASCII rakstzīmes A-Z, a-z, 0-9, '_', un "
-"'-'"
+msgstr "Kanāla nosaukumos var lietot tikai ASCII rakstzīmes A-Z, a-z, 0-9, '_', un '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"Īpašības nosaukums nevar būt tukšs, vai \"/\", ja rekursīvā atstatīšana "
-"norādīta"
+msgstr "Īpašības nosaukums nevar būt tukšs, vai \"/\", ja rekursīvā atstatīšana norādīta"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -147,11 +136,9 @@ msgstr "Izdrukāt xconfd versiju."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Kuru konfigurācijas aizmuguri izmantot. Pirmā norādītā aizmugure tiek "
-"atvērta rakstīt/lasīt; citas tikai lasīt."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Kuru konfigurācijas aizmuguri izmantot. Pirmā norādītā aizmugure tiek atvērta rakstīt/lasīt; citas tikai lasīt."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -284,15 +271,14 @@ msgid "--create and --reset options can not be used together with --list"
 msgstr ""
 
 #: ../xfconf-query/main.c:319
-#, fuzzy, c-format
+#, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "Sākt novērot kanālu \"%s\":"
+msgstr ""
 
 #: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
-#, fuzzy
 msgid "Failed to set property"
-msgstr "Neizdevās uzstādīt īpašību.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
@@ -303,84 +289,49 @@ msgid "(unknown)"
 msgstr "(nezināms)"
 
 #: ../xfconf-query/main.c:375
-#, fuzzy, c-format
+#, c-format
 msgid "Value is an array with %d items:"
 msgstr ""
-"Vērtība ir masīvs ar %d vienumiem:\n"
-"\n"
 
 #: ../xfconf-query/main.c:399
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr ""
-"Īpašība \"%s\" neeksistē kanālā \"%s\".  Ja jauna\n"
-"īpašība jāizveido, izmantojiet --create opciju.\n"
 
 #: ../xfconf-query/main.c:407
-#, fuzzy
 msgid "When creating a new property, the value type must be specified"
-msgstr "Kad veidojat jaunu īpašību, šai vērtībai jābūt norādītai.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:417
-#, fuzzy
 msgid "Failed to get the existing type for the value"
-msgstr "Neizdevās iegūt eksistējošo tipu no vērtības.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:435
-#, fuzzy
 msgid "Unable to determine the type of the value"
-msgstr "Nevarēja noteikt vērtības tipu.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:441
-#, fuzzy
 msgid "A value type must be specified to change an array into a single value"
-msgstr "Vērtības tipam jābūt norādītam, lai mainītu masīvu vienā vērtībā.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "Nevarēja konvertēt \"%s\" uz tipu \"%s\"\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:483
-#, fuzzy, c-format
+#, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "Šeit ir %d jaunas vērtības, bet tikai %d tipi tika noteikti.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:504
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "Nevarēja noteikt indeksa %d vērtības tipu.\n"
+msgstr ""
 
 #: ../xfconf-query/main.c:554
-#, fuzzy, c-format
+#, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "Kanāls \"%s\" nesatur īpašības\n"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "Īpašība \"%s\" mainīta: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "Īpašība \"%s\" mainīta\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "Īpašība \"%s\" noņemta\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "Eksporta metode vēl nav izstrādāta"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "Eksports vēl nav izstrādāts"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "Īpašība \"%s\" neeksistē kanālā \"%s\".\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "Nevarēja izveidot importa failu \"%s\": %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "Nevarēja atvērt importa failu \"%s\": %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "Nevarēja parsēt importa failu \"%s\": %s\n"
+msgstr ""
