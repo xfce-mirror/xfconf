@@ -1,23 +1,24 @@
-# Polish translation for xfconf package
-# Copyright (C) 2009 THE xfconf COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfconf package.
-# Piotr Sokół <psokol@jabster.pl>, 2009, 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# Piotr Sokół <psokol@jabster.pl>, 2009,2011
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf 4.7.5\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-12 05:45+0000\n"
-"PO-Revision-Date: 2011-11-27 13:42+0100\n"
-"Last-Translator: Piotr Sokół <psokol@jabster.pl>\n"
-"Language-Team: Polish <>\n"
+"POT-Creation-Date: 2013-07-02 22:48+0200\n"
+"PO-Revision-Date: 2013-11-19 10:53+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Polish (http://www.transifex.com/projects/p/xfce/language/pl/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
-"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : ((n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20)) ? 1 : 2));\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:897
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Nie udało się wykonać wywołania ResetProperty systemu DBus"
@@ -31,8 +32,7 @@ msgstr "Nie można utworzyć katalogu konfiguracji „%s”"
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr ""
-"Odmówiono dostępu podczas modyfikowania właściwości „%s” na kanale „%s”"
+msgstr "Odmówiono dostępu podczas modyfikowania właściwości „%s” na kanale „%s”"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -99,16 +99,12 @@ msgstr "Element root („/”) nie jest poprawną nazwą właściwości"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Nazwy właściwości mogą zawierać następujące znaki ASCII: A-Z, a-z, 0-9, '_', "
-"'-', '<' i '>' oraz '/' w roli separatora"
+msgstr "Nazwy właściwości mogą zawierać następujące znaki ASCII: A-Z, a-z, 0-9, '_', '-', '<' i '>' oraz '/' w roli separatora"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Nazwa właściwości nie może zawierać dwóch lub więcej następujących po sobie "
-"znaków „/”"
+msgstr "Nazwa właściwości nie może zawierać dwóch lub więcej następujących po sobie znaków „/”"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -125,17 +121,14 @@ msgstr "Nazwa kanału nie może być pustym ciągiem"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"Nazwy kanałów mogą zawierać następujące znaki ASCII: A-Z, a-z, 0-9, '_' i '-'"
+msgstr "Nazwy kanałów mogą zawierać następujące znaki ASCII: A-Z, a-z, 0-9, '_' i '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"Nazwa właściwości może być pusta lub określona jako znak „/” tylko w "
-"przypadku rekursywnego zerowania"
+msgstr "Nazwa właściwości może być pusta lub określona jako znak „/” tylko w przypadku rekursywnego zerowania"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -143,11 +136,9 @@ msgstr "Wypisuje informacje o wersji programu xfconfd"
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Moduły obsługi konfiguracji. Pierwszy moduł służy do zapisywania i "
-"odczytywania, inne tylko do odczytywania."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Moduły obsługi konfiguracji. Pierwszy moduł służy do zapisywania i odczytywania, inne tylko do odczytywania."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -256,8 +247,7 @@ msgstr "Nieudane przetwarzane opcji: %s"
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
-msgstr ""
-"Zespół twórców środowiska graficznego Xfce. Wszystkie prawa zastrzeżone."
+msgstr "Zespół twórców środowiska graficznego Xfce. Wszystkie prawa zastrzeżone."
 
 #: ../xfconf-query/main.c:267
 #, c-format
@@ -308,9 +298,7 @@ msgstr "Wartość jest tablicą z %d elementami:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"Właściwość „%s” nie istnieje na kanale „%s”. Proszę użyć opcji --create, w "
-"celu utworzenia nowej właściowości."
+msgstr "Właściwość „%s” nie istnieje na kanale „%s”. Proszę użyć opcji --create, w celu utworzenia nowej właściowości."
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
@@ -326,8 +314,7 @@ msgstr "Nie można określić typu wartości"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
-"Aby zamienić tablicę na pojedynczą wartość, należy określić typ wartości"
+msgstr "Aby zamienić tablicę na pojedynczą wartość, należy określić typ wartości"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
@@ -348,30 +335,3 @@ msgstr "Nie można określić typu wartości dla indeksu %d"
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanał „%s” nie zawiera właściwości"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "Właściwość „%s” została zmieniona: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "Właściwość „%s” została zmieniona\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "Właściwość „%s” została usunięta\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "Metoda eksportowania nie została jeszcze zaimplementowana"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "Eksportowanie nie zostało jeszcze zaimplementowane"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "Właściwość „%s” nie istnieje na kanale „%s”.\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "Nie można utworzyć pliku eksportowania „%s”: %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "Nie można otworzyć pliku importowania „%s”: %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "Nie można przetworzyć pliku importowania „%s”: %s\n"
