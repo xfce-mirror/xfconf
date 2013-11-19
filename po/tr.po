@@ -1,24 +1,24 @@
-# translation of xfconf.po to Turkish
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # 
-# Server Acim <sacim@kde.org.tr>, 2008.
+# Translators:
+# Server Acim <sacim@kde.org.tr>, 2008
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-13 16:15+0000\n"
-"PO-Revision-Date: 2009-01-30 21:21+0200\n"
-"Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
-"Language-Team: Turkish <yerellestirme@kde.org.tr>\n"
+"POT-Creation-Date: 2013-07-02 23:18+0200\n"
+"PO-Revision-Date: 2013-11-19 14:49+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Turkish (http://www.transifex.com/projects/p/xfce/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "ResetProperty DBus çağrısı yapılamadı"
@@ -99,9 +99,7 @@ msgstr "Kök ögesi ('/') geçerli bir isme sahip değildir"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Özellik isimleri sadece aşağıda listenen ASCII karakterlerini içerebilir:A-"
-"Z, a-z, 0-9, '_', '-', '<' ve '>', ve ayraç olarak  '/'"
+msgstr "Özellik isimleri sadece aşağıda listenen ASCII karakterlerini içerebilir:A-Z, a-z, 0-9, '_', '-', '<' ve '>', ve ayraç olarak  '/'"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -123,18 +121,14 @@ msgstr "Kanal ismi bir boş dizge olamaz"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"Kanal isimleri sadece şu ASCII karakterlerini içerebilir: A-Z, a-z, 0-9, "
-"'_', ve '-'"
+msgstr "Kanal isimleri sadece şu ASCII karakterlerini içerebilir: A-Z, a-z, 0-9, '_', ve '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"Eğer özyineli yenileme belirlenmişse, özellik isimleri sadece boş olabilir "
-"veya \"/\" karakterinden oluşabilir."
+msgstr "Eğer özyineli yenileme belirlenmişse, özellik isimleri sadece boş olabilir veya \"/\" karakterinden oluşabilir."
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -142,17 +136,13 @@ msgstr "xfconfd sürüm bilgisini gösterir."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Kullanılacak yapılandırma çıkışları. Belirtilen ilk çıktı okuma/yazma olarak "
-"açılır; diğerleri sadece-okunur olarak."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Kullanılacak yapılandırma çıkışları. Belirtilen ilk çıktı okuma/yazma olarak açılır; diğerleri sadece-okunur olarak."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
-"Başlangıç sonrası arka planda çalıştır. (Sadece test ortamı için "
-"kullanışlıdır)"
+msgstr "Başlangıç sonrası arka planda çalıştır. (Sadece test ortamı için kullanışlıdır)"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -278,8 +268,7 @@ msgstr "--create ve --reset seçenekleri birlikte kullanılamaz"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
-"--create ve --reset seçenekleri --list seçeneği ile birlikte kullanılamaz"
+msgstr "--create ve --reset seçenekleri --list seçeneği ile birlikte kullanılamaz"
 
 #: ../xfconf-query/main.c:319
 #, c-format
@@ -309,9 +298,7 @@ msgstr "Değer, %d unsurlarından oluşan bir sıradır:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"\"%s\" özelliği, \"%s\" kanalında yok. Eğer yeni bir özellikoluşturmak "
-"isterseniz --create seçeneğini kullanın."
+msgstr "\"%s\" özelliği, \"%s\" kanalında yok. Eğer yeni bir özellikoluşturmak isterseniz --create seçeneğini kullanın."
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
@@ -327,9 +314,7 @@ msgstr "Değerin türü belirlenemedi"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
-"Bir diziyi tekil değere dönüştürmek istiyorsanız bir değer türü "
-"belirlemelisiniz."
+msgstr "Bir diziyi tekil değere dönüştürmek istiyorsanız bir değer türü belirlemelisiniz."
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
@@ -350,54 +335,3 @@ msgstr "%d indeksindeki değerin türü belirlenemedi"
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanal %s herhangi bir özellik içermiyor"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "'%s' özelliği değiştirildi: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "'%s' özelliği değiştirildi\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "'%s' özelliği silindi\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "Dışarı aktarma yöntemi henüz sağlanmadı"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "Dışarı aktarma henüz sağlanmadı"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "\"%s\" özelliği, \"%s\" kanalında yer almamaktadır.\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "Dışarı aktarma dosyası yaratılamadı \"%s\": %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "İçeri aktarılan dosya açılamadı \"%s\": %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "İçeri aktarılan dosya çözümlenemiyor \"%s\": %s\n"
-
-#~ msgid "Export channel to file"
-#~ msgstr "Kanalı dosyaya aktar"
-
-#~ msgid "Import channel from file"
-#~ msgstr "Dosyadan kanal aktar"
-
-#~ msgid "true"
-#~ msgstr "doğru"
-
-#~ msgid "false"
-#~ msgstr "yanlış"
-
-#~ msgid "Pick the channel"
-#~ msgstr "Kanalı seç"
-
-#~ msgid "Pick the property"
-#~ msgstr "Özelliği seç"
-
-#~ msgid "Create new entry"
-#~ msgstr "Yeni bir girdi oluştur"
-
-#~ msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
-#~ msgstr "Bu özellik \"%s\" bu kanalda yok \"%s\".\n"
