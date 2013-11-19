@@ -1,25 +1,25 @@
-# Slovak translations for Xfconf package.
-# Copyright (C) 2008 xfconf's Stephan Arts, Brian Tarricone
-# This file is distributed under the same license as the Xfconf package.
-# Robert Hartl <hartl.robert@gmail.com>, 2009.
-# Tomáš Vadina <kyberdev@gmail.com>, 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Robert Hartl <hartl.robert@gmail.com>, 2009
+# Tomáš Vadina <tomasvadina+transifex@myopera.com>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.6.1\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2011-06-10 10:03+0100\n"
-"Last-Translator: Tomáš Vadina <kyberdev@gmail.com>\n"
-"Language-Team: slovak <sk-i18n@lists.linux.sk>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-07-02 22:48+0200\n"
+"PO-Revision-Date: 2013-11-19 10:53+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Slovak (http://www.transifex.com/projects/p/xfce/language/sk/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Poedit-Language: Slovak\n"
-"X-Poedit-Country: SLOVAKIA\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:897
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Nepodarilo sa volanie DBus na ResetProperty"
@@ -100,15 +100,12 @@ msgstr "Koreňový element ('/') nie je platný názov vlastnosti"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Názvy vlastností môžu obsahovať iba ASCII znaky A-Z, a-z, 0-9, '_', '-', '<' "
-"a '>' a tiež '/' ako oddeľovač"
+msgstr "Názvy vlastností môžu obsahovať iba ASCII znaky A-Z, a-z, 0-9, '_', '-', '<' a '>' a tiež '/' ako oddeľovač"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Názvy vlastností nemôžu obsahovať dva a viac po sebe nasledujúcich znakov '/'"
+msgstr "Názvy vlastností nemôžu obsahovať dva a viac po sebe nasledujúcich znakov '/'"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -132,9 +129,7 @@ msgstr "Názvy kanálov môžu obsahovať iba ASCII znaky A-Z, a-z, 0-9, '_' a '
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"Názov vlastnosti môže byť prázdny alebo \"/\" iba ak bol spresnený "
-"rekurzívny reset"
+msgstr "Názov vlastnosti môže byť prázdny alebo \"/\" iba ak bol spresnený rekurzívny reset"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -142,17 +137,13 @@ msgstr "Zobrazí verziu xfconfd."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Nastavovať backendy pre použitie. Prvý zadaný backend je otvorený pre "
-"čítanie a zápis, ostatné iba pre čítanie."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Nastavovať backendy pre použitie. Prvý zadaný backend je otvorený pre čítanie a zápis, ostatné iba pre čítanie."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
-"Po spustení preniesť proces do pozadia; táto možnosť je užitočná iba pre "
-"testovanie"
+msgstr "Po spustení preniesť proces do pozadia; táto možnosť je užitočná iba pre testovanie"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -308,9 +299,7 @@ msgstr "Hodnota je pole s %d položkami:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"Vlastnosť \"%s\" neexistuje na kanále \"%s\". Ak sa má nová vlastnosť "
-"vytvoriť, použite možnosť --create"
+msgstr "Vlastnosť \"%s\" neexistuje na kanále \"%s\". Ak sa má nová vlastnosť vytvoriť, použite možnosť --create"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
@@ -347,30 +336,3 @@ msgstr "Nie je možné určiť typ hodnoty na indexe %d."
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanál \"%s\" neobsahuje žiadne vlastnosti"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "Vlastnosť '%s' bola zmenená: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "Vlastnosť '%s' bola zmenená\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "Vlastnosť '%s' bola odstránená\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "Exportná metóda zatiaľ nebola implementovaná"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "Export zatiaľ nebol implementovaný "
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "Vlastnosť \"%s\" neexistuje na kanáli \"%s\".\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "Nedá sa vytvoriť súbor pre export \"%s\": %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "Nedá sa otvoriť súbor pre import \"%s\": %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "Nedá sa spracovať súbor pre import \"%s\": %s\n"
