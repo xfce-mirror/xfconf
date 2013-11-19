@@ -1,23 +1,24 @@
-# Traditional Chinese translation for xfconf
-# Copyright (C) 2010 xfconf's COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfconf package.
-# Cheng-Chia Tseng <pswo10680@gmail.com>, 2010.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Cheng-Chia Tseng <pswo10680@gmail.com>, 2010
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf master\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2011-09-05 12:13+0800\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
-"Language-Team: chinese-l10n <chinese-l10n@googlegroups.com>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-07-02 23:18+0200\n"
+"PO-Revision-Date: 2013-11-19 14:49+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/xfce/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n>1);\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "未能建立 ResetProperty DBus 呼叫"
@@ -98,9 +99,7 @@ msgstr "根元素 ('/') 不是有效的屬性名稱"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"屬性名稱只能包含 ASCII 字元 A-Z、a-z、0-9、'_'、'-'、'<'、'>'，而 '/' 作為分"
-"隔符"
+msgstr "屬性名稱只能包含 ASCII 字元 A-Z、a-z、0-9、'_'、'-'、'<'、'>'，而 '/' 作為分隔符"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -137,8 +136,8 @@ msgstr "印出 xfconfd 版本。"
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
 msgstr "要使用的組態後端程式。第一個指定的後端程式可以讀寫；其他的只能讀。"
 
 #: ../xfconfd/main.c:139
@@ -336,30 +335,3 @@ msgstr "無法決定位於索引 %d 的值其類型"
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "通道「%s」沒有包含屬性"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "屬性 '%s' 已變更：%s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "屬性 '%s' 已變更\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "屬性 '%s' 已移除\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "匯出方法尚未實作"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "匯出功能尚未實作"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "屬性「%s」不存在於通道「%s」。\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "無法建立匯出檔「%s」：%s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "無法開啟匯入檔「%s」：%s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "無法解析匯入檔「%s」：%s\n"
