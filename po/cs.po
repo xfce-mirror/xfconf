@@ -1,23 +1,23 @@
-# Czech translations for Xfconf package.
-# Copyright (C) 2008 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the Xfconf package.
-# Michal Várady <miko.vaji@gmail.com>, 2008-2011.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf 0.1.0svn-r28490\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-18 18:33+0000\n"
-"PO-Revision-Date: 2011-12-19 00:15+0100\n"
-"Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
-"Language-Team: Czech\n"
-"Language: \n"
+"POT-Creation-Date: 2013-07-02 23:18+0200\n"
+"PO-Revision-Date: 2013-11-19 14:49+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Czech (http://www.transifex.com/projects/p/xfce/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Volání DBus ResetProperty se nezdařilo"
@@ -36,8 +36,7 @@ msgstr "Přístup při změně vlastnosti „%s“ na kanálu „%s“ byl zamí
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
-#: ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Vlastnost „%s“ na kanálu „%s“ neexistuje"
@@ -96,7 +95,9 @@ msgstr "Kořenový element ('/') není platným názvem vlastnosti"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
 msgstr "Názvy vlastností mohou obsahovat pouze znaky kódování ASCII: A-Z, a-z, 0-9, '_', '-', '<' a '>' a také '/' jako oddělovač"
 
 #: ../xfconfd/xfconf-backend.c:135
@@ -116,12 +117,16 @@ msgstr "Název kanálu nemůže být prázdný řetězec"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
 msgstr "Názvy kanálů mohou obsahovat pouze znaky kódování ASCII: A-Z, a-z, 0-9, '_', a '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
 msgstr "Název vlastnosti může být prázdný, nebo „/“ pouze pokud byl specifikován rekurzivní reset"
 
 #: ../xfconfd/main.c:134
@@ -129,7 +134,9 @@ msgid "Prints the xfconfd version."
 msgstr "Zobrazí verzi xfconfd."
 
 #: ../xfconfd/main.c:136
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
 msgstr "Konfigurovat backendy pro použití. První zadaný backend je otevřen pro čtení a zápis, ostatní pouze pro čtení."
 
 #: ../xfconfd/main.c:139
@@ -163,8 +170,7 @@ msgstr "Již je spuštěn jiný démon služby Xfconf"
 msgid "No backends could be started"
 msgstr "Nemohly být spuštěny žádné backendy "
 
-#: ../xfconf-query/main.c:90
-#: ../xfconf-query/main.c:95
+#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
 msgstr "nastavit"
 
@@ -268,8 +274,7 @@ msgstr "přepínače --create a --reset není možné použít s přepínačem -
 msgid "Start monitoring channel \"%s\":"
 msgstr "Zahájit monitorování kanálu „%s“:"
 
-#: ../xfconf-query/main.c:353
-#: ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
 msgid "Failed to set property"
 msgstr "Nastavení vlastnosti se nezdařilo"
@@ -278,8 +283,7 @@ msgstr "Nastavení vlastnosti se nezdařilo"
 msgid "--toggle only works with boolean values"
 msgstr "přepínač --toggle pracuje pouze s hodnotami typu boolean"
 
-#: ../xfconf-query/main.c:366
-#: ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(neznámý)"
 
@@ -290,7 +294,9 @@ msgstr "Hodnota je pole (počet položek: %d):"
 
 #: ../xfconf-query/main.c:399
 #, c-format
-msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\". If a new property should "
+"be created, use the --create option"
 msgstr "Vlastnost „%s“ na kanálu „%s“ neexistuje. Pokud chcete vytvořit novou vlastnost, použijte volbu --create"
 
 #: ../xfconf-query/main.c:407
@@ -309,8 +315,7 @@ msgstr "Nelze určit typ hodnoty"
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Pro změnu pole na hodnotu je nutné specifikovat typ hodnoty"
 
-#: ../xfconf-query/main.c:451
-#: ../xfconf-query/main.c:512
+#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "Nelze zkonvertovat „%s“ na typ „%s“"
@@ -329,54 +334,3 @@ msgstr "Nelze určit typ hodnoty na indexu %d"
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanál „%s“ neobsahuje žádné vlastnosti"
-
-#~ msgid "Property '%s' changed: %s\n"
-#~ msgstr "Vlastnost '%s' se změnila: %s\n"
-
-#~ msgid "Property '%s' changed\n"
-#~ msgstr "Vlastnost '%s' se změnila\n"
-
-#~ msgid "Property '%s' removed\n"
-#~ msgstr "Vlastnost '%s' byla odebrána\n"
-
-#~ msgid "Export method not yet implemented"
-#~ msgstr "Exportní metoda dosun nebyla implementována"
-
-#~ msgid "Export not yet implemented"
-#~ msgstr "Export dosud nebyl implementován"
-
-#~ msgid "Property \"%s\" does not exist on channel \"%s\".\n"
-#~ msgstr "Vlastnost „%s“ na kanálu „%s“ neexistuje.\n"
-
-#~ msgid "Could not create export file \"%s\": %s\n"
-#~ msgstr "Nelze vytvořit soubor pro export „%s“: %s\n"
-
-#~ msgid "Could not open import file \"%s\": %s\n"
-#~ msgstr "Nelze otevřít soubor pro import „%s“: %s\n"
-
-#~ msgid "Could not parse import file \"%s\": %s\n"
-#~ msgstr "Nelze zpracovat soubor pro import „%s“: %s\n"
-
-#~ msgid "Export channel to file"
-#~ msgstr "Exportovat kanál do souboru"
-
-#~ msgid "Import channel from file"
-#~ msgstr "Importovat kanál ze souboru"
-
-#~ msgid "true"
-#~ msgstr "pravda"
-
-#~ msgid "false"
-#~ msgstr "nepravda"
-
-#~ msgid "Pick the channel"
-#~ msgstr "Vybrat kanál"
-
-#~ msgid "Pick the property"
-#~ msgstr "Vybrat vlastnost"
-
-#~ msgid "Create new entry"
-#~ msgstr "Vytvořit novou položku"
-
-#~ msgid "Property \"%s\" doesn't exist on channel \"%s\".\n"
-#~ msgstr "Vlastnost \"%s\" na kanálu \"%s\" neexistuje.\n"
