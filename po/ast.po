@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Tornes Llume <l.lumex03.tornes@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 22:48+0200\n"
-"PO-Revision-Date: 2013-11-19 10:53+0000\n"
-"Last-Translator: Nick <nick@xfce.org>\n"
+"PO-Revision-Date: 2014-04-13 19:11+0000\n"
+"Last-Translator: Tornes Llume <l.lumex03.tornes@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/projects/p/xfce/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,18 +21,18 @@ msgstr ""
 #: ../xfconf/xfconf-cache.c:897
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr ""
+msgstr "Fallu al facer la llamada DBus ResetProperty"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Nun se puede crear direutoriu de configuración \"%s\""
+msgstr "Nun pue criase'l direutoriu de configuración \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Permiso denegáu al modificar la propiedá \"%s\" na canal \"%s\""
+msgstr "Permisu torgáu al modificar la propiedá \"%s\" na canal \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -44,28 +45,28 @@ msgstr "La propiedá \"%s\" nun esiste na canal \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr "Nun se puede desaniciar canal \"%s\": %s"
+msgstr "Nun pue desaniciase la canal \"%s\": %s"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "Tipu incorreutu pa <propiedá>: \"%s\""
+msgstr "Triba incorreuta pa <propiedá>: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "Imposible procesar el valor de tipu \"%s\" de \"%s\""
+msgstr "Nun pue procesase'l valor de la triba \"%s\" de \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "L'atributu tipu de <valor> nun puede ser un vector"
+msgstr "La triba d'atributu de <valor> nun pue ser un vector"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Tipu non válidu pa <valor>: \"%s\""
+msgstr "Triba non válida pa <valor>: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
@@ -76,58 +77,58 @@ msgstr "La canal \"%s\" nun esiste"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "Imposible escribir canal \"%s\": %s"
+msgstr "Nun pue escribise la canal \"%s\": %s"
 
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Imposible alcontrar el motor de Xfconf de tipu \"%s\""
+msgstr "Nun pue alcontrase'l motor Xfconf de la triba \"%s\""
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Los nomes de propiedaes tienen d'entamar col caráuter '/'"
+msgstr "Los nomes de propiedá tienen d'entamar col caráuter '/'"
 
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr "L'elementu raíz ('/') nun ye un nome de propiedá válidu"
+msgstr "L'elementu raigañu ('/') nun ye un nome de propiedá válidu"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr "Los nomes de propiedaes namái pueden incluyir los carauteres ASCII A-Z, a-z, 0-9, '_', '-', '<' y '>', y tamién '/' como separtador"
+msgstr "Los nomes de propiedá namái puen incluyir los caráuteres ASCII A-Z, a-z, 0-9, '_', '-', '<' y '>', y tamién '/' como separtador"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Los nomes de propiedaes nun pueden tener dos o más carauteres '/' consecutivos"
+msgstr "Los nomes de propiedá nun puen tener dos o más caráuteres '/' consecutivos"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Los nomes de propiedaes nun pueden acabar col caráuter '/'"
+msgstr "Los nomes de propiedá nun puen finar col caráuter '/'"
 
 #: ../xfconfd/xfconf-backend.c:163
 #, c-format
 msgid "Channel name cannot be an empty string"
-msgstr "El nome de la canal nun puede ser una cadena balera"
+msgstr "El nome de la canal nun pue ser una cadena balera"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr "Los nomes de canales namái pueden incluyir los carauteres ASCII A-Z, a-z, 0-9, \"_\" y \"-\""
+msgstr "Los nomes de canales namái puen incluyir los caráuteres ASCII A-Z, a-z, 0-9, \"_\" y \"-\""
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr "El nome de la propiedá namái puede ser baleru o \"/\" si s'especificó un reaniciu recursivu"
+msgstr "El nome de la propiedá namái pue tar baleru o \"/\" si s'especificó un reaniciu recursivu"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -172,11 +173,11 @@ msgstr "Nun pudo aniciase dengún motor"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
-msgstr ""
+msgstr "afitar"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
-msgstr ""
+msgstr "reaniciar"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
