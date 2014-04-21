@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 22:48+0200\n"
-"PO-Revision-Date: 2014-04-13 19:11+0000\n"
+"PO-Revision-Date: 2014-04-21 09:05+0000\n"
 "Last-Translator: Tornes Llume <l.lumex03.tornes@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/projects/p/xfce/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -26,13 +26,13 @@ msgstr "Fallu al facer la llamada DBus ResetProperty"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Nun pue criase'l direutoriu de configuración \"%s\""
+msgstr "Nun pue crease'l direutoriu de configuración \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Permisu torgáu al modificar la propiedá \"%s\" na canal \"%s\""
+msgstr "Permisu refugáu al modificar la propiedá \"%s\" na canal \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -234,55 +234,55 @@ msgstr "Monitorizar una canal p'alcontrar cambeos de propiedaes"
 #: ../xfconf-query/main.c:246
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr ""
+msgstr "Fallu al facer init a libxfconf: %s"
 
 #: ../xfconf-query/main.c:251
 msgid "- Xfconf commandline utility"
-msgstr ""
+msgstr "- Utilidá de comandos Xfconf"
 
 #: ../xfconf-query/main.c:256
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr ""
+msgstr "Fallu na aición d'analís: %s"
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
-msgstr ""
+msgstr "Lequipu de desendolcu Xfce. Tolos drechos reservaos."
 
 #: ../xfconf-query/main.c:267
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr ""
+msgstr "Por favor, informa de fallos a <%s>."
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
-msgstr ""
+msgstr "Canales:"
 
 #: ../xfconf-query/main.c:295
 msgid "No property specified"
-msgstr ""
+msgstr "Nun s'especificó la propiedá"
 
 #: ../xfconf-query/main.c:301
 msgid "--create and --reset options can not be used together"
-msgstr ""
+msgstr "les opciones --create y --reset nun puen usase xuntes"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
+msgstr "Les opciones --create y --reset nun puen usase xuntes con --list"
 
 #: ../xfconf-query/main.c:319
 #, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr ""
+msgstr "Entamar monitorizando la canal \"%s\":"
 
 #: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
 msgid "Failed to set property"
-msgstr ""
+msgstr "Fallu al afitar la propiedá"
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
-msgstr ""
+msgstr "--toggle namái furrulará con valores boleanos"
 
 #: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
@@ -291,26 +291,26 @@ msgstr "(desconocíu)"
 #: ../xfconf-query/main.c:375
 #, c-format
 msgid "Value is an array with %d items:"
-msgstr ""
+msgstr "El valor ye una matriz con %d oxetos:"
 
 #: ../xfconf-query/main.c:399
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
+msgstr "La propiedá \"%s\" nun esiste na canal \"%s\". Si se debería crear una propiedá nueva, usa la opción --create"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
-msgstr ""
+msgstr "Cuando se crea una propiedá nueva, tien d'especificase la triba del valor"
 
 #: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
-msgstr ""
+msgstr "Fallu al consiguir la triba esistente pal valor"
 
 #: ../xfconf-query/main.c:435
 msgid "Unable to determine the type of the value"
-msgstr ""
+msgstr "Nun pue determinase la triba del valor"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
@@ -319,19 +319,19 @@ msgstr ""
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr ""
+msgstr "Nun pue convertise \"%s\" a la triba \"%s\""
 
 #: ../xfconf-query/main.c:483
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr ""
+msgstr "Hai %d valores nuevos, pero namái puen determinase %d tribes"
 
 #: ../xfconf-query/main.c:504
 #, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr ""
+msgstr "Nun pue determinase la triba del valor nel índiz %d"
 
 #: ../xfconf-query/main.c:554
 #, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr ""
+msgstr "La Canal \"%s\" nun contien propiedaes"
