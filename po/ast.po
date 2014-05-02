@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 22:48+0200\n"
-"PO-Revision-Date: 2014-04-21 09:05+0000\n"
+"PO-Revision-Date: 2014-05-02 12:46+0000\n"
 "Last-Translator: Tornes Llume <l.lumex03.tornes@gmail.com>\n"
-"Language-Team: Asturian (http://www.transifex.com/projects/p/xfce/language/ast/)\n"
+"Language-Team: Asturian (http://www.transifex.com/projects/p/xfconf/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -314,7 +314,7 @@ msgstr "Nun pue determinase la triba del valor"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
+msgstr "Tien d'especificase un valor pa camudar una matriz a un valor solu"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
