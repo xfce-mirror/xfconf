@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Pablo Lezaeta <prflr88@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 22:48+0200\n"
-"PO-Revision-Date: 2013-11-19 10:53+0000\n"
-"Last-Translator: Nick <nick@xfce.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/xfce/language/es/)\n"
+"PO-Revision-Date: 2014-05-19 05:02+0000\n"
+"Last-Translator: Pablo Lezaeta <prflr88@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/xfconf/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +21,7 @@ msgstr ""
 #: ../xfconf/xfconf-cache.c:897
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "Fallo al realizar la llamada DBus ResetProperty"
+msgstr "No se pudo realizar la llamada DBus ResetProperty"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
