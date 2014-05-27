@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Tornes Llume <l.lumex03.tornes@gmail.com>, 2014
+# Tornes Llume <l.lumex03.tornes@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 22:48+0200\n"
-"PO-Revision-Date: 2014-05-02 12:46+0000\n"
+"PO-Revision-Date: 2014-05-26 22:35+0000\n"
 "Last-Translator: Tornes Llume <l.lumex03.tornes@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/projects/p/xfconf/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -225,7 +226,7 @@ msgstr "Forciar como vector inclusu si namái hai un elementu"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
-msgstr ""
+msgstr "Invertir una propiedá boleana esistente"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
