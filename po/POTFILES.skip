@@ -1,0 +1,3 @@
+xfconf-perl/xs/Xfconf.c
+xfconf-perl/xs/XfconfBinding.c
+xfconf-perl/xs/XfconfChannel.c
