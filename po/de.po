@@ -7,13 +7,14 @@
 # Johannes Lips <johannes.lips@gmail.com>, 2014
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2012
 # Simon Schneider <simon@schneiderimtal.de>, 2009
+# Tobias Bannert, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-27 18:32+0200\n"
-"PO-Revision-Date: 2014-07-28 17:43+0000\n"
-"Last-Translator: Johannes Lips <johannes.lips@gmail.com>\n"
+"PO-Revision-Date: 2014-07-28 23:07+0000\n"
+"Last-Translator: Tobias Bannert\n"
 "Language-Team: German (http://www.transifex.com/projects/p/xfconf/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -103,7 +104,7 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
-msgstr "Der Name von Eigenschaften kann nur ASCII Zeichen enthalten A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' und '>', sowohl '/' als Trennzeichen"
+msgstr "Eigenschaftsnamen können nur die ASCII-Zeichen A-Z, a-z, 0-9, »_«, »-«, »:«, ».«, »,«, »[«, »]«, »{«, »}«, »<« und »>«, sowie »/« als Trennzeichen enthalten"
 
 #: ../xfconfd/xfconf-backend.c:136
 #, c-format
@@ -125,7 +126,7 @@ msgstr "Kanalbezeichner können nicht leer sein"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
-msgstr "Bezeichnung eines Kanals kann nur die ASCII Zeichen A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', und '-' enthalten"
+msgstr "Kanalnamen können nur die ASCII-Zeichen A-Z, a-z, 0-9, »{«, »}«, »|«, »]«, »[«, »:«, »,«, ».«, »_« und , »-« enthalten"
 
 #: ../xfconfd/xfconf-backend.c:401
 #, c-format
