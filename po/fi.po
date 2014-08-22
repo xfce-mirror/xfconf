@@ -1,22 +1,24 @@
-# Finnish translation of the xfconf package.
-# Copyright (C) 2010-2011 The Xfce development team.
-# This file is distributed under the same license as the xfconf package.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008-2011.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Pasi Lallinaho <pasi@shimmerproject.org>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2011-05-29 14:24+0300\n"
-"Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
-"Language-Team: Finnish <xfce-i18n@xfce.org>\n"
-"Language: fi\n"
+"POT-Creation-Date: 2014-07-27 18:32+0200\n"
+"PO-Revision-Date: 2014-08-22 18:37+0000\n"
+"Last-Translator: Pasi Lallinaho <pasi@shimmerproject.org>\n"
+"Language-Team: Finnish (http://www.transifex.com/projects/p/xfconf/language/fi/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:897
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "DBus-kutsu ResetProperty epäonnistui"
@@ -35,7 +37,7 @@ msgstr "Ei oikeutta asetuksen \"%s\" muokkaamiseen kanavalla \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:344
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Asetusta \"%s\" ei ole kanavalla \"%s\""
@@ -92,47 +94,42 @@ msgstr "Asetuksen nimen täytyy alkaa \"/\"-merkillä"
 msgid "The root element ('/') is not a valid property name"
 msgstr "Juurielementti (\"/\") ei kelpaa asetuksen nimeksi"
 
-#: ../xfconfd/xfconf-backend.c:126
+#: ../xfconfd/xfconf-backend.c:127
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Asetusten nimissä voi käyttää ainoastaan ASCII-merkkejä A-Z, a-z, 0-9, \"_"
-"\", \"-\", \"<\" ja \">\", sekä erotinmerkkiä \"/\""
+"'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
+"separator"
+msgstr "Nimet voivat sisältää vain ASCII-merkkejä A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' ja '>', sekä '/' erottimena"
 
-#: ../xfconfd/xfconf-backend.c:135
+#: ../xfconfd/xfconf-backend.c:136
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Asetusten nimissä ei voi olla peräkkäisiä \"/\"-merkkejä"
 
-#: ../xfconfd/xfconf-backend.c:146
+#: ../xfconfd/xfconf-backend.c:147
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Asetuksen nimi ei voi päättyä \"/\"-merkkiin"
 
-#: ../xfconfd/xfconf-backend.c:163
+#: ../xfconfd/xfconf-backend.c:164
 #, c-format
 msgid "Channel name cannot be an empty string"
 msgstr "Kanavan nimi ei voi olla tyhjä merkkijono"
 
-#: ../xfconfd/xfconf-backend.c:176
+#: ../xfconfd/xfconf-backend.c:179
 #, c-format
 msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr ""
-"Kanavien nimissä voi käyttää ainoastaan ASCII-merkkejä A-Z, a-z, 0-9, \"_\" "
-"sekä \"-\""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
+" '|', ']', '[', ':', ',', '.', '_', and '-'"
+msgstr "Kanavien nimet voivat sisältää vain ASCII-merkkejä A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', ja '-'"
 
-#: ../xfconfd/xfconf-backend.c:398
+#: ../xfconfd/xfconf-backend.c:401
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"Asetuksen nimi voi olla tyhjä tai \"/\" vain rekursiivisen palautuksen "
-"tapauksessa"
+msgstr "Asetuksen nimi voi olla tyhjä tai \"/\" vain rekursiivisen palautuksen tapauksessa"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -140,11 +137,9 @@ msgstr "Tulostaa xfconfd:n version."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Käytettävät asetusmoduulit. Ensimmäinen määritetty moduuli avataan luku- ja "
-"kirjoitustilassa, muut vain luettavaksi."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Käytettävät asetusmoduulit. Ensimmäinen määritetty moduuli avataan luku- ja kirjoitustilassa, muut vain luettavaksi."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -154,15 +149,15 @@ msgstr "Haaraudu taustalle käynnistyksen jälkeen; hyötyä vain testauskäytö
 msgid "Xfce Configuration Daemon"
 msgstr "Xfce:n asetustaustaprosessi"
 
-#: ../xfconfd/main.c:165
+#: ../xfconfd/main.c:168
 msgid "Xfce configuration daemon"
 msgstr "Xfce:n asetustaustaprosessi"
 
-#: ../xfconfd/main.c:167
+#: ../xfconfd/main.c:170
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Ilmoita vioista osoitteeseen http://bugs.xfce.org/\n"
 
-#: ../xfconfd/main.c:170
+#: ../xfconfd/main.c:173
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Asetusten jäsennysvirhe: %s\n"
@@ -237,110 +232,107 @@ msgstr "Vaihda asetuksen totuusarvo päinvastaiseksi"
 msgid "Monitor a channel for property changes"
 msgstr "Seuraa kanavan asetusten muutoksia"
 
-#: ../xfconf-query/main.c:246
+#: ../xfconf-query/main.c:249
 #, c-format
 msgid "Failed to init libxfconf: %s"
 msgstr "Virhe alustaessa libxfconf-kirjastoa: %s"
 
-#: ../xfconf-query/main.c:251
+#: ../xfconf-query/main.c:254
 msgid "- Xfconf commandline utility"
 msgstr "- Xfconf-komentorivityökalu"
 
-#: ../xfconf-query/main.c:256
+#: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr "Valitsinten jäsennys epäonnistui: %s"
 
-#: ../xfconf-query/main.c:266
+#: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce:n kehitystiimi. Kaikki oikeudet pidätetään."
 
-#: ../xfconf-query/main.c:267
+#: ../xfconf-query/main.c:270
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Ilmoita ohjelmavirheistä osoitteesa <%s>."
 
-#: ../xfconf-query/main.c:279
+#: ../xfconf-query/main.c:282
 msgid "Channels:"
 msgstr "Kanavat:"
 
-#: ../xfconf-query/main.c:295
+#: ../xfconf-query/main.c:298
 msgid "No property specified"
 msgstr "Asetusta ei määritetty"
 
-#: ../xfconf-query/main.c:301
+#: ../xfconf-query/main.c:304
 msgid "--create and --reset options can not be used together"
 msgstr "Valitsimia --create ja --reset ei voi käyttää yhdessä"
 
-#: ../xfconf-query/main.c:307
+#: ../xfconf-query/main.c:310
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
-"Valitsinta --create tai --reset ei voi käyttää valitsimen --list kanssa"
+msgstr "Valitsinta --create tai --reset ei voi käyttää valitsimen --list kanssa"
 
-#: ../xfconf-query/main.c:319
+#: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "Seuraa kanavaa \"%s\":"
 
-#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
-#: ../xfconf-query/main.c:527
+#: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
+#: ../xfconf-query/main.c:530
 msgid "Failed to set property"
 msgstr "Asetuksen muutos epäonnistui"
 
-#: ../xfconf-query/main.c:357
+#: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
 msgstr "--toggle toimii vain totuusarvoille"
 
-#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:369 ../xfconf-query/main.c:388
 msgid "(unknown)"
 msgstr "(tuntematon)"
 
-#: ../xfconf-query/main.c:375
+#: ../xfconf-query/main.c:378
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr "Arvo on taulukko, jossa on %d kohdetta:"
 
-#: ../xfconf-query/main.c:399
+#: ../xfconf-query/main.c:402
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"Asetusta \"%s\" ei löydy kanavalta \"%s\". Jos haluat luoda uuden asetuksen, "
-"käytä valitsinta --create"
+msgstr "Asetusta \"%s\" ei löydy kanavalta \"%s\". Jos haluat luoda uuden asetuksen, käytä valitsinta --create"
 
-#: ../xfconf-query/main.c:407
+#: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
 msgstr "Arvon tyyppi on määritettävä uutta asetusta luotaessa"
 
-#: ../xfconf-query/main.c:417
+#: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
 msgstr "Arvon nykyistä tyyppiä ei voi lukea"
 
-#: ../xfconf-query/main.c:435
+#: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
 msgstr "Arvon tyypin määritys ei onnistu"
 
-#: ../xfconf-query/main.c:441
+#: ../xfconf-query/main.c:444
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Määritä arvon tyyppi muuttaaksesi taulukon yksittäiseksi arvoksi"
 
-#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
+#: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "Kohdetta \"%s\" ei voi muuttaa \"%s\"-tyyppiseksi"
 
-#: ../xfconf-query/main.c:483
+#: ../xfconf-query/main.c:486
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr "%d uutta arvoa, mutta vain %d tyypin määritys onnistui"
 
-#: ../xfconf-query/main.c:504
+#: ../xfconf-query/main.c:507
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr "Tyypin määritys ei onnistu arvolle kohdassa %d"
 
-#: ../xfconf-query/main.c:554
+#: ../xfconf-query/main.c:557
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanavalla \"%s\" ei ole asetuksia"
