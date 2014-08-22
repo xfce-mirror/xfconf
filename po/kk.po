@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2009
+# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2009,2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-02 22:48+0200\n"
-"PO-Revision-Date: 2013-11-19 10:53+0000\n"
-"Last-Translator: Nick <nick@xfce.org>\n"
-"Language-Team: Kazakh (http://www.transifex.com/projects/p/xfce/language/kk/)\n"
+"POT-Creation-Date: 2014-07-27 18:32+0200\n"
+"PO-Revision-Date: 2014-08-22 02:36+0000\n"
+"Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
+"Language-Team: Kazakh (http://www.transifex.com/projects/p/xfconf/language/kk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,7 +37,7 @@ msgstr "\"%s\" қасиетін \"%s\" арнасында түзету үшін 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:344
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "\"%s\" қасиеті \"%s\" арнасында жоқ болып тұр"
@@ -94,36 +94,37 @@ msgstr "Қасиеттердің атаулары '/' таңбасынан ба�
 msgid "The root element ('/') is not a valid property name"
 msgstr "Түбірлік ('/') элементі  дұрыс қасиет аты емес"
 
-#: ../xfconfd/xfconf-backend.c:126
+#: ../xfconfd/xfconf-backend.c:127
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr "Қасиеттің атында тек ASCII-дің таңбалары A-Z, a-z, 0-9, '_', '-', '<' және '>', оған қоса ажыратқыш ретінде '/' таңбасы болуы керек"
+"'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
+"separator"
+msgstr "Қасиеттің атында тек ASCII-дің таңбалары A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' және '>', оған қоса ажыратқыш ретінде '/' таңбасы болуы мүмкін"
 
-#: ../xfconfd/xfconf-backend.c:135
+#: ../xfconfd/xfconf-backend.c:136
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Қасиет аттарында қатар тұрған екі немесе одан да көп '/' таңбалары болмауы керек"
 
-#: ../xfconfd/xfconf-backend.c:146
+#: ../xfconfd/xfconf-backend.c:147
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Қасиеттің аты '/' таңбасымен аяқталмауы тиіс"
 
-#: ../xfconfd/xfconf-backend.c:163
+#: ../xfconfd/xfconf-backend.c:164
 #, c-format
 msgid "Channel name cannot be an empty string"
 msgstr "Арнаның аты бос жол бола алмайды"
 
-#: ../xfconfd/xfconf-backend.c:176
+#: ../xfconfd/xfconf-backend.c:179
 #, c-format
 msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr "Арналардың аттарында тек ASCII таңбалары A-Z, a-z, 0-9, '_', және '-' болуы керек"
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
+" '|', ']', '[', ':', ',', '.', '_', and '-'"
+msgstr "Арналардың аттарында тек ASCII таңбалары A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', және '-' болуы мүмкін"
 
-#: ../xfconfd/xfconf-backend.c:398
+#: ../xfconfd/xfconf-backend.c:401
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
@@ -148,15 +149,15 @@ msgstr "Қосылудан кейін фонда жұмыс істеу; тек �
 msgid "Xfce Configuration Daemon"
 msgstr "Xfce баптаулар қызметі"
 
-#: ../xfconfd/main.c:165
+#: ../xfconfd/main.c:168
 msgid "Xfce configuration daemon"
 msgstr "Xfce баптаулар қызметі"
 
-#: ../xfconfd/main.c:167
+#: ../xfconfd/main.c:170
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Ақаулықтар жөнінде хабарласыңыз: http://bugs.xfce.org/\n"
 
-#: ../xfconfd/main.c:170
+#: ../xfconfd/main.c:173
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Опцияларды өндеу қатесі: %s\n"
@@ -231,107 +232,107 @@ msgstr "Бар болып тұрған логикалық мәнді теріс�
 msgid "Monitor a channel for property changes"
 msgstr "Арнаны қасиеттердің өзгеруіне бақылау"
 
-#: ../xfconf-query/main.c:246
+#: ../xfconf-query/main.c:249
 #, c-format
 msgid "Failed to init libxfconf: %s"
 msgstr "libxfconf іске қосу сәтсіз: %s"
 
-#: ../xfconf-query/main.c:251
+#: ../xfconf-query/main.c:254
 msgid "- Xfconf commandline utility"
 msgstr "- Xfconf командалық жол утилитасы"
 
-#: ../xfconf-query/main.c:256
+#: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr "Опцияларды талдау сәтсіз: %s"
 
-#: ../xfconf-query/main.c:266
+#: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce өндіру тобы. Барлық құқықтары қорғалған."
 
-#: ../xfconf-query/main.c:267
+#: ../xfconf-query/main.c:270
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Қателер жөнінде осында хабарласыңыз: <%s>."
 
-#: ../xfconf-query/main.c:279
+#: ../xfconf-query/main.c:282
 msgid "Channels:"
 msgstr "Арналар:"
 
-#: ../xfconf-query/main.c:295
+#: ../xfconf-query/main.c:298
 msgid "No property specified"
 msgstr "Қасиет көрсетілмеген"
 
-#: ../xfconf-query/main.c:301
+#: ../xfconf-query/main.c:304
 msgid "--create and --reset options can not be used together"
 msgstr "--create пен --reset опцияларын бірге қолдануға болмайды"
 
-#: ../xfconf-query/main.c:307
+#: ../xfconf-query/main.c:310
 msgid "--create and --reset options can not be used together with --list"
 msgstr "--create пен --reset опцияларын --list опциясымен бірге қолдануға болмайды"
 
-#: ../xfconf-query/main.c:319
+#: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "\"%s\"  арнасын бақылауды бастау:"
 
-#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
-#: ../xfconf-query/main.c:527
+#: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
+#: ../xfconf-query/main.c:530
 msgid "Failed to set property"
 msgstr "Қасиетті орнату сәтсіз аяқталды"
 
-#: ../xfconf-query/main.c:357
+#: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
 msgstr "--toggle тек логикалық мәндермен жұмыс істейді"
 
-#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:369 ../xfconf-query/main.c:388
 msgid "(unknown)"
 msgstr "(белгісіз)"
 
-#: ../xfconf-query/main.c:375
+#: ../xfconf-query/main.c:378
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr "Мән %d элементі массив болып тұр:"
 
-#: ../xfconf-query/main.c:399
+#: ../xfconf-query/main.c:402
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr "\"%s\" қасиеті \"%s\" арнасында жоқ болып тұр. Егер жаңа қасиетті жасау керек болса, --create опциясын қолданыңыз"
 
-#: ../xfconf-query/main.c:407
+#: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
 msgstr "Жаңа қасиетті жасаған кезде, оның мәннің түрі көрсетілуі керек"
 
-#: ../xfconf-query/main.c:417
+#: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
 msgstr "Мәннің бар болып тұрған түрін анықтау сәтсіз аяқталды"
 
-#: ../xfconf-query/main.c:435
+#: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
 msgstr "Мәннің түрін анықтау сәтсіз аяқталды"
 
-#: ../xfconf-query/main.c:441
+#: ../xfconf-query/main.c:444
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Массивті бірлік мәнге айналдыру үшін мәннің түрі көрсетілуі керек"
 
-#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
+#: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "\"%s\" жаңа \"%s\" түріне айналдыру мүмкін емес"
 
-#: ../xfconf-query/main.c:483
+#: ../xfconf-query/main.c:486
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr "Қазір %d жаңа мән бар, бірақ тек %d түрді анықтауға болады"
 
-#: ../xfconf-query/main.c:504
+#: ../xfconf-query/main.c:507
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr "%d орнында тұрған мәннің түрін анықтау мүмкін емес"
 
-#: ../xfconf-query/main.c:554
+#: ../xfconf-query/main.c:557
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "\"%s\" арнасында қасиеттер жоқ"
