@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Alois Nešpor <info@aloisnespor.info>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-02 22:48+0200\n"
-"PO-Revision-Date: 2013-11-19 10:53+0000\n"
-"Last-Translator: Nick <nick@xfce.org>\n"
-"Language-Team: Czech (http://www.transifex.com/projects/p/xfce/language/cs/)\n"
+"POT-Creation-Date: 2014-07-27 18:32+0200\n"
+"PO-Revision-Date: 2014-08-31 21:31+0000\n"
+"Last-Translator: Alois Nešpor <info@aloisnespor.info>\n"
+"Language-Team: Czech (http://www.transifex.com/projects/p/xfconf/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -36,7 +37,7 @@ msgstr "Přístup při změně vlastnosti „%s“ na kanálu „%s“ byl zamí
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:344
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Vlastnost „%s“ na kanálu „%s“ neexistuje"
@@ -93,36 +94,37 @@ msgstr "Názvy vlastností musí začínat znakem '/'"
 msgid "The root element ('/') is not a valid property name"
 msgstr "Kořenový element ('/') není platným názvem vlastnosti"
 
-#: ../xfconfd/xfconf-backend.c:126
+#: ../xfconfd/xfconf-backend.c:127
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr "Názvy vlastností mohou obsahovat pouze znaky kódování ASCII: A-Z, a-z, 0-9, '_', '-', '<' a '>' a také '/' jako oddělovač"
+"'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
+"separator"
+msgstr "Názvy vlastností mohou obsahovat pouze znaky ASCII A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' a '>', a znak '/' jako oddělovač"
 
-#: ../xfconfd/xfconf-backend.c:135
+#: ../xfconfd/xfconf-backend.c:136
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Názvy vlastností nemohou obsahovat dva nebo více po sobě jdoucích znaků '/"
 
-#: ../xfconfd/xfconf-backend.c:146
+#: ../xfconfd/xfconf-backend.c:147
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Názvy vlastností nemohou končit znakem '/'"
 
-#: ../xfconfd/xfconf-backend.c:163
+#: ../xfconfd/xfconf-backend.c:164
 #, c-format
 msgid "Channel name cannot be an empty string"
 msgstr "Název kanálu nemůže být prázdný řetězec"
 
-#: ../xfconfd/xfconf-backend.c:176
+#: ../xfconfd/xfconf-backend.c:179
 #, c-format
 msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr "Názvy kanálů mohou obsahovat pouze znaky kódování ASCII: A-Z, a-z, 0-9, '_', a '-'"
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
+" '|', ']', '[', ':', ',', '.', '_', and '-'"
+msgstr "Názvy kanálů mohou obsahovat pouze znaky kódování ASCII A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', a '-'"
 
-#: ../xfconfd/xfconf-backend.c:398
+#: ../xfconfd/xfconf-backend.c:401
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
@@ -147,15 +149,15 @@ msgstr "Po spuštění přenést proces na pozadí; tato volba je užitečná po
 msgid "Xfce Configuration Daemon"
 msgstr "Konfigurační démon Xfce"
 
-#: ../xfconfd/main.c:165
+#: ../xfconfd/main.c:168
 msgid "Xfce configuration daemon"
 msgstr "Konfigurační démon Xfce"
 
-#: ../xfconfd/main.c:167
+#: ../xfconfd/main.c:170
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Chyby hlaste na http://bugs.xfce.org/\n"
 
-#: ../xfconfd/main.c:170
+#: ../xfconfd/main.c:173
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Chyba při zpracování voleb: %s\n"
@@ -230,107 +232,107 @@ msgstr "Invertovat existující hodnotu typu boolean"
 msgid "Monitor a channel for property changes"
 msgstr "Sledovat změny vlastností kanálu"
 
-#: ../xfconf-query/main.c:246
+#: ../xfconf-query/main.c:249
 #, c-format
 msgid "Failed to init libxfconf: %s"
 msgstr "Inicializace konfigurátoru libxfconf se nezdařila: %s"
 
-#: ../xfconf-query/main.c:251
+#: ../xfconf-query/main.c:254
 msgid "- Xfconf commandline utility"
 msgstr "- Nástroj příkazového řádku Xfconf"
 
-#: ../xfconf-query/main.c:256
+#: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr "Zpracování přepínačů se nezdařilo: %s"
 
-#: ../xfconf-query/main.c:266
+#: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
 msgstr "Tým vývojářů prostředí Xfce. Všechna práva vyhrazena."
 
-#: ../xfconf-query/main.c:267
+#: ../xfconf-query/main.c:270
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Prosíme, abyste chyby hlásili na adresu <%s>."
 
-#: ../xfconf-query/main.c:279
+#: ../xfconf-query/main.c:282
 msgid "Channels:"
 msgstr "Kanály:"
 
-#: ../xfconf-query/main.c:295
+#: ../xfconf-query/main.c:298
 msgid "No property specified"
 msgstr "Nespecifikována žádná vlastnost"
 
-#: ../xfconf-query/main.c:301
+#: ../xfconf-query/main.c:304
 msgid "--create and --reset options can not be used together"
 msgstr "přepínače --create a --reset není možné použít najednou"
 
-#: ../xfconf-query/main.c:307
+#: ../xfconf-query/main.c:310
 msgid "--create and --reset options can not be used together with --list"
 msgstr "přepínače --create a --reset není možné použít s přepínačem --list"
 
-#: ../xfconf-query/main.c:319
+#: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "Zahájit monitorování kanálu „%s“:"
 
-#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
-#: ../xfconf-query/main.c:527
+#: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
+#: ../xfconf-query/main.c:530
 msgid "Failed to set property"
 msgstr "Nastavení vlastnosti se nezdařilo"
 
-#: ../xfconf-query/main.c:357
+#: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
 msgstr "přepínač --toggle pracuje pouze s hodnotami typu boolean"
 
-#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:369 ../xfconf-query/main.c:388
 msgid "(unknown)"
 msgstr "(neznámý)"
 
-#: ../xfconf-query/main.c:375
+#: ../xfconf-query/main.c:378
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr "Hodnota je pole (počet položek: %d):"
 
-#: ../xfconf-query/main.c:399
+#: ../xfconf-query/main.c:402
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr "Vlastnost „%s“ na kanálu „%s“ neexistuje. Pokud chcete vytvořit novou vlastnost, použijte volbu --create"
 
-#: ../xfconf-query/main.c:407
+#: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
 msgstr "Při vytváření nové vlastnosti je nutné specifikovat typ hodnoty"
 
-#: ../xfconf-query/main.c:417
+#: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
 msgstr "Získání typu pro hodnotu se nezdařilo"
 
-#: ../xfconf-query/main.c:435
+#: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
 msgstr "Nelze určit typ hodnoty"
 
-#: ../xfconf-query/main.c:441
+#: ../xfconf-query/main.c:444
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Pro změnu pole na hodnotu je nutné specifikovat typ hodnoty"
 
-#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
+#: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "Nelze zkonvertovat „%s“ na typ „%s“"
 
-#: ../xfconf-query/main.c:483
+#: ../xfconf-query/main.c:486
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr "Existuje %d nových hodnot, ale je možné určit pouze %d typů"
 
-#: ../xfconf-query/main.c:504
+#: ../xfconf-query/main.c:507
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr "Nelze určit typ hodnoty na indexu %d"
 
-#: ../xfconf-query/main.c:554
+#: ../xfconf-query/main.c:557
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanál „%s“ neobsahuje žádné vlastnosti"
