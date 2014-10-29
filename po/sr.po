@@ -1,23 +1,25 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012.
+# 
+# Translators:
+# Xfce Bot <transifex@xfce.org>, 2014
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf.master\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-05 15:39+0000\n"
-"PO-Revision-Date: 2012-07-05 23:22+0200\n"
-"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
-"Language-Team: српски <xfce-i18n@xfce.org>\n"
-"Language: sr\n"
+"POT-Creation-Date: 2014-07-27 18:32+0200\n"
+"PO-Revision-Date: 2014-10-29 14:55+0000\n"
+"Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
+"Language-Team: Serbian (http://www.transifex.com/projects/p/xfconf/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: sr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../xfconf/xfconf-cache.c:881
+#: ../xfconf/xfconf-cache.c:897
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Нисам успео да направим позив ДСабирнице поврати својство"
@@ -36,7 +38,7 @@ msgstr "Одбијено је овлашћење за време измене с
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:344
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Својство „%s“ не постоји на каналу „%s“"
@@ -93,44 +95,42 @@ msgstr "Називи својстава морају почињати знако
 msgid "The root element ('/') is not a valid property name"
 msgstr "Корени елемент („/“) није исправан назив својства"
 
-#: ../xfconfd/xfconf-backend.c:126
+#: ../xfconfd/xfconf-backend.c:127
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Називи својстава могу садржати само АСКРИ знаке A-Z, a-z, 0-9, _, -, < и >, "
-"као и / као раздвајач"
+"'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
+"separator"
+msgstr "Имена својстава могу само да садрже АСКИИ знаке A-Z, a-z, 0-9, „_“, „-“, „:“, „.“, „,“, „[“, „]“, „{“, „}“, „<“ и „>“,као и „/“ у улози раздвајача"
 
-#: ../xfconfd/xfconf-backend.c:135
+#: ../xfconfd/xfconf-backend.c:136
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Називи својстава не могу имати два или више узастопна знака /"
 
-#: ../xfconfd/xfconf-backend.c:146
+#: ../xfconfd/xfconf-backend.c:147
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Називи својстава се не могу завршавати знаком /"
 
-#: ../xfconfd/xfconf-backend.c:163
+#: ../xfconfd/xfconf-backend.c:164
 #, c-format
 msgid "Channel name cannot be an empty string"
 msgstr "Назив канала не може бити празан"
 
-#: ../xfconfd/xfconf-backend.c:176
+#: ../xfconfd/xfconf-backend.c:179
 #, c-format
 msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr "Називи својстава могу садржати само АСКРИ знаке A-Z, a-z, 0-9, _, и -"
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
+" '|', ']', '[', ':', ',', '.', '_', and '-'"
+msgstr "Имена канала могу да садрже само АСКИИ знаке A-Z, a-z, 0-9, „{“, „}“, „|“, „]“, „[“, „:“, „,“, „.“, „_“, и„-“"
 
-#: ../xfconfd/xfconf-backend.c:398
+#: ../xfconfd/xfconf-backend.c:401
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"Назив својства само може бити празан или / ако је наведено дубинско враћање"
+msgstr "Назив својства само може бити празан или / ако је наведено дубинско враћање"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -138,31 +138,27 @@ msgstr "Исписује издање демона иксф подешавања
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Позадинци подешавања за употребу.  Први позадинац наведен је отворен за "
-"читање/писање; остали, само за читање."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Позадинци подешавања за употребу.  Први позадинац наведен је отворен за читање/писање; остали, само за читање."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
-"Ствара клицу у позадини након покретања; корисно је само за сврхе "
-"испробавања"
+msgstr "Ствара клицу у позадини након покретања; корисно је само за сврхе испробавања"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
 msgstr "Демон Иксфце подешавања"
 
-#: ../xfconfd/main.c:165
+#: ../xfconfd/main.c:168
 msgid "Xfce configuration daemon"
 msgstr "Алат за подешавање Иксфце-а"
 
-#: ../xfconfd/main.c:167
+#: ../xfconfd/main.c:170
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Пријавите грешаке на „http://bugs.xfce.org/“\n"
 
-#: ../xfconfd/main.c:170
+#: ../xfconfd/main.c:173
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Грешка обраде могућности: %s\n"
@@ -237,110 +233,107 @@ msgstr "Преокреће постојеће логичко својство"
 msgid "Monitor a channel for property changes"
 msgstr "Надгледа канал за изменама својства"
 
-#: ../xfconf-query/main.c:246
+#: ../xfconf-query/main.c:249
 #, c-format
 msgid "Failed to init libxfconf: %s"
 msgstr "Нисам успео да покренем библиотеку иксфконф: %s"
 
-#: ../xfconf-query/main.c:251
+#: ../xfconf-query/main.c:254
 msgid "- Xfconf commandline utility"
 msgstr "— Иксф конф алатка линије наредби"
 
-#: ../xfconf-query/main.c:256
+#: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr "Није успела обрада опције: %s"
 
-#: ../xfconf-query/main.c:266
+#: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
 msgstr "ИксФЦЕ развојна дружина. Сва права су задржана."
 
-#: ../xfconf-query/main.c:267
+#: ../xfconf-query/main.c:270
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Молим пријавите грешке на <%s>."
 
-#: ../xfconf-query/main.c:279
+#: ../xfconf-query/main.c:282
 msgid "Channels:"
 msgstr "Канали:"
 
-#: ../xfconf-query/main.c:295
+#: ../xfconf-query/main.c:298
 msgid "No property specified"
 msgstr "Није наведено својство"
 
-#: ../xfconf-query/main.c:301
+#: ../xfconf-query/main.c:304
 msgid "--create and --reset options can not be used together"
 msgstr "опције „--create“ и „--reset“ не могу бити коришћене заједно"
 
-#: ../xfconf-query/main.c:307
+#: ../xfconf-query/main.c:310
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
-"опције „--create“ и „--reset“ не могу бити коришћене заједно са „--list“"
+msgstr "опције „--create“ и „--reset“ не могу бити коришћене заједно са „--list“"
 
-#: ../xfconf-query/main.c:319
+#: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "Почни надгледање канала „%s“:"
 
-#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
-#: ../xfconf-query/main.c:527
+#: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
+#: ../xfconf-query/main.c:530
 msgid "Failed to set property"
 msgstr "Нисам успео да подесим својство"
 
-#: ../xfconf-query/main.c:357
+#: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
 msgstr "„--toggle“ ради само са логичким вредностима"
 
-#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:369 ../xfconf-query/main.c:388
 msgid "(unknown)"
 msgstr "(непознато)"
 
-#: ../xfconf-query/main.c:375
+#: ../xfconf-query/main.c:378
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr "Вредност је низ са %d ставком:"
 
-#: ../xfconf-query/main.c:399
+#: ../xfconf-query/main.c:402
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"Својство „%s“ не постоји на каналу „%s“. Ако ново својство треба да буде "
-"направљено, користите опцију „--create“"
+msgstr "Својство „%s“ не постоји на каналу „%s“. Ако ново својство треба да буде направљено, користите опцију „--create“"
 
-#: ../xfconf-query/main.c:407
+#: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
 msgstr "Када стварате ново својство, врста вредности мора бити наведена"
 
-#: ../xfconf-query/main.c:417
+#: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
 msgstr "Нисам успео да добавим постојећу врсту за вредност"
 
-#: ../xfconf-query/main.c:435
+#: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
 msgstr "Не могу да одредим врсту за вредност"
 
-#: ../xfconf-query/main.c:441
+#: ../xfconf-query/main.c:444
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Врста вредности мора бити наведена зарад промене низа у једну вредност"
 
-#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
+#: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "Не могу да претворим „%s“ у врсту „%s“"
 
-#: ../xfconf-query/main.c:483
+#: ../xfconf-query/main.c:486
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr "Има %d нове вредности, али само %d врсте могу бити одређене"
 
-#: ../xfconf-query/main.c:504
+#: ../xfconf-query/main.c:507
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr "Не могу да одредим врсту вредности на индексу %d"
 
-#: ../xfconf-query/main.c:554
+#: ../xfconf-query/main.c:557
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Канал „%s“ не садржи својства"
