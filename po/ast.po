@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-27 18:32+0200\n"
-"PO-Revision-Date: 2014-10-21 13:53+0000\n"
+"PO-Revision-Date: 2014-11-18 20:51+0000\n"
 "Last-Translator: Ḷḷumex03 <tornes@opmbx.org>\n"
 "Language-Team: Asturian (http://www.transifex.com/projects/p/xfconf/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "Nun pue desaniciase la canal \"%s\": %s"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "Triba incorreuta pa <propiedá>: \"%s\""
+msgstr "Triba non válida pa <propiedá>: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
@@ -89,7 +89,7 @@ msgstr "Nun pue alcontrase'l motor Xfconf de la triba \"%s\""
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Los nomes de propiedá tienen d'entamar col caráuter '/'"
+msgstr "Los nomes de propiedá tienen d'entamar col carauter '/'"
 
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
