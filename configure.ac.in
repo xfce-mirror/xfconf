@@ -9,11 +9,11 @@ dnl version info
 m4_define([libxfconf_verinfo], [2:0:0])
 m4_define([libxfconf_version_api], [0])
 m4_define([xfconf_version_major], [4])
-m4_define([xfconf_version_minor], [10])
+m4_define([xfconf_version_minor], [11])
 m4_define([xfconf_version_micro], [0])
 m4_define([xfconf_version_nano], [])
 m4_define([xfconf_version_build], [@REVISION@])
-m4_define([xfconf_version_tag], [git])
+m4_define([xfconf_version_tag], [])
 m4_define([xfconf_version], [xfconf_version_major().xfconf_version_minor().xfconf_version_micro()ifelse(xfconf_version_nano(), [], [], [.xfconf_version_nano()])ifelse(xfconf_version_tag(), [git], [xfconf_version_tag()-xfconf_version_build()], [xfconf_version_tag()])])
 
 m4_define([xfconf_default_debug], [ifelse(xfconf_version_tag(), [git], [yes], [minimum])])
@@ -45,9 +45,10 @@ dnl check for basic programs
 AC_PROG_CC
 AM_PROG_CC_C_O
 AC_PROG_INSTALL
-AC_PROG_INTLTOOL
 AC_PROG_MAKE_SET
 AC_PROG_LN_S
+
+IT_PROG_INTLTOOL([0.35.0])
 
 LT_PREREQ([2.2.6])
 LT_INIT([disable-static])
@@ -76,9 +77,9 @@ dnl Check for X11 installed
 dnl XDT_CHECK_LIBX11_REQUIRE
 
 dnl required
-XDT_CHECK_PACKAGE([GLIB], [gobject-2.0], [2.24.0])
-XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.24.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.9.0])
+XDT_CHECK_PACKAGE([GLIB], [gobject-2.0], [2.30.0])
+XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.30.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.10.0])
 XDT_CHECK_PACKAGE([DBUS], [dbus-1], [1.1.0])
 XDT_CHECK_PACKAGE([DBUS_GLIB], [dbus-glib-1], [0.84])
 

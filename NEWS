@@ -1,3 +1,16 @@
+4.11.0
+======
+- Allow :.,[]{} characters in property and channel names (bug #11021)
+- Fix make check when including perl bindings in the build (bug #9556)
+- Remove unneeded files.
+- Drop deprecated g_type_init() function.
+- Simplify checks.
+- Autotools updates.
+- Use new glib 2.32 mutex api.
+- Translation updates: ar, ast, bg, bn, ca, cs, da, de, el, en_AU, en_GB,
+  es, eu, fi, fr, gl, hr, hu, id, is, it, ja, kk, ko, lv, ms, nb, nl, oc,
+  pl, pt, pt_BR, ro, ru, sk, sr, sv, th, tr, ug, uk, ur, ur_PK, zh_CN, zh_TW,
+
 4.10.0
 ======
 - Don't emit property-changed on cancelled calls.
