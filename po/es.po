@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Pablo Roberto Francisco Lezaeta Reyes <prflr88@gmail.com>, 2014
+# Pablo Roberto Francisco Lezaeta Reyes <prflr88@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-27 18:32+0200\n"
-"PO-Revision-Date: 2014-12-26 05:47+0000\n"
+"PO-Revision-Date: 2015-02-19 17:03+0000\n"
 "Last-Translator: Pablo Roberto Francisco Lezaeta Reyes <prflr88@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/xfconf/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -87,12 +87,12 @@ msgstr "No se pudo encontrar el motor del servicio de configuración de Xfce de 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Los nombres de propiedades deben comenzar con el carácter '/'"
+msgstr "Los nombres de propiedades deben comenzar con el carácter «/»"
 
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr "El elemento raíz ('/') no es un nombre de propiedad válido"
+msgstr "El elemento raíz («/») no es un nombre de propiedad válido"
 
 #: ../xfconfd/xfconf-backend.c:127
 #, c-format
@@ -222,7 +222,7 @@ msgstr "Recursivo (usar con -r)"
 
 #: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
-msgstr "Forzar como vector incluso si sólo hay un elemento"
+msgstr "Forzar vector incluso si solamente hay un elemento"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
@@ -244,7 +244,7 @@ msgstr "- Utilidad de línea de órdenes del Servicio de configuración de Xfce"
 #: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr "Falló el análisis de la opción:% s"
+msgstr "Falló el análisis sintáctico de la opción: %s"
 
 #: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
@@ -315,7 +315,7 @@ msgstr "Imposible determinar el tipo del valor."
 
 #: ../xfconf-query/main.c:444
 msgid "A value type must be specified to change an array into a single value"
-msgstr "Se debe especificar un tipo de valor para transformar un vector en un único valor."
+msgstr "Se debe especificar un tipo de valor para convertir un vector en un único valor."
 
 #: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
@@ -325,7 +325,7 @@ msgstr "No se pudo convertir «%s» al tipo «%s»"
 #: ../xfconf-query/main.c:486
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "Hay %d nuevos valores, pero sólo se pudieron determinar %d tipos."
+msgstr "Hay %d nuevos valores, pero solamente se pudieron determinar %d tipos."
 
 #: ../xfconf-query/main.c:507
 #, c-format
