@@ -5,13 +5,14 @@
 # Translators:
 # Kiril Kirilov <cybercop_montana@abv.bg>, 2014
 # Kiril Kirilov <cybercop_montana@abv.bg>, 2012
+# Lyubomir Vasilev, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-27 18:32+0200\n"
-"PO-Revision-Date: 2014-07-28 11:02+0000\n"
-"Last-Translator: Kiril Kirilov <cybercop_montana@abv.bg>\n"
+"PO-Revision-Date: 2015-02-23 14:05+0000\n"
+"Last-Translator: Lyubomir Vasilev\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/xfconf/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,13 +28,13 @@ msgstr "Неуспешно изпълнение на ResetProperty чрез DBus
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Не може да бъде създадена конфигурацията на директория \"%s\""
+msgstr "Неуспешно създаване на конфигурационна директория „%s“"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Недостатъчно права за изпълнение на свойство \"%s\" на канал \"%s\""
+msgstr "Недостатъчно права за промяна на свойството „%s“ на канала „%s“"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -41,23 +42,23 @@ msgstr "Недостатъчно права за изпълнение на св�
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:344
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr "Свойство \"%s\" отсъства на канал \"%s\""
+msgstr "Свойството „%s“ не съществува за канала „%s“"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr "Не може да бъде премахнат канал \"%s\": %s"
+msgstr "Неуспешно премахване на канал „%s“: %s"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "Неправилен тип за <свойство>: \"%s\""
+msgstr "Неправилен тип за <свойство>: „%s“"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "Не може да се определи стойност на тип \"%s\" от \"%s\""
+msgstr "Неуспешен прочит на стойност от тип „%s“ от „%s“"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
@@ -67,33 +68,33 @@ msgstr "Типът на атрибут <стойност> не може да б�
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Неправилен тип <стойност>: \"%s\""
+msgstr "Неправилен тип за <стойност>: „%s“"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
-msgstr "Канал \"%s\" не существува"
+msgstr "Каналът „%s“ не существува"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "Не може да бъда записан канал \"%s\": %s"
+msgstr "Неуспешно записване на канал „%s“: %s"
 
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Не може да бъде открита backend Xfconf от типа \"%s\""
+msgstr "Неуспешно откриване на Xfconf услуга от тип „%s“"
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Името на свойството трябва да започва със символ '/'"
+msgstr "Името на свойството трябва да започва със символа „/“"
 
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr "Елемент root ('/')  не е валидно име на това свойство"
+msgstr "Главният елемент („/“)  не е валидно име за свойство"
 
 #: ../xfconfd/xfconf-backend.c:127
 #, c-format
@@ -101,17 +102,17 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
-msgstr "Имената на свойствата могат да включват само ASCII символи A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' и '>', а също и символ '/' като разделител"
+msgstr "Имената на свойствата могат да включват само ASCII символи A-Z, a-z, 0-9, „_“, „-“, „:“, „.“, „,“, „[„, “]“, „{„, “}“, „<“ и „>“, а също и символа „/“ като разделител"
 
 #: ../xfconfd/xfconf-backend.c:136
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Имената на свойствата не могат да съдържат два и повече последователни знака  '/'"
+msgstr "Имената на свойствата не могат да съдържат два и повече последователни символа „/“"
 
 #: ../xfconfd/xfconf-backend.c:147
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Имената на свойствата не могат да завършват със знака '/'"
+msgstr "Имената на свойствата не могат да завършват със символа „/“"
 
 #: ../xfconfd/xfconf-backend.c:164
 #, c-format
@@ -123,14 +124,14 @@ msgstr "Името на канала не може да остане празн�
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
-msgstr "Имената на каналите могат да включват само ASCII символи A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', и '-'"
+msgstr "Имената на каналите могат да включват само ASCII символи A-Z, a-z, 0-9, „{“, „}“, „|“, „]“, „[“, „:“, „,“, „.“, „_“, и „-“"
 
 #: ../xfconfd/xfconf-backend.c:401
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr "Името на свойството може да бъде само празно или \"/\" ако е посочено рекурсивно рестартиране"
+msgstr "Името на свойството може да бъде празно или „/“, само ако е зададено рекурсивно анулиране"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -275,7 +276,7 @@ msgstr "параметрите --създаване и --рестартиран�
 #: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "Стартиране наблюдението на канал \"%s\":"
+msgstr "Стартиране на наблюдението на канал „%s“:"
 
 #: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
 #: ../xfconf-query/main.c:530
@@ -300,7 +301,7 @@ msgstr "Стойността представлява масив с %d елем�
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr "Свойство \"%s\" не съществува на канал\"%s\".Ако трябва да бъде създадено ново свойство, тогава използвайте --създаване на опция"
+msgstr "Свойството „%s“ не съществува за канала „%s“. Ако трябва да бъде създадено ново свойство, използвайте аргумента --create"
 
 #: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
@@ -321,7 +322,7 @@ msgstr "За преобразуване стойността на масива, 
 #: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "Не може да бъде преобразувано \"%s\" в тип \"%s\""
+msgstr "Неуспешно преобразуване на „%s“ в тип „%s“"
 
 #: ../xfconf-query/main.c:486
 #, c-format
@@ -336,4 +337,4 @@ msgstr "Не може да бъде определен типът стойнос
 #: ../xfconf-query/main.c:557
 #, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "Канал \"%s\" не съдържа свойства"
+msgstr "Каналът „%s“ не съдържа свойства"
