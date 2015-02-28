@@ -1,4 +1,4 @@
-4.11.0
+4.12.0
 ======
 - Allow :.,[]{} characters in property and channel names (bug #11021)
 - Fix make check when including perl bindings in the build (bug #9556)
