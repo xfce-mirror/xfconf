@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 23:18+0200\n"
-"PO-Revision-Date: 2013-11-19 14:49+0000\n"
-"Last-Translator: Nick <nick@xfce.org>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/xfce/language/sv/)\n"
+"PO-Revision-Date: 2015-07-19 17:34+0000\n"
+"Last-Translator: Påvel Nicklasson <pavelnicklasson@bahnhof.se>\n"
+"Language-Team: Swedish (http://www.transifex.com/p/xfconf/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,7 +26,7 @@ msgstr "Misslyckades med att göra ResetProperty DBus-anrop"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Kunde inte skapa konfigurationskatalogen \"%s\""
+msgstr "Det gick inte att skapa konfigurationskatalogen \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
@@ -45,7 +45,7 @@ msgstr "Egenskapen \"%s\" finns inte på kanalen \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr "Kunde inte ta bort kanalen \"%s\": %s"
+msgstr "Det gick inte att ta bort kanal \"%s\": %s"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
@@ -56,7 +56,7 @@ msgstr "Ogiltig typ för <property>: \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "Kunde inte tolka värdet av typet \"%s\" från \"%s\""
+msgstr "Det gick inte att tolka värdet av typ \"%s\" från \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
@@ -77,12 +77,12 @@ msgstr "Kanalen \"%s\" finns inte"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "Kunde inte skriva kanalen \"%s\": %s"
+msgstr "Det gick inte att skriva kanal \"%s\": %s"
 
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Kunde inte hitta Xfconf-bakände av typen \"%s\""
+msgstr "Det gick inte att hitta Xfconf-bakände av typ \"%s\""
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
@@ -310,7 +310,7 @@ msgstr "Misslyckades med att få befintlig typ för värdet"
 
 #: ../xfconf-query/main.c:435
 msgid "Unable to determine the type of the value"
-msgstr "Kunde inte fastställa typen av värdet"
+msgstr "Det gick inte att fastställa värdets typ"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
@@ -319,17 +319,17 @@ msgstr "Du måste ange en värdestyp för att ändra en array till ett enda vär
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "Kunde inte konvertera \"%s\" till typen \"%s\""
+msgstr "Det gick inte att konvertera \"%s\" till typen \"%s\""
 
 #: ../xfconf-query/main.c:483
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "Det finns %d nya värden, men kunde %d typer kunde fastställas"
+msgstr "Det finns %d nya värden, men bara %d typer kunde bestämmas"
 
 #: ../xfconf-query/main.c:504
 #, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "Kunde inte fastställa typen för värdet på index %d"
+msgstr "Det gick inte att fastställa typen på värdet vid index %d"
 
 #: ../xfconf-query/main.c:554
 #, c-format
