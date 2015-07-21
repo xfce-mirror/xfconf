@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-27 18:32+0200\n"
-"PO-Revision-Date: 2015-03-12 08:37+0000\n"
+"PO-Revision-Date: 2015-07-21 14:31+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/projects/p/xfconf/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -148,11 +148,11 @@ msgstr "Paleidus vykdyti fone; naudinga tik testavimui"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
-msgstr "Xfce konfigūracijos demonas"
+msgstr "Xfce konfigūracijos tarnyba"
 
 #: ../xfconfd/main.c:168
 msgid "Xfce configuration daemon"
-msgstr "Xfce konfigūracijos demonas"
+msgstr "Xfce konfigūracijos tarnyba"
 
 #: ../xfconfd/main.c:170
 msgid "Report bugs to http://bugs.xfce.org/\n"
@@ -166,7 +166,7 @@ msgstr "Klaida apdorojant parinktis: %s\n"
 #: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "Another Xfconf daemon is already running"
-msgstr "Kitas Xfconf demonas jau veikia"
+msgstr "Kita Xfconf tarnyba jau veikia"
 
 #: ../xfconfd/xfconf-daemon.c:517
 #, c-format
