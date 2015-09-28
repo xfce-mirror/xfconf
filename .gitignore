@@ -112,3 +112,4 @@ xfconf-query/xfconf-query
 xfconfd/xfconfd
 xfconfd/xfconf-dbus-server.h
 xfconfd/*.Xfconf.service
+xfconfd/xfconfd.service

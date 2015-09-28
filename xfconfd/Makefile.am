@@ -60,17 +60,27 @@ servicedir = $(datadir)/dbus-1/services
 service_in_files = org.xfce.Xfconf.service.in
 service_DATA = $(service_in_files:org.xfce.%.service.in=@XFCONF_SERVICE_NAME_PREFIX@.%.service)
 
+systemd_userdir = $(prefix)/lib/systemd/user
+systemd_user_in_files = xfconfd.service.in
+systemd_user_DATA = $(systemd_user_in_files:.service.in=.service)
+
 @XFCONF_SERVICE_NAME_PREFIX@.%.service: org.xfce.%.service.in
 	$(AM_V_GEN) $(SED) -e "s,\@HELPERDIR\@,$(HELPER_PATH_PREFIX),g" \
 	                   -e "s,\@XFCONF_SERVICE_NAME_PREFIX\@,$(XFCONF_SERVICE_NAME_PREFIX),g" < $< > $@
 
+xfconfd.service: xfconfd.service.in
+	$(AM_V_GEN) $(SED) -e "s,\@HELPERDIR\@,$(HELPER_PATH_PREFIX),g" \
+	                   -e "s,\@XFCONF_SERVICE_NAME_PREFIX\@,$(XFCONF_SERVICE_NAME_PREFIX),g" < $< > $@
+
 CLEANFILES = \
-	$(service_DATA)
+	$(service_DATA) \
+	$(systemd_user_DATA)
 
 EXTRA_DIST = \
 	xfconf-backend-perchannel-xml.c \
 	xfconf-backend-perchannel-xml.h \
-	$(service_in_files)
+	$(service_in_files) \
+	$(systemd_user_in_files)
 
 # required for gtk-doc
 dist-hook: all
