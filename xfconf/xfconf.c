@@ -26,6 +26,8 @@
 #include <string.h>
 #endif
 
+#include <glib.h>
+#include <gio/gio.h>
 #include <glib-object.h>
 
 #include <dbus/dbus-glib.h>
@@ -38,6 +40,9 @@
 static guint xfconf_refcnt = 0;
 static DBusGConnection *dbus_conn = NULL;
 static DBusGProxy *dbus_proxy = NULL;
+
+static GDBusConnection *gdbus = NULL;
+static GDBusProxy *gproxy = NULL;
 static GHashTable *named_structs = NULL;
 
 
@@ -63,6 +68,30 @@ _xfconf_get_dbus_g_proxy(void)
     }
 
     return dbus_proxy;
+}
+
+
+GDBusConnection *
+_xfconf_get_gdbus_connection(void)
+{
+    if(!xfconf_refcnt) {
+        g_critical("xfconf_init() must be called before attempting to use libxfconf!");
+        return NULL;
+    }
+
+    return gdbus;
+}
+
+
+GDBusProxy *
+_xfconf_get_gdbus_proxy(void)
+{
+    if(!xfconf_refcnt) {
+        g_critical("xfconf_init() must be called before attempting to use libxfconf!");
+        return NULL;
+    }
+
+    return gproxy;
 }
 
 XfconfNamedStruct *
@@ -106,7 +135,6 @@ xfconf_static_dbus_init(void)
 }
 
 
-
 /* public api */
 
 /**
@@ -136,7 +164,20 @@ xfconf_init(GError **error)
     dbus_conn = dbus_g_bus_get(DBUS_BUS_SESSION, error);
     if(!dbus_conn)
         return FALSE;
+    
+    gdbus = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, error);
+    if (!gdbus)
+        return FALSE;
 
+    gproxy = g_dbus_proxy_new_sync(gdbus,
+                                   G_DBUS_PROXY_FLAGS_NONE,
+                                   NULL,
+                                   "org.xfce.Xfconf",
+                                   "/org/xfce/Xfconf",
+                                   "org.xfce.Xfconf",
+                                   NULL,
+                                   NULL);
+    
     dbus_proxy = dbus_g_proxy_new_for_name(dbus_conn,
                                            "org.xfce.Xfconf",
                                            "/org/xfce/Xfconf",

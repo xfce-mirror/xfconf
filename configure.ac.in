@@ -73,11 +73,22 @@ AC_SUBST(LIBXFCONF_VERINFO)
 dnl Check for i18n support
 XDT_I18N([@LINGUAS@])
 
+dnl Check for gdbus-codegen 
+AC_ARG_VAR([GDBUS_CODEGEN], [D-Bus code and documentation generator from XML D-Bus interface definitions])
+AC_PATH_PROG([GDBUS_CODEGEN], [gdbus-codegen], [no])
+if test x"$GDBUS_CODEGEN" = x"no"; then
+  AC_MSG_ERROR([could not find gdbus-codegen in \$PATH. You can run
+  ./configure GDBUS_CODEGEN=/path/to/gdbus-codegen to define 
+  a custom location for it.])
+fi
+
 dnl Check for X11 installed
 dnl XDT_CHECK_LIBX11_REQUIRE
 
 dnl required
 XDT_CHECK_PACKAGE([GLIB], [gobject-2.0], [2.30.0])
+PKG_CHECK_MODULES([GIO], [gio-2.0 >= 2.26.0])
+PKG_CHECK_MODULES([GIO_UNIX], [gio-unix-2.0 >= 2.26.0])
 XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.30.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.10.0])
 XDT_CHECK_PACKAGE([DBUS], [dbus-1], [1.1.0])

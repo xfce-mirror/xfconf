@@ -259,15 +259,11 @@ static void xfconf_cache_get_g_property(GObject *object,
                                         GParamSpec *pspec);
 static void xfconf_cache_finalize(GObject *obj);
 
-static void xfconf_cache_property_changed(DBusGProxy *proxy,
-                                          const gchar *cache_name,
-                                          const gchar *property,
-                                          const GValue *value,
-                                          gpointer user_data);
-static void xfconf_cache_property_removed(DBusGProxy *proxy,
-                                          const gchar *cache_name,
-                                          const gchar *property,
-                                          gpointer user_data);
+static void xfconf_cache_proxy_signal_received_cb(GDBusProxy *proxy,
+                                                  gchar      *sender_name,
+                                                  gchar      *signal_name,
+                                                  GVariant   *parameters,
+                                                  gpointer    user_data);
 
 
 static guint signals[N_SIGS] = { 0, };
@@ -338,15 +334,11 @@ xfconf_cache_class_init(XfconfCacheClass *klass)
 static void
 xfconf_cache_init(XfconfCache *cache)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GDBusProxy *gproxy = _xfconf_get_gdbus_proxy();
 
-    dbus_g_proxy_connect_signal(proxy, "PropertyChanged",
-                                G_CALLBACK(xfconf_cache_property_changed),
-                                cache, NULL);
-    dbus_g_proxy_connect_signal(proxy, "PropertyRemoved",
-                                G_CALLBACK(xfconf_cache_property_removed),
-                                cache, NULL);
-
+    g_signal_connect(gproxy, "g-signal", 
+                     G_CALLBACK(xfconf_cache_proxy_signal_received_cb), cache);
+     
     cache->properties = g_tree_new_full((GCompareDataFunc)strcmp, NULL,
                                         (GDestroyNotify)g_free,
                                         (GDestroyNotify)xfconf_cache_item_free);
@@ -423,16 +415,7 @@ static void
 xfconf_cache_finalize(GObject *obj)
 {
     XfconfCache *cache = XFCONF_CACHE(obj);
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
     GHashTable *pending_calls;
-
-    dbus_g_proxy_disconnect_signal(proxy, "PropertyChanged",
-                                   G_CALLBACK(xfconf_cache_property_changed),
-                                   cache);
-
-    dbus_g_proxy_disconnect_signal(proxy, "PropertyRemoved",
-                                   G_CALLBACK(xfconf_cache_property_removed),
-                                   cache);
 
     /* finish pending calls (without emitting signals, therefore we set
      * the hash table in the cache to %NULL) */
@@ -455,60 +438,93 @@ xfconf_cache_finalize(GObject *obj)
 }
 
 
-
 static void
-xfconf_cache_property_changed(DBusGProxy *proxy,
-                              const gchar *channel_name,
-                              const gchar *property,
-                              const GValue *value,
-                              gpointer user_data)
+xfconf_cache_handle_property_changed (XfconfCache *cache, GVariant *parameters)
 {
-    XfconfCache *cache = XFCONF_CACHE(user_data);
     XfconfCacheItem *item;
+    const gchar *channel_name, *property;
+    GVariant *prop_variant;
+    GValue prop_value = G_VALUE_INIT;
     gboolean changed = TRUE;
+    
+    if (g_variant_is_of_type(parameters, G_VARIANT_TYPE ("(ssv)"))) {
+        g_variant_get(parameters, "(ssv)", &channel_name, &property, &prop_variant);
+        
+        if(strcmp(channel_name, cache->channel_name)) {
+            g_variant_unref(prop_variant);
+            return;
+        }
+        
+        g_dbus_gvariant_to_gvalue (prop_variant, &prop_value);
+        
+        /* if a call was cancelled, we still receive a property-changed from
+         * that value, in that case, abort the emission of the signal. we can
+         * detect this because the new reply is not processed yet and thus
+         * there is still an old_prop in the hash table */
+        if(g_hash_table_lookup(cache->old_properties, property))
+            return;
 
-    if(strcmp(channel_name, cache->channel_name))
-        return;
-
-    /* if a call was cancelled, we still receive a property-changed from
-     * that value, in that case, abort the emission of the signal. we can
-     * detect this because the new reply is not processed yet and thus
-     * there is still an old_prop in the hash table */
-    if(g_hash_table_lookup(cache->old_properties, property))
-        return;
-
-    item = g_tree_lookup(cache->properties, property);
-    if(item)
-        changed = xfconf_cache_item_update(item, value);
-    else {
-        item = xfconf_cache_item_new(value, FALSE);
-        g_tree_insert(cache->properties, g_strdup(property), item);
+        item = g_tree_lookup(cache->properties, property);
+        if(item)
+            changed = xfconf_cache_item_update(item, &prop_value);
+        else {
+            item = xfconf_cache_item_new(&prop_value, FALSE);
+            g_tree_insert(cache->properties, g_strdup(property), item);
+        }
+        
+        if(changed) {
+            g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED], 0,
+                          cache->channel_name, property, &prop_value);
+        }
+        g_value_unset (&prop_value);
+        g_variant_unref(prop_variant);
     }
-
-    if(changed) {
-        g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED], 0,
-                      cache->channel_name, property, value);
+    else {
+        g_warning("property changed handler expects (ssv) type, but %s received",
+                  g_variant_get_type_string(parameters));
     }
 }
+
 
 static void
-xfconf_cache_property_removed(DBusGProxy *proxy,
-                              const gchar *channel_name,
-                              const gchar *property,
-                              gpointer user_data)
+xfconf_cache_handle_property_removed (XfconfCache *cache, GVariant *parameters)
 {
-    XfconfCache *cache = XFCONF_CACHE(user_data);
-    GValue value = { 0, };
-
-    if(strcmp(channel_name, cache->channel_name))
-        return;
-
-    g_tree_remove(cache->properties, property);
-
-    g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED], 0,
-                  cache->channel_name, property, &value);
+    const gchar *channel_name, *property;
+    GValue value = G_VALUE_INIT;
+    
+    if (g_variant_is_of_type(parameters, G_VARIANT_TYPE ("(ss)"))) {
+        g_variant_get(parameters, "(&s&s)", &channel_name, &property);
+        
+        if(strcmp(channel_name, cache->channel_name))
+            return;
+        
+        g_tree_remove(cache->properties, property);
+        
+        g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED], 0,
+                      cache->channel_name, property, &value);
+        
+    }
+    else {
+        g_warning("property removed handler expects (ss) type, but %s received",
+                  g_variant_get_type_string(parameters));
+    }
 }
 
+
+static void 
+xfconf_cache_proxy_signal_received_cb(GDBusProxy *proxy,
+                                      gchar      *sender_name,
+                                      gchar      *signal_name,
+                                      GVariant   *parameters,
+                                      gpointer    user_data)
+{
+    if (g_strcmp0(signal_name, "PropertyChanged") == 0)
+        xfconf_cache_handle_property_changed (XFCONF_CACHE(user_data), parameters);
+    else if (g_strcmp0(signal_name, "PropertyRemoved") == 0)
+        xfconf_cache_handle_property_removed(XFCONF_CACHE(user_data), parameters);
+    else
+        g_warning ("Unhandled signal name :%s\n", signal_name);
+}
 
 
 static void

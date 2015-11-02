@@ -22,6 +22,7 @@
 #define __XFCONF_PRIVATE_H__
 
 #include <dbus/dbus-glib.h>
+#include <gio/gio.h>
 
 #ifdef XFCONF_ENABLE_CHECKS
 
@@ -51,6 +52,10 @@ typedef struct
 
 DBusGConnection *_xfconf_get_dbus_g_connection(void);
 DBusGProxy *_xfconf_get_dbus_g_proxy(void);
+
+
+GDBusConnection *_xfconf_get_gdbus_connection(void);
+GDBusProxy *_xfconf_get_gdbus_proxy(void);
 
 XfconfNamedStruct *_xfconf_named_struct_lookup(const gchar *struct_name);
 
