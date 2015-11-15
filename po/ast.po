@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-27 18:32+0200\n"
-"PO-Revision-Date: 2015-08-10 19:00+0000\n"
+"PO-Revision-Date: 2015-11-14 23:58+0000\n"
 "Last-Translator: enolp <enolp@softastur.org>\n"
 "Language-Team: Asturian (http://www.transifex.com/xfce/xfconf/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -29,13 +29,13 @@ msgstr "Fallu al facer la llamada DBus ResetProperty"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Nun pue crease'l direutoriu de configuración \"%s\""
+msgstr "Nun pue crease'l direutoriu de configuración «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Permisu refugáu al modificar la propiedá \"%s\" na canal \"%s\""
+msgstr "Permisu refugáu al modificar la propiedá «%s» na canal «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -43,23 +43,23 @@ msgstr "Permisu refugáu al modificar la propiedá \"%s\" na canal \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:344
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr "La propiedá \"%s\" nun esiste na canal \"%s\""
+msgstr "La propiedá «%s» nun esiste na canal «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr "Nun pue desaniciase la canal \"%s\": %s"
+msgstr "Nun pue desaniciase la canal «%s»: %s"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "Triba non válida pa <propiedá>: \"%s\""
+msgstr "Triba non válida pa <propiedá>: «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "Nun pue procesase'l valor de la triba \"%s\" de \"%s\""
+msgstr "Nun pue procesase'l valor de la triba «%s» de «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
@@ -69,23 +69,23 @@ msgstr "La triba d'atributu de <valor> nun pue ser un vector"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Triba non válida pa <valor>: \"%s\""
+msgstr "Triba non válida pa <valor>: «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
-msgstr "La canal \"%s\" nun esiste"
+msgstr "La canal «%s» nun esiste"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "Nun pue escribise la canal \"%s\": %s"
+msgstr "Nun pue escribise la canal «%s»: %s"
 
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Nun pue alcontrase'l motor Xfconf de la triba \"%s\""
+msgstr "Nun pue alcontrase'l motor Xfconf de la triba «%s»"
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
@@ -132,7 +132,7 @@ msgstr "Los nomes de canal namái puen incluyir los carauteres ASCII A-Z, a-z, 0
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr "El nome de la propiedá namái pue tar baleru o \"/\" si s'especificó un reaniciu recursivu"
+msgstr "El nome de la propiedá namái pue tar baleru o «/» si s'especificó un reaniciu recursivu"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -277,7 +277,7 @@ msgstr "Les opciones --create y --reset nun puen usase xuntes con --list"
 #: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "Entamar monitorizando la canal \"%s\":"
+msgstr "Entamar monitorizando la canal «%s»:"
 
 #: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
 #: ../xfconf-query/main.c:530
@@ -302,7 +302,7 @@ msgstr "El valor ye una matriz con %d oxetos:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr "La propiedá \"%s\" nun esiste na canal \"%s\". Si se debería crear una propiedá nueva, usa la opción --create"
+msgstr "La propiedá «%s» nun esiste na canal «%s». Si se debería crease una propiedá nueva, usa la opción --create"
 
 #: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
@@ -323,7 +323,7 @@ msgstr "Tien d'especificase un valor pa camudar una matriz a un valor solu"
 #: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "Nun pue convertise \"%s\" a la triba \"%s\""
+msgstr "Nun pue convertise «%s» a la triba «%s»"
 
 #: ../xfconf-query/main.c:486
 #, c-format
@@ -338,4 +338,4 @@ msgstr "Nun pue determinase la triba del valor nel índiz %d"
 #: ../xfconf-query/main.c:557
 #, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "La Canal \"%s\" nun contien propiedaes"
+msgstr "La canal «%s» nun contién propiedaes"
