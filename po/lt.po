@@ -1,25 +1,24 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Algimantas Margevičius <margevicius.algimantas@gmail.com>, 2012.
-#
+# 
+# Translators:
+# Algimantas Margevičius <margevicius.algimantas@gmail.com>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-10 06:45+0000\n"
-"PO-Revision-Date: 2012-01-10 10:04+0200\n"
-"Last-Translator: Algimantas Margevičius <margevicius.algimantas@gmail.com>\n"
-"Language-Team: Lietuvių <>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-07-02 23:18+0200\n"
+"PO-Revision-Date: 2016-01-13 01:09+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"Language-Team: Lithuanian (http://www.transifex.com/xfce/xfconf/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2)\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lt\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Nepavyko įvykdyti ResetProperty DBus kvietimo"
@@ -100,9 +99,7 @@ msgstr "Šakninis elementas ('/') nėra tinkamas savybės vardas"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Savybių vardai gali būti sudaryti tik iš ASCII simbolių A-Z, a-z, 0-9, '_', "
-"'-', '<' ir '>', taipogi '/' kaip skirtukas"
+msgstr "Savybių vardai gali būti sudaryti tik iš ASCII simbolių A-Z, a-z, 0-9, '_', '-', '<' ir '>', taipogi '/' kaip skirtukas"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -124,17 +121,14 @@ msgstr "Savybių vardai negali būti būti tušti"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"Kanalo vardai gali turėti tik ASCII simbolius A-Z, a-z, 0-9, '_', ir '-'"
+msgstr "Kanalo vardai gali turėti tik ASCII simbolius A-Z, a-z, 0-9, '_', ir '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"Savybės vardas tuščias arba „/“ gali būti tik tada jei nustatytas rekursyvus "
-"atstatymas"
+msgstr "Savybės vardas tuščias arba „/“ gali būti tik tada jei nustatytas rekursyvus atstatymas"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -142,11 +136,9 @@ msgstr "Parodo xfconfd versiją."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Konfigūracijos posistemės.  Pirma posistemė atverta skaitymui/rašymui; kitos "
-"tik skaitymui."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Konfigūracijos posistemės.  Pirma posistemė atverta skaitymui/rašymui; kitos tik skaitymui."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -306,9 +298,7 @@ msgstr "Reikšmė yra masyvas su %d elementais:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"Savybė „%s“ neegzistuoja kanale „%s“. Jei reikia sukurti naują savybę, "
-"naudokite --create parinktį"
+msgstr "Savybė „%s“ neegzistuoja kanale „%s“. Jei reikia sukurti naują savybę, naudokite --create parinktį"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
