@@ -1,82 +1,84 @@
-# translation of xfconf to Hebrew
-# Hebrew translations for xfconf package.
-# Copyright (C) 2002-2010 The Xfce development team.
-# This file is distributed under the same license as the xfconf package.
-# Hezy Amiel <open@hezyamiel.com>, 2010.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Elishai Eliyahu <e1907@mm.st>, 2016
+# Hezy Amiel <open@hezyamiel.com>, 2010
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Hezy Amiel <open@hezyamiel.com>\n"
-"Language-Team: Hebrew <xfce-i18n@xfce.org>\n"
-"Language: he\n"
+"POT-Creation-Date: 2014-07-27 18:32+0200\n"
+"PO-Revision-Date: 2016-01-23 17:31+0000\n"
+"Last-Translator: Elishai Eliyahu <e1907@mm.st>\n"
+"Language-Team: Hebrew (http://www.transifex.com/xfce/xfconf/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Hebrew\n"
+"Language: he\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:897
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr ""
+msgstr "נכשל לבצע קריאת DBus של תכונת אתחול"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr ""
+msgstr "לא ניתן ליצור תיקיית הגדרות \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr ""
+msgstr "רשות נדחתה בעת שינוי תכונה \"%s\" בערוץ \"%s\" "
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:344
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr ""
+msgstr "המאפיין \"%s\" לא קיים בערוץ \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr ""
+msgstr "לא יכול להסיר ערוץ \"%s\": %s"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr ""
+msgstr "סוג לא חוקי עבור <property>: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr ""
+msgstr "לא יכול לנתח ערך של סוג \"%s\" מ- \"%s\" "
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr ""
+msgstr "מאפיין הסוג של <value> לא יכול להיות אוסף"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr ""
+msgstr "סוג לא חוקי עבור <value>: \"%s\" "
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
-msgstr ""
+msgstr "ערוץ \"%s\" לא קיים"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr ""
+msgstr "\"%s\": %s לא יכול לכתוב ערוץ"
 
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
@@ -93,36 +95,37 @@ msgstr ""
 msgid "The root element ('/') is not a valid property name"
 msgstr ""
 
-#: ../xfconfd/xfconf-backend.c:126
+#: ../xfconfd/xfconf-backend.c:127
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
+"'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
+"separator"
 msgstr ""
 
-#: ../xfconfd/xfconf-backend.c:135
+#: ../xfconfd/xfconf-backend.c:136
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr ""
 
-#: ../xfconfd/xfconf-backend.c:146
+#: ../xfconfd/xfconf-backend.c:147
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr ""
 
-#: ../xfconfd/xfconf-backend.c:163
+#: ../xfconfd/xfconf-backend.c:164
 #, c-format
 msgid "Channel name cannot be an empty string"
 msgstr ""
 
-#: ../xfconfd/xfconf-backend.c:176
+#: ../xfconfd/xfconf-backend.c:179
 #, c-format
 msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
+" '|', ']', '[', ':', ',', '.', '_', and '-'"
 msgstr ""
 
-#: ../xfconfd/xfconf-backend.c:398
+#: ../xfconfd/xfconf-backend.c:401
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
@@ -131,31 +134,31 @@ msgstr ""
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
-msgstr ""
+msgstr "מדפיס את גרסת xfconfd."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "אלמנטי הגדרה לשימוש. האלמנט המוגדר הראשון הוא נפתח לקריאה/כתיבה, האחרים, קריאה בלבד."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "פנה לרקע לאחר התחלה, שימושי רק למטרות בדיקה"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
-msgstr ""
+msgstr "דמון הגדרת Xfce "
 
-#: ../xfconfd/main.c:165
+#: ../xfconfd/main.c:168
 msgid "Xfce configuration daemon"
-msgstr ""
-
-#: ../xfconfd/main.c:167
-msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr ""
+msgstr "דמון הגדרת Xfce "
 
 #: ../xfconfd/main.c:170
+msgid "Report bugs to http://bugs.xfce.org/\n"
+msgstr "דווח באגים ל- http://bugs.xfce.org/ \n"
+
+#: ../xfconfd/main.c:173
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr ""
@@ -163,174 +166,174 @@ msgstr ""
 #: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "Another Xfconf daemon is already running"
-msgstr ""
+msgstr "דמון Xfconf נוסף כבר פועל"
 
 #: ../xfconfd/xfconf-daemon.c:517
 #, c-format
 msgid "No backends could be started"
-msgstr ""
+msgstr "אף אלמנט לא ניתן להפעלה"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
-msgstr ""
+msgstr "קבע"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
-msgstr ""
+msgstr "איפוס"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
-msgstr ""
+msgstr "מידע גרסה"
 
 #: ../xfconf-query/main.c:180
 msgid "The channel to query/modify"
-msgstr ""
+msgstr "הערוץ לשאול/לשנות"
 
 #: ../xfconf-query/main.c:184
 msgid "The property to query/modify"
-msgstr ""
+msgstr "התכונה לשאול/לשנות"
 
 #: ../xfconf-query/main.c:188
 msgid "The new value to set for the property"
-msgstr ""
+msgstr "הערך החדש לקבוע עבור התכונה"
 
 #: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
-msgstr ""
+msgstr "הצג תכונות (או ערוצים אם c- לא מוגדר)"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
-msgstr ""
+msgstr "פלט מרבה מילים"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
-msgstr ""
+msgstr "צור תכונה חדשה אם היא לא קיימת כבר"
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
-msgstr ""
+msgstr "ציין את סוג ערך התכונה"
 
 #: ../xfconf-query/main.c:208
 msgid "Reset property"
-msgstr ""
+msgstr "אתחל תכונה"
 
 #: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
-msgstr ""
+msgstr "רקורסיבי (השתמש עם r-) "
 
 #: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
-msgstr ""
+msgstr "אלץ אוסף גם אם רק אלמנט אחד"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
-msgstr ""
+msgstr "הפוך תכונה בוליאנית קיימת"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
 msgstr ""
 
-#: ../xfconf-query/main.c:246
+#: ../xfconf-query/main.c:249
 #, c-format
 msgid "Failed to init libxfconf: %s"
 msgstr ""
 
-#: ../xfconf-query/main.c:251
+#: ../xfconf-query/main.c:254
 msgid "- Xfconf commandline utility"
 msgstr ""
 
-#: ../xfconf-query/main.c:256
+#: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr ""
 
-#: ../xfconf-query/main.c:266
+#: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
-msgstr ""
+msgstr "קבוצת הפיתוח של Xfce. כל הזכויות שמורות."
 
-#: ../xfconf-query/main.c:267
+#: ../xfconf-query/main.c:270
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr ""
+msgstr "אנא דווח באגים ל <%s>."
 
-#: ../xfconf-query/main.c:279
+#: ../xfconf-query/main.c:282
 msgid "Channels:"
-msgstr ""
+msgstr "ערוצים:"
 
-#: ../xfconf-query/main.c:295
+#: ../xfconf-query/main.c:298
 msgid "No property specified"
-msgstr ""
+msgstr "אף תכונה לא צוינה"
 
-#: ../xfconf-query/main.c:301
+#: ../xfconf-query/main.c:304
 msgid "--create and --reset options can not be used together"
-msgstr ""
+msgstr "האפשרויות create-- ו- reset-- לא יכולות להיות בשימוש יחד "
 
-#: ../xfconf-query/main.c:307
+#: ../xfconf-query/main.c:310
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
+msgstr "האפשרויות create-- ו- reset-- לא יכולות להיות בשימוש יחד עם list-- "
 
-#: ../xfconf-query/main.c:319
+#: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr ""
 
-#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
-#: ../xfconf-query/main.c:527
+#: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
+#: ../xfconf-query/main.c:530
 msgid "Failed to set property"
-msgstr ""
+msgstr "נכשל בהגדרת המאפיין"
 
-#: ../xfconf-query/main.c:357
+#: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
 msgstr ""
 
-#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:369 ../xfconf-query/main.c:388
 msgid "(unknown)"
 msgstr "(לא ידוע)"
 
-#: ../xfconf-query/main.c:375
+#: ../xfconf-query/main.c:378
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr ""
 
-#: ../xfconf-query/main.c:399
+#: ../xfconf-query/main.c:402
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr ""
 
-#: ../xfconf-query/main.c:407
+#: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
 msgstr ""
 
-#: ../xfconf-query/main.c:417
+#: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
 msgstr ""
 
-#: ../xfconf-query/main.c:435
+#: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
 msgstr ""
 
-#: ../xfconf-query/main.c:441
+#: ../xfconf-query/main.c:444
 msgid "A value type must be specified to change an array into a single value"
 msgstr ""
 
-#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
+#: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr ""
 
-#: ../xfconf-query/main.c:483
+#: ../xfconf-query/main.c:486
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr ""
 
-#: ../xfconf-query/main.c:504
+#: ../xfconf-query/main.c:507
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr ""
 
-#: ../xfconf-query/main.c:554
+#: ../xfconf-query/main.c:557
 #, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr ""
+msgstr "הערוץ \"%s\" לא מכיל מאפיינים"
