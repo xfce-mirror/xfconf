@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-27 18:32+0200\n"
-"PO-Revision-Date: 2016-01-23 17:31+0000\n"
+"PO-Revision-Date: 2016-01-23 21:39+0000\n"
 "Last-Translator: Elishai Eliyahu <e1907@mm.st>\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfconf/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -83,17 +83,17 @@ msgstr "\"%s\": %s לא יכול לכתוב ערוץ"
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr ""
+msgstr "\"%s\" מסוג Xfconf backend לא יכול למצוא"
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr ""
+msgstr "שמות מאפיינים חייבים להתחיל עם תו '/' "
 
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr ""
+msgstr "אלמנט השורש ('/') הוא לא שם מאפיין חוקי"
 
 #: ../xfconfd/xfconf-backend.c:127
 #, c-format
@@ -101,36 +101,36 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
-msgstr ""
+msgstr "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a separator"
 
 #: ../xfconfd/xfconf-backend.c:136
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
+msgstr "שמות מאפיינים לא יכולים להיות בעלי שניים או יותר תווים רציפים '/' "
 
 #: ../xfconfd/xfconf-backend.c:147
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr ""
+msgstr "שמות מאפיינים לא יכולים להסתיים עם תו '/' "
 
 #: ../xfconfd/xfconf-backend.c:164
 #, c-format
 msgid "Channel name cannot be an empty string"
-msgstr ""
+msgstr "שם ערוץ לא יכול להיות מחרוזת ריקה"
 
 #: ../xfconfd/xfconf-backend.c:179
 #, c-format
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
-msgstr ""
+msgstr "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', and '-'"
 
 #: ../xfconfd/xfconf-backend.c:401
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
+msgstr "שם המאפיין יכול להיות רק ריק או \"/\" אם צוין אתחול רקורסיבי"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -161,7 +161,7 @@ msgstr "דווח באגים ל- http://bugs.xfce.org/ \n"
 #: ../xfconfd/main.c:173
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr ""
+msgstr "%s :שגיאה בניתוח אפשרויות\n"
 
 #: ../xfconfd/xfconf-daemon.c:482
 #, c-format
@@ -231,21 +231,21 @@ msgstr "הפוך תכונה בוליאנית קיימת"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
-msgstr ""
+msgstr "עקוב אחר ערוץ לשינויים במאפיינים"
 
 #: ../xfconf-query/main.c:249
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr ""
+msgstr "init libxfconf: %s -נכשל ל"
 
 #: ../xfconf-query/main.c:254
 msgid "- Xfconf commandline utility"
-msgstr ""
+msgstr "עזר שורת פקודה Xfconf- "
 
 #: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr ""
+msgstr "%s :ניתוח אפשרות נכשל"
 
 #: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
@@ -275,7 +275,7 @@ msgstr "האפשרויות create-- ו- reset-- לא יכולות להיות ב�
 #: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr ""
+msgstr "\"%s\": התחל לעקוב אחר ערוץ"
 
 #: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
 #: ../xfconf-query/main.c:530
@@ -284,7 +284,7 @@ msgstr "נכשל בהגדרת המאפיין"
 
 #: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
-msgstr ""
+msgstr "toggle-- עובד רק עם ערכים בוליאנים"
 
 #: ../xfconf-query/main.c:369 ../xfconf-query/main.c:388
 msgid "(unknown)"
@@ -293,45 +293,45 @@ msgstr "(לא ידוע)"
 #: ../xfconf-query/main.c:378
 #, c-format
 msgid "Value is an array with %d items:"
-msgstr ""
+msgstr "%d :ערך הוא סידור עם פריטים"
 
 #: ../xfconf-query/main.c:402
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
+msgstr "מאפיין \"%s\" לא קיים בערוץ \"%s\". אם יש צורך במאפיין חדש, השתמש באפשרות create-- "
 
 #: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
-msgstr ""
+msgstr "בעת יצירת מאפיין חדש, חובה לציין את סוג הערך"
 
 #: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
-msgstr ""
+msgstr "נכשל להשיג את הסוג הקיים עבור הערך"
 
 #: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
-msgstr ""
+msgstr "לא יכול לקבוע את סוג הערך"
 
 #: ../xfconf-query/main.c:444
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
+msgstr "חובה לציין סוג ערך על מנת לשנות סידור לערך בודד"
 
 #: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr ""
+msgstr "\"%s\" לסוג \"%s\" לא יכול להמיר"
 
 #: ../xfconf-query/main.c:486
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr ""
+msgstr "ישנם %d ערכים חדשים, אבל נקבעו רק %d סוגים"
 
 #: ../xfconf-query/main.c:507
 #, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr ""
+msgstr "%d לא יכול לקבוע סוג ערך באינדקס"
 
 #: ../xfconf-query/main.c:557
 #, c-format
