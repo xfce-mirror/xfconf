@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Bar Boko <bokodev@outlook.com>, 2016
+# Elishai Eliyahu <e1907@mm.st>, 2016
 # Hezy Amiel <open@hezyamiel.com>, 2010
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 23:18+0200\n"
-"PO-Revision-Date: 2016-01-23 21:39+0000\n"
-"Last-Translator: Bar Boko <bokodev@outlook.com>\n"
+"PO-Revision-Date: 2016-01-27 13:17+0000\n"
+"Last-Translator: Elishai Eliyahu <e1907@mm.st>\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfconf/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,7 +101,7 @@ msgstr "אלמנט השורש ('/') הוא לא שם מאפיין חוקי"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
+msgstr "שמות מאפיינים יכולים לכלול את תווי ה-ASCII הבאים: A-Z, a-z, 0-9, '_', '-', '<>' ואת '/' כמפריד"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -122,7 +123,7 @@ msgstr "שם ערוץ לא יכול להיות מחרוזת ריקה"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
+msgstr "שמות ערוצים יכולים לכלול את תווי ה-ASCII הבאים: A-Z, a-z, 0-9, '_', '-' "
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
