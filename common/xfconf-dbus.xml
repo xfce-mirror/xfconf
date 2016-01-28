@@ -6,6 +6,8 @@
                     value="xfconf"/>
         <annotation name="org.freedesktop.DBus.GLib.ClientCSymbol"
                     value="xfconf_client"/>
+
+	<annotation name="org.gtk.GDBus.C.Name" value="Client" />
     
         <!--
              void org.xfce.Xfconf.SetProperty(String channel,

@@ -22,6 +22,7 @@ libxfconf_0_la_SOURCES = \
 	xfconf-cache.h \
 	xfconf-channel.c \
 	xfconf-dbus-bindings.h \
+	xfconf-gdbus-bindings.c \
 	xfconf-private.h \
 	xfconf.c \
 	$(top_srcdir)/common/xfconf-types.c
@@ -59,7 +60,17 @@ pkgconfig_DATA = libxfconf-0.pc
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
-	xfconf-dbus-bindings.h
+	xfconf-dbus-bindings.h \
+	xfconf-gdbus-bindings.c \
+	xfconf-gdbus-bindings.h
+
+xfconf-gdbus-bindings.h:
+xfconf-gdbus-bindings.c: $(top_srcdir)/common/xfconf-dbus.xml Makefile
+	$(AM_V_GEN) $(GDBUS_CODEGEN) \
+	--interface-prefix org.xfce.Xfconf \
+	--c-namespace Xfconf   \
+	--generate-c-code xfconf-gdbus-bindings \
+	$<
 
 xfconf-dbus-bindings.h: $(top_srcdir)/common/xfconf-dbus.xml Makefile
 	$(AM_V_GEN) dbus-binding-tool --mode=glib-client $< > $(@).tmp \

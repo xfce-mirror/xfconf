@@ -29,6 +29,7 @@
 #include "xfconf-channel.h"
 #include "xfconf-cache.h"
 #include "xfconf-dbus-bindings.h"
+#include "xfconf-gdbus-bindings.h"
 #include "common/xfconf-gvaluefuncs.h"
 #include "xfconf-private.h"
 #include "common/xfconf-marshal.h"
@@ -663,13 +664,13 @@ gboolean
 xfconf_channel_is_property_locked(XfconfChannel *channel,
                                   const gchar *property)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GDBusProxy *proxy = _xfconf_get_gdbus_proxy();
     gboolean locked = FALSE;
     gchar *real_property = REAL_PROP(channel, property);
     ERROR_DEFINE;
-
-    if(!xfconf_client_is_property_locked(proxy, channel->channel_name,
-                                         property, &locked, ERROR))
+    
+    if (!xfconf_client_call_is_property_locked_sync (proxy, channel->channel_name,
+                                                     property, &locked, NULL, ERROR))
     {
         ERROR_CHECK;
         locked = FALSE;
