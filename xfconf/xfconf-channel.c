@@ -669,7 +669,7 @@ xfconf_channel_is_property_locked(XfconfChannel *channel,
     gchar *real_property = REAL_PROP(channel, property);
     ERROR_DEFINE;
     
-    if (!xfconf_client_call_is_property_locked_sync (proxy, channel->channel_name,
+    if (!xfconf_client_call_is_property_locked_sync ((XfconfClient*)proxy, channel->channel_name,
                                                      property, &locked, NULL, ERROR))
     {
         ERROR_CHECK;
@@ -2296,11 +2296,12 @@ out:
 gchar **
 xfconf_list_channels(void)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GDBusProxy *proxy = _xfconf_get_gdbus_proxy();
     gchar **channels = NULL;
     ERROR_DEFINE;
 
-    if(!xfconf_client_list_channels(proxy, &channels, ERROR))
+    if(!xfconf_client_call_list_channels_sync ((XfconfClient*)proxy, 
+                                               &channels, NULL, ERROR))
         ERROR_CHECK;
 
     return channels;
