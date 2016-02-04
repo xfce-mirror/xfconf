@@ -29,6 +29,7 @@
 #include "xfconf-cache.h"
 #include "xfconf-channel.h"
 #include "xfconf-errors.h"
+#include "xfconf-gdbus-bindings.h"
 #include "xfconf-dbus-bindings.h"
 #include "common/xfconf-gvaluefuncs.h"
 #include "xfconf-private.h"
@@ -694,19 +695,22 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
 
     item = g_tree_lookup(cache->properties, property);
     if(!item) {
-        DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+        GVariant *variant;
+        GDBusProxy *proxy = _xfconf_get_gdbus_proxy();
         GValue tmpval = { 0, };
         GError *tmp_error = NULL;
 
         /* blocking, ugh */
-        if(xfconf_client_get_property(proxy, cache->channel_name,
-                                      property, &tmpval, &tmp_error))
+        if(xfconf_client_call_get_property_sync ((XfconfClient *)proxy, cache->channel_name,
+                                                 property, &variant, NULL, &tmp_error))
         {
+            g_dbus_gvariant_to_gvalue (variant, &tmpval);
             item = xfconf_cache_item_new(&tmpval, FALSE);
             g_tree_insert(cache->properties, g_strdup(property), item);
             g_value_unset(&tmpval);
+            g_variant_unref (variant);
             /* TODO: check tree for evictions */
-        } else
+        } else 
             g_propagate_error(error, tmp_error);
     }
 
@@ -767,21 +771,11 @@ xfconf_cache_set(XfconfCache *cache,
          * but i can't think of a better way yet. */
         GValue tmp_val = { 0, };
         GError *tmp_error = NULL;
-
         if(!xfconf_cache_lookup_locked(cache, property, &tmp_val, &tmp_error)) {
-            /* this is just another example of dbus-glib's brain-deadedness.
-             * instead of remapping the remote error back into the local
-             * domain and code, it uses DBUS_GERROR as the domain,
-             * DBUS_GERROR_REMOTE_EXCEPTION as the code, and then "hides"
-             * the full string ("org.xfce.Xfconf.Error.Whatever") in
-             * GError::message after a NUL byte.  so stupid. */
-            const gchar *dbus_error_name = NULL;
+            gchar *dbus_error_name = NULL;
 
-            if(G_LIKELY(tmp_error->domain == DBUS_GERROR
-                        && tmp_error->code == DBUS_GERROR_REMOTE_EXCEPTION))
-            {
-                dbus_error_name = dbus_g_error_get_name(tmp_error);
-            }
+            if(G_LIKELY(g_dbus_error_is_remote_error (tmp_error)))
+                dbus_error_name = g_dbus_error_get_remote_error (tmp_error);
 
             if(g_strcmp0(dbus_error_name, "org.xfce.Xfconf.Error.PropertyNotFound") != 0
                && g_strcmp0(dbus_error_name, "org.xfce.Xfconf.Error.ChannelNotFound") != 0)
@@ -789,11 +783,12 @@ xfconf_cache_set(XfconfCache *cache,
                 /* this is bad... */
                 g_propagate_error(error, tmp_error);
                 xfconf_cache_mutex_unlock(cache);
+                g_free (dbus_error_name);
                 return FALSE;
             }
-
             /* prop just doesn't exist; continue */
             g_error_free(tmp_error);
+            g_free (dbus_error_name);
         } else {
             g_value_unset(&tmp_val);
             item = g_tree_lookup(cache->properties, property);
