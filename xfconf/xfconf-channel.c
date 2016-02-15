@@ -1537,8 +1537,12 @@ GPtrArray *
 xfconf_channel_get_arrayv(XfconfChannel *channel,
                           const gchar *property)
 {
-    GValue val = { 0, };
     GPtrArray *arr = NULL;
+    GValue val = { 0, };
+    GVariant *variant;
+    GVariant *value_prop;
+    GVariantIter iter;
+    gsize count;
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, NULL);
@@ -1547,18 +1551,31 @@ xfconf_channel_get_arrayv(XfconfChannel *channel,
     if(!ret)
         return NULL;
     
-    if(XFCONF_TYPE_G_VALUE_ARRAY != G_VALUE_TYPE(&val)) {
+    if(G_TYPE_VARIANT != G_VALUE_TYPE(&val)) {
         g_value_unset(&val);
         return NULL;
     }
     
-    arr = g_value_get_boxed(&val);
+    variant = g_value_get_variant (&val);
+    g_value_unset(&val);
+    
+    count = g_variant_iter_init (&iter, variant);
+    arr = g_ptr_array_sized_new (count + 1);
+
+    while (g_variant_iter_next (&iter, "v", &value_prop)) {
+        GValue *arr_val;
+        arr_val = g_new0(GValue, 1);
+        g_dbus_gvariant_to_gvalue (value_prop, arr_val);
+
+        g_ptr_array_add(arr, arr_val);
+        g_variant_unref (value_prop);
+    }
+    g_variant_unref (variant);
+
     if(!arr->len) {
         g_ptr_array_free(arr, TRUE);
         return NULL;
     }
-    
-    /* FIXME: does anything with |val| leak here? */
     
     return arr;
 }

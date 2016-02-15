@@ -641,42 +641,41 @@ xfconf_cache_new(const gchar *channel_name)
                         NULL);
 }
 
-static gboolean
-xfconf_cache_prefetch_ht(gpointer key,
-                         gpointer value,
-                         gpointer user_data)
-{
-    XfconfCache *cache = XFCONF_CACHE(user_data);
-    XfconfCacheItem *item;
-
-    item = xfconf_cache_item_new(value, TRUE);
-    g_tree_insert(cache->properties, key, item);
-
-    return TRUE;
-}
-
 gboolean
 xfconf_cache_prefetch(XfconfCache *cache,
                       const gchar *property_base,
                       GError **error)
 {
+    GVariant *props_variant, *value;
+    GVariantIter *iter;
+    gchar *key;
     gboolean ret = FALSE;
-    GHashTable *props = NULL;
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GDBusProxy *proxy = _xfconf_get_gdbus_proxy ();
     GError *tmp_error = NULL;
 
     g_return_val_if_fail(g_tree_nnodes(cache->properties) == 0, FALSE);
 
     xfconf_cache_mutex_lock(cache);
 
-    if(xfconf_client_get_all_properties(proxy, cache->channel_name,
-                                        property_base ? property_base : "/",
-                                        &props, &tmp_error))
+    if(xfconf_client_call_get_all_properties_sync((XfconfClient *)proxy, cache->channel_name,
+                                                  property_base ? property_base : "/",
+                                                  &props_variant, NULL, &tmp_error))
     {
-        g_hash_table_foreach_steal(props, xfconf_cache_prefetch_ht, cache);
-        g_hash_table_destroy(props);
+        g_variant_get (props_variant, "a{sv}", &iter);
+        while (g_variant_iter_next (iter, "{sv}", &key, &value))
+        {
+            XfconfCacheItem *item;
+            GValue gvalue = G_VALUE_INIT;
+            g_dbus_gvariant_to_gvalue(value, &gvalue);
+
+            item = xfconf_cache_item_new(&gvalue, FALSE);
+            g_tree_insert(cache->properties, key, item);
+            g_value_unset (&gvalue);
+        }
         /* TODO: honor max entries */
         ret = TRUE;
+        g_variant_iter_free (iter);
+        g_variant_unref(props_variant);
     } else
         g_propagate_error(error, tmp_error);
 
@@ -699,7 +698,6 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
         GDBusProxy *proxy = _xfconf_get_gdbus_proxy();
         GValue tmpval = { 0, };
         GError *tmp_error = NULL;
-
         /* blocking, ugh */
         if(xfconf_client_call_get_property_sync ((XfconfClient *)proxy, cache->channel_name,
                                                  property, &variant, NULL, &tmp_error))
