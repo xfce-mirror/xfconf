@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-27 18:32+0200\n"
-"PO-Revision-Date: 2016-03-06 16:54+0000\n"
+"PO-Revision-Date: 2016-03-06 19:30+0000\n"
 "Last-Translator: Elishai Eliyahu <e1907@mm.st>\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfconf/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "נכשל לבצע קריאת DBus של תכונת אתחול"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "לא ניתן ליצור תיקיית הגדרות \"%s\""
+msgstr "לא ניתן ליצור ספריית הגדרות \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
