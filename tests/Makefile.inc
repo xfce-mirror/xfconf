@@ -22,6 +22,6 @@ AM_CFLAGS = \
 	$(GLIB_CFLAGS) \
 	$(DBUS_CFLAGS)
 
-LIBS = \
+LIBS = $(DBUS_GLIB_LIBS) \
 	$(top_builddir)/xfconf/libxfconf-$(LIBXFCONF_VERSION_API).la
 
