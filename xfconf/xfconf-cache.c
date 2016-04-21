@@ -30,7 +30,7 @@
 #include "xfconf-cache.h"
 #include "xfconf-channel.h"
 #include "xfconf-errors.h"
-#include "xfconf-gdbus-bindings.h"
+#include "common/xfconf-gdbus-bindings.h"
 #include "common/xfconf-gvaluefuncs.h"
 #include "xfconf-private.h"
 #include "common/xfconf-marshal.h"

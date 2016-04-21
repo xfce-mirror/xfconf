@@ -7,7 +7,8 @@ AM_CPPFLAGS = \
 
 noinst_LTLIBRARIES = \
 	libxfconf-common.la \
-	libxfconf-gvaluefuncs.la
+	libxfconf-gvaluefuncs.la \
+	libxfconf-dbus.la
 
 libxfconf_common_la_SOURCES = \
 	xfconf-errors.c \
@@ -45,11 +46,23 @@ libxfconf_gvaluefuncs_la_LIBADD = \
 	$(DBUS_GLIB_LIBS)
 
 
+libxfconf_dbus_la_SOURCES = \
+	xfconf-gdbus-bindings.c \
+	xfconf-gdbus-bindings.h
+
+libxfconf_dbus_la_CFLAGS = $(GIO_UNIX_CFLAGS)
+
+libxfconf_dbus_la_LIBADD = $(GIO_UNIX_LIBS)
+	
+
 if MAINTAINER_MODE
+
 
 BUILT_SOURCES = \
 	xfconf-marshal.c \
 	xfconf-marshal.h
+	xfconf-gdbus-bindings.c \
+	xfconf-gdbus-bindings.h
 
 xfconf-marshal.h: stamp-xfconf-marshal.h
 	@true
@@ -60,7 +73,13 @@ xfconf-marshal.c: $(srcdir)/xfconf-marshal.list Makefile
 	$(AM_V_GEN) echo '#include "xfconf-marshal.h"' > xfconf-marshal.c \
 	&& glib-genmarshal --prefix=_xfconf_marshal $(srcdir)/xfconf-marshal.list --body >> xfconf-marshal.c
 
-
+xfconf-gdbus-bindings.h:
+xfconf-gdbus-bindings.c: xfconf-dbus.xml Makefile
+	$(AM_V_GEN) $(GDBUS_CODEGEN) \
+	--interface-prefix org.xfce.Xfconf \
+	--c-namespace Xfconf   \
+	--generate-c-code xfconf-gdbus-bindings \
+	$<
 
 CLEANFILES = \
 	actual-abi \

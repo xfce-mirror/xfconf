@@ -21,8 +21,6 @@ libxfconf_0_la_SOURCES = \
 	xfconf-cache.c \
 	xfconf-cache.h \
 	xfconf-channel.c \
-	xfconf-dbus-bindings.h \
-	xfconf-gdbus-bindings.c \
 	xfconf-private.h \
 	xfconf.c \
 	$(top_srcdir)/common/xfconf-types.c
@@ -44,6 +42,7 @@ libxfconf_0_la_LDFLAGS = \
 libxfconf_0_la_LIBADD = \
 	$(top_builddir)/common/libxfconf-common.la \
 	$(top_builddir)/common/libxfconf-gvaluefuncs.la \
+	$(top_builddir)/common/libxfconf-dbus.la \
 	$(GIO_LIBS) \
         $(GIO_UNIX_LIBS) \
 	$(GLIB_LIBS) \
@@ -52,25 +51,6 @@ libxfconf_0_la_LIBADD = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libxfconf-0.pc
 
-
-if MAINTAINER_MODE
-
-BUILT_SOURCES = \
-	xfconf-gdbus-bindings.c \
-	xfconf-gdbus-bindings.h
-
-xfconf-gdbus-bindings.h:
-xfconf-gdbus-bindings.c: $(top_srcdir)/common/xfconf-dbus.xml Makefile
-	$(AM_V_GEN) $(GDBUS_CODEGEN) \
-	--interface-prefix org.xfce.Xfconf \
-	--c-namespace Xfconf   \
-	--generate-c-code xfconf-gdbus-bindings \
-	$<
-
-CLEANFILES = \
-	$(BUILT_SOURCES)
-
-endif
 
 EXTRA_DIST = \
 	abicheck.sh \
