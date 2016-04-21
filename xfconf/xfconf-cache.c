@@ -1,6 +1,7 @@
 /*
  *  xfconf
  *
+ *  Copyright (c) 2016 Ali Abdallah <ali@xfce.org>
  *  Copyright (c) 2009 Brian Tarricone <brian@tarricone.org>
  *
  *  This library is free software; you can redistribute it and/or
@@ -30,7 +31,6 @@
 #include "xfconf-channel.h"
 #include "xfconf-errors.h"
 #include "xfconf-gdbus-bindings.h"
-#include "xfconf-dbus-bindings.h"
 #include "common/xfconf-gvaluefuncs.h"
 #include "xfconf-private.h"
 #include "common/xfconf-marshal.h"
@@ -954,7 +954,7 @@ xfconf_cache_reset(XfconfCache *cache,
                    GError **error)
 {
     gboolean ret = FALSE;
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GDBusProxy *proxy = _xfconf_get_gdbus_proxy();
 #if 0
     XfconfCacheOldItem *old_item = NULL;
 #endif
@@ -991,8 +991,8 @@ xfconf_cache_reset(XfconfCache *cache,
      * this point if a reset is going to remove the property or reset
      * it to a default.  so, we have to do this sync.  sad. */
 
-    ret = xfconf_client_reset_property(proxy, cache->channel_name,
-                                       property_base, recursive, error);
+    ret = xfconf_client_call_reset_property_sync ((XfconfClient*)proxy, cache->channel_name,
+                                                  property_base, recursive, NULL, error);
 
     if(ret) {
         /* here we just evict the entry from the cache if we have one.

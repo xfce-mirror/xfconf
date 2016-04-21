@@ -1,6 +1,7 @@
 /*
  *  xfconf
  *
+ *  Copyright (c) 2016 Ali Abdallah <ali@xfce.org>
  *  Copyright (c) 2007-2008 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This library is free software; you can redistribute it and/or
@@ -28,7 +29,6 @@
 
 #include "xfconf-channel.h"
 #include "xfconf-cache.h"
-#include "xfconf-dbus-bindings.h"
 #include "xfconf-gdbus-bindings.h"
 #include "common/xfconf-gvaluefuncs.h"
 #include "xfconf-private.h"
@@ -746,8 +746,12 @@ GHashTable *
 xfconf_channel_get_properties(XfconfChannel *channel,
                               const gchar *property_base)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GDBusProxy *proxy = _xfconf_get_gdbus_proxy ();
     GHashTable *properties = NULL;
+    GVariant *out_props;
+    GVariant *variant;
+    gchar *key;
+    GVariantIter iter;
     gchar *real_property_base;
     ERROR_DEFINE;
 
@@ -756,15 +760,33 @@ xfconf_channel_get_properties(XfconfChannel *channel,
     else
         real_property_base = REAL_PROP(channel, property_base);
 
-    if(!xfconf_client_get_all_properties(proxy, channel->channel_name,
-                                         real_property_base
-                                         ? real_property_base : "/",
-                                         &properties, ERROR))
+    if(!xfconf_client_call_get_all_properties_sync ((XfconfClient*)proxy, channel->channel_name,
+                                                    real_property_base
+                                                    ? real_property_base : "/",
+                                                    &out_props, NULL, ERROR))
     {
         ERROR_CHECK;
         properties = NULL;
     }
-
+    
+    g_variant_iter_init (&iter, out_props);
+    properties = g_hash_table_new_full(g_str_hash, g_str_equal,
+                                       (GDestroyNotify)g_free,(GDestroyNotify)g_value_unset);
+    
+    while (g_variant_iter_next (&iter, "{&sv}", &key, &variant)) {
+        GValue *value;
+        
+        value = g_new0(GValue, 1);
+        g_dbus_gvariant_to_gvalue(variant, value);
+        g_hash_table_insert (properties, 
+                             g_strdup(key),
+                             value);
+        
+        g_variant_unref (variant);
+        g_free(key);
+    }
+    g_variant_unref (out_props);
+        
     if(real_property_base != property_base
        && real_property_base != channel->property_base)
     {

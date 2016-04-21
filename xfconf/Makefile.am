@@ -29,11 +29,9 @@ libxfconf_0_la_SOURCES = \
 
 libxfconf_0_la_CFLAGS = \
 	$(GLIB_CFLAGS) \
-	$(DBUS_CFLAGS) \
 	$(GIO_CFLAGS) \
         $(GIO_UNIX_CFLAGS) \
 	$(GTHREAD_CFLAGS) \
-	$(DBUS_GLIB_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
 libxfconf_0_la_LDFLAGS = \
@@ -49,9 +47,7 @@ libxfconf_0_la_LIBADD = \
 	$(GIO_LIBS) \
         $(GIO_UNIX_LIBS) \
 	$(GLIB_LIBS) \
-	$(GTHREAD_LIBS) \
-	$(DBUS_LIBS) \
-	$(DBUS_GLIB_LIBS)
+	$(GTHREAD_LIBS)
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libxfconf-0.pc
@@ -60,7 +56,6 @@ pkgconfig_DATA = libxfconf-0.pc
 if MAINTAINER_MODE
 
 BUILT_SOURCES = \
-	xfconf-dbus-bindings.h \
 	xfconf-gdbus-bindings.c \
 	xfconf-gdbus-bindings.h
 
@@ -72,16 +67,8 @@ xfconf-gdbus-bindings.c: $(top_srcdir)/common/xfconf-dbus.xml Makefile
 	--generate-c-code xfconf-gdbus-bindings \
 	$<
 
-xfconf-dbus-bindings.h: $(top_srcdir)/common/xfconf-dbus.xml Makefile
-	$(AM_V_GEN) dbus-binding-tool --mode=glib-client $< > $(@).tmp \
-	&& sed -e 's/^\([[:space:]]\+GValue[[:space:]]\+[^=]\+\).*;$$/\1 = { 0, };/' <$(@).tmp >$@ \
-	&& rm -f $(@).tmp
-# the above fixes a bug in dbus-binding-tool's output
-# dbus-binding-tool doesn't initialise GValues to { 0, } properly
-
 CLEANFILES = \
-	$(BUILT_SOURCES) \
-	xfconf-dbus-bindings.h.tmp
+	$(BUILT_SOURCES)
 
 endif
 
