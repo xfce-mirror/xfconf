@@ -23,7 +23,11 @@
 
 #include <dbus/dbus-glib.h>
 
+#if 0
 #define XFCONF_TYPE_G_VALUE_ARRAY  (dbus_g_type_get_collection("GPtrArray", G_TYPE_VALUE))
+#endif
+
+#define XFCONF_TYPE_G_VALUE_ARRAY  G_TYPE_PTR_ARRAY
 
 #define I_(string) (g_intern_static_string((string)))
 

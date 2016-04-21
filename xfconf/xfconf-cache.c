@@ -35,8 +35,9 @@
 #include "xfconf-private.h"
 #include "common/xfconf-marshal.h"
 #include "common/xfconf-common-private.h"
-#if 0
 #include "xfconf-types.h"
+
+#if 0
 #include "xfconf.h"
 #include "xfconf-alias.h"
 #endif
@@ -134,12 +135,15 @@ xfconf_cache_item_free(XfconfCacheItem *item)
 typedef struct
 {
     gchar *property;
-    DBusGProxyCall *call;
+    GCancellable *cancellable;
     XfconfCacheItem *item;
+    /* Pointer to the cache object */
+    XfconfCache *cache;
 } XfconfCacheOldItem;
 
+
 static XfconfCacheOldItem *
-xfconf_cache_old_item_new(const gchar *property)
+xfconf_cache_old_item_new(XfconfCache *cache, const gchar *property)
 {
     XfconfCacheOldItem *old_item;
 
@@ -147,6 +151,8 @@ xfconf_cache_old_item_new(const gchar *property)
 
     old_item = g_slice_new0(XfconfCacheOldItem);
     old_item->property = g_strdup(property);
+    old_item->cancellable = g_cancellable_new ();
+    old_item->cache = cache;
 
     return old_item;
 }
@@ -159,8 +165,9 @@ xfconf_cache_old_item_free(XfconfCacheOldItem *old_item)
     /* debug check to make sure the call is properly handled before
      * freeing the item. it should either been cancelled or we wait for
      * it to finish */
-    g_return_if_fail(!old_item->call);
+    g_return_if_fail(g_cancellable_is_cancelled(old_item->cancellable) == TRUE);
 
+    g_object_unref (old_item->cancellable);
     g_free(old_item->property);
 
     if(old_item->item)
@@ -174,20 +181,11 @@ xfconf_cache_old_item_end_call(gpointer key,
                                gpointer value,
                                gpointer user_data)
 {
-    const gchar *channel_name = user_data;
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
-    GError *error = NULL;
     XfconfCacheOldItem *old_item = value;
 
-    g_return_val_if_fail(old_item->call, TRUE);
+    g_return_val_if_fail(g_cancellable_is_cancelled(old_item->cancellable) == FALSE, TRUE);
 
-    if(!dbus_g_proxy_end_call(proxy, old_item->call, &error, G_TYPE_INVALID)) {
-       g_warning("Failed to set property \"%s::%s\": %s",
-                  channel_name, old_item->property, error->message);
-        g_error_free(error);
-    }
-
-    old_item->call = NULL;
+    g_cancellable_cancel(old_item->cancellable);
 
     return TRUE;
 }
@@ -529,20 +527,23 @@ xfconf_cache_proxy_signal_received_cb(GDBusProxy *proxy,
 
 
 static void
-xfconf_cache_set_property_reply_handler(DBusGProxy *proxy,
-                                        DBusGProxyCall *call,
+xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
+                                        GAsyncResult *res,
                                         gpointer user_data)
 {
-    XfconfCache *cache = user_data;
+    XfconfCache *cache;
     XfconfCacheOldItem *old_item = NULL; 
     XfconfCacheItem *item;
     GError *error = NULL;
-
+    gboolean result;
+    old_item = (XfconfCacheOldItem *) user_data;
+    cache = old_item->cache;
+    
     if(!cache->pending_calls)
         return;
 
     xfconf_cache_mutex_lock(cache);
-
+/*
     old_item = g_hash_table_lookup(cache->pending_calls, call);
     if(G_UNLIKELY(!old_item)) {
 #ifndef NDEBUG
@@ -550,11 +551,11 @@ xfconf_cache_set_property_reply_handler(DBusGProxy *proxy,
 #endif
         goto out;
     }
-
+*/
     g_hash_table_remove(cache->old_properties, old_item->property);
     /* don't destroy old_item yet */
-    g_hash_table_steal(cache->pending_calls, old_item->call);
-
+    g_hash_table_steal(cache->pending_calls, old_item->cancellable);
+    g_print ("(1)-\n");
     item = g_tree_lookup(cache->properties, old_item->property);
     if(G_UNLIKELY(!item)) {
 #ifndef NDEBUG
@@ -563,15 +564,12 @@ xfconf_cache_set_property_reply_handler(DBusGProxy *proxy,
         goto out;
     }
 
-    if(!dbus_g_proxy_end_call(proxy, call, &error, G_TYPE_INVALID)) {
-        /* failed to set the value.  reset it to the old value and send
-         * a prop changed signal to the channel */
+    result = xfconf_client_call_set_property_finish ((XfconfClient*)proxy, res, &error);
+    if (!result) {
         GValue empty_val = { 0, };
-
         g_warning("Failed to set property \"%s::%s\": %s",
                   cache->channel_name, old_item->property, error->message);
         g_error_free(error);
-
         if(old_item->item)
             xfconf_cache_item_update(item, old_item->item->value);
         else {
@@ -588,8 +586,8 @@ xfconf_cache_set_property_reply_handler(DBusGProxy *proxy,
         xfconf_cache_mutex_lock(cache);
     }
 
-    /* we handled the call, so set it to %NULL */
-    old_item->call = NULL;
+    /* we handled the call */
+    g_cancellable_cancel(old_item->cancellable);
 
     if(old_item)
         xfconf_cache_old_item_free(old_item);
@@ -751,16 +749,93 @@ xfconf_cache_lookup(XfconfCache *cache,
     return ret;
 }
 
+static GVariant *xfconf_cache_basic_value_to_gvariant (const GValue *value) {
+   
+    const GVariantType *type = NULL;
+    
+    switch (G_VALUE_TYPE(value)){
+    case G_TYPE_UINT:
+        type = G_VARIANT_TYPE_UINT32;
+        break;
+    case G_TYPE_INT:
+        type = G_VARIANT_TYPE_INT32;
+        break;
+    case G_TYPE_BOOLEAN:
+        type = G_VARIANT_TYPE_BOOLEAN;
+        break;
+    case G_TYPE_INT64:
+        type = G_VARIANT_TYPE_INT64;
+        break;
+    case G_TYPE_UINT64:
+        type = G_VARIANT_TYPE_UINT64;
+        break;
+    case G_TYPE_DOUBLE:
+        type = G_VARIANT_TYPE_DOUBLE;
+        break;
+    case G_TYPE_STRING:
+        type = G_VARIANT_TYPE_STRING;
+        break;
+    default:
+        break;
+    }
+    
+    if (G_VALUE_TYPE(value) == XFCONF_TYPE_INT16)
+        type = G_VARIANT_TYPE_INT16;
+    else if (G_VALUE_TYPE(value) == XFCONF_TYPE_UINT16)
+        type = G_VARIANT_TYPE_UINT16;
+    
+    if (type) {
+        return g_dbus_gvalue_to_gvariant (value, type);
+    } 
+    
+    g_warning ("Unable to handle gtype '%s' to send over dbus", _xfconf_string_from_gtype(G_VALUE_TYPE(value)));
+
+    return NULL;
+}
+
+
+static GVariant *
+xfconf_cache_value_to_gvariant (const GValue *value)
+{
+    GVariant *variant = NULL;
+
+    if (G_VALUE_TYPE(value) == G_TYPE_PTR_ARRAY) {
+        GPtrArray *arr;
+        GVariantBuilder builder;
+        guint i = 0;
+        
+        g_variant_builder_init (&builder, G_VARIANT_TYPE_ARRAY);
+        
+        arr = (GPtrArray*)g_value_get_boxed (value);
+        
+        for (i=0; i < arr->len; ++i) {
+            GValue *v = g_ptr_array_index (arr, i);
+            GVariant *var = NULL;
+            
+            var = xfconf_cache_basic_value_to_gvariant (v);
+            if (var)
+                g_variant_builder_add (&builder, "v", var, NULL);
+        }
+        
+        variant = g_variant_builder_end (&builder);
+    }
+    else
+        variant = xfconf_cache_basic_value_to_gvariant(value);
+    
+    return variant;
+}
+
+
 gboolean
 xfconf_cache_set(XfconfCache *cache,
                  const gchar *property,
                  const GValue *value,
                  GError **error)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GVariant *variant = NULL;
+    GDBusProxy *proxy = _xfconf_get_gdbus_proxy();
     XfconfCacheItem *item = NULL;
     XfconfCacheOldItem *old_item = NULL;
-
     xfconf_cache_mutex_lock(cache);
 
     item = g_tree_lookup(cache->properties, property);
@@ -800,7 +875,6 @@ xfconf_cache_set(XfconfCache *cache,
             return TRUE;
         }
     }
-
     old_item = g_hash_table_lookup(cache->old_properties, property);
     if(old_item) {
         /* if we have an old item, it means that a previous set
@@ -809,13 +883,15 @@ xfconf_cache_set(XfconfCache *cache,
          * the property.
          * we also steal the old_item from the pending_calls table
          * so there are no pending item left. */
-        if(old_item->call) {
-            dbus_g_proxy_cancel_call(proxy, old_item->call);
-            g_hash_table_steal(cache->pending_calls, old_item->call);
-            old_item->call = NULL;
+
+        if(!g_cancellable_is_cancelled (old_item->cancellable)) {
+            g_cancellable_cancel(old_item->cancellable);
+            g_hash_table_steal(cache->pending_calls, old_item->cancellable);
+            g_object_unref (old_item->cancellable);
+            old_item->cancellable = g_cancellable_new();
         }
     } else {
-        old_item = xfconf_cache_old_item_new(property);
+        old_item = xfconf_cache_old_item_new(cache, property);
         if(item)
             old_item->item = xfconf_cache_item_new(item->value, FALSE);
         g_hash_table_insert(cache->old_properties, old_item->property, old_item);
@@ -823,14 +899,17 @@ xfconf_cache_set(XfconfCache *cache,
 
     /* can't use the generated dbus-glib binding here cuz we won't
      * get the pending call pointer in the callback */
-    old_item->call = dbus_g_proxy_begin_call(proxy, "SetProperty",
-                                             xfconf_cache_set_property_reply_handler,
-                                             cache, NULL,
-                                             G_TYPE_STRING, cache->channel_name,
-                                             G_TYPE_STRING, property,
-                                             G_TYPE_VALUE, value,
-                                             G_TYPE_INVALID);
-    g_hash_table_insert(cache->pending_calls, old_item->call, old_item);
+    variant = g_variant_new_variant (xfconf_cache_value_to_gvariant (value));
+
+    xfconf_client_call_set_property ((XfconfClient *)proxy, 
+                                     cache->channel_name,
+                                     property,
+                                     variant,
+                                     old_item->cancellable,
+                                     (GAsyncReadyCallback) xfconf_cache_set_property_reply_handler,
+                                     old_item);
+
+    g_hash_table_insert(cache->pending_calls, old_item->cancellable, old_item);
 
     if(item)
         xfconf_cache_item_update(item, value);
