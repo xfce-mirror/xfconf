@@ -29,6 +29,7 @@
 #endif
 
 #include <xfconf/xfconf-errors.h>
+#include "xfconf-daemon.h"
 
 #define XFCONF_TYPE_BACKEND                (xfconf_backend_get_type())
 #define XFCONF_BACKEND(obj)                (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_TYPE_BACKEND, XfconfBackend))

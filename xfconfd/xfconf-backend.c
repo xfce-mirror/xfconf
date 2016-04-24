@@ -21,8 +21,6 @@
 #include <config.h>
 #endif
 
-#include <dbus/dbus-glib.h>
-
 #include "xfconf-backend.h"
 
 

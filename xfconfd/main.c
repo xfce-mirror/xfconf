@@ -48,6 +48,7 @@
 #endif
 
 #include <libxfce4util/libxfce4util.h>
+#include <gio/gio.h>
 
 #include "xfconf-daemon.h"
 #include "xfconf-backend-factory.h"
@@ -113,6 +114,18 @@ signal_pipe_io(GIOChannel *source,
     
     return TRUE;
 }
+
+static void
+xfconf_dbus_name_lost (GDBusConnection *connection,
+                       const gchar     *name,
+                       gpointer         user_data) {
+    GMainLoop *main_loop;
+
+    g_critical (_("Name %s lost on the message dbus, exiting."), name);
+    main_loop = (GMainLoop*)user_data;
+    g_main_loop_quit(main_loop);
+}
+
 
 int
 main(int argc,
@@ -216,6 +229,15 @@ main(int argc,
         return EXIT_FAILURE;
     }
     g_strfreev(backends);
+    
+    /* acquire name */
+    g_bus_own_name (G_BUS_TYPE_SESSION,
+                    "org.xfce.Xfconf",
+                    G_BUS_NAME_OWNER_FLAGS_NONE,
+                    NULL,
+                    NULL,
+                    xfconf_dbus_name_lost,
+                    mloop, NULL);
 
     if(do_daemon) {
         pid_t child_pid;
