@@ -22,16 +22,31 @@
 #include <config.h>
 #endif
 
+#include <gio/gio.h>
+
 #include "xfconf/xfconf-errors.h"
 #include "xfconf-alias.h"
 
-static GQuark xfconf_error_quark = 0;
+static const GDBusErrorEntry xfconf_daemon_dbus_error_entries[] = 
+{
+    { XFCONF_ERROR_UNKNOWN, "org.xfce.Xfconf.Error.Unknown" },
+    { XFCONF_ERROR_CHANNEL_NOT_FOUND, "org.xfce.Xfconf.Error.ChannelNotFound" },
+    { XFCONF_ERROR_PROPERTY_NOT_FOUND, "org.xfce.Xfconf.Error.PropertyNotFound" },
+    { XFCONF_ERROR_READ_FAILURE, "org.xfce.Xfconf.Error.ReadFailure" },
+    { XFCONF_ERROR_WRITE_FAILURE, "org.xfce.Xfconf.Error.WriteFailure" },
+    { XFCONF_ERROR_PERMISSION_DENIED, "org.xfce.Xfconf.Error.PermissionDenied" },
+    { XFCONF_ERROR_INTERNAL_ERROR, "org.xfce.Xfconf.Error.InternalError" },
+    { XFCONF_ERROR_NO_BACKEND, "org.xfce.Xfconf.Error.NoBackend" },
+    { XFCONF_ERROR_INVALID_PROPERTY, "org.xfce.Xfconf.Error.InvalidProperty" },
+    { XFCONF_ERROR_INVALID_CHANNEL, "org.xfce.Xfconf.Error.InvalidChannel" },
+};
 
 /**
  * XFCONF_ERROR:
  *
  * The #GError error domain for Xfconf.
  **/
+
 
 
 /**
@@ -51,10 +66,14 @@ static GQuark xfconf_error_quark = 0;
 GQuark
 xfconf_get_error_quark(void)
 {
-    if(!xfconf_error_quark)
-        xfconf_error_quark = g_quark_from_static_string("xfconf-error-quark");
+    static volatile gsize quark_volatile = 0;
     
-    return xfconf_error_quark;
+    g_dbus_error_register_error_domain ("xfconf_daemon_error",
+                                        &quark_volatile,
+                                        xfconf_daemon_dbus_error_entries,
+                                        G_N_ELEMENTS (xfconf_daemon_dbus_error_entries));
+    
+    return quark_volatile;
 }
 
 /* unfortunately glib-mkenums can't generate types that are compatible with
