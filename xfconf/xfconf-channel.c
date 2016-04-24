@@ -669,8 +669,8 @@ xfconf_channel_is_property_locked(XfconfChannel *channel,
     gchar *real_property = REAL_PROP(channel, property);
     ERROR_DEFINE;
     
-    if (!xfconf_client_call_is_property_locked_sync ((XfconfClient*)proxy, channel->channel_name,
-                                                     property, &locked, NULL, ERROR))
+    if (!xfconf_exported_call_is_property_locked_sync ((XfconfExported*)proxy, channel->channel_name,
+                                                       property, &locked, NULL, ERROR))
     {
         ERROR_CHECK;
         locked = FALSE;
@@ -748,10 +748,7 @@ xfconf_channel_get_properties(XfconfChannel *channel,
 {
     GDBusProxy *proxy = _xfconf_get_gdbus_proxy ();
     GHashTable *properties = NULL;
-    GVariant *out_props;
     GVariant *variant;
-    gchar *key;
-    GVariantIter iter;
     gchar *real_property_base;
     ERROR_DEFINE;
 
@@ -760,32 +757,17 @@ xfconf_channel_get_properties(XfconfChannel *channel,
     else
         real_property_base = REAL_PROP(channel, property_base);
 
-    if(!xfconf_client_call_get_all_properties_sync ((XfconfClient*)proxy, channel->channel_name,
-                                                    real_property_base
-                                                    ? real_property_base : "/",
-                                                    &out_props, NULL, ERROR))
+    if(!xfconf_exported_call_get_all_properties_sync ((XfconfExported*)proxy, channel->channel_name,
+                                                      real_property_base
+                                                      ? real_property_base : "/",
+                                                      &variant, NULL, ERROR))
     {
         ERROR_CHECK;
         properties = NULL;
     }
     
-    g_variant_iter_init (&iter, out_props);
-    properties = g_hash_table_new_full(g_str_hash, g_str_equal,
-                                       (GDestroyNotify)g_free,(GDestroyNotify)g_value_unset);
-    
-    while (g_variant_iter_next (&iter, "{&sv}", &key, &variant)) {
-        GValue *value;
-        
-        value = g_new0(GValue, 1);
-        g_dbus_gvariant_to_gvalue(variant, value);
-        g_hash_table_insert (properties, 
-                             g_strdup(key),
-                             value);
-        
-        g_variant_unref (variant);
-        g_free(key);
-    }
-    g_variant_unref (out_props);
+    properties = xfconf_gvariant_to_hash (variant);
+    g_variant_unref (variant);
         
     if(real_property_base != property_base
        && real_property_base != channel->property_base)
@@ -2339,7 +2321,7 @@ xfconf_list_channels(void)
     gchar **channels = NULL;
     ERROR_DEFINE;
 
-    if(!xfconf_client_call_list_channels_sync ((XfconfClient*)proxy, 
+    if(!xfconf_exported_call_list_channels_sync ((XfconfExported*)proxy, 
                                                &channels, NULL, ERROR))
         ERROR_CHECK;
 

@@ -555,7 +555,6 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
     g_hash_table_remove(cache->old_properties, old_item->property);
     /* don't destroy old_item yet */
     g_hash_table_steal(cache->pending_calls, old_item->cancellable);
-    g_print ("(1)-\n");
     item = g_tree_lookup(cache->properties, old_item->property);
     if(G_UNLIKELY(!item)) {
 #ifndef NDEBUG
@@ -564,7 +563,7 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
         goto out;
     }
 
-    result = xfconf_client_call_set_property_finish ((XfconfClient*)proxy, res, &error);
+    result = xfconf_exported_call_set_property_finish ((XfconfExported*)proxy, res, &error);
     if (!result) {
         GValue empty_val = { 0, };
         g_warning("Failed to set property \"%s::%s\": %s",
@@ -655,7 +654,7 @@ xfconf_cache_prefetch(XfconfCache *cache,
 
     xfconf_cache_mutex_lock(cache);
 
-    if(xfconf_client_call_get_all_properties_sync((XfconfClient *)proxy, cache->channel_name,
+    if(xfconf_exported_call_get_all_properties_sync((XfconfExported *)proxy, cache->channel_name,
                                                   property_base ? property_base : "/",
                                                   &props_variant, NULL, &tmp_error))
     {
@@ -697,7 +696,7 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
         GValue tmpval = { 0, };
         GError *tmp_error = NULL;
         /* blocking, ugh */
-        if(xfconf_client_call_get_property_sync ((XfconfClient *)proxy, cache->channel_name,
+        if(xfconf_exported_call_get_property_sync ((XfconfExported *)proxy, cache->channel_name,
                                                  property, &variant, NULL, &tmp_error))
         {
             g_dbus_gvariant_to_gvalue (variant, &tmpval);
@@ -749,83 +748,6 @@ xfconf_cache_lookup(XfconfCache *cache,
     return ret;
 }
 
-static GVariant *xfconf_cache_basic_value_to_gvariant (const GValue *value) {
-   
-    const GVariantType *type = NULL;
-    
-    switch (G_VALUE_TYPE(value)){
-    case G_TYPE_UINT:
-        type = G_VARIANT_TYPE_UINT32;
-        break;
-    case G_TYPE_INT:
-        type = G_VARIANT_TYPE_INT32;
-        break;
-    case G_TYPE_BOOLEAN:
-        type = G_VARIANT_TYPE_BOOLEAN;
-        break;
-    case G_TYPE_INT64:
-        type = G_VARIANT_TYPE_INT64;
-        break;
-    case G_TYPE_UINT64:
-        type = G_VARIANT_TYPE_UINT64;
-        break;
-    case G_TYPE_DOUBLE:
-        type = G_VARIANT_TYPE_DOUBLE;
-        break;
-    case G_TYPE_STRING:
-        type = G_VARIANT_TYPE_STRING;
-        break;
-    default:
-        break;
-    }
-    
-    if (G_VALUE_TYPE(value) == XFCONF_TYPE_INT16)
-        type = G_VARIANT_TYPE_INT16;
-    else if (G_VALUE_TYPE(value) == XFCONF_TYPE_UINT16)
-        type = G_VARIANT_TYPE_UINT16;
-    
-    if (type) {
-        return g_dbus_gvalue_to_gvariant (value, type);
-    } 
-    
-    g_warning ("Unable to handle gtype '%s' to send over dbus", _xfconf_string_from_gtype(G_VALUE_TYPE(value)));
-
-    return NULL;
-}
-
-
-static GVariant *
-xfconf_cache_value_to_gvariant (const GValue *value)
-{
-    GVariant *variant = NULL;
-
-    if (G_VALUE_TYPE(value) == G_TYPE_PTR_ARRAY) {
-        GPtrArray *arr;
-        GVariantBuilder builder;
-        guint i = 0;
-        
-        g_variant_builder_init (&builder, G_VARIANT_TYPE_ARRAY);
-        
-        arr = (GPtrArray*)g_value_get_boxed (value);
-        
-        for (i=0; i < arr->len; ++i) {
-            GValue *v = g_ptr_array_index (arr, i);
-            GVariant *var = NULL;
-            
-            var = xfconf_cache_basic_value_to_gvariant (v);
-            if (var)
-                g_variant_builder_add (&builder, "v", var, NULL);
-        }
-        
-        variant = g_variant_builder_end (&builder);
-    }
-    else
-        variant = xfconf_cache_basic_value_to_gvariant(value);
-    
-    return variant;
-}
-
-
 gboolean
 xfconf_cache_set(XfconfCache *cache,
                  const gchar *property,
@@ -849,11 +771,12 @@ xfconf_cache_set(XfconfCache *cache,
 
             if(G_LIKELY(g_dbus_error_is_remote_error (tmp_error)))
                 dbus_error_name = g_dbus_error_get_remote_error (tmp_error);
-
+            
             if(g_strcmp0(dbus_error_name, "org.xfce.Xfconf.Error.PropertyNotFound") != 0
                && g_strcmp0(dbus_error_name, "org.xfce.Xfconf.Error.ChannelNotFound") != 0)
             {
                 /* this is bad... */
+                g_print ("this is bad\n");
                 g_propagate_error(error, tmp_error);
                 xfconf_cache_mutex_unlock(cache);
                 g_free (dbus_error_name);
@@ -897,11 +820,9 @@ xfconf_cache_set(XfconfCache *cache,
         g_hash_table_insert(cache->old_properties, old_item->property, old_item);
     }
 
-    /* can't use the generated dbus-glib binding here cuz we won't
-     * get the pending call pointer in the callback */
-    variant = g_variant_new_variant (xfconf_cache_value_to_gvariant (value));
+    variant = g_variant_new_variant (xfconf_gvalue_to_gvariant (value));
 
-    xfconf_client_call_set_property ((XfconfClient *)proxy, 
+    xfconf_exported_call_set_property ((XfconfExported *)proxy, 
                                      cache->channel_name,
                                      property,
                                      variant,
@@ -991,7 +912,7 @@ xfconf_cache_reset(XfconfCache *cache,
      * this point if a reset is going to remove the property or reset
      * it to a default.  so, we have to do this sync.  sad. */
 
-    ret = xfconf_client_call_reset_property_sync ((XfconfClient*)proxy, cache->channel_name,
+    ret = xfconf_exported_call_reset_property_sync ((XfconfExported*)proxy, cache->channel_name,
                                                   property_base, recursive, NULL, error);
 
     if(ret) {
