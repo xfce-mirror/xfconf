@@ -9,7 +9,7 @@ dnl version info
 m4_define([libxfconf_verinfo], [2:0:0])
 m4_define([libxfconf_version_api], [0])
 m4_define([xfconf_version_major], [4])
-m4_define([xfconf_version_minor], [12])
+m4_define([xfconf_version_minor], [13])
 m4_define([xfconf_version_micro], [0])
 m4_define([xfconf_version_nano], [])
 m4_define([xfconf_version_build], [@REVISION@])
