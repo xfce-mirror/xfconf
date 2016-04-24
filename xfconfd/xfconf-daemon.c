@@ -1,6 +1,7 @@
 /*
  *  xfconfd
- *
+ *  
+ *  Copyright (c) 2016 Ali Abdallah <ali@xfce.org>
  *  Copyright (c) 2007 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -23,7 +24,6 @@
 
 #include <string.h>
 
-#include <dbus/dbus-glib-lowlevel.h>
 #include <libxfce4util/libxfce4util.h>
 
 #include "xfconf-daemon.h"
@@ -33,109 +33,39 @@
 #include "common/xfconf-gvaluefuncs.h"
 #include "xfconf/xfconf-errors.h"
 #include "common/xfconf-common-private.h"
-
-static void xfconf_set_property(XfconfDaemon *xfconfd,
-                                const gchar *channel,
-                                const gchar *property,
-                                const GValue *value,
-                                DBusGMethodInvocation *context);
-static void xfconf_get_property(XfconfDaemon *xfconfd,
-                                const gchar *channel,
-                                const gchar *property,
-                                DBusGMethodInvocation *context);
-static void xfconf_get_all_properties(XfconfDaemon *xfconfd,
-                                      const gchar *channel,
-                                      const gchar *property_base,
-                                      DBusGMethodInvocation *context);
-static void xfconf_property_exists(XfconfDaemon *xfconfd,
-                                   const gchar *channel,
-                                   const gchar *property,
-                                   DBusGMethodInvocation *context);
-static void xfconf_reset_property(XfconfDaemon *xfconfd,
-                                  const gchar *channel,
-                                  const gchar *property,
-                                  gboolean recursive,
-                                  DBusGMethodInvocation *context);
-static void xfconf_list_channels(XfconfDaemon *xfconfd,
-                                 DBusGMethodInvocation *context);
-static void xfconf_is_property_locked(XfconfDaemon *xfconfd,
-                                      const gchar *channel,
-                                      const gchar *property,
-                                      DBusGMethodInvocation *context);
-
-#include "xfconf-dbus-server.h"
+#include "common/xfconf-gdbus-bindings.h"
 
 struct _XfconfDaemon
 {
-    GObject parent;
-
-    DBusGConnection *dbus_conn;
+    XfconfExportedSkeleton parent;
+    guint filter_id;
+    
+    GDBusConnection *conn;
 
     GList *backends;
 };
 
 typedef struct _XfconfDaemonClass
 {
-    GObjectClass parent;
+    XfconfExportedSkeletonClass parent;
 } XfconfDaemonClass;
-
-enum
-{
-    SIG_PROPERTY_CHANGED = 0,
-    SIG_PROPERTY_REMOVED,
-    N_SIGS,
-};
 
 static void xfconf_daemon_finalize(GObject *obj);
 
-static DBusHandlerResult xfconf_daemon_handle_dbus_disconnect(DBusConnection *conn,
-                                                              DBusMessage *message,
-                                                              void *user_data);
-
-static guint signals[N_SIGS] = { 0, };
-
-
-G_DEFINE_TYPE(XfconfDaemon, xfconf_daemon, G_TYPE_OBJECT)
-
-
+G_DEFINE_TYPE(XfconfDaemon, xfconf_daemon, XFCONF_TYPE_EXPORTED_SKELETON)
+  
 static void
 xfconf_daemon_class_init(XfconfDaemonClass *klass)
 {
     GObjectClass *object_class = (GObjectClass *)klass;
 
     object_class->finalize = xfconf_daemon_finalize;
-
-    signals[SIG_PROPERTY_CHANGED] = g_signal_new(I_("property-changed"),
-                                                 XFCONF_TYPE_DAEMON,
-                                                 G_SIGNAL_RUN_LAST,
-                                                 0,
-                                                 NULL, NULL,
-                                                 _xfconf_marshal_VOID__STRING_STRING_BOXED,
-                                                 G_TYPE_NONE,
-                                                 3, G_TYPE_STRING,
-                                                 G_TYPE_STRING,
-                                                 G_TYPE_VALUE);
-
-    signals[SIG_PROPERTY_REMOVED] = g_signal_new(I_("property-removed"),
-                                                 XFCONF_TYPE_DAEMON,
-                                                 G_SIGNAL_RUN_LAST,
-                                                 0,
-                                                 NULL, NULL,
-                                                 _xfconf_marshal_VOID__STRING_STRING,
-                                                 G_TYPE_NONE,
-                                                 2, G_TYPE_STRING,
-                                                 G_TYPE_STRING);
-
-    dbus_g_object_type_install_info(G_TYPE_FROM_CLASS(klass),
-                                    &dbus_glib_xfconf_object_info);
-    dbus_g_error_domain_register(XFCONF_ERROR, "org.xfce.Xfconf.Error",
-                                 XFCONF_TYPE_ERROR);
 }
 
 static void
 xfconf_daemon_init(XfconfDaemon *instance)
 {
-
+    instance->filter_id = 0;
 }
 
 static void
@@ -151,11 +81,8 @@ xfconf_daemon_finalize(GObject *obj)
     }
     g_list_free(xfconfd->backends);
 
-    if(xfconfd->dbus_conn) {
-        dbus_connection_remove_filter(dbus_g_connection_get_connection(xfconfd->dbus_conn),
-                                      xfconf_daemon_handle_dbus_disconnect,
-                                      xfconfd);
-        dbus_g_connection_unref(xfconfd->dbus_conn);
+    if(xfconfd->filter_id) {
+        g_signal_handler_disconnect (xfconfd->conn, xfconfd->filter_id);
     }
 
     G_OBJECT_CLASS(xfconf_daemon_parent_class)->finalize(obj);
@@ -174,17 +101,20 @@ xfconf_daemon_emit_property_changed_idled(gpointer data)
 {
     XfconfPropChangedData *pdata = data;
     GValue value = { 0, };
-
     xfconf_backend_get(pdata->backend, pdata->channel, pdata->property,
                        &value, NULL);
 
     if(G_VALUE_TYPE(&value)) {
-        g_signal_emit(G_OBJECT(pdata->xfconfd), signals[SIG_PROPERTY_CHANGED],
-                      0, pdata->channel, pdata->property, &value);
+        GVariant *v;
+        v = g_variant_new_variant (xfconf_gvalue_to_gvariant (&value));
+        if (v) {
+            xfconf_exported_emit_property_changed ((XfconfExported*)pdata->xfconfd,
+                                                   pdata->channel, pdata->property, v);
+        }
         g_value_unset(&value);
     } else {
-        g_signal_emit(G_OBJECT(pdata->xfconfd), signals[SIG_PROPERTY_REMOVED],
-                      0, pdata->channel, pdata->property);
+        xfconf_exported_emit_property_removed ((XfconfExported*)pdata->xfconfd,
+                                               pdata->channel, pdata->property);
     }
 
     g_object_unref(G_OBJECT(pdata->backend));
@@ -203,7 +133,6 @@ xfconf_daemon_backend_property_changed(XfconfBackend *backend,
                                        gpointer user_data)
 {
     XfconfPropChangedData *pdata = g_slice_new0(XfconfPropChangedData);
-
     pdata->xfconfd = g_object_ref(G_OBJECT(user_data));
     pdata->backend = g_object_ref(G_OBJECT(backend));
     pdata->channel = g_strdup(channel);
@@ -213,15 +142,16 @@ xfconf_daemon_backend_property_changed(XfconfBackend *backend,
 }
 
 static void
-xfconf_set_property(XfconfDaemon *xfconfd,
+xfconf_set_property(XfconfExported *skeleton,
+                    GDBusMethodInvocation *invocation,
                     const gchar *channel,
                     const gchar *property,
-                    const GValue *value,
-                    DBusGMethodInvocation *context)
+                    GVariant *variant,
+                    XfconfDaemon *xfconfd)
 {
     GList *l;
     GError *error = NULL;
-
+    GValue *value;
     /* if there's more than one backend, we need to make sure the
      * property isn't locked on ANY of them */
     if(G_UNLIKELY(xfconfd->backends->next)) {
@@ -244,58 +174,73 @@ xfconf_set_property(XfconfDaemon *xfconfd,
         /* there is always an error set if something failed or the
          * property is locked */
         if(error) {
-            dbus_g_method_return_error(context, error);
+            g_dbus_method_invocation_return_gerror(invocation, error);
             g_error_free(error);
             return;
         }
     }
-
+    
+    value = xfconf_gvariant_to_gvalue (variant);
     /* only write to first backend */
     if(xfconf_backend_set(xfconfd->backends->data, channel, property,
                           value, &error))
     {
-        dbus_g_method_return(context);
+        xfconf_exported_complete_set_property(skeleton, invocation);
     } else {
-        dbus_g_method_return_error(context, error);
+        g_dbus_method_invocation_return_gerror(invocation, error);
         g_error_free(error);
     }
+    
+    g_value_unset (value);
+    
 }
 
+
 static void
-xfconf_get_property(XfconfDaemon *xfconfd,
+xfconf_get_property(XfconfExported *skeleton,
+                    GDBusMethodInvocation *invocation,
                     const gchar *channel,
                     const gchar *property,
-                    DBusGMethodInvocation *context)
+                    XfconfDaemon *xfconfd)
 {
     GList *l;
     GValue value = { 0, };
     GError *error = NULL;
-
     /* check each backend until we find a value */
     for(l = xfconfd->backends; l; l = l->next) {
         if(xfconf_backend_get(l->data, channel, property, &value, &error)) {
-            dbus_g_method_return (context, &value);
+            GVariant *variant;
+            variant = g_variant_new_variant(xfconf_gvalue_to_gvariant (&value));
+            if (variant){
+                xfconf_exported_complete_get_property(skeleton, invocation, variant);
+            }
+            else {
+                g_set_error (&error, XFCONF_ERROR, 
+                             XFCONF_ERROR_INTERNAL_ERROR, _("GType transformation failed \"%s\""),
+                             G_VALUE_TYPE_NAME(&value));
+                g_dbus_method_invocation_return_gerror(invocation, error);
+                g_error_free(error);
+            }
             g_value_unset(&value);
             return;
         } else if(l->next)
             g_clear_error(&error);
     }
-
-    dbus_g_method_return_error(context, error);
+    g_dbus_method_invocation_return_gerror(invocation, error);
     g_error_free(error);
 }
 
 static void
-xfconf_get_all_properties(XfconfDaemon *xfconfd,
+xfconf_get_all_properties(XfconfExported *skeleton,
+                          GDBusMethodInvocation *invocation,
                           const gchar *channel,
                           const gchar *property_base,
-                          DBusGMethodInvocation *context)
+                          XfconfDaemon *xfconfd)
 {
     GList *l;
     GHashTable *properties;
     GError *error = NULL;
     gboolean succeed = FALSE;
-
     properties = g_hash_table_new_full(g_str_hash, g_str_equal,
                                         (GDestroyNotify)g_free,
                                         (GDestroyNotify)_xfconf_gvalue_free);
@@ -309,11 +254,13 @@ xfconf_get_all_properties(XfconfDaemon *xfconfd,
             g_clear_error(&error);
         }
     }
-
-    if(succeed)
-        dbus_g_method_return (context, properties);
+    if(succeed) {
+        GVariant *variant;
+        variant = xfconf_hash_to_gvariant (properties);
+        xfconf_exported_complete_get_all_properties (skeleton, invocation, variant);
+    }
     else
-        dbus_g_method_return_error(context, error);
+        g_dbus_method_invocation_return_gerror(invocation, error);
 
     if(error)
         g_error_free(error);
@@ -321,16 +268,16 @@ xfconf_get_all_properties(XfconfDaemon *xfconfd,
 }
 
 static void
-xfconf_property_exists(XfconfDaemon *xfconfd,
+xfconf_property_exists(XfconfExported *skeleton,
+                       GDBusMethodInvocation *invocation,
                        const gchar *channel,
                        const gchar *property,
-                       DBusGMethodInvocation *context)
+                       XfconfDaemon *xfconfd)
 {
     gboolean exists = FALSE;
     gboolean succeed = FALSE;
     GList *l;
     GError *error = NULL;
-
     /* if at least one backend returns TRUE (regardles if |*exists| gets set
      * to TRUE or FALSE), we'll return TRUE from this function */
 
@@ -342,19 +289,20 @@ xfconf_property_exists(XfconfDaemon *xfconfd,
     }
 
     if(succeed)
-        dbus_g_method_return(context, exists);
+        xfconf_exported_complete_property_exists (skeleton, invocation, exists);
     else {
-        dbus_g_method_return_error(context, error);
+        g_dbus_method_invocation_return_gerror(invocation, error);
         g_error_free(error);
     }
 }
 
 static void
-xfconf_reset_property(XfconfDaemon *xfconfd,
+xfconf_reset_property(XfconfExported *skeleton,
+                      GDBusMethodInvocation *invocation,
                       const gchar *channel,
                       const gchar *property,
                       gboolean recursive,
-                      DBusGMethodInvocation *context)
+                      XfconfDaemon *xfconfd)
 {
     gboolean succeed = FALSE;
     GList *l;
@@ -372,17 +320,18 @@ xfconf_reset_property(XfconfDaemon *xfconfd,
     }
 
     if(succeed)
-        dbus_g_method_return(context);
+        xfconf_exported_complete_reset_property(skeleton, invocation);
     else
-        dbus_g_method_return_error(context, error);
+        g_dbus_method_invocation_return_gerror(invocation, error);
 
     if(error)
         g_error_free(error);
 }
 
 static void
-xfconf_list_channels(XfconfDaemon *xfconfd,
-                     DBusGMethodInvocation *context)
+xfconf_list_channels(XfconfExported *skeleton,
+                    GDBusMethodInvocation *invocation,
+                    XfconfDaemon *xfconfd)
 {
     GSList *lchannels = NULL, *chans_tmp, *lc;
     GList *l;
@@ -401,14 +350,14 @@ xfconf_list_channels(XfconfDaemon *xfconfd,
 
     if(error && !lchannels) {
         /* no channels and an error, something went wrong */
-        dbus_g_method_return_error(context, error);
+        g_dbus_method_invocation_return_gerror(invocation, error);
     } else {
         channels = g_new (gchar *, g_slist_length(lchannels) + 1);
         for(lc = lchannels, i = 0; lc; lc = lc->next, ++i)
             channels[i] = lc->data;
         channels[i] = NULL;
-
-        dbus_g_method_return(context, channels);
+        
+        xfconf_exported_complete_list_channels (skeleton, invocation, (const gchar *const*)channels);
 
         g_strfreev(channels);
         g_slist_free(lchannels);
@@ -418,10 +367,11 @@ xfconf_list_channels(XfconfDaemon *xfconfd,
         g_error_free(error);
 }
 
-static void xfconf_is_property_locked(XfconfDaemon *xfconfd,
-                          const gchar *channel,
-                          const gchar *property,
-                          DBusGMethodInvocation *context)
+static void xfconf_is_property_locked(XfconfExported *skeleton,
+                                      GDBusMethodInvocation *invocation,
+                                      const gchar *channel,
+                                      const gchar *property,
+                                      XfconfDaemon *xfconfd)
 {
     GList *l;
     gboolean locked = FALSE;
@@ -437,14 +387,35 @@ static void xfconf_is_property_locked(XfconfDaemon *xfconfd,
     }
 
     if(succeed)
-        dbus_g_method_return(context, locked);
+        xfconf_exported_complete_is_property_locked(skeleton, invocation, locked);
     else
-        dbus_g_method_return_error(context, error);
+        g_dbus_method_invocation_return_gerror(invocation, error);
 
     if(error)
         g_error_free(error);
 }
 
+static void
+xfconf_daemon_handle_dbus_disconnect(GDBusConnection *conn,
+                                     gboolean remote,
+                                     GError *error,
+                                     gpointer data)
+{
+    XfconfDaemon *xfconfd = (XfconfDaemon*)data;
+    GList *l;
+    
+    DBG("got dbus disconnect; flushing all channels");
+    
+    for(l = xfconfd->backends; l; l = l->next) {
+        GError *lerror = NULL;
+        if(!xfconf_backend_flush(XFCONF_BACKEND(l->data), &lerror)) {
+            g_critical("Failed to flush backend on disconnect: %s",
+                       lerror->message);
+            g_error_free(lerror);
+        }
+    }
+    
+}
 
 
 
@@ -453,38 +424,26 @@ xfconf_daemon_start(XfconfDaemon *xfconfd,
                     GError **error)
 {
     int ret;
-    DBusError derror;
 
-    xfconfd->dbus_conn = dbus_g_bus_get(DBUS_BUS_SESSION, error);
-    if(G_UNLIKELY(!xfconfd->dbus_conn))
-        return FALSE;
-
-    dbus_g_connection_register_g_object(xfconfd->dbus_conn,
-                                        "/org/xfce/Xfconf",
-                                        G_OBJECT(xfconfd));
-
-    dbus_connection_add_filter(dbus_g_connection_get_connection(xfconfd->dbus_conn),
-                               xfconf_daemon_handle_dbus_disconnect,
-                               xfconfd, NULL);
-
-    dbus_error_init(&derror);
-    ret = dbus_bus_request_name(dbus_g_connection_get_connection(xfconfd->dbus_conn),
-                                "org.xfce.Xfconf",
-                                DBUS_NAME_FLAG_DO_NOT_QUEUE,
-                                &derror);
-    if(DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER != ret) {
-        if(dbus_error_is_set(&derror)) {
-            if(error)
-                dbus_set_g_error(error, &derror);
-            dbus_error_free(&derror);
-        } else if(error) {
-            g_set_error(error, DBUS_GERROR, DBUS_GERROR_FAILED,
-                        _("Another Xfconf daemon is already running"));
-        }
-
+    xfconfd->conn = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, error);
+    if (G_UNLIKELY(!xfconfd->conn))
+    {
         return FALSE;
     }
-
+    
+    ret = 
+    g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON(xfconfd),
+                                      xfconfd->conn,
+                                      "/org/xfce/Xfconf",
+                                      error);
+    
+    if (ret == FALSE)
+        return FALSE;
+    
+    xfconfd->filter_id = g_signal_connect (xfconfd->conn, "closed",
+                                           G_CALLBACK(xfconf_daemon_handle_dbus_disconnect),
+                                           xfconfd);
+    
     return TRUE;
 }
 
@@ -524,32 +483,6 @@ xfconf_daemon_load_config(XfconfDaemon *xfconfd,
     return TRUE;
 }
 
-static DBusHandlerResult
-xfconf_daemon_handle_dbus_disconnect(DBusConnection *conn,
-                                     DBusMessage *message,
-                                     void *user_data)
-{
-    if(dbus_message_is_signal(message, DBUS_INTERFACE_LOCAL, "Disconnected")) {
-        XfconfDaemon *xfconfd = user_data;
-        GList *l;
-
-        DBG("got dbus disconnect; flushing all channels");
-
-        for(l = xfconfd->backends; l; l = l->next) {
-            GError *error = NULL;
-            if(!xfconf_backend_flush(XFCONF_BACKEND(l->data), &error)) {
-                g_critical("Failed to flush backend on disconnect: %s",
-                           error->message);
-                g_error_free(error);
-            }
-        }
-    }
-
-    return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
-}
-
-
-
 
 XfconfDaemon *
 xfconf_daemon_new_unique(gchar * const *backend_ids,
@@ -568,5 +501,26 @@ xfconf_daemon_new_unique(gchar * const *backend_ids,
         return NULL;
     }
 
+    g_signal_connect (xfconfd, "handle-get-all-properties",
+                      G_CALLBACK(xfconf_get_all_properties), xfconfd);
+    
+    g_signal_connect (xfconfd, "handle-get-property",
+                      G_CALLBACK(xfconf_get_property), xfconfd);
+
+    g_signal_connect (xfconfd, "handle-is-property-locked",
+                      G_CALLBACK(xfconf_is_property_locked), xfconfd);
+    
+    g_signal_connect (xfconfd, "handle-list-channels",
+                      G_CALLBACK(xfconf_list_channels), xfconfd);
+
+    g_signal_connect (xfconfd, "handle-property-exists",
+                      G_CALLBACK(xfconf_property_exists), xfconfd);
+    
+    g_signal_connect (xfconfd, "handle-reset-property",
+                      G_CALLBACK(xfconf_reset_property), xfconfd);
+    
+    g_signal_connect (xfconfd, "handle-set-property",
+                      G_CALLBACK(xfconf_set_property), xfconfd);
+    
     return xfconfd;
 }

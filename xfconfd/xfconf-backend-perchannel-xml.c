@@ -52,7 +52,6 @@
 #endif
 
 #include <libxfce4util/libxfce4util.h>
-#include <dbus/dbus-glib.h>
 
 #include "xfconf-backend-perchannel-xml.h"
 #include "xfconf-backend.h"

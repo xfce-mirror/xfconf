@@ -35,8 +35,7 @@ xfconfd_SOURCES = \
 xfconfd_CFLAGS = \
 	$(GLIB_CFLAGS) \
 	$(GTHREAD_CFLAGS) \
-	$(DBUS_CFLAGS) \
-	$(DBUS_GLIB_CFLAGS) \
+	$(GIO_UNIX_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
@@ -50,10 +49,10 @@ endif
 xfconfd_LDADD = \
 	$(top_builddir)/common/libxfconf-common.la \
 	$(top_builddir)/common/libxfconf-gvaluefuncs.la \
+	$(top_builddir)/common/libxfconf-dbus.la \
 	$(GLIB_LIBS) \
 	$(GTHREAD_LIBS) \
-	$(DBUS_LIBS) \
-	$(DBUS_GLIB_LIBS) \
+	$(GIO_UNIX_LIBS) \
 	$(LIBXFCE4UTIL_LIBS)
 
 servicedir = $(datadir)/dbus-1/services

@@ -15,7 +15,7 @@ xfconf_query_SOURCES = \
 xfconf_query_CFLAGS = \
 	$(GLIB_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
-	$(DBUS_GLIB_CFLAGS) \
+	$(GIO_UNIX_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
 xfconf_query_LDFLAGS = \
@@ -26,4 +26,4 @@ xfconf_query_LDADD = \
 	$(top_builddir)/xfconf/libxfconf-0.la \
 	$(GLIB_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
-	$(DBUS_GLIB_LIBS)
+	$(GIO_UNIX_LIBS)

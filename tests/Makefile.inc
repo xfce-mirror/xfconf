@@ -20,8 +20,8 @@ AM_CFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/tests \
 	$(GLIB_CFLAGS) \
-	$(DBUS_CFLAGS)
+	$(GIO_UNIX_CFLAGS)
 
-LIBS = $(DBUS_GLIB_LIBS) \
+LIBS = $(GIO_UNIX_LIBS) \
 	$(top_builddir)/xfconf/libxfconf-$(LIBXFCONF_VERSION_API).la
 

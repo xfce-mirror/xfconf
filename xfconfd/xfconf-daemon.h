@@ -21,6 +21,7 @@
 #define __XFCONF_DAEMON_H__
 
 #include <glib-object.h>
+#include "xfconf/xfconf-errors.h"
 
 #define XFCONF_TYPE_DAEMON             (xfconf_daemon_get_type())
 #define XFCONF_DAEMON(obj)             (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_TYPE_DAEMON, XfconfDaemon))
