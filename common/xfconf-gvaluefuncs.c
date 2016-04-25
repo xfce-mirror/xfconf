@@ -380,6 +380,9 @@ xfconf_basic_gvalue_to_gvariant (const GValue *value) {
     case G_TYPE_BOOLEAN:
         type = G_VARIANT_TYPE_BOOLEAN;
         break;
+    case G_TYPE_UCHAR:
+        type = G_VARIANT_TYPE_BYTE;
+        break;
     case G_TYPE_INT64:
         type = G_VARIANT_TYPE_INT64;
         break;
@@ -400,12 +403,15 @@ xfconf_basic_gvalue_to_gvariant (const GValue *value) {
         break;
     }
     
-    
     if (type) {
         return g_dbus_gvalue_to_gvariant (value, type);
     } 
-    
-    g_warning ("Unable toconvert GType '%s' to GVariant", _xfconf_string_from_gtype(G_VALUE_TYPE(value)));
+    /* there is no g_variant_type_char! */
+    else if (G_VALUE_TYPE(value) == G_TYPE_CHAR) {
+        return g_variant_new_int16(g_value_get_schar(value));
+    }
+        
+    g_warning ("Unable to convert GType '%s' to GVariant", _xfconf_string_from_gtype(G_VALUE_TYPE(value)));
 
     return NULL;
 }
@@ -440,6 +446,10 @@ void xfconf_basic_gvariant_to_gvalue (GVariant *variant, GValue *value)
     case G_VARIANT_CLASS_BOOLEAN:
         g_value_init(value, G_TYPE_BOOLEAN);
         g_value_set_boolean (value, g_variant_get_boolean (variant));
+        break;
+    case G_VARIANT_CLASS_BYTE:
+        g_value_init(value, G_TYPE_UCHAR);
+        g_value_set_uchar (value, g_variant_get_byte (variant));
         break;
     case G_VARIANT_CLASS_STRING:
         g_value_init(value, G_TYPE_STRING);
