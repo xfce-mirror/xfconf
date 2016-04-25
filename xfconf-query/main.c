@@ -134,7 +134,7 @@ xfconf_query_list_contents (GSList *sorted_contents, GHashTable *channel_content
         {
             property_value = g_hash_table_lookup (channel_contents, li->data);
 
-            if (XFCONF_TYPE_G_VALUE_ARRAY != G_VALUE_TYPE (property_value))
+            if (G_TYPE_PTR_ARRAY != G_VALUE_TYPE (property_value))
             {
                 string = _xfconf_string_from_gvalue (property_value);
             }
@@ -363,7 +363,7 @@ main(int argc, char **argv)
                 return EXIT_FAILURE;
             }
 
-            if(XFCONF_TYPE_G_VALUE_ARRAY != G_VALUE_TYPE(&value))
+            if(G_TYPE_PTR_ARRAY != G_VALUE_TYPE(&value))
             {
                 gchar *str_val = _xfconf_string_from_gvalue(&value);
                 g_print("%s\n", str_val ? str_val : _("(unknown)"));
@@ -439,7 +439,7 @@ main(int argc, char **argv)
                     return EXIT_FAILURE;
                 }
 
-                if(XFCONF_TYPE_G_VALUE_ARRAY == gtype)
+                if(G_TYPE_PTR_ARRAY == gtype)
                 {
                     xfconf_query_printerr(_("A value type must be specified to change an array into a single value"));
                     return EXIT_FAILURE;
@@ -475,7 +475,7 @@ main(int argc, char **argv)
                     for(new_types = 0; type[new_types]; ++new_types)
                         ;
                 }
-                else if(G_VALUE_TYPE(&value) == XFCONF_TYPE_G_VALUE_ARRAY)
+                else if(G_VALUE_TYPE(&value) == G_TYPE_PTR_ARRAY)
                 {
                     arr_old = g_value_get_boxed(&value);
                     new_types = arr_old->len;
@@ -522,7 +522,7 @@ main(int argc, char **argv)
                 if(G_VALUE_TYPE(&value))
                     g_value_unset(&value);
 
-                g_value_init(&value, XFCONF_TYPE_G_VALUE_ARRAY);
+                g_value_init(&value, G_TYPE_PTR_ARRAY);
                 g_value_set_boxed(&value, arr_new);
 
                 if(!xfconf_channel_set_property(channel, property_name, &value))

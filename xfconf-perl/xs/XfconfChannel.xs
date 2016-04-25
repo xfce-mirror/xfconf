@@ -96,7 +96,7 @@ xfconf_channel_get_property(channel, property, default_value=NULL)
     PPCODE:
         if(!xfconf_channel_get_property(channel, property, &val)) {
             XPUSHs((default_value ? default_value : &PL_sv_undef));
-        } else if(G_VALUE_TYPE(&val) == XFCONF_TYPE_G_VALUE_ARRAY) {
+        } else if(G_VALUE_TYPE(&val) == G_TYPE_PTR_ARRAY) {
             GPtrArray *arr = g_value_get_boxed(&val);
             gint i;
 
@@ -149,10 +149,10 @@ _set_property(channel, property, value, arraytypes=NULL)
             case 9:  gtype = G_TYPE_DOUBLE; break;
             case 10: gtype = G_TYPE_BOOLEAN; break;
             case 11: gtype = G_TYPE_STRING; break;
-            case 12: gtype = XFCONF_TYPE_G_VALUE_ARRAY; break;
+            case 12: gtype = G_TYPE_PTR_ARRAY; break;
         }
 
-        if(gtype != XFCONF_TYPE_G_VALUE_ARRAY) {
+        if(gtype != G_TYPE_PTR_ARRAY) {
             g_value_init(&val, gtype);
             gperl_value_from_sv(&val, value);
             RETVAL = xfconf_channel_set_property(channel, property, &val);
@@ -201,7 +201,7 @@ _set_property(channel, property, value, arraytypes=NULL)
                         gtype = G_TYPE_STRING;
                 }
 
-                if(gtype == G_TYPE_NONE || gtype == XFCONF_TYPE_G_VALUE_ARRAY) {
+                if(gtype == G_TYPE_NONE || gtype == G_TYPE_PTR_ARRAY) {
                     xfconf_array_free(arr);
                     croak("Xfce4::Xfconf::Channel::set_array(): value cannot be of type 'empty' or 'array' at index %d", i);
                 }

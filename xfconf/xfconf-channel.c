@@ -1270,7 +1270,7 @@ xfconf_channel_get_property(XfconfChannel *channel,
         {
             /* caller wants to convert the returned value into a diff type */
 
-            if(G_VALUE_TYPE(&val1) == XFCONF_TYPE_G_VALUE_ARRAY) {
+            if(G_VALUE_TYPE(&val1) == G_TYPE_PTR_ARRAY) {
                 /* we got an array back, so let's convert each item in
                  * the array to the target type */
                 GPtrArray *arr = xfconf_transform_array(g_value_get_boxed(&val1),
@@ -1278,7 +1278,7 @@ xfconf_channel_get_property(XfconfChannel *channel,
 
                 if(arr) {
                     g_value_unset(value);
-                    g_value_init(value, XFCONF_TYPE_G_VALUE_ARRAY);
+                    g_value_init(value, G_TYPE_PTR_ARRAY);
                     g_value_take_boxed(value, arr);
                 } else
                     ret = FALSE;
@@ -1346,11 +1346,11 @@ xfconf_channel_set_property(XfconfChannel *channel,
         val = &tmp_val;
         g_value_init(&tmp_val, G_TYPE_INT);
         g_value_set_int(&tmp_val, xfconf_g_value_get_int16(value));
-    } else if(G_VALUE_TYPE(value) == XFCONF_TYPE_G_VALUE_ARRAY) {
+    } else if(G_VALUE_TYPE(value) == G_TYPE_PTR_ARRAY) {
         arr_new = xfconf_fixup_16bit_ints(g_value_get_boxed(value));
         if(arr_new) {
             val = &tmp_val;
-            g_value_init(&tmp_val, XFCONF_TYPE_G_VALUE_ARRAY);
+            g_value_init(&tmp_val, G_TYPE_PTR_ARRAY);
             g_value_set_boxed(&tmp_val, arr_new);
         } else
             val = (GValue *)value;
@@ -1752,7 +1752,7 @@ xfconf_channel_set_arrayv(XfconfChannel *channel,
 
     values_new = xfconf_fixup_16bit_ints(values);
 
-    g_value_init(&val, XFCONF_TYPE_G_VALUE_ARRAY);
+    g_value_init(&val, G_TYPE_PTR_ARRAY);
     g_value_set_static_boxed(&val, values_new ? values_new : values);
     
     ret = xfconf_channel_set_internal(channel, property, &val);

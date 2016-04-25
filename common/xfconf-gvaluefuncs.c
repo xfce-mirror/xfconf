@@ -79,7 +79,7 @@ _xfconf_gtype_from_string(const gchar *type)
     else if(!strcmp(type, "bool"))
         return G_TYPE_BOOLEAN;
     else if(!strcmp(type, "array"))
-        return XFCONF_TYPE_G_VALUE_ARRAY;
+        return G_TYPE_PTR_ARRAY;
     else if(!strcmp(type, "uint"))
         return G_TYPE_UINT;
     else if(!strcmp(type, "uchar"))
@@ -129,7 +129,7 @@ _xfconf_string_from_gtype(GType gtype)
                 return "uint16";
             else if(gtype == XFCONF_TYPE_INT16)
                 return "int16";
-            else if(gtype == XFCONF_TYPE_G_VALUE_ARRAY)
+            else if(gtype == G_TYPE_PTR_ARRAY)
                 return "array";
             break;
     }
@@ -243,7 +243,7 @@ _xfconf_gvalue_from_string(GValue *value,
             } else if(XFCONF_TYPE_INT16 == G_VALUE_TYPE(value)) {
                 HANDLE_INT(G_MINSHORT, G_MAXSHORT, xfconf_g_value_set_int16);
                 return TRUE;
-            } else if(XFCONF_TYPE_G_VALUE_ARRAY == G_VALUE_TYPE(value)) {
+            } else if(G_TYPE_PTR_ARRAY == G_VALUE_TYPE(value)) {
                 GPtrArray *arr = g_ptr_array_sized_new(1);
                 g_value_take_boxed(value, arr);
                 return TRUE;
