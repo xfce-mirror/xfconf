@@ -763,11 +763,13 @@ xfconf_channel_get_properties(XfconfChannel *channel,
                                                       &variant, NULL, ERROR))
     {
         ERROR_CHECK;
-        properties = NULL;
+        variant = NULL;
     }
-    
-    properties = xfconf_gvariant_to_hash (variant);
-    g_variant_unref (variant);
+   
+    if (variant) {
+        properties = xfconf_gvariant_to_hash (variant);
+        g_variant_unref (variant);
+    }
         
     if(real_property_base != property_base
        && real_property_base != channel->property_base)
