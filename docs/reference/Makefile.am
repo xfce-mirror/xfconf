@@ -38,7 +38,8 @@ IGNORE_HFILES= \
 	xfconf-gdbus-bindings.h \
 	xfconf-gdbus-bindings.c \
 	xfconf-marshal.h \
-	xfconf-private.h
+	xfconf-private.h \
+	xfconf-common-private.h
 
 # Extra files to add when scanning (relative to $srcdir)
 EXTRA_HFILES=
