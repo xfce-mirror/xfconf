@@ -408,7 +408,7 @@ xfconf_basic_gvalue_to_gvariant (const GValue *value) {
     } 
     /* there is no g_variant_type_char! */
     else if (G_VALUE_TYPE(value) == G_TYPE_CHAR) {
-        return g_variant_new_int16(g_value_get_schar(value));
+        return g_variant_ref_sink(g_variant_new_int16(g_value_get_schar(value)));
     }
         
     g_warning ("Unable to convert GType '%s' to GVariant", _xfconf_string_from_gtype(G_VALUE_TYPE(value)));
@@ -484,17 +484,19 @@ xfconf_gvalue_to_gvariant (const GValue *value)
             GVariant *var = NULL;
             
             var = xfconf_basic_gvalue_to_gvariant (v);
-            if (var)
+            if (var) {
                 g_variant_builder_add (&builder, "v", var, NULL);
+                g_variant_unref (var);
+            }
         }
         
-        variant = g_variant_builder_end (&builder);
+        variant = g_variant_ref_sink(g_variant_builder_end (&builder));
     }
     else if (G_VALUE_TYPE(value) == G_TYPE_STRV) {
         gchar **strlist;
         
         strlist = g_value_get_boxed(value);
-        variant = g_variant_new_strv ((const gchar**)strlist, g_strv_length(strlist));
+        variant = g_variant_ref_sink(g_variant_new_strv ((const gchar**)strlist, g_strv_length(strlist)));
     }
     else
         variant = xfconf_basic_gvalue_to_gvariant(value);
@@ -532,7 +534,10 @@ GVariant *xfconf_hash_to_gvariant (GHashTable *hash)
                 if(item_value)
                 {
                     v = xfconf_basic_gvalue_to_gvariant(item_value);
-                    g_variant_builder_add (&arr_builder, "v", v);
+                    if (v) {
+                        g_variant_builder_add (&arr_builder, "v", v);
+                        g_variant_unref (v);
+                    }
                 }
             }
             
@@ -544,11 +549,15 @@ GVariant *xfconf_hash_to_gvariant (GHashTable *hash)
             
             strlist = g_value_get_boxed(value);
             variant = g_variant_new_strv ((const gchar**)strlist, g_strv_length(strlist));
+            g_variant_builder_add (&builder, "{sv}", key, variant);
         }
         else {
             
             v = xfconf_basic_gvalue_to_gvariant(value);
-            g_variant_builder_add (&builder, "{sv}", key, v);
+            if (v) {
+                g_variant_builder_add (&builder, "{sv}", key, v);
+                g_variant_unref (v);
+            }
         }
     }
     

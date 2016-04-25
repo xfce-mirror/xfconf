@@ -103,11 +103,13 @@ xfconf_daemon_emit_property_changed_idled(gpointer data)
     xfconf_backend_get(pdata->backend, pdata->channel, pdata->property,
                        &value, NULL);
     if(G_VALUE_TYPE(&value)) {
-        GVariant *v;
-        v = g_variant_new_variant (xfconf_gvalue_to_gvariant (&value));
-        if (v) {
+        GVariant *val, *variant;
+        val = xfconf_gvalue_to_gvariant (&value);
+        if (val) {
+            variant = g_variant_new_variant (val);
             xfconf_exported_emit_property_changed ((XfconfExported*)pdata->xfconfd,
-                                                   pdata->channel, pdata->property, v);
+                                                   pdata->channel, pdata->property, variant);
+            g_variant_unref (val);
         }
         g_value_unset(&value);
     } else {
@@ -207,10 +209,12 @@ xfconf_get_property(XfconfExported *skeleton,
     /* check each backend until we find a value */
     for(l = xfconfd->backends; l; l = l->next) {
         if(xfconf_backend_get(l->data, channel, property, &value, &error)) {
-            GVariant *variant;
-            variant = g_variant_new_variant(xfconf_gvalue_to_gvariant (&value));
-            if (variant){
+            GVariant *variant, *val;
+            val = xfconf_gvalue_to_gvariant (&value);
+            if (val){
+                variant = g_variant_new_variant (val);
                 xfconf_exported_complete_get_property(skeleton, invocation, variant);
+                g_variant_unref (val);
             }
             else {
                 g_set_error (&error, XFCONF_ERROR, 

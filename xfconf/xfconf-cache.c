@@ -754,7 +754,7 @@ xfconf_cache_set(XfconfCache *cache,
                  const GValue *value,
                  GError **error)
 {
-    GVariant *variant = NULL;
+    GVariant *variant = NULL, *val = NULL;
     GDBusProxy *proxy = _xfconf_get_gdbus_proxy();
     XfconfCacheItem *item = NULL;
     XfconfCacheOldItem *old_item = NULL;
@@ -820,31 +820,36 @@ xfconf_cache_set(XfconfCache *cache,
         g_hash_table_insert(cache->old_properties, old_item->property, old_item);
     }
 
-    variant = g_variant_new_variant (xfconf_gvalue_to_gvariant (value));
+    val = xfconf_gvalue_to_gvariant (value);
+    if (val) {
+        variant = g_variant_new_variant (val);
 
-    xfconf_exported_call_set_property ((XfconfExported *)proxy, 
-                                     cache->channel_name,
-                                     property,
-                                     variant,
-                                     old_item->cancellable,
-                                     (GAsyncReadyCallback) xfconf_cache_set_property_reply_handler,
-                                     old_item);
+        xfconf_exported_call_set_property ((XfconfExported *)proxy, 
+                                           cache->channel_name,
+                                           property,
+                                           variant,
+                                           old_item->cancellable,
+                                           (GAsyncReadyCallback) xfconf_cache_set_property_reply_handler,
+                                           old_item);
+        
+        g_hash_table_insert(cache->pending_calls, old_item->cancellable, old_item);
+        
+        if(item)
+            xfconf_cache_item_update(item, value);
+        else {
+            item = xfconf_cache_item_new(value, FALSE);
+            g_tree_insert(cache->properties, g_strdup(property), item);
+        }
+        
+        xfconf_cache_mutex_unlock(cache);
 
-    g_hash_table_insert(cache->pending_calls, old_item->cancellable, old_item);
-
-    if(item)
-        xfconf_cache_item_update(item, value);
-    else {
-        item = xfconf_cache_item_new(value, FALSE);
-        g_tree_insert(cache->properties, g_strdup(property), item);
+        g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED], 0,
+                      cache->channel_name, property, value);
+        
+        g_variant_unref (val);
+        return TRUE;
     }
-
-    xfconf_cache_mutex_unlock(cache);
-
-    g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED], 0,
-                  cache->channel_name, property, value);
-
-    return TRUE;
+    return FALSE;
 }
 
 typedef struct
