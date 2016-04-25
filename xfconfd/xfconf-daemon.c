@@ -189,8 +189,9 @@ xfconf_set_property(XfconfExported *skeleton,
         g_dbus_method_invocation_return_gerror(invocation, error);
         g_error_free(error);
     }
-    
+
     g_value_unset (value);
+    g_free (value);
     return TRUE;
 }
 

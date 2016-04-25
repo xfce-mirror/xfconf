@@ -1,6 +1,7 @@
 /*
  *  xfconf
  *
+ *  Copyright (c) 2016 Ali Abdallah <ali@xfce.org>
  *  Copyright (c) 2008 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This library is free software; you can redistribute it and/or
@@ -565,6 +566,12 @@ GVariant *xfconf_hash_to_gvariant (GHashTable *hash)
     return variant;
 }
 
+static void _destroy_array_elem (gpointer data) {
+    GValue *val = (GValue*)data;
+    g_value_unset (val);
+    g_free (val);
+}
+
 GValue * xfconf_gvariant_to_gvalue (GVariant *in_variant)
 {
     GValue *value;
@@ -585,7 +592,7 @@ GValue * xfconf_gvariant_to_gvalue (GVariant *in_variant)
         nchild = g_variant_n_children (variant);
             
         if (nchild > 0) {
-            arr = g_ptr_array_sized_new(nchild);
+            arr = g_ptr_array_new_full(nchild, (GDestroyNotify)_destroy_array_elem);
             
             while (idx < nchild ) {
                 GVariant *v;
@@ -604,7 +611,7 @@ GValue * xfconf_gvariant_to_gvalue (GVariant *in_variant)
             }
             
             g_value_init(value, G_TYPE_PTR_ARRAY);
-            g_value_set_boxed(value, arr);
+            g_value_take_boxed(value, arr);
         }
     }
     else if (g_variant_is_of_type (variant, G_VARIANT_TYPE("as"))) {
