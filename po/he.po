@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-27 18:32+0200\n"
-"PO-Revision-Date: 2016-04-13 18:17+0000\n"
+"PO-Revision-Date: 2016-04-26 19:52+0000\n"
 "Last-Translator: GenghisKhan <genghiskhan@gmx.ca>\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfconf/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -23,18 +23,18 @@ msgstr ""
 #: ../xfconf/xfconf-cache.c:897
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "נכשל לבצע קריאת DBus של תכונת אתחול"
+msgstr "נכשל לבצע קריאת DBus של מאפיין אתחול"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "לא ניתן ליצור ספריית הגדרות \"%s\""
+msgstr "לא ניתן ליצור ספריית תצורה \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "רשות נדחתה בעת שינוי תכונה \"%s\" בערוץ \"%s\" "
+msgstr "רשות נדחתה בעת שינוי מאפיין \"%s\" בערוץ \"%s\" "
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -52,23 +52,23 @@ msgstr "לא יכול להסיר ערוץ \"%s\": %s"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "סוג לא חוקי עבור <property>: \"%s\""
+msgstr "טיפוס לא חוקי עבור <property>: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "לא יכול לנתח ערך של סוג \"%s\" מ- \"%s\" "
+msgstr "לא יכול לנתח ערך של טיפוס \"%s\" מתוך \"%s\" "
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "מאפיין הסוג של <value> לא יכול להיות אוסף"
+msgstr "טיפוס אפיון של <value> לא יכול להיות מערך"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "סוג לא חוקי עבור <value>: \"%s\" "
+msgstr "טיפוס לא חוקי עבור <value>: \"%s\" "
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
@@ -84,7 +84,7 @@ msgstr "\"%s\": %s לא יכול לכתוב ערוץ"
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "\"%s\" מסוג Xfconf backend לא יכול למצוא"
+msgstr "לא מסוגל למצוא מגשר עורפי Xfconf מטיפוס \"%s\""
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
@@ -149,11 +149,11 @@ msgstr "פנה לרקע לאחר התחלה, שימושי רק למטרות בד
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
-msgstr "דמון הגדרת Xfce "
+msgstr "שדון תצורת Xfce "
 
 #: ../xfconfd/main.c:168
 msgid "Xfce configuration daemon"
-msgstr "דמון הגדרת Xfce "
+msgstr "שדון תצורת Xfce "
 
 #: ../xfconfd/main.c:170
 msgid "Report bugs to http://bugs.xfce.org/\n"
@@ -224,7 +224,7 @@ msgstr "רקורסיבי (השתמש עם r-) "
 
 #: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
-msgstr "אלץ אוסף גם אם רק אלמנט אחד"
+msgstr "אלץ מערך גם אם רק אלמנט אחד"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
@@ -276,7 +276,7 @@ msgstr "האפשרויות create-- ו- reset-- לא יכולות להיות ב�
 #: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "\"%s\": התחל לעקוב אחר ערוץ"
+msgstr "התחל לעקוב אחר ערוץ \"%s\":"
 
 #: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
 #: ../xfconf-query/main.c:530
@@ -294,7 +294,7 @@ msgstr "(לא ידוע)"
 #: ../xfconf-query/main.c:378
 #, c-format
 msgid "Value is an array with %d items:"
-msgstr "%d :ערך הוא סידור עם פריטים"
+msgstr "ערך הוא מערך עם %d פריטים:"
 
 #: ../xfconf-query/main.c:402
 #, c-format
@@ -313,11 +313,11 @@ msgstr "נכשל להשיג את הסוג הקיים עבור הערך"
 
 #: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
-msgstr "לא יכול לקבוע את סוג הערך"
+msgstr "לא יכול לקבוע את הטיפוס של הערך"
 
 #: ../xfconf-query/main.c:444
 msgid "A value type must be specified to change an array into a single value"
-msgstr "חובה לציין סוג ערך על מנת לשנות סידור לערך בודד"
+msgstr "חובה לציין טיפוס ערך כדי לשנות מערך לערך בודד"
 
 #: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
@@ -332,7 +332,7 @@ msgstr "ישנם %d ערכים חדשים, אבל נקבעו רק %d סוגים"
 #: ../xfconf-query/main.c:507
 #, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "%d לא יכול לקבוע סוג ערך באינדקס"
+msgstr "לא יכול לקבוע טיפוס ערך באינדקס %d"
 
 #: ../xfconf-query/main.c:557
 #, c-format
