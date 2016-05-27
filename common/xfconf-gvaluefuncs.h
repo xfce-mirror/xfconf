@@ -38,6 +38,8 @@ G_GNUC_INTERNAL gboolean _xfconf_gvalue_is_equal(const GValue *value1,
 
 G_GNUC_INTERNAL void _xfconf_gvalue_free(GValue *value);
 
+G_GNUC_INTERNAL GPtrArray *xfconf_dup_value_array (GPtrArray *arr, gboolean auto_destroy_value);
+
 G_GNUC_INTERNAL GVariant *xfconf_basic_gvalue_to_gvariant (const GValue *value);
 
 G_GNUC_INTERNAL GVariant *xfconf_gvalue_to_gvariant (const GValue *value);

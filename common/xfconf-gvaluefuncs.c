@@ -561,23 +561,48 @@ GVariant *xfconf_hash_to_gvariant (GHashTable *hash)
             }
         }
     }
-    
+
     variant = g_variant_builder_end (&builder);
     return variant;
 }
 
-static void _destroy_array_elem (gpointer data) {
+static void xfonf_free_array_elem_val (gpointer data) {
     GValue *val = (GValue*)data;
     g_value_unset (val);
     g_free (val);
 }
+
+
+GPtrArray *
+xfconf_dup_value_array (GPtrArray *arr, gboolean auto_destroy_value) {
+
+    GPtrArray *retArr;
+    uint i;
+
+    if (auto_destroy_value)
+        retArr = g_ptr_array_new_full(arr->len, (GDestroyNotify)xfonf_free_array_elem_val);
+    else
+        retArr = g_ptr_array_sized_new(arr->len);
+
+    for (i = 0; i< arr->len; i++) {
+        GValue *v, *vi;
+        v = g_new0(GValue, 1);
+        vi = g_ptr_array_index(arr, i);
+        g_value_init (v, G_VALUE_TYPE(vi));
+        g_value_copy (vi, v);
+        g_ptr_array_add(retArr, v);
+    }
+
+    return retArr;
+}
+
 
 GValue * xfconf_gvariant_to_gvalue (GVariant *in_variant)
 {
     GValue *value;
     GVariant *variant;
     value = g_new0(GValue, 1);
-    
+
     if (g_variant_is_of_type(in_variant, G_VARIANT_TYPE ("v")))
         variant = g_variant_get_variant (in_variant);
     else
@@ -592,7 +617,7 @@ GValue * xfconf_gvariant_to_gvalue (GVariant *in_variant)
         nchild = g_variant_n_children (variant);
             
         if (nchild > 0) {
-            arr = g_ptr_array_new_full(nchild, (GDestroyNotify)_destroy_array_elem);
+            arr = g_ptr_array_new_full(nchild, (GDestroyNotify)xfonf_free_array_elem_val);
             
             while (idx < nchild ) {
                 GVariant *v;
@@ -639,7 +664,7 @@ GHashTable *xfconf_gvariant_to_hash (GVariant *variant)
     
     g_variant_iter_init (&iter, variant);
         
-    while (g_variant_iter_next (&iter, "{&sv}", &key, &v)) {
+    while (g_variant_iter_next (&iter, "{sv}", &key, &v)) {
         GValue *value;
         
         value = xfconf_gvariant_to_gvalue (v);

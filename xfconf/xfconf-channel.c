@@ -458,47 +458,6 @@ xfconf_channel_get_internal(XfconfChannel *channel,
     return ret;
 }
 
-static GPtrArray *
-xfconf_fixup_16bit_ints(GPtrArray *arr)
-{
-    GPtrArray *arr_new = NULL;
-    guint i;
-
-    for(i = 0; i < arr->len; ++i) {
-        GValue *v = g_ptr_array_index(arr, i);
-
-        if(G_VALUE_TYPE(v) == XFCONF_TYPE_UINT16
-           || G_VALUE_TYPE(v) == XFCONF_TYPE_INT16)
-        {
-            arr_new = g_ptr_array_sized_new(arr->len);
-            break;
-        }
-    }
-
-    if(!arr_new)
-        return NULL;
-
-    for(i = 0; i < arr->len; ++i) {
-        GValue *v_src, *v_dest;
-
-        v_src = g_ptr_array_index(arr, i);
-        v_dest = g_new0(GValue, 1);
-        if(G_VALUE_TYPE(v_src) == XFCONF_TYPE_UINT16) {
-            g_value_init(v_dest, G_TYPE_UINT);
-            g_value_set_uint(v_dest, xfconf_g_value_get_uint16(v_src));
-        } else if(G_VALUE_TYPE(v_src) == XFCONF_TYPE_INT16) {
-            g_value_init(v_dest, G_TYPE_INT);
-            g_value_set_int(v_dest, xfconf_g_value_get_int16(v_src));
-        } else {
-            g_value_init(v_dest, G_VALUE_TYPE(v_src));
-            g_value_copy(v_src, v_dest);
-        }
-
-        g_ptr_array_add(arr_new, v_dest);
-    }
-
-    return arr_new;
-}
 
 static GPtrArray *
 xfconf_transform_array(GPtrArray *arr_src,
@@ -1324,8 +1283,7 @@ xfconf_channel_set_property(XfconfChannel *channel,
                             const gchar *property,
                             const GValue *value)
 {
-    GValue *val, tmp_val = { 0, };
-    GPtrArray *arr_new = NULL;
+    GValue val = { 0, };
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel)
@@ -1335,34 +1293,11 @@ xfconf_channel_set_property(XfconfChannel *channel,
                          || g_value_get_string(value) == NULL
                          || g_utf8_validate(g_value_get_string(value), -1, NULL),
                          FALSE);
-
-    /* intercept uint16/int16 since dbus-glib doesn't know how to send
-     * them over the wire */
-    if(G_VALUE_TYPE(value) == XFCONF_TYPE_UINT16) {
-        val = &tmp_val;
-        g_value_init(&tmp_val, G_TYPE_UINT);
-        g_value_set_uint(&tmp_val, xfconf_g_value_get_uint16(value));
-    } else if(G_VALUE_TYPE(value) == XFCONF_TYPE_INT16) {
-        val = &tmp_val;
-        g_value_init(&tmp_val, G_TYPE_INT);
-        g_value_set_int(&tmp_val, xfconf_g_value_get_int16(value));
-    } else if(G_VALUE_TYPE(value) == G_TYPE_PTR_ARRAY) {
-        arr_new = xfconf_fixup_16bit_ints(g_value_get_boxed(value));
-        if(arr_new) {
-            val = &tmp_val;
-            g_value_init(&tmp_val, G_TYPE_PTR_ARRAY);
-            g_value_set_boxed(&tmp_val, arr_new);
-        } else
-            val = (GValue *)value;
-    } else
-        val = (GValue *)value;
-
-    ret = xfconf_channel_set_internal(channel, property, val);
-
-    if(val == &tmp_val)
-        g_value_unset(&tmp_val);
-    if(arr_new)
-        xfconf_array_free(arr_new);
+    
+    g_value_init(&val, G_VALUE_TYPE(value));
+    g_value_copy(value, &val);
+    ret = xfconf_channel_set_internal(channel, property, &val);
+    g_value_unset(&val);
 
     return ret;
 }
@@ -1543,46 +1478,32 @@ GPtrArray *
 xfconf_channel_get_arrayv(XfconfChannel *channel,
                           const gchar *property)
 {
-    GPtrArray *arr = NULL;
     GValue val = { 0, };
-    GVariant *variant;
-    GVariant *value_prop;
-    GVariantIter iter;
-    gsize count;
+    GPtrArray *arr = NULL;
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, NULL);
     
     ret = xfconf_channel_get_internal(channel, property, &val);
+    
     if(!ret)
         return NULL;
     
-    if(G_TYPE_VARIANT != G_VALUE_TYPE(&val)) {
+    if(G_TYPE_PTR_ARRAY != G_VALUE_TYPE(&val)) {
+        g_warning ("Unexpected value type %s\n", G_VALUE_TYPE_NAME(&val));
         g_value_unset(&val);
         return NULL;
     }
     
-    variant = g_value_get_variant (&val);
-    g_value_unset(&val);
-    
-    count = g_variant_iter_init (&iter, variant);
-    arr = g_ptr_array_sized_new (count + 1);
-
-    while (g_variant_iter_next (&iter, "v", &value_prop)) {
-        GValue *arr_val;
-        arr_val = g_new0(GValue, 1);
-        g_dbus_gvariant_to_gvalue (value_prop, arr_val);
-
-        g_ptr_array_add(arr, arr_val);
-        g_variant_unref (value_prop);
-    }
-    g_variant_unref (variant);
-
+    /**
+     * Arr is owned by the Gvalue in the cache
+     * do not free it.
+     **/
+    arr = g_value_get_boxed(&val);
     if(!arr->len) {
         g_ptr_array_free(arr, TRUE);
         return NULL;
     }
-    
     return arr;
 }
 
@@ -1743,24 +1664,18 @@ xfconf_channel_set_arrayv(XfconfChannel *channel,
                           const gchar *property,
                           GPtrArray *values)
 {
-    GPtrArray *values_new = NULL;
     GValue val = { 0, };
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && values,
                          FALSE);
 
-    values_new = xfconf_fixup_16bit_ints(values);
-
     g_value_init(&val, G_TYPE_PTR_ARRAY);
-    g_value_set_static_boxed(&val, values_new ? values_new : values);
+    g_value_set_static_boxed(&val, values);
     
     ret = xfconf_channel_set_internal(channel, property, &val);
     
     g_value_unset(&val);
-
-    if(values_new)
-        xfconf_array_free(values_new);
 
     return ret;
 }
