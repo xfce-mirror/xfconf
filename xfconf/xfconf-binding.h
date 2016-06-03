@@ -41,6 +41,11 @@ gulong xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
                                        gpointer object,
                                        const gchar *object_property);
 
+gulong xfconf_g_property_bind_gdkrgba(XfconfChannel *channel,
+                                      const gchar *xfconf_property,
+                                      gpointer object,
+                                      const gchar *object_property);
+
 void xfconf_g_property_unbind(gulong id);
 
 void xfconf_g_property_unbind_by_property(XfconfChannel *channel,

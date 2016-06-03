@@ -55,6 +55,14 @@ typedef struct
     guint16 blue;
 } FakeGdkColor;
 
+/* same structure as in gdk, but we don't link to gdk */
+typedef struct
+{
+    gdouble red;
+    gdouble green;
+    gdouble blue;
+    gdouble alpha;
+} FakeGdkRGBA;
 
 
 static void xfconf_g_property_object_notify(GObject *object,
@@ -74,6 +82,7 @@ static void xfconf_g_property_channel_disconnect(gpointer user_data,
 G_LOCK_DEFINE_STATIC(__bindings);
 static GSList *__bindings = NULL;
 static GType   __gdkcolor_gtype = 0;
+static GType   __gdkrgba_gtype = 0;
 
 
 
@@ -100,6 +109,27 @@ xfconf_g_property_object_notify_gdkcolor(XfconfGBinding *binding)
 }
 
 static void
+xfconf_g_property_object_notify_gdkrgba(XfconfGBinding *binding)
+{
+    FakeGdkRGBA *color = NULL;
+
+    g_object_get(G_OBJECT(binding->object), binding->object_property, &color, NULL);
+    if(G_UNLIKELY(!color)) {
+        g_warning("Weird, returned GdkRGBA is NULL");
+        return;
+    }
+
+    g_signal_handler_block(G_OBJECT(binding->channel), binding->channel_handler);
+    xfconf_channel_set_array(binding->channel, binding->xfconf_property,
+                             G_TYPE_DOUBLE, &color->red,
+                             G_TYPE_DOUBLE, &color->green,
+                             G_TYPE_DOUBLE, &color->blue,
+                             G_TYPE_DOUBLE, &color->alpha,
+                             G_TYPE_INVALID);
+    g_signal_handler_unblock(G_OBJECT(binding->channel), binding->channel_handler);
+}
+
+static void
 xfconf_g_property_object_notify(GObject *object,
                                 GParamSpec *pspec,
                                 gpointer user_data)
@@ -115,6 +145,12 @@ xfconf_g_property_object_notify(GObject *object,
     if(G_PARAM_SPEC_VALUE_TYPE(pspec) == __gdkcolor_gtype) {
         /* we need to handle this in a different way */
         xfconf_g_property_object_notify_gdkcolor(binding);
+        return;
+    }
+
+    if(G_PARAM_SPEC_VALUE_TYPE(pspec) == __gdkrgba_gtype) {
+        /* we need to handle this in a different way */
+        xfconf_g_property_object_notify_gdkrgba(binding);
         return;
     }
 
@@ -194,6 +230,33 @@ xfconf_g_property_channel_notify_gdkcolor(XfconfGBinding *binding,
 }
 
 static void
+xfconf_g_property_channel_notify_gdkrgba(XfconfGBinding *binding,
+                                         const GValue *value)
+{
+    GPtrArray *arr;
+    FakeGdkRGBA color = { 0, };
+
+    if(G_VALUE_TYPE(value) == G_TYPE_INVALID)
+        return;
+
+    arr = g_value_get_boxed(value);
+    if(G_UNLIKELY(!arr || arr->len < 4))
+        return;
+
+    color.red = g_value_get_double(g_ptr_array_index(arr, 0));
+    color.green = g_value_get_double(g_ptr_array_index(arr, 1));
+    color.blue = g_value_get_double(g_ptr_array_index(arr, 2));
+    color.alpha = g_value_get_double(g_ptr_array_index(arr, 3));
+
+    g_signal_handler_block(G_OBJECT(binding->object),
+                           binding->object_handler);
+    g_object_set(G_OBJECT(binding->object),
+                 binding->object_property, &color, NULL);
+    g_signal_handler_unblock(G_OBJECT(binding->object),
+                             binding->object_handler);
+}
+
+static void
 xfconf_g_property_channel_notify(XfconfChannel *channel,
                                  const gchar *property,
                                  const GValue *value,
@@ -210,6 +273,12 @@ xfconf_g_property_channel_notify(XfconfChannel *channel,
    if(__gdkcolor_gtype == binding->xfconf_property_type) {
        /* we need to handle this in a different way */
         xfconf_g_property_channel_notify_gdkcolor(binding, value);
+        return;
+    }
+
+    if(__gdkrgba_gtype == binding->xfconf_property_type) {
+       /* we need to handle this in a different way */
+        xfconf_g_property_channel_notify_gdkrgba(binding, value);
         return;
     }
 
@@ -488,6 +557,67 @@ xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
     return xfconf_g_property_init(channel, xfconf_property,
                                   __gdkcolor_gtype, G_OBJECT(object),
                                   object_property, __gdkcolor_gtype);
+}
+
+/**
+ * xfconf_g_property_bind_gdkrgba:
+ * @channel: An #XfconfChannel.
+ * @xfconf_property: A property on @channel.
+ * @object: A #GObject.
+ * @object_property: A valid property on @object.
+ *
+ * Binds an Xfconf property to a #GObject property of type
+ * GDK_TYPE_RGBA (aka a #GdkRGBA struct).  If the property
+ * is changed via either the #GObject or Xfconf, the corresponding
+ * property will also be updated.
+ *
+ * This is a special-case binding; the GdkRGBA struct is not
+ * ideal as-is for binding to a property, so it is stored in the
+ * Xfconf store as four 16-bit unsigned ints (red, green, blue, alpha).
+ *
+ * Returns: an ID number that can be used to later remove the
+ *          binding.
+ **/
+gulong
+xfconf_g_property_bind_gdkrgba(XfconfChannel *channel,
+                               const gchar *xfconf_property,
+                               gpointer object,
+                               const gchar *object_property)
+{
+    GParamSpec *pspec;
+
+    g_return_val_if_fail(XFCONF_IS_CHANNEL(channel), 0UL);
+    g_return_val_if_fail(xfconf_property && *xfconf_property == '/', 0UL);
+    g_return_val_if_fail(G_IS_OBJECT(object), 0UL);
+    g_return_val_if_fail(object_property && *object_property != '\0', 0UL);
+
+    if(!__gdkrgba_gtype) {
+        __gdkrgba_gtype = g_type_from_name("GdkRGBA");
+        if(G_UNLIKELY(__gdkrgba_gtype == 0)) {
+            g_critical("Unable to look up GType for GdkRGBA: something is very wrong");
+            return 0UL;
+        }
+    }
+
+    pspec = g_object_class_find_property(G_OBJECT_GET_CLASS(object),
+                                         object_property);
+    if(G_UNLIKELY(!pspec)) {
+        g_warning("Property \"%s\" is not valid for GObject type \"%s\"",
+                  object_property, G_OBJECT_TYPE_NAME(object));
+        return 0UL;
+    }
+
+    if(G_UNLIKELY(G_PARAM_SPEC_VALUE_TYPE(pspec) != __gdkrgba_gtype)) {
+        g_warning("Property \"%s\" for GObject type \"%s\" is not \"%s\", it's \"%s\"",
+                  object_property, G_OBJECT_TYPE_NAME(object),
+                  g_type_name(__gdkrgba_gtype),
+                  g_type_name(G_PARAM_SPEC_VALUE_TYPE(pspec)));
+        return 0UL;
+    }
+
+    return xfconf_g_property_init(channel, xfconf_property,
+                                  __gdkrgba_gtype, G_OBJECT(object),
+                                  object_property, __gdkrgba_gtype);
 }
 
 /**
