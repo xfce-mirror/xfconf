@@ -5,14 +5,15 @@
 # Translators:
 # Bar Boko <bokodev@outlook.com>, 2016
 # Elishai Eliyahu <e1907@mm.st>, 2016
+# GenghisKhan <genghiskhan@gmx.ca>, 2016
 # Hezy Amiel <open@hezyamiel.com>, 2010
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 23:18+0200\n"
-"PO-Revision-Date: 2016-03-21 12:42+0000\n"
-"Last-Translator: Elishai Eliyahu <e1907@mm.st>\n"
+"PO-Revision-Date: 2016-08-16 10:39+0000\n"
+"Last-Translator: GenghisKhan <genghiskhan@gmx.ca>\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfconf/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -179,7 +180,7 @@ msgstr "קבע"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
-msgstr "איפוס"
+msgstr "אפס"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
