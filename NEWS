@@ -1,3 +1,8 @@
+4.12.1
+======
+- Add support for binding to GdkRGBAs (required for migration to gtk3)
+- Translation updates: ast, ca, el, eu, gl, he, hu, lt, nn, oc, ru, sk, sv
+
 4.12.0
 ======
 - Allow :.,[]{} characters in property and channel names (bug #11021)
