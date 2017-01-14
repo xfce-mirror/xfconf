@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 23:18+0200\n"
-"PO-Revision-Date: 2017-01-14 11:33+0000\n"
+"PO-Revision-Date: 2017-01-14 11:35+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -154,7 +154,7 @@ msgstr "Xfce-indstillingsdæmon"
 
 #: ../xfconfd/main.c:167
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr "Rapportér fejl til  http://bugs.xfce.org/\n"
+msgstr "Rapportér fejl til http://bugs.xfce.org/\n"
 
 #: ../xfconfd/main.c:170
 #, c-format
@@ -268,7 +268,7 @@ msgstr "--create og --reset tilvalg kan ikke bruges samtidigt"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr "--create og --reset kan ikke bruges sammen med  --list"
+msgstr "--create og --reset kan ikke bruges sammen med --list"
 
 #: ../xfconf-query/main.c:319
 #, c-format
@@ -298,7 +298,7 @@ msgstr "Værdi er en tabel med %d elementer:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr "Egenskab \"%s\" findes ikke på denne kanal \"%s\".  Hvis du ønsker at oprette en ny egenskab brug indstillingen --create tilvalg"
+msgstr "Egenskab \"%s\" findes ikke på denne kanal \"%s\". Hvis du ønsker at oprette en ny egenskab brug indstillingen --create tilvalg"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
