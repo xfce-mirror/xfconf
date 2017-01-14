@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aputsiaĸ Niels Janussen <aj@isit.gl>, 2014
+# Aputsiak Niels Janussen <aj@isit.gl>, 2014
+# scootergrisen, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-27 18:32+0200\n"
-"PO-Revision-Date: 2014-10-07 21:57+0000\n"
-"Last-Translator: Aputsiaĸ Niels Janussen <aj@isit.gl>\n"
-"Language-Team: Danish (http://www.transifex.com/projects/p/xfconf/language/da/)\n"
+"PO-Revision-Date: 2017-01-14 11:33+0000\n"
+"Last-Translator: scootergrisen\n"
+"Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -87,7 +88,7 @@ msgstr "Kunne ikke finde Xfconf bagende af type \"%s\""
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Egenskabnavne skal starte med '/'-tegn"
+msgstr "Egenskabnavne skal starte med et '/'-tegn"
 
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
@@ -105,12 +106,12 @@ msgstr "Egenskabnavne kan kun indeholde ASCII-karakterne A-Z, a-z, 0-9, '_', '-'
 #: ../xfconfd/xfconf-backend.c:136
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Egenskabnavne kan ikke indeholde mere end to '/'-tegn efter hinanden"
+msgstr "Egenskabnavne må ikke indeholde mere end ét '/'-tegn efter hinanden"
 
 #: ../xfconfd/xfconf-backend.c:147
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Egenskabnavne kan ikke ende på '/'-tegn"
+msgstr "Egenskabnavne må ikke slutte med et '/'-tegn"
 
 #: ../xfconfd/xfconf-backend.c:164
 #, c-format
