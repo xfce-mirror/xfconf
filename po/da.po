@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 23:18+0200\n"
-"PO-Revision-Date: 2017-01-14 11:35+0000\n"
+"PO-Revision-Date: 2017-01-16 09:51+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -247,12 +247,12 @@ msgstr "Tilvalg parsing fejlede: %s"
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
-msgstr "Udviklingsholdet Xfce. Alle rettigheder forbeholdes."
+msgstr "Xfce-udviklingsholdet. Alle rettigheder forbeholdes."
 
 #: ../xfconf-query/main.c:267
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr "Rapportér fejl til <%s>."
+msgstr "Rapportér venligst fejl til <%s>."
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
