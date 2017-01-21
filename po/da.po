@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 23:18+0200\n"
-"PO-Revision-Date: 2017-01-16 12:57+0000\n"
+"PO-Revision-Date: 2017-01-21 19:32+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -247,7 +247,7 @@ msgstr "Tilvalg parsing fejlede: %s"
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
-msgstr "Xfce-udviklingsholdet. Alle rettigheder forbeholdes."
+msgstr "Xfce's udviklingshold. Alle rettigheder forbeholdes."
 
 #: ../xfconf-query/main.c:267
 #, c-format
