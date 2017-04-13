@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Algimantas Margevičius <margevicius.algimantas@gmail.com>, 2012
-# Moo, 2015
+# Moo, 2015,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-27 18:32+0200\n"
-"PO-Revision-Date: 2016-01-13 01:09+0000\n"
+"PO-Revision-Date: 2017-04-13 14:36+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfconf/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -161,7 +161,7 @@ msgstr "Praneškite apie klaidas http://bugs.xfce.org/\n"
 #: ../xfconfd/main.c:173
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr "Klaida, apdorojant parinktis: %s\n"
+msgstr "Klaida, apdorojant parametrus: %s\n"
 
 #: ../xfconfd/xfconf-daemon.c:482
 #, c-format
@@ -245,7 +245,7 @@ msgstr "- Xfce komandinės eilutės programa"
 #: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr "Apdoroti parinkčių nepavyko: %s"
+msgstr "Nepavyko apdoroti parametrų: %s"
 
 #: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
@@ -266,11 +266,11 @@ msgstr "Nenurodyta savybė"
 
 #: ../xfconf-query/main.c:304
 msgid "--create and --reset options can not be used together"
-msgstr "--create ir --reset parinktys negali būti naudojamos kartu"
+msgstr "--create ir --reset parametrai negali būti naudojami kartu"
 
 #: ../xfconf-query/main.c:310
 msgid "--create and --reset options can not be used together with --list"
-msgstr "--create ir --reset parinktys negali būti naudojamos kartu su --list"
+msgstr "--create ir --reset parametrai negali būti naudojami kartu su --list"
 
 #: ../xfconf-query/main.c:322
 #, c-format
@@ -300,7 +300,7 @@ msgstr "Reikšmė yra masyvas su %d elementais:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr "Savybė „%s“ neegzistuoja kanale „%s“. Jei reikia sukurti naują savybę, naudokite --create parinktį"
+msgstr "Savybė „%s“ nėra kanale „%s“. Jei reikia sukurti naują savybę, naudokite --create parametrą"
 
 #: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
