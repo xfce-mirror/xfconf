@@ -23,7 +23,7 @@ xfconf_query_LDFLAGS = \
 
 xfconf_query_LDADD = \
 	$(top_builddir)/common/libxfconf-gvaluefuncs.la \
-	$(top_builddir)/xfconf/libxfconf-0.la \
+	$(top_builddir)/xfconf/libxfconf-$(LIBXFCONF_VERSION_API).la \
 	$(GLIB_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(GIO_UNIX_LIBS)

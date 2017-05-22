@@ -5,7 +5,7 @@ AM_CPPFLAGS = \
 	-DG_LOG_DOMAIN=\"xfconf\" \
 	$(PLATFORM_CPPFLAGS)
 
-lib_LTLIBRARIES = libxfconf-0.la
+lib_LTLIBRARIES = libxfconf-1.la
 
 libxfconfincludedir = $(includedir)/xfce4/xfconf-$(LIBXFCONF_VERSION_API)/xfconf
 libxfconfinclude_HEADERS = \
@@ -15,7 +15,7 @@ libxfconfinclude_HEADERS = \
 	xfconf-types.h \
 	xfconf.h
 
-libxfconf_0_la_SOURCES = \
+libxfconf_1_la_SOURCES = \
 	$(libxfconfinclude_HEADERS) \
 	xfconf-binding.c \
 	xfconf-cache.c \
@@ -25,21 +25,21 @@ libxfconf_0_la_SOURCES = \
 	xfconf.c \
 	$(top_srcdir)/common/xfconf-types.c
 
-libxfconf_0_la_CFLAGS = \
+libxfconf_1_la_CFLAGS = \
 	$(GLIB_CFLAGS) \
 	$(GIO_CFLAGS) \
         $(GIO_UNIX_CFLAGS) \
 	$(GTHREAD_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
-libxfconf_0_la_LDFLAGS = \
+libxfconf_1_la_LDFLAGS = \
 	-export-dynamic \
 	-version-info $(LIBXFCONF_VERINFO) \
 	-export-symbols-regex "^[^_].*" \
 	-no-undefined \
 	$(PLATFORM_LDFLAGS)
 
-libxfconf_0_la_LIBADD = \
+libxfconf_1_la_LIBADD = \
 	$(top_builddir)/common/libxfconf-common.la \
 	$(top_builddir)/common/libxfconf-gvaluefuncs.la \
 	$(top_builddir)/common/libxfconf-dbus.la \
@@ -49,7 +49,7 @@ libxfconf_0_la_LIBADD = \
 	$(GTHREAD_LIBS)
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = libxfconf-0.pc
+pkgconfig_DATA = libxfconf-1.pc
 
 
 EXTRA_DIST = \
