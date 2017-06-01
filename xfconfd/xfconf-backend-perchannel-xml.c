@@ -52,7 +52,6 @@
 #endif
 
 #include <libxfce4util/libxfce4util.h>
-#include <dbus/dbus-glib.h>
 
 #include "xfconf-backend-perchannel-xml.h"
 #include "xfconf-backend.h"
@@ -1317,7 +1316,7 @@ xfconf_xml_handle_property(XmlParserState *state,
             return FALSE;
         }
 
-        if(XFCONF_TYPE_G_VALUE_ARRAY == value_type) {
+        if(G_TYPE_PTR_ARRAY == value_type) {
             /* FIXME: use stacks here */
             state->list_property = g_strdup(fullpath);
             state->list_value = value_to_set;
@@ -1363,7 +1362,7 @@ xfconf_xml_handle_value(XmlParserState *state,
     }
 
     value_type = _xfconf_gtype_from_string(type);
-    if(XFCONF_TYPE_G_VALUE_ARRAY == value_type) {
+    if(G_TYPE_PTR_ARRAY == value_type) {
         if(error) {
             g_set_error(error, G_MARKUP_ERROR,
                         G_MARKUP_ERROR_INVALID_CONTENT,
@@ -1772,7 +1771,7 @@ xfconf_format_xml_tag(GString *elem_str,
                 }
 
                 *is_array = TRUE;
-            } else if(XFCONF_TYPE_G_VALUE_ARRAY == G_VALUE_TYPE(value)) {
+            } else if(G_TYPE_PTR_ARRAY == G_VALUE_TYPE(value)) {
                 GPtrArray *arr;
                 guint i;
                 

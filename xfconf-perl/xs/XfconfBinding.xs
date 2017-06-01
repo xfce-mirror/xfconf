@@ -40,7 +40,7 @@ xfconf_g_property_bind(channel, xfconf_property, xfconf_property_type, object, o
             GType xfconf_gtype = _xfconf_gtype_from_string(xfconf_property_type);
             if(xfconf_gtype == G_TYPE_INVALID)
                 croak("Xfce4::Xfconf::Binding::bind(): can't determine xfconf property type from \"%s\"", xfconf_property_type);
-            if(xfconf_gtype == G_TYPE_NONE || xfconf_gtype == XFCONF_TYPE_G_VALUE_ARRAY)
+            if(xfconf_gtype == G_TYPE_NONE || xfconf_gtype == G_TYPE_PTR_ARRAY)
                 croak("Xfce4::Xfconf::Binding::bind(): invalid xfconf property type \"%s\" for binding", xfconf_property_type);
             RETVAL = xfconf_g_property_bind(channel, xfconf_property, xfconf_gtype,
                                             object, object_property);

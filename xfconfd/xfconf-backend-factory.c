@@ -25,6 +25,7 @@
 
 #include "xfconf-backend-factory.h"
 #include "xfconf-backend.h"
+#include "xfconf-daemon.h"
 
 /* i'm not sure i like this method.  perhaps each backend could be a
  * GTypeModule.  i also want the ability to multiplex multiple backends.

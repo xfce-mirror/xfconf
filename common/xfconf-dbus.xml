@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <node name="/org/xfce/Xfconf">
-    <interface name="org.xfce.Xfconf">
-        <annotation name="org.freedesktop.DBus.GLib.CSymbol"
-                    value="xfconf"/>
-        <annotation name="org.freedesktop.DBus.GLib.ClientCSymbol"
-                    value="xfconf_client"/>
-    
+    <interface name="org.xfce.Xfconf">   
         <!--
              void org.xfce.Xfconf.SetProperty(String channel,
                                               String property,
@@ -20,7 +15,6 @@
              Sets a property value.
         -->
         <method name="SetProperty">
-            <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
             <arg direction="in" name="channel" type="s"/>
             <arg direction="in" name="property" type="s"/>
             <arg direction="in" name="value" type="v"/>
@@ -36,7 +30,6 @@
              Gets a property value, returned as a variant type.
         -->
         <method name="GetProperty">
-            <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
             <arg direction="in" name="channel" type="s"/>
             <arg direction="in" name="property" type="s"/>
             <arg direction="out" name="value" type="v"/>
@@ -59,7 +52,6 @@
                       variants.
         -->
         <method name="GetAllProperties">
-            <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
             <arg direction="in" name="channel" type="s"/>
             <arg direction="in" name="property_base" type="s"/>
             <arg direction="out" name="properties" type="a{sv}"/>
@@ -77,7 +69,6 @@
              Returns: %TRUE if @property exists, %FALSE if not.
         -->
         <method name="PropertyExists">
-            <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
             <arg direction="in" name="channel" type="s"/>
             <arg direction="in" name="property" type="s"/>
             <arg direction="out" name="exists" type="b"/>
@@ -108,7 +99,6 @@
              by system policy, then it's just a reset.
         -->
         <method name="ResetProperty">
-            <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
             <arg direction="in" name="channel" type="s"/>
             <arg direction="in" name="property" type="s"/>
             <arg direction="in" name="recursive" type="b"/>
@@ -121,7 +111,6 @@
              strings.
         -->
         <method name="ListChannels">
-            <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
             <arg direction="out" name="channels" type="as"/>
         </method>
         
@@ -139,7 +128,6 @@
              environment is set up.
         -->
         <method name="IsPropertyLocked">
-            <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
             <arg direction="in" name="channel" type="s"/>
             <arg direction="in" name="property" type="s"/>
             <arg direction="out" name="locked" type="b"/>

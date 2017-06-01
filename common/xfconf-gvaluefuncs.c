@@ -1,6 +1,7 @@
 /*
  *  xfconf
  *
+ *  Copyright (c) 2016 Ali Abdallah <ali@xfce.org>
  *  Copyright (c) 2008 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This library is free software; you can redistribute it and/or
@@ -40,7 +41,7 @@
 #include <glib/gi18n.h>
 #endif
 
-#include <dbus/dbus-glib.h>
+#include <gio/gio.h>
 
 #include "xfconf-gvaluefuncs.h"
 #include "xfconf/xfconf-types.h"
@@ -79,7 +80,7 @@ _xfconf_gtype_from_string(const gchar *type)
     else if(!strcmp(type, "bool"))
         return G_TYPE_BOOLEAN;
     else if(!strcmp(type, "array"))
-        return XFCONF_TYPE_G_VALUE_ARRAY;
+        return G_TYPE_PTR_ARRAY;
     else if(!strcmp(type, "uint"))
         return G_TYPE_UINT;
     else if(!strcmp(type, "uchar"))
@@ -129,7 +130,7 @@ _xfconf_string_from_gtype(GType gtype)
                 return "uint16";
             else if(gtype == XFCONF_TYPE_INT16)
                 return "int16";
-            else if(gtype == XFCONF_TYPE_G_VALUE_ARRAY)
+            else if(gtype == G_TYPE_PTR_ARRAY)
                 return "array";
             break;
     }
@@ -243,7 +244,7 @@ _xfconf_gvalue_from_string(GValue *value,
             } else if(XFCONF_TYPE_INT16 == G_VALUE_TYPE(value)) {
                 HANDLE_INT(G_MINSHORT, G_MAXSHORT, xfconf_g_value_set_int16);
                 return TRUE;
-            } else if(XFCONF_TYPE_G_VALUE_ARRAY == G_VALUE_TYPE(value)) {
+            } else if(G_TYPE_PTR_ARRAY == G_VALUE_TYPE(value)) {
                 GPtrArray *arr = g_ptr_array_sized_new(1);
                 g_value_take_boxed(value, arr);
                 return TRUE;
@@ -362,4 +363,316 @@ _xfconf_gvalue_free(GValue *value)
         return;
     g_value_unset(value);
     g_free(value);
+}
+
+
+GVariant *
+xfconf_basic_gvalue_to_gvariant (const GValue *value) {
+   
+    const GVariantType *type = NULL;
+    
+    switch (G_VALUE_TYPE(value)){
+    case G_TYPE_UINT:
+        type = G_VARIANT_TYPE_UINT32;
+        break;
+    case G_TYPE_INT:
+        type = G_VARIANT_TYPE_INT32;
+        break;
+    case G_TYPE_BOOLEAN:
+        type = G_VARIANT_TYPE_BOOLEAN;
+        break;
+    case G_TYPE_UCHAR:
+        type = G_VARIANT_TYPE_BYTE;
+        break;
+    case G_TYPE_INT64:
+        type = G_VARIANT_TYPE_INT64;
+        break;
+    case G_TYPE_UINT64:
+        type = G_VARIANT_TYPE_UINT64;
+        break;
+    case G_TYPE_DOUBLE:
+        type = G_VARIANT_TYPE_DOUBLE;
+        break;
+    case G_TYPE_STRING:
+        type = G_VARIANT_TYPE_STRING;
+        break;
+    default:
+        if (G_VALUE_TYPE(value) == XFCONF_TYPE_INT16)
+            type = G_VARIANT_TYPE_INT16;
+        else if (G_VALUE_TYPE(value) == XFCONF_TYPE_UINT16)
+            type = G_VARIANT_TYPE_UINT16;
+        break;
+    }
+    
+    if (type) {
+        return g_dbus_gvalue_to_gvariant (value, type);
+    } 
+    /* there is no g_variant_type_char! */
+    else if (G_VALUE_TYPE(value) == G_TYPE_CHAR) {
+        return g_variant_ref_sink(g_variant_new_int16(g_value_get_schar(value)));
+    }
+        
+    g_warning ("Unable to convert GType '%s' to GVariant", _xfconf_string_from_gtype(G_VALUE_TYPE(value)));
+
+    return NULL;
+}
+
+void xfconf_basic_gvariant_to_gvalue (GVariant *variant, GValue *value)
+{
+    switch (g_variant_classify (variant)){
+    case G_VARIANT_CLASS_UINT16:
+        g_value_init(value, G_TYPE_UINT);
+        g_value_set_uint (value, g_variant_get_uint16 (variant));
+        break;
+    case G_VARIANT_CLASS_INT16:
+        g_value_init(value, G_TYPE_INT);
+        g_value_set_int (value, g_variant_get_int16 (variant));
+        break;
+    case G_VARIANT_CLASS_UINT32:
+        g_value_init(value, G_TYPE_UINT);
+        g_value_set_uint (value, g_variant_get_uint32 (variant));
+        break;
+    case G_VARIANT_CLASS_INT32:
+        g_value_init(value, G_TYPE_INT);
+        g_value_set_int (value, g_variant_get_int32 (variant));
+        break;
+    case G_VARIANT_CLASS_UINT64:
+        g_value_init(value, G_TYPE_UINT64);
+        g_value_set_uint64 (value, g_variant_get_uint64 (variant));
+        break;
+    case G_VARIANT_CLASS_INT64:
+        g_value_init(value, G_TYPE_INT64);
+        g_value_set_int64 (value, g_variant_get_int64 (variant));
+        break;
+    case G_VARIANT_CLASS_BOOLEAN:
+        g_value_init(value, G_TYPE_BOOLEAN);
+        g_value_set_boolean (value, g_variant_get_boolean (variant));
+        break;
+    case G_VARIANT_CLASS_BYTE:
+        g_value_init(value, G_TYPE_UCHAR);
+        g_value_set_uchar (value, g_variant_get_byte (variant));
+        break;
+    case G_VARIANT_CLASS_STRING:
+        g_value_init(value, G_TYPE_STRING);
+        g_value_set_string (value, g_variant_get_string (variant, NULL));
+        break;
+    case G_VARIANT_CLASS_DOUBLE:
+        g_value_init(value, G_TYPE_DOUBLE);
+        g_value_set_double (value, g_variant_get_double (variant));
+        break;
+    default:
+        g_warn_if_reached ();
+        break;
+    }
+}
+
+GVariant *
+xfconf_gvalue_to_gvariant (const GValue *value)
+{
+    GVariant *variant = NULL;
+
+    if (G_VALUE_TYPE(value) == G_TYPE_PTR_ARRAY) {
+        GPtrArray *arr;
+        GVariantBuilder builder;
+        guint i = 0;
+        
+        g_variant_builder_init (&builder, G_VARIANT_TYPE_ARRAY);
+        
+        arr = (GPtrArray*)g_value_get_boxed (value);
+        
+        for (i=0; i < arr->len; ++i) {
+            GValue *v = g_ptr_array_index (arr, i);
+            GVariant *var = NULL;
+            
+            var = xfconf_basic_gvalue_to_gvariant (v);
+            if (var) {
+                g_variant_builder_add (&builder, "v", var, NULL);
+                g_variant_unref (var);
+            }
+        }
+        
+        variant = g_variant_ref_sink(g_variant_builder_end (&builder));
+    }
+    else if (G_VALUE_TYPE(value) == G_TYPE_STRV) {
+        gchar **strlist;
+        
+        strlist = g_value_get_boxed(value);
+        variant = g_variant_ref_sink(g_variant_new_strv ((const gchar**)strlist, g_strv_length(strlist)));
+    }
+    else
+        variant = xfconf_basic_gvalue_to_gvariant(value);
+    
+    return variant;
+}
+
+GVariant *xfconf_hash_to_gvariant (GHashTable *hash)
+{
+    GHashTableIter iter;
+    GVariantBuilder builder;
+    GVariant *variant;
+    const gchar *key;
+    const GValue *value;
+    
+    g_variant_builder_init (&builder, G_VARIANT_TYPE ("a{sv}"));
+    
+    g_hash_table_iter_init (&iter, hash);
+        
+    while (g_hash_table_iter_next (&iter, (gpointer)&key, (gpointer)&value)) {
+        GVariant *v;
+        
+        if (G_VALUE_TYPE (value) == G_TYPE_PTR_ARRAY) {
+            GPtrArray *arr;
+            GVariantBuilder arr_builder;
+            uint i;
+            
+            arr = g_value_get_boxed(value);
+            
+            g_variant_builder_init (&arr_builder, G_VARIANT_TYPE ("av"));
+            
+            for (i = 0; i < arr->len; ++i) {
+                GValue *item_value = g_ptr_array_index(arr, i);
+                
+                if(item_value)
+                {
+                    v = xfconf_basic_gvalue_to_gvariant(item_value);
+                    if (v) {
+                        g_variant_builder_add (&arr_builder, "v", v);
+                        g_variant_unref (v);
+                    }
+                }
+            }
+            
+            v = g_variant_builder_end (&arr_builder);
+            g_variant_builder_add (&builder, "{sv}", key, v);
+        } 
+        else if (G_VALUE_TYPE (value) == G_TYPE_STRV) {
+            gchar **strlist;
+            
+            strlist = g_value_get_boxed(value);
+            variant = g_variant_new_strv ((const gchar**)strlist, g_strv_length(strlist));
+            g_variant_builder_add (&builder, "{sv}", key, variant);
+        }
+        else {
+            
+            v = xfconf_basic_gvalue_to_gvariant(value);
+            if (v) {
+                g_variant_builder_add (&builder, "{sv}", key, v);
+                g_variant_unref (v);
+            }
+        }
+    }
+
+    variant = g_variant_builder_end (&builder);
+    return variant;
+}
+
+static void xfonf_free_array_elem_val (gpointer data) {
+    GValue *val = (GValue*)data;
+    g_value_unset (val);
+    g_free (val);
+}
+
+
+GPtrArray *
+xfconf_dup_value_array (GPtrArray *arr, gboolean auto_destroy_value) {
+
+    GPtrArray *retArr;
+    uint i;
+
+    if (auto_destroy_value)
+        retArr = g_ptr_array_new_full(arr->len, (GDestroyNotify)xfonf_free_array_elem_val);
+    else
+        retArr = g_ptr_array_sized_new(arr->len);
+
+    for (i = 0; i< arr->len; i++) {
+        GValue *v, *vi;
+        v = g_new0(GValue, 1);
+        vi = g_ptr_array_index(arr, i);
+        g_value_init (v, G_VALUE_TYPE(vi));
+        g_value_copy (vi, v);
+        g_ptr_array_add(retArr, v);
+    }
+
+    return retArr;
+}
+
+
+GValue * xfconf_gvariant_to_gvalue (GVariant *in_variant)
+{
+    GValue *value;
+    GVariant *variant;
+    value = g_new0(GValue, 1);
+
+    if (g_variant_is_of_type(in_variant, G_VARIANT_TYPE ("v")))
+        variant = g_variant_get_variant (in_variant);
+    else
+        variant = in_variant;
+
+    if (g_variant_is_of_type (variant, G_VARIANT_TYPE("av"))) {
+        GPtrArray *arr;
+        GVariant *var;
+        gsize nchild;
+        gsize idx = 0;
+            
+        nchild = g_variant_n_children (variant);
+            
+        if (nchild > 0) {
+            arr = g_ptr_array_new_full(nchild, (GDestroyNotify)xfonf_free_array_elem_val);
+            
+            while (idx < nchild ) {
+                GVariant *v;
+                GValue *arr_val;
+                
+                arr_val = g_new0(GValue, 1);
+                
+                var = g_variant_get_child_value (variant, idx);
+                v = g_variant_get_variant (var);
+                xfconf_basic_gvariant_to_gvalue (v, arr_val);
+                    
+                g_variant_unref (v);
+                g_variant_unref (var);
+                g_ptr_array_add (arr, arr_val);
+                idx++;
+            }
+            
+            g_value_init(value, G_TYPE_PTR_ARRAY);
+            g_value_take_boxed(value, arr);
+        }
+    }
+    else if (g_variant_is_of_type (variant, G_VARIANT_TYPE("as"))) {
+        g_value_init(value, G_TYPE_STRV);
+        g_value_set_boxed (value, g_variant_get_strv (variant, NULL));
+    }
+    else {/* Should be a basic type */
+        xfconf_basic_gvariant_to_gvalue(variant, value);
+    }
+    
+    return value;
+}
+    
+GHashTable *xfconf_gvariant_to_hash (GVariant *variant)
+{
+    GHashTable *properties;
+    GVariantIter iter;
+    GVariant *v;
+    gchar *key;
+    
+    g_return_val_if_fail (g_variant_is_of_type(variant, G_VARIANT_TYPE ("a{sv}")), NULL);
+    
+    properties = g_hash_table_new_full(g_str_hash, g_str_equal,
+                                       (GDestroyNotify)g_free,(GDestroyNotify)_xfconf_gvalue_free);
+    
+    g_variant_iter_init (&iter, variant);
+        
+    while (g_variant_iter_next (&iter, "{sv}", &key, &v)) {
+        GValue *value;
+        
+        value = xfconf_gvariant_to_gvalue (v);
+        g_hash_table_insert (properties, 
+                             g_strdup(key),
+                             value);
+        g_variant_unref (v);
+        g_free(key);
+    }
+    return properties;
 }

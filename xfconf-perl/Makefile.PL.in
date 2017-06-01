@@ -14,7 +14,6 @@ our %build_reqs = (
     'perl-ExtUtils-PkgConfig' => '@PERL_EXTUTILS_PKGCONFIG_REQUIRED_VERSION@',
     'perl-Glib'               => '@PERL_GLIB_REQUIRED_VERSION@', # for Glib::MakeHelper
     'DBus'                    => '@DBUS_REQUIRED_VERSION@',
-    'DBus-Glib'               => '@DBUS_GLIB_REQUIRED_VERSION@',
 );
 
 our %pre_reqs = (
@@ -45,8 +44,7 @@ unless(eval "use ExtUtils::Depends '$build_reqs{'perl-ExtUtils-Depends'}';"
 # If the package can't be found, warn and exit with status 0 to indicate to
 # CPAN testers that their system is not supported.
 our %pkgcfg;
-unless(eval { %pkgcfg = ExtUtils::PkgConfig->find('dbus-glib-1 >= '.$build_reqs{'DBus-Glib'}
-                                                 .' dbus-1 >= '.$build_reqs{DBus});
+unless(eval { %pkgcfg = ExtUtils::PkgConfig->find(' dbus-1 >= '.$build_reqs{DBus});
 	           1; })
 {
     warn $@;

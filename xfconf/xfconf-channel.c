@@ -1,6 +1,7 @@
 /*
  *  xfconf
  *
+ *  Copyright (c) 2016 Ali Abdallah <ali@xfce.org>
  *  Copyright (c) 2007-2008 Brian Tarricone <bjt23@cornell.edu>
  *
  *  This library is free software; you can redistribute it and/or
@@ -28,7 +29,7 @@
 
 #include "xfconf-channel.h"
 #include "xfconf-cache.h"
-#include "xfconf-dbus-bindings.h"
+#include "common/xfconf-gdbus-bindings.h"
 #include "common/xfconf-gvaluefuncs.h"
 #include "xfconf-private.h"
 #include "common/xfconf-marshal.h"
@@ -457,47 +458,6 @@ xfconf_channel_get_internal(XfconfChannel *channel,
     return ret;
 }
 
-static GPtrArray *
-xfconf_fixup_16bit_ints(GPtrArray *arr)
-{
-    GPtrArray *arr_new = NULL;
-    guint i;
-
-    for(i = 0; i < arr->len; ++i) {
-        GValue *v = g_ptr_array_index(arr, i);
-
-        if(G_VALUE_TYPE(v) == XFCONF_TYPE_UINT16
-           || G_VALUE_TYPE(v) == XFCONF_TYPE_INT16)
-        {
-            arr_new = g_ptr_array_sized_new(arr->len);
-            break;
-        }
-    }
-
-    if(!arr_new)
-        return NULL;
-
-    for(i = 0; i < arr->len; ++i) {
-        GValue *v_src, *v_dest;
-
-        v_src = g_ptr_array_index(arr, i);
-        v_dest = g_new0(GValue, 1);
-        if(G_VALUE_TYPE(v_src) == XFCONF_TYPE_UINT16) {
-            g_value_init(v_dest, G_TYPE_UINT);
-            g_value_set_uint(v_dest, xfconf_g_value_get_uint16(v_src));
-        } else if(G_VALUE_TYPE(v_src) == XFCONF_TYPE_INT16) {
-            g_value_init(v_dest, G_TYPE_INT);
-            g_value_set_int(v_dest, xfconf_g_value_get_int16(v_src));
-        } else {
-            g_value_init(v_dest, G_VALUE_TYPE(v_src));
-            g_value_copy(v_src, v_dest);
-        }
-
-        g_ptr_array_add(arr_new, v_dest);
-    }
-
-    return arr_new;
-}
 
 static GPtrArray *
 xfconf_transform_array(GPtrArray *arr_src,
@@ -663,13 +623,13 @@ gboolean
 xfconf_channel_is_property_locked(XfconfChannel *channel,
                                   const gchar *property)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GDBusProxy *proxy = _xfconf_get_gdbus_proxy();
     gboolean locked = FALSE;
     gchar *real_property = REAL_PROP(channel, property);
     ERROR_DEFINE;
-
-    if(!xfconf_client_is_property_locked(proxy, channel->channel_name,
-                                         property, &locked, ERROR))
+    
+    if (!xfconf_exported_call_is_property_locked_sync ((XfconfExported*)proxy, channel->channel_name,
+                                                       property, &locked, NULL, ERROR))
     {
         ERROR_CHECK;
         locked = FALSE;
@@ -745,8 +705,9 @@ GHashTable *
 xfconf_channel_get_properties(XfconfChannel *channel,
                               const gchar *property_base)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GDBusProxy *proxy = _xfconf_get_gdbus_proxy ();
     GHashTable *properties = NULL;
+    GVariant *variant;
     gchar *real_property_base;
     ERROR_DEFINE;
 
@@ -755,15 +716,20 @@ xfconf_channel_get_properties(XfconfChannel *channel,
     else
         real_property_base = REAL_PROP(channel, property_base);
 
-    if(!xfconf_client_get_all_properties(proxy, channel->channel_name,
-                                         real_property_base
-                                         ? real_property_base : "/",
-                                         &properties, ERROR))
+    if(!xfconf_exported_call_get_all_properties_sync ((XfconfExported*)proxy, channel->channel_name,
+                                                      real_property_base
+                                                      ? real_property_base : "/",
+                                                      &variant, NULL, ERROR))
     {
         ERROR_CHECK;
-        properties = NULL;
+        variant = NULL;
     }
-
+   
+    if (variant) {
+        properties = xfconf_gvariant_to_hash (variant);
+        g_variant_unref (variant);
+    }
+        
     if(real_property_base != property_base
        && real_property_base != channel->property_base)
     {
@@ -1263,7 +1229,7 @@ xfconf_channel_get_property(XfconfChannel *channel,
         {
             /* caller wants to convert the returned value into a diff type */
 
-            if(G_VALUE_TYPE(&val1) == XFCONF_TYPE_G_VALUE_ARRAY) {
+            if(G_VALUE_TYPE(&val1) == G_TYPE_PTR_ARRAY) {
                 /* we got an array back, so let's convert each item in
                  * the array to the target type */
                 GPtrArray *arr = xfconf_transform_array(g_value_get_boxed(&val1),
@@ -1271,7 +1237,7 @@ xfconf_channel_get_property(XfconfChannel *channel,
 
                 if(arr) {
                     g_value_unset(value);
-                    g_value_init(value, XFCONF_TYPE_G_VALUE_ARRAY);
+                    g_value_init(value, G_TYPE_PTR_ARRAY);
                     g_value_take_boxed(value, arr);
                 } else
                     ret = FALSE;
@@ -1317,8 +1283,7 @@ xfconf_channel_set_property(XfconfChannel *channel,
                             const gchar *property,
                             const GValue *value)
 {
-    GValue *val, tmp_val = { 0, };
-    GPtrArray *arr_new = NULL;
+    GValue val = { 0, };
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel)
@@ -1328,34 +1293,11 @@ xfconf_channel_set_property(XfconfChannel *channel,
                          || g_value_get_string(value) == NULL
                          || g_utf8_validate(g_value_get_string(value), -1, NULL),
                          FALSE);
-
-    /* intercept uint16/int16 since dbus-glib doesn't know how to send
-     * them over the wire */
-    if(G_VALUE_TYPE(value) == XFCONF_TYPE_UINT16) {
-        val = &tmp_val;
-        g_value_init(&tmp_val, G_TYPE_UINT);
-        g_value_set_uint(&tmp_val, xfconf_g_value_get_uint16(value));
-    } else if(G_VALUE_TYPE(value) == XFCONF_TYPE_INT16) {
-        val = &tmp_val;
-        g_value_init(&tmp_val, G_TYPE_INT);
-        g_value_set_int(&tmp_val, xfconf_g_value_get_int16(value));
-    } else if(G_VALUE_TYPE(value) == XFCONF_TYPE_G_VALUE_ARRAY) {
-        arr_new = xfconf_fixup_16bit_ints(g_value_get_boxed(value));
-        if(arr_new) {
-            val = &tmp_val;
-            g_value_init(&tmp_val, XFCONF_TYPE_G_VALUE_ARRAY);
-            g_value_set_boxed(&tmp_val, arr_new);
-        } else
-            val = (GValue *)value;
-    } else
-        val = (GValue *)value;
-
-    ret = xfconf_channel_set_internal(channel, property, val);
-
-    if(val == &tmp_val)
-        g_value_unset(&tmp_val);
-    if(arr_new)
-        xfconf_array_free(arr_new);
+    
+    g_value_init(&val, G_VALUE_TYPE(value));
+    g_value_copy(value, &val);
+    ret = xfconf_channel_set_internal(channel, property, &val);
+    g_value_unset(&val);
 
     return ret;
 }
@@ -1543,22 +1485,25 @@ xfconf_channel_get_arrayv(XfconfChannel *channel,
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, NULL);
     
     ret = xfconf_channel_get_internal(channel, property, &val);
+    
     if(!ret)
         return NULL;
     
-    if(XFCONF_TYPE_G_VALUE_ARRAY != G_VALUE_TYPE(&val)) {
+    if(G_TYPE_PTR_ARRAY != G_VALUE_TYPE(&val)) {
+        g_warning ("Unexpected value type %s\n", G_VALUE_TYPE_NAME(&val));
         g_value_unset(&val);
         return NULL;
     }
     
+    /**
+     * Arr is owned by the Gvalue in the cache
+     * do not free it.
+     **/
     arr = g_value_get_boxed(&val);
     if(!arr->len) {
         g_ptr_array_free(arr, TRUE);
         return NULL;
     }
-    
-    /* FIXME: does anything with |val| leak here? */
-    
     return arr;
 }
 
@@ -1719,24 +1664,18 @@ xfconf_channel_set_arrayv(XfconfChannel *channel,
                           const gchar *property,
                           GPtrArray *values)
 {
-    GPtrArray *values_new = NULL;
     GValue val = { 0, };
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && values,
                          FALSE);
 
-    values_new = xfconf_fixup_16bit_ints(values);
-
-    g_value_init(&val, XFCONF_TYPE_G_VALUE_ARRAY);
-    g_value_set_static_boxed(&val, values_new ? values_new : values);
+    g_value_init(&val, G_TYPE_PTR_ARRAY);
+    g_value_set_static_boxed(&val, values);
     
     ret = xfconf_channel_set_internal(channel, property, &val);
     
     g_value_unset(&val);
-
-    if(values_new)
-        xfconf_array_free(values_new);
 
     return ret;
 }
@@ -2295,11 +2234,12 @@ out:
 gchar **
 xfconf_list_channels(void)
 {
-    DBusGProxy *proxy = _xfconf_get_dbus_g_proxy();
+    GDBusProxy *proxy = _xfconf_get_gdbus_proxy();
     gchar **channels = NULL;
     ERROR_DEFINE;
 
-    if(!xfconf_client_list_channels(proxy, &channels, ERROR))
+    if(!xfconf_exported_call_list_channels_sync ((XfconfExported*)proxy, 
+                                               &channels, NULL, ERROR))
         ERROR_CHECK;
 
     return channels;

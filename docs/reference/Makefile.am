@@ -35,10 +35,11 @@ IGNORE_HFILES= \
 	xfconf-backend-factory.h \
 	xfconf-backend-perchannel-xml.h \
 	xfconf-daemon.h \
-	xfconf-dbus-bindings.h \
+	xfconf-gdbus-bindings.h \
+	xfconf-gdbus-bindings.c \
 	xfconf-marshal.h \
 	xfconf-private.h \
-	xfconfd-dbus-server.h
+	xfconf-common-private.h
 
 # Extra files to add when scanning (relative to $srcdir)
 EXTRA_HFILES=
@@ -57,8 +58,7 @@ AM_CPPFLAGS = \
 	-I$(top_builddir) \
 	$(GLIB_CFLAGS) \
 	$(LIBXFCE4UTIL_CFLAGS) \
-	$(DBUS_CFLAGS) \
-	$(DBUS_GLIB_CFLAGS) \
+	$(GIO_UNIX_CFLAGS) \
 	$(GTK_DOC_EXTRA_CFLAGS)
 
 GTKDOC_LIBS = \
