@@ -6,98 +6,98 @@
 # Chipong Luo <chipong.luo@yahoo.com>, 2011-2012
 # Chris K. Zhang <plutino@gmail.com>, 2009
 # Hunt Xu <mhuntxu@gmail.com>, 2009
-# 玉堂白鹤 <yjwork@qq.com>, 2015
+# 玉堂白鹤 <yjwork@qq.com>, 2015,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-27 18:32+0200\n"
-"PO-Revision-Date: 2015-02-12 08:15+0000\n"
+"POT-Creation-Date: 2017-06-01 18:31+0200\n"
+"PO-Revision-Date: 2017-06-05 02:40+0000\n"
 "Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/xfconf/language/zh_CN/)\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/xfce/xfconf/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfconf/xfconf-cache.c:897
+#: ../xfconf/xfconf-cache.c:979
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "无法建立 ResetProperty DBus 呼叫"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:277
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:276
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
 msgstr "未能创建配置目录 “%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:322
-#: ../xfconfd/xfconf-daemon.c:238
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:321
+#: ../xfconfd/xfconf-daemon.c:167
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr "没有在频道 “%2$s” 修改属性 “%1$s” 的权限"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:387
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:469
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:344
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:386
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:468
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:633
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:653 ../xfconf-query/main.c:344
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "在频道 “%2$s” 属性 “%1$s” 不存在"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:601
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:600
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "未能移除频道 “%s”：%s"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1297
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
 msgstr "<属性> 类型无效：“%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1313
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1389
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "未能从 “%2$s” 解析类型 “%1$s” 的值"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1369
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr "<值> 的类型属性不能是数组"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1378
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
 msgstr "<值> 类型无效：“%s”"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1654
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1903
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "频道 “%s” 不存在"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1961
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "未能写入频道 “%s”：%s"
 
-#: ../xfconfd/xfconf-backend-factory.c:76
+#: ../xfconfd/xfconf-backend-factory.c:77
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "未能找到 “%s” 类型的 Xfconf 后端"
 
-#: ../xfconfd/xfconf-backend.c:103
+#: ../xfconfd/xfconf-backend.c:101
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "属性名必须以 ‘/’ 字符开头"
 
-#: ../xfconfd/xfconf-backend.c:112
+#: ../xfconfd/xfconf-backend.c:110
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "根元素(‘/’)不是有效的属性名"
 
-#: ../xfconfd/xfconf-backend.c:127
+#: ../xfconfd/xfconf-backend.c:125
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -105,72 +105,77 @@ msgid ""
 "separator"
 msgstr "属性名只能包含 ASCII 字符 A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', 以及 '/' 作为分割符号"
 
-#: ../xfconfd/xfconf-backend.c:136
+#: ../xfconfd/xfconf-backend.c:134
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "属性名不能有两个或更多连续的 ‘/’ 字符"
 
-#: ../xfconfd/xfconf-backend.c:147
+#: ../xfconfd/xfconf-backend.c:145
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "属性名不能以 ‘/’ 字符结束"
 
-#: ../xfconfd/xfconf-backend.c:164
+#: ../xfconfd/xfconf-backend.c:162
 #, c-format
 msgid "Channel name cannot be an empty string"
 msgstr "频道名不能为空字符串"
 
-#: ../xfconfd/xfconf-backend.c:179
+#: ../xfconfd/xfconf-backend.c:177
 #, c-format
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
 msgstr "频道名只能包含 ASCII 字符 A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', 和 '-'"
 
-#: ../xfconfd/xfconf-backend.c:401
+#: ../xfconfd/xfconf-backend.c:399
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
 msgstr "只有在指定递归重置后属性名才能为空或 “/”"
 
-#: ../xfconfd/main.c:134
+#: ../xfconfd/main.c:125
+#, c-format
+msgid "Name %s lost on the message dbus, exiting."
+msgstr ""
+
+#: ../xfconfd/main.c:148
 msgid "Prints the xfconfd version."
 msgstr "列印 xfconfd 的版本。"
 
-#: ../xfconfd/main.c:136
+#: ../xfconfd/main.c:150
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
 msgstr "要使用的配置后端。第一个指定的后端可用于读取/写入；其余的只读。"
 
-#: ../xfconfd/main.c:139
+#: ../xfconfd/main.c:153
 msgid "Fork into background after starting; only useful for testing purposes"
 msgstr "启动后转入后台；仅用于测试目的"
 
-#: ../xfconfd/main.c:159
+#: ../xfconfd/main.c:173
 msgid "Xfce Configuration Daemon"
 msgstr "Xfce 配置守护进程"
 
-#: ../xfconfd/main.c:168
+#: ../xfconfd/main.c:182
 msgid "Xfce configuration daemon"
 msgstr "Xfce 配置守护进程"
 
-#: ../xfconfd/main.c:170
+#: ../xfconfd/main.c:184
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "向 https://bugzilla.xfce.org/ 报告缺陷\n"
 
-#: ../xfconfd/main.c:173
+#: ../xfconfd/main.c:187
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "解析选项时出错：%s\n"
 
-#: ../xfconfd/xfconf-daemon.c:482
+#: ../xfconfd/xfconf-daemon.c:222
 #, c-format
-msgid "Another Xfconf daemon is already running"
-msgstr "另一个 Xfconf 守护进程已在运行"
+msgid "GType transformation failed \"%s\""
+msgstr "GType 转换失败 \"%s\""
 
-#: ../xfconfd/xfconf-daemon.c:517
+#: ../xfconfd/xfconf-daemon.c:483
 #, c-format
 msgid "No backends could be started"
 msgstr "无后端能够启动"
