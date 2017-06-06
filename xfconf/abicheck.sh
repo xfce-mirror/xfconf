@@ -20,5 +20,5 @@
 
 trap 'rm expected-abi actual-abi' EXIT
 ${CPP:-cpp} -DINCLUDE_INTERNAL_SYMBOLS -DINCLUDE_VARIABLES -DALL_FILES ${srcdir:-.}/xfconf.symbols | sed 's/ G_GNUC.*$//;s/ PRIVATE//;/^ *$/d;/^#/d' | sort >expected-abi
-${NM:-nm} .libs/libxfconf-1.so* | awk '/ [DRTG] / {print $3}' | sort | uniq > actual-abi
+${NM:-nm} .libs/libxfconf-0.so* | awk '/ [DRTG] / {print $3}' | sort | uniq > actual-abi
 diff -u expected-abi actual-abi
