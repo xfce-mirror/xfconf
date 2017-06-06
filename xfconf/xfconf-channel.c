@@ -444,7 +444,7 @@ xfconf_channel_get_internal(XfconfChannel *channel,
 
     if(ret && val == &tmp_val) {
         if(!g_value_transform(val, value)) {
-            g_warning("Unable to tranform value of type \"%s\" to type \"%s\" for property %s",
+            g_warning("Unable to transform value of type \"%s\" to type \"%s\" for property %s",
                       G_VALUE_TYPE_NAME(val), G_VALUE_TYPE_NAME(value),
                       real_property);
             ret = FALSE;
