@@ -152,9 +152,9 @@ typedef struct
 
     GCancellable *cancellable;
 
-    /** 
+    /**
      * Variant to be send on the wire
-     * Used in xfconf_cache_old_item_end_call 
+     * Used in xfconf_cache_old_item_end_call
      * to end an already started call
      **/
     GVariant *variant;
@@ -383,7 +383,7 @@ xfconf_cache_init(XfconfCache *cache)
 {
     GDBusProxy *gproxy = _xfconf_get_gdbus_proxy();
 
-    cache->g_signal_id = g_signal_connect(gproxy, "g-signal", 
+    cache->g_signal_id = g_signal_connect(gproxy, "g-signal",
                                           G_CALLBACK(xfconf_cache_proxy_signal_received_cb), cache);
 
     cache->properties = g_tree_new_full((GCompareDataFunc)strcmp, NULL,
@@ -528,7 +528,6 @@ xfconf_cache_handle_property_changed (XfconfCache *cache, GVariant *parameters)
             g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED], 0,
                           cache->channel_name, property, prop_value);
         }
-        g_value_unset (prop_value);
         g_variant_unref(prop_variant);
     }
     else {
@@ -591,7 +590,7 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
                                         gpointer user_data)
 {
     XfconfCache *cache;
-    XfconfCacheOldItem *old_item = NULL; 
+    XfconfCacheOldItem *old_item = NULL;
     XfconfCacheItem *item;
     GError *error = NULL;
     gboolean result;
@@ -761,7 +760,7 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
             g_tree_insert(cache->properties, g_strdup(property), item);
             g_variant_unref (variant);
             /* TODO: check tree for evictions */
-        } else 
+        } else
             g_propagate_error(error, tmp_error);
     }
 
@@ -840,7 +839,7 @@ xfconf_cache_set(XfconfCache *cache,
 
             if(G_LIKELY(g_dbus_error_is_remote_error (tmp_error)))
                 dbus_error_name = g_dbus_error_get_remote_error (tmp_error);
-            
+
             if(g_strcmp0(dbus_error_name, "org.xfce.Xfconf.Error.PropertyNotFound") != 0
                && g_strcmp0(dbus_error_name, "org.xfce.Xfconf.Error.ChannelNotFound") != 0)
             {
@@ -891,7 +890,7 @@ xfconf_cache_set(XfconfCache *cache,
     if (val) {
         variant = g_variant_new_variant (val);
 
-        xfconf_exported_call_set_property ((XfconfExported *)proxy, 
+        xfconf_exported_call_set_property ((XfconfExported *)proxy,
                                            cache->channel_name,
                                            property,
                                            variant,
