@@ -33,6 +33,22 @@
 #include "common/xfconf-common-private.h"
 
 
+/**
+ * SECTION:xfconf-binding
+ * @title: Xfconf-GObject Binding
+ * @short_description: Functions to bind Xfconf properties to GObject properties
+ *
+ * Often it may be useful to bind an Xfconf property to a GObject property.
+ * Settings dialogs often display the current value of an Xfconf property,
+ * and a user may edit the value to change the value in the Xfconf store.
+ * If the Xfconf property changes outside the settings dialog, the user will
+ * usually want to see the settings dialog automatically update to reflect
+ * the new value.
+ *
+ * With a single line of code, Xfconf's binding functionality can automate
+ * all this.
+ **/
+
 typedef struct
 {
     XfconfChannel *channel;
@@ -516,6 +532,7 @@ xfconf_g_property_bind(XfconfChannel *channel,
  *
  * Returns: an ID number that can be used to later remove the
  *          binding.
+ *
  **/
 gulong
 xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
@@ -577,6 +594,8 @@ xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
  *
  * Returns: an ID number that can be used to later remove the
  *          binding.
+ *
+ * Since: 4.12.1
  **/
 gulong
 xfconf_g_property_bind_gdkrgba(XfconfChannel *channel,

@@ -83,6 +83,19 @@ _xfconf_named_struct_free(XfconfNamedStruct *ns)
 /* public api */
 
 /**
+ * SECTION:xfconf
+ * @title: Xfconf Library Core
+ * @short_description: Init routines and core functionality for libxfconf
+ *
+ * Before libxfconf can be used, it must be initialized by calling
+ * xfconf_init().  To free resources used by the library, call
+ * xfconf_shutdown().  These calls are "recursive": multiple calls to
+ * xfconf_init() are allowed, but each call must be matched by a
+ * separate call to xfconf_shutdown() to really free the library's
+ * resources.
+ **/
+
+/**
  * xfconf_init:
  * @error: An error return.
  *

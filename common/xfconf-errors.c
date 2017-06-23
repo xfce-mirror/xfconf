@@ -27,6 +27,15 @@
 #include "xfconf/xfconf-errors.h"
 #include "xfconf-alias.h"
 
+/**
+ * SECTION:xfconf-errors
+ * @title: Error Reporting
+ * @short_description: Xfconf library and daemon error descriptions
+ *
+ * Both the Xfconf daemon and library provide error information via the use of #GError
+ **/
+
+
 static const GDBusErrorEntry xfconf_daemon_dbus_error_entries[] = 
 {
     { XFCONF_ERROR_UNKNOWN, "org.xfce.Xfconf.Error.Unknown" },
@@ -56,13 +65,6 @@ static const GDBusErrorEntry xfconf_daemon_dbus_error_entries[] =
  **/
 
 
-/**
- * XfconfError:
- *
- * An enumeration listing the different kinds of errors under the
- * XFCONF_ERROR domain.
- **/
-
 GQuark
 xfconf_get_error_quark(void)
 {
@@ -79,6 +81,8 @@ xfconf_get_error_quark(void)
 /* unfortunately glib-mkenums can't generate types that are compatible with
  * dbus error names -- the 'nick' value is used, which can have dashes in it,
  * which dbus doesn't like. */
+
+
 GType
 xfconf_error_get_type(void)
 {

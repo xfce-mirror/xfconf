@@ -31,6 +31,14 @@
 
 #include <gobject/gvaluecollector.h>
 
+/**
+ * SECTION:xfconf-types
+ * @title: Xfconf Types
+ * @short_description: GObject types used by the Xfconf daemon and library
+ *
+ *  libgobject lacks GObject fundamental types for 16-bit signed and unsigned integers, which may be useful to use in an Xfconf store. GObject types for these primitive types are provided here.
+ **/
+
 
 /**
  * XFCONF_TYPE_UINT16:

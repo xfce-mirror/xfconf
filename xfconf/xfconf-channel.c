@@ -48,6 +48,17 @@
                                        : (gchar *)(property) )
 
 /**
+ * SECTION:xfconf-channel
+ * @title: XfconfChannel
+ * @short_description: An application-defined domain for storing configuration settings
+ *
+ * An XfconfChannel is a representation of a restricted domain or
+ * namespace that an application can define to store configuration
+ * settings.  This is to ensure that different applications do not store
+ * configuration keys with the same names.
+ **/
+
+/**
  * XfconfChannel:
  *
  * An opaque structure that holds state about a channel.

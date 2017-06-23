@@ -32,6 +32,22 @@
 
 G_BEGIN_DECLS
 
+/**
+ * XfconfError:
+ * @XFCONF_ERROR_UNKNOWN: An unknown error occurred
+ * @XFCONF_ERROR_CHANNEL_NOT_FOUND: The specified channel does not exist
+ * @XFCONF_ERROR_PROPERTY_NOT_FOUND: The specified property does not exist on the channel
+ * @XFCONF_ERROR_READ_FAILURE: There was a failure reading from the configuration store
+ * @XFCONF_ERROR_WRITE_FAILURE: There was a failure writing to the configuration store
+ * @XFCONF_ERROR_PERMISSION_DENIED: The user is not allowed to read or write to the channel or property
+ * @XFCONF_ERROR_INTERNAL_ERROR: An internal error (likely a bug in xfconf) occurred
+ * @XFCONF_ERROR_NO_BACKEND: No backends were found, or those found could not be loaded
+ * @XFCONF_ERROR_INVALID_PROPERTY: The property name specified was invalid
+ * @XFCONF_ERROR_INVALID_CHANNEL: The channel name specified was invalid
+ *
+ * An enumeration listing the different kinds of errors under the XFCONF_ERROR domain.
+ *
+ **/
 typedef enum
 {
     XFCONF_ERROR_UNKNOWN = 0,

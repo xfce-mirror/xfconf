@@ -32,7 +32,33 @@ static gboolean xfconf_channel_is_valid(const gchar *channel,
                                         GError **error);
 
 /**
+ * SECTION:xfconf-backend
+ * @title: XfconfBackend
+ * @short_description: Interface for configuration store backends
+ *
+ *  XfconfBackend is an abstract interface that allows the Xfconf Daemon
+ *  to  use different backends for storing configuration data.
+ *  These backends can be flat text or binary files, a database,
+ *  or just about anything one could think of to store data.
+ **/
+
+/**
  * XfconfBackendInterface:
+ * @parent: GObject interface parent.
+ * @initialize: See xfconf_backend_initialize().
+ * @set: See xfconf_backend_set().
+ * @get: See xfconf_backend_get().
+ * @get_all: See xfconf_backend_get_all().
+ * @exists: See xfconf_backend_exists().
+ * @reset: See xfconf_backend_reset().
+ * @list_channels: See xfconf_backend_list_channels().
+ * @is_property_locked: See xfconf_backend_is_property_locked().
+ * @flush: See xfconf_backend_flush().
+ * @register_property_changed_func: See xfconf_backend_register_property_changed_func().
+ * @_xb_reserved0: Reserved for future expansion.
+ * @_xb_reserved1: Reserved for future expansion.
+ * @_xb_reserved2: Reserved for future expansion.
+ * @_xb_reserved3: Reserved for future expansion.
  *
  * An interface for implementing pluggable configuration store backends
  * into the Xfconf Daemon.
