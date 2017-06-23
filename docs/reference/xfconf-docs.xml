@@ -1,9 +1,31 @@
 <?xml version="1.0"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
-               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
-<book id="index" xmlns:xi="http://www.w3.org/2003/XInclude">
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"
+[
+  <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+
+<book id="index" lang="en">
   <bookinfo>
     <title>Xfconf Reference Manual</title>
+    <releaseinfo>Version <xi:include href="version.xml" parse="text"/></releaseinfo>
+    <pubdate>2017</pubdate>
+
+    <copyright>
+      <year>2017</year>
+      <holder>The Xfce Development Team</holder>
+    </copyright>
+
+    <legalnotice id="legalnotice">
+      <para>
+        Permission is granted to copy, distribute and/or modify this document
+        under the terms of the GNU Free Documentation License, Version 1.1 or
+        any later version published by the Free Software Foundation; with no
+        Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+        Texts. The complete license text is available from the <ulink
+        type="http" url="http://www.gnu.org/">Free Software Foundation</ulink>.
+      </para>
+    </legalnotice>
   </bookinfo>
 
   <chapter>
@@ -22,5 +44,29 @@
     <xi:include href="xml/xfconf.xml"/>
     <xi:include href="xml/xfconf-channel.xml"/>
     <xi:include href="xml/xfconf-binding.xml"/>
+  </chapter>
+
+    <chapter>
+    <title>API Index</title>
+
+    <index id="api-index-full">
+      <title>All symbols</title>
+      <xi:include href="xml/api-index-full.xml"><xi:fallback /></xi:include>
+    </index>
+
+    <index id="api-index-4.5.91">
+      <title>Added in 4.5.91</title>
+      <xi:include href="xml/api-index-4.5.91.xml"><xi:fallback /></xi:include>
+    </index>
+
+    <index id="api-index-4.5.92">
+      <title>Added in 4.5.92</title>
+      <xi:include href="xml/api-index-4.5.92.xml"><xi:fallback /></xi:include>
+    </index>
+
+    <index id="api-index-4.12.1">
+      <title>Added in 4.12.1</title>
+      <xi:include href="xml/api-index-4.12.1.xml"><xi:fallback /></xi:include>
+    </index>
   </chapter>
 </book>
