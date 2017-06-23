@@ -33,7 +33,7 @@ static gboolean xfconf_channel_is_valid(const gchar *channel,
 
 /**
  * SECTION:xfconf-backend
- * @title: XfconfBackend
+ * @title: Xfconf Backend
  * @short_description: Interface for configuration store backends
  *
  *  XfconfBackend is an abstract interface that allows the Xfconf Daemon
@@ -522,7 +522,7 @@ xfconf_backend_flush(XfconfBackend *backend,
 /**
  * xfconf_backend_register_property_changed_func:
  * @backend: The #XfconfBackend.
- * @func: A function of type #XfconfPropertyChangeFunc.
+ * @func: A function of type #XfconfPropertyChangedFunc.
  * @user_data: Arbitrary caller-supplied data.
  *
  * Registers a function to be called when a property changes.  The

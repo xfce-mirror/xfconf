@@ -49,7 +49,7 @@
 
 /**
  * SECTION:xfconf-channel
- * @title: XfconfChannel
+ * @title: Xfconf Channel
  * @short_description: An application-defined domain for storing configuration settings
  *
  * An XfconfChannel is a representation of a restricted domain or

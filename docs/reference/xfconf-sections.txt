@@ -53,6 +53,8 @@ XFCONF_CHANNEL_GET_CLASS
 XfconfBackendInterface
 XfconfBackend
 xfconf_backend_initialize
+xfconf_backend_is_property_locked
+xfconf_backend_list_channels
 xfconf_backend_set
 xfconf_backend_get
 xfconf_backend_get_all
@@ -60,6 +62,7 @@ xfconf_backend_exists
 xfconf_backend_reset
 xfconf_backend_flush
 xfconf_backend_register_property_changed_func
+xfconf_backend_return_val_if_fail
 <SUBSECTION Standard>
 XFCONF_BACKEND
 XFCONF_IS_BACKEND
