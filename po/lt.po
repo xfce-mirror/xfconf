@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2017-06-17 23:48+0000\n"
+"PO-Revision-Date: 2017-07-01 10:58+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfconf/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,7 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
-msgstr "Savybių vardai gali turėti tik ASCII simbolius A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', taipogi '/' kaip skirtuką"
+msgstr "Savybių pavadinimuose gali būti tik ASCII simboliai A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', taipogi '/' kaip skirtukas"
 
 #: ../xfconfd/xfconf-backend.c:134
 #, c-format
@@ -123,7 +123,7 @@ msgstr "Savybių vardai negali būti būti tušti"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
-msgstr "Kanalo vardai gali turėti tik ASCII simbolius A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', ir '-'"
+msgstr "Kanalo pavadinimuose gali būti tik ASCII simboliai A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', ir '-'"
 
 #: ../xfconfd/xfconf-backend.c:399
 #, c-format
