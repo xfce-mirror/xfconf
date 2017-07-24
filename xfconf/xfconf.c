@@ -154,6 +154,9 @@ xfconf_shutdown(void)
         return;
     }
 
+    /* Flush pending dbus calls */
+    g_dbus_connection_flush_sync (gdbus, NULL, NULL);
+
     _xfconf_channel_shutdown();
     _xfconf_g_bindings_shutdown();
 
@@ -231,16 +234,16 @@ void
 xfconf_array_free(GPtrArray *arr)
 {
     guint i;
-    
+
     if(!arr)
         return;
-    
+
     for(i = 0; i < arr->len; ++i) {
         GValue *val = g_ptr_array_index(arr, i);
         g_value_unset(val);
         g_free(val);
     }
-    
+
     g_ptr_array_free(arr, TRUE);
 }
 
