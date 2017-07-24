@@ -3,99 +3,99 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Necdet Yücel <necdetyucel@gmail.com>, 2014
+# Necdet Yücel <necdetyucel@gmail.com>, 2014,2017
 # Server Acim <sacim@kde.org.tr>, 2008
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-27 18:32+0200\n"
-"PO-Revision-Date: 2014-12-03 22:03+0000\n"
+"POT-Creation-Date: 2017-06-01 18:31+0200\n"
+"PO-Revision-Date: 2017-07-24 08:23+0000\n"
 "Last-Translator: Necdet Yücel <necdetyucel@gmail.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/xfconf/language/tr/)\n"
+"Language-Team: Turkish (http://www.transifex.com/xfce/xfconf/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../xfconf/xfconf-cache.c:897
+#: ../xfconf/xfconf-cache.c:979
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "ResetProperty DBus çağrısı yapılamadı"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:277
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:276
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
 msgstr "\"%s\" yapılandırma dizini oluşturulamıyor"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:322
-#: ../xfconfd/xfconf-daemon.c:238
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:321
+#: ../xfconfd/xfconf-daemon.c:167
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr "\"%s\" özelliğini değişirme yetkiniz, bu kanal için yok: \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:387
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:469
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:344
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:386
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:468
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:633
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:653 ../xfconf-query/main.c:344
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Bu kanal için herhangi bir özellik \"%s\" yer almamaktadırl \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:601
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:600
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "Kalan silinemiyor \"%s\": %s"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1297
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
 msgstr "<özellik> için geçersiz: \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1313
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1389
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "Bu türün değerini  \"%s\" bundan ayrıştırmak mümkün değil\"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1369
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr "Bir <value> 'in tür değeri bir dizi olamaz"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1378
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
 msgstr "<değer> için geçersiz: \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1654
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1903
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "Kanal \"%s\" bulunamıyor"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1961
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Kanala yazılamıyor \"%s\": %s"
 
-#: ../xfconfd/xfconf-backend-factory.c:76
+#: ../xfconfd/xfconf-backend-factory.c:77
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "Xfconf tür çıktısını bulamıyor \"%s\""
 
-#: ../xfconfd/xfconf-backend.c:103
+#: ../xfconfd/xfconf-backend.c:101
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Özellik isimleri bir '/' karakteriyle başlamalıdır."
 
-#: ../xfconfd/xfconf-backend.c:112
+#: ../xfconfd/xfconf-backend.c:110
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Kök ögesi ('/') geçerli bir isme sahip değildir"
 
-#: ../xfconfd/xfconf-backend.c:127
+#: ../xfconfd/xfconf-backend.c:125
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -103,72 +103,77 @@ msgid ""
 "separator"
 msgstr "Özellik isimleri sadece A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' ve '>' ASCII karakterlerini ve '/' ayracını içerebilirler"
 
-#: ../xfconfd/xfconf-backend.c:136
+#: ../xfconfd/xfconf-backend.c:134
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Özellik isimleri iki veya daha fazla ardışık '/' karakteri içeremez"
 
-#: ../xfconfd/xfconf-backend.c:147
+#: ../xfconfd/xfconf-backend.c:145
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Özellik isimleri sonda bir '/' karakteriyle bitemez"
 
-#: ../xfconfd/xfconf-backend.c:164
+#: ../xfconfd/xfconf-backend.c:162
 #, c-format
 msgid "Channel name cannot be an empty string"
 msgstr "Kanal ismi bir boş dizge olamaz"
 
-#: ../xfconfd/xfconf-backend.c:179
+#: ../xfconfd/xfconf-backend.c:177
 #, c-format
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
 msgstr "Kanal isimleri sadece A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', ve '-' ASCII karakterlerini içerebilirler"
 
-#: ../xfconfd/xfconf-backend.c:401
+#: ../xfconfd/xfconf-backend.c:399
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
 msgstr "Eğer özyineli yenileme belirlenmişse, özellik isimleri sadece boş olabilir veya \"/\" karakterinden oluşabilir."
 
-#: ../xfconfd/main.c:134
+#: ../xfconfd/main.c:125
+#, c-format
+msgid "Name %s lost on the message dbus, exiting."
+msgstr "%s adı dbus mesajında kayboldu, kapatılıyor."
+
+#: ../xfconfd/main.c:148
 msgid "Prints the xfconfd version."
 msgstr "xfconfd sürüm bilgisini gösterir."
 
-#: ../xfconfd/main.c:136
+#: ../xfconfd/main.c:150
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
 msgstr "Kullanılacak yapılandırma çıkışları. Belirtilen ilk çıktı okuma/yazma olarak açılır; diğerleri sadece-okunur olarak."
 
-#: ../xfconfd/main.c:139
+#: ../xfconfd/main.c:153
 msgid "Fork into background after starting; only useful for testing purposes"
 msgstr "Başlangıç sonrası arka planda çalıştır. (Sadece test ortamı için kullanışlıdır)"
 
-#: ../xfconfd/main.c:159
+#: ../xfconfd/main.c:173
 msgid "Xfce Configuration Daemon"
 msgstr "Xfce Yapılandırma Servisi"
 
-#: ../xfconfd/main.c:168
+#: ../xfconfd/main.c:182
 msgid "Xfce configuration daemon"
 msgstr "Xfce yapılandırma aracı"
 
-#: ../xfconfd/main.c:170
+#: ../xfconfd/main.c:184
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Hataları göndereceğiniz adres: http://bugs.xfce.org/\n"
 
-#: ../xfconfd/main.c:173
+#: ../xfconfd/main.c:187
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Seçenekleri ayrıştırmada hata: %s\n"
 
-#: ../xfconfd/xfconf-daemon.c:482
+#: ../xfconfd/xfconf-daemon.c:222
 #, c-format
-msgid "Another Xfconf daemon is already running"
-msgstr "Başka bir Xfconf çalışıyor"
+msgid "GType transformation failed \"%s\""
+msgstr "GType dönüşümü başarısız oldu \"%s\""
 
-#: ../xfconfd/xfconf-daemon.c:517
+#: ../xfconfd/xfconf-daemon.c:483
 #, c-format
 msgid "No backends could be started"
 msgstr "Hiç bir geride süren işlev başlatılamadı"
