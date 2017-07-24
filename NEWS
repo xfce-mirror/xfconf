@@ -4,6 +4,9 @@
 - Correctly use xfconf_shutdown in xfconf-query
 - Check for invalid GPtrArrays in the conversion
   from GValue to GVariant.
+- Fix some build issues in AM subdir-objects
+- Fix some autogen.sh warnings
+- Better documentation processing.
 
 4.13.2
 ======
