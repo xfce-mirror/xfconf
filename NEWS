@@ -1,3 +1,25 @@
+4.13.3
+======
+- Flush gdbus connection on xfconf_shutdown
+- Correctly use xfconf_shutdown in xfconf-query
+- Check for invalid GPtrArrays in the conversion
+  from GValue to GVariant.
+
+4.13.2
+======
+- Fix cache corruption due to a wrong g_value_unset call.
+- Update API gtk documentation
+
+4.13.1
+======
+- Revert the bump of libxfconf version from 0 to 1,
+  to avoid massive changes in all xfce's components.
+
+4.13.0
+======
+- Port xfconf to gdbus
+- Bump libxfconf version from 0 to 1. 
+
 4.12.1
 ======
 - Add support for binding to GdkRGBAs (required for migration to gtk3)
