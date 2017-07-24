@@ -244,13 +244,6 @@ main(int argc, char **argv)
     g_type_init();
 #endif
 
-    if(!xfconf_init(&error))
-    {
-        xfconf_query_printerr(_("Failed to init libxfconf: %s"), error->message);
-        g_error_free(error);
-        return EXIT_FAILURE;
-    }
-
     context = g_option_context_new(_("- Xfconf commandline utility"));
     g_option_context_add_main_entries(context, entries, GETTEXT_PACKAGE);
 
@@ -273,25 +266,6 @@ main(int argc, char **argv)
         return EXIT_SUCCESS;
     }
 
-    /** Check if the channel is specified */
-    if(!channel_name)
-    {
-        gchar **channels;
-        gint i;
-
-        g_print("%s\n", _("Channels:"));
-
-        channels = xfconf_list_channels();
-        if(G_LIKELY(channels)) {
-            for(i = 0; channels[i]; ++i)
-                g_print("  %s\n", channels[i]);
-            g_strfreev(channels);
-        } else
-            return EXIT_FAILURE;
-
-        return EXIT_SUCCESS;
-    }
-
     /** Check if the property is specified */
     if(!property_name && !list && !monitor)
     {
@@ -309,6 +283,36 @@ main(int argc, char **argv)
     {
         xfconf_query_printerr(_("--create and --reset options can not be used together with --list"));
         return EXIT_FAILURE;
+    }
+
+    if(!xfconf_init(&error))
+    {
+        xfconf_query_printerr(_("Failed to init libxfconf: %s"), error->message);
+        g_error_free(error);
+        return EXIT_FAILURE;
+    }
+
+    /** Check if the channel is specified */
+    if(!channel_name)
+    {
+        gchar **channels;
+        gint i;
+
+        g_print("%s\n", _("Channels:"));
+
+        channels = xfconf_list_channels();
+        if(G_LIKELY(channels)) {
+            for(i = 0; channels[i]; ++i)
+                g_print("  %s\n", channels[i]);
+            g_strfreev(channels);
+        }
+        else
+        {
+	        xfconf_shutdown ();
+            return EXIT_FAILURE;
+		}
+        xfconf_shutdown ();
+        return EXIT_SUCCESS;
     }
 
     channel = xfconf_channel_new(channel_name);
@@ -343,6 +347,7 @@ main(int argc, char **argv)
             {
                 xfconf_query_printerr(_("Property \"%s\" does not exist on channel \"%s\""),
                                       property_name, channel_name);
+                xfconf_shutdown ();
                 return EXIT_FAILURE;
             }
 
@@ -359,7 +364,7 @@ main(int argc, char **argv)
                 {
                     xfconf_query_printerr(_("--toggle only works with boolean values"));
                 }
-
+                xfconf_shutdown ();
                 return EXIT_FAILURE;
             }
 
@@ -402,6 +407,7 @@ main(int argc, char **argv)
                 xfconf_query_printerr(_("Property \"%s\" does not exist on channel \"%s\". If a new "
                                       "property should be created, use the --create option"),
                                       property_name, channel_name);
+                xfconf_shutdown ();
                 return EXIT_FAILURE;
             }
 
@@ -418,6 +424,7 @@ main(int argc, char **argv)
                 if(!xfconf_channel_get_property(channel, property_name, &value))
                 {
                     xfconf_query_printerr(_("Failed to get the existing type for the value"));
+                    xfconf_shutdown ();
                     return EXIT_FAILURE;
                 }
             }
@@ -436,12 +443,14 @@ main(int argc, char **argv)
                 if(G_TYPE_INVALID == gtype || G_TYPE_NONE == gtype)
                 {
                     xfconf_query_printerr(_("Unable to determine the type of the value"));
+                    xfconf_shutdown ();
                     return EXIT_FAILURE;
                 }
 
                 if(G_TYPE_PTR_ARRAY == gtype)
                 {
                     xfconf_query_printerr(_("A value type must be specified to change an array into a single value"));
+                    xfconf_shutdown ();
                     return EXIT_FAILURE;
                 }
 
@@ -453,12 +462,14 @@ main(int argc, char **argv)
                 {
                     xfconf_query_printerr(_("Unable to convert \"%s\" to type \"%s\""),
                                           set_value[0], g_type_name(gtype));
+                    xfconf_shutdown ();
                     return EXIT_FAILURE;
                 }
 
                 if(!xfconf_channel_set_property(channel, property_name, &value))
                 {
                     xfconf_query_printerr(_("Failed to set property"));
+                    xfconf_shutdown ();
                     return EXIT_FAILURE;
                 }
             }
@@ -485,6 +496,7 @@ main(int argc, char **argv)
                 {
                     xfconf_query_printerr(_("There are %d new values, but only %d types could be determined"),
                                           new_values, new_types);
+                    xfconf_shutdown ();
                     return EXIT_FAILURE;
                 }
 
@@ -505,6 +517,7 @@ main(int argc, char **argv)
                     if(G_TYPE_INVALID == gtype || G_TYPE_NONE == gtype)
                     {
                         xfconf_query_printerr(_("Unable to determine type of value at index %d"), i);
+                        xfconf_shutdown ();
                         return EXIT_FAILURE;
                     }
 
@@ -514,6 +527,7 @@ main(int argc, char **argv)
                     {
                         xfconf_query_printerr(_("Unable to convert \"%s\" to type \"%s\""),
                                               set_value[i], g_type_name(gtype));
+                        xfconf_shutdown ();
                         return EXIT_FAILURE;
                     }
                     g_ptr_array_add(arr_new, value_new);
@@ -528,6 +542,7 @@ main(int argc, char **argv)
                 if(!xfconf_channel_set_property(channel, property_name, &value))
                 {
                     xfconf_query_printerr(_("Failed to set property"));
+                    xfconf_shutdown ();
                     return EXIT_FAILURE;
                 }
             }
@@ -558,6 +573,8 @@ main(int argc, char **argv)
             g_print(".\n");
         }
     }
+
+    xfconf_shutdown ();
 
     return EXIT_SUCCESS;
 }
