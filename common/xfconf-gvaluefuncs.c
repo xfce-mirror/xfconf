@@ -473,28 +473,34 @@ xfconf_gvalue_to_gvariant (const GValue *value)
 
     if (G_VALUE_TYPE(value) == G_TYPE_PTR_ARRAY) {
         GPtrArray *arr;
-        GVariantBuilder builder;
-        guint i = 0;
-
-        g_variant_builder_init (&builder, G_VARIANT_TYPE_ARRAY);
 
         arr = (GPtrArray*)g_value_get_boxed (value);
 
-        /* Check for array and that the array has at least one element */
-        g_return_val_if_fail (arr && arr->len != 0, NULL);
+        /* Check for array  */
+        g_return_val_if_fail (arr, NULL);
 
-        for (i=0; i < arr->len; ++i) {
-            GValue *v = g_ptr_array_index (arr, i);
-            GVariant *var = NULL;
-
-            var = xfconf_basic_gvalue_to_gvariant (v);
-            if (var) {
-                g_variant_builder_add (&builder, "v", var, NULL);
-                g_variant_unref (var);
-            }
+        if (arr->len == 0) {
+            variant = g_variant_ref_sink(g_variant_new ("av", NULL));
         }
+        else {
+            GVariantBuilder builder;
+            guint i = 0;
 
-        variant = g_variant_ref_sink(g_variant_builder_end (&builder));
+            g_variant_builder_init (&builder, G_VARIANT_TYPE_ARRAY);
+
+            for (i=0; i < arr->len; ++i) {
+                GValue *v = g_ptr_array_index (arr, i);
+                GVariant *var = NULL;
+
+                var = xfconf_basic_gvalue_to_gvariant (v);
+                if (var) {
+                    g_variant_builder_add (&builder, "v", var, NULL);
+                    g_variant_unref (var);
+                }
+            }
+
+            variant = g_variant_ref_sink(g_variant_builder_end (&builder));
+        }
     }
     else if (G_VALUE_TYPE(value) == G_TYPE_STRV) {
         gchar **strlist;
