@@ -152,6 +152,8 @@ typedef struct
 
     GCancellable *cancellable;
 
+    gint pending_calls_count;
+
     /**
      * Variant to be send on the wire
      * Used in xfconf_cache_old_item_end_call
@@ -177,6 +179,7 @@ xfconf_cache_old_item_new(XfconfCache *cache, const gchar *property)
     old_item->cancellable = g_cancellable_new ();
     old_item->cache = cache;
     old_item->variant = NULL;
+    old_item->pending_calls_count = 0;
 
     return old_item;
 }
@@ -330,7 +333,8 @@ xfconf_cache_class_init(XfconfCacheClass *klass)
 
     signals[SIG_PROPERTY_CHANGED] = g_signal_new(I_("property-changed"),
                                                  XFCONF_TYPE_CACHE,
-                                                 G_SIGNAL_RUN_LAST,
+                                                 G_SIGNAL_RUN_LAST
+                                                 | G_SIGNAL_DETAILED,
                                                  G_STRUCT_OFFSET(XfconfCacheClass,
                                                                  property_changed),
                                                  NULL,
@@ -596,7 +600,9 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
     gboolean result;
     old_item = (XfconfCacheOldItem *) user_data;
     cache = old_item->cache;
-    if(!cache->pending_calls)
+
+    old_item->pending_calls_count--;
+    if(old_item->pending_calls_count > 0)
         return;
 
     xfconf_cache_mutex_lock(cache);
@@ -879,6 +885,11 @@ xfconf_cache_set(XfconfCache *cache,
             g_object_unref (old_item->cancellable);
             old_item->cancellable = g_cancellable_new();
         }
+
+        if(old_item->variant){
+            g_variant_unref(old_item->variant);
+            old_item->variant = NULL;
+        }
     } else {
         old_item = xfconf_cache_old_item_new(cache, property);
         if(item)
@@ -898,8 +909,8 @@ xfconf_cache_set(XfconfCache *cache,
                                            (GAsyncReadyCallback) xfconf_cache_set_property_reply_handler,
                                            old_item);
 
-        /* Val will be freed asynchronously */
         old_item->variant = val;
+        old_item->pending_calls_count++;
 
         g_hash_table_insert(cache->pending_calls, old_item->cancellable, old_item);
 
