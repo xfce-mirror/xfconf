@@ -927,6 +927,7 @@ xfconf_cache_set(XfconfCache *cache,
 
         return TRUE;
     }
+    xfconf_cache_mutex_unlock(cache);
     return FALSE;
 }
 
