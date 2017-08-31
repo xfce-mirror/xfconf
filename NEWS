@@ -1,3 +1,10 @@
+4.13.4
+======
+- Fix segfault in xfconf_cache_set_property_reply_handler when 
+  multiple calls are made (bug #13825)
+- Allow to store empty arrays (bug #13791)
+- Fix a path in xfconf_cache_set where the mutex isn't locked (bug #13790)
+
 4.13.3
 ======
 - Flush gdbus connection on xfconf_shutdown
