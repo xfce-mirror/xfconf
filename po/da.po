@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2017-09-13 15:09+0000\n"
+"PO-Revision-Date: 2017-09-13 21:18+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -135,7 +135,7 @@ msgstr "Egenskabsnavne kan kun være tomme eller \"/\" hvis rekursiv nulstilling
 #: ../xfconfd/main.c:125
 #, c-format
 msgid "Name %s lost on the message dbus, exiting."
-msgstr "Navn %s tabt på meddelelse-dbus, afslutter."
+msgstr "Navn %s tabt på meddelelse-dbus'en, afslutter."
 
 #: ../xfconfd/main.c:148
 msgid "Prints the xfconfd version."
@@ -208,7 +208,7 @@ msgstr "Vis egenskaber (eller kanaler hvis -c ikke er angivet)"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
-msgstr "Uddybende uddata"
+msgstr "Uddybende output"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
