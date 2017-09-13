@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 23:18+0200\n"
-"PO-Revision-Date: 2017-01-23 19:56+0000\n"
+"PO-Revision-Date: 2017-09-13 21:18+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -201,7 +201,7 @@ msgstr "Vis egenskaber (eller kanaler hvis -c ikke er angivet)"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
-msgstr "Uddybende uddata"
+msgstr "Uddybende output"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
