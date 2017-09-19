@@ -1,26 +1,26 @@
-# Russian translations for xfconf package.
-# Copyright (C) 2009-2011 The Xfce development team.
-# This file is distributed under the same license as the xfconf package.
-# Ilya Shestopalov <yast4ik@yahoo.com>, 2009.
-# Denis Koryavov <dkoryavov@yandex.ru>, 2010.
-# Artem Zolochevskiy <artem.zolochevskiy@gmail.com>, 2011.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Artem Zolochevskiy <artem.zolochevskiy@gmail.com>, 2011
+# Denis Koryavov <dkoryavov@yandex.ru>, 2010
+# Ilya Shestopalov <yast4ik@yahoo.com>, 2009
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2011-07-20 10:51+0300\n"
-"Last-Translator: Artem Zolochevskiy <artem.zolochevskiy@gmail.com>\n"
-"Language-Team: Russian\n"
-"Language: ru\n"
+"POT-Creation-Date: 2013-07-02 23:18+0200\n"
+"PO-Revision-Date: 2017-09-19 18:03+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"Language-Team: Russian (http://www.transifex.com/xfce/xfconf/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Не удалось выполнить ResetProperty через DBus"
@@ -101,16 +101,12 @@ msgstr "Элемент root («/») не является правильным �
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Названия свойств могут включать только символы ASCII A-Z, a-z, 0-9, «_», "
-"«-», «<» и «>», так же как и «/» как разделитель"
+msgstr "Названия свойств могут включать только символы ASCII A-Z, a-z, 0-9, «_», «-», «<» и «>», так же как и «/» как разделитель"
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
-"Названия свойств не могут включать более двух и более последовательных "
-"знаков «/»"
+msgstr "Названия свойств не могут включать более двух и более последовательных знаков «/»"
 
 #: ../xfconfd/xfconf-backend.c:146
 #, c-format
@@ -127,17 +123,14 @@ msgstr "Название канала не может быть пустой ст
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"Названия каналов могут включать только символы ASCII A-Z, a-z, 0-9, «_» и «-»"
+msgstr "Названия каналов могут включать только символы ASCII A-Z, a-z, 0-9, «_» и «-»"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"Название свойства может быть только пустым или \"/\" если был выбран "
-"рекурсивный сброс"
+msgstr "Название свойства может быть только пустым или \"/\" если был выбран рекурсивный сброс"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -145,16 +138,13 @@ msgstr "Показать версию Xfconf."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Бэкенд конфигурации для использования. Первый указанный бэкенд открыт для "
-"чтения/записи, остальные только для чтения."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Бэкенд конфигурации для использования. Первый указанный бэкенд открыт для чтения/записи, остальные только для чтения."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
-"Выполнять в фоновом режиме после запуска (полезно только для тестовых целей)"
+msgstr "Выполнять в фоновом режиме после запуска (полезно только для тестовых целей)"
 
 #: ../xfconfd/main.c:159
 msgid "Xfce Configuration Daemon"
@@ -280,8 +270,7 @@ msgstr "параметры --create и --reset не могут использо�
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
-"параметры --create и --reset не могут использоваться совместно с --list"
+msgstr "параметры --create и --reset не могут использоваться совместно с --list"
 
 #: ../xfconf-query/main.c:319
 #, c-format
@@ -311,9 +300,7 @@ msgstr "Значение является массивом с %d элемент�
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"Свойство «%s» не существует на канале «%s». Если должно быть создано новое "
-"свойство, то используйте параметр --create"
+msgstr "Свойство «%s» не существует на канале «%s». Если должно быть создано новое свойство, то используйте параметр --create"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
@@ -329,8 +316,7 @@ msgstr "Не удалось определить тип значения"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
-"Для преобразования массива в одно значение должен быть задан тип значения"
+msgstr "Для преобразования массива в одно значение должен быть задан тип значения"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
