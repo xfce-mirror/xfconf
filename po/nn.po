@@ -1,25 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-17 15:18+0000\n"
-"PO-Revision-Date: 2012-01-23 23:26+0100\n"
-"Last-Translator: Eivind Ødegård <gingermi@yahoo.no>\n"
-"Language-Team: nn_NO <i18n-nn@lister.ping.uio.no>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-07-02 23:18+0200\n"
+"PO-Revision-Date: 2017-09-19 18:03+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"Language-Team: Norwegian Nynorsk (http://www.transifex.com/xfce/xfconf/language/nn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1)\n"
-"X-Poedit-Language: Norwegian Nynorsk\n"
-"X-Poedit-Country: NORWAY\n"
+"Language: nn\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Klarte ikkje laga ResetProperty-DBus-kall"
@@ -38,8 +36,7 @@ msgstr "TIlgang nekta då me endra eigenskapen «%s» på kanal «%s»"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
-#: ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Eigenskapen «%s» finst ikkje på kanalen «%s»"
@@ -98,7 +95,9 @@ msgstr "Rotelementet ('/') er ikkje eit gyldig eigenskapnamn"
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
 msgstr "Eigenskapnamn kan berre innehalda ASCII-teikna A-Z, a-z, 0-9, '_', '-', '<' og '>' og '/' som deleteikn"
 
 #: ../xfconfd/xfconf-backend.c:135
@@ -118,12 +117,16 @@ msgstr "Kanalnamnet kan ikkje vera ein tom streng"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
 msgstr "Kanalnamn kan berre innehalda ASCII-teikna A-Z, a-z, 0-9, '_', og '-'"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
 msgstr "Eigenskapnamnet kan berre vera tomt eller «/» om det vart brukt ei rekursiv nullstilling."
 
 #: ../xfconfd/main.c:134
@@ -131,7 +134,9 @@ msgid "Prints the xfconfd version."
 msgstr "Gjev xconfd-versjonen."
 
 #: ../xfconfd/main.c:136
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
 msgstr "Kva bakprogram me skal bruka for innstillingane. Det fyrste nemnde bakprogrammet blir opna i les/skriv-modus, dei andre i lesemodus."
 
 #: ../xfconfd/main.c:139
@@ -165,8 +170,7 @@ msgstr "Ein Xfconf-nisse er allereie i gang"
 msgid "No backends could be started"
 msgstr "Klarte ikkje starta nokon bakprogram"
 
-#: ../xfconf-query/main.c:90
-#: ../xfconf-query/main.c:95
+#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
 msgstr "set"
 
@@ -270,8 +274,7 @@ msgstr "Du kan ikkje bruka --create og --reset saman med --list"
 msgid "Start monitoring channel \"%s\":"
 msgstr "Lytt på kanalen «%s»"
 
-#: ../xfconf-query/main.c:353
-#: ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
 msgid "Failed to set property"
 msgstr "Klarte ikkje setja eigenskapen"
@@ -280,8 +283,7 @@ msgstr "Klarte ikkje setja eigenskapen"
 msgid "--toggle only works with boolean values"
 msgstr "--toggle verkar berre med boolske verdiar"
 
-#: ../xfconf-query/main.c:366
-#: ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(ukjent)"
 
@@ -292,7 +294,9 @@ msgstr "Verdien er ein tabell med %d element: "
 
 #: ../xfconf-query/main.c:399
 #, c-format
-msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\". If a new property should "
+"be created, use the --create option"
 msgstr "Eigenskapen «%s» finst ikkje på kanalen «%s». Viss du vil laga ein ny eigenskap, må du bruka --create"
 
 #: ../xfconf-query/main.c:407
@@ -311,8 +315,7 @@ msgstr "Klarer ikkje avgjera kva type verdien har"
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Du må nemna verditypen om du vil endra ein tabell til ein einskild verdi"
 
-#: ../xfconf-query/main.c:451
-#: ../xfconf-query/main.c:512
+#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "Kan ikkje gjera om «%s» til typen «%s»"
@@ -331,4 +334,3 @@ msgstr "Greier ikkje avgjera typen til verdien på indeks %d"
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanalen «%s» inneheld ingen eigenskapar"
-
