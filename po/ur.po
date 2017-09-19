@@ -7,165 +7,171 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-02 22:48+0200\n"
-"PO-Revision-Date: 2013-11-19 10:53+0000\n"
-"Last-Translator: Nick <nick@xfce.org>\n"
-"Language-Team: Urdu (http://www.transifex.com/projects/p/xfce/language/ur/)\n"
+"POT-Creation-Date: 2017-06-01 18:31+0200\n"
+"PO-Revision-Date: 2017-09-19 18:02+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"Language-Team: Urdu (http://www.transifex.com/xfce/xfconf/language/ur/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ur\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:897
+#: ../xfconf/xfconf-cache.c:979
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr ""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:277
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:276
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
 msgstr "ترتیبات ڈائریکٹری \"%s\" نہیں بنائی جاسکتی"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:322
-#: ../xfconfd/xfconf-daemon.c:238
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:321
+#: ../xfconfd/xfconf-daemon.c:167
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr "چینل \"%s\" پر \"%s\" کی خصوصیات تبدیل کرنے کے دوران اجازہ رکاوٹ"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:387
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:469
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:386
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:468
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:633
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:653 ../xfconf-query/main.c:344
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "چینل \"%s\" پر خاصیت \"%s\" نہیں پائی گئی"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:601
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:600
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "چینل حذف کرنے میں ناکامی \"%s\": %s"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1297
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
 msgstr "نا موزوں نوعیت برائے <خاصیت>: \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1313
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1389
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "\"%s\" سے نوعیت \"%s\" کی قدر بیان نہیں کی جاسکتی"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1369
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr "نوعیت صفت برائے<value> صف میں نہیں"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1378
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
 msgstr "نا موزوں نوعیت برائے <value>: \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1654
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1903
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "چینل \"%s\" نہیں پایا گیا"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1961
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "چینل نہیں لکھا جاسکتا \"%s\": %s"
 
-#: ../xfconfd/xfconf-backend-factory.c:76
+#: ../xfconfd/xfconf-backend-factory.c:77
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "نوعیت \"%s\" کا Xfconf بیک اینڈ تلاش کرنے میں ناکامی"
 
-#: ../xfconfd/xfconf-backend.c:103
+#: ../xfconfd/xfconf-backend.c:101
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "لازم ہے کہ خصوصیت کے نام'/' سے شروع ہوں"
 
-#: ../xfconfd/xfconf-backend.c:112
+#: ../xfconfd/xfconf-backend.c:110
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "روٹ عنصر ('/') موزوں خصوصیت نام نہیں ہے"
 
-#: ../xfconfd/xfconf-backend.c:126
+#: ../xfconfd/xfconf-backend.c:125
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr "خصوصیت کے نام میں صرف ASCII حروف ہی ہونے چاہئیں A-Z, a-z, 0-9, '_', '-', '<' اور '>' ساتھ میں '/' بطور جداگار"
+"'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
+"separator"
+msgstr ""
 
-#: ../xfconfd/xfconf-backend.c:135
+#: ../xfconfd/xfconf-backend.c:134
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "خصوصیت کے نام میں دو یا اس سے زیادہ متواتر '/' نہیں ہونا چاہیے"
 
-#: ../xfconfd/xfconf-backend.c:146
+#: ../xfconfd/xfconf-backend.c:145
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "خصوصیت کا نام '/' پر ختم نہیں ہونا چاہیے"
 
-#: ../xfconfd/xfconf-backend.c:163
+#: ../xfconfd/xfconf-backend.c:162
 #, c-format
 msgid "Channel name cannot be an empty string"
 msgstr "چینل کا نام خالی نہیں ہونا چاہیے"
 
-#: ../xfconfd/xfconf-backend.c:176
+#: ../xfconfd/xfconf-backend.c:177
 #, c-format
 msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr "چینل کا نام صرف ASCII حروف پر مشتمل ہونا چاہیے A-Z, a-z, 0-9, '_' اور '-'"
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
+" '|', ']', '[', ':', ',', '.', '_', and '-'"
+msgstr ""
 
-#: ../xfconfd/xfconf-backend.c:398
+#: ../xfconfd/xfconf-backend.c:399
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
 msgstr "خصوصیت کا نام صرف خالی ہوسکتا ہے یا \"/\" اگر تکراری ریزٹ متعین کیا گیا ہو"
 
-#: ../xfconfd/main.c:134
+#: ../xfconfd/main.c:125
+#, c-format
+msgid "Name %s lost on the message dbus, exiting."
+msgstr ""
+
+#: ../xfconfd/main.c:148
 msgid "Prints the xfconfd version."
 msgstr "xfconfd ورژن کی طباعت کریں."
 
-#: ../xfconfd/main.c:136
+#: ../xfconfd/main.c:150
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
 msgstr "استعمال کے لیے ترتیبات بیک اینڈ. پہلا معینہ بیک ایند پڑھنے/لکھنے کے لیے کھلا ہوا ہے، دوسرا صرف پڑھنے کے لیے."
 
-#: ../xfconfd/main.c:139
+#: ../xfconfd/main.c:153
 msgid "Fork into background after starting; only useful for testing purposes"
 msgstr ""
 
-#: ../xfconfd/main.c:159
+#: ../xfconfd/main.c:173
 msgid "Xfce Configuration Daemon"
 msgstr "ایکسفس ترتیبات ڈیمن"
 
-#: ../xfconfd/main.c:165
+#: ../xfconfd/main.c:182
 msgid "Xfce configuration daemon"
 msgstr "ایکسفس ترتیبات ڈیمن"
 
-#: ../xfconfd/main.c:167
+#: ../xfconfd/main.c:184
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "بگ رپورٹ کریں تا http://bugs.xfce.org/\n"
 
-#: ../xfconfd/main.c:170
+#: ../xfconfd/main.c:187
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "اختیارات بیان کرنے میں غلطی: %s\n"
 
-#: ../xfconfd/xfconf-daemon.c:482
+#: ../xfconfd/xfconf-daemon.c:222
 #, c-format
-msgid "Another Xfconf daemon is already running"
-msgstr "دوسرا Xfconf ڈیمن پہلے ہی چل رہا ہے"
+msgid "GType transformation failed \"%s\""
+msgstr ""
 
-#: ../xfconfd/xfconf-daemon.c:517
+#: ../xfconfd/xfconf-daemon.c:483
 #, c-format
 msgid "No backends could be started"
 msgstr "کوئی بیک اینڈ نہیں چلایا گیا"
@@ -230,107 +236,107 @@ msgstr ""
 msgid "Monitor a channel for property changes"
 msgstr "خصوصیت کی تبدیلی کے لیے چینل مانیٹر کریں"
 
-#: ../xfconf-query/main.c:246
+#: ../xfconf-query/main.c:249
 #, c-format
 msgid "Failed to init libxfconf: %s"
 msgstr ""
 
-#: ../xfconf-query/main.c:251
+#: ../xfconf-query/main.c:254
 msgid "- Xfconf commandline utility"
 msgstr ""
 
-#: ../xfconf-query/main.c:256
+#: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr ""
 
-#: ../xfconf-query/main.c:266
+#: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
 msgstr ""
 
-#: ../xfconf-query/main.c:267
+#: ../xfconf-query/main.c:270
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr ""
 
-#: ../xfconf-query/main.c:279
+#: ../xfconf-query/main.c:282
 msgid "Channels:"
 msgstr ""
 
-#: ../xfconf-query/main.c:295
+#: ../xfconf-query/main.c:298
 msgid "No property specified"
 msgstr ""
 
-#: ../xfconf-query/main.c:301
+#: ../xfconf-query/main.c:304
 msgid "--create and --reset options can not be used together"
 msgstr ""
 
-#: ../xfconf-query/main.c:307
+#: ../xfconf-query/main.c:310
 msgid "--create and --reset options can not be used together with --list"
 msgstr ""
 
-#: ../xfconf-query/main.c:319
+#: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr ""
 
-#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
-#: ../xfconf-query/main.c:527
+#: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
+#: ../xfconf-query/main.c:530
 msgid "Failed to set property"
 msgstr ""
 
-#: ../xfconf-query/main.c:357
+#: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
 msgstr ""
 
-#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:369 ../xfconf-query/main.c:388
 msgid "(unknown)"
 msgstr "(نامعلوم)"
 
-#: ../xfconf-query/main.c:375
+#: ../xfconf-query/main.c:378
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr ""
 
-#: ../xfconf-query/main.c:399
+#: ../xfconf-query/main.c:402
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr ""
 
-#: ../xfconf-query/main.c:407
+#: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
 msgstr ""
 
-#: ../xfconf-query/main.c:417
+#: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
 msgstr ""
 
-#: ../xfconf-query/main.c:435
+#: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
 msgstr ""
 
-#: ../xfconf-query/main.c:441
+#: ../xfconf-query/main.c:444
 msgid "A value type must be specified to change an array into a single value"
 msgstr ""
 
-#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
+#: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr ""
 
-#: ../xfconf-query/main.c:483
+#: ../xfconf-query/main.c:486
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr ""
 
-#: ../xfconf-query/main.c:504
+#: ../xfconf-query/main.c:507
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr ""
 
-#: ../xfconf-query/main.c:554
+#: ../xfconf-query/main.c:557
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr ""
