@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Apostolos Papadimitriu <apostolos.papadimitriu@gmail.com>, 2016
+# Apóstolos Papaðimitríu <apostolos.papadimitriu@gmail.com>, 2016
 # Efstathios Iosifidis <iefstathios@gmail.com>, 2015
 # Efstathios Iosifidis <iosifidis@opensuse.org>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-27 18:32+0200\n"
-"PO-Revision-Date: 2016-02-04 22:43+0000\n"
-"Last-Translator: Apostolos Papadimitriu <apostolos.papadimitriu@gmail.com>\n"
+"POT-Creation-Date: 2017-06-01 18:31+0200\n"
+"PO-Revision-Date: 2017-09-19 18:02+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Greek (http://www.transifex.com/xfce/xfconf/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,83 +20,83 @@ msgstr ""
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:897
+#: ../xfconf/xfconf-cache.c:979
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Απέτυχε η κλήση DBus ResetProperty"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:277
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:276
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
 msgstr "Δεν ήταν δυνατή η δημιουργία του καταλόγου ρυθμίσεων \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:322
-#: ../xfconfd/xfconf-daemon.c:238
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:321
+#: ../xfconfd/xfconf-daemon.c:167
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr "Άρνηση πρόσβασης κατά την τροποποίηση της ιδιότητας \"%s\" στο κανάλι \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:387
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:469
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:344
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:386
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:468
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:633
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:653 ../xfconf-query/main.c:344
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Η ιδιότητα \"%s\" δεν υπάρχει στο κανάλι \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:601
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:600
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "Δεν ήταν δυνατή η διαγραφή του καναλιού \"%s \": %s"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1297
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
 msgstr "Μη έγκυρος τύπος για <property>: \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1313
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1389
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "Δεν ήταν δυνατή η ανάγνωση της τιμής του τύπου \"%s\" από το \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1369
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr "Η ιδιότητα τύπου του <value> δε μπορεί να είναι array"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1378
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
 msgstr "Μη έγκυρος τύπος για <value>: \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1654
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1903
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "Το κανάλι \"%s\" δεν υπάρχει"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1961
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Δεν ήταν δυνατή η εγγραφή του καναλιού \"%s\": \"%s\""
 
-#: ../xfconfd/xfconf-backend-factory.c:76
+#: ../xfconfd/xfconf-backend-factory.c:77
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "Δεν ήταν δυνατή η εύρεση συστήματος υποστήριξης του Xfconf τύπου \"%s\""
 
-#: ../xfconfd/xfconf-backend.c:103
+#: ../xfconfd/xfconf-backend.c:101
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Τα ονόματα ιδιοτήτων πρέπει να ξεκινούν με το χαρακτήρα '/'"
 
-#: ../xfconfd/xfconf-backend.c:112
+#: ../xfconfd/xfconf-backend.c:110
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Το ριζικό στοιχείο ('/') δεν είναι έγκυρο όνομα ιδιότητας"
 
-#: ../xfconfd/xfconf-backend.c:127
+#: ../xfconfd/xfconf-backend.c:125
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -104,72 +104,77 @@ msgid ""
 "separator"
 msgstr "Tα ονόματα ιδιοτήτων μπορούν να περιλαμβάνουν μόνο χαρακτήρες ASCII : A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' and '>',  καθώς επίσης και το  '/' ως διαχωριστικό"
 
-#: ../xfconfd/xfconf-backend.c:136
+#: ../xfconfd/xfconf-backend.c:134
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Τα ονόματα ιδιοτήτων δε μπορούν να έχουν δύο ή περισσότερους συνεχόμενους χαρακτήρες '/'"
 
-#: ../xfconfd/xfconf-backend.c:147
+#: ../xfconfd/xfconf-backend.c:145
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Τα ονόματα ιδιοτήτων δε μπορούν να τελειώνουν με το χαρακτήρα '/'"
 
-#: ../xfconfd/xfconf-backend.c:164
+#: ../xfconfd/xfconf-backend.c:162
 #, c-format
 msgid "Channel name cannot be an empty string"
 msgstr "Το όνομα του καναλιού δε μπορεί να είναι κενό"
 
-#: ../xfconfd/xfconf-backend.c:179
+#: ../xfconfd/xfconf-backend.c:177
 #, c-format
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
 msgstr "Τα ονόματα καναλιών μπορεί να περιέχουν μόνο τους χαρακτήρες ASCII A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', και '-'"
 
-#: ../xfconfd/xfconf-backend.c:401
+#: ../xfconfd/xfconf-backend.c:399
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
 msgstr "Το όνομα τις ιδιότητας μπορεί μόνο να είναι κενό ή \"/\" αν έχει οριστεί η αναδρομική επαναφορά"
 
-#: ../xfconfd/main.c:134
+#: ../xfconfd/main.c:125
+#, c-format
+msgid "Name %s lost on the message dbus, exiting."
+msgstr ""
+
+#: ../xfconfd/main.c:148
 msgid "Prints the xfconfd version."
 msgstr "Εμφανίζει την έκδοση του xfconfd"
 
-#: ../xfconfd/main.c:136
+#: ../xfconfd/main.c:150
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
 msgstr "Ρυθμίζει ποια συστήματα υποστήριξης θα χρησιμοποιηθούν. Το πρώτο που ορίζεται θα ανοίγει για ανάγνωση/εγγραφή, και τα υπόλοιπα μόνο για ανάγνωση."
 
-#: ../xfconfd/main.c:139
+#: ../xfconfd/main.c:153
 msgid "Fork into background after starting; only useful for testing purposes"
 msgstr "Διακλάδωση στο παρασκήνιο μετά την εκκίνηση χρήσιμο μόνο για πειράματα"
 
-#: ../xfconfd/main.c:159
+#: ../xfconfd/main.c:173
 msgid "Xfce Configuration Daemon"
 msgstr "Υπηρεσία ρυθμίσεων του Xfce"
 
-#: ../xfconfd/main.c:168
+#: ../xfconfd/main.c:182
 msgid "Xfce configuration daemon"
 msgstr "Υπηρεσία ρυθμίσεων του Xfce"
 
-#: ../xfconfd/main.c:170
+#: ../xfconfd/main.c:184
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Αναφέρετε σφάλματα στο http://bugs.xfce.org/\n"
 
-#: ../xfconfd/main.c:173
+#: ../xfconfd/main.c:187
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Σφάλμα ανάγνωσης επιλογών: %s\n"
 
-#: ../xfconfd/xfconf-daemon.c:482
+#: ../xfconfd/xfconf-daemon.c:222
 #, c-format
-msgid "Another Xfconf daemon is already running"
-msgstr "Μια υπηρεσία Xfconf  εκτελείται ήδη"
+msgid "GType transformation failed \"%s\""
+msgstr ""
 
-#: ../xfconfd/xfconf-daemon.c:517
+#: ../xfconfd/xfconf-daemon.c:483
 #, c-format
 msgid "No backends could be started"
 msgstr "Δεν ήταν δυνατή η εκκίνηση συστημάτων υποστήριξης"
