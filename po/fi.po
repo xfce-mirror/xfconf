@@ -1,22 +1,23 @@
-# Finnish translation of the xfconf package.
-# Copyright (C) 2010-2011 The Xfce development team.
-# This file is distributed under the same license as the xfconf package.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008-2011.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-28 21:48+0100\n"
-"PO-Revision-Date: 2011-05-29 14:24+0300\n"
-"Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
-"Language-Team: Finnish <xfce-i18n@xfce.org>\n"
-"Language: fi\n"
+"POT-Creation-Date: 2013-07-02 23:18+0200\n"
+"PO-Revision-Date: 2017-09-19 18:03+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"Language-Team: Finnish (http://www.transifex.com/xfce/xfconf/language/fi/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "DBus-kutsu ResetProperty epäonnistui"
@@ -97,9 +98,7 @@ msgstr "Juurielementti (\"/\") ei kelpaa asetuksen nimeksi"
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
-"Asetusten nimissä voi käyttää ainoastaan ASCII-merkkejä A-Z, a-z, 0-9, \"_"
-"\", \"-\", \"<\" ja \">\", sekä erotinmerkkiä \"/\""
+msgstr "Asetusten nimissä voi käyttää ainoastaan ASCII-merkkejä A-Z, a-z, 0-9, \"_\", \"-\", \"<\" ja \">\", sekä erotinmerkkiä \"/\""
 
 #: ../xfconfd/xfconf-backend.c:135
 #, c-format
@@ -121,18 +120,14 @@ msgstr "Kanavan nimi ei voi olla tyhjä merkkijono"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr ""
-"Kanavien nimissä voi käyttää ainoastaan ASCII-merkkejä A-Z, a-z, 0-9, \"_\" "
-"sekä \"-\""
+msgstr "Kanavien nimissä voi käyttää ainoastaan ASCII-merkkejä A-Z, a-z, 0-9, \"_\" sekä \"-\""
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr ""
-"Asetuksen nimi voi olla tyhjä tai \"/\" vain rekursiivisen palautuksen "
-"tapauksessa"
+msgstr "Asetuksen nimi voi olla tyhjä tai \"/\" vain rekursiivisen palautuksen tapauksessa"
 
 #: ../xfconfd/main.c:134
 msgid "Prints the xfconfd version."
@@ -140,11 +135,9 @@ msgstr "Tulostaa xfconfd:n version."
 
 #: ../xfconfd/main.c:136
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
-msgstr ""
-"Käytettävät asetusmoduulit. Ensimmäinen määritetty moduuli avataan luku- ja "
-"kirjoitustilassa, muut vain luettavaksi."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Käytettävät asetusmoduulit. Ensimmäinen määritetty moduuli avataan luku- ja kirjoitustilassa, muut vain luettavaksi."
 
 #: ../xfconfd/main.c:139
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -274,8 +267,7 @@ msgstr "Valitsimia --create ja --reset ei voi käyttää yhdessä"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
-"Valitsinta --create tai --reset ei voi käyttää valitsimen --list kanssa"
+msgstr "Valitsinta --create tai --reset ei voi käyttää valitsimen --list kanssa"
 
 #: ../xfconf-query/main.c:319
 #, c-format
@@ -305,9 +297,7 @@ msgstr "Arvo on taulukko, jossa on %d kohdetta:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
-"Asetusta \"%s\" ei löydy kanavalta \"%s\". Jos haluat luoda uuden asetuksen, "
-"käytä valitsinta --create"
+msgstr "Asetusta \"%s\" ei löydy kanavalta \"%s\". Jos haluat luoda uuden asetuksen, käytä valitsinta --create"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
