@@ -1,25 +1,24 @@
-# Japanese translations for xfconf package. 
-# Copyright (C) 2008-2012 xfconf'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfconf package.
-# Yuko Iwamatsu <nigauri@gmail.com>, 2008.
-# Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008-2009.
-# Masato Hashimoto <cabezon.hashimoto@gmail.com>, 2009-2012.
-#
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Yuko Iwamatsu <nigauri@gmail.com>, 2008
 msgid ""
 msgstr ""
-"Project-Id-Version: xfconf 4.5.99\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-11 22:26+0900\n"
-"PO-Revision-Date: 2012-04-11 22:26+0900\n"
-"Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
-"Language-Team: Japanese <xfce-i18n@xfce.org>\n"
-"Language: ja\n"
+"POT-Creation-Date: 2013-07-02 23:18+0200\n"
+"PO-Revision-Date: 2017-09-19 18:03+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"Language-Team: Japanese (http://www.transifex.com/xfce/xfconf/language/ja/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "ResetProperty DBus 呼び出しの作成に失敗しました"
@@ -38,8 +37,7 @@ msgstr "チャンネル \"%2$s\" 上のプロパティ \"%1$s\" を変更して�
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654
-#: ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "プロパティ \"%s\" はチャンネル \"%s\" 上に存在しません"
@@ -98,7 +96,9 @@ msgstr "ルート要素 (\"/\") は有効なプロパティ名ではありませ
 
 #: ../xfconfd/xfconf-backend.c:126
 #, c-format
-msgid "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', '<' and '>', as well as '/' as a separator"
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
 msgstr "プロパティ名に使用できるのは ASCII 文字の A-Z、a-z、0-9、\"_\"、\"-\"、\"<\" および \">\"と、区切り文字として \"/\" です"
 
 #: ../xfconfd/xfconf-backend.c:135
@@ -118,12 +118,16 @@ msgstr "チャンネル名は空の文字列ではいけません"
 
 #: ../xfconfd/xfconf-backend.c:176
 #, c-format
-msgid "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and '-'"
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
 msgstr "チャンネル名には ASCII 文字の A-Z、a-z、0-9、\"_\" および \"-\" のみ使用できます"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
-msgid "The property name can only be empty or \"/\" if a recursive reset was specified"
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
 msgstr "再帰的リセットが指定された場合は、プロパティ名は空か \"/\" である必要があります"
 
 #: ../xfconfd/main.c:134
@@ -131,7 +135,9 @@ msgid "Prints the xfconfd version."
 msgstr "xfconfd バージョンを表示する。"
 
 #: ../xfconfd/main.c:136
-msgid "Configuration backends to use.  The first backend specified is opened read/write; the others, read-only."
+msgid ""
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
 msgstr "使用する構成バックエンド。指定された最初のバックエンドは読み/書きで、その他は読み込み専用で開かれます。"
 
 #: ../xfconfd/main.c:139
@@ -165,8 +171,7 @@ msgstr "別の Xfconf デーモンがすでに実行中です"
 msgid "No backends could be started"
 msgstr "バックエンドはひとつも開始できませんでした"
 
-#: ../xfconf-query/main.c:90
-#: ../xfconf-query/main.c:95
+#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
 msgstr "set"
 
@@ -270,8 +275,7 @@ msgstr "--create および --reset オプションは --list と同時に使用�
 msgid "Start monitoring channel \"%s\":"
 msgstr "チャンネル \"%s\" のモニタリングを開始します:"
 
-#: ../xfconf-query/main.c:353
-#: ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
 msgid "Failed to set property"
 msgstr "プロパティの設定に失敗しました。"
@@ -280,8 +284,7 @@ msgstr "プロパティの設定に失敗しました。"
 msgid "--toggle only works with boolean values"
 msgstr "--toggle はブーリアン値にのみ機能します"
 
-#: ../xfconf-query/main.c:366
-#: ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
 msgstr "(不明)"
 
@@ -292,10 +295,10 @@ msgstr "値が %d 項目の配列になっています:"
 
 #: ../xfconf-query/main.c:399
 #, c-format
-msgid "Property \"%s\" does not exist on channel \"%s\". If a new property should be created, use the --create option"
-msgstr ""
-"プロパティ \"%s\" はチャンネル \"%s\" 上に存在しません。新規プロパティを\n"
-"作成したい場合は --create オプションを使用します。"
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\". If a new property should "
+"be created, use the --create option"
+msgstr "プロパティ \"%s\" はチャンネル \"%s\" 上に存在しません。新規プロパティを\n作成したい場合は --create オプションを使用します。"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
@@ -313,8 +316,7 @@ msgstr "値のデータ型を決定できません。"
 msgid "A value type must be specified to change an array into a single value"
 msgstr "配列を単一の値に変更するには、値のデータ型を指定する必要があります。"
 
-#: ../xfconf-query/main.c:451
-#: ../xfconf-query/main.c:512
+#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "\"%s\" をデータ型 \"%s\" に変換できません"
@@ -333,4 +335,3 @@ msgstr "インデックス %d のデータ型を決定できません。"
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "チャンネル \"%s\" にはプロパティが含まれていません"
-
