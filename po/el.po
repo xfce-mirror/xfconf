@@ -6,13 +6,14 @@
 # Apóstolos Papaðimitríu <apostolos.papadimitriu@gmail.com>, 2016
 # Efstathios Iosifidis <iefstathios@gmail.com>, 2015
 # Efstathios Iosifidis <iosifidis@opensuse.org>, 2012
+# Πέτρος Σαμαράς <psamaras1@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2017-09-19 18:02+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2017-10-23 18:14+0000\n"
+"Last-Translator: Πέτρος Σαμαράς <psamaras1@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/xfce/xfconf/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,7 +137,7 @@ msgstr "Το όνομα τις ιδιότητας μπορεί μόνο να ε�
 #: ../xfconfd/main.c:125
 #, c-format
 msgid "Name %s lost on the message dbus, exiting."
-msgstr ""
+msgstr "Το όνομα %s χάθηκε στο dbus μηνυμάτων, έξοδος."
 
 #: ../xfconfd/main.c:148
 msgid "Prints the xfconfd version."
@@ -150,7 +151,7 @@ msgstr "Ρυθμίζει ποια συστήματα υποστήριξης θα
 
 #: ../xfconfd/main.c:153
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr "Διακλάδωση στο παρασκήνιο μετά την εκκίνηση χρήσιμο μόνο για πειράματα"
+msgstr "Παραμονή στο παρασκήνιο μετά την εκκίνηση χρήσιμο μόνο για πειράματα"
 
 #: ../xfconfd/main.c:173
 msgid "Xfce Configuration Daemon"
@@ -172,7 +173,7 @@ msgstr "Σφάλμα ανάγνωσης επιλογών: %s\n"
 #: ../xfconfd/xfconf-daemon.c:222
 #, c-format
 msgid "GType transformation failed \"%s\""
-msgstr ""
+msgstr "Η μεταμόρφωση GType απέτυχε \"%s\""
 
 #: ../xfconfd/xfconf-daemon.c:483
 #, c-format
