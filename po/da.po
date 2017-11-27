@@ -4,13 +4,15 @@
 # 
 # Translators:
 # Aputsiak Niels Janussen (Skjalden) <aj@isit.gl>, 2014
+# Aputsiak Niels Janussen (Skjalden) <aj@isit.gl>, 2014
+# scootergrisen, 2017
 # scootergrisen, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2017-09-19 18:02+0000\n"
+"PO-Revision-Date: 2017-11-27 21:44+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +85,7 @@ msgstr "Kunne ikke skrive til kanal \"%s\": %s"
 #: ../xfconfd/xfconf-backend-factory.c:77
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Kunne ikke finde Xfconf bagende af type \"%s\""
+msgstr "Kunne ikke finde Xfconf-backend af type \"%s\""
 
 #: ../xfconfd/xfconf-backend.c:101
 #, c-format
@@ -145,7 +147,7 @@ msgstr "Udskriver xfconfd-versionen."
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
-msgstr "Underliggende indstilling til anvendelse.  Den første underliggende der angives er åbnet med læse/skrive; alle andre kun med læse."
+msgstr "Underliggende indstilling til anvendelse. Den første underliggende der angives er åbnet med læse/skrive; alle andre kun med læse."
 
 #: ../xfconfd/main.c:153
 msgid "Fork into background after starting; only useful for testing purposes"
