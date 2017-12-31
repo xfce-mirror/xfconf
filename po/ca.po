@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2017-09-19 18:02+0000\n"
+"PO-Revision-Date: 2017-12-31 05:33+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfconf/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -186,7 +186,7 @@ msgstr "estableix"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
-msgstr "reinicia"
+msgstr "restableix"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
@@ -202,7 +202,7 @@ msgstr "La propietat a consultar/modificar"
 
 #: ../xfconf-query/main.c:188
 msgid "The new value to set for the property"
-msgstr "El nou valor que s'establirà per la propietat"
+msgstr "El valor nou que s'ha d'establir per a la propietat"
 
 #: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
@@ -222,7 +222,7 @@ msgstr "Definiu el tipus de valor de la propietat"
 
 #: ../xfconf-query/main.c:208
 msgid "Reset property"
-msgstr "Reinicia la propietat"
+msgstr "Restableix la propietat"
 
 #: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
@@ -273,11 +273,11 @@ msgstr "No s'ha especificat la propietat"
 
 #: ../xfconf-query/main.c:304
 msgid "--create and --reset options can not be used together"
-msgstr "--create i --reset no es poden emprar juntes"
+msgstr "No es poden utilitzar alhora les opcions --create i --reset"
 
 #: ../xfconf-query/main.c:310
 msgid "--create and --reset options can not be used together with --list"
-msgstr "--create i --reset options no es poden emprar amb l'opció --list"
+msgstr "No es poden utilitzar alhora les opcions --create i --reset amb l'opció --list"
 
 #: ../xfconf-query/main.c:322
 #, c-format
@@ -287,7 +287,7 @@ msgstr "Inicia el seguiment del canal «%s»:"
 #: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
 #: ../xfconf-query/main.c:530
 msgid "Failed to set property"
-msgstr "No s'ha pogut especificar la propietat"
+msgstr "No s'ha pogut establir la propietat"
 
 #: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
