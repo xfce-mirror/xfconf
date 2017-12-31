@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2017-12-31 05:33+0000\n"
+"PO-Revision-Date: 2017-12-31 06:22+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfconf/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -132,7 +132,7 @@ msgstr "Els noms dels canals només poden incloure els caràcters ASCII A-Z, a-z
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr "El nom de la propietat només pot estar buida o ser «/» si s'ha establert un reinici recursiu"
+msgstr "El nom de la propietat només pot estar buit o ser «/» si s'ha establert un restabliment recursiu"
 
 #: ../xfconfd/main.c:125
 #, c-format
@@ -218,7 +218,7 @@ msgstr "Crea una nova propietat si aquesta no existeix"
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
-msgstr "Definiu el tipus de valor de la propietat"
+msgstr "Especifiqueu el tipus de valor de la propietat"
 
 #: ../xfconf-query/main.c:208
 msgid "Reset property"
