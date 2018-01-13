@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>, 2009
-# Xosé <xosecalvo@gmail.com>, 2015
+# Xosé <xosecalvo@gmail.com>, 2015,2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2017-09-19 18:02+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2018-01-13 22:52+0000\n"
+"Last-Translator: Xosé <xosecalvo@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfconf/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -135,7 +135,7 @@ msgstr "O nome da propiedade só pode estar baleiro ou ser \"/\" se se especific
 #: ../xfconfd/main.c:125
 #, c-format
 msgid "Name %s lost on the message dbus, exiting."
-msgstr ""
+msgstr "O nome %s perdeuse no dbus de mensaxes; saímos."
 
 #: ../xfconfd/main.c:148
 msgid "Prints the xfconfd version."
@@ -171,7 +171,7 @@ msgstr "Erro ao analizar as opcións: %s\n"
 #: ../xfconfd/xfconf-daemon.c:222
 #, c-format
 msgid "GType transformation failed \"%s\""
-msgstr ""
+msgstr "Fallou a transformación de GType «%s»"
 
 #: ../xfconfd/xfconf-daemon.c:483
 #, c-format
