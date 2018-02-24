@@ -1,0 +1,336 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfconf\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-02 23:18+0200\n"
+"PO-Revision-Date: 2018-02-24 20:34+0000\n"
+"Last-Translator: Zmicer Turok <zmicerturok@gmail.com>\n"
+"Language-Team: Belarusian (http://www.transifex.com/xfce/xfconf/language/be/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: be\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: ../xfconf/xfconf-cache.c:881
+#, c-format
+msgid "Failed to make ResetProperty DBus call"
+msgstr "Не атрымалася выканаць ResetProperty праз DBus"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:277
+#, c-format
+msgid "Unable to create configuration directory \"%s\""
+msgstr "Не атрымалася стварыць каталог канфігурацыі \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:322
+#: ../xfconfd/xfconf-daemon.c:238
+#, c-format
+msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
+msgstr "Няма правоў на змену ўласцівасці \"%s\" каналу \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:387
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:469
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:634
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
+#, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\""
+msgstr "Уласцівасць \"%s\" не існуе на канале \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:601
+#, c-format
+msgid "Unable to remove channel \"%s\": %s"
+msgstr "Не атрымалася выдаліць канал \"%s\": %s"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
+#, c-format
+msgid "Invalid type for <property>: \"%s\""
+msgstr "Хібны тып для <property>: \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
+#, c-format
+msgid "Unable to parse value of type \"%s\" from \"%s\""
+msgstr "Не атрымалася разабраць значэнне тыпу \"%s\" з \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
+#, c-format
+msgid "The type attribute of <value> cannot be an array"
+msgstr "Тып атрыбута <value> не можа з'яўляцца масівам"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
+#, c-format
+msgid "Invalid type for <value>: \"%s\""
+msgstr "Хібны тып для <value>: \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
+#, c-format
+msgid "Channel \"%s\" does not exist"
+msgstr "Канал \"%s\" не існуе"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
+#, c-format
+msgid "Unable to write channel \"%s\": %s"
+msgstr "Не атрымалася запісаць канал \"%s\": %s"
+
+#: ../xfconfd/xfconf-backend-factory.c:76
+#, c-format
+msgid "Unable to find Xfconf backend of type \"%s\""
+msgstr "Не атрымалася знайсці бэкенд Xfconf тыпу \"%s\""
+
+#: ../xfconfd/xfconf-backend.c:103
+#, c-format
+msgid "Property names must start with a '/' character"
+msgstr "Назвы ўласцівасцяў мусяць пачынацца з '/'"
+
+#: ../xfconfd/xfconf-backend.c:112
+#, c-format
+msgid "The root element ('/') is not a valid property name"
+msgstr "Элемент root ('/') не з'яўляецца правільнай назвай уласцівасці"
+
+#: ../xfconfd/xfconf-backend.c:126
+#, c-format
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', '<' and '>', as well as '/' as a separator"
+msgstr "Назвы ўласцівасцяў могуць складацца толькі са знакаў ASCII A-Z, a-z, 0-9, '_', and '-' і '/' як падзяляльніка"
+
+#: ../xfconfd/xfconf-backend.c:135
+#, c-format
+msgid "Property names cannot have two or more consecutive '/' characters"
+msgstr "У назвах уласцівасцяў не могуць змяшчацца два альбо больш паслядоўных сімвала '/'"
+
+#: ../xfconfd/xfconf-backend.c:146
+#, c-format
+msgid "Property names cannot end with a '/' character"
+msgstr "Назвы ўласцівасцяў не могуць завяршацца сімвалам '/'"
+
+#: ../xfconfd/xfconf-backend.c:163
+#, c-format
+msgid "Channel name cannot be an empty string"
+msgstr "Назва канала не можа быць пустым радком"
+
+#: ../xfconfd/xfconf-backend.c:176
+#, c-format
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
+"'-'"
+msgstr "Назвы каналоў могуць складацца толькі са знакаў ASCII A-Z, a-z, 0-9, '_', and '-'"
+
+#: ../xfconfd/xfconf-backend.c:398
+#, c-format
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr "Назва ўласцівасці можа быць пустой альбо \"/\",калі была скінута рэкурсіўна "
+
+#: ../xfconfd/main.c:134
+msgid "Prints the xfconfd version."
+msgstr "Паказаць версію xfconfd."
+
+#: ../xfconfd/main.c:136
+msgid ""
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Бэкенд канфігурацыі для выкарыстання. Першы зададзены бэкенд адкрыты для чытанння/запісу;астатнія толькі для чытання."
+
+#: ../xfconfd/main.c:139
+msgid "Fork into background after starting; only useful for testing purposes"
+msgstr "Выконваць у фоне пасля запуску; карысеа толькі для тэстаў"
+
+#: ../xfconfd/main.c:159
+msgid "Xfce Configuration Daemon"
+msgstr "Дэман канфігурацыі Xfce"
+
+#: ../xfconfd/main.c:165
+msgid "Xfce configuration daemon"
+msgstr "Дэман канфігурацыі Xfce"
+
+#: ../xfconfd/main.c:167
+msgid "Report bugs to http://bugs.xfce.org/\n"
+msgstr "Паведамляйце пра хібы на http://bugs.xfce.org/\n"
+
+#: ../xfconfd/main.c:170
+#, c-format
+msgid "Error parsing options: %s\n"
+msgstr "Падчас разбору параметра адбылася памылка: %s\n"
+
+#: ../xfconfd/xfconf-daemon.c:482
+#, c-format
+msgid "Another Xfconf daemon is already running"
+msgstr "Дэман Xfconf ужо запушчаны"
+
+#: ../xfconfd/xfconf-daemon.c:517
+#, c-format
+msgid "No backends could be started"
+msgstr "Не атрымалася запусціць бэкенд"
+
+#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
+msgid "set"
+msgstr "задаць"
+
+#: ../xfconf-query/main.c:100
+msgid "reset"
+msgstr "скінуць"
+
+#: ../xfconf-query/main.c:176
+msgid "Version information"
+msgstr "Інфармацыя пра версію"
+
+#: ../xfconf-query/main.c:180
+msgid "The channel to query/modify"
+msgstr "Канал запросу/змены"
+
+#: ../xfconf-query/main.c:184
+msgid "The property to query/modify"
+msgstr "Уласцівасць запросу/змены"
+
+#: ../xfconf-query/main.c:188
+msgid "The new value to set for the property"
+msgstr "Новае значэнне, зададзенае для ўласцівасці"
+
+#: ../xfconf-query/main.c:192
+msgid "List properties (or channels if -c is not specified)"
+msgstr "Спіс уласцівасцяў (альбо каналаў, калі не зададзена -c)"
+
+#: ../xfconf-query/main.c:196
+msgid "Verbose output"
+msgstr "Падрабязны вывад"
+
+#: ../xfconf-query/main.c:200
+msgid "Create a new property if it does not already exist"
+msgstr "Стварыць новую ўласцівасць, калі яна не існуе"
+
+#: ../xfconf-query/main.c:204
+msgid "Specify the property value type"
+msgstr "Задаць тып значэння ўласцівасці"
+
+#: ../xfconf-query/main.c:208
+msgid "Reset property"
+msgstr "Скінуць уласцівасць"
+
+#: ../xfconf-query/main.c:212
+msgid "Recursive (use with -r)"
+msgstr "Рэкурсіўна (выкарыстоўваць з -r)"
+
+#: ../xfconf-query/main.c:216
+msgid "Force array even if only one element"
+msgstr "Выкарыстоўваць масіў нават калі ён складаецца толькі з аднаго элемента"
+
+#: ../xfconf-query/main.c:220
+msgid "Invert an existing boolean property"
+msgstr "Змяніць існуючую лагічную ўласцівасць"
+
+#: ../xfconf-query/main.c:224
+msgid "Monitor a channel for property changes"
+msgstr "Сачыць за зменамі ўласцівасцяў каналу"
+
+#: ../xfconf-query/main.c:246
+#, c-format
+msgid "Failed to init libxfconf: %s"
+msgstr "Не атрымалася ініцыілізаваць libxfconf: %s"
+
+#: ../xfconf-query/main.c:251
+msgid "- Xfconf commandline utility"
+msgstr "- Утыліта загаднага радка Xfconf"
+
+#: ../xfconf-query/main.c:256
+#, c-format
+msgid "Option parsing failed: %s"
+msgstr "Не атрымалася разабраць параметр: %s"
+
+#: ../xfconf-query/main.c:266
+msgid "The Xfce development team. All rights reserved."
+msgstr "Каманда распрацоўкі Xfce. Усе правы абароненыя."
+
+#: ../xfconf-query/main.c:267
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr "Калі ласка, паведамляйце пра памылкі на <%s>."
+
+#: ../xfconf-query/main.c:279
+msgid "Channels:"
+msgstr "Каналаў:"
+
+#: ../xfconf-query/main.c:295
+msgid "No property specified"
+msgstr "Уласцівасць не зададзена"
+
+#: ../xfconf-query/main.c:301
+msgid "--create and --reset options can not be used together"
+msgstr "параметры --create і --reset немагчыма ўжыць разам"
+
+#: ../xfconf-query/main.c:307
+msgid "--create and --reset options can not be used together with --list"
+msgstr "параметры --create і --reset немагчыма ўжыць разам з --list"
+
+#: ../xfconf-query/main.c:319
+#, c-format
+msgid "Start monitoring channel \"%s\":"
+msgstr "Пачаць сачыць за каналам \"%s\":"
+
+#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
+#: ../xfconf-query/main.c:527
+msgid "Failed to set property"
+msgstr "Не атрымалася задаць уласцівасць"
+
+#: ../xfconf-query/main.c:357
+msgid "--toggle only works with boolean values"
+msgstr "--toggle працуе толькі з лагічнымі велічынямі"
+
+#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
+msgid "(unknown)"
+msgstr "(невядома)"
+
+#: ../xfconf-query/main.c:375
+#, c-format
+msgid "Value is an array with %d items:"
+msgstr "Значэнне з'яўляецца масівам з %d элементамі:"
+
+#: ../xfconf-query/main.c:399
+#, c-format
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\". If a new property should "
+"be created, use the --create option"
+msgstr "Уласцівасць \"%s\" не існуе на канале \"%s\". Выкарыстоўвайце --create для стварэння новай уласцівасці"
+
+#: ../xfconf-query/main.c:407
+msgid "When creating a new property, the value type must be specified"
+msgstr "Падчас стварэння новай уласцівасці неабходна задаць значэнне тыпу"
+
+#: ../xfconf-query/main.c:417
+msgid "Failed to get the existing type for the value"
+msgstr "Немагчыма атрымаць існуючы тып"
+
+#: ../xfconf-query/main.c:435
+msgid "Unable to determine the type of the value"
+msgstr "Не атрымалася вызначыць тып значэння"
+
+#: ../xfconf-query/main.c:441
+msgid "A value type must be specified to change an array into a single value"
+msgstr "Для пераўтварэння ў адзінае значэнне неабходна задаць тыып"
+
+#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
+#, c-format
+msgid "Unable to convert \"%s\" to type \"%s\""
+msgstr "Не атрымалася пераўтварыць \"%s\" у \"%s\""
+
+#: ../xfconf-query/main.c:483
+#, c-format
+msgid "There are %d new values, but only %d types could be determined"
+msgstr "Ёсць %d новых значэнняў, але вызначана можа быць толькі %d тыпаў"
+
+#: ../xfconf-query/main.c:504
+#, c-format
+msgid "Unable to determine type of value at index %d"
+msgstr "Не атрымалася вызначыць тып значэння ў індэксе %d"
+
+#: ../xfconf-query/main.c:554
+#, c-format
+msgid "Channel \"%s\" contains no properties"
+msgstr "У канала \"%s\" няма ўласцівасцяў"
