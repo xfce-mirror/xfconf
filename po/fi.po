@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Ammuu5, 2017
-# Pasi Lallinaho <pasi@shimmerproject.org>, 2014
+# Pasi Lallinaho <pasi@shimmerproject.org>, 2014,2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2017-12-19 06:19+0000\n"
-"Last-Translator: Ammuu5\n"
+"PO-Revision-Date: 2018-03-08 13:24+0000\n"
+"Last-Translator: Pasi Lallinaho <pasi@shimmerproject.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/xfce/xfconf/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -135,7 +135,7 @@ msgstr "Asetuksen nimi voi olla tyhjä tai \"/\" vain rekursiivisen palautuksen 
 #: ../xfconfd/main.c:125
 #, c-format
 msgid "Name %s lost on the message dbus, exiting."
-msgstr ""
+msgstr "Nimi %s menetettiin viestintärajapinnalla, poistutaan."
 
 #: ../xfconfd/main.c:148
 msgid "Prints the xfconfd version."
