@@ -6,13 +6,13 @@
 # Aputsiak Niels Janussen (Skjalden) <aj@isit.gl>, 2014
 # Aputsiak Niels Janussen (Skjalden) <aj@isit.gl>, 2014
 # scootergrisen, 2017
-# scootergrisen, 2017
+# scootergrisen, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2017-11-27 21:44+0000\n"
+"PO-Revision-Date: 2018-03-08 15:14+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -168,7 +168,7 @@ msgstr "Rapportér fejl til http://bugs.xfce.org/\n"
 #: ../xfconfd/main.c:187
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr "Fejfortolkningstilvalg: %s\n"
+msgstr "Fejl ved fortolkning af tilvalg: %s\n"
 
 #: ../xfconfd/xfconf-daemon.c:222
 #, c-format
@@ -234,7 +234,7 @@ msgstr "Tving tabel selv ved kun et element"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
-msgstr "Vend en eksisterende boolsk egenskab"
+msgstr "Vend en eksisterende boolesk egenskab"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
@@ -252,7 +252,7 @@ msgstr "- Xfconf kommandolinjeværktøj"
 #: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr "Tilvalg parsing fejlede: %s"
+msgstr "Fortolkning af tilvalg fejlede: %s"
 
 #: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
@@ -307,7 +307,7 @@ msgstr "Værdi er en tabel med %d elementer:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr "Egenskab \"%s\" findes ikke på denne kanal \"%s\". Hvis du ønsker at oprette en ny egenskab brug indstillingen --create tilvalg"
+msgstr "Egenskab \"%s\" findes ikke på denne kanal \"%s\". Hvis du ønsker at oprette en ny egenskab brug tilvalget --create"
 
 #: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
