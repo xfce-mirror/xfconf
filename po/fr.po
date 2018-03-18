@@ -3,7 +3,8 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# jc1 <jc1.quebecos@gmail.com>, 2013
+# Charles Monzat <superboa@hotmail.fr>, 2018
+# jc1 <jc1.quebecos@gmail.com>, 2013,2017
 # jc1 <jc1.quebecos@gmail.com>, 2013,2017
 # Yannick Le Guen <leguen.yannick@gmail.com>, 2014
 msgid ""
@@ -11,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2017-09-23 19:02+0000\n"
-"Last-Translator: jc1 <jc1.quebecos@gmail.com>\n"
+"PO-Revision-Date: 2018-03-18 17:26+0000\n"
+"Last-Translator: Charles Monzat <superboa@hotmail.fr>\n"
 "Language-Team: French (http://www.transifex.com/xfce/xfconf/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,13 +29,13 @@ msgstr "Impossible de faire l’appel DBus ResetProperty."
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:276
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Impossible de créer le répertoire de configuration « %s »."
+msgstr "Impossible de créer le répertoire de configuration « %s »."
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:321
 #: ../xfconfd/xfconf-daemon.c:167
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Permission refusée lors de la modification de la propriété « %s » du canal « %s »"
+msgstr "Permission refusée lors de la modification de la propriété « %s » du canal « %s »"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:386
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:468
@@ -42,59 +43,59 @@ msgstr "Permission refusée lors de la modification de la propriété « %s » d
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:653 ../xfconf-query/main.c:344
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr "La propriété « %s » n'existe pas dans le canal « %s »"
+msgstr "La propriété « %s » n’existe pas dans le canal « %s »"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:600
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr "Impossible de supprimer le canal « %s » : %s"
+msgstr "Impossible de supprimer le canal « %s » : %s"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1297
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "Type incorrect pour <propriété> : « %s »"
+msgstr "Type incorrect pour <propriété> : « %s »"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1313
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1389
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "Impossible d'analyser la valeur de type « %s » à partir de « %s »"
+msgstr "Impossible d’analyser la valeur de type « %s » à partir de « %s »"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1369
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "Le type d'attribut de <valeur> ne peut pas être un tableau"
+msgstr "Le type d’attribut de <valeur> ne peut pas être un tableau"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1378
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Type incorrect pour <valeur> : « %s »"
+msgstr "Type incorrect pour <valeur> : « %s »"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1654
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1903
 #, c-format
 msgid "Channel \"%s\" does not exist"
-msgstr "Le canal « %s » n'existe pas"
+msgstr "Le canal « %s » n’existe pas"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1961
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "Impossible d'écrire le canal « %s » : %s"
+msgstr "Impossible d’écrire le canal « %s » : %s"
 
 #: ../xfconfd/xfconf-backend-factory.c:77
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Impossible de trouver un moteur Xfconf pour le type « %s »"
+msgstr "Impossible de trouver un moteur Xfconf pour le type « %s »"
 
 #: ../xfconfd/xfconf-backend.c:101
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Les noms de propriétés doivent commencer par le caractère « / »."
+msgstr "Les noms de propriétés doivent commencer par le caractère « / »."
 
 #: ../xfconfd/xfconf-backend.c:110
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr "L’élément racine (« / ») n’est pas un nom de propriété valide."
+msgstr "L’élément racine (« / ») n’est pas un nom de propriété valide."
 
 #: ../xfconfd/xfconf-backend.c:125
 #, c-format
@@ -102,17 +103,17 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
-msgstr "Les noms de propriétés peuvent uniquement inclure les caractères ASCII A-Z, a-z, 0-9, « _ », « - », « : », « . », « , », « [ », « ] », « { », « } », « < » et « > », ainsi que « / » en guise de séparateur."
+msgstr "Les noms de propriétés peuvent uniquement inclure les caractères ASCII A-Z, a-z, 0-9, « _ », « - », « : », « . », « , », « [ », « ] », « { », « } », « < » et « > », ainsi que « / » en guise de séparateur."
 
 #: ../xfconfd/xfconf-backend.c:134
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Les noms de propriétés ne peuvent pas avoir deux ou plusieurs caractères « / » consécutifs."
+msgstr "Les noms de propriétés ne peuvent pas avoir deux ou plusieurs caractères « / » consécutifs."
 
 #: ../xfconfd/xfconf-backend.c:145
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Les noms de propriétés ne peuvent pas se terminer par le caractère « / »."
+msgstr "Les noms de propriétés ne peuvent pas se terminer par le caractère « / »."
 
 #: ../xfconfd/xfconf-backend.c:162
 #, c-format
@@ -124,19 +125,19 @@ msgstr "Le nom du canal ne peut pas être une chaîne vide"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
-msgstr "Les noms de canaux peuvent uniquement inclure les caractères ASCII A-Z, a-z, 0-9, « { », « } », « | », « ] », « [ », « : », « , », « . », « _ » et  « - »."
+msgstr "Les noms de canaux peuvent uniquement inclure les caractères ASCII A-Z, a-z, 0-9, « { », « } », « | », « ] », « [ », « : », « , », « . », « _ » et  « - »."
 
 #: ../xfconfd/xfconf-backend.c:399
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr "Le nom de la propriété peut seulement être vide ou égal à « / » si une réinitialisation récursive a été spécifiée."
+msgstr "Le nom de la propriété peut seulement être vide ou égal à « / » si une réinitialisation récursive a été spécifiée."
 
 #: ../xfconfd/main.c:125
 #, c-format
 msgid "Name %s lost on the message dbus, exiting."
-msgstr "Nom %s perdu sur le message dbus, en sortant."
+msgstr "Nom %s perdu sur le message dbus, fermeture."
 
 #: ../xfconfd/main.c:148
 msgid "Prints the xfconfd version."
@@ -150,7 +151,7 @@ msgstr "Moteurs de configuration à utiliser. Le premier moteur spécifié est o
 
 #: ../xfconfd/main.c:153
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr "Passer en arrière plan après démarrage ; seulement utile à des fins de test"
+msgstr "Passer en arrière-plan après démarrage ; seulement utile à des fins de test"
 
 #: ../xfconfd/main.c:173
 msgid "Xfce Configuration Daemon"
@@ -167,17 +168,17 @@ msgstr "Signaler les bogues à http://bugs.xfce.org/\n"
 #: ../xfconfd/main.c:187
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr "Erreur lors de l'analyse des options : %s\n"
+msgstr "Erreur lors de l’analyse des options : %s\n"
 
 #: ../xfconfd/xfconf-daemon.c:222
 #, c-format
 msgid "GType transformation failed \"%s\""
-msgstr "La transformation GType a échoué « %s »"
+msgstr "La transformation GType a échoué « %s »"
 
 #: ../xfconfd/xfconf-daemon.c:483
 #, c-format
 msgid "No backends could be started"
-msgstr "Aucun moteur n'a pu être démarré"
+msgstr "Aucun moteur n’a pu être démarré"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
@@ -205,7 +206,7 @@ msgstr "La nouvelle valeur à définir pour la propriété"
 
 #: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
-msgstr "Lister les propriétés (ou les canaux si -c n'est pas spécifié)"
+msgstr "Lister les propriétés (ou les canaux si -c n’est pas spécifié)"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
@@ -213,7 +214,7 @@ msgstr "Sortie verbeuse"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
-msgstr "Créer une nouvelle propriété si elle n'existe pas encore"
+msgstr "Créer une nouvelle propriété si elle n’existe pas encore"
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
@@ -229,7 +230,7 @@ msgstr "Récursif (utiliser avec -r)"
 
 #: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
-msgstr "Forcer l'utilisation d’un tableau même avec un seul élément."
+msgstr "Forcer l’utilisation d’un tableau même avec un seul élément."
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
@@ -237,12 +238,12 @@ msgstr "Inverser une propriété booléenne existante"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
-msgstr "Surveiller les changements de propriétés d'un canal"
+msgstr "Surveiller les changements de propriétés d’un canal"
 
 #: ../xfconf-query/main.c:249
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr "Impossible d'initialiser libxfconf : %s"
+msgstr "Impossible d’initialiser libxfconf : %s"
 
 #: ../xfconf-query/main.c:254
 msgid "- Xfconf commandline utility"
@@ -251,11 +252,11 @@ msgstr "- Utilitaire en ligne de commande Xfconf"
 #: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr "L'analyse de l'option a échoué : %s"
+msgstr "L’analyse de l’option a échoué : %s"
 
 #: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
-msgstr "L'équipe de développement de Xfce. Tous droits réservés."
+msgstr "L’équipe de développement Xfce. Tous droits réservés."
 
 #: ../xfconf-query/main.c:270
 #, c-format
@@ -264,7 +265,7 @@ msgstr "Veuillez signaler les bogues à <%s>."
 
 #: ../xfconf-query/main.c:282
 msgid "Channels:"
-msgstr "Canaux :"
+msgstr "Canaux :"
 
 #: ../xfconf-query/main.c:298
 msgid "No property specified"
@@ -276,12 +277,12 @@ msgstr "Les options --create et --reset ne peuvent pas être utilisées en même
 
 #: ../xfconf-query/main.c:310
 msgid "--create and --reset options can not be used together with --list"
-msgstr "Les options --create et --reset  ne peuvent pas être utilisées en même temps que l'option --list"
+msgstr "Les options --create et --reset  ne peuvent pas être utilisées en même temps que l’option --list"
 
 #: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "Commencer à surveiller le canal « %s » :"
+msgstr "Commencer à surveiller le canal « %s » :"
 
 #: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
 #: ../xfconf-query/main.c:530
@@ -299,22 +300,22 @@ msgstr "(inconnu)"
 #: ../xfconf-query/main.c:378
 #, c-format
 msgid "Value is an array with %d items:"
-msgstr "La valeur est un tableau de %d éléments :"
+msgstr "La valeur est un tableau de %d éléments :"
 
 #: ../xfconf-query/main.c:402
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr "La propriété « %s » n'existe pas dans le canal « %s ». Si une nouvelle propriété doit être créée, utilisez l'option --create."
+msgstr "La propriété « %s » n’existe pas dans le canal « %s ». Si une nouvelle propriété doit être créée, utilisez l’option --create."
 
 #: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
-msgstr "Lors de la création d'une nouvelle propriété, le type de valeur doit être spécifié."
+msgstr "Lors de la création d’une nouvelle propriété, le type de valeur doit être spécifié."
 
 #: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
-msgstr "Impossible d'obtenir le type actuel de la valeur"
+msgstr "Impossible d’obtenir le type actuel de la valeur"
 
 #: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
@@ -327,7 +328,7 @@ msgstr "Un type de valeur doit être spécifié pour changer un tableau en une v
 #: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "Impossible de convertir « %s » dans le type « %s »"
+msgstr "Impossible de convertir « %s » dans le type « %s »"
 
 #: ../xfconf-query/main.c:486
 #, c-format
@@ -337,9 +338,9 @@ msgstr "Il y a %d nouvelles valeurs, mais seulement %d types ont pu être déter
 #: ../xfconf-query/main.c:507
 #, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "Impossible de déterminer le type de valeur à l'index %d"
+msgstr "Impossible de déterminer le type de valeur à l’index %d"
 
 #: ../xfconf-query/main.c:557
 #, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "Le canal « %s » ne contient pas de propriété."
+msgstr "Le canal « %s » ne contient pas de propriété."
