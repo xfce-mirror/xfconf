@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2018-03-21 08:26+0000\n"
+"PO-Revision-Date: 2018-03-23 09:31+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfconf/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -59,17 +59,17 @@ msgstr "Tipus no vàlid per a <property>: «%s»"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1389
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "No es pot analitzar el tipus «%s» de «%s»"
+msgstr "No es pot analitzar el valor del tipus «%s» de «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1369
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "El tipus d'atribut del <valor> no pot ser una seqüència"
+msgstr "L'atribut del tipus de <value> no pot ser una seqüència"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1378
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Tipus no vàlid per al <valor>: «%s»"
+msgstr "Tipus no vàlid per a <value>: «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1654
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1903
