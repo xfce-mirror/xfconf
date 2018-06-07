@@ -28,4 +28,5 @@ EXTRA_DIST = \
 	README
 
 DISTCHECK_CONFIGURE_FLAGS = \
-	--enable-gtk-doc
+	--enable-gtk-doc \
+	--disable-perl-bindings
