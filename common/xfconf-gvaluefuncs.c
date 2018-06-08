@@ -623,30 +623,28 @@ GValue * xfconf_gvariant_to_gvalue (GVariant *in_variant)
         gsize nchild;
         gsize idx = 0;
 
+        g_value_init(value, G_TYPE_PTR_ARRAY);
+
         nchild = g_variant_n_children (variant);
+        arr = g_ptr_array_new_full(nchild, (GDestroyNotify)xfonf_free_array_elem_val);
 
-        if (nchild > 0) {
-            arr = g_ptr_array_new_full(nchild, (GDestroyNotify)xfonf_free_array_elem_val);
+        while (idx < nchild ) {
+            GVariant *v;
+            GValue *arr_val;
 
-            while (idx < nchild ) {
-                GVariant *v;
-                GValue *arr_val;
+            arr_val = g_new0(GValue, 1);
 
-                arr_val = g_new0(GValue, 1);
+            var = g_variant_get_child_value (variant, idx);
+            v = g_variant_get_variant (var);
+            xfconf_basic_gvariant_to_gvalue (v, arr_val);
 
-                var = g_variant_get_child_value (variant, idx);
-                v = g_variant_get_variant (var);
-                xfconf_basic_gvariant_to_gvalue (v, arr_val);
-
-                g_variant_unref (v);
-                g_variant_unref (var);
-                g_ptr_array_add (arr, arr_val);
-                idx++;
-            }
-
-            g_value_init(value, G_TYPE_PTR_ARRAY);
-            g_value_take_boxed(value, arr);
+            g_variant_unref (v);
+            g_variant_unref (var);
+            g_ptr_array_add (arr, arr_val);
+            idx++;
         }
+
+        g_value_take_boxed(value, arr);
     }
     else if (g_variant_is_of_type (variant, G_VARIANT_TYPE("as"))) {
         g_value_init(value, G_TYPE_STRV);
