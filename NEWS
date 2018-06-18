@@ -1,3 +1,8 @@
+4.13.5
+======
+- Fix make distcheck, (bug #14082)
+- Handle empty arrays by initializing the GValue to G_TYPE_PTR_ARRAY (bug #13780)
+
 4.13.4
 ======
 - Fix segfault in xfconf_cache_set_property_reply_handler when 
