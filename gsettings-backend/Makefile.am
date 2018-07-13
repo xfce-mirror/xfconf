@@ -21,6 +21,7 @@ libxfconfgsettingsbackend_la_LDFLAGS =		\
 
 libxfconfgsettingsbackend_la_LIBADD =		\
 	$(top_builddir)/xfconf/libxfconf-0.la 	\
+	$(top_builddir)/common/libxfconf-gvaluefuncs.la\
 	$(GIO_LDFLAGS)				\
 	$(GMODULE_LDFLAGS)
 

@@ -25,18 +25,41 @@
 #include <glib.h>
 
 #include "xfconf/xfconf.h"
+#include "common/xfconf-gvaluefuncs.h"
 
 #include "xfconf-gsettings-backend.h"
-
 
 struct _XfconfGsettingsBackend
 {
   GSettingsBackend __parent__;
 
   XfconfChannel    *channel;
+
+  GHashTable       *changed_prop;
 };
 
 G_DEFINE_TYPE (XfconfGsettingsBackend, xfconf_gsettings_backend, G_TYPE_SETTINGS_BACKEND);
+
+static void
+xfconf_gsettings_backend_property_changed_cb (XfconfGsettingsBackend *self,
+                                              const gchar            *property,
+                                              const GValue           *value)
+{
+  gpointer origin_tag;
+  gboolean found;
+
+  found = g_hash_table_lookup_extended (self->changed_prop, property, NULL, &origin_tag);
+
+  if (found) {
+    /* Emit the changed signal */
+    g_debug ("Emitting property changed signal '%s'\n", property);
+    g_settings_backend_changed ((GSettingsBackend*)self, property, origin_tag);
+  } else {
+    g_warning ("Changed property '%s' not expected!", property);
+  }
+
+  g_hash_table_remove (self->changed_prop, property);
+}
 
 static GVariant *
 xfconf_gsettings_backend_read (GSettingsBackend   *backend,
@@ -44,7 +67,36 @@ xfconf_gsettings_backend_read (GSettingsBackend   *backend,
                                const GVariantType *expected_type,
                                gboolean            default_value)
 {
-  return NULL;
+  XfconfGsettingsBackend *self = XFCONF_GSETTINGS_BACKEND(backend);
+  GValue value = G_VALUE_INIT;
+  GVariant *variant;
+  gboolean found;
+
+  /* The GSettings will take care of handling the default value */
+  if (default_value)
+    return NULL;
+
+  found = xfconf_channel_get_property (self->channel,
+                                       key,
+                                       &value);
+  if (!found)
+    return NULL;
+
+  variant = xfconf_gvalue_to_gvariant (&value);
+  g_value_unset (&value);
+
+  if (!g_variant_is_of_type (variant, expected_type)) {
+    gchar *type_str;
+
+    type_str = g_variant_type_dup_string (expected_type);
+    g_critical ("Property '%s' expected type is '%s' => '%s' found!",
+                key, type_str, g_variant_get_type_string(variant) );
+    g_free(type_str);
+    g_variant_unref(variant);
+    return NULL;
+  }
+
+  return variant;
 }
 
 static void
@@ -52,12 +104,50 @@ xfconf_gsettings_backend_reset (GSettingsBackend   *backend,
                                 const gchar        *key,
                                 gpointer            origin_tag)
 {
+  XfconfGsettingsBackend *self;
+
+  self = XFCONF_GSETTINGS_BACKEND(backend);
+
+  g_hash_table_replace (self->changed_prop, g_strdup(key), origin_tag);
+
+  xfconf_channel_reset_property (self->channel, key, TRUE);
 }
 
 static gboolean
 xfconf_gsettings_backend_get_writable (GSettingsBackend *backend,
                                        const gchar      *key)
 {
+  XfconfGsettingsBackend *self;
+
+  self = XFCONF_GSETTINGS_BACKEND(backend);
+
+  return !xfconf_channel_is_property_locked(self->channel, key);
+}
+
+static gboolean
+xfconf_gsettings_backend_write (GSettingsBackend *backend,
+                                const gchar      *key,
+                                GVariant         *variant,
+                                gpointer          origin_tag)
+{
+  XfconfGsettingsBackend *self;
+  GValue *value;
+  gboolean ret_val;
+
+  self = XFCONF_GSETTINGS_BACKEND(backend);
+
+  value = xfconf_gvariant_to_gvalue (variant);
+
+  if (value) {
+    g_hash_table_replace (self->changed_prop, g_strdup(key), origin_tag);
+
+    ret_val = xfconf_channel_set_property (self->channel, key, value);
+    if (ret_val == FALSE)
+      g_hash_table_remove (self->changed_prop, key);
+
+    g_value_unset (value);
+    g_free (value);
+  }
   return FALSE;
 }
 
@@ -66,22 +156,18 @@ xfconf_gsettings_backend_write_tree (GSettingsBackend *backend,
                                      GTree            *tree,
                                      gpointer          origin_tag)
 {
-  return FALSE;
+  return TRUE;
 }
 
-static gboolean
-xfconf_gsettings_backend_write (GSettingsBackend *backend,
-                                const gchar      *key,
-                                GVariant         *value,
-                                gpointer          origin_tag)
-{
-
-  return FALSE;
-}
 
 static void
 xfconf_gsettings_backend_finalize (XfconfGsettingsBackend *self)
 {
+  g_object_unref (self->channel);
+
+  g_hash_table_destroy (self->changed_prop);
+
+  G_OBJECT_CLASS(xfconf_gsettings_backend_parent_class)->finalize((GObject*)self);
 }
 
 static void
@@ -92,6 +178,12 @@ xfconf_gsettings_backend_init (XfconfGsettingsBackend *self)
   prg_name = g_get_prgname();
 
   self->channel = xfconf_channel_new (prg_name);
+
+  self->changed_prop = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                              g_free, NULL);
+
+  g_signal_connect_swapped (self->channel, "property-changed",
+                            G_CALLBACK (xfconf_gsettings_backend_property_changed_cb), self);
 }
 
 static void
