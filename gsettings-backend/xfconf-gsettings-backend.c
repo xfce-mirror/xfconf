@@ -25,6 +25,8 @@
 #include <glib.h>
 
 #include "xfconf/xfconf.h"
+#include "xfconf/xfconf-private.h"
+
 #include "common/xfconf-gvaluefuncs.h"
 
 #include "xfconf-gsettings-backend.h"
@@ -102,19 +104,27 @@ xfconf_gsettings_backend_read (GSettingsBackend   *backend,
     return NULL;
 
   variant = xfconf_gvalue_to_gvariant (&value);
-  g_value_unset (&value);
 
+  /* Set it as a string type */
   if (!g_variant_is_of_type (variant, expected_type)) {
+    GError *error = NULL;
     gchar *type_str;
 
     type_str = g_variant_type_dup_string (expected_type);
-    g_critical ("Property '%s' expected type is '%s' => '%s' found!",
-                key, type_str, g_variant_get_type_string(variant) );
-    g_free(type_str);
+
     g_variant_unref(variant);
-    return NULL;
+    variant = g_variant_parse (expected_type, g_value_get_string(&value), NULL, NULL, &error);
+
+    if (error) {
+      g_critical ("Failed to handle property '%s' with expected type '%s' => %s",
+                   key, type_str, error->message);
+      g_error_free (error);
+      return (NULL);
+    }
+    g_free(type_str);
   }
 
+  g_value_unset (&value);
   return variant;
 }
 
@@ -152,23 +162,33 @@ xfconf_gsettings_backend_write_full (GSettingsBackend *backend,
 {
   XfconfGsettingsBackend *self;
   GValue *value;
+  gchar *var_str;
   gboolean ret_val;
 
   self = XFCONF_GSETTINGS_BACKEND(backend);
 
+  g_debug("Writing property %s variant %s\n", key, g_variant_get_type_string(variant));
+
   value = xfconf_gvariant_to_gvalue (variant);
 
-  if (value) {
-    if (add_sig_changed)
-      g_hash_table_replace (self->changed_prop, g_strdup(key), origin_tag);
+  if (value == NULL) {
+    value = g_new0 (GValue, 1);
+    var_str = g_variant_print(variant, FALSE);
 
-    ret_val = xfconf_channel_set_property (self->channel, key, value);
-    if (ret_val == FALSE && add_sig_changed)
-      g_hash_table_remove (self->changed_prop, key);
-
-    g_value_unset (value);
-    g_free (value);
+    g_value_init(value, G_TYPE_STRING);
+    g_value_set_string(value, var_str);
   }
+
+  if (add_sig_changed)
+    g_hash_table_replace (self->changed_prop, g_strdup(key), origin_tag);
+
+  ret_val = xfconf_channel_set_property (self->channel, key, value);
+  if (ret_val == FALSE && add_sig_changed)
+    g_hash_table_remove (self->changed_prop, key);
+
+  g_value_unset (value);
+  g_free (value);
+
   return FALSE;
 }
 
@@ -244,6 +264,14 @@ xfconf_gsettings_backend_unsubscribe (GSettingsBackend *backend,
 }
 
 
+static void
+xfconf_gsettings_backend_sync (GSettingsBackend *backend)
+{
+  GDBusConnection *bus;
+  bus = _xfconf_get_gdbus_connection ();
+  g_dbus_connection_flush_sync (bus, NULL, NULL);
+}
+
 static gboolean
 xfconf_gsettings_backend_has_prefix (gconstpointer v1,
                                      gconstpointer v2)
@@ -297,6 +325,7 @@ xfconf_gsettings_backend_class_init (XfconfGsettingsBackendClass *klass)
   gsettings_class->write = xfconf_gsettings_backend_write;
   gsettings_class->subscribe = xfconf_gsettings_backend_subscribe;
   gsettings_class->unsubscribe = xfconf_gsettings_backend_unsubscribe;
+  gsettings_class->sync = xfconf_gsettings_backend_sync;
 
   object_class->finalize = (void (*) (GObject *object)) xfconf_gsettings_backend_finalize;
 }
