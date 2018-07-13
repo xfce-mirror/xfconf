@@ -37,6 +37,8 @@ struct _XfconfGsettingsBackend
 
   GHashTable       *changed_prop;
   GHashTable       *subscribed_prop;
+
+  gint              nhandled_tree_node;
 };
 
 G_DEFINE_TYPE (XfconfGsettingsBackend, xfconf_gsettings_backend, G_TYPE_SETTINGS_BACKEND);
@@ -142,10 +144,11 @@ xfconf_gsettings_backend_get_writable (GSettingsBackend *backend,
 }
 
 static gboolean
-xfconf_gsettings_backend_write (GSettingsBackend *backend,
-                                const gchar      *key,
-                                GVariant         *variant,
-                                gpointer          origin_tag)
+xfconf_gsettings_backend_write_full (GSettingsBackend *backend,
+                                     const gchar      *key,
+                                     GVariant         *variant,
+                                     gboolean          add_sig_changed,
+                                     gpointer          origin_tag)
 {
   XfconfGsettingsBackend *self;
   GValue *value;
@@ -156,10 +159,11 @@ xfconf_gsettings_backend_write (GSettingsBackend *backend,
   value = xfconf_gvariant_to_gvalue (variant);
 
   if (value) {
-    g_hash_table_replace (self->changed_prop, g_strdup(key), origin_tag);
+    if (add_sig_changed)
+      g_hash_table_replace (self->changed_prop, g_strdup(key), origin_tag);
 
     ret_val = xfconf_channel_set_property (self->channel, key, value);
-    if (ret_val == FALSE)
+    if (ret_val == FALSE && add_sig_changed)
       g_hash_table_remove (self->changed_prop, key);
 
     g_value_unset (value);
@@ -169,11 +173,48 @@ xfconf_gsettings_backend_write (GSettingsBackend *backend,
 }
 
 static gboolean
+xfconf_gsettings_backend_write (GSettingsBackend *backend,
+                                const gchar      *key,
+                                GVariant         *variant,
+                                gpointer          origin_tag)
+{
+  return xfconf_gsettings_backend_write_full (backend, key, variant, TRUE, origin_tag);
+}
+
+static gboolean
+xfconf_gsettings_backend_tree_traverse (const gchar            *key,
+                                        GVariant               *variant,
+                                        XfconfGsettingsBackend *self)
+{
+
+  if (!xfconf_gsettings_backend_write_full ((GSettingsBackend*)self, key, variant, FALSE, NULL))
+    return TRUE;
+
+  self->nhandled_tree_node++;
+
+  return FALSE;
+}
+
+static gboolean
 xfconf_gsettings_backend_write_tree (GSettingsBackend *backend,
                                      GTree            *tree,
                                      gpointer          origin_tag)
 {
-  return TRUE;
+  XfconfGsettingsBackend *self;
+
+  self = XFCONF_GSETTINGS_BACKEND(backend);
+
+  self->nhandled_tree_node = 0;
+
+  g_tree_foreach (tree, (GTraverseFunc) xfconf_gsettings_backend_tree_traverse, self);
+
+  /* If we manage to handle all Tree nodes, send the changed signal */
+  if (self->nhandled_tree_node == g_tree_nnodes (tree)) {
+    g_settings_backend_changed_tree (backend, tree, origin_tag);
+    return TRUE;
+  }
+
+  return FALSE;
 }
 
 static void
@@ -226,6 +267,8 @@ static void
 xfconf_gsettings_backend_init (XfconfGsettingsBackend *self)
 {
   const gchar *prg_name;
+
+  self->nhandled_tree_node = 0;
 
   prg_name = g_get_prgname();
 
