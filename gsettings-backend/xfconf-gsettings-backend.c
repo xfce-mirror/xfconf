@@ -268,7 +268,16 @@ static void
 xfconf_gsettings_backend_sync (GSettingsBackend *backend)
 {
   GDBusConnection *bus;
-  bus = _xfconf_get_gdbus_connection ();
+  GError *error = NULL;
+
+  bus = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
+
+  if (error != NULL) {
+    g_critical ("Failed to get bus connection '%s'", error->message);
+    g_error_free (error);
+    return;
+  }
+
   g_dbus_connection_flush_sync (bus, NULL, NULL);
 }
 
