@@ -44,7 +44,7 @@ G_GNUC_INTERNAL GVariant *xfconf_basic_gvalue_to_gvariant (const GValue *value);
 
 G_GNUC_INTERNAL GVariant *xfconf_gvalue_to_gvariant (const GValue *value);
 
-G_GNUC_INTERNAL void xfconf_basic_gvariant_to_gvalue (GVariant *variant, GValue *value);
+G_GNUC_INTERNAL gboolean xfconf_basic_gvariant_to_gvalue (GVariant *variant, GValue *value);
 
 G_GNUC_INTERNAL GValue * xfconf_gvariant_to_gvalue (GVariant *variant);
 
