@@ -5,19 +5,20 @@
 # Translators:
 # Alois Nešpor <info@aloisnespor.info>, 2014
 # Michal Várady <miko.vaji@gmail.com>, 2014,2017
+# Pavel Borecki <pavel.borecki@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2017-09-19 18:02+0000\n"
-"Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
+"PO-Revision-Date: 2018-08-01 14:49+0000\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/xfce/xfconf/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #: ../xfconf/xfconf-cache.c:979
 #, c-format
@@ -27,7 +28,7 @@ msgstr "Volání DBus ResetProperty se nezdařilo"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:276
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Nelze vytvořit adresář konfigurace „%s“"
+msgstr "Nedaří se vytvořit složku s nastaveními „%s“"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:321
 #: ../xfconfd/xfconf-daemon.c:167
@@ -83,12 +84,12 @@ msgstr "Nelze zapsat kanál „%s“: %s"
 #: ../xfconfd/xfconf-backend-factory.c:77
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Nelze nalézt backend služby Xfconf typu „%s“"
+msgstr "Nedaří se nalézt podpůrnou vrstvu služby Xfconf typu „%s“"
 
 #: ../xfconfd/xfconf-backend.c:101
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Názvy vlastností musí začínat znakem '/'"
+msgstr "Je třeba, aby názvy vlastností začínaly na znak „/“ (dopředné lomítko)"
 
 #: ../xfconfd/xfconf-backend.c:110
 #, c-format
@@ -153,11 +154,11 @@ msgstr "Po spuštění přenést proces na pozadí; tato volba je užitečná po
 
 #: ../xfconfd/main.c:173
 msgid "Xfce Configuration Daemon"
-msgstr "Konfigurační démon Xfce"
+msgstr "Proces služby nastavení Xfce"
 
 #: ../xfconfd/main.c:182
 msgid "Xfce configuration daemon"
-msgstr "Konfigurační démon Xfce"
+msgstr "Proces služby nastavení Xfce"
 
 #: ../xfconfd/main.c:184
 msgid "Report bugs to http://bugs.xfce.org/\n"
@@ -171,7 +172,7 @@ msgstr "Chyba při zpracování voleb: %s\n"
 #: ../xfconfd/xfconf-daemon.c:222
 #, c-format
 msgid "GType transformation failed \"%s\""
-msgstr "Transformace GType se nezdařila \"%s\""
+msgstr "Transformace GType se nezdařila „%s“"
 
 #: ../xfconfd/xfconf-daemon.c:483
 #, c-format
@@ -259,7 +260,7 @@ msgstr "Tým vývojářů prostředí Xfce. Všechna práva vyhrazena."
 #: ../xfconf-query/main.c:270
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr "Prosíme, abyste chyby hlásili na adresu <%s>."
+msgstr "Chyby prosíme hlaste na <%s>."
 
 #: ../xfconf-query/main.c:282
 msgid "Channels:"
@@ -326,7 +327,7 @@ msgstr "Pro změnu pole na hodnotu je nutné specifikovat typ hodnoty"
 #: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "Nelze zkonvertovat „%s“ na typ „%s“"
+msgstr "Nedaří se převést „%s“ na typ „%s“"
 
 #: ../xfconf-query/main.c:486
 #, c-format
