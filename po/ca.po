@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Carles Muñoz Gorriz <carlesmu@internautas.org>, 2011
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 23:18+0200\n"
-"PO-Revision-Date: 2017-09-19 18:03+0000\n"
-"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"PO-Revision-Date: 2018-08-22 11:36+0000\n"
+"Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfconf/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,18 +22,18 @@ msgstr ""
 #: ../xfconf/xfconf-cache.c:881
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "No s'ha pogut cridar a ResetProperty de DBus"
+msgstr "Ha fallat la construcció de la crida DBus ResetProperty"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:277
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "No s'ha pogut crear el directori de configuració «%s»"
+msgstr "No es pot crear el directori de configuració «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:322
 #: ../xfconfd/xfconf-daemon.c:238
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "S'ha denegat el permís al intentar modificar la propietat «%s» del canal «%s»"
+msgstr "S'ha denegat el permís mentre es modificava la propietat «%s» al canal «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:387
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:469
@@ -45,28 +46,28 @@ msgstr "La propietat «%s» no existeix al canal «%s»"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:601
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr "No s'ha pogut treure el canal «%s»: %s"
+msgstr "No es pot treure el canal «%s»: %s"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "Tipus de <propietat> invàlida: «%s»"
+msgstr "Tipus no vàlid per a <property>: «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "No s'ha pogut analitzar el tipus «%s» de «%s»"
+msgstr "No es pot analitzar el valor del tipus «%s» de «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "El tipus d'atribut del <valor> no pot ser una matriu"
+msgstr "L'atribut del tipus de <value> no pot ser una seqüència"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Tipus de <valor> invàlid: «%s»"
+msgstr "Tipus no vàlid per a <value>: «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
@@ -77,17 +78,17 @@ msgstr "El canal «%s» no existeix"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "No s'ha pogut escriure al canal «%s»: %s"
+msgstr "No es pot escriure al canal «%s»: %s"
 
 #: ../xfconfd/xfconf-backend-factory.c:76
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "No s'han pogut trobar interfícies secundàries de tipus «%s»"
+msgstr "No es pot trobar el dorsal Xfconf del tipus «%s»"
 
 #: ../xfconfd/xfconf-backend.c:103
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Els noms de propietats han de començar amb el caràcter «/»"
+msgstr "Els noms de les propietats han de començar amb el caràcter «/»"
 
 #: ../xfconfd/xfconf-backend.c:112
 #, c-format
@@ -121,7 +122,7 @@ msgstr "El nom de canal no pot ser una cadena buida"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
 "'-'"
-msgstr "Els noms de canals només poden incloure els caràcters ASCII A-Z, a-z, 0-9, «_» i «-»"
+msgstr "Els noms dels canals només poden incloure els caràcters ASCII A-Z, a-z, 0-9, «{», «}», «|», «[», «]», «:», «,», «.», «_» i «-»"
 
 #: ../xfconfd/xfconf-backend.c:398
 #, c-format
@@ -159,7 +160,7 @@ msgstr "Informeu dels errors a http://bugs.xfce.org/\n"
 #: ../xfconfd/main.c:170
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr "S'ha produït un error al analitzar l'opció: %s\n"
+msgstr "Error en analitzar les opcions: %s\n"
 
 #: ../xfconfd/xfconf-daemon.c:482
 #, c-format
@@ -177,7 +178,7 @@ msgstr "estableix"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
-msgstr "reinicia"
+msgstr "restableix"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
@@ -193,11 +194,11 @@ msgstr "La propietat a consultar/modificar"
 
 #: ../xfconf-query/main.c:188
 msgid "The new value to set for the property"
-msgstr "El nou valor que s'establirà per la propietat"
+msgstr "El valor nou que s'ha d'establir per a la propietat"
 
 #: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
-msgstr "Llista propietats (o canals si -c no s'ha especificat)"
+msgstr "Llista les propietats (o els canals si no s'ha especificat -c)"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
@@ -209,19 +210,19 @@ msgstr "Crea una nova propietat si aquesta no existeix"
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
-msgstr "Definiu el tipus de valor de la propietat"
+msgstr "Especifica el tipus de valor de la propietat"
 
 #: ../xfconf-query/main.c:208
 msgid "Reset property"
-msgstr "Reinicia la propietat"
+msgstr "Restableix la propietat"
 
 #: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
-msgstr "Recursiu (empra amb -r)"
+msgstr "Recursiu (ús amb -r)"
 
 #: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
-msgstr "Força una matriu d'elements encara que només hi hagi un"
+msgstr "Força la seqüència encara que només hi hagi un element"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
@@ -229,21 +230,21 @@ msgstr "Inverteix una propietat booleana"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
-msgstr "Fa un seguiment dels canvis de les propietats"
+msgstr "Monitora un canal per si hi ha canvis a les propietats"
 
 #: ../xfconf-query/main.c:246
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr "No s'ha pogut iniciar el libxfconf: %s"
+msgstr "Ha fallat la inicialització de libxfconf: %s"
 
 #: ../xfconf-query/main.c:251
 msgid "- Xfconf commandline utility"
-msgstr "- Xfconf utilitat de línia d'ordres"
+msgstr "-  utilitat de línia d'ordres de Xfconf"
 
 #: ../xfconf-query/main.c:256
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr "No s'ha pogut analitzar l'opció: %s"
+msgstr "Ha fallat l'anàlisi de l'opció: %s"
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
@@ -252,7 +253,7 @@ msgstr "L'equip de desenvolupament de Xfce. Tots els drets reservats."
 #: ../xfconf-query/main.c:267
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr "Aviseu dels errors a <%s>."
+msgstr "Informeu dels errors a <%s>."
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
@@ -264,25 +265,25 @@ msgstr "No s'ha especificat la propietat"
 
 #: ../xfconf-query/main.c:301
 msgid "--create and --reset options can not be used together"
-msgstr "--create i --reset no es poden emprar juntes"
+msgstr "No es poden utilitzar alhora les opcions --create i --reset"
 
 #: ../xfconf-query/main.c:307
 msgid "--create and --reset options can not be used together with --list"
-msgstr "--create i --reset options no es poden emprar amb l'opció --list"
+msgstr "No es poden utilitzar alhora les opcions --create i --reset amb l'opció --list"
 
 #: ../xfconf-query/main.c:319
 #, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "Inicia el seguiment del canal «%s»:"
+msgstr "Inicia el monitoratge del canal «%s»:"
 
 #: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
 #: ../xfconf-query/main.c:527
 msgid "Failed to set property"
-msgstr "No s'ha pogut especificar la propietat"
+msgstr "Ha fallat l'establiment de la propietat"
 
 #: ../xfconf-query/main.c:357
 msgid "--toggle only works with boolean values"
-msgstr "--toggle només funciona amb valor booleans"
+msgstr "--toggle només funciona amb valors booleans"
 
 #: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
 msgid "(unknown)"
@@ -291,45 +292,45 @@ msgstr "(desconegut)"
 #: ../xfconf-query/main.c:375
 #, c-format
 msgid "Value is an array with %d items:"
-msgstr "El valor és una matriu de %d elements:"
+msgstr "El valor és una seqüència de %d elements:"
 
 #: ../xfconf-query/main.c:399
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr "La propietat «%s» no hi és al canal «%s». Si s'ha de crear una nova propietat, empreu l'opció --create"
+msgstr "La propietat «%s» no existeix al canal «%s». Si s'ha de crear una propietat nova, utilitzeu l'opció --create"
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
-msgstr "Quan es crea una nova propietat s'ha d'establir el tipus de valor"
+msgstr "Quan es crea una propietat nova, s'ha d'especificar el tipus del valor"
 
 #: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
-msgstr "No s'ha pogut obtenir el tipus del valor"
+msgstr "Ha fallat l'obtenció del tipus existent per al valor"
 
 #: ../xfconf-query/main.c:435
 msgid "Unable to determine the type of the value"
-msgstr "No s'ha pogut determinar el tipus de valor"
+msgstr "No es pot determinar el tipus del valor"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr "S'ha d'especificar un tipus de valor per canviar la matriu a un valor individual"
+msgstr "S'ha d'especificar un tipus del valor per canviar una seqüència a un valor individual"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "No s'ha pogut convertir «%s» al tipus «%s»"
+msgstr "No es pot convertir «%s» al tipus «%s»"
 
 #: ../xfconf-query/main.c:483
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "Hi han %d valors nous, però tant sols es poden establir %d tipus"
+msgstr "Hi ha %d valors nous, però tan sols s'han pogut determinar %d tipus"
 
 #: ../xfconf-query/main.c:504
 #, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "No s'ha pogut establir el tipus de valor a l'índex %d"
+msgstr "No es pot determinar el tipus del valor a l'índex %d"
 
 #: ../xfconf-query/main.c:554
 #, c-format
