@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2018-03-23 09:31+0000\n"
+"PO-Revision-Date: 2018-08-22 11:36+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfconf/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "No es pot crear el directori de configuració «%s»"
 #: ../xfconfd/xfconf-daemon.c:167
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "S'ha denegat el permís mentre es modificava la propietat «%s» del canal «%s»"
+msgstr "S'ha denegat el permís mentre es modificava la propietat «%s» al canal «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:386
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:468
@@ -307,11 +307,11 @@ msgstr "El valor és una seqüència de %d elements:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr "La propietat «%s» no hi és al canal «%s». Si s'ha de crear una nova propietat, empreu l'opció --create"
+msgstr "La propietat «%s» no existeix al canal «%s». Si s'ha de crear una propietat nova, utilitzeu l'opció --create"
 
 #: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
-msgstr "Quan es crea una propietat nova s'ha d'especificar el tipus del valor"
+msgstr "Quan es crea una propietat nova, s'ha d'especificar el tipus del valor"
 
 #: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
