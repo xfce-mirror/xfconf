@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 23:18+0200\n"
-"PO-Revision-Date: 2017-09-19 18:03+0000\n"
-"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"PO-Revision-Date: 2018-09-14 00:20+0000\n"
+"Last-Translator: Rafiul Haque\n"
 "Language-Team: Bengali (http://www.transifex.com/xfce/xfconf/language/bn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -247,12 +247,12 @@ msgstr ""
 
 #: ../xfconf-query/main.c:266
 msgid "The Xfce development team. All rights reserved."
-msgstr ""
+msgstr "Xfce ডেভেলপমেন্ট টিম। সকল অধিকার সংরক্ষিত।"
 
 #: ../xfconf-query/main.c:267
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr ""
+msgstr "অনুগ্রহ করে <%s> এখানে বাগ প্রতিবেদন পাঠান।"
 
 #: ../xfconf-query/main.c:279
 msgid "Channels:"
@@ -302,19 +302,19 @@ msgstr ""
 
 #: ../xfconf-query/main.c:407
 msgid "When creating a new property, the value type must be specified"
-msgstr ""
+msgstr "নতুন কোন বৈশিষ্ট্য (property)-তৈরি করার সময়, মানের ধরন অবশ্যই উল্লিখিত থাকতে হবে।"
 
 #: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
-msgstr ""
+msgstr "মানটির বর্তমান ধরন পেতে ব্যর্থ"
 
 #: ../xfconf-query/main.c:435
 msgid "Unable to determine the type of the value"
-msgstr ""
+msgstr "মানটির ধরন নির্ধারণ করতে অক্ষম"
 
 #: ../xfconf-query/main.c:441
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
+msgstr "কোন অ্যারে (array)-কে একক মানে পরিবর্তন করার সময় মানের ধরন অবশ্যই উল্লিখিত থাকতে হবে"
 
 #: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
 #, c-format
@@ -334,4 +334,4 @@ msgstr ""
 #: ../xfconf-query/main.c:554
 #, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr ""
+msgstr "চ্যানেল \"%s\" কোন বৈশিষ্ট্যাবলী ধারণ করে না"
