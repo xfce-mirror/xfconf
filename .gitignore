@@ -33,6 +33,8 @@ common/xfconf-marshal.c
 common/xfconf-marshal.h
 common/xfconf-alias.h
 common/xfconf-aliasdef.c
+common/xfconf-gdbus-bindings.c
+common/xfconf-gdbus-bindings.h
 docs/reference/xfconf-decl-list.txt
 docs/reference/sgml-build.stamp
 docs/reference/xfconf.signals
