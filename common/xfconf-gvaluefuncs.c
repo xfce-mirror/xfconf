@@ -417,8 +417,9 @@ xfconf_basic_gvalue_to_gvariant (const GValue *value) {
     return NULL;
 }
 
-void xfconf_basic_gvariant_to_gvalue (GVariant *variant, GValue *value)
+gboolean xfconf_basic_gvariant_to_gvalue (GVariant *variant, GValue *value)
 {
+  gboolean ret = TRUE;
     switch (g_variant_classify (variant)){
     case G_VARIANT_CLASS_UINT16:
         g_value_init(value, G_TYPE_UINT);
@@ -461,9 +462,10 @@ void xfconf_basic_gvariant_to_gvalue (GVariant *variant, GValue *value)
         g_value_set_double (value, g_variant_get_double (variant));
         break;
     default:
-        g_warn_if_reached ();
+        ret = FALSE;
         break;
     }
+    return (ret);
 }
 
 GVariant *
@@ -608,7 +610,7 @@ xfconf_dup_value_array (GPtrArray *arr, gboolean auto_destroy_value) {
 
 GValue * xfconf_gvariant_to_gvalue (GVariant *in_variant)
 {
-    GValue *value;
+    GValue *value ;
     GVariant *variant;
     value = g_new0(GValue, 1);
 
@@ -651,7 +653,10 @@ GValue * xfconf_gvariant_to_gvalue (GVariant *in_variant)
         g_value_set_boxed (value, g_variant_get_strv (variant, NULL));
     }
     else {/* Should be a basic type */
-        xfconf_basic_gvariant_to_gvalue(variant, value);
+      if (!xfconf_basic_gvariant_to_gvalue(variant, value)) {
+        g_free(value);
+        return NULL;
+      }
     }
 
     return value;

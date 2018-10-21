@@ -10,6 +10,10 @@ SUBDIRS = \
 	docs \
 	tests
 
+if XFCONF_ENABLE_GSETTINGS_BACKEND
+SUBDIRS += gsettings-backend
+endif
+
 .PHONY: ChangeLog
 
 ChangeLog: Makefile
