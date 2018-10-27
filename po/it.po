@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2018-10-24 08:47+0000\n"
+"PO-Revision-Date: 2018-10-27 09:12+0000\n"
 "Last-Translator: Emanuele Petriglia <inbox@emanuelepetriglia.me>\n"
 "Language-Team: Italian (http://www.transifex.com/xfce/xfconf/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -139,7 +139,7 @@ msgstr "Nome %s perso nel messaggio dbus, uscita in corso."
 
 #: ../xfconfd/main.c:148
 msgid "Prints the xfconfd version."
-msgstr "Visualizza la versione di xfconfd"
+msgstr "Visualizza la versione di xfconfd."
 
 #: ../xfconfd/main.c:150
 msgid ""
@@ -161,17 +161,17 @@ msgstr "Demone della configurazione di Xfce"
 
 #: ../xfconfd/main.c:184
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr "Segnalare i problemi a http://bugs.xfce.org/\n"
+msgstr "Segnalare eventuali problemi su http://bugs.xfce.org/\n"
 
 #: ../xfconfd/main.c:187
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr "Errore analizzando l'opzione: %s\n"
+msgstr "Impossibile analizzare le opzioni: %s\n"
 
 #: ../xfconfd/xfconf-daemon.c:222
 #, c-format
 msgid "GType transformation failed \"%s\""
-msgstr "Trasformazione GType non riuscita \"%s\""
+msgstr "Impossibile effettuare la trasformazione GType \"%s\""
 
 #: ../xfconfd/xfconf-daemon.c:483
 #, c-format
@@ -250,7 +250,7 @@ msgstr "- Utilità di comando di Xfconf"
 #: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr "Elaborazione dell'opzione non riuscita: %s"
+msgstr "Impossibile analizzare l'opzione: %s"
 
 #: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
@@ -259,7 +259,7 @@ msgstr "Il gruppo di sviluppo di Xfce. Tutti i diritti riservati."
 #: ../xfconf-query/main.c:270
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr "Segnalare i bug a <%s>."
+msgstr "Segnalare eventuali bus su <%s>."
 
 #: ../xfconf-query/main.c:282
 msgid "Channels:"
@@ -280,7 +280,7 @@ msgstr "le opzioni --create e --reset non possono essere usate insieme con --lis
 #: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "Inizia a controllare il canale «%s»:"
+msgstr "Inizia a controllare il canale \"%s\":"
 
 #: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
 #: ../xfconf-query/main.c:530
@@ -305,7 +305,7 @@ msgstr "Il valore è un array con %d elementi:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr "La proprietà «%s» non esiste nel canale «%s». Per creare una nuova proprietà, usare l'opzione --create"
+msgstr "La proprietà \"%s\" non esiste nel canale \"%s\". Per creare una nuova proprietà, usare l'opzione --create"
 
 #: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
@@ -326,7 +326,7 @@ msgstr "Deve essere specificato un tipo di valore per modificare un array in un 
 #: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "Impossibile convertire «%s» nel tipo «%s»"
+msgstr "Impossibile convertire \"%s\" nel tipo \"%s\""
 
 #: ../xfconf-query/main.c:486
 #, c-format
@@ -341,4 +341,4 @@ msgstr "Impossibile determinare il tipo di valore all'indice %d"
 #: ../xfconf-query/main.c:557
 #, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "Il canale «%s» non contiene alcuna proprietà"
+msgstr "Il canale \"%s\" non contiene alcuna proprietà"
