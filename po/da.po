@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2018-10-03 10:18+0000\n"
+"PO-Revision-Date: 2018-11-28 09:12+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,7 @@ msgstr "Kunne ikke finde Xfconf-backend af type \"%s\""
 #: ../xfconfd/xfconf-backend.c:101
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Egenskabnavne skal starte med et '/'-tegn"
+msgstr "Egenskabsnavne skal begynde med et '/'-tegn"
 
 #: ../xfconfd/xfconf-backend.c:110
 #, c-format
@@ -103,17 +103,17 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
-msgstr "Egenskabnavne kan kun indeholde ASCII-tegnene A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' og '>', såvel som '/' som et tegn til adskilning"
+msgstr "Egenskabsnavne må kun indeholde ASCII-tegnene A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' og '>', såvel som '/' som en separator"
 
 #: ../xfconfd/xfconf-backend.c:134
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Egenskabnavne må ikke indeholde mere end ét '/'-tegn efter hinanden"
+msgstr "Egenskabsnavne må ikke indeholde mere end ét '/'-tegn efter hinanden"
 
 #: ../xfconfd/xfconf-backend.c:145
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Egenskabnavne må ikke slutte med et '/'-tegn"
+msgstr "Egenskabsnavne må ikke slutte med et '/'-tegn"
 
 #: ../xfconfd/xfconf-backend.c:162
 #, c-format
@@ -125,14 +125,14 @@ msgstr "Kanalnavn kan ikke være tom streng"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
-msgstr "Kanalnavne kan kun indeholde ASCII-tegnene A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', og '-'"
+msgstr "Kanalnavne må kun indeholde ASCII-tegnene A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', og '-'"
 
 #: ../xfconfd/xfconf-backend.c:399
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr "Egenskabsnavne kan kun være tomme eller \"/\" hvis rekursiv nulstilling blev angivet"
+msgstr "Egenskabsnavnet må kun være tomt eller \"/\" hvis en rekursiv nulstilling blev angivet"
 
 #: ../xfconfd/main.c:125
 #, c-format
