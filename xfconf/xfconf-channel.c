@@ -327,6 +327,7 @@ xfconf_channel_get_g_property(GObject *object,
 
         case PROP_IS_SINGLETON:
             g_value_set_boolean(value, channel->is_singleton);
+            break;
 
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, pspec);

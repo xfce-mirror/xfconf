@@ -132,8 +132,8 @@ xfconf_daemon_backend_property_changed(XfconfBackend *backend,
                                        gpointer user_data)
 {
     XfconfPropChangedData *pdata = g_slice_new0(XfconfPropChangedData);
-    pdata->xfconfd = g_object_ref(G_OBJECT(user_data));
-    pdata->backend = g_object_ref(G_OBJECT(backend));
+    pdata->xfconfd = g_object_ref(XFCONF_DAEMON(user_data));
+    pdata->backend = g_object_ref(XFCONF_BACKEND(backend));
     pdata->channel = g_strdup(channel);
     pdata->property = g_strdup(property);
     g_idle_add(xfconf_daemon_emit_property_changed_idled, pdata);
