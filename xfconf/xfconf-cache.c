@@ -144,7 +144,16 @@ xfconf_cache_item_free(XfconfCacheItem *item)
 
 /******************* XfconfCacheOldItem *******************/
 
-
+/**
+ * XfconfCacheOldItem:
+ * @property:
+ * @item: a #XfconfCacheItem object
+ * @cancellable:
+ * @pending_calls_count:
+ * @variant: Used in xfconf_cache_old_item_end_call to end an already
+ *           started call
+ * @cache: Pointer to the cache object
+ */
 typedef struct
 {
     gchar *property;
@@ -154,14 +163,8 @@ typedef struct
 
     gint pending_calls_count;
 
-    /**
-     * Variant to be send on the wire
-     * Used in xfconf_cache_old_item_end_call
-     * to end an already started call
-     **/
     GVariant *variant;
 
-    /* Pointer to the cache object */
     XfconfCache *cache;
 
 } XfconfCacheOldItem;

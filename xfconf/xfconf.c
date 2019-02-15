@@ -224,7 +224,7 @@ xfconf_array_new(gint n_preallocs)
 
 /**
  * xfconf_array_free:
- * @arr: A #GPtrArray of #GValue<!-- -->s.
+ * @arr: (element-type GValue): A #GPtrArray of #GValue<!-- -->s.
  *
  * Properly frees a #GPtrArray structure containing a list of
  * #GValue<!-- -->s.  This will also cause the contents of the

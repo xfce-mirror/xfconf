@@ -29,8 +29,12 @@ EXTRA_DIST = \
 	ChangeLog \
 	INSTALL \
 	NEWS \
-	README
+	README \
+	m4/introspection.m4 \
+	m4/vapigen.m4
 
 DISTCHECK_CONFIGURE_FLAGS = \
 	--enable-gtk-doc \
-	--disable-perl-bindings
+	--disable-perl-bindings \
+	--enable-introspection \
+	--disable-vala

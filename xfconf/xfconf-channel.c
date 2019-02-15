@@ -520,10 +520,10 @@ xfconf_transform_array(GPtrArray *arr_src,
  *
  * The reference count of the returned channel is owned by libxfconf.
  *
- * Returns: An #XfconfChannel singleton.
+ * Returns: (transfer full): An #XfconfChannel singleton.
  *
  * Since: 4.5.91
- **/
+ */
 XfconfChannel *
 xfconf_channel_get(const gchar *channel_name)
 {
@@ -710,9 +710,9 @@ xfconf_channel_reset_property(XfconfChannel *channel,
  * retrieved.  To retrieve all properties in the channel,
  * specify "/" or %NULL for @property_base.
  *
- * Returns: A newly-allocated #GHashTable, which should be freed with
+ * Returns: (element-type utf8 GValue) (transfer container): A newly-allocated #GHashTable, which should be freed with
  *          g_hash_table_destroy() when no longer needed.
- **/
+ */
 GHashTable *
 xfconf_channel_get_properties(XfconfChannel *channel,
                               const gchar *property_base)
@@ -792,10 +792,10 @@ xfconf_channel_get_string(XfconfChannel *channel,
  *
  * Retrieves the string list value associated with @property on @channel.
  *
- * Returns: A newly-allocated string list which should be freed with
+ * Returns: (transfer full) (element-type utf8) (array zero-terminated=1): A newly-allocated string list which should be freed with
  *          g_strfreev() when no longer needed.  If @property is not in
  *          @channel, %NULL is returned.
- **/
+ */
 gchar **
 xfconf_channel_get_string_list(XfconfChannel *channel,
                                const gchar *property)
@@ -1483,8 +1483,8 @@ out:
  * a #GPtrArray, which can be freed with xfconf_array_free()
  * when no longer needed.
  *
- * Returns: A newly-allocated #GPtrArray on success, or %NULL
- *          on failure.
+ * Returns: (transfer container) (element-type GValue) (nullable): A newly-allocated #GPtrArray on success,
+ * or %NULL on failure.
  **/
 GPtrArray *
 xfconf_channel_get_arrayv(XfconfChannel *channel,
@@ -1507,10 +1507,7 @@ xfconf_channel_get_arrayv(XfconfChannel *channel,
         return NULL;
     }
     
-    /**
-     * Arr is owned by the Gvalue in the cache
-     * do not free it.
-     **/
+    /* Do not free it, it is owned by the GValue in cache */
     arr = g_value_get_boxed(&val);
     if(!arr->len) {
         g_ptr_array_free(arr, TRUE);
@@ -1664,7 +1661,7 @@ out:
  * xfconf_channel_set_arrayv:
  * @channel: An #XfconfChannel.
  * @property: A property string.
- * @values: A #GPtrArray of #GValue<!-- -->s.
+ * @values: (element-type GValue): A #GPtrArray of #GValue<!-- -->s.
  *
  * Sets an array property on @channel, using the values in the
  * provided @values array.
@@ -2238,11 +2235,9 @@ out:
  *
  * Lists all channels known in the Xfconf configuration store.
  *
- * Returns: A newly-allocated array of strings.  Free with
- *          g_strfreev() when no longer needed.
- **/
-/* this really belongs in xfconf.c, but i don't feel like including
- * xfconf-dbus-bindings.h twice, or copying the ERROR macros */
+ * Returns: (transfer none) (array zero-terminated=1) (type utf8): A newly-allocated array of strings.
+ *                                                                 Free with g_strfreev() when no longer needed.
+ */
 gchar **
 xfconf_list_channels(void)
 {

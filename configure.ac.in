@@ -196,6 +196,12 @@ if test "x$ac_gsettings_backend"; then
     AC_SUBST(GIO_MODULE_DIR)
 fi
 
+dnl check for GObject Introspection
+GOBJECT_INTROSPECTION_CHECK([1.30.0])
+
+dnl check for Vala support
+VAPIGEN_CHECK()
+
 dnl check for debugging support
 XDT_FEATURE_DEBUG([xfconf_default_debug])
 dnl gtk-doc is broken
@@ -269,6 +275,8 @@ echo
 echo "Build Configuration:"
 echo
 echo "  * GSettings Backend:         $ac_gsettings_backend"
+echo "  * GObject Introspection:     $enable_introspection"
+echo "  * Vala support:              $enable_vala"
 echo
 echo "  * Debug:                     $enable_debug"
 echo
