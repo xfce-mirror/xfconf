@@ -6,13 +6,13 @@
 # Aputsiak Niels Janussen (Skjalden) <aj@isit.gl>, 2014
 # Aputsiak Niels Janussen (Skjalden) <aj@isit.gl>, 2014
 # scootergrisen, 2017
-# scootergrisen, 2017-2018
+# scootergrisen, 2017-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2018-11-28 09:12+0000\n"
+"PO-Revision-Date: 2019-03-07 11:30+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -95,7 +95,7 @@ msgstr "Egenskabsnavne skal begynde med et '/'-tegn"
 #: ../xfconfd/xfconf-backend.c:110
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr "Rodelementet ('/') er ikke et gyldigt egenskabnavn"
+msgstr "Rodelementet ('/') er ikke et gyldigt egenskabsnavn"
 
 #: ../xfconfd/xfconf-backend.c:125
 #, c-format
