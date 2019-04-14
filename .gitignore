@@ -27,7 +27,9 @@ libtool
 missing
 aclocal.m4
 install-sh
+gtk-doc.m4
 gtk-doc.make
+test-driver
 common/stamp-xfconf-marshal.h
 common/xfconf-marshal.c
 common/xfconf-marshal.h
@@ -57,8 +59,10 @@ docs/reference/xfconf.args
 docs/reference/*.bak
 docs/reference/tmpl/*.bak
 docs/reference/tmpl/stamp-xfconf-marshal.sgml
+m4/*
 po/POTFILES
 po/Makefile.in.in
+po/stamp-it
 po/*.gmo
 tests/t-has-properties.sh
 tests/t-get-properties.sh
