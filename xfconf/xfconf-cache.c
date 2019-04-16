@@ -390,7 +390,7 @@ xfconf_cache_init(XfconfCache *cache)
     cache->g_signal_id = g_signal_connect(gproxy, "g-signal",
                                           G_CALLBACK(xfconf_cache_proxy_signal_received_cb), cache);
 
-    cache->properties = g_tree_new_full((GCompareDataFunc)strcmp, NULL,
+    cache->properties = g_tree_new_full((GCompareDataFunc) (void (*)(void)) strcmp, NULL,
                                         (GDestroyNotify)g_free,
                                         (GDestroyNotify)xfconf_cache_item_free);
 
