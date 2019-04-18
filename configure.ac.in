@@ -88,10 +88,10 @@ dnl Check for X11 installed
 dnl XDT_CHECK_LIBX11_REQUIRE
 
 dnl required
-XDT_CHECK_PACKAGE([GLIB], [gobject-2.0], [2.30.0])
-XDT_CHECK_PACKAGE([GIO], [gio-2.0], [2.26.0])
-XDT_CHECK_PACKAGE([GIO_UNIX], [gio-unix-2.0], [2.26.0])
-XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.30.0])
+XDT_CHECK_PACKAGE([GLIB], [gobject-2.0], [2.42.0])
+XDT_CHECK_PACKAGE([GIO], [gio-2.0], [2.42.0])
+XDT_CHECK_PACKAGE([GIO_UNIX], [gio-unix-2.0], [2.42.0])
+XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.42.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.10.0])
 
 dnl check for perl bindings for --disable-perl-bindings and make-exo-alias.pl
@@ -191,7 +191,7 @@ AC_MSG_RESULT([$ac_gsettings_backend])
 
 dnl GModule is required in order to build the GSettings backend module
 if test "x$ac_gsettings_backend"; then
-	XDT_CHECK_PACKAGE([GMODULE], [gmodule-2.0], [2.30.0])
+	XDT_CHECK_PACKAGE([GMODULE], [gmodule-2.0], [2.42.0])
 	GIO_MODULE_DIR=$libdir/gio/modules
     AC_SUBST(GIO_MODULE_DIR)
 fi
