@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Mișu Moldovan <dumol@l10n.ro>, 2015
+# Dumitru Moldovan <dumol@gnome.org>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
