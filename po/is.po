@@ -1,175 +1,185 @@
-# translation of is.po to Icelandic
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
-# Sveinn í Felli <sveinki@nett.is>, 2011, 2012.
+# 
+# Translators:
+# Kristján Magnússon, 2016
+# Kristján Magnússon, 2016
+# Sveinn í Felli <sv1@fellsnet.is>, 2011-2012,2014-2015,2018-2019
+# Sveinn í Felli <sv1@fellsnet.is>, 2014-2015,2019
+# Sveinn í Felli <sv1@fellsnet.is>, 2011-2012
 msgid ""
 msgstr ""
-"Project-Id-Version: is\n"
+"Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-29 17:45+0000\n"
-"PO-Revision-Date: 2012-07-02 15:29+0000\n"
-"Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
-"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
-"Language: \n"
+"POT-Creation-Date: 2017-06-01 18:31+0200\n"
+"PO-Revision-Date: 2019-05-10 09:55+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
+"Language-Team: Icelandic (http://www.transifex.com/xfce/xfconf/language/is/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Language: is\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
 
-#: ../xfconf/xfconf-cache.c:876
+#: ../xfconf/xfconf-cache.c:979
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr ""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:277
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:276
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr ""
+msgstr "Gat ekki búið til stillingamöppu \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:322
-#: ../xfconfd/xfconf-daemon.c:238
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:321
+#: ../xfconfd/xfconf-daemon.c:167
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr ""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:387
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:469
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:634
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:654 ../xfconf-query/main.c:341
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:386
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:468
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:633
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:653 ../xfconf-query/main.c:344
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr ""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:601
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:600
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "Mistókst að fjarlægja rás \"%s\": %s"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1298
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1297
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr ""
+msgstr "Ógild tegund fyrir <property>: \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1314
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1390
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1313
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1389
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr ""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1370
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1369
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
 msgstr ""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1379
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1378
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr ""
+msgstr "Ógild tegund fyrir <value>: \"%s\""
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1655
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1654
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1903
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "Rás \"%s\" er ekki til"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1962
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1961
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Mistókst að skrifa inn rás \"%s\": %s"
 
-#: ../xfconfd/xfconf-backend-factory.c:76
+#: ../xfconfd/xfconf-backend-factory.c:77
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr ""
 
-#: ../xfconfd/xfconf-backend.c:103
+#: ../xfconfd/xfconf-backend.c:101
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr ""
+msgstr "Heiti eiginda verða að byrja á '/' staf"
 
-#: ../xfconfd/xfconf-backend.c:112
+#: ../xfconfd/xfconf-backend.c:110
 #, c-format
 msgid "The root element ('/') is not a valid property name"
-msgstr ""
+msgstr "Rótareiningin ('/') er ekki gilt heiti á eigindi"
 
-#: ../xfconfd/xfconf-backend.c:126
+#: ../xfconfd/xfconf-backend.c:125
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
-"'-', '<' and '>', as well as '/' as a separator"
-msgstr ""
+"'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
+"separator"
+msgstr "Heiti eiginda geta aðeins innihaldið ASCII stafina A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' og '>', auk '/' sem aðgreinis"
 
-#: ../xfconfd/xfconf-backend.c:135
+#: ../xfconfd/xfconf-backend.c:134
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr ""
+msgstr "Heiti eiginda geta ekki innihaldið tvo eða fleiri '/' stafi í röð"
 
-#: ../xfconfd/xfconf-backend.c:146
+#: ../xfconfd/xfconf-backend.c:145
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr ""
+msgstr "Heiti eiginda geta ekki endað með '/' staf"
 
-#: ../xfconfd/xfconf-backend.c:163
+#: ../xfconfd/xfconf-backend.c:162
 #, c-format
 msgid "Channel name cannot be an empty string"
 msgstr "Heiti rásar getur ekki verið auður strengur"
 
-#: ../xfconfd/xfconf-backend.c:176
+#: ../xfconfd/xfconf-backend.c:177
 #, c-format
 msgid ""
-"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '_', and "
-"'-'"
-msgstr "Heiti rása geta aðeins innihaldið ASCII stafi A-Z, a - z, 0-9, '_', og '-'"
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
+" '|', ']', '[', ':', ',', '.', '_', and '-'"
+msgstr "Heiti rása geta aðeins innihaldið ASCII stafina A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', og '-'"
 
-#: ../xfconfd/xfconf-backend.c:398
+#: ../xfconfd/xfconf-backend.c:399
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
 msgstr ""
 
-#: ../xfconfd/main.c:134
-msgid "Prints the xfconfd version."
-msgstr "Birta útgáfu xfconfd."
+#: ../xfconfd/main.c:125
+#, c-format
+msgid "Name %s lost on the message dbus, exiting."
+msgstr "Heitið %s týndist á dbus fyrir tilkynningar, hætti."
 
-#: ../xfconfd/main.c:136
+#: ../xfconfd/main.c:148
+msgid "Prints the xfconfd version."
+msgstr "Birtir útgáfu xfconfd."
+
+#: ../xfconfd/main.c:150
 msgid ""
-"Configuration backends to use.  The first backend specified is opened read/"
-"write; the others, read-only."
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
 msgstr ""
 
-#: ../xfconfd/main.c:139
+#: ../xfconfd/main.c:153
 msgid "Fork into background after starting; only useful for testing purposes"
 msgstr ""
 
-#: ../xfconfd/main.c:159
+#: ../xfconfd/main.c:173
 msgid "Xfce Configuration Daemon"
-msgstr ""
+msgstr "Xfce stillingapúki"
 
-#: ../xfconfd/main.c:165
+#: ../xfconfd/main.c:182
 msgid "Xfce configuration daemon"
-msgstr ""
+msgstr "Xfce stillingapúki"
 
-#: ../xfconfd/main.c:167
+#: ../xfconfd/main.c:184
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Tilkynna villur til http://bugs.xfce.org/\n"
 
-#: ../xfconfd/main.c:170
+#: ../xfconfd/main.c:187
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr ""
+msgstr "Villa við þáttun rofa: %s\n"
 
-#: ../xfconfd/xfconf-daemon.c:482
+#: ../xfconfd/xfconf-daemon.c:222
 #, c-format
-msgid "Another Xfconf daemon is already running"
+msgid "GType transformation failed \"%s\""
 msgstr ""
 
-#: ../xfconfd/xfconf-daemon.c:517
+#: ../xfconfd/xfconf-daemon.c:483
 #, c-format
 msgid "No backends could be started"
-msgstr ""
+msgstr "Ekki var hægt að ræsa neina bakenda"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
@@ -197,15 +207,15 @@ msgstr ""
 
 #: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
-msgstr ""
+msgstr "Listi yfir eiginleika (eða rásir ef -c er ekki tilgreint)"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
-msgstr ""
+msgstr "Nákvæmt úttaki"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
-msgstr ""
+msgstr "Búa til nýjan eiginleika ef hann er ekki þegar til staðar"
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
@@ -217,7 +227,7 @@ msgstr "Endursetja eiginleika"
 
 #: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
-msgstr ""
+msgstr "Endurkvæmt (nota með -r)"
 
 #: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
@@ -231,108 +241,107 @@ msgstr ""
 msgid "Monitor a channel for property changes"
 msgstr ""
 
-#: ../xfconf-query/main.c:246
+#: ../xfconf-query/main.c:249
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr ""
+msgstr "Mistókst að frumstilla libxfconf: %s"
 
-#: ../xfconf-query/main.c:251
+#: ../xfconf-query/main.c:254
 msgid "- Xfconf commandline utility"
-msgstr ""
+msgstr "- Xfconf skipanalínutól"
 
-#: ../xfconf-query/main.c:256
+#: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr ""
 
-#: ../xfconf-query/main.c:266
+#: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce þróunarteymið. Allur réttur áskilinn."
 
-#: ../xfconf-query/main.c:267
+#: ../xfconf-query/main.c:270
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Tilkynntu villur til <%s>."
 
-#: ../xfconf-query/main.c:279
+#: ../xfconf-query/main.c:282
 msgid "Channels:"
 msgstr "Rásir:"
 
-#: ../xfconf-query/main.c:295
+#: ../xfconf-query/main.c:298
 msgid "No property specified"
-msgstr ""
+msgstr "Engin eigindi tiltekin"
 
-#: ../xfconf-query/main.c:301
+#: ../xfconf-query/main.c:304
 msgid "--create and --reset options can not be used together"
 msgstr ""
 
-#: ../xfconf-query/main.c:307
+#: ../xfconf-query/main.c:310
 msgid "--create and --reset options can not be used together with --list"
 msgstr ""
 
-#: ../xfconf-query/main.c:319
+#: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr ""
+msgstr "Byrja eftirlit á rás '%s':"
 
-#: ../xfconf-query/main.c:353 ../xfconf-query/main.c:458
-#: ../xfconf-query/main.c:527
+#: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
+#: ../xfconf-query/main.c:530
 msgid "Failed to set property"
-msgstr ""
+msgstr "Mistókst að setja eigindi"
 
-#: ../xfconf-query/main.c:357
+#: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
 msgstr ""
 
-#: ../xfconf-query/main.c:366 ../xfconf-query/main.c:385
+#: ../xfconf-query/main.c:369 ../xfconf-query/main.c:388
 msgid "(unknown)"
 msgstr "(óþekkt)"
 
-#: ../xfconf-query/main.c:375
+#: ../xfconf-query/main.c:378
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr ""
 
-#: ../xfconf-query/main.c:399
+#: ../xfconf-query/main.c:402
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr ""
 
-#: ../xfconf-query/main.c:407
+#: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
 msgstr ""
 
-#: ../xfconf-query/main.c:417
+#: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
 msgstr ""
 
-#: ../xfconf-query/main.c:435
+#: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
 msgstr ""
 
-#: ../xfconf-query/main.c:441
+#: ../xfconf-query/main.c:444
 msgid "A value type must be specified to change an array into a single value"
 msgstr ""
 
-#: ../xfconf-query/main.c:451 ../xfconf-query/main.c:512
+#: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr ""
+msgstr "Mistókst að umbreyta \"%s\" til tegund \"%s\""
 
-#: ../xfconf-query/main.c:483
+#: ../xfconf-query/main.c:486
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr ""
 
-#: ../xfconf-query/main.c:504
+#: ../xfconf-query/main.c:507
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr ""
 
-#: ../xfconf-query/main.c:554
+#: ../xfconf-query/main.c:557
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr ""
-
