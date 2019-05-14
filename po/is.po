@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2019-05-10 11:28+0000\n"
+"PO-Revision-Date: 2019-05-14 10:47+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic (http://www.transifex.com/xfce/xfconf/language/is/)\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr ""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:653 ../xfconf-query/main.c:344
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr ""
+msgstr "Eiginleikinn \"%s\" er ekki til á rásinni \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:600
 #, c-format
@@ -60,7 +60,7 @@ msgstr "Ógild tegund fyrir <property>: \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1389
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr ""
+msgstr "Ekki tókst að þátta gildi af tegundinni \"%s\" frá \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1369
 #, c-format
@@ -174,7 +174,7 @@ msgstr "Villa við þáttun rofa: %s\n"
 #: ../xfconfd/xfconf-daemon.c:222
 #, c-format
 msgid "GType transformation failed \"%s\""
-msgstr ""
+msgstr "GType umbreyting mistókst \"%s\""
 
 #: ../xfconfd/xfconf-daemon.c:483
 #, c-format
@@ -239,7 +239,7 @@ msgstr ""
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
-msgstr ""
+msgstr "Fylgjast með rás hvort breytingar verði á eigindum"
 
 #: ../xfconf-query/main.c:249
 #, c-format
@@ -301,7 +301,7 @@ msgstr "(óþekkt)"
 #: ../xfconf-query/main.c:378
 #, c-format
 msgid "Value is an array with %d items:"
-msgstr ""
+msgstr "Gildi er fylki með %d atriðum:"
 
 #: ../xfconf-query/main.c:402
 #, c-format
@@ -320,7 +320,7 @@ msgstr ""
 
 #: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
-msgstr ""
+msgstr "Tókst ekki að ákvarða tegund gildisins"
 
 #: ../xfconf-query/main.c:444
 msgid "A value type must be specified to change an array into a single value"
