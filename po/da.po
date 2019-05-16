@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2019-03-07 11:30+0000\n"
+"PO-Revision-Date: 2019-05-16 19:08+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -173,7 +173,7 @@ msgstr "Fejl ved fortolkning af tilvalg: %s\n"
 #: ../xfconfd/xfconf-daemon.c:222
 #, c-format
 msgid "GType transformation failed \"%s\""
-msgstr "GType-transformation fejlede \"%s\""
+msgstr "GType-transformation mislykkedes \"%s\""
 
 #: ../xfconfd/xfconf-daemon.c:483
 #, c-format
@@ -252,7 +252,7 @@ msgstr "- Xfconf kommandolinjeværktøj"
 #: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr "Fortolkning af tilvalg fejlede: %s"
+msgstr "Fortolkning af tilvalg mislykkedes: %s"
 
 #: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
