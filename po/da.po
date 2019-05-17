@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2019-05-16 19:08+0000\n"
+"PO-Revision-Date: 2019-05-17 15:12+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "Kan ikke oprette indstillingskatalog \"%s\""
 #: ../xfconfd/xfconf-daemon.c:167
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Du har ikke rettigheder til at ændre egenskab \"%s\" på kanal \"%s\""
+msgstr "Du har ikke tilladelse til at ændre egenskab \"%s\" på kanal \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:386
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:468
