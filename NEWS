@@ -1,3 +1,16 @@
+4.13.7
+======
+- Bump glib version
+- Bug #15122: xfconf: disable gsettings backend by default
+- Fix compiler error -Wcast-function-type (GCC 8)
+- Fix this use of "defined" may not be portable
+- Update .gitignore
+- Fix warnings reported by GCC 8 (Bug #15112)
+- Added gdbus binding to gitignore, add post release git tag
+- Translation updates: Basque, Belarusian, Bulgarian, Catalan, Czech, Danish, 
+  English (Australia), Icelandic, Italian, Lithuanian, Portuguese (Brazilian), 
+  Romanian, Slovak, Swedish
+
 4.13.6
 ======
 - Added .NOTPARALLEL to property change test (bug #13840)
