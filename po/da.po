@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2019-05-24 11:39+0000\n"
+"PO-Revision-Date: 2019-05-25 00:51+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -338,7 +338,7 @@ msgstr "Har %d nye værdier, men kunne kun afgøre %d typer"
 #: ../xfconf-query/main.c:507
 #, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "Kunne ikke afgøre type af værdi ved indeks %d"
+msgstr "Kunne ikke afgøre typen af værdien ved indekset %d"
 
 #: ../xfconf-query/main.c:557
 #, c-format
