@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2019-05-25 00:51+0000\n"
+"PO-Revision-Date: 2019-06-05 18:34+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -218,7 +218,7 @@ msgstr "Opret en ny egenskab hvis den ikke allerede findes"
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
-msgstr "Angiv egenskabværditype"
+msgstr "Angiv egenskabens værditype"
 
 #: ../xfconf-query/main.c:208
 msgid "Reset property"
