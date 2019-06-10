@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2019-06-05 23:08+0000\n"
+"PO-Revision-Date: 2019-06-10 19:07+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Kunne ikke lave kald til ResetProperty DBus"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:276
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Kan ikke oprette indstillingskatalog \"%s\""
+msgstr "Kan ikke oprette konfigurationsmappen \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:321
 #: ../xfconfd/xfconf-daemon.c:167
@@ -147,7 +147,7 @@ msgstr "Udskriver xfconfd-versionen."
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
-msgstr "Underliggende indstilling til anvendelse. Den første underliggende der angives er åbnet med læse/skrive; alle andre kun med læse."
+msgstr "Underliggende konfigurationer som skal anvendes. Den første underliggende der angives åbnes som læse/skrive; alle andre åbnes kun som læse."
 
 #: ../xfconfd/main.c:153
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -155,11 +155,11 @@ msgstr "Flyt til baggrunden efter start: Er kun brugbar for afprøvningsformål"
 
 #: ../xfconfd/main.c:173
 msgid "Xfce Configuration Daemon"
-msgstr "Xfce-indstillingsdæmon"
+msgstr "Xfce Konfigurationsdæmon"
 
 #: ../xfconfd/main.c:182
 msgid "Xfce configuration daemon"
-msgstr "Xfce-indstillingsdæmon"
+msgstr "Xfce Konfigurationsdæmon"
 
 #: ../xfconfd/main.c:184
 msgid "Report bugs to http://bugs.xfce.org/\n"
