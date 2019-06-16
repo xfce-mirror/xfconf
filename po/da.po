@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2019-06-10 19:07+0000\n"
+"PO-Revision-Date: 2019-06-16 18:41+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfconf/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgstr "Kunne ikke fortolke værdi af type \"%s\" fra \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1369
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "Typeattributten på <værdi> må ikke være en tabel"
+msgstr "Type-attributten for <værdi> må ikke være en tabel"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1378
 #, c-format
@@ -155,11 +155,11 @@ msgstr "Flyt til baggrunden efter start: Er kun brugbar for afprøvningsformål"
 
 #: ../xfconfd/main.c:173
 msgid "Xfce Configuration Daemon"
-msgstr "Xfce Konfigurationsdæmon"
+msgstr "Xfce-konfigurationsdæmon"
 
 #: ../xfconfd/main.c:182
 msgid "Xfce configuration daemon"
-msgstr "Xfce Konfigurationsdæmon"
+msgstr "Xfce-konfigurationsdæmon"
 
 #: ../xfconfd/main.c:184
 msgid "Report bugs to http://bugs.xfce.org/\n"
