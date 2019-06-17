@@ -107,6 +107,14 @@ xfconf_tests_start(void)
             return FALSE;
         }
     }
+    if (g_dbus_message_get_message_type(ret) != G_DBUS_MESSAGE_TYPE_METHOD_RETURN)
+    {
+        g_critical("xfconfd is not running and can not be autostarted");
+        g_object_unref (msg);
+        g_object_unref (ret);
+        xfconf_tests_end();
+        return FALSE;
+    }
     g_object_unref (msg);
     g_object_unref (ret);
 
