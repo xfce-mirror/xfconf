@@ -1,3 +1,11 @@
+4.13.8
+======
+
+- Add support for GObject introspection and vala
+- Tests: Explicitly handle error reply from Ping method call
+- Disable perl bindings by default
+- Translation Updates: Danish, Armenian (Armenia)
+
 4.13.7
 ======
 - Bump glib version
