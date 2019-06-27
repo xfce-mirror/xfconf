@@ -101,7 +101,7 @@ dnl see if we can build the perl bindings
 AC_ARG_ENABLE([perl-bindings],
               [AC_HELP_STRING([--disable-perl-bindings],
                               [Don't try to build the perl bindings (default=auto)])],
-              [use_perl=$enableval], [use_perl=auto])
+              [use_perl=$enableval], [use_perl=no])
 PERL_GLIB_REQUIRED_VERSION=1.020
 PERL_EXTUTILS_DEPENDS_REQUIRED_VERSION=0.300
 PERL_EXTUTILS_PKGCONFIG_REQUIRED_VERSION=1.000
