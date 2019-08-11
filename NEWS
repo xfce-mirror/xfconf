@@ -1,3 +1,9 @@
+4.14.0
+======
+
+- Translation Updates:
+  Czech, Galician, Norwegian Bokmål, Portuguese
+
 4.13.8
 ======
 
@@ -15,8 +21,8 @@
 - Update .gitignore
 - Fix warnings reported by GCC 8 (Bug #15112)
 - Added gdbus binding to gitignore, add post release git tag
-- Translation updates: Basque, Belarusian, Bulgarian, Catalan, Czech, Danish, 
-  English (Australia), Icelandic, Italian, Lithuanian, Portuguese (Brazilian), 
+- Translation updates: Basque, Belarusian, Bulgarian, Catalan, Czech, Danish,
+  English (Australia), Icelandic, Italian, Lithuanian, Portuguese (Brazilian),
   Romanian, Slovak, Swedish
 
 4.13.6
@@ -31,7 +37,7 @@
 
 4.13.4
 ======
-- Fix segfault in xfconf_cache_set_property_reply_handler when 
+- Fix segfault in xfconf_cache_set_property_reply_handler when
   multiple calls are made (bug #13825)
 - Allow to store empty arrays (bug #13791)
 - Fix a path in xfconf_cache_set where the mutex isn't locked (bug #13790)
@@ -59,7 +65,7 @@
 4.13.0
 ======
 - Port xfconf to gdbus
-- Bump libxfconf version from 0 to 1. 
+- Bump libxfconf version from 0 to 1.
 
 4.12.1
 ======
