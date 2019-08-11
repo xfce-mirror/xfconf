@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2019-07-24 12:45+0000\n"
+"PO-Revision-Date: 2019-08-11 04:38+0000\n"
 "Last-Translator: Kjell Cato Heskjestad <cato@heskjestad.xyz>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/xfce/xfconf/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -178,7 +178,7 @@ msgstr "GType-transformasjon mislyktes «%s»"
 #: ../xfconfd/xfconf-daemon.c:483
 #, c-format
 msgid "No backends could be started"
-msgstr "Ingen baksystemer kunne startes"
+msgstr "Klarte ikke starte noen baksystemer"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
@@ -218,11 +218,11 @@ msgstr "Lag ny egenskap hvis den ikke allerede finnes"
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
-msgstr "Angi egenskapens type verdi"
+msgstr "Angi egenskapens verditype"
 
 #: ../xfconf-query/main.c:208
 msgid "Reset property"
-msgstr "Nullstill egenskap"
+msgstr "Tilbakestill egenskap"
 
 #: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
@@ -243,7 +243,7 @@ msgstr "Overvåk kanal for egenskapsendringer"
 #: ../xfconf-query/main.c:249
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr "Kunne ikke starte libxfconf: %s"
+msgstr "Klarte ikke starte libxfconf: %s"
 
 #: ../xfconf-query/main.c:254
 msgid "- Xfconf commandline utility"
@@ -287,7 +287,7 @@ msgstr "Start overvåking av kanal «%s»:"
 #: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
 #: ../xfconf-query/main.c:530
 msgid "Failed to set property"
-msgstr "Klarte ikke å velge egenskap"
+msgstr "Klarte ikke velge egenskap"
 
 #: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
