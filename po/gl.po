@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2019-08-05 05:26+0000\n"
+"PO-Revision-Date: 2019-08-23 14:05+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfconf/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -23,12 +23,12 @@ msgstr ""
 #: ../xfconf/xfconf-cache.c:979
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "Produciuse un erro ao chamar a ResetProperty de DBus"
+msgstr "Produciuse un fallo ao chamar a ResetProperty de DBus"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:276
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Non foi posíbel crear o directorio de configuración «%s»"
+msgstr "Non se puido crear o cartafol de configuración «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:321
 #: ../xfconfd/xfconf-daemon.c:167
@@ -58,7 +58,7 @@ msgstr "<property> ten un tipo incorrecto: «%s»"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1389
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "Non foi posíbel analizar o valor de tipo «%s» de «%s»"
+msgstr "Non se puido analizar o valor de tipo «%s» de «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1369
 #, c-format
@@ -84,7 +84,7 @@ msgstr "Non é posíbel escribir na canle «%s»: %s"
 #: ../xfconfd/xfconf-backend-factory.c:77
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Non foi posíbel atopar a infraestrutura de Xfconf de tipo «%s»"
+msgstr "Non se puido atopar a infraestrutura de Xfconf de tipo «%s»"
 
 #: ../xfconfd/xfconf-backend.c:101
 #, c-format
@@ -140,7 +140,7 @@ msgstr "O nome %s perdeuse no dbus de mensaxes; saímos."
 
 #: ../xfconfd/main.c:148
 msgid "Prints the xfconfd version."
-msgstr "Mostra a versión de xfconfd."
+msgstr "Amosa a versión de xfconfd."
 
 #: ../xfconfd/main.c:150
 msgid ""
@@ -167,7 +167,7 @@ msgstr "Comunique os fallos en http://bugs.xfce.org/\n"
 #: ../xfconfd/main.c:187
 #, c-format
 msgid "Error parsing options: %s\n"
-msgstr "Erro ao analizar as opcións: %s\n"
+msgstr "Produciuse un fallo ao analizar as opcións: %s\n"
 
 #: ../xfconfd/xfconf-daemon.c:222
 #, c-format
@@ -242,7 +242,7 @@ msgstr "Monitorizar os cambios nas propiedades dunha canle"
 #: ../xfconf-query/main.c:249
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr "Produciuse un erro ao iniciar libxfconf: %s"
+msgstr "Produciuse un fallo ao iniciar libxfconf: %s"
 
 #: ../xfconf-query/main.c:254
 msgid "- Xfconf commandline utility"
@@ -251,7 +251,7 @@ msgstr "- Utilidade de liña de ordes de Xfconf"
 #: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr "Produciuse un erro ao analizar a opción: %s"
+msgstr "Produciuse un fallo ao analizar a opción: %s"
 
 #: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
@@ -286,7 +286,7 @@ msgstr "Iniciar a canle de monitorización «%s»:"
 #: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
 #: ../xfconf-query/main.c:530
 msgid "Failed to set property"
-msgstr "Produciuse un erro ao definir a propiedade"
+msgstr "Produciuse un fallo ao definir a propiedade"
 
 #: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
@@ -314,11 +314,11 @@ msgstr "Cando se crea unha nova propiedade débese especificar o tipo do valor"
 
 #: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
-msgstr "Non foi posíbel obter o tipo do valor"
+msgstr "Non se puido obter o tipo do valor"
 
 #: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
-msgstr "Non foi posíbel determinar o tipo do valor"
+msgstr "Non se puido determinar o tipo do valor"
 
 #: ../xfconf-query/main.c:444
 msgid "A value type must be specified to change an array into a single value"
@@ -327,7 +327,7 @@ msgstr "Débese especificar un tipo de valor para converter unha matriz nun valo
 #: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "Non foi posíbel converter «%s» ao tipo «%s»"
+msgstr "Non se puido converter «%s» ao tipo «%s»"
 
 #: ../xfconf-query/main.c:486
 #, c-format
@@ -337,7 +337,7 @@ msgstr "Hai %d valores novos, pero só se poden determinar %d tipos"
 #: ../xfconf-query/main.c:507
 #, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "Non foi posíbel determinar o tipo do valor da posición %d"
+msgstr "Non se puido determinar o tipo do valor da posición %d"
 
 #: ../xfconf-query/main.c:557
 #, c-format
