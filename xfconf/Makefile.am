@@ -67,6 +67,7 @@ INTROSPECTION_SCANNER_ARGS = \
 	--warn-all \
 	-DLIBXFCONF_COMPILATION \
 	--symbol-prefix=xfconf_g_ \
+	--symbol-prefix=xfconf_get_ \
 	--symbol-prefix=xfconf_ \
 	--c-include=xfconf/xfconf.h
 INTROSPECTION_COMPILER_ARGS = \
