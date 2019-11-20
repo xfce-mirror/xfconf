@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2019-11-20 10:14+0000\n"
+"PO-Revision-Date: 2019-11-20 11:54+0000\n"
 "Last-Translator: Arnold Marko <arnold.marko@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/xfce/xfconf/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -150,19 +150,19 @@ msgstr "Konfiguracijska zaledja, ki naj se uporabijo. Prvo določeno zaledje se 
 
 #: ../xfconfd/main.c:153
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr ""
+msgstr "Po zagonu naredi dvojnik v ozadju; uporabno le za testiranja."
 
 #: ../xfconfd/main.c:173
 msgid "Xfce Configuration Daemon"
-msgstr ""
+msgstr "Demon za Xfce nastavitve"
 
 #: ../xfconfd/main.c:182
 msgid "Xfce configuration daemon"
-msgstr ""
+msgstr "Demon za Xfce nastavitve"
 
 #: ../xfconfd/main.c:184
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr ""
+msgstr "Prijavite hrošče na http://bugs.xfce.org/\n"
 
 #: ../xfconfd/main.c:187
 #, c-format
@@ -172,12 +172,12 @@ msgstr "Napaka pri razčlenjevanju možnosti: %s\n"
 #: ../xfconfd/xfconf-daemon.c:222
 #, c-format
 msgid "GType transformation failed \"%s\""
-msgstr ""
+msgstr "GType transformacija ni uspela \"%s\""
 
 #: ../xfconfd/xfconf-daemon.c:483
 #, c-format
 msgid "No backends could be started"
-msgstr ""
+msgstr "Zaledji ni bilo mogoče zagnati"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
@@ -193,27 +193,27 @@ msgstr "Podatki o različici"
 
 #: ../xfconf-query/main.c:180
 msgid "The channel to query/modify"
-msgstr ""
+msgstr "Kanal za poizvedovanje/spreminjanje"
 
 #: ../xfconf-query/main.c:184
 msgid "The property to query/modify"
-msgstr ""
+msgstr "Lastnost za poizvedovanje/spreminjanje"
 
 #: ../xfconf-query/main.c:188
 msgid "The new value to set for the property"
-msgstr ""
+msgstr "Na novo določena vrednost lastnosti"
 
 #: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
-msgstr ""
+msgstr "Prikaži seznam lastnosti (ali kanalo, če -c ni določen)"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
-msgstr ""
+msgstr "Podrobni izpis"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
-msgstr ""
+msgstr "Ustvari novo lastnost, če ta že ne obstaja"
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
@@ -225,7 +225,7 @@ msgstr "Ponastavi lastnost"
 
 #: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
-msgstr ""
+msgstr "Rekurzivno (uporabite z -r)"
 
 #: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
@@ -233,7 +233,7 @@ msgstr "Prisili tabelo tudi, če je samo en element"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
-msgstr ""
+msgstr "Obrni obstoječo binarno logično vrednost"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
@@ -242,16 +242,16 @@ msgstr "Nadzoruj kanal za spremembe lastnosti"
 #: ../xfconf-query/main.c:249
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr ""
+msgstr "Neuspešna inicializacija libxfconf: %s"
 
 #: ../xfconf-query/main.c:254
 msgid "- Xfconf commandline utility"
-msgstr ""
+msgstr "-Xfconf orodje ukazne vrstice"
 
 #: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr ""
+msgstr "Razčlenjevanje možnosti ni bilo uspešno: %s"
 
 #: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
@@ -272,11 +272,11 @@ msgstr "Ni navedene lastnosti"
 
 #: ../xfconf-query/main.c:304
 msgid "--create and --reset options can not be used together"
-msgstr ""
+msgstr "--create in --reset možnosti ni mogoče uporabljati hkrati"
 
 #: ../xfconf-query/main.c:310
 msgid "--create and --reset options can not be used together with --list"
-msgstr ""
+msgstr "--create in --reset možnosti ni mogoče uporabljati hkrati z --list"
 
 #: ../xfconf-query/main.c:322
 #, c-format
@@ -290,7 +290,7 @@ msgstr "Nastavljanje lastnosti ni uspelo"
 
 #: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
-msgstr ""
+msgstr "--toogle deluje zgolj z binarnimi logičnimi vrednostmi"
 
 #: ../xfconf-query/main.c:369 ../xfconf-query/main.c:388
 msgid "(unknown)"
@@ -306,7 +306,7 @@ msgstr "Vrednost je tabela z %d elementi:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr ""
+msgstr "Lastnost \"%s\" ne obstaja na kanalu \"%s\". Če naj se ustvari nova lastnost, uporabite opcijo --create"
 
 #: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
@@ -314,7 +314,7 @@ msgstr "Ob kreaciji nove lastnosti morate določiti tip vrednosti."
 
 #: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
-msgstr ""
+msgstr "Obstoječe vrste vrednosti ni bilo mogoče pridobiti."
 
 #: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
@@ -322,7 +322,7 @@ msgstr "Ne moremo določiti tipa  vrednosti"
 
 #: ../xfconf-query/main.c:444
 msgid "A value type must be specified to change an array into a single value"
-msgstr ""
+msgstr "Vrsta vrednosti mora biti podana, da bi spremenili polje v posamično vrednost."
 
 #: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
@@ -332,12 +332,12 @@ msgstr "\"%s\" ni mogoče pretvoriti v tip \"%s\""
 #: ../xfconf-query/main.c:486
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr ""
+msgstr "Obstaja %d novih vrednosti, a le %d vrst je bilo mogoče določiti"
 
 #: ../xfconf-query/main.c:507
 #, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr ""
+msgstr "Ni bilo mogoče določiti vrste vrednosti z indeksom %d"
 
 #: ../xfconf-query/main.c:557
 #, c-format
