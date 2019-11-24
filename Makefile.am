@@ -9,6 +9,10 @@ SUBDIRS = \
 	docs \
 	tests
 
+if ENABLE_BASH_COMPLETION
+SUBDIRS += completions
+endif
+
 if XFCONF_ENABLE_GSETTINGS_BACKEND
 SUBDIRS += gsettings-backend
 endif
