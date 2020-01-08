@@ -1,0 +1,342 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfconf\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-01 18:31+0200\n"
+"PO-Revision-Date: 2020-01-08 00:17+0000\n"
+"Last-Translator: Besnik <besnik@programeshqip.org>\n"
+"Language-Team: Albanian (http://www.transifex.com/xfce/xfconf/language/sq/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sq\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../xfconf/xfconf-cache.c:979
+#, c-format
+msgid "Failed to make ResetProperty DBus call"
+msgstr "S’u arrit të bëhej thirrja ResetProperty DBus"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:276
+#, c-format
+msgid "Unable to create configuration directory \"%s\""
+msgstr "S’arrihet të krijohet drejtori formësimesh \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:321
+#: ../xfconfd/xfconf-daemon.c:167
+#, c-format
+msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
+msgstr "Leje e mohuar teksa ndryshohej vetia \"%s\" në kanalin \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:386
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:468
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:633
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:653 ../xfconf-query/main.c:344
+#, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\""
+msgstr "Vetia \"%s\" s’ekziston në kanalin \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:600
+#, c-format
+msgid "Unable to remove channel \"%s\": %s"
+msgstr "S’arrihet të hiqet kanali \"%s\": %s"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1297
+#, c-format
+msgid "Invalid type for <property>: \"%s\""
+msgstr "Lloj i pavlefshëm për <property>: \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1313
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1389
+#, c-format
+msgid "Unable to parse value of type \"%s\" from \"%s\""
+msgstr "S’arrihet të përtypet vlerë e llojit \"%s\" prej \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1369
+#, c-format
+msgid "The type attribute of <value> cannot be an array"
+msgstr "Atributi i llojit <value> s’mund të jetë një matricë"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1378
+#, c-format
+msgid "Invalid type for <value>: \"%s\""
+msgstr "Lloj i pavlefshëm për <value>: \"%s\""
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1654
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1903
+#, c-format
+msgid "Channel \"%s\" does not exist"
+msgstr "Kanali \"%s\" s’ekziston"
+
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1961
+#, c-format
+msgid "Unable to write channel \"%s\": %s"
+msgstr "S’arrihet të shkruhet kanali \"%s\": %s"
+
+#: ../xfconfd/xfconf-backend-factory.c:77
+#, c-format
+msgid "Unable to find Xfconf backend of type \"%s\""
+msgstr "S’arrihet të gjendet mekanizëm i pasmë Xfconf i llojit \"%s\""
+
+#: ../xfconfd/xfconf-backend.c:101
+#, c-format
+msgid "Property names must start with a '/' character"
+msgstr "Emrat e vetive duhet të fillojnë me një shenjë '/'"
+
+#: ../xfconfd/xfconf-backend.c:110
+#, c-format
+msgid "The root element ('/') is not a valid property name"
+msgstr "Elementi rrënjë ('/') s’është emër i vlefshëm vetish"
+
+#: ../xfconfd/xfconf-backend.c:125
+#, c-format
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
+"separator"
+msgstr "Emrat e vetive mund të përfshijnë vetëm shenjat ASCII A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' dhe '>', si edhe '/' si ndarës"
+
+#: ../xfconfd/xfconf-backend.c:134
+#, c-format
+msgid "Property names cannot have two or more consecutive '/' characters"
+msgstr "Emrat e vetive s’mund të kenë dy ose më shumë shenja '/' të njëpasnjëshme"
+
+#: ../xfconfd/xfconf-backend.c:145
+#, c-format
+msgid "Property names cannot end with a '/' character"
+msgstr "Emrat e vetive s’mund të përfundojnë me shenjën '/'"
+
+#: ../xfconfd/xfconf-backend.c:162
+#, c-format
+msgid "Channel name cannot be an empty string"
+msgstr "Emri i kanali s’mund të jetë një varg i zbrazët"
+
+#: ../xfconfd/xfconf-backend.c:177
+#, c-format
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
+" '|', ']', '[', ':', ',', '.', '_', and '-'"
+msgstr "Emrat e kanaleve mund të përmbajnë vetëm shenjat ASCII A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', dhe '-'"
+
+#: ../xfconfd/xfconf-backend.c:399
+#, c-format
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr "Emri i vetisë mund të jetë i zbrazët ose \"/\" vetëm nëse është specifikuar një rikthim rekursiv te parazgjedhjet"
+
+#: ../xfconfd/main.c:125
+#, c-format
+msgid "Name %s lost on the message dbus, exiting."
+msgstr "Emri %s humbi në dbus mesazhi, po dilet."
+
+#: ../xfconfd/main.c:148
+msgid "Prints the xfconfd version."
+msgstr "Shtyp versionin e xfconfd-së."
+
+#: ../xfconfd/main.c:150
+msgid ""
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Mekanizma të pasmë formësimesh për t’u përdorur.  Mekanizmi i parë i pasmë i specifikuar hapet për lexim/shkrim; të tjerët vetëm për lexim."
+
+#: ../xfconfd/main.c:153
+msgid "Fork into background after starting; only useful for testing purposes"
+msgstr ""
+
+#: ../xfconfd/main.c:173
+msgid "Xfce Configuration Daemon"
+msgstr "Demoni i Formësimit të Xfce-së"
+
+#: ../xfconfd/main.c:182
+msgid "Xfce configuration daemon"
+msgstr "Demoni i formësimit të Xfce-së"
+
+#: ../xfconfd/main.c:184
+msgid "Report bugs to http://bugs.xfce.org/\n"
+msgstr "Të metat njoftojini te http://bugs.xfce.org/\n"
+
+#: ../xfconfd/main.c:187
+#, c-format
+msgid "Error parsing options: %s\n"
+msgstr "Gabim në përtypje mundësish: %s\n"
+
+#: ../xfconfd/xfconf-daemon.c:222
+#, c-format
+msgid "GType transformation failed \"%s\""
+msgstr "Shndërrimi GType dështoi \"%s\""
+
+#: ../xfconfd/xfconf-daemon.c:483
+#, c-format
+msgid "No backends could be started"
+msgstr "S’u nisën dot backend-e"
+
+#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
+msgid "set"
+msgstr "caktoje"
+
+#: ../xfconf-query/main.c:100
+msgid "reset"
+msgstr "riktheje te parazgjedhjet"
+
+#: ../xfconf-query/main.c:176
+msgid "Version information"
+msgstr "Të dhëna versioni"
+
+#: ../xfconf-query/main.c:180
+msgid "The channel to query/modify"
+msgstr "Kanali për t’u kërkuar/ndryshuar"
+
+#: ../xfconf-query/main.c:184
+msgid "The property to query/modify"
+msgstr "Vetia për t’u kërkuar/ndryshuar"
+
+#: ../xfconf-query/main.c:188
+msgid "The new value to set for the property"
+msgstr "Vlera e re për t’u caktuar për vetinë"
+
+#: ../xfconf-query/main.c:192
+msgid "List properties (or channels if -c is not specified)"
+msgstr "Radhit vetitë (ose kanale, nëse nuk është specifikuar -c)"
+
+#: ../xfconf-query/main.c:196
+msgid "Verbose output"
+msgstr "Output fjalaman"
+
+#: ../xfconf-query/main.c:200
+msgid "Create a new property if it does not already exist"
+msgstr "Krijo një veti të re, nëse nuk ekziston tashmë"
+
+#: ../xfconf-query/main.c:204
+msgid "Specify the property value type"
+msgstr "Specifikoni lloj vlere vetie"
+
+#: ../xfconf-query/main.c:208
+msgid "Reset property"
+msgstr "Riktheje vetinë te parazgjedhje"
+
+#: ../xfconf-query/main.c:212
+msgid "Recursive (use with -r)"
+msgstr "Rekursive (përdoreni me -r)"
+
+#: ../xfconf-query/main.c:216
+msgid "Force array even if only one element"
+msgstr ""
+
+#: ../xfconf-query/main.c:220
+msgid "Invert an existing boolean property"
+msgstr ""
+
+#: ../xfconf-query/main.c:224
+msgid "Monitor a channel for property changes"
+msgstr "Mbikëqyr një kanal për ndryshime vetie"
+
+#: ../xfconf-query/main.c:249
+#, c-format
+msgid "Failed to init libxfconf: %s"
+msgstr "S’u arrit të gatitet libxfconf: %s"
+
+#: ../xfconf-query/main.c:254
+msgid "- Xfconf commandline utility"
+msgstr "Mjeti - Xfconf për rresht urdhrash"
+
+#: ../xfconf-query/main.c:259
+#, c-format
+msgid "Option parsing failed: %s"
+msgstr "Përtypja e mundësisë dështoi: %s"
+
+#: ../xfconf-query/main.c:269
+msgid "The Xfce development team. All rights reserved."
+msgstr "Ekipi i zhvillimit të Xfce-së. Tërë të drejtat të rezervuara."
+
+#: ../xfconf-query/main.c:270
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr "Ju lutemi, njoftoni të meta te <%s>."
+
+#: ../xfconf-query/main.c:282
+msgid "Channels:"
+msgstr "Kanale:"
+
+#: ../xfconf-query/main.c:298
+msgid "No property specified"
+msgstr "S’është specifikuar veti"
+
+#: ../xfconf-query/main.c:304
+msgid "--create and --reset options can not be used together"
+msgstr "Mundësitë --create dhe --reset s’mund të përdoren bashkë"
+
+#: ../xfconf-query/main.c:310
+msgid "--create and --reset options can not be used together with --list"
+msgstr "Mundësitë --create dhe --reset s’mund të përdoren tok me --list"
+
+#: ../xfconf-query/main.c:322
+#, c-format
+msgid "Start monitoring channel \"%s\":"
+msgstr "Fillo mbikëqyrje kanali \"%s\":"
+
+#: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
+#: ../xfconf-query/main.c:530
+msgid "Failed to set property"
+msgstr "S'u arrit të caktohet veti"
+
+#: ../xfconf-query/main.c:360
+msgid "--toggle only works with boolean values"
+msgstr "--toggle funksionon vetëm me vlera buelane"
+
+#: ../xfconf-query/main.c:369 ../xfconf-query/main.c:388
+msgid "(unknown)"
+msgstr "(e panjohur)"
+
+#: ../xfconf-query/main.c:378
+#, c-format
+msgid "Value is an array with %d items:"
+msgstr "Vlera është një matricë me %d elementë:"
+
+#: ../xfconf-query/main.c:402
+#, c-format
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\". If a new property should "
+"be created, use the --create option"
+msgstr "Vetia \"%s\" nuk ekziston në kanalin \"%s\". Nëse duhet krijuar një veti e re, përdorni mundësinë --create"
+
+#: ../xfconf-query/main.c:410
+msgid "When creating a new property, the value type must be specified"
+msgstr "Kur krijohet një veti e re, lloji i vlerës duhet specifikuar"
+
+#: ../xfconf-query/main.c:420
+msgid "Failed to get the existing type for the value"
+msgstr "S’u arrit të merrej lloji ekzistues për vlerën"
+
+#: ../xfconf-query/main.c:438
+msgid "Unable to determine the type of the value"
+msgstr "S’arrihet të përcaktohet lloji i vlerës"
+
+#: ../xfconf-query/main.c:444
+msgid "A value type must be specified to change an array into a single value"
+msgstr "Një lloj vlere duhet specifikuar për të ndryshuar një matricë në një vlerë njëshe"
+
+#: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
+#, c-format
+msgid "Unable to convert \"%s\" to type \"%s\""
+msgstr "S’arrihet të shndërrohet \"%s\" në llojin \"%s\""
+
+#: ../xfconf-query/main.c:486
+#, c-format
+msgid "There are %d new values, but only %d types could be determined"
+msgstr "Ka %d vlera të reja, por vetëm %d lloje mund të përcaktohen"
+
+#: ../xfconf-query/main.c:507
+#, c-format
+msgid "Unable to determine type of value at index %d"
+msgstr "S’arrihet të përcaktohet lloj i vlerë në tregues %d"
+
+#: ../xfconf-query/main.c:557
+#, c-format
+msgid "Channel \"%s\" contains no properties"
+msgstr "Kanali \"%s\" s’përmban veti"
