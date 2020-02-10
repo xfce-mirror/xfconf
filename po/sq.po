@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2020-01-08 00:17+0000\n"
+"PO-Revision-Date: 2020-02-10 20:05+0000\n"
 "Last-Translator: Besnik <besnik@programeshqip.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/xfce/xfconf/language/sq/)\n"
 "MIME-Version: 1.0\n"
@@ -202,7 +202,7 @@ msgstr "Vlera e re për t’u caktuar për vetinë"
 
 #: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
-msgstr "Radhit vetitë (ose kanale, nëse nuk është specifikuar -c)"
+msgstr "Radhit vetitë (ose kanale, nëse s’është specifikuar -c)"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
@@ -210,7 +210,7 @@ msgstr "Output fjalaman"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
-msgstr "Krijo një veti të re, nëse nuk ekziston tashmë"
+msgstr "Krijo një veti të re, nëse s’ekziston tashmë"
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
@@ -283,7 +283,7 @@ msgstr "Fillo mbikëqyrje kanali \"%s\":"
 #: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
 #: ../xfconf-query/main.c:530
 msgid "Failed to set property"
-msgstr "S'u arrit të caktohet veti"
+msgstr "S’u arrit të caktohet veti"
 
 #: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
