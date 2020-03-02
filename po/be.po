@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2019-01-22 10:58+0000\n"
-"Last-Translator: Zmicer Turok <zmicerturok@gmail.com>\n"
+"PO-Revision-Date: 2020-03-02 14:37+0000\n"
+"Last-Translator: Zmicer Turok <nashtlumach@gmail.com>\n"
 "Language-Team: Belarusian (http://www.transifex.com/xfce/xfconf/language/be/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,7 @@ msgstr "Не атрымалася стварыць каталог канфігу
 #: ../xfconfd/xfconf-daemon.c:167
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Няма правоў на змену ўласцівасці \"%s\" каналу \"%s\""
+msgstr "Няма правоў на змену ўласцівасці \"%s\" канала \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:386
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:468
@@ -81,12 +81,12 @@ msgstr "Не атрымалася запісаць канал \"%s\": %s"
 #: ../xfconfd/xfconf-backend-factory.c:77
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Не атрымалася знайсці бэкенд Xfconf тыпу \"%s\""
+msgstr "Не атрымалася знайсці рухавік Xfconf тыпу \"%s\""
 
 #: ../xfconfd/xfconf-backend.c:101
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Назвы ўласцівасцяў мусяць пачынацца з '/'"
+msgstr "Назвы ўласцівасцей мусяць пачынацца з '/'"
 
 #: ../xfconfd/xfconf-backend.c:110
 #, c-format
@@ -99,17 +99,17 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
-msgstr "Назвы ўласцівасцяў могуць складацца толькі са знакаў ASCII A-Z, a-z, 0-9, '_', and '-' і '/' як падзяляльніка"
+msgstr "Назвы ўласцівасцей могуць складацца толькі са знакаў A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' і '/' як падзяляльніка"
 
 #: ../xfconfd/xfconf-backend.c:134
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "У назвах уласцівасцяў не могуць змяшчацца два альбо больш паслядоўных сімвала '/'"
+msgstr "У назвах уласцівасцей не могуць змяшчацца два альбо больш паслядоўных сімвала '/'"
 
 #: ../xfconfd/xfconf-backend.c:145
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Назвы ўласцівасцяў не могуць завяршацца сімвалам '/'"
+msgstr "Назвы ўласцівасцей не могуць завяршацца сімвалам '/'"
 
 #: ../xfconfd/xfconf-backend.c:162
 #, c-format
@@ -121,19 +121,19 @@ msgstr "Назва канала не можа быць пустым радком
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
-msgstr "Назвы каналоў могуць складацца толькі са знакаў ASCII A-Z, a-z, 0-9, '_', and '-'"
+msgstr "Назвы каналаў могуць складацца толькі са знакаў ASCII A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', and '-'"
 
 #: ../xfconfd/xfconf-backend.c:399
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr "Назва ўласцівасці можа быць пустой альбо \"/\",калі была скінута рэкурсіўна "
+msgstr "Назва ўласцівасці можа быць пустой альбо \"/\", калі была скінута рэкурсіўна"
 
 #: ../xfconfd/main.c:125
 #, c-format
 msgid "Name %s lost on the message dbus, exiting."
-msgstr "Назва '%s' згублена на шыне паведамленняў сеансу, выхад."
+msgstr "Назва \"%s\" згубленая на шыне паведамленняў сеанса, выхад."
 
 #: ../xfconfd/main.c:148
 msgid "Prints the xfconfd version."
@@ -143,11 +143,11 @@ msgstr "Паказаць версію xfconfd."
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
-msgstr "Бэкенд канфігурацыі для выкарыстання. Першы зададзены бэкенд адкрыты для чытанння/запісу;астатнія толькі для чытання."
+msgstr "Рухавік канфігурацыі для выкарыстання. Першы вызначаны рухавік адкрыты для чытання/запісу; астатнія толькі для чытання."
 
 #: ../xfconfd/main.c:153
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr "Выконваць у фоне пасля запуску; карысеа толькі для тэстаў"
+msgstr "Выконваць у фоне пасля запуску; карысна толькі для тэстаў"
 
 #: ../xfconfd/main.c:173
 msgid "Xfce Configuration Daemon"
@@ -169,16 +169,16 @@ msgstr "Падчас разбору параметра адбылася памы
 #: ../xfconfd/xfconf-daemon.c:222
 #, c-format
 msgid "GType transformation failed \"%s\""
-msgstr "Памылка пераўтварэння GType \"%s\""
+msgstr "Не атрымалася пераўтварыць GType \"%s\""
 
 #: ../xfconfd/xfconf-daemon.c:483
 #, c-format
 msgid "No backends could be started"
-msgstr "Не атрымалася запусціць бэкенд"
+msgstr "Не атрымалася запусціць рухавік"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
-msgstr "задаць"
+msgstr "вызначыць"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
@@ -190,19 +190,19 @@ msgstr "Інфармацыя пра версію"
 
 #: ../xfconf-query/main.c:180
 msgid "The channel to query/modify"
-msgstr "Канал запросу/змены"
+msgstr "Канал запыту/змены"
 
 #: ../xfconf-query/main.c:184
 msgid "The property to query/modify"
-msgstr "Уласцівасць запросу/змены"
+msgstr "Уласцівасць запыту/змены"
 
 #: ../xfconf-query/main.c:188
 msgid "The new value to set for the property"
-msgstr "Новае значэнне, зададзенае для ўласцівасці"
+msgstr "Новае значэнне, вызначанае для ўласцівасці"
 
 #: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
-msgstr "Спіс уласцівасцяў (альбо каналаў, калі не зададзена -c)"
+msgstr "Спіс уласцівасцей (альбо каналаў, калі не вызначана -c)"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
@@ -214,7 +214,7 @@ msgstr "Стварыць новую ўласцівасць, калі яна не
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
-msgstr "Задаць тып значэння ўласцівасці"
+msgstr "Вызначыць тып значэння ўласцівасці"
 
 #: ../xfconf-query/main.c:208
 msgid "Reset property"
@@ -230,16 +230,16 @@ msgstr "Выкарыстоўваць масіў нават калі ён скл�
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
-msgstr "Змяніць існуючую лагічную ўласцівасць"
+msgstr "Змяніць існую лагічную ўласцівасць"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
-msgstr "Сачыць за зменамі ўласцівасцяў каналу"
+msgstr "Сачыць за зменамі ўласцівасцей каналу"
 
 #: ../xfconf-query/main.c:249
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr "Не атрымалася ініцыілізаваць libxfconf: %s"
+msgstr "Не атрымалася ініцыялізаваць libxfconf: %s"
 
 #: ../xfconf-query/main.c:254
 msgid "- Xfconf commandline utility"
@@ -265,7 +265,7 @@ msgstr "Каналаў:"
 
 #: ../xfconf-query/main.c:298
 msgid "No property specified"
-msgstr "Уласцівасць не зададзена"
+msgstr "Уласцівасць не вызначаная"
 
 #: ../xfconf-query/main.c:304
 msgid "--create and --reset options can not be used together"
@@ -283,7 +283,7 @@ msgstr "Пачаць сачыць за каналам \"%s\":"
 #: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
 #: ../xfconf-query/main.c:530
 msgid "Failed to set property"
-msgstr "Не атрымалася задаць уласцівасць"
+msgstr "Не атрымалася вызначыць уласцівасць"
 
 #: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
@@ -303,15 +303,15 @@ msgstr "Значэнне з'яўляецца масівам з %d элемент
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr "Уласцівасць \"%s\" не існуе на канале \"%s\". Выкарыстоўвайце --create для стварэння новай уласцівасці"
+msgstr "Уласцівасць \"%s\" не існуе на канале \"%s\". Выкарыстайце --create для стварэння новай уласцівасці"
 
 #: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
-msgstr "Падчас стварэння новай уласцівасці неабходна задаць значэнне тыпу"
+msgstr "Падчас стварэння новай уласцівасці неабходна вызначыць значэнне тыпу"
 
 #: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
-msgstr "Немагчыма атрымаць існуючы тып"
+msgstr "Немагчыма атрымаць існы тып"
 
 #: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
@@ -319,7 +319,7 @@ msgstr "Не атрымалася вызначыць тып значэння"
 
 #: ../xfconf-query/main.c:444
 msgid "A value type must be specified to change an array into a single value"
-msgstr "Для пераўтварэння ў адзінае значэнне неабходна задаць тыып"
+msgstr "Для пераўтварэння ў адзінае значэнне неабходна вызначыць тып"
 
 #: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
@@ -339,4 +339,4 @@ msgstr "Не атрымалася вызначыць тып значэння ў 
 #: ../xfconf-query/main.c:557
 #, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "У канала \"%s\" няма ўласцівасцяў"
+msgstr "У канала \"%s\" няма ўласцівасцей"
