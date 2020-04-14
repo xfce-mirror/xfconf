@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2010
-# Jeff Huang <s8321414@gmail.com>, 2014,2017
+# 黃柏諺 <s8321414@gmail.com>, 2014,2017
 # Walter Cheuk <wwycheuk@gmail.com>, 2013
 msgid ""
 msgstr ""
