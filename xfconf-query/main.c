@@ -356,7 +356,10 @@ main(int argc, char **argv)
                 if(G_VALUE_HOLDS_BOOLEAN(&value))
                 {
                     if(xfconf_channel_set_bool(channel, property_name, !g_value_get_boolean(&value)))
+                    {
+                        xfconf_shutdown ();
                         return EXIT_SUCCESS;
+                    }
                     else
                         xfconf_query_printerr(_("Failed to set property"));
                 }
@@ -414,6 +417,7 @@ main(int argc, char **argv)
             if(!prop_exists && (!type || !type[0]))
             {
                 xfconf_query_printerr(_("When creating a new property, the value type must be specified"));
+                xfconf_shutdown ();
                 return EXIT_FAILURE;
             }
 
