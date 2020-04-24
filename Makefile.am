@@ -5,7 +5,6 @@ SUBDIRS = \
 	xfconf \
 	xfconfd \
 	xfconf-query \
-	xfconf-perl \
 	po \
 	docs \
 	tests
@@ -35,6 +34,5 @@ EXTRA_DIST = \
 
 DISTCHECK_CONFIGURE_FLAGS = \
 	--enable-gtk-doc \
-	--disable-perl-bindings \
 	--enable-introspection \
 	--disable-vala

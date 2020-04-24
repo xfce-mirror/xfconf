@@ -75,6 +75,9 @@ tests/t-get-properties
 tests/test-xdg_config_home
 xfconf/xfconf-dbus-bindings.h
 xfconf/libxfconf-0.pc
+xfconf/Xfconf-0.gir
+xfconf/Xfconf-0.typelib
+xfconf/libxfconf-0.vapi
 xfconf-perl/Makefile.PL
 xfconf-perl/Xfconf.pm
 xfconf-query/xfconf-query
