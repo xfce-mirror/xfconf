@@ -6,13 +6,14 @@
 # Elishai Eliyahu <e1907@mm.st>, 2016-2017
 # GenghisKhan <genghiskhan@gmx.ca>, 2016
 # Hezy Amiel <open@hezyamiel.com>, 2010
+# Omer, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2018-09-14 00:20+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2020-04-23 16:39+0000\n"
+"Last-Translator: Omer\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfconf/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,7 +125,7 @@ msgstr "שם ערוץ לא יכול להיות מחרוזת ריקה"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
-msgstr "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', and '-'"
+msgstr "שמות ערוצים יכולים לכלול רק את תווי ASCII האלה: A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', ואת '-'"
 
 #: ../xfconfd/xfconf-backend.c:399
 #, c-format
