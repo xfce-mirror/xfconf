@@ -189,7 +189,7 @@ xfconf_gsettings_backend_write_full (GSettingsBackend *backend,
   g_value_unset (value);
   g_free (value);
 
-  return FALSE;
+  return ret_val;
 }
 
 static gboolean
@@ -305,7 +305,6 @@ xfconf_gsettings_backend_finalize (XfconfGsettingsBackend *self)
 static void
 xfconf_gsettings_backend_init (XfconfGsettingsBackend *self)
 {
-  const gchar *prg_name;
   GError *error = NULL;
 
   if (!xfconf_init (&error)) {
@@ -316,9 +315,7 @@ xfconf_gsettings_backend_init (XfconfGsettingsBackend *self)
 
   self->nhandled_tree_node = 0;
 
-  prg_name = g_get_prgname();
-
-  self->channel = xfconf_channel_new (prg_name);
+  self->channel = xfconf_channel_new ("gsettings");
 
   self->changed_prop = g_hash_table_new_full (g_str_hash, g_str_equal,
                                               g_free, NULL);
