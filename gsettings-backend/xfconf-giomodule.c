@@ -31,14 +31,6 @@
 
 G_MODULE_EXPORT XFCONF_EXPORT void g_io_module_load (GIOModule *module)
 {
-  GError *error = NULL;
-
-  if (!xfconf_init (&error)) {
-    g_critical ("Failed to get connection to xfconfd: %s", error->message);
-    g_error_free (error);
-    return;
-  }
-
   g_type_module_use(G_TYPE_MODULE(module));
 
   g_io_extension_point_implement(G_SETTINGS_BACKEND_EXTENSION_POINT_NAME,
@@ -49,7 +41,6 @@ G_MODULE_EXPORT XFCONF_EXPORT void g_io_module_load (GIOModule *module)
 
 G_MODULE_EXPORT XFCONF_EXPORT void g_io_module_unload (GIOModule *module)
 {
-  xfconf_shutdown();
 }
 
 /* Module query */
