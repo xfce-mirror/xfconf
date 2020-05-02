@@ -297,6 +297,8 @@ xfconf_gsettings_backend_finalize (XfconfGsettingsBackend *self)
 
   g_hash_table_destroy (self->subscribed_prop);
 
+  xfconf_shutdown();
+
   G_OBJECT_CLASS(xfconf_gsettings_backend_parent_class)->finalize((GObject*)self);
 }
 
@@ -304,6 +306,13 @@ static void
 xfconf_gsettings_backend_init (XfconfGsettingsBackend *self)
 {
   const gchar *prg_name;
+  GError *error = NULL;
+
+  if (!xfconf_init (&error)) {
+    g_critical ("Failed to get connection to xfconfd: %s", error->message);
+    g_error_free (error);
+    return;
+  }
 
   self->nhandled_tree_node = 0;
 
