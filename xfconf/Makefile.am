@@ -54,7 +54,8 @@ pkgconfig_DATA = libxfconf-0.pc
 
 EXTRA_DIST = \
 	abicheck.sh \
-	xfconf.symbols
+	xfconf.symbols \
+	libxfconf-0.deps
 
 # required for gtk-doc
 dist-hook: all
@@ -107,8 +108,6 @@ libxfconf_0_vapi_FILES = Xfconf-0.gir
 
 vapidir = $(datadir)/vala/vapi
 vapi_DATA = $(VAPIGEN_VAPIS) $(VAPIGEN_VAPIS:.vapi=.deps)
-
-EXTRA_DIST += libxfconf-0.deps
 endif
 
 if HAVE_GNUC_VISIBILITY
