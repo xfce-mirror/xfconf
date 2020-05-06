@@ -1,3 +1,13 @@
+4.14.2
+======
+- Use 'gsettings' as a common channel name for the GSetting backend
+- Bug #14789 Fix GSettings backend assertion error, when probed but
+  not used.
+- Bug #15960: Add some missing xfconf_shutdown() in xfconf-query
+- Bug #15951: Fix 'xfconf_get_error_quark' introspecting warning
+- Translation updates: gl, hr, zh_CN, sl, sq, be, da, el, es
+  hu, zh_TW, he.
+
 4.14.1
 ======
 
