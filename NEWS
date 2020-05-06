@@ -1,3 +1,7 @@
+4.14.3
+======
+- Always provide files for vala bindings
+
 4.14.2
 ======
 - Use 'gsettings' as a common channel name for the GSetting backend
