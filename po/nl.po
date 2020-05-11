@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Pjotr <pjotrvertaalt@gmail.com>, 2014,2017
+# Pjotr <pjotrvertaalt@gmail.com>, 2014,2017,2020
 # Pjotr pjotrvertaalt@gmail.com , 2011,2013
 # Stephan Arts <stephan@xfce.org>, 2009
 msgid ""
@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2018-09-14 00:20+0000\n"
+"PO-Revision-Date: 2020-05-11 13:47+0000\n"
 "Last-Translator: Pjotr <pjotrvertaalt@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/xfce/xfconf/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -162,7 +162,7 @@ msgstr "Achtergronddienst van Xfce-configuratie"
 
 #: ../xfconfd/main.c:184
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr "Meld fouten op http://bugs.xfce.org/\n"
+msgstr "Meld fouten a.u.b. op http://bugs.xfce.org/\n"
 
 #: ../xfconfd/main.c:187
 #, c-format
