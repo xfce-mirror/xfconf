@@ -1,0 +1,9 @@
+include:
+  - project: 'xfce/xfce4-dev-tools'
+    file: '/ci/build_project.yml'
+
+# Skip distcheck for xfconf since it is not implemented.
+distcheck:
+  rules:
+    - when: never
+
