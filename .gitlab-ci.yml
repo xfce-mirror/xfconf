@@ -1,0 +1,14 @@
+include:
+  - project: 'xfce/xfce4-dev-tools'
+    file: '/ci/build_project.yml'
+
+# Override distcheck to do nothing in the template since we do not
+# use it. This fails but allows the failure so there is a warning,
+# if we change the script to run `true` instead of `false` it would
+# be green instead.
+distcheck:
+  stage: distcheck
+  allow_failure: true
+  script:
+    - "false"
+
