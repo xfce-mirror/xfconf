@@ -89,7 +89,7 @@ xfconf_tests_start(void)
         xfconf_tests_end();
         return FALSE;
     }
-    msg = g_dbus_message_new_method_call("org.xfce.Xfconf",
+    msg = g_dbus_message_new_method_call("org.xfce.XfconfTest",
                                          "/org/xfce/Xfconf",
                                          "org.freedesktop.DBus.Peer",
                                          "Ping");

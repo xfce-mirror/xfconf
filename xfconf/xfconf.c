@@ -41,6 +41,9 @@ static GDBusConnection *gdbus = NULL;
 static GDBusProxy *gproxy = NULL;
 static GHashTable *named_structs = NULL;
 
+#define XFCONF_DBUS_NAME "org.xfce.Xfconf"
+#define XFCONF_DBUS_NAME_TEST "org.xfce.XfconfTest"
+
 
 /* private api */
 
@@ -108,6 +111,8 @@ _xfconf_named_struct_free(XfconfNamedStruct *ns)
 gboolean
 xfconf_init(GError **error)
 {
+    const gchar *is_test_mode;
+
     if(xfconf_refcnt) {
         ++xfconf_refcnt;
         return TRUE;
@@ -122,10 +127,11 @@ xfconf_init(GError **error)
     if (!gdbus)
         return FALSE;
 
+    is_test_mode = g_getenv ("XFCONF_RUN_IN_TEST_MODE");
     gproxy = g_dbus_proxy_new_sync(gdbus,
                                    G_DBUS_PROXY_FLAGS_NONE,
                                    NULL,
-                                   "org.xfce.Xfconf",
+                                   is_test_mode == NULL ? XFCONF_DBUS_NAME : XFCONF_DBUS_NAME_TEST,
                                    "/org/xfce/Xfconf",
                                    "org.xfce.Xfconf",
                                    NULL,

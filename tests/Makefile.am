@@ -5,12 +5,10 @@ SUBDIRS = \
 	get-properties \
 	reset-properties \
 	property-changed-signal \
-	object-bindings
+	object-bindings \
+	tests-end
 #	list-channels
 
-clean-local:
-	-rm -rf test-xdg_config_home
-
 EXTRA_DIST = \
-	$(test_scripts) \
+	tests-driver.sh \
 	tests-common.h

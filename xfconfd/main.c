@@ -55,6 +55,8 @@
 #include "xfconf-backend-factory.h"
 
 #define DEFAULT_BACKEND  "xfce-perchannel-xml"
+#define XFCONF_DBUS_NAME "org.xfce.Xfconf"
+#define XFCONF_DBUS_NAME_TEST "org.xfce.XfconfTest"
 
 enum
 {
@@ -137,6 +139,7 @@ main(int argc,
     GError *error = NULL;
     struct sigaction act;
     GIOChannel *signal_io;
+    const gchar *is_test_mode;
     guint signal_watch = 0;
     
     GOptionContext *opt_ctx;
@@ -232,8 +235,9 @@ main(int argc,
     g_strfreev(backends);
     
     /* acquire name */
+    is_test_mode = g_getenv ("XFCONF_RUN_IN_TEST_MODE");
     g_bus_own_name (G_BUS_TYPE_SESSION,
-                    "org.xfce.Xfconf",
+                    is_test_mode == NULL ? XFCONF_DBUS_NAME : XFCONF_DBUS_NAME_TEST,
                     G_BUS_NAME_OWNER_FLAGS_NONE,
                     NULL,
                     NULL,

@@ -13,8 +13,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
+LOG_COMPILER = $(top_srcdir)/tests/tests-driver.sh $(top_builddir)/xfconfd
+
 TESTS = $(check_PROGRAMS)
-TESTS_ENVIRONMENT = XDG_CONFIG_HOME="$(top_builddir)/tests/test-xdg_config_home" XFCONFD="$(top_builddir)/xfconfd/xfconfd"
 
 AM_CFLAGS = \
 	-I$(top_srcdir) \
