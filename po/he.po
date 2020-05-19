@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2020-04-23 16:39+0000\n"
+"PO-Revision-Date: 2020-05-19 11:23+0000\n"
 "Last-Translator: Omer\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfconf/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -103,7 +103,7 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
-msgstr "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a separator"
+msgstr "שמות מאפיינים יכולים לכלול רק את תווי ASCII שהם A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}',  '<' ואת '>', '/' כמו כן כמפריד"
 
 #: ../xfconfd/xfconf-backend.c:134
 #, c-format
@@ -125,7 +125,7 @@ msgstr "שם ערוץ לא יכול להיות מחרוזת ריקה"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
-msgstr "שמות ערוצים יכולים לכלול רק את תווי ASCII האלה: A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', ואת '-'"
+msgstr "שמות ערוצים יכולים לכלול רק את תווי ASCII שהם A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', ואת '-'"
 
 #: ../xfconfd/xfconf-backend.c:399
 #, c-format
@@ -163,7 +163,7 @@ msgstr "שדון תצורת Xfce "
 
 #: ../xfconfd/main.c:184
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr "דווח באגים ל- http://bugs.xfce.org/ \n"
+msgstr "דווח על באגים ל- http://bugs.xfce.org/ \n"
 
 #: ../xfconfd/main.c:187
 #, c-format
@@ -261,7 +261,7 @@ msgstr "קבוצת הפיתוח של Xfce. כל הזכויות שמורות."
 #: ../xfconf-query/main.c:270
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr "אנא דווח באגים ל <%s>."
+msgstr "אנא דווח על באגים ל- <%s>."
 
 #: ../xfconf-query/main.c:282
 msgid "Channels:"
