@@ -7,12 +7,13 @@
 # GenghisKhan <genghiskhan@gmx.ca>, 2016
 # Hezy Amiel <open@hezyamiel.com>, 2010
 # Omer, 2020
+# Omer, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2020-05-19 11:23+0000\n"
+"PO-Revision-Date: 2020-06-12 10:49+0000\n"
 "Last-Translator: Omer\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfconf/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -307,7 +308,7 @@ msgstr "ערך הוא מערך עם %d פריטים:"
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr "מאפיין \"%s\" לא קיים בערוץ \"%s\". אם יש צורך במאפיין חדש, השתמש באפשרות create-- "
+msgstr "המאפיין \"%s\" לא קיים בערוץ \"%s\". אם יש צורך במאפיין חדש, השתמש באפשרות create-- "
 
 #: ../xfconf-query/main.c:410
 msgid "When creating a new property, the value type must be specified"
@@ -328,7 +329,7 @@ msgstr "חובה לציין טיפוס ערך כדי לשנות מערך לער�
 #: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "\"%s\" לסוג \"%s\" לא יכול להמיר"
+msgstr "נכשל להמיר את \"%s\" לסוג \"%s\""
 
 #: ../xfconf-query/main.c:486
 #, c-format
