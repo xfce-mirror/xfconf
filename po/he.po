@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2020-06-12 10:49+0000\n"
+"PO-Revision-Date: 2020-06-21 13:48+0000\n"
 "Last-Translator: Omer\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfconf/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -244,7 +244,7 @@ msgstr "עקוב אחר ערוץ לשינויים במאפיינים"
 #: ../xfconf-query/main.c:249
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr "init libxfconf: %s -נכשל ל"
+msgstr "init libxfconf: %s נכשלה"
 
 #: ../xfconf-query/main.c:254
 msgid "- Xfconf commandline utility"
@@ -270,7 +270,7 @@ msgstr "ערוצים:"
 
 #: ../xfconf-query/main.c:298
 msgid "No property specified"
-msgstr "אף תכונה לא צוינה"
+msgstr "לא צוינו מאפיינים"
 
 #: ../xfconf-query/main.c:304
 msgid "--create and --reset options can not be used together"
@@ -316,7 +316,7 @@ msgstr "בעת יצירת מאפיין חדש, חובה לציין את סוג �
 
 #: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
-msgstr "נכשל להשיג את הסוג הקיים עבור הערך"
+msgstr "נכשלה השגת הסוג הקיים עבור הערך"
 
 #: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
@@ -329,7 +329,7 @@ msgstr "חובה לציין טיפוס ערך כדי לשנות מערך לער�
 #: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "נכשל להמיר את \"%s\" לסוג \"%s\""
+msgstr "נכשלה המרת \"%s\" לסוג \"%s\""
 
 #: ../xfconf-query/main.c:486
 #, c-format
