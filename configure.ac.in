@@ -196,20 +196,24 @@ AM_CONDITIONAL([ENABLE_PROFILING], [test "x$enable_profiling" = "xyes"])
 
 dnl Bash completion for xfconf-query.
 AC_ARG_WITH([bash-completion-dir],
-    AS_HELP_STRING([--with-bash-completion-dir[=PATH]],
-        [Install the bash auto-completion script in this directory. @<:@default=yes@:>@]),
-    [],
-    [with_bash_completion_dir=yes])
-
-if test "x$with_bash_completion_dir" = "xyes"; then
-    PKG_CHECK_MODULES([BASH_COMPLETION], [bash-completion >= 2.0],
-        [BASH_COMPLETION_DIR="`pkg-config --variable=completionsdir bash-completion`"],
-        [BASH_COMPLETION_DIR="$datadir/bash-completion/completions"])
-else
-    BASH_COMPLETION_DIR="$with_bash_completion_dir/completions"
-fi
+            AS_HELP_STRING([--with-bash-completion-dir[=PATH]],
+                           [Install the bash-completion script in this directory. @<:@default=yes@:>@]),
+            [],
+            [with_bash_completion_dir=yes])
+AS_IF([test "x$with_bash_completion_dir" = xyes],
+          [AC_MSG_CHECKING([for bash-completion directory])
+           AS_IF([test "x$PKG_CONFIG" != x \
+              && bash_completion_prefix=`$PKG_CONFIG --print-errors --variable=prefix bash-completion 2>&AS_MESSAGE_LOG_FD` \
+              && bash_completion_dir=`"$PKG_CONFIG --print-errors --variable=completionsdir bash-completion 2>&AS_MESSAGE_LOG_FD`],
+             [bash_completion_dir="${bash_completion_dir#"$bash_completion_prefix"}"
+              bash_completion_dir="${bash_completion_dir#/}"
+              BASH_COMPLETION_DIR='${prefix}'/"$bash_completion_dir"],
+             [BASH_COMPLETION_DIR='${datadir}/bash-completion/completions'])
+           AC_MSG_RESULT([$BASH_COMPLETION_DIR])],
+          [BASH_COMPLETION_DIR="$with_bash_completion_dir"])
 AC_SUBST([BASH_COMPLETION_DIR])
-AM_CONDITIONAL([ENABLE_BASH_COMPLETION],[test "x$with_bash_completion_dir" != "xno"])
+AM_CONDITIONAL([ENABLE_BASH_COMPLETION],
+               [test "x$with_bash_completion_dir" != xno])
 
 AC_OUTPUT([
 Makefile
