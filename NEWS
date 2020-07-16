@@ -1,3 +1,17 @@
+4.15.0
+======
+- Implement custom test driver
+- Use 'gsettings' as a common channel name for the GSetting backend
+- Bug #14789 Fix GSettings backend assertion error, when probed but not used
+- Enable GSettings backend build by default
+- Add Bash completion for xfconf-query
+- Bug #15960: Add some missing xfconf_shutdown() in xfconf-query
+- Bug #15951: Fix 'xfconf_get_error_quark' introspecting warning
+- Remove perl bindings
+- Fix vala binding in dist tarball
+- Translation Updates: be, da, el, es, he, hr, hu, hye, gl, nl,
+  sl, sq, zh_CN, zh_HK, zh_TW
+
 4.14.1
 ======
 
