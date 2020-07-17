@@ -204,7 +204,7 @@ AS_IF([test "x$with_bash_completion_dir" = xyes],
           [AC_MSG_CHECKING([for bash-completion directory])
            AS_IF([test "x$PKG_CONFIG" != x \
               && bash_completion_prefix=`$PKG_CONFIG --print-errors --variable=prefix bash-completion 2>&AS_MESSAGE_LOG_FD` \
-              && bash_completion_dir=`"$PKG_CONFIG --print-errors --variable=completionsdir bash-completion 2>&AS_MESSAGE_LOG_FD`],
+              && bash_completion_dir=`$PKG_CONFIG --print-errors --variable=completionsdir bash-completion 2>&AS_MESSAGE_LOG_FD`],
              [bash_completion_dir="${bash_completion_dir#"$bash_completion_prefix"}"
               bash_completion_dir="${bash_completion_dir#/}"
               BASH_COMPLETION_DIR='${prefix}'/"$bash_completion_dir"],
