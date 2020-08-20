@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Algimantas Margevičius <margevicius.algimantas@gmail.com>, 2012
-# Moo, 2015,2017
+# Moo, 2015,2017,2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2018-11-17 20:16+0000\n"
+"PO-Revision-Date: 2020-08-20 09:40+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfconf/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgstr "Netinkamas tipas reikšmei <value>: „%s“"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1903
 #, c-format
 msgid "Channel \"%s\" does not exist"
-msgstr "Kanalas „%s“ neegzistuoja"
+msgstr "Kanalo „%s“ nėra"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1961
 #, c-format
@@ -171,7 +171,7 @@ msgstr "Klaida, apdorojant parametrus: %s\n"
 #: ../xfconfd/xfconf-daemon.c:222
 #, c-format
 msgid "GType transformation failed \"%s\""
-msgstr "GType tranformacija nepavyko \"%s\""
+msgstr "GType tranformacija patyrė nesėkmę „%s“"
 
 #: ../xfconfd/xfconf-daemon.c:483
 #, c-format
