@@ -1,7 +1,7 @@
 [![License](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://gitlab.xfce.org/xfce/xfconf/COPYING)
 
-xfconf
-====================
+# xfconf
+
 
 Xfconf is a hierarchical (tree-like) configuration system where the immediate 
 child nodes of the root are called “channels”. All settings beneath the 
@@ -27,6 +27,7 @@ See [NEWS](https://gitlab.xfce.org/xfce/xfconf/-/blob/master/NEWS) for details o
 [xfconf archive](https://archive.xfce.org/src/xfce/xfconf)
     or
 [xfconf tags](https://gitlab.xfce.org/xfce/xfconf/-/tags)
+
 ### Installation
 
 From source: 
