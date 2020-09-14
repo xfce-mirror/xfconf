@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://gitlab.xfce.org/xfce/xfconf/COPYING)
+[![License](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://gitlab.xfce.org/xfce/xfconf/-/blob/master/COPYING)
 
 # xfconf
 
@@ -12,7 +12,7 @@ See the xfconf homepage for usage and examples.
 
 ### Homepage
 
-[xfconf documentation](https://docs.xfce.org/xfce/xfconf/start)
+[Xfconf documentation](https://docs.xfce.org/xfce/xfconf/start)
 
 ### Changelog
 
@@ -20,13 +20,13 @@ See [NEWS](https://gitlab.xfce.org/xfce/xfconf/-/blob/master/NEWS) for details o
 
 ### Source Code Repository
 
-[xfconf source code](https://gitlab.xfce.org/xfce/xfconf)
+[Xfconf source code](https://gitlab.xfce.org/xfce/xfconf)
 
-### Download A Release Tarball
+### Download a Release Tarball
 
-[xfconf archive](https://archive.xfce.org/src/xfce/xfconf)
+[Xfconf archive](https://archive.xfce.org/src/xfce/xfconf)
     or
-[xfconf tags](https://gitlab.xfce.org/xfce/xfconf/-/tags)
+[Xfconf tags](https://gitlab.xfce.org/xfce/xfconf/-/tags)
 
 ### Installation
 
