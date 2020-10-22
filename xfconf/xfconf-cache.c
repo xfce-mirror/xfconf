@@ -398,8 +398,7 @@ xfconf_cache_init(XfconfCache *cache)
                                         (GDestroyNotify)xfconf_cache_item_free);
 
     cache->pending_calls = g_hash_table_new_full(g_direct_hash, g_direct_equal,
-                                                 NULL,
-                                                 (GDestroyNotify)xfconf_cache_old_item_free);
+                                                 NULL, NULL);
     cache->old_properties = g_hash_table_new_full(g_str_hash, g_str_equal,
                                                   NULL, NULL);
 
@@ -469,20 +468,25 @@ static void
 xfconf_cache_finalize(GObject *obj)
 {
     XfconfCache *cache = XFCONF_CACHE(obj);
-    GHashTable *pending_calls;
     GDBusProxy *proxy;
 
     proxy = _xfconf_get_gdbus_proxy();
 
     g_signal_handler_disconnect(proxy,cache->g_signal_id);
 
-    /* finish pending calls (without emitting signals, therefore we set
-     * the hash table in the cache to %NULL) */
-    pending_calls = cache->pending_calls;
-    cache->pending_calls = NULL;
-    g_hash_table_foreach_remove(pending_calls, xfconf_cache_old_item_end_call,
+    /* Finish pending calls with synchronuous requests (without emitting
+     * signals, therefore we cancel the cancellable on old_item).
+     * Beware: even that we cancel cancellable objects for unfinished
+     * asynchronuous calls, their handlers are guaranted to be run in the
+     * thread-default main context after we finish (i.e. after XfconfCache
+     * will be freed). Due to that, we must not free - outside of handler
+     * itself - the XfconfCacheOldItems provided as user_data to those
+     * handlers. Otherwise the handler will have no realiable way of
+     * knowing that call has been cancelled and will operate on freed data. */
+    g_hash_table_foreach_remove(cache->pending_calls,
+                                xfconf_cache_old_item_end_call,
                                 cache->channel_name);
-    g_hash_table_unref(pending_calls);
+    g_hash_table_unref(cache->pending_calls);
 
     g_free(cache->channel_name);
 
@@ -597,17 +601,26 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
                                         gpointer user_data)
 {
     XfconfCache *cache;
-    XfconfCacheOldItem *old_item = NULL;
+    XfconfCacheOldItem *old_item = (XfconfCacheOldItem*) user_data;
     XfconfCacheItem *item;
     GError *error = NULL;
     gboolean result;
-    old_item = (XfconfCacheOldItem *) user_data;
-    cache = old_item->cache;
 
     old_item->pending_calls_count--;
     if(old_item->pending_calls_count > 0)
         return;
 
+    /* cancellable is cancelled in xfconf_cache_old_item_end_call to inform that
+     * XconfCache finalization started. That means the last value of
+     * property has been set synchronously, invalidating the need to run this
+     * handler for any previously started, unfinished asynchronuous calls. */
+    if (g_cancellable_is_cancelled(old_item->cancellable) == TRUE)
+    {
+        xfconf_cache_old_item_free(old_item);
+        return;
+    }
+
+    cache = old_item->cache;
     xfconf_cache_mutex_lock(cache);
 /*
     old_item = g_hash_table_lookup(cache->pending_calls, call);
@@ -619,8 +632,7 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
     }
 */
     g_hash_table_remove(cache->old_properties, old_item->property);
-    /* don't destroy old_item yet */
-    g_hash_table_steal(cache->pending_calls, old_item->cancellable);
+    g_hash_table_remove(cache->pending_calls, old_item->cancellable);
     item = g_tree_lookup(cache->properties, old_item->property);
     if(G_UNLIKELY(!item)) {
 #ifndef NDEBUG
@@ -653,9 +665,7 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
 
     /* we handled the call */
     g_cancellable_cancel(old_item->cancellable);
-
-    if(old_item)
-        xfconf_cache_old_item_free(old_item);
+    xfconf_cache_old_item_free(old_item);
 out:
     xfconf_cache_mutex_unlock(cache);
 }
@@ -880,11 +890,11 @@ xfconf_cache_set(XfconfCache *cache,
          * call hasn't returned yet.  let's cancel that call and
          * throw away the current not-yet-committed value of
          * the property.
-         * we also steal the old_item from the pending_calls table
-         * so there are no pending item left. */
+         * we also remove the old_item from the pending_calls table
+         * so there is no pending item left. */
         if(!g_cancellable_is_cancelled (old_item->cancellable)) {
             g_cancellable_cancel(old_item->cancellable);
-            g_hash_table_steal(cache->pending_calls, old_item->cancellable);
+            g_hash_table_remove(cache->pending_calls, old_item->cancellable);
             g_object_unref (old_item->cancellable);
             old_item->cancellable = g_cancellable_new();
         }
