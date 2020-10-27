@@ -1,5 +1,3 @@
-.NOTPARALLEL:
-
 check_PROGRAMS = \
 	t-string-changed-signal \
 	t-string-changed-signal-detailed

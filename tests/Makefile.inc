@@ -13,6 +13,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
+.NOTPARALLEL:
+
 LOG_COMPILER = $(top_srcdir)/tests/tests-driver.sh $(top_builddir)/xfconfd
 
 TESTS = $(check_PROGRAMS)
