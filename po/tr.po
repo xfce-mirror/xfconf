@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2020-10-18 16:09+0000\n"
+"PO-Revision-Date: 2020-11-08 13:03+0000\n"
 "Last-Translator: Emin Tufan <etcetin@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/xfce/xfconf/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -63,12 +63,12 @@ msgstr "Bu türün \"%s\" olan değeri, \"%s\" değerinden ayrıştırılamıyor
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1369
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "<value> özniteliği dizi olamaz"
+msgstr "<value> özniteliği türü, bir dizi olamaz"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1378
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "<değer> için geçersiz: \"%s\""
+msgstr "<value> için geçersiz tür: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1654
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1903
@@ -84,7 +84,7 @@ msgstr "\"%s\" kanalına yazılamıyor: %s"
 #: ../xfconfd/xfconf-backend-factory.c:77
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "\"%s\" türünün Xfconf arkaucu bulunamadı"
+msgstr "\"%s\" türünün Xfconf arka ucu bulunamadı"
 
 #: ../xfconfd/xfconf-backend.c:101
 #, c-format
@@ -131,7 +131,7 @@ msgstr "Kanal adları yalnızca A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ','
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr "Eğer özyineli yenileme belirlenmişse, özellik adları yalnızca boş olabilir veya \"/\" karakterinden oluşabilir."
+msgstr "Eğer özyinelemeli sıfırlama belirlenmişse, özellik adı yalnızca boş veya \"/\" olabilir."
 
 #: ../xfconfd/main.c:125
 #, c-format
@@ -146,15 +146,15 @@ msgstr "xfconfd sürüm bilgisini gösterir."
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
-msgstr "Kullanılacak yapılandırma çıkışları. Belirtilen ilk çıktı okuma/yazma olarak açılır; diğerleri salt okunur olarak."
+msgstr "Kullanılacak yapılandırma arka uçları. Belirtilen ilk arka uç okuma/yazma olarak açılır; diğerleri salt okunur olarak."
 
 #: ../xfconfd/main.c:153
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr "Başlangıç sonrası arka planda çalıştır. (Sadece test ortamı için kullanışlıdır)"
+msgstr "Başladıktan sonra arka plana çatalla; yalnızca sınama amalarında kullanışlıdır"
 
 #: ../xfconfd/main.c:173
 msgid "Xfce Configuration Daemon"
-msgstr "Xfce Yapılandırma Servisi"
+msgstr "Xfce Yapılandırma Aracı"
 
 #: ../xfconfd/main.c:182
 msgid "Xfce configuration daemon"
@@ -177,7 +177,7 @@ msgstr "GType dönüşümü başarısız oldu \"%s\""
 #: ../xfconfd/xfconf-daemon.c:483
 #, c-format
 msgid "No backends could be started"
-msgstr "Hiçbir arkauç başlatılamadı"
+msgstr "Hiçbir arka uç başlatılamadı"
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
@@ -205,15 +205,15 @@ msgstr "Özellik için yeni değer belirle"
 
 #: ../xfconf-query/main.c:192
 msgid "List properties (or channels if -c is not specified)"
-msgstr "Özellikleri (veya kanalları, eğer -c seçilmemişse) listele"
+msgstr "Özellikleri (veya eğer -c belirtilmemişse kanalları) listele"
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
-msgstr "Yoğun çıktı"
+msgstr "Ayrıntılı çıktı"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
-msgstr "Eğer yoksa, yeni bir özellik oluşturun"
+msgstr "Eğer zaten yoksa, yeni özellik oluştur"
 
 #: ../xfconf-query/main.c:204
 msgid "Specify the property value type"
@@ -225,7 +225,7 @@ msgstr "Özelliği sıfırla"
 
 #: ../xfconf-query/main.c:212
 msgid "Recursive (use with -r)"
-msgstr "Yinelemeli (-r ile kullanın)"
+msgstr "Özyinelemeli (-r ile kullan)"
 
 #: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
@@ -290,7 +290,7 @@ msgstr "Özellik ayarlanamadı"
 
 #: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
-msgstr "--toggle sadece boolean değerlerle çalışır"
+msgstr "--toggle yalnızca boolean değerlerle çalışır"
 
 #: ../xfconf-query/main.c:369 ../xfconf-query/main.c:388
 msgid "(unknown)"
@@ -332,12 +332,12 @@ msgstr "\"%s\", \"%s\" türüne dönüştürülemedi"
 #: ../xfconf-query/main.c:486
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "%d yeni değer var, ama yalnızca%d tür belirlenebildi"
+msgstr "%d yeni değer var, ama yalnızca%d tür saptanabildi"
 
 #: ../xfconf-query/main.c:507
 #, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "%d dizinindeki değerin türü belirlenemedi"
+msgstr "%d dizinindeki değerin türü saptanamadı"
 
 #: ../xfconf-query/main.c:557
 #, c-format
