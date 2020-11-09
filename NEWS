@@ -1,3 +1,11 @@
+4.15.1
+======
+- Fix stray double-quote in bash-completion PKG_CONFIG invocation
+- Disable parallelism on all tests
+- Adds new README.md and updates AM_INIT_AUTOMAKE
+- xfconf-cache: Fix access to freed data (#16)
+- Translation Updates: oc, he, hu, hy_AM, lt, sk, sq, ug, tr.
+
 4.15.0
 ======
 - Implement custom test driver
