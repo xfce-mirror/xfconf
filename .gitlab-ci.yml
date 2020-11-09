@@ -2,8 +2,10 @@ include:
   - project: 'xfce/xfce4-dev-tools'
     file: '/ci/build_project.yml'
 
-# Skip distcheck for xfconf since it is not implemented.
+# xfconf distcheck needs a working display/dbus to run tests
+# Fake it with xvfb on headless container
 distcheck:
-  rules:
-    - when: never
-
+  extends: .make
+  stage: distcheck
+  script:
+    - xvfb-run -a make distcheck
