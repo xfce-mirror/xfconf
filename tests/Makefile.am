@@ -6,6 +6,7 @@ SUBDIRS = \
 	reset-properties \
 	property-changed-signal \
 	object-bindings \
+	others \
 	tests-end
 #	list-channels
 
