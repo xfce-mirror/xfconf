@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Copyright (C) 2020  Ali Abdallah <ali.abdallah@suse.com>
 #
 # This program is free software; you can redistribute it and/or

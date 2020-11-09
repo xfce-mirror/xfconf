@@ -30,7 +30,6 @@ EXTRA_DIST = \
 	AUTHORS \
 	COPYING \
 	ChangeLog \
-	INSTALL \
 	NEWS \
 	m4/introspection.m4 \
 	m4/vapigen.m4

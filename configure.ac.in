@@ -20,7 +20,7 @@ m4_define([xfconf_version], [xfconf_version_major().xfconf_version_minor().xfcon
 m4_define([xfconf_default_debug], [ifelse(xfconf_version_tag(), [git], [yes], [minimum])])
 
 dnl init autoconf
-AC_INIT([xfconf], [xfconf_version], [https://bugzilla.xfce.org/])
+AC_INIT([xfconf], [xfconf_version], [https://gitlab.xfce.org/xfconf/xfconf])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_PREREQ([2.50])
 
