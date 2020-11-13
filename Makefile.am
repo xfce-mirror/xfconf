@@ -32,6 +32,7 @@ EXTRA_DIST = \
 	ChangeLog \
 	INSTALL \
 	NEWS \
+	README.md \
 	m4/introspection.m4 \
 	m4/vapigen.m4
 
