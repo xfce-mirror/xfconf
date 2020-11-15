@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # Copyright (C) 2020  Ali Abdallah <ali.abdallah@suse.com>
 #
 # This program is free software; you can redistribute it and/or
@@ -88,19 +88,17 @@ trap 'sigint'  INT
 # Last test, cleanup
 TEST_NAME=$(basename $TEST)
 
-if [ "$TEST_NAME" == "t-tests-end" ]; then
+if [ "$TEST_NAME" = "t-tests-end" ]; then
 	cleanup
 	exit 0
 fi
-
 # Prepare xfconfd
 prepare
 
-# Execute the test
-exec $TEST
-ret = $?
+$TEST
+ret=$?
 # Test failed, cleanup
-if [ $ret != 0 ]; then
-	cleanup
+if [ $ret -ne 0 ]; then
+  cleanup
 fi
 exit $ret
