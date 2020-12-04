@@ -30,7 +30,6 @@ EXTRA_DIST = \
 	AUTHORS \
 	COPYING \
 	ChangeLog \
-	INSTALL \
 	NEWS \
 	README.md \
 	m4/introspection.m4 \
