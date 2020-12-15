@@ -240,10 +240,6 @@ main(int argc, char **argv)
 #endif
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
-#if !GLIB_CHECK_VERSION(2,36,0)
-    g_type_init();
-#endif
-
     context = g_option_context_new(_("- Xfconf commandline utility"));
     g_option_context_add_main_entries(context, entries, GETTEXT_PACKAGE);
 

@@ -179,11 +179,7 @@ _xfconf_gvalue_from_string(GValue *value,
         case G_TYPE_UCHAR:
             HANDLE_UINT(0, XFCONF_MAXUCHAR, g_value_set_uchar);
         case G_TYPE_CHAR:
-#if GLIB_CHECK_VERSION (2, 32, 0)
             HANDLE_INT(G_MININT8, G_MAXINT8, g_value_set_schar);
-#else
-            HANDLE_INT(XFCONF_MINCHAR, XFCONF_MAXCHAR, g_value_set_char);
-#endif
         case G_TYPE_UINT:
             HANDLE_UINT(0, G_MAXUINT, g_value_set_uint);
         case G_TYPE_INT:
@@ -270,11 +266,7 @@ _xfconf_string_from_gvalue(GValue *val)
         case G_TYPE_UCHAR:
             return g_strdup_printf("%u", (guint)g_value_get_uchar(val));
         case G_TYPE_CHAR:
-#if GLIB_CHECK_VERSION (2, 32, 0)
             return g_strdup_printf("%d", g_value_get_schar(val));
-#else
-            return g_strdup_printf("%d", (gint)g_value_get_char(val));
-#endif
         case G_TYPE_UINT:
             return g_strdup_printf("%u", g_value_get_uint(val));
         case G_TYPE_INT:
@@ -327,11 +319,7 @@ _xfconf_gvalue_is_equal(const GValue *value1,
         case G_TYPE_ ## TYPE: \
             return g_value_get_ ## getter(value1) == g_value_get_ ## getter(value2)
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
         HANDLE_CMP_GV(CHAR, schar);
-#else
-        HANDLE_CMP_GV(CHAR, char);
-#endif
         HANDLE_CMP_GV(UCHAR, uchar);
         HANDLE_CMP_GV(BOOLEAN, boolean);
         HANDLE_CMP_GV(INT, int);
