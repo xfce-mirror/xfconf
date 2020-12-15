@@ -51,13 +51,8 @@
 
 
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
 #define xfconf_cache_mutex_lock(cache)   g_mutex_lock (&(cache)->cache_lock)
 #define xfconf_cache_mutex_unlock(cache) g_mutex_unlock (&(cache)->cache_lock)
-#else
-#define xfconf_cache_mutex_lock(cache)   g_mutex_lock ((cache)->cache_lock)
-#define xfconf_cache_mutex_unlock(cache) g_mutex_unlock ((cache)->cache_lock)
-#endif
 
 
 
@@ -269,11 +264,7 @@ struct _XfconfCache
 
     gint g_signal_id;
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
     GMutex cache_lock;
-#else
-    GMutex *cache_lock;
-#endif
 };
 
 typedef struct _XfconfCacheClass
@@ -402,11 +393,7 @@ xfconf_cache_init(XfconfCache *cache)
     cache->old_properties = g_hash_table_new_full(g_str_hash, g_str_equal,
                                                   NULL, NULL);
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
     g_mutex_init (&cache->cache_lock);
-#else
-    cache->cache_lock = g_mutex_new ();
-#endif
 }
 
 static void
@@ -492,11 +479,6 @@ xfconf_cache_finalize(GObject *obj)
 
     g_tree_destroy(cache->properties);
     g_hash_table_destroy(cache->old_properties);
-
-
-#if !GLIB_CHECK_VERSION (2, 32, 0)
-    g_mutex_free (cache->cache_lock);
-#endif
 
     G_OBJECT_CLASS(xfconf_cache_parent_class)->finalize(obj);
 }

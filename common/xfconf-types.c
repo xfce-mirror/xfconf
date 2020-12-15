@@ -71,11 +71,7 @@ gvalue_from_short(const GValue *src_value,
         case G_TYPE_BOOLEAN:
             dest = g_value_get_boolean(src_value) == TRUE ? 1 : 0;
             break;
-#if GLIB_CHECK_VERSION (2, 32, 0)
         HANDLE_TYPE(CHAR, schar)
-#else
-        HANDLE_TYPE(CHAR, char)
-#endif
         HANDLE_TYPE(UCHAR, uchar)
         HANDLE_TYPE(INT, int)
         HANDLE_TYPE(UINT, uint)
@@ -140,11 +136,7 @@ short_from_gvalue(const GValue *src_value,
         case G_TYPE_BOOLEAN:
             g_value_set_boolean(dest_value, src ? TRUE : FALSE);
             break;
-#if GLIB_CHECK_VERSION (2, 32, 0)
         HANDLE_TYPE(CHAR, schar)
-#else
-        HANDLE_TYPE(CHAR, char)
-#endif
         HANDLE_TYPE(UCHAR, uchar)
         HANDLE_TYPE(INT, int)
         HANDLE_TYPE(UINT, uint)

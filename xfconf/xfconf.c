@@ -118,10 +118,6 @@ xfconf_init(GError **error)
         return TRUE;
     }
 
-#if !GLIB_CHECK_VERSION(2,36,0)
-    g_type_init();
-#endif
-
     gdbus = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, error);
 
     if (!gdbus)
