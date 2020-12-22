@@ -1,3 +1,14 @@
+4.16.0
+======
+- Don't use shebang for bash completion file
+- Remove GLIB_CHECK_VERSION IFDEFs which are obsolete after glib bump
+- bump glib (and gio, gthread, etc) minimum to 2.50.0
+- remove last traces of xfconf-perl
+- Fix make distcheck and enable it on gitlab CI
+- Add README.md to EXTRA_DIST
+- Post release autoconf git revision
+
+
 4.15.1
 ======
 - Fix stray double-quote in bash-completion PKG_CONFIG invocation
