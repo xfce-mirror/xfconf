@@ -33,6 +33,7 @@ install-sh
 gtk-doc.m4
 gtk-doc.make
 test-driver
+common/.dirstamp
 common/stamp-xfconf-marshal.h
 common/xfconf-marshal.c
 common/xfconf-marshal.h
