@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Kahina Messaoudi, 2021
+# ZiriSut, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2021-01-15 19:19+0000\n"
+"PO-Revision-Date: 2021-02-05 15:44+0000\n"
 "Last-Translator: ZiriSut\n"
 "Language-Team: Kabyle (http://www.transifex.com/xfce/xfconf/language/kab/)\n"
 "MIME-Version: 1.0\n"
@@ -152,11 +153,11 @@ msgstr ""
 
 #: ../xfconfd/main.c:173
 msgid "Xfce Configuration Daemon"
-msgstr ""
+msgstr "Daemon n twila n Xfce"
 
 #: ../xfconfd/main.c:182
 msgid "Xfce configuration daemon"
-msgstr ""
+msgstr "Daemon n twila n Xfce"
 
 #: ../xfconfd/main.c:184
 msgid "Report bugs to http://bugs.xfce.org/\n"
@@ -207,7 +208,7 @@ msgstr ""
 
 #: ../xfconf-query/main.c:196
 msgid "Verbose output"
-msgstr ""
+msgstr "Anekcum n Verbose"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
