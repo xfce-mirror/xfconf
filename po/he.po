@@ -6,6 +6,7 @@
 # Elishai Eliyahu <elishai@mailfence.com>, 2016-2017
 # GenghisKhan <genghiskhan@gmx.ca>, 2016
 # Hezy Amiel <open@hezyamiel.com>, 2010
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2021
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2020
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2020
 msgid ""
@@ -13,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2020-06-21 13:48+0000\n"
+"PO-Revision-Date: 2021-03-05 07:33+0000\n"
 "Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfconf/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -262,7 +263,7 @@ msgstr "קבוצת הפיתוח של Xfce. כל הזכויות שמורות."
 #: ../xfconf-query/main.c:270
 #, c-format
 msgid "Please report bugs to <%s>."
-msgstr "אנא דווח על באגים ל- <%s>."
+msgstr "נא לדווח על באגים ל־<%s>."
 
 #: ../xfconf-query/main.c:282
 msgid "Channels:"
