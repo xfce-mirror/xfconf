@@ -202,4 +202,51 @@ gboolean xfconf_channel_set_structv(XfconfChannel *channel,
 
 G_END_DECLS
 
+
+
+#ifdef __cplusplus
+
+#include <memory>
+#include <string>
+
+namespace xfce4 {
+namespace xfconf {
+
+struct Channel {
+private:
+    XfconfChannel *const channel;
+
+    Channel(XfconfChannel *channel);
+
+public:
+    Channel(const Channel&) = delete;
+    ~Channel();
+
+    static std::shared_ptr<Channel> get(const std::string &channel_name);
+
+    gulong property_bind(const std::string &xfconf_property,
+                         GType xfconf_property_type,
+                         gpointer object,
+                         const std::string &object_property);
+
+    gulong property_bind_gdkcolor(const std::string &xfconf_property,
+                                  gpointer object,
+                                  const std::string &object_property);
+
+    gulong property_bind_gdkrgba(const std::string &xfconf_property,
+                                 gpointer object,
+                                 const std::string &object_property);
+
+    void property_unbind_by_property(const std::string &xfconf_property,
+                                     gpointer object,
+                                     const std::string &object_property);
+
+    void property_unbind_all();
+};
+
+} /* namespace xfconf */
+} /* namespace xfce4 */
+
+#endif /* __cplusplus */
+
 #endif  /* __XFCONF_CHANNEL_H__ */
