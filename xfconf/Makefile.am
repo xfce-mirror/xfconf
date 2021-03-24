@@ -21,6 +21,7 @@ libxfconf_0_la_SOURCES = \
 	xfconf-cache.c \
 	xfconf-cache.h \
 	xfconf-channel.c \
+	xfconf-channel-cpp.cc \
 	xfconf-private.h \
 	xfconf.c \
 	$(top_srcdir)/common/xfconf-types.c
@@ -28,9 +29,16 @@ libxfconf_0_la_SOURCES = \
 libxfconf_0_la_CFLAGS = \
 	$(GLIB_CFLAGS) \
 	$(GIO_CFLAGS) \
-        $(GIO_UNIX_CFLAGS) \
+	$(GIO_UNIX_CFLAGS) \
 	$(GTHREAD_CFLAGS) \
 	$(PLATFORM_CFLAGS)
+
+libxfconf_0_la_CXXFLAGS = \
+	$(GLIB_CFLAGS) \
+	$(GIO_CFLAGS) \
+	$(GIO_UNIX_CFLAGS) \
+	$(GTHREAD_CFLAGS) \
+	$(PLATFORM_CXXFLAGS)
 
 libxfconf_0_la_LDFLAGS = \
 	-export-dynamic \
