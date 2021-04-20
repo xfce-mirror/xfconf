@@ -6,12 +6,13 @@
 # Kiril Kirilov <cybercop_montana@abv.bg>, 2014,2017
 # Kiril Kirilov <cybercop_montana@abv.bg>, 2012
 # Любомир Василев, 2015
+# Красимир Беров, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2019-04-19 08:34+0000\n"
+"PO-Revision-Date: 2021-04-20 19:09+0000\n"
 "Last-Translator: Красимир Беров\n"
 "Language-Team: Bulgarian (http://www.transifex.com/xfce/xfconf/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -189,7 +190,7 @@ msgstr "рестартиране"
 
 #: ../xfconf-query/main.c:176
 msgid "Version information"
-msgstr "Информация за версията"
+msgstr "Сведения за изданието"
 
 #: ../xfconf-query/main.c:180
 msgid "The channel to query/modify"
