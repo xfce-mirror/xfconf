@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2021-04-03 10:23+0000\n"
+"PO-Revision-Date: 2021-04-24 07:41+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfconf/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -162,7 +162,7 @@ msgstr "Servicio de configuración de Xfce"
 
 #: ../xfconfd/main.c:184
 msgid "Report bugs to http://bugs.xfce.org/\n"
-msgstr "Informe de errores en http://bugs.xfce.org/\n"
+msgstr "Informe de errores a http://bugs.xfce.org/\n"
 
 #: ../xfconfd/main.c:187
 #, c-format
