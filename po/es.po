@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2021-04-24 07:41+0000\n"
+"PO-Revision-Date: 2021-04-24 15:56+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfconf/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: ../xfconf/xfconf-cache.c:979
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "Fallo en la llamada a ResetProperty de DBUS"
+msgstr "Error al realizar la llamada a ResetProperty de DBUS"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:276
 #, c-format
@@ -172,7 +172,7 @@ msgstr "Error al procesar las opciones: %s\n"
 #: ../xfconfd/xfconf-daemon.c:222
 #, c-format
 msgid "GType transformation failed \"%s\""
-msgstr "Fallo en la transformación GType «%s»"
+msgstr "Error en la transformación GType «%s»"
 
 #: ../xfconfd/xfconf-daemon.c:483
 #, c-format
@@ -242,7 +242,7 @@ msgstr "Monitorear un canal para cambios en las propiedades"
 #: ../xfconf-query/main.c:249
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr "Fallo al iniciar libxfconf: %s"
+msgstr "Error al iniciar libxfconf: %s"
 
 #: ../xfconf-query/main.c:254
 msgid "- Xfconf commandline utility"
@@ -251,7 +251,7 @@ msgstr "- Utilidad de línea de órdenes de Xfconf"
 #: ../xfconf-query/main.c:259
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr "Fallo en el análisis de la opción: %s"
+msgstr "Error en el análisis de la opción: %s"
 
 #: ../xfconf-query/main.c:269
 msgid "The Xfce development team. All rights reserved."
@@ -286,7 +286,7 @@ msgstr "Iniciar el monitoreo del canal «%s»:"
 #: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
 #: ../xfconf-query/main.c:530
 msgid "Failed to set property"
-msgstr "Fallo al configurar la propiedad"
+msgstr "Error al configurar la propiedad"
 
 #: ../xfconf-query/main.c:360
 msgid "--toggle only works with boolean values"
@@ -314,7 +314,7 @@ msgstr "Al crear una propiedad nueva, se debe especificar el tipo del valor"
 
 #: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
-msgstr "Fallo al obtener el tipo del valor "
+msgstr "Error al obtener el tipo del valor "
 
 #: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
