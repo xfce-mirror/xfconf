@@ -193,7 +193,7 @@ static GOptionEntry entries[] =
         NULL
     },
     {    "verbose", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &verbose,
-        N_("Verbose output"),
+        N_("Display property and its value if -l or -m is used"),
         NULL
     },
     {    "create", 'n', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &create,
