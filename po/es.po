@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2021-04-24 15:56+0000\n"
+"PO-Revision-Date: 2021-05-01 07:37+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfconf/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: ../xfconf/xfconf-cache.c:979
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
-msgstr "Error al realizar la llamada a ResetProperty de DBUS"
+msgstr "Error al realizar la llamada a ResetProperty de D-Bus"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:276
 #, c-format
@@ -34,7 +34,7 @@ msgstr "No se puede crear la carpeta de configuración «%s»"
 #: ../xfconfd/xfconf-daemon.c:167
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Permiso denegado al modificar la propiedad «%s» en el canal «%s»"
+msgstr "Se ha denegado el permiso para modificar la propiedad «%s» en el canal «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:386
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:468
@@ -42,7 +42,7 @@ msgstr "Permiso denegado al modificar la propiedad «%s» en el canal «%s»"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:653 ../xfconf-query/main.c:344
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
-msgstr "La propiedad «%s» no existe en el canal «%s»"
+msgstr "No existe la propiedad «%s» en el canal «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:600
 #, c-format
@@ -52,7 +52,7 @@ msgstr "No se puede eliminar el canal «%s»: %s"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1297
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
-msgstr "Tipo incorrecto para <propiedad>: «%s»"
+msgstr "Tipo no válido para la <propiedad>: «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1313
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1389
@@ -63,12 +63,12 @@ msgstr "No se puede analizar el valor del tipo «%s» de «%s»"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1369
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "El atributo de tipo de <valor> no puede ser un vector"
+msgstr "El atributo de tipo del <valor> no puede ser un vector"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1378
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Tipo no válido para <valor>: «%s»"
+msgstr "Tipo no válido para el <valor>: «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1654
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1903
@@ -89,7 +89,7 @@ msgstr "No se puede encontrar el motor de Xfconf del tipo «%s»"
 #: ../xfconfd/xfconf-backend.c:101
 #, c-format
 msgid "Property names must start with a '/' character"
-msgstr "Los nombres de propiedades deben comenzar con el carácter «/»"
+msgstr "Los nombres de las propiedades deben comenzar con el carácter «/»"
 
 #: ../xfconfd/xfconf-backend.c:110
 #, c-format
@@ -102,17 +102,17 @@ msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
-msgstr "Los nombres de propiedades solo pueden incluir los caracteres ASCII A-Z, a-z, 0-9, «_», «-», «:», «.», «,», «[», «]», «{», «}», «<» y «>», así como «/» a modo de separador"
+msgstr "Los nombres de las propiedades solo pueden incluir los caracteres ASCII A-Z, a-z, 0-9, «_», «-», «:», «.», «,», «[», «]», «{», «}», «<» y «>», así como «/» a modo de separador"
 
 #: ../xfconfd/xfconf-backend.c:134
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Los nombres de propiedades no pueden tener dos o más caracteres «/» consecutivos"
+msgstr "Los nombres de las propiedades no pueden tener dos o más caracteres «/» consecutivos"
 
 #: ../xfconfd/xfconf-backend.c:145
 #, c-format
 msgid "Property names cannot end with a '/' character"
-msgstr "Los nombres de propiedades no pueden acabar con el carácter «/»"
+msgstr "Los nombres de las propiedades no pueden acabar con el carácter «/»"
 
 #: ../xfconfd/xfconf-backend.c:162
 #, c-format
@@ -124,19 +124,19 @@ msgstr "El nombre del canal no puede ser una cadena vacía"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
-msgstr "Los nombres de canales solo pueden incluir los caracteres ASCII A-Z, a-z, 0-9, «{», «}», «|», «[», «]», «:», «,», «.», «_» y «-»"
+msgstr "Los nombres de los canales solo pueden incluir los caracteres ASCII A-Z, a-z, 0-9, «{», «}», «|», «[», «]», «:», «,», «.», «_» y «-»"
 
 #: ../xfconfd/xfconf-backend.c:399
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr "El nombre de la propiedad solo puede estar en blanco o ser «/» si se ha especificado un reinicio recursivo"
+msgstr "El nombre de la propiedad solo puede estar vacío o ser «/» si se ha especificado un reinicio recursivo"
 
 #: ../xfconfd/main.c:125
 #, c-format
 msgid "Name %s lost on the message dbus, exiting."
-msgstr "Se ha perdido el nombre %s en el mensaje dbus, saliendo."
+msgstr "Se ha perdido el nombre %s en el mensaje D-Bus, saliendo."
 
 #: ../xfconfd/main.c:148
 msgid "Prints the xfconfd version."
@@ -229,7 +229,7 @@ msgstr "Recursivo (usar con -r)"
 
 #: ../xfconf-query/main.c:216
 msgid "Force array even if only one element"
-msgstr "Forzar vector aunque solo haya un elemento"
+msgstr "Forzar el tipo vector aunque solo haya un elemento"
 
 #: ../xfconf-query/main.c:220
 msgid "Invert an existing boolean property"
@@ -237,7 +237,7 @@ msgstr "Invertir una propiedad booleana existente"
 
 #: ../xfconf-query/main.c:224
 msgid "Monitor a channel for property changes"
-msgstr "Monitorear un canal para cambios en las propiedades"
+msgstr "Monitorear un canal por si hay cambios en las propiedades"
 
 #: ../xfconf-query/main.c:249
 #, c-format
@@ -276,7 +276,7 @@ msgstr "Las opciones --create y --reset no se pueden usar juntas"
 
 #: ../xfconf-query/main.c:310
 msgid "--create and --reset options can not be used together with --list"
-msgstr "Las opciones --create y --reset no se pueden usar juntas con --list"
+msgstr "Las opciones --create y --reset no se pueden usar con la opción --list"
 
 #: ../xfconf-query/main.c:322
 #, c-format
@@ -332,12 +332,12 @@ msgstr "No se puede convertir «%s» al tipo «%s»"
 #: ../xfconf-query/main.c:486
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "Hay %d nuevos valores, pero solamente se han podido determinar %d tipos"
+msgstr "Hay %d valores nuevos, pero solo se han podido determinar %d tipos"
 
 #: ../xfconf-query/main.c:507
 #, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "No se puede determinar el tipo de valor en el índice %d"
+msgstr "No se puede determinar el tipo del valor en el índice %d"
 
 #: ../xfconf-query/main.c:557
 #, c-format
