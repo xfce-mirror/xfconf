@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2021-05-01 07:37+0000\n"
+"PO-Revision-Date: 2021-05-23 13:53+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfconf/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -314,7 +314,7 @@ msgstr "Al crear una propiedad nueva, se debe especificar el tipo del valor"
 
 #: ../xfconf-query/main.c:420
 msgid "Failed to get the existing type for the value"
-msgstr "Error al obtener el tipo del valor "
+msgstr "Error al obtener el tipo del valor"
 
 #: ../xfconf-query/main.c:438
 msgid "Unable to determine the type of the value"
