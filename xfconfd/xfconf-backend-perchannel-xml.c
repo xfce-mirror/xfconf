@@ -1910,7 +1910,7 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
     filename_tmp = g_strconcat(filename, ".new", NULL);
 
     configdir = g_strdup_printf("%s", xbpx->config_save_path);
-    // directory may have been deleted by user
+    /* ensure the config directory exists */
     if (g_mkdir_with_parents(configdir, 0755) != 0)
         goto out;
 
