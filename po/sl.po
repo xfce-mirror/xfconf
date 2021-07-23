@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2019-11-20 11:54+0000\n"
-"Last-Translator: Arnold Marko <arnold.marko@gmail.com>\n"
+"POT-Creation-Date: 2021-07-20 00:48+0200\n"
+"PO-Revision-Date: 2021-07-19 22:48+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/xfce/xfconf/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Language: sl\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
-#: ../xfconf/xfconf-cache.c:979
+#: ../xfconf/xfconf-cache.c:985
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "DBus klic ResetProperty ni uspel."
@@ -86,17 +86,17 @@ msgstr "Ne morem zapisati kanala \"%s\":%s"
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "Ne morem najti Xfconf zaledja vrste \"%s\""
 
-#: ../xfconfd/xfconf-backend.c:101
+#: ../xfconfd/xfconf-backend.c:127
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Imena lastnosti se morajo začeti z znakom '/'"
 
-#: ../xfconfd/xfconf-backend.c:110
+#: ../xfconfd/xfconf-backend.c:136
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Korenski element ('/') ni ustrezno ime lastnosti"
 
-#: ../xfconfd/xfconf-backend.c:125
+#: ../xfconfd/xfconf-backend.c:151
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -104,67 +104,67 @@ msgid ""
 "separator"
 msgstr "Imena lastnosti so lahko samo iz ASCII znakov A-Z, a-z, 0-9, ter znakov '_-:.,[]{}<>', kot tudi '/' kot ločilnik"
 
-#: ../xfconfd/xfconf-backend.c:134
+#: ../xfconfd/xfconf-backend.c:160
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Imena lastnosti ne smejo imeti dveh zaporednih '/' znakov"
 
-#: ../xfconfd/xfconf-backend.c:145
+#: ../xfconfd/xfconf-backend.c:171
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Imena lastnosti se ne smejo končati z znakom '/'"
 
-#: ../xfconfd/xfconf-backend.c:162
+#: ../xfconfd/xfconf-backend.c:188
 #, c-format
 msgid "Channel name cannot be an empty string"
 msgstr "Ime kanala ne sme biti prazen niz znakov"
 
-#: ../xfconfd/xfconf-backend.c:177
+#: ../xfconfd/xfconf-backend.c:203
 #, c-format
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
 msgstr "Imena kanalov lahko vsebujejo le ASCII znake A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', in '-'"
 
-#: ../xfconfd/xfconf-backend.c:399
+#: ../xfconfd/xfconf-backend.c:425
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
 msgstr "Ime lastnosti je lahko le prazno ali \"/\", le je bila rekurzivna ponastavitev"
 
-#: ../xfconfd/main.c:125
+#: ../xfconfd/main.c:127
 #, c-format
 msgid "Name %s lost on the message dbus, exiting."
 msgstr "Ime %s se je izgubil na dbus vodilu. Končujem."
 
-#: ../xfconfd/main.c:148
+#: ../xfconfd/main.c:151
 msgid "Prints the xfconfd version."
 msgstr "Izpiše različico xfconfd."
 
-#: ../xfconfd/main.c:150
+#: ../xfconfd/main.c:153
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
 msgstr "Konfiguracijska zaledja, ki naj se uporabijo. Prvo določeno zaledje se odpre za branje/pisanje; ostala zgolj za branje."
 
-#: ../xfconfd/main.c:153
+#: ../xfconfd/main.c:156
 msgid "Fork into background after starting; only useful for testing purposes"
 msgstr "Po zagonu naredi dvojnik v ozadju; uporabno le za testiranja."
 
-#: ../xfconfd/main.c:173
+#: ../xfconfd/main.c:176
 msgid "Xfce Configuration Daemon"
 msgstr "Demon za Xfce nastavitve"
 
-#: ../xfconfd/main.c:182
+#: ../xfconfd/main.c:181
 msgid "Xfce configuration daemon"
 msgstr "Demon za Xfce nastavitve"
 
-#: ../xfconfd/main.c:184
+#: ../xfconfd/main.c:183
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Prijavite hrošče na http://bugs.xfce.org/\n"
 
-#: ../xfconfd/main.c:187
+#: ../xfconfd/main.c:186
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Napaka pri razčlenjevanju možnosti: %s\n"
@@ -208,8 +208,8 @@ msgid "List properties (or channels if -c is not specified)"
 msgstr "Prikaži seznam lastnosti (ali kanalo, če -c ni določen)"
 
 #: ../xfconf-query/main.c:196
-msgid "Verbose output"
-msgstr "Podrobni izpis"
+msgid "Print property and value in combination with -l or -m"
+msgstr ""
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
@@ -239,107 +239,107 @@ msgstr "Obrni obstoječo binarno logično vrednost"
 msgid "Monitor a channel for property changes"
 msgstr "Nadzoruj kanal za spremembe lastnosti"
 
-#: ../xfconf-query/main.c:249
-#, c-format
-msgid "Failed to init libxfconf: %s"
-msgstr "Neuspešna inicializacija libxfconf: %s"
-
-#: ../xfconf-query/main.c:254
+#: ../xfconf-query/main.c:243
 msgid "- Xfconf commandline utility"
 msgstr "-Xfconf orodje ukazne vrstice"
 
-#: ../xfconf-query/main.c:259
+#: ../xfconf-query/main.c:248
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr "Razčlenjevanje možnosti ni bilo uspešno: %s"
 
-#: ../xfconf-query/main.c:269
+#: ../xfconf-query/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "Razvojna skupina za Xfce. Vse pravice pridržane."
 
-#: ../xfconf-query/main.c:270
+#: ../xfconf-query/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Prosimo, poročajte napake na <%s>."
 
-#: ../xfconf-query/main.c:282
-msgid "Channels:"
-msgstr "Kanali:"
-
-#: ../xfconf-query/main.c:298
+#: ../xfconf-query/main.c:268
 msgid "No property specified"
 msgstr "Ni navedene lastnosti"
 
-#: ../xfconf-query/main.c:304
+#: ../xfconf-query/main.c:274
 msgid "--create and --reset options can not be used together"
 msgstr "--create in --reset možnosti ni mogoče uporabljati hkrati"
 
-#: ../xfconf-query/main.c:310
+#: ../xfconf-query/main.c:280
 msgid "--create and --reset options can not be used together with --list"
 msgstr "--create in --reset možnosti ni mogoče uporabljati hkrati z --list"
+
+#: ../xfconf-query/main.c:286
+#, c-format
+msgid "Failed to init libxfconf: %s"
+msgstr "Neuspešna inicializacija libxfconf: %s"
+
+#: ../xfconf-query/main.c:297
+msgid "Channels:"
+msgstr "Kanali:"
 
 #: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "Prični opazovati kanal \"%s\""
 
-#: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
-#: ../xfconf-query/main.c:530
+#: ../xfconf-query/main.c:360 ../xfconf-query/main.c:471
+#: ../xfconf-query/main.c:544
 msgid "Failed to set property"
 msgstr "Nastavljanje lastnosti ni uspelo"
 
-#: ../xfconf-query/main.c:360
+#: ../xfconf-query/main.c:364
 msgid "--toggle only works with boolean values"
 msgstr "--toogle deluje zgolj z binarnimi logičnimi vrednostmi"
 
-#: ../xfconf-query/main.c:369 ../xfconf-query/main.c:388
+#: ../xfconf-query/main.c:373 ../xfconf-query/main.c:392
 msgid "(unknown)"
 msgstr "(neznano)"
 
-#: ../xfconf-query/main.c:378
+#: ../xfconf-query/main.c:382
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr "Vrednost je tabela z %d elementi:"
 
-#: ../xfconf-query/main.c:402
+#: ../xfconf-query/main.c:406
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr "Lastnost \"%s\" ne obstaja na kanalu \"%s\". Če naj se ustvari nova lastnost, uporabite opcijo --create"
 
-#: ../xfconf-query/main.c:410
+#: ../xfconf-query/main.c:415
 msgid "When creating a new property, the value type must be specified"
 msgstr "Ob kreaciji nove lastnosti morate določiti tip vrednosti."
 
-#: ../xfconf-query/main.c:420
+#: ../xfconf-query/main.c:426
 msgid "Failed to get the existing type for the value"
 msgstr "Obstoječe vrste vrednosti ni bilo mogoče pridobiti."
 
-#: ../xfconf-query/main.c:438
+#: ../xfconf-query/main.c:445
 msgid "Unable to determine the type of the value"
 msgstr "Ne moremo določiti tipa  vrednosti"
 
-#: ../xfconf-query/main.c:444
+#: ../xfconf-query/main.c:452
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Vrsta vrednosti mora biti podana, da bi spremenili polje v posamično vrednost."
 
-#: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
+#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:528
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "\"%s\" ni mogoče pretvoriti v tip \"%s\""
 
-#: ../xfconf-query/main.c:486
+#: ../xfconf-query/main.c:497
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr "Obstaja %d novih vrednosti, a le %d vrst je bilo mogoče določiti"
 
-#: ../xfconf-query/main.c:507
+#: ../xfconf-query/main.c:519
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr "Ni bilo mogoče določiti vrste vrednosti z indeksom %d"
 
-#: ../xfconf-query/main.c:557
+#: ../xfconf-query/main.c:572
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanal \"1%s\" ne vsebuje nobenih lastnosti"
