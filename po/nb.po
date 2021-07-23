@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Allan Nordhøy <epost@anotheragency.no>, 2014
+# heskjestad <cato@heskjestad.xyz>, 2021
 # Harald H. <haarektrans@gmail.com>, 2014
 # heskjestad <cato@heskjestad.xyz>, 2019
 # Terje Uriansrud <terje@uriansrud.net>, 2008
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2019-08-11 04:38+0000\n"
+"POT-Creation-Date: 2021-07-20 00:48+0200\n"
+"PO-Revision-Date: 2021-07-23 06:07+0000\n"
 "Last-Translator: heskjestad <cato@heskjestad.xyz>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/xfce/xfconf/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:979
+#: ../xfconf/xfconf-cache.c:985
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Klarte ikke utføre ResetProperty DBus kall"
@@ -87,17 +88,17 @@ msgstr "Klarte ikke lagre kanal «%s»: %s"
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "Klarte ikke å finne Xfconf baksystem av typen «%s»"
 
-#: ../xfconfd/xfconf-backend.c:101
+#: ../xfconfd/xfconf-backend.c:127
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Navn på egenskaper må starte med et «/»-tegn"
 
-#: ../xfconfd/xfconf-backend.c:110
+#: ../xfconfd/xfconf-backend.c:136
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "Rotelementet ('/') er ikke et gyldig egenskapnavn"
 
-#: ../xfconfd/xfconf-backend.c:125
+#: ../xfconfd/xfconf-backend.c:151
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -105,67 +106,67 @@ msgid ""
 "separator"
 msgstr "Egenskapsnavn kan bare inneholde ASCII-tegnene A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' og '>', samt '/' som skilletegn"
 
-#: ../xfconfd/xfconf-backend.c:134
+#: ../xfconfd/xfconf-backend.c:160
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Egenskaper kan ikke ha to eller flere «/»-tegn rett etter hverandre"
 
-#: ../xfconfd/xfconf-backend.c:145
+#: ../xfconfd/xfconf-backend.c:171
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Navn på egenskaper kan ikke avsluttes med et «/»-tegn"
 
-#: ../xfconfd/xfconf-backend.c:162
+#: ../xfconfd/xfconf-backend.c:188
 #, c-format
 msgid "Channel name cannot be an empty string"
 msgstr "Kanalnavn kan ikke være en tom streng"
 
-#: ../xfconfd/xfconf-backend.c:177
+#: ../xfconfd/xfconf-backend.c:203
 #, c-format
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
 msgstr "Kanalnavn kan bare inneholde ASCII-tegnene A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', og '-'"
 
-#: ../xfconfd/xfconf-backend.c:399
+#: ../xfconfd/xfconf-backend.c:425
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
 msgstr "Navn på egenskaper kan kun være tom eller «/» hvis en rekursiv fjerning ble angitt."
 
-#: ../xfconfd/main.c:125
+#: ../xfconfd/main.c:127
 #, c-format
 msgid "Name %s lost on the message dbus, exiting."
 msgstr "Navnet %s gikk tapt på meldings-dbus, avslutter."
 
-#: ../xfconfd/main.c:148
+#: ../xfconfd/main.c:151
 msgid "Prints the xfconfd version."
 msgstr "Skriver ut xfconfd-versjon"
 
-#: ../xfconfd/main.c:150
+#: ../xfconfd/main.c:153
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
 msgstr "Bakgrunnskonfigurasjon som skal brukes. Den første spesifisert brukes til lesing og skriving; de øvrige brukes kun til lesing."
 
-#: ../xfconfd/main.c:153
+#: ../xfconfd/main.c:156
 msgid "Fork into background after starting; only useful for testing purposes"
 msgstr "Forgren i bakgrunnen etter start; bare nyttig for testformål"
 
-#: ../xfconfd/main.c:173
+#: ../xfconfd/main.c:176
 msgid "Xfce Configuration Daemon"
 msgstr "Xfce Konfigurasjonsprosess"
 
-#: ../xfconfd/main.c:182
+#: ../xfconfd/main.c:181
 msgid "Xfce configuration daemon"
 msgstr "Xfce konfigurasjonsprosess"
 
-#: ../xfconfd/main.c:184
+#: ../xfconfd/main.c:183
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Rapporter feil til http://bugs.xfce.org/\n"
 
-#: ../xfconfd/main.c:187
+#: ../xfconfd/main.c:186
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Fail ved tolking av: %s\n"
@@ -209,8 +210,8 @@ msgid "List properties (or channels if -c is not specified)"
 msgstr "Vis egenskapene (eller kanalene hvis -c ikke er angitt))"
 
 #: ../xfconf-query/main.c:196
-msgid "Verbose output"
-msgstr "Fullstendig logg"
+msgid "Print property and value in combination with -l or -m"
+msgstr "List ut egenskap og verdi sammen med -l eller -m"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
@@ -240,107 +241,107 @@ msgstr "Inverter en eksisterende boolsk egenskap"
 msgid "Monitor a channel for property changes"
 msgstr "Overvåk kanal for egenskapsendringer"
 
-#: ../xfconf-query/main.c:249
-#, c-format
-msgid "Failed to init libxfconf: %s"
-msgstr "Klarte ikke starte libxfconf: %s"
-
-#: ../xfconf-query/main.c:254
+#: ../xfconf-query/main.c:243
 msgid "- Xfconf commandline utility"
 msgstr "- Xfconf kommandolinjeverktøy"
 
-#: ../xfconf-query/main.c:259
+#: ../xfconf-query/main.c:248
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr "Tolking av tilvalg feilet: %s"
 
-#: ../xfconf-query/main.c:269
+#: ../xfconf-query/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce-utviklingslaget. Alle rettigheter reservert."
 
-#: ../xfconf-query/main.c:270
+#: ../xfconf-query/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Vennligst meld feil til <%s>."
 
-#: ../xfconf-query/main.c:282
-msgid "Channels:"
-msgstr "Kanaler:"
-
-#: ../xfconf-query/main.c:298
+#: ../xfconf-query/main.c:268
 msgid "No property specified"
 msgstr "Ingen egenskap angitt"
 
-#: ../xfconf-query/main.c:304
+#: ../xfconf-query/main.c:274
 msgid "--create and --reset options can not be used together"
 msgstr "--create og --reset tilvalg kan ikke brukes samtidig"
 
-#: ../xfconf-query/main.c:310
+#: ../xfconf-query/main.c:280
 msgid "--create and --reset options can not be used together with --list"
 msgstr "--create og --reset tilvalg kan ikke brukes sammen med --list"
+
+#: ../xfconf-query/main.c:286
+#, c-format
+msgid "Failed to init libxfconf: %s"
+msgstr "Klarte ikke starte libxfconf: %s"
+
+#: ../xfconf-query/main.c:297
+msgid "Channels:"
+msgstr "Kanaler:"
 
 #: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "Start overvåking av kanal «%s»:"
 
-#: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
-#: ../xfconf-query/main.c:530
+#: ../xfconf-query/main.c:360 ../xfconf-query/main.c:471
+#: ../xfconf-query/main.c:544
 msgid "Failed to set property"
 msgstr "Klarte ikke velge egenskap"
 
-#: ../xfconf-query/main.c:360
+#: ../xfconf-query/main.c:364
 msgid "--toggle only works with boolean values"
 msgstr "--toggle fungerer bare med boolske verdier"
 
-#: ../xfconf-query/main.c:369 ../xfconf-query/main.c:388
+#: ../xfconf-query/main.c:373 ../xfconf-query/main.c:392
 msgid "(unknown)"
 msgstr "(ukjent)"
 
-#: ../xfconf-query/main.c:378
+#: ../xfconf-query/main.c:382
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr "Verdien er en tabell med %d elementer:"
 
-#: ../xfconf-query/main.c:402
+#: ../xfconf-query/main.c:406
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr "Egenskapen «%s» finnes ikke i kanal «%s». Hvis du vil opprette en ny egenskap, bruk '--create' valget."
 
-#: ../xfconf-query/main.c:410
+#: ../xfconf-query/main.c:415
 msgid "When creating a new property, the value type must be specified"
 msgstr "Ved opprettelse av ny egenskap må verditypen angis."
 
-#: ../xfconf-query/main.c:420
+#: ../xfconf-query/main.c:426
 msgid "Failed to get the existing type for the value"
 msgstr "Kunne ikke innhente eksisterende verditype"
 
-#: ../xfconf-query/main.c:438
+#: ../xfconf-query/main.c:445
 msgid "Unable to determine the type of the value"
 msgstr "Kunne ikke avgjøre verditype."
 
-#: ../xfconf-query/main.c:444
+#: ../xfconf-query/main.c:452
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Verditype må angis for å endre fra tabell til enkeltverdi."
 
-#: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
+#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:528
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "Klarte ikke gjøre om «%s» til type «%s»"
 
-#: ../xfconf-query/main.c:486
+#: ../xfconf-query/main.c:497
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr "Innehar %d nye verdier, men kunne bare bestemme %d typer."
 
-#: ../xfconf-query/main.c:507
+#: ../xfconf-query/main.c:519
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr "Klarte ikke avgjøre verditype ved indeks %d"
 
-#: ../xfconf-query/main.c:557
+#: ../xfconf-query/main.c:572
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanal «%s» inneholder ingen egenskaper "
