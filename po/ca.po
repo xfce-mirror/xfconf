@@ -5,15 +5,15 @@
 # Translators:
 # Carles Muñoz Gorriz <carlesmu@internautas.org>, 2011
 # Carles Muñoz Gorriz <carlesmu@internautas.org>, 2011
-# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2017-2018
-# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2016
+# Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2017-2018
+# Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-01 18:31+0200\n"
-"PO-Revision-Date: 2019-01-14 17:27+0000\n"
-"Last-Translator: Davidmp <medipas@gmail.com>\n"
+"POT-Creation-Date: 2021-07-20 00:48+0200\n"
+"PO-Revision-Date: 2021-07-19 22:48+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfconf/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:979
+#: ../xfconf/xfconf-cache.c:985
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Ha fallat la construcció de la crida DBus ResetProperty"
@@ -87,17 +87,17 @@ msgstr "No es pot escriure al canal «%s»: %s"
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "No es pot trobar el dorsal Xfconf del tipus «%s»"
 
-#: ../xfconfd/xfconf-backend.c:101
+#: ../xfconfd/xfconf-backend.c:127
 #, c-format
 msgid "Property names must start with a '/' character"
 msgstr "Els noms de les propietats han de començar amb el caràcter «/»"
 
-#: ../xfconfd/xfconf-backend.c:110
+#: ../xfconfd/xfconf-backend.c:136
 #, c-format
 msgid "The root element ('/') is not a valid property name"
 msgstr "L'element arrel («/») no és un nom vàlid de propietat"
 
-#: ../xfconfd/xfconf-backend.c:125
+#: ../xfconfd/xfconf-backend.c:151
 #, c-format
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
@@ -105,67 +105,67 @@ msgid ""
 "separator"
 msgstr "Els noms de les propietats només poden incloure els caràcters ASCII A-Z, a-z, 0-9, «_», «-», «:», «.», «,», «[», «]», «{», «}», «<» i «>», així com «/» com a separador"
 
-#: ../xfconfd/xfconf-backend.c:134
+#: ../xfconfd/xfconf-backend.c:160
 #, c-format
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Els noms de les propietats no poden tenir dos o més caràcters «/» consecutius"
 
-#: ../xfconfd/xfconf-backend.c:145
+#: ../xfconfd/xfconf-backend.c:171
 #, c-format
 msgid "Property names cannot end with a '/' character"
 msgstr "Els noms de les propietats no poden acabar amb el caràcter «/»"
 
-#: ../xfconfd/xfconf-backend.c:162
+#: ../xfconfd/xfconf-backend.c:188
 #, c-format
 msgid "Channel name cannot be an empty string"
 msgstr "El nom del canal no pot ser una cadena buida"
 
-#: ../xfconfd/xfconf-backend.c:177
+#: ../xfconfd/xfconf-backend.c:203
 #, c-format
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
 msgstr "Els noms dels canals només poden incloure els caràcters ASCII A-Z, a-z, 0-9, «{», «}», «|», «[», «]», «:», «,», «.», «_» i «-»"
 
-#: ../xfconfd/xfconf-backend.c:399
+#: ../xfconfd/xfconf-backend.c:425
 #, c-format
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
 msgstr "El nom de la propietat només pot estar buit o ser «/» si s'ha especificat un restabliment recursiu"
 
-#: ../xfconfd/main.c:125
+#: ../xfconfd/main.c:127
 #, c-format
 msgid "Name %s lost on the message dbus, exiting."
 msgstr "S'ha perdut el nom %s en el missatge dbus, se surt."
 
-#: ../xfconfd/main.c:148
+#: ../xfconfd/main.c:151
 msgid "Prints the xfconfd version."
 msgstr "Mostra la versió de xfconfd."
 
-#: ../xfconfd/main.c:150
+#: ../xfconfd/main.c:153
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
 msgstr "Els dorsals de configuració a utilitzar. El primer dorsal especificat s'obre per a la lectura i escriptura; els altres, s'obren només per a lectura."
 
-#: ../xfconfd/main.c:153
+#: ../xfconfd/main.c:156
 msgid "Fork into background after starting; only useful for testing purposes"
 msgstr "Bifurca en segon pla just després d'iniciar; només és útil si voleu testejar"
 
-#: ../xfconfd/main.c:173
+#: ../xfconfd/main.c:176
 msgid "Xfce Configuration Daemon"
 msgstr "Dimoni de configuració de Xfce"
 
-#: ../xfconfd/main.c:182
+#: ../xfconfd/main.c:181
 msgid "Xfce configuration daemon"
 msgstr "Dimoni de configuració Xfconf"
 
-#: ../xfconfd/main.c:184
+#: ../xfconfd/main.c:183
 msgid "Report bugs to http://bugs.xfce.org/\n"
 msgstr "Informeu dels errors a http://bugs.xfce.org/\n"
 
-#: ../xfconfd/main.c:187
+#: ../xfconfd/main.c:186
 #, c-format
 msgid "Error parsing options: %s\n"
 msgstr "Error en analitzar les opcions: %s\n"
@@ -209,8 +209,8 @@ msgid "List properties (or channels if -c is not specified)"
 msgstr "Llista les propietats (o els canals si no s'ha especificat -c)"
 
 #: ../xfconf-query/main.c:196
-msgid "Verbose output"
-msgstr "Sortida detallada"
+msgid "Print property and value in combination with -l or -m"
+msgstr ""
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
@@ -240,107 +240,107 @@ msgstr "Inverteix una propietat booleana"
 msgid "Monitor a channel for property changes"
 msgstr "Monitora un canal per si hi ha canvis a les propietats"
 
-#: ../xfconf-query/main.c:249
-#, c-format
-msgid "Failed to init libxfconf: %s"
-msgstr "Ha fallat la inicialització de libxfconf: %s"
-
-#: ../xfconf-query/main.c:254
+#: ../xfconf-query/main.c:243
 msgid "- Xfconf commandline utility"
 msgstr "-  utilitat de línia d'ordres de Xfconf"
 
-#: ../xfconf-query/main.c:259
+#: ../xfconf-query/main.c:248
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr "Ha fallat l'anàlisi de l'opció: %s"
 
-#: ../xfconf-query/main.c:269
+#: ../xfconf-query/main.c:258
 msgid "The Xfce development team. All rights reserved."
 msgstr "L'equip de desenvolupament de Xfce. Tots els drets reservats."
 
-#: ../xfconf-query/main.c:270
+#: ../xfconf-query/main.c:259
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Informeu dels errors a <%s>."
 
-#: ../xfconf-query/main.c:282
-msgid "Channels:"
-msgstr "Canals:"
-
-#: ../xfconf-query/main.c:298
+#: ../xfconf-query/main.c:268
 msgid "No property specified"
 msgstr "No s'ha especificat la propietat"
 
-#: ../xfconf-query/main.c:304
+#: ../xfconf-query/main.c:274
 msgid "--create and --reset options can not be used together"
 msgstr "No es poden utilitzar alhora les opcions --create i --reset"
 
-#: ../xfconf-query/main.c:310
+#: ../xfconf-query/main.c:280
 msgid "--create and --reset options can not be used together with --list"
 msgstr "No es poden utilitzar alhora les opcions --create i --reset amb l'opció --list"
+
+#: ../xfconf-query/main.c:286
+#, c-format
+msgid "Failed to init libxfconf: %s"
+msgstr "Ha fallat la inicialització de libxfconf: %s"
+
+#: ../xfconf-query/main.c:297
+msgid "Channels:"
+msgstr "Canals:"
 
 #: ../xfconf-query/main.c:322
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "Inicia el monitoratge del canal «%s»:"
 
-#: ../xfconf-query/main.c:356 ../xfconf-query/main.c:461
-#: ../xfconf-query/main.c:530
+#: ../xfconf-query/main.c:360 ../xfconf-query/main.c:471
+#: ../xfconf-query/main.c:544
 msgid "Failed to set property"
 msgstr "Ha fallat l'establiment de la propietat"
 
-#: ../xfconf-query/main.c:360
+#: ../xfconf-query/main.c:364
 msgid "--toggle only works with boolean values"
 msgstr "--toggle només funciona amb valors booleans"
 
-#: ../xfconf-query/main.c:369 ../xfconf-query/main.c:388
+#: ../xfconf-query/main.c:373 ../xfconf-query/main.c:392
 msgid "(unknown)"
 msgstr "(desconegut)"
 
-#: ../xfconf-query/main.c:378
+#: ../xfconf-query/main.c:382
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr "El valor és una seqüència de %d elements:"
 
-#: ../xfconf-query/main.c:402
+#: ../xfconf-query/main.c:406
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr "La propietat «%s» no existeix al canal «%s». Si s'ha de crear una propietat nova, utilitzeu l'opció --create"
 
-#: ../xfconf-query/main.c:410
+#: ../xfconf-query/main.c:415
 msgid "When creating a new property, the value type must be specified"
 msgstr "Quan es crea una propietat nova, s'ha d'especificar el tipus del valor"
 
-#: ../xfconf-query/main.c:420
+#: ../xfconf-query/main.c:426
 msgid "Failed to get the existing type for the value"
 msgstr "Ha fallat l'obtenció del tipus existent per al valor"
 
-#: ../xfconf-query/main.c:438
+#: ../xfconf-query/main.c:445
 msgid "Unable to determine the type of the value"
 msgstr "No es pot determinar el tipus del valor"
 
-#: ../xfconf-query/main.c:444
+#: ../xfconf-query/main.c:452
 msgid "A value type must be specified to change an array into a single value"
 msgstr "S'ha d'especificar un tipus del valor per canviar una seqüència a un valor individual"
 
-#: ../xfconf-query/main.c:454 ../xfconf-query/main.c:515
+#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:528
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "No es pot convertir «%s» al tipus «%s»"
 
-#: ../xfconf-query/main.c:486
+#: ../xfconf-query/main.c:497
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr "Hi ha %d valors nous, però tan sols s'han pogut determinar %d tipus"
 
-#: ../xfconf-query/main.c:507
+#: ../xfconf-query/main.c:519
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr "No es pot determinar el tipus del valor a l'índex %d"
 
-#: ../xfconf-query/main.c:557
+#: ../xfconf-query/main.c:572
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "El canal «%s» no té propietats"
