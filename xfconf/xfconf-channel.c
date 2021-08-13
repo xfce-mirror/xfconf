@@ -1908,7 +1908,7 @@ xfconf_channel_get_structv(XfconfChannel *channel,
     val = g_ptr_array_index(arr, i); \
     CHECK_VALUE_TYPES(val, GTYPE); \
     cur_offset = ALIGN_VAL(cur_offset, alignment); \
-    __val_p = (ctype *)(((guchar *)(&(((DummyStruct *)value_struct)->a)))+cur_offset); \
+    __val_p = (ctype *)(gpointer)(((guchar *)(&(((DummyStruct *)value_struct)->a)))+cur_offset); \
     *__val_p = cvalgetter(val); \
     cur_offset += sizeof(ctype); \
 }G_STMT_END
@@ -2126,7 +2126,7 @@ xfconf_channel_set_structv(XfconfChannel *channel,
     val = g_new0(GValue, 1); \
     g_value_init(val, GTYPE); \
     cur_offset = ALIGN_VAL(cur_offset, alignment); \
-    __val_p = (ctype *)(((guchar *)(&(((DummyStruct *)value_struct)->a)))+cur_offset); \
+    __val_p = (ctype *)(gpointer)(((guchar *)(&(((DummyStruct *)value_struct)->a)))+cur_offset); \
     cvalsetter(val, *__val_p); \
     g_ptr_array_add(arr, val); \
     cur_offset += sizeof(ctype); \
