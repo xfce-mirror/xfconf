@@ -1647,7 +1647,7 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
                                             filename_stem, FALSE);
     g_free(filename_stem);
 
-    if((!filenames || !filenames[0]) && !user_file) {
+    if(!filenames || !filenames[0]) {
         if(error) {
             g_set_error(error, XFCONF_ERROR,
                         XFCONF_ERROR_CHANNEL_NOT_FOUND,
