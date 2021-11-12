@@ -137,7 +137,7 @@ main(int argc,
     GMainLoop *mloop;
     XfconfDaemon *xfconfd;
     GError *error = NULL;
-    struct sigaction act;
+    struct sigaction act = {0};
     GIOChannel *signal_io;
     const gchar *is_test_mode;
     guint signal_watch = 0;
@@ -158,7 +158,6 @@ main(int argc,
         { NULL, 0, 0, 0, 0, NULL, NULL },
     };
 
-    memset(&act, 0, sizeof(act));
     act.sa_handler = sighandler;
     act.sa_flags = SA_RESTART;
     
