@@ -1663,7 +1663,7 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
 
     /* read in system files, we do this in reversed order to properly 
      * follow the xdg spec, see bug #6079 for more information */
-    length = g_strv_length(filenames);
+    length = filenames ? g_strv_length(filenames) : 0;
     for(i = length - 1; i >= 0; --i) {
         if(!g_strcmp0(user_file, filenames[i]))
             continue;
