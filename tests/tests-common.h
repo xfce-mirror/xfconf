@@ -89,8 +89,8 @@ xfconf_tests_start(void)
         xfconf_tests_end();
         return FALSE;
     }
-    msg = g_dbus_message_new_method_call("org.xfce.XfconfTest",
-                                         "/org/xfce/Xfconf",
+    msg = g_dbus_message_new_method_call(XFCONF_SERVICE_NAME_PREFIX ".XfconfTest",
+                                         XFCONF_SERVICE_PATH_PREFIX "/Xfconf",
                                          "org.freedesktop.DBus.Peer",
                                          "Ping");
     g_get_current_time(&start);

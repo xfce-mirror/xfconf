@@ -55,8 +55,8 @@
 #include "xfconf-backend-factory.h"
 
 #define DEFAULT_BACKEND  "xfce-perchannel-xml"
-#define XFCONF_DBUS_NAME "org.xfce.Xfconf"
-#define XFCONF_DBUS_NAME_TEST "org.xfce.XfconfTest"
+#define XFCONF_DBUS_NAME XFCONF_SERVICE_NAME_PREFIX ".Xfconf"
+#define XFCONF_DBUS_NAME_TEST XFCONF_SERVICE_NAME_PREFIX ".XfconfTest"
 
 enum
 {

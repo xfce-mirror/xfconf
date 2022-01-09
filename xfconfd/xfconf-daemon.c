@@ -441,7 +441,7 @@ xfconf_daemon_start(XfconfDaemon *xfconfd,
     ret = 
     g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON(xfconfd),
                                       xfconfd->conn,
-                                      "/org/xfce/Xfconf",
+                                      XFCONF_SERVICE_PATH_PREFIX "/Xfconf",
                                       error);
     
     if (ret == FALSE)
