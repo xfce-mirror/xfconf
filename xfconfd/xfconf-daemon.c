@@ -175,7 +175,7 @@ xfconf_set_property(XfconfExported *skeleton,
         if(error) {
             g_dbus_method_invocation_return_gerror(invocation, error);
             g_error_free(error);
-            return FALSE;
+            return G_DBUS_METHOD_INVOCATION_UNHANDLED;
         }
     }
     
@@ -192,7 +192,7 @@ xfconf_set_property(XfconfExported *skeleton,
 
     g_value_unset (value);
     g_free (value);
-    return TRUE;
+    return G_DBUS_METHOD_INVOCATION_UNHANDLED;
 }
 
 
@@ -225,13 +225,13 @@ xfconf_get_property(XfconfExported *skeleton,
                 g_error_free(error);
             }
             g_value_unset(&value);
-            return TRUE;
+            return G_DBUS_METHOD_INVOCATION_UNHANDLED;
         } else if(l->next)
             g_clear_error(&error);
     }
     g_dbus_method_invocation_return_gerror(invocation, error);
     g_error_free(error);
-    return TRUE;
+    return G_DBUS_METHOD_INVOCATION_UNHANDLED;
 }
 
 static gboolean
@@ -248,7 +248,7 @@ xfconf_get_all_properties(XfconfExported *skeleton,
     properties = g_hash_table_new_full(g_str_hash, g_str_equal,
                                         (GDestroyNotify)g_free,
                                         (GDestroyNotify)_xfconf_gvalue_free);
-    /* get all properties from all backends.  if they all fail, return FALSE */
+    /* get all properties from all backends */
     for(l = xfconfd->backends; l; l = l->next) {
         if(xfconf_backend_get_all(l->data, channel, property_base,
                                   properties, &error))
@@ -268,7 +268,7 @@ xfconf_get_all_properties(XfconfExported *skeleton,
     if(error)
         g_error_free(error);
     g_hash_table_destroy(properties);
-    return TRUE;
+    return G_DBUS_METHOD_INVOCATION_UNHANDLED;
 }
 
 static gboolean
@@ -282,8 +282,7 @@ xfconf_property_exists(XfconfExported *skeleton,
     gboolean succeed = FALSE;
     GList *l;
     GError *error = NULL;
-    /* if at least one backend returns TRUE (regardles if |*exists| gets set
-     * to TRUE or FALSE), we'll return TRUE from this function */
+
     for(l = xfconfd->backends; !exists && l; l = l->next) {
         if(xfconf_backend_exists(l->data, channel, property, &exists, &error))
             succeed = TRUE;
@@ -297,7 +296,7 @@ xfconf_property_exists(XfconfExported *skeleton,
         g_dbus_method_invocation_return_gerror(invocation, error);
         g_error_free(error);
     }
-    return TRUE;
+    return G_DBUS_METHOD_INVOCATION_UNHANDLED;
 }
 
 static gboolean
@@ -330,7 +329,7 @@ xfconf_reset_property(XfconfExported *skeleton,
     if(error)
         g_error_free(error);
 
-    return TRUE;
+    return G_DBUS_METHOD_INVOCATION_UNHANDLED;
 }
 
 static gboolean
@@ -370,7 +369,7 @@ xfconf_list_channels(XfconfExported *skeleton,
     if(error)
         g_error_free(error);
 
-    return TRUE;
+    return G_DBUS_METHOD_INVOCATION_UNHANDLED;
 }
 
 static gboolean xfconf_is_property_locked(XfconfExported *skeleton,
@@ -399,7 +398,7 @@ static gboolean xfconf_is_property_locked(XfconfExported *skeleton,
     if(error)
         g_error_free(error);
 
-    return TRUE;
+    return G_DBUS_METHOD_INVOCATION_UNHANDLED;
 }
 
 static void
@@ -491,8 +490,39 @@ xfconf_daemon_load_config(XfconfDaemon *xfconfd,
 }
 
 
+#define XFCONF_DAEMON_CONNECT(signal_name, signal_handler) \
+    G_STMT_START{ \
+        g_signal_connect_swapped (xfconfd, signal_name, \
+                                  G_CALLBACK (xfconf_lifecycle_manager_increment_use_count), \
+                                  manager); \
+        g_signal_connect (xfconfd, signal_name, signal_handler, xfconfd); \
+        g_signal_connect_swapped (xfconfd, signal_name, \
+                                  G_CALLBACK (xfconf_lifecycle_manager_keep_alive), manager); \
+        g_signal_connect_swapped (xfconfd, signal_name, \
+                                  G_CALLBACK (xfconf_lifecycle_manager_decrement_use_count), \
+                                  manager); \
+    }G_STMT_END
+
+typedef struct
+{
+    gchar *name;
+    GCallback handler;
+} XfconfExportedSignal;
+
+static const XfconfExportedSignal xfconf_exported_signals[] =
+{
+    { "handle-get-all-properties", G_CALLBACK (xfconf_get_all_properties) },
+    { "handle-get-property", G_CALLBACK (xfconf_get_property) },
+    { "handle-is-property-locked", G_CALLBACK (xfconf_is_property_locked) },
+    { "handle-list-channels", G_CALLBACK (xfconf_list_channels) },
+    { "handle-property-exists", G_CALLBACK (xfconf_property_exists) },
+    { "handle-reset-property", G_CALLBACK (xfconf_reset_property) },
+    { "handle-set-property", G_CALLBACK (xfconf_set_property) },
+};
+
 XfconfDaemon *
 xfconf_daemon_new_unique(gchar * const *backend_ids,
+                         XfconfLifecycleManager *manager,
                          GError **error)
 {
     XfconfDaemon *xfconfd;
@@ -508,26 +538,9 @@ xfconf_daemon_new_unique(gchar * const *backend_ids,
         return NULL;
     }
 
-    g_signal_connect (xfconfd, "handle-get-all-properties",
-                      G_CALLBACK(xfconf_get_all_properties), xfconfd);
-    
-    g_signal_connect (xfconfd, "handle-get-property",
-                      G_CALLBACK(xfconf_get_property), xfconfd);
+    for (guint n = 0; n < G_N_ELEMENTS (xfconf_exported_signals); n++)
+        XFCONF_DAEMON_CONNECT (xfconf_exported_signals[n].name,
+                               xfconf_exported_signals[n].handler);
 
-    g_signal_connect (xfconfd, "handle-is-property-locked",
-                      G_CALLBACK(xfconf_is_property_locked), xfconfd);
-    
-    g_signal_connect (xfconfd, "handle-list-channels",
-                      G_CALLBACK(xfconf_list_channels), xfconfd);
-
-    g_signal_connect (xfconfd, "handle-property-exists",
-                      G_CALLBACK(xfconf_property_exists), xfconfd);
-    
-    g_signal_connect (xfconfd, "handle-reset-property",
-                      G_CALLBACK(xfconf_reset_property), xfconfd);
-    
-    g_signal_connect (xfconfd, "handle-set-property",
-                      G_CALLBACK(xfconf_set_property), xfconfd);
-    
     return xfconfd;
 }

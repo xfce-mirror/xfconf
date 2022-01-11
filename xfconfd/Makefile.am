@@ -26,6 +26,8 @@ xfconfd_SOURCES = \
 	xfconf-backend.h \
 	xfconf-daemon.c \
 	xfconf-daemon.h \
+	xfconf-lifecycle-manager.c \
+	xfconf-lifecycle-manager.h \
 	xfconf-locking-utils.c \
 	xfconf-locking-utils.h \
 	$(xfconf_backend_sources) \
