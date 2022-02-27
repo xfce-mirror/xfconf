@@ -78,7 +78,7 @@ xfconf_tests_start(void)
 {
     GDBusConnection *conn;
     GDBusMessage *msg, *ret;
-    GTimeVal start, now;
+    gint64 start, now;
     GError *error = NULL;
 
     /* wait until xfconfd finishes starting */
@@ -93,14 +93,14 @@ xfconf_tests_start(void)
                                          "/org/xfce/Xfconf",
                                          "org.freedesktop.DBus.Peer",
                                          "Ping");
-    g_get_current_time(&start);
+    start = g_get_monotonic_time ();
     while(!(ret = g_dbus_connection_send_message_with_reply_sync(conn,
                                                                  msg, 
                                                                  G_DBUS_SEND_MESSAGE_FLAGS_NONE,
                                                                  -1, NULL, NULL, NULL)))
     {
-        g_get_current_time(&now);
-        if(now.tv_sec - start.tv_sec > WAIT_TIMEOUT) {
+        now = g_get_monotonic_time ();
+        if(now - start > WAIT_TIMEOUT * G_USEC_PER_SEC) {
             g_critical("xfconfd failed to start after %d seconds", WAIT_TIMEOUT);
             g_object_unref (msg);
             xfconf_tests_end();
