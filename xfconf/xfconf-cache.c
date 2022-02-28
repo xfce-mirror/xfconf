@@ -62,7 +62,7 @@
 typedef struct
 {
 #if 0
-    GTimeVal last_used;
+    gint64 last_used;
 #endif
     GValue *value;
 } XfconfCacheItem;
@@ -77,7 +77,7 @@ xfconf_cache_item_new(const GValue *value,
 
     item = g_slice_new0(XfconfCacheItem);
 #if 0
-    g_get_current_time(&item->last_used);
+    item->last_used = g_get_monotonic_time ();
 #endif
 
     if(G_LIKELY(steal)) {
@@ -106,7 +106,7 @@ xfconf_cache_item_update(XfconfCacheItem *item,
         return FALSE;
 
 #if 0
-    g_get_current_time(&item->last_used);
+    item->last_used = g_get_monotonic_time ();
 #endif
 
     if(value) {
