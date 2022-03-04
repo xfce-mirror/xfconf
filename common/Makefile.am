@@ -61,6 +61,10 @@ BUILT_SOURCES = \
 	xfconf-gdbus-bindings.c \
 	xfconf-gdbus-bindings.h
 
+xfconf-dbus.xml: xfconf-dbus.xml.in
+	$(SED) -e "s,\@XFCONF_SERVICE_NAME_PREFIX\@,$(XFCONF_SERVICE_NAME_PREFIX),g" \
+	       -e "s,\@XFCONF_SERVICE_PATH_PREFIX\@,$(XFCONF_SERVICE_PATH_PREFIX),g" < $< > $@
+
 xfconf-marshal.h: $(srcdir)/xfconf-marshal.list Makefile
 	$(AM_V_GEN) glib-genmarshal --prefix=_xfconf_marshal $(srcdir)/xfconf-marshal.list --header > xfconf-marshal.h
 xfconf-marshal.c: $(srcdir)/xfconf-marshal.list Makefile
@@ -70,8 +74,8 @@ xfconf-marshal.c: $(srcdir)/xfconf-marshal.list Makefile
 xfconf-gdbus-bindings.h:
 xfconf-gdbus-bindings.c: xfconf-dbus.xml Makefile
 	$(AM_V_GEN) $(GDBUS_CODEGEN) \
-	--interface-prefix org.xfce.Xfconf \
-	--annotate "org.xfce.Xfconf" "org.gtk.GDBus.C.Name" Exported \
+	--interface-prefix @XFCONF_SERVICE_NAME_PREFIX@.Xfconf \
+	--annotate "@XFCONF_SERVICE_NAME_PREFIX@.Xfconf" "org.gtk.GDBus.C.Name" Exported \
 	--c-namespace Xfconf   \
 	--generate-c-code xfconf-gdbus-bindings \
 	$<
@@ -82,7 +86,8 @@ CLEANFILES = \
 
 DISTCLEANFILES = \
 	$(libxfconf_built_sources) \
-	$(BUILT_SOURCES)
+	$(BUILT_SOURCES) \
+	xfconf-dbus.xml
 
 BUILT_SOURCES += \
 	$(libxfconf_built_sources)
@@ -99,7 +104,7 @@ EXTRA_DIST = \
 	xfconf-alias.h \
 	xfconf-aliasdef.c \
 	xfconf-common-private.h \
-	xfconf-dbus.xml \
+	xfconf-dbus.xml.in \
 	xfconf-marshal.list \
 	xfconf-types.c
 
