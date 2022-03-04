@@ -136,6 +136,7 @@ main(int argc,
 {
     GMainLoop *mloop;
     XfconfDaemon *xfconfd;
+    XfconfLifecycleManager *manager;
     GError *error = NULL;
     struct sigaction act = {0};
     GIOChannel *signal_io;
@@ -220,15 +221,21 @@ main(int argc,
         backends = g_new0(gchar *, 2);
         backends[0] = g_strdup(DEFAULT_BACKEND);
     }
-    
-    xfconfd = xfconf_daemon_new_unique(backends, &error);
+
+    manager = xfconf_lifecycle_manager_new ();
+    xfconfd = xfconf_daemon_new_unique (backends, manager, &error);
     if(!xfconfd) {
         g_critical("Xfconfd failed to start: %s\n", error->message);
+        g_object_unref (manager);
         g_error_free(error);
         return EXIT_FAILURE;
     }
     g_strfreev(backends);
-    
+
+    /* quit the main loop when the xfconf daemon asks us to shutdown */
+    g_signal_connect_swapped (manager, "shutdown", G_CALLBACK (g_main_loop_quit), mloop);
+    xfconf_lifecycle_manager_start (manager);
+
     /* acquire name */
     is_test_mode = g_getenv ("XFCONF_RUN_IN_TEST_MODE");
     g_bus_own_name (G_BUS_TYPE_SESSION,
@@ -256,7 +263,8 @@ main(int argc,
     
     g_main_loop_run(mloop);
     
-    g_object_unref(G_OBJECT(xfconfd));
+    g_object_unref (xfconfd);
+    g_object_unref (manager);
 
     xfconf_backend_factory_cleanup();
     
