@@ -21,6 +21,7 @@
 #define __XFCONF_DAEMON_H__
 
 #include <glib-object.h>
+#include "xfconf-lifecycle-manager.h"
 #include "xfconf/xfconf-errors.h"
 
 #define XFCONF_TYPE_DAEMON             (xfconf_daemon_get_type())
@@ -37,6 +38,7 @@ typedef struct _XfconfDaemon         XfconfDaemon;
 GType xfconf_daemon_get_type(void) G_GNUC_CONST;
 
 XfconfDaemon *xfconf_daemon_new_unique(gchar * const *backend_ids,
+                                       XfconfLifecycleManager *manager,
                                        GError **error);
 
 G_END_DECLS
