@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<node name="/org/xfce/Xfconf">
-    <interface name="org.xfce.Xfconf">   
+<node name="@XFCONF_SERVICE_PATH_PREFIX@/Xfconf">
+    <interface name="@XFCONF_SERVICE_NAME_PREFIX@.Xfconf">   
         <!--
-             void org.xfce.Xfconf.SetProperty(String channel,
+             void @XFCONF_SERVICE_NAME_PREFIX@.Xfconf.SetProperty(String channel,
                                               String property,
                                               Variant value)
              
@@ -21,7 +21,7 @@
         </method>
         
         <!--
-             Variant org.xfce.Xfconf.GetProperty(String channel,
+             Variant @XFCONF_SERVICE_NAME_PREFIX@.Xfconf.GetProperty(String channel,
                                                  String property)
              
              @channel: A channel/application/namespace name.
@@ -36,7 +36,7 @@
         </method>
         
         <!--
-             Array{String,Variant} org.xfce.Xfconf.GetAllProperties(String channel,
+             Array{String,Variant} @XFCONF_SERVICE_NAME_PREFIX@.Xfconf.GetAllProperties(String channel,
                                                                     String property_base)
              
              @channel: A channel/application/namespace name.
@@ -58,7 +58,7 @@
         </method>
         
         <!--
-             Boolean org.xfce.Xfconf.PropertyExists(String channel,
+             Boolean @XFCONF_SERVICE_NAME_PREFIX@.Xfconf.PropertyExists(String channel,
                                                     String property)
              
              @channel: A channel/application/namespace name.
@@ -75,7 +75,7 @@
         </method>
         
         <!--
-             void org.xfce.Xfconf.ResetProperty(String channel,
+             void @XFCONF_SERVICE_NAME_PREFIX@.Xfconf.ResetProperty(String channel,
                                                 String property,
                                                 Boolean recursive)
              
@@ -105,7 +105,7 @@
         </method>
 
         <!--
-             Array{String} org.xfce.Xfconf.ListChannels()
+             Array{String} @XFCONF_SERVICE_NAME_PREFIX@.Xfconf.ListChannels()
 
              Returns a list of all known channels as an array of
              strings.
@@ -115,7 +115,7 @@
         </method>
         
         <!--
-             Boolean org.xfce.Xfconf.IsPropertyLocked(String channel,
+             Boolean @XFCONF_SERVICE_NAME_PREFIX@.Xfconf.IsPropertyLocked(String channel,
                                                       String property)
 
              @channel: A channel/application/namespace name.
@@ -134,7 +134,7 @@
         </method>
 
         <!--
-             void org.xfce.Xfconf.PropertyChanged(String channel,
+             void @XFCONF_SERVICE_NAME_PREFIX@.Xfconf.PropertyChanged(String channel,
                                                   String property.
                                                   Variant value)
              
@@ -151,7 +151,7 @@
         </signal>
 
         <!--
-             void org.xfce.Xfconf.PropertyRemoved(String channel,
+             void @XFCONF_SERVICE_NAME_PREFIX@.Xfconf.PropertyRemoved(String channel,
                                                   String property)
 
              @channel: A channel/application/namespace name.

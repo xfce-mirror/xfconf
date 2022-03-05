@@ -41,8 +41,8 @@ static GDBusConnection *gdbus = NULL;
 static GDBusProxy *gproxy = NULL;
 static GHashTable *named_structs = NULL;
 
-#define XFCONF_DBUS_NAME "org.xfce.Xfconf"
-#define XFCONF_DBUS_NAME_TEST "org.xfce.XfconfTest"
+#define XFCONF_DBUS_NAME XFCONF_SERVICE_NAME_PREFIX ".Xfconf"
+#define XFCONF_DBUS_NAME_TEST XFCONF_SERVICE_NAME_PREFIX ".XfconfTest"
 
 
 /* private api */
@@ -128,8 +128,8 @@ xfconf_init(GError **error)
                                    G_DBUS_PROXY_FLAGS_NONE,
                                    NULL,
                                    is_test_mode == NULL ? XFCONF_DBUS_NAME : XFCONF_DBUS_NAME_TEST,
-                                   "/org/xfce/Xfconf",
-                                   "org.xfce.Xfconf",
+                                   XFCONF_SERVICE_PATH_PREFIX "/Xfconf",
+                                   XFCONF_SERVICE_NAME_PREFIX ".Xfconf",
                                    NULL,
                                    NULL);
 

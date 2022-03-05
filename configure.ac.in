@@ -45,6 +45,7 @@ AM_PROG_CC_C_O
 AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 AC_PROG_LN_S
+AC_PROG_SED
 
 IT_PROG_INTLTOOL([0.35.0])
 
@@ -78,6 +79,20 @@ if test x"$GDBUS_CODEGEN" = x"no"; then
   ./configure GDBUS_CODEGEN=/path/to/gdbus-codegen to define 
   a custom location for it.])
 fi
+
+dnl ******************************************************************
+dnl *** Alternative service name prefix for e.g. Flatpak packaging ***
+dnl ******************************************************************
+AC_ARG_VAR([XFCONF_SERVICE_NAME_PREFIX],
+           [Alternative prefix to org.xfce for the Xfconf service])
+test -n "$XFCONF_SERVICE_NAME_PREFIX" || XFCONF_SERVICE_NAME_PREFIX='org.xfce'
+
+AC_SUBST([XFCONF_SERVICE_PATH_PREFIX],
+         [$(printf '%s' $XFCONF_SERVICE_NAME_PREFIX | $SED -E 's%(^|\.)%/%g')])
+AC_DEFINE_UNQUOTED(XFCONF_SERVICE_NAME_PREFIX, "$XFCONF_SERVICE_NAME_PREFIX",
+                   Name prefix for the Xfconf service)
+AC_DEFINE_UNQUOTED(XFCONF_SERVICE_PATH_PREFIX, "$XFCONF_SERVICE_PATH_PREFIX",
+                   Path prefix for the Xfconf service)
 
 dnl Check for X11 installed
 dnl XDT_CHECK_LIBX11_REQUIRE
