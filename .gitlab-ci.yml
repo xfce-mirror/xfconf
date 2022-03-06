@@ -10,5 +10,6 @@ distcheck:
   script:
     - xvfb-run -a make distcheck
   artifacts:
+    when: on_failure
     paths:
-      - tests/*/test-suite.log
+      - '**/test-suite.log'
