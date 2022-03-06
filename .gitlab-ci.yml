@@ -9,3 +9,6 @@ distcheck:
   stage: distcheck
   script:
     - xvfb-run -a make distcheck
+  artifacts:
+    paths:
+      - tests/*/test-suite.log
