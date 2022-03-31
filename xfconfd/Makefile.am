@@ -58,10 +58,11 @@ xfconfd_LDADD = \
 
 servicedir = $(datadir)/dbus-1/services
 service_in_files = org.xfce.Xfconf.service.in
-service_DATA = $(service_in_files:.service.in=.service)
+service_DATA = $(service_in_files:org.xfce.%.service.in=@XFCONF_SERVICE_NAME_PREFIX@.%.service)
 
-%.service: %.service.in
-	$(AM_V_GEN) sed -e "s,\@HELPERDIR\@,$(HELPER_PATH_PREFIX),g" < $< > $@
+@XFCONF_SERVICE_NAME_PREFIX@.%.service: org.xfce.%.service.in
+	$(AM_V_GEN) $(SED) -e "s,\@HELPERDIR\@,$(HELPER_PATH_PREFIX),g" \
+	                   -e "s,\@XFCONF_SERVICE_NAME_PREFIX\@,$(XFCONF_SERVICE_NAME_PREFIX),g" < $< > $@
 
 CLEANFILES = \
 	$(service_DATA)
