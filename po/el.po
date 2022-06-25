@@ -6,14 +6,15 @@
 # Ápo. <apostolos.papadimitriu@gmail.com>, 2016
 # Efstathios Iosifidis <iefstathios@gmail.com>, 2015
 # Efstathios Iosifidis <iosifidis@opensuse.org>, 2012
+# Ioannis LM, 2022
 # Πέτρος Σαμαράς <psamaras1@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-20 00:48+0200\n"
-"PO-Revision-Date: 2021-07-19 22:48+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2013-07-02 20:48+0000\n"
+"Last-Translator: Ioannis LM, 2022\n"
 "Language-Team: Greek (http://www.transifex.com/xfce/xfconf/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,7 +65,7 @@ msgstr "Δεν ήταν δυνατή η ανάγνωση της τιμής το�
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1369
 #, c-format
 msgid "The type attribute of <value> cannot be an array"
-msgstr "Η ιδιότητα τύπου του <value> δε μπορεί να είναι array"
+msgstr "Η ιδιότητα τύπου του <value> δε μπορεί να είναι συστοιχία τιμών"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1378
 #, c-format
@@ -85,7 +86,7 @@ msgstr "Δεν ήταν δυνατή η εγγραφή του καναλιού \
 #: ../xfconfd/xfconf-backend-factory.c:77
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Δεν ήταν δυνατή η εύρεση συστήματος υποστήριξης του Xfconf τύπου \"%s\""
+msgstr "Δεν ήταν δυνατή η εύρεση συστήματος υποστήριξης Xfconf του τύπου \"%s\""
 
 #: ../xfconfd/xfconf-backend.c:127
 #, c-format
@@ -151,7 +152,7 @@ msgstr "Ρυθμίζει ποια συστήματα υποστήριξης θα
 
 #: ../xfconfd/main.c:156
 msgid "Fork into background after starting; only useful for testing purposes"
-msgstr "Παραμονή στο παρασκήνιο μετά την εκκίνηση χρήσιμο μόνο για πειράματα"
+msgstr "Παραμονή στο παρασκήνιο μετά την εκκίνηση, χρήσιμο μόνο για πειράματα"
 
 #: ../xfconfd/main.c:176
 msgid "Xfce Configuration Daemon"
@@ -210,7 +211,7 @@ msgstr "Λίστα ιδιοτήτων (ή καναλιών αν δεν έχει 
 
 #: ../xfconf-query/main.c:196
 msgid "Print property and value in combination with -l or -m"
-msgstr ""
+msgstr "Εκτύπωση ιδιότητας και τιμής σε συνδυασμό με -l ή -m"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
@@ -251,7 +252,7 @@ msgstr "Αποτυχία ανάλυσης επιλογής: %s"
 
 #: ../xfconf-query/main.c:258
 msgid "The Xfce development team. All rights reserved."
-msgstr "Ο ομάδα ανάπτυξης του Xfce. Όλα τα δικαιώματα είναι κατοχυρωμένα."
+msgstr "Ο ομάδα ανάπτυξης του Xfce. Με την επιφύλαξη παντός νόμιμου δικαιώματος."
 
 #: ../xfconf-query/main.c:259
 #, c-format
@@ -287,7 +288,7 @@ msgstr "Έναρξη παρακολούθησης καναλιού \"%s\":"
 #: ../xfconf-query/main.c:360 ../xfconf-query/main.c:471
 #: ../xfconf-query/main.c:544
 msgid "Failed to set property"
-msgstr "Αποτυχία ορισμού ιδιότητας."
+msgstr "Αποτυχία ορισμού ιδιότητας"
 
 #: ../xfconf-query/main.c:364
 msgid "--toggle only works with boolean values"
@@ -307,23 +308,23 @@ msgstr "Η τιμή είναι ένας πίνακας με %d αντικείμ�
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
-msgstr "Η ιδιότητα \"%s\" δεν υπάρχει στο κανάλι \"%s\". Αν πρέπει να δημιουργηθεί νέα ιδιότητα, χρησιμοποιήστε την επιλογή --create."
+msgstr "Η ιδιότητα \"%s\" δεν υπάρχει στο κανάλι \"%s\". Αν πρέπει να δημιουργηθεί νέα ιδιότητα, χρησιμοποιήστε την επιλογή --create"
 
 #: ../xfconf-query/main.c:415
 msgid "When creating a new property, the value type must be specified"
-msgstr "Όταν δημιουργείται μια νέα ιδιότητα, πρέπει να ορίζεται ο τύπος της τιμής της."
+msgstr "Όταν δημιουργείται μια νέα ιδιότητα, πρέπει να ορίζεται ο τύπος της τιμής της"
 
 #: ../xfconf-query/main.c:426
 msgid "Failed to get the existing type for the value"
-msgstr "Αποτυχία λήψης του υπάρχοντος τύπου για την τιμή."
+msgstr "Αποτυχία λήψης του υπάρχοντος τύπου για την τιμή"
 
 #: ../xfconf-query/main.c:445
 msgid "Unable to determine the type of the value"
-msgstr "Αδύνατος ο προσδιορισμός του τύπου της τιμής."
+msgstr "Αδύνατος ο προσδιορισμός τύπου της τιμής"
 
 #: ../xfconf-query/main.c:452
 msgid "A value type must be specified to change an array into a single value"
-msgstr "Πρέπει να καθοριστεί ένας τύπος τιμής ώστε να αλλάξει ένας πίνακας σε μια απλή τιμή."
+msgstr "Πρέπει να καθοριστεί ένας τύπος τιμής ώστε να αλλάξει ένας πίνακας σε μια απλή τιμή"
 
 #: ../xfconf-query/main.c:463 ../xfconf-query/main.c:528
 #, c-format
@@ -333,12 +334,12 @@ msgstr "Αδύνατη η μετατροπή του \"%s\" στον τύπο \"%
 #: ../xfconf-query/main.c:497
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "Υπάρχουν %d νέες τιμές, αλλά μόνο %d τποι μπορούν να καθοριστούν."
+msgstr "Υπάρχουν %d νέες τιμές, αλλά μόνο %d τύποι μπορούν να καθοριστούν"
 
 #: ../xfconf-query/main.c:519
 #, c-format
 msgid "Unable to determine type of value at index %d"
-msgstr "Αδύνατος ο προσδιορισμός του τύπου της τιμής στο δείκτη %d."
+msgstr "Αδύνατος ο προσδιορισμός τύπου της τιμής στο δείκτη %d"
 
 #: ../xfconf-query/main.c:572
 #, c-format
