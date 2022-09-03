@@ -39,6 +39,7 @@ common/xfconf-marshal.c
 common/xfconf-marshal.h
 common/xfconf-alias.h
 common/xfconf-aliasdef.c
+common/xfconf-dbus.xml
 common/xfconf-gdbus-bindings.c
 common/xfconf-gdbus-bindings.h
 docs/reference/xfconf-decl-list.txt
@@ -111,4 +112,4 @@ xfconf/libxfconf-0.vapi
 xfconf-query/xfconf-query
 xfconfd/xfconfd
 xfconfd/xfconf-dbus-server.h
-xfconfd/org.xfce.Xfconf.service
+xfconfd/*.Xfconf.service
