@@ -160,7 +160,7 @@ if test "x$ac_gsettings_backend"; then
 fi
 
 dnl check for GObject Introspection
-GOBJECT_INTROSPECTION_CHECK([1.30.0])
+GOBJECT_INTROSPECTION_CHECK([1.66.0])
 
 dnl check for Vala support
 VAPIGEN_CHECK()
