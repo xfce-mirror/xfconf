@@ -1,3 +1,4 @@
+*~
 *.o
 *.lo
 *.la
@@ -10,6 +11,7 @@ Makefile.in
 
 *.trs
 *.log
+*.stamp
 ChangeLog
 configure
 config.log
@@ -42,28 +44,12 @@ common/xfconf-aliasdef.c
 common/xfconf-dbus.xml
 common/xfconf-gdbus-bindings.c
 common/xfconf-gdbus-bindings.h
-docs/reference/xfconf-decl-list.txt
-docs/reference/sgml-build.stamp
-docs/reference/xfconf.signals
-docs/reference/html-build.stamp
-docs/reference/version.xml
-docs/reference/sgml.stamp
-docs/reference/xfconf.prerequisites
-docs/reference/html.stamp
-docs/reference/xfconf-undocumented.txt
-docs/reference/tmpl-build.stamp
-docs/reference/tmpl.stamp
-docs/reference/xml
-docs/reference/xfconf.hierarchy
-docs/reference/xfconf-unused.txt
 docs/reference/html
-docs/reference/scan-build.stamp
-docs/reference/xfconf.interfaces
-docs/reference/xfconf-decl.txt
-docs/reference/xfconf.args
-docs/reference/*.bak
-docs/reference/tmpl/*.bak
-docs/reference/tmpl/stamp-xfconf-marshal.sgml
+docs/reference/xml
+docs/reference/xfconf*
+!docs/reference/xfconf-docs.xml
+!docs/reference/xfconf-overrides.txt
+!docs/reference/xfconf-sections.txt
 m4/*
 po/POTFILES
 po/Makefile.in.in
