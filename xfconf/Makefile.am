@@ -28,8 +28,9 @@ libxfconf_0_la_SOURCES = \
 libxfconf_0_la_CFLAGS = \
 	$(GLIB_CFLAGS) \
 	$(GIO_CFLAGS) \
-        $(GIO_UNIX_CFLAGS) \
+	$(GIO_UNIX_CFLAGS) \
 	$(GTHREAD_CFLAGS) \
+	$(LIBXFCE4UTIL_CFLAGS) \
 	$(PLATFORM_CFLAGS)
 
 libxfconf_0_la_LDFLAGS = \
@@ -44,9 +45,10 @@ libxfconf_0_la_LIBADD = \
 	$(top_builddir)/common/libxfconf-gvaluefuncs.la \
 	$(top_builddir)/common/libxfconf-dbus.la \
 	$(GIO_LIBS) \
-        $(GIO_UNIX_LIBS) \
+	$(GIO_UNIX_LIBS) \
 	$(GLIB_LIBS) \
-	$(GTHREAD_LIBS)
+	$(GTHREAD_LIBS) \
+	$(LIBXFCE4UTIL_LIBS)
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = libxfconf-0.pc
