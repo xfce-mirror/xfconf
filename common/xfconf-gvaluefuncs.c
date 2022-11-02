@@ -205,7 +205,9 @@ _xfconf_gvalue_from_string(GValue *value,
 
         case G_TYPE_FLOAT:
             errno = 0;
-            dval = g_ascii_strtod(str, &endptr);
+            dval = strtod (str, &endptr);
+            if (*endptr != '\0')
+              dval = g_ascii_strtod (str, NULL);
             if(0.0 == dval && ERANGE == errno)
                 return FALSE;
             CHECK_CONVERT_STATUS();
@@ -216,7 +218,9 @@ _xfconf_gvalue_from_string(GValue *value,
 
         case G_TYPE_DOUBLE:
             errno = 0;
-            dval = g_ascii_strtod(str, &endptr);
+            dval = strtod (str, &endptr);
+            if (*endptr != '\0')
+              dval = g_ascii_strtod (str, NULL);
             if(0.0 == dval && ERANGE == errno)
                 return FALSE;
             CHECK_CONVERT_STATUS();
