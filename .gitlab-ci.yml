@@ -5,7 +5,7 @@ include:
 # xfconf distcheck needs a working display/dbus to run tests
 # Fake it with xvfb on headless container
 distcheck:
-  extends: .make
+  extends: .distcheck
   stage: distcheck
   script:
     - xvfb-run -a make distcheck
@@ -13,3 +13,8 @@ distcheck:
     when: on_failure
     paths:
       - '**/test-suite.log'
+release:
+  extends: .distcheck
+  stage: release
+  script:
+    - xvfb-run -a make distcheck
