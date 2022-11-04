@@ -27,6 +27,8 @@
 #include <string.h>
 #endif
 
+#include <libxfce4util/libxfce4util.h>
+
 #include "xfconf-channel.h"
 #include "xfconf-cache.h"
 #include "common/xfconf-gdbus-bindings.h"
