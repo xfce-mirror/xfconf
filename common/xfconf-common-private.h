@@ -21,6 +21,4 @@
 #ifndef __XFCONF_COMMON_PRIVATE_H__
 #define __XFCONF_COMMON_PRIVATE_H__
 
-#define I_(string) (g_intern_static_string((string)))
-
 #endif  /* __XFCONF_COMMON_PRIVATE_H__ */
