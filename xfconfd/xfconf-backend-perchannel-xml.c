@@ -1694,6 +1694,7 @@ xfconf_format_xml_tag(GString *elem_str,
                       gboolean *is_array)
 {
     gchar *tmp;
+    gchar buf[G_ASCII_DTOSTR_BUF_SIZE];
 
     switch(G_VALUE_TYPE(value)) {
         case G_TYPE_STRING:
@@ -1734,13 +1735,13 @@ xfconf_format_xml_tag(GString *elem_str,
             break;
 
         case G_TYPE_FLOAT:
-            g_string_append_printf(elem_str, " type=\"float\" value=\"%f\"",
-                                   (gdouble)g_value_get_float(value));
+            g_string_append_printf(elem_str, " type=\"float\" value=\"%s\"",
+                                   g_ascii_dtostr (buf, sizeof (buf), g_value_get_float(value)));
             break;
 
         case G_TYPE_DOUBLE:
-            g_string_append_printf(elem_str, " type=\"double\" value=\"%f\"",
-                                   g_value_get_double(value));
+            g_string_append_printf(elem_str, " type=\"double\" value=\"%s\"",
+                                   g_ascii_dtostr (buf, sizeof (buf), g_value_get_double(value)));
             break;
 
         case G_TYPE_BOOLEAN:
