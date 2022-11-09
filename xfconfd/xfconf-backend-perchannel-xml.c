@@ -1909,6 +1909,10 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
     filename = g_strdup_printf("%s/%s.xml", xbpx->config_save_path, channel_name);
     filename_tmp = g_strconcat(filename, ".new", NULL);
 
+    /* ensure the config directory exists */
+    if (g_mkdir_with_parents(xbpx->config_save_path, 0755) != 0)
+        goto out;
+
     fp = fopen(filename_tmp, "w");
     if(!fp)
         goto out;
