@@ -1893,7 +1893,6 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
     XfconfChannel *channel = g_hash_table_lookup(xbpx->channels, channel_name);
     GNode *child;
     gchar *filename = NULL, *filename_tmp = NULL;
-    const gchar *configdir;
     FILE *fp = NULL;
 
     DBG("Flushed dirty channel \"%s\"", channel_name);
@@ -1910,9 +1909,8 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
     filename = g_strdup_printf("%s/%s.xml", xbpx->config_save_path, channel_name);
     filename_tmp = g_strconcat(filename, ".new", NULL);
 
-    configdir = g_strdup_printf("%s", xbpx->config_save_path);
     /* ensure the config directory exists */
-    if (g_mkdir_with_parents(configdir, 0755) != 0)
+    if (g_mkdir_with_parents(xbpx->config_save_path, 0755) != 0)
         goto out;
 
     fp = fopen(filename_tmp, "w");
@@ -1974,7 +1972,6 @@ out:
 
     g_free(filename);
     g_free(filename_tmp);
-    g_free(configdir);
 
     channel->dirty = FALSE;
 
