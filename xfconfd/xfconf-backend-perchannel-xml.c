@@ -1641,7 +1641,7 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
 
     TRACE("entering");
 
-    filename_stem = g_strdup_printf(CONFIG_FILE_FMT, channel_name);
+    filename_stem = g_strdup_printf(CONFIG_FILE_FMT, g_ascii_strdown(channel_name, -1));
     filenames = xfce_resource_lookup_all(XFCE_RESOURCE_CONFIG, filename_stem);
     user_file = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
                                             filename_stem, FALSE);
