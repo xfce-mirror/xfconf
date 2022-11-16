@@ -295,7 +295,7 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
     XfconfChannel *channel;
     XfconfProperty *cur_prop;
-    const gchar channel_name_lowercase = g_ascii_strdown(channel_name, -1)
+    const gchar *channel_name_lowercase = g_ascii_strdown(channel_name, -1)
 
     channel = g_hash_table_lookup(xbpx->channels, channel_name_lowercase);
     if(!channel) {
