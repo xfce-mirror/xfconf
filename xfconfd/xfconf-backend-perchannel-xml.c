@@ -293,9 +293,11 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
                                   GError **error)
 {
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(backend);
-    XfconfChannel *channel = g_hash_table_lookup(xbpx->channels, channel_name);
+    XfconfChannel *channel;
     XfconfProperty *cur_prop;
+    const gchar *channel_name_lowercase = g_ascii_strdown(channel_name, -1);
 
+    channel = g_hash_table_lookup(xbpx->channels, channel_name_lowercase);
     if(!channel) {
         channel = xfconf_backend_perchannel_xml_load_channel(xbpx, channel_name,
 #ifdef XFCONF_ENABLE_CHECKS
@@ -346,6 +348,8 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
     }
 
     xfconf_backend_perchannel_xml_schedule_save(xbpx, channel);
+
+    g_free(channel_name_lowercase);
 
     return TRUE;
 }
