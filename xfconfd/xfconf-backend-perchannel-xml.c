@@ -1019,7 +1019,7 @@ xfconf_backend_perchannel_xml_create_channel(XfconfBackendPerchannelXml *xbpx,
     prop = g_slice_new0(XfconfProperty);
     prop->name = g_strdup("/");
     channel->properties = g_node_new(prop);
-    g_hash_table_insert(xbpx->channels, g_ascii_strdown(channel_name, -1), channel);
+    g_hash_table_insert(xbpx->channels, g_strdup(channel_name), channel);
 
     return channel;
 }
@@ -1677,7 +1677,7 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
                                                  channel, NULL);
     }
 
-    g_hash_table_insert(xbpx->channels, g_ascii_strdown(channel_name, -1), channel);
+    g_hash_table_insert(xbpx->channels, g_strdup(channel_name), channel);
 
 out:
     g_strfreev(filenames);
