@@ -50,12 +50,6 @@
 
 #include <libxfce4util/libxfce4util.h>
 
-#ifdef ENABLE_NLS
-#ifdef HAVE_LOCALE_H
-#include <locale.h>
-#endif
-#endif
-
 #include "common/xfconf-gvaluefuncs.h"
 #include "common/xfconf-common-private.h"
 #include "xfconf/xfconf.h"
@@ -235,9 +229,6 @@ main(int argc, char **argv)
     gboolean prop_exists;
     GOptionContext *context;
 
-#ifdef ENABLE_NLS
-    setlocale (LC_ALL, "");
-#endif
     xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8");
 
     context = g_option_context_new(_("- Xfconf commandline utility"));
