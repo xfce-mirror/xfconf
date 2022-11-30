@@ -1,3 +1,8 @@
+4.17.2 (2022-11-30)
+======
+- Bump Libxfce4util to 4.17.3
+- xfconf-query: Remove ENABLE_NLS ifdefs
+
 4.17.1 (2022-11-09)
 ======
 - Update copyright year
