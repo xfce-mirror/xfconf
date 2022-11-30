@@ -84,14 +84,15 @@ typedef struct
 static void xfconf_g_property_object_notify(GObject *object,
                                             GParamSpec *pspec,
                                             gpointer user_data);
-static void xfconf_g_property_object_disconnect(gpointer user_data,
-                                                GClosure *closure);
 static void xfconf_g_property_channel_notify(XfconfChannel *channel,
                                              const gchar *property,
                                              const GValue *value,
                                              gpointer user_data);
-static void xfconf_g_property_channel_disconnect(gpointer user_data,
-                                                 GClosure *closure);
+static void xfconf_g_property_unbind_internal(XfconfGBinding *binding,
+                                              gboolean channel_lives,
+                                              gboolean object_lives);
+static void xfconf_g_property_participant_destroyed(XfconfGBinding *binding,
+                                                    GObject *former_object);
 
 
 
@@ -188,35 +189,6 @@ xfconf_g_property_object_notify(GObject *object,
 
     g_value_unset(&dst_val);
     g_value_unset(&src_val);
-}
-
-static void
-xfconf_g_property_object_disconnect(gpointer user_data,
-                                    GClosure *closure)
-{
-    XfconfGBinding *binding = user_data;
-
-    g_return_if_fail(G_IS_OBJECT(binding->object));
-    g_return_if_fail(!binding->channel || XFCONF_IS_CHANNEL(binding->channel));
-
-    /* remove the binding from the internal list */
-    if(G_LIKELY(__bindings)) {
-        G_LOCK(__bindings);
-        __bindings = g_slist_remove(__bindings, binding);
-        G_UNLOCK(__bindings);
-    }
-
-    /* unset the prevent recursing in channel_disconnect */
-    binding->object = NULL;
-
-    if(binding->channel) {
-        g_signal_handler_disconnect(G_OBJECT(binding->channel),
-                                    binding->channel_handler);
-    }
-
-    g_free(binding->xfconf_property);
-    g_free(binding->object_property);
-    g_slice_free(XfconfGBinding, binding);
 }
 
 static void
@@ -339,23 +311,46 @@ xfconf_g_property_channel_notify(XfconfChannel *channel,
 }
 
 static void
-xfconf_g_property_channel_disconnect(gpointer user_data,
-                                     GClosure *closure)
+xfconf_g_property_unbind_internal(XfconfGBinding *binding,
+                                  gboolean channel_lives,
+                                  gboolean object_lives)
 {
-    XfconfGBinding *binding = user_data;
-
+    g_return_if_fail(G_IS_OBJECT(binding->object));
     g_return_if_fail(XFCONF_IS_CHANNEL(binding->channel));
-    g_return_if_fail(!binding->object || G_IS_OBJECT(binding->object));
 
-    /* unset the prevent recursing in object_disconnect */
-    binding->channel = NULL;
+    /* remove the binding from the internal list */
+    if (G_LIKELY(__bindings)) {
+        G_LOCK(__bindings);
+        __bindings = g_slist_remove(__bindings, binding);
+        G_UNLOCK(__bindings);
+    }
 
-    if(binding->object) {
-        /* disconnect from the object. the disconnect closure of
-         * the object will free the binding data */
+    if (channel_lives) {
+        g_signal_handler_disconnect(G_OBJECT(binding->channel),
+                                    binding->channel_handler);
+        g_object_weak_unref(G_OBJECT(binding->channel), (GWeakNotify)xfconf_g_property_participant_destroyed, binding);
+    }
+
+    if (object_lives) {
         g_signal_handler_disconnect(G_OBJECT(binding->object),
                                     binding->object_handler);
+        g_object_weak_unref(G_OBJECT(binding->object), (GWeakNotify)xfconf_g_property_participant_destroyed, binding);
     }
+
+    g_free(binding->xfconf_property);
+    g_free(binding->object_property);
+    g_slice_free(XfconfGBinding, binding);
+}
+
+static void
+xfconf_g_property_participant_destroyed(XfconfGBinding *binding,
+                                        GObject *former_object)
+{
+    g_return_if_fail(former_object == (GObject *)binding->channel || former_object == (GObject *)binding->object);
+
+    xfconf_g_property_unbind_internal(binding,
+                                      former_object != (GObject *)binding->channel,
+                                      former_object != (GObject *)binding->object);
 }
 
 static gulong
@@ -380,11 +375,10 @@ xfconf_g_property_init(XfconfChannel *channel,
 
     /* monitor object for property changes */
     detailed_signal = g_strconcat("notify::", object_property, NULL);
-    binding->object_handler = g_signal_connect_data(G_OBJECT(object),
-                                                    detailed_signal,
-                                                    G_CALLBACK(xfconf_g_property_object_notify),
-                                                    binding,
-                                                    xfconf_g_property_object_disconnect, 0);
+    binding->object_handler = g_signal_connect(G_OBJECT(object),
+                                               detailed_signal,
+                                               G_CALLBACK(xfconf_g_property_object_notify),
+                                               binding);
     g_free(detailed_signal);
 
     /* transfer channel property to the object */
@@ -396,12 +390,14 @@ xfconf_g_property_init(XfconfChannel *channel,
 
     /* monitor channel for property changes */
     detailed_signal = g_strconcat("property-changed::", xfconf_property, NULL);
-    binding->channel_handler = g_signal_connect_data(G_OBJECT(channel),
-                                                     detailed_signal,
-                                                     G_CALLBACK(xfconf_g_property_channel_notify),
-                                                     binding,
-                                                     xfconf_g_property_channel_disconnect, 0);
+    binding->channel_handler = g_signal_connect(G_OBJECT(channel),
+                                                detailed_signal,
+                                                G_CALLBACK(xfconf_g_property_channel_notify),
+                                                binding);
     g_free(detailed_signal);
+
+    g_object_weak_ref(G_OBJECT(channel), (GWeakNotify)xfconf_g_property_participant_destroyed, binding);
+    g_object_weak_ref(G_OBJECT(object), (GWeakNotify)xfconf_g_property_participant_destroyed, binding);
 
     /* add binding to internal list */
     G_LOCK(__bindings);
@@ -429,8 +425,7 @@ _xfconf_g_bindings_shutdown(void)
         /* remove all the remaining bindings */
         for(l = bindings, n = 0; l; l = g_slist_next(l), n++) {
             binding = l->data;
-            g_signal_handler_disconnect(G_OBJECT(binding->object),
-                                        binding->object_handler);
+            xfconf_g_property_unbind_internal(binding, TRUE, TRUE);
         }
         g_slist_free(bindings);
 
@@ -662,8 +657,7 @@ xfconf_g_property_unbind(gulong id)
 
     if(G_LIKELY(l)) {
         binding = l->data;
-        g_signal_handler_disconnect(G_OBJECT(binding->object),
-                                    binding->object_handler);
+        xfconf_g_property_unbind_internal(binding, TRUE, TRUE);
     } else {
         g_warning("No binding with id %ld was found", id);
     }
@@ -706,8 +700,7 @@ xfconf_g_property_unbind_by_property(XfconfChannel *channel,
 
     if(G_LIKELY(l)) {
         binding = l->data;
-        g_signal_handler_disconnect(G_OBJECT(binding->object),
-                                    binding->object_handler);
+        xfconf_g_property_unbind_internal(binding, TRUE, TRUE);
     } else {
         g_warning("No binding with the given properties was found");
     }
@@ -726,21 +719,38 @@ xfconf_g_property_unbind_by_property(XfconfChannel *channel,
 void
 xfconf_g_property_unbind_all(gpointer channel_or_object)
 {
-    guint n;
+    GSList *bindings, *l;
+    guint n = 0;
 
     g_return_if_fail(G_IS_OBJECT(channel_or_object));
 
-    if(XFCONF_IS_CHANNEL(channel_or_object)) {
-        n = g_signal_handlers_disconnect_matched(channel_or_object, G_SIGNAL_MATCH_FUNC,
-                                                 0, 0, NULL,
-                                                 xfconf_g_property_channel_notify,
-                                                 NULL);
-    } else {
-        n = g_signal_handlers_disconnect_matched(channel_or_object, G_SIGNAL_MATCH_FUNC,
-                                                 0, 0, NULL,
-                                                 xfconf_g_property_object_notify,
-                                                 NULL);
+    G_LOCK(__bindings);
+    /* Temporarily unset __bindings so _unbind_internal() won't change
+     * the list under us */
+    bindings = __bindings;
+    __bindings = NULL;
+
+    l = bindings;
+    while (l != NULL) {
+        XfconfGBinding *binding = l->data;
+
+        if ((XFCONF_IS_CHANNEL(channel_or_object) && channel_or_object == binding->channel)
+            || channel_or_object == binding->object)
+        {
+            GSList *link = l;
+
+            xfconf_g_property_unbind_internal(binding, TRUE, TRUE);
+            ++n;
+
+            l = l->next;
+            bindings = g_slist_delete_link(bindings, link);
+        } else {
+            l = l->next;
+        }
     }
+
+    __bindings = bindings;
+    G_UNLOCK(__bindings);
 
     if(G_UNLIKELY(!n)) {
         g_warning("No bindings were found on the %s",
