@@ -212,11 +212,12 @@ xfconf_g_property_object_disconnect(gpointer user_data,
     if(binding->channel) {
         g_signal_handler_disconnect(G_OBJECT(binding->channel),
                                     binding->channel_handler);
+    } else {
+        /* only release the binding if channel_disconnect() has run */
+        g_free(binding->xfconf_property);
+        g_free(binding->object_property);
+        g_slice_free(XfconfGBinding, binding);
     }
-
-    g_free(binding->xfconf_property);
-    g_free(binding->object_property);
-    g_slice_free(XfconfGBinding, binding);
 }
 
 static void
@@ -351,10 +352,13 @@ xfconf_g_property_channel_disconnect(gpointer user_data,
     binding->channel = NULL;
 
     if(binding->object) {
-        /* disconnect from the object. the disconnect closure of
-         * the object will free the binding data */
         g_signal_handler_disconnect(G_OBJECT(binding->object),
                                     binding->object_handler);
+    } else {
+        /* only release the binding if object_disconnect() has run */
+        g_free(binding->xfconf_property);
+        g_free(binding->object_property);
+        g_slice_free(XfconfGBinding, binding);
     }
 }
 
