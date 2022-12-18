@@ -942,7 +942,7 @@ xfconf_proptree_build_propname(GNode *prop_node,
 
     for(cur = prop_node; cur; cur = cur->parent) {
         XfconfProperty *prop = cur->data;
-        if(!prop->name[1])  /* we've hit "/" */
+        if(prop->name[0] == '/')
             break;
         components = g_slist_prepend(components, prop->name);
     }
