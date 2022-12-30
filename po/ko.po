@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# 박정규(Jung-Kyu Park) <bagjunggyu@gmail.com>, 2017
-# Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2014
+# 1763f4a4329a2376c933c5e919a36cbc_341ca53 <1f851310383599d03339229d772e1290_119292>, 2017
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2014,2022
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-20 00:48+0200\n"
-"PO-Revision-Date: 2021-07-19 22:48+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"POT-Creation-Date: 2022-11-28 15:09+0100\n"
+"PO-Revision-Date: 2013-07-02 20:48+0000\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2014,2022\n"
 "Language-Team: Korean (http://www.transifex.com/xfce/xfconf/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../xfconf/xfconf-cache.c:985
+#: ../xfconf/xfconf-cache.c:987
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "ResetProperty DBus 호출을 만드는데 실패했습니다"
@@ -70,12 +70,12 @@ msgid "Invalid type for <value>: \"%s\""
 msgstr "잘못된 <value> 형식입니다: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1654
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1903
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "\"%s\"채널이 존재하지 않습니다"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1961
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1966
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "\"%s\" 채널에 기록할 수 없습니다: %s"
@@ -137,17 +137,17 @@ msgstr "프로퍼티 이름은 재귀적 리셋을 정의했을 경우 비우거
 msgid "Name %s lost on the message dbus, exiting."
 msgstr "메시지 dbus에서 %s를 찾을 수 없습니다, 마무리하겠습니다."
 
-#: ../xfconfd/main.c:151
+#: ../xfconfd/main.c:152
 msgid "Prints the xfconfd version."
 msgstr "xfconfd 버전을 출력합니다."
 
-#: ../xfconfd/main.c:153
+#: ../xfconfd/main.c:154
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
 msgstr "사용하기 위한 환경설정 백엔드입니다. 정의된 첫번째 백엔드는 읽기/쓰기로 열려 있습니다. 이에 반해 다른 요소는 읽기전용입니다."
 
-#: ../xfconfd/main.c:156
+#: ../xfconfd/main.c:157
 msgid "Fork into background after starting; only useful for testing purposes"
 msgstr "시작한 후 백그라운드로 쪼갭니다. 이것은 시험 목적일 경우에만 유용합니다"
 
@@ -173,7 +173,7 @@ msgstr "옵션 해석 오류: %s\n"
 msgid "GType transformation failed \"%s\""
 msgstr "GType 변환에 실패했습니다 \"%s\""
 
-#: ../xfconfd/xfconf-daemon.c:483
+#: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "No backends could be started"
 msgstr "어떤 백엔드도 시작할 수 없었습니다"
@@ -208,7 +208,7 @@ msgstr "목록 프로퍼티(또는 -c를 정의했을 경우 채널)"
 
 #: ../xfconf-query/main.c:196
 msgid "Print property and value in combination with -l or -m"
-msgstr ""
+msgstr "-l 옵션과 -m 옵션을 조합하여 속성 및 값 출력"
 
 #: ../xfconf-query/main.c:200
 msgid "Create a new property if it does not already exist"
