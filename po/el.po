@@ -4,17 +4,19 @@
 # 
 # Translators:
 # Ápo. <apostolos.papadimitriu@gmail.com>, 2016
+# Ápo. <apostolos.papadimitriu@gmail.com>, 2016
 # Efstathios Iosifidis <iefstathios@gmail.com>, 2015
 # Efstathios Iosifidis <iosifidis@opensuse.org>, 2012
+# Ioannis LM, 2022
 # Ioannis LM, 2022
 # Πέτρος Σαμαράς <psamaras1@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-20 00:48+0200\n"
+"POT-Creation-Date: 2022-11-28 15:09+0100\n"
 "PO-Revision-Date: 2013-07-02 20:48+0000\n"
-"Last-Translator: Ioannis LM, 2022\n"
+"Last-Translator: Πέτρος Σαμαράς <psamaras1@gmail.com>, 2017\n"
 "Language-Team: Greek (http://www.transifex.com/xfce/xfconf/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +24,7 @@ msgstr ""
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:985
+#: ../xfconf/xfconf-cache.c:987
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Απέτυχε η κλήση DBus ResetProperty"
@@ -30,7 +32,7 @@ msgstr "Απέτυχε η κλήση DBus ResetProperty"
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:276
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Δεν ήταν δυνατή η δημιουργία του καταλόγου ρυθμίσεων \"%s\""
+msgstr "Αδύνατη η δημιουργία του καταλόγου ρυθμίσεων \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:321
 #: ../xfconfd/xfconf-daemon.c:167
@@ -49,7 +51,7 @@ msgstr "Η ιδιότητα \"%s\" δεν υπάρχει στο κανάλι \"%
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:600
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr "Δεν ήταν δυνατή η διαγραφή του καναλιού \"%s \": %s"
+msgstr "Αδύνατη η αφαίρεση του καναλιού \"%s \": %s"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1297
 #, c-format
@@ -60,7 +62,7 @@ msgstr "Μη έγκυρος τύπος για <property>: \"%s\""
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1389
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "Δεν ήταν δυνατή η ανάγνωση της τιμής του τύπου \"%s\" από το \"%s\""
+msgstr "Αδύνατη η ανάγνωση τιμής του τύπου \"%s\" από το \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1369
 #, c-format
@@ -73,20 +75,20 @@ msgid "Invalid type for <value>: \"%s\""
 msgstr "Μη έγκυρος τύπος για <value>: \"%s\""
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1654
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1903
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "Το κανάλι \"%s\" δεν υπάρχει"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1961
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1966
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "Δεν ήταν δυνατή η εγγραφή του καναλιού \"%s\": \"%s\""
+msgstr "Αδύνατη η εγγραφή του καναλιού \"%s\": \"%s\""
 
 #: ../xfconfd/xfconf-backend-factory.c:77
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Δεν ήταν δυνατή η εύρεση συστήματος υποστήριξης Xfconf του τύπου \"%s\""
+msgstr "Αδύνατη η εύρεση συστήματος υποστήριξης Xfconf του τύπου \"%s\""
 
 #: ../xfconfd/xfconf-backend.c:127
 #, c-format
@@ -140,17 +142,17 @@ msgstr "Το όνομα τις ιδιότητας μπορεί μόνο να ε�
 msgid "Name %s lost on the message dbus, exiting."
 msgstr "Το όνομα %s χάθηκε στο dbus μηνυμάτων, έξοδος."
 
-#: ../xfconfd/main.c:151
+#: ../xfconfd/main.c:152
 msgid "Prints the xfconfd version."
 msgstr "Εμφανίζει την έκδοση του xfconfd"
 
-#: ../xfconfd/main.c:153
+#: ../xfconfd/main.c:154
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
 msgstr "Ρυθμίζει ποια συστήματα υποστήριξης θα χρησιμοποιηθούν. Το πρώτο που ορίζεται θα ανοίγει για ανάγνωση/εγγραφή, και τα υπόλοιπα μόνο για ανάγνωση."
 
-#: ../xfconfd/main.c:156
+#: ../xfconfd/main.c:157
 msgid "Fork into background after starting; only useful for testing purposes"
 msgstr "Παραμονή στο παρασκήνιο μετά την εκκίνηση, χρήσιμο μόνο για πειράματα"
 
@@ -176,7 +178,7 @@ msgstr "Σφάλμα ανάγνωσης επιλογών: %s\n"
 msgid "GType transformation failed \"%s\""
 msgstr "Η μεταμόρφωση GType απέτυχε \"%s\""
 
-#: ../xfconfd/xfconf-daemon.c:483
+#: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "No backends could be started"
 msgstr "Δεν ήταν δυνατή η εκκίνηση συστημάτων υποστήριξης"
