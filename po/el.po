@@ -185,7 +185,7 @@ msgstr "Δεν ήταν δυνατή η εκκίνηση συστημάτων υ
 
 #: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
 msgid "set"
-msgstr "ορίστηκε"
+msgstr "ορισμός"
 
 #: ../xfconf-query/main.c:100
 msgid "reset"
