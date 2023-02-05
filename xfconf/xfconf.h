@@ -23,14 +23,14 @@
 
 #include <glib.h>
 
-#define XFCONF_IN_XFCONF_H
+#define __XFCONF_IN_XFCONF_H__
 
 #include <xfconf/xfconf-channel.h>
 #include <xfconf/xfconf-binding.h>
 #include <xfconf/xfconf-errors.h>
 #include <xfconf/xfconf-types.h>
 
-#undef XFCONF_IN_XFCONF_H
+#undef __XFCONF_IN_XFCONF_H__
 
 G_BEGIN_DECLS
 

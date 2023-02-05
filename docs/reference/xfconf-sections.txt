@@ -63,7 +63,9 @@ xfconf_backend_reset
 xfconf_backend_flush
 xfconf_backend_register_property_changed_func
 xfconf_backend_return_val_if_fail
+XfconfPropertyChangedFunc
 <SUBSECTION Standard>
+XFCONF_BACKEND_GET_INTERFACE
 XFCONF_BACKEND
 XFCONF_IS_BACKEND
 XFCONF_TYPE_BACKEND
@@ -76,6 +78,7 @@ xfconf_init
 xfconf_shutdown
 xfconf_named_struct_register
 xfconf_array_free
+xfconf_list_channels
 </SECTION>
 
 <SECTION>
@@ -84,6 +87,8 @@ XFCONF_ERROR
 XfconfError
 <SUBSECTION Standard>
 XFCONF_TYPE_ERROR
+xfconf_error_get_type
+xfconf_get_error_quark
 </SECTION>
 
 <SECTION>
@@ -95,6 +100,8 @@ xfconf_g_value_set_uint16
 <SUBSECTION Standard>
 XFCONF_TYPE_INT16
 XFCONF_TYPE_UINT16
+xfconf_int16_get_type
+xfconf_uint16_get_type
 </SECTION>
 
 <SECTION>

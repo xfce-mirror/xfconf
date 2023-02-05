@@ -21,7 +21,7 @@
 #ifndef __XFCONF_TYPES_H__
 #define __XFCONF_TYPES_H__
 
-#if !defined(LIBXFCONF_COMPILATION) && !defined(XFCONF_IN_XFCONF_H)
+#if !defined(LIBXFCONF_COMPILATION) && !defined(__XFCONF_IN_XFCONF_H__)
 #error "Do not include xfconf-types.h, as this file may change or disappear in the future.  Include <xfconf/xfconf.h> instead."
 #endif
 

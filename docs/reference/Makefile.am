@@ -10,7 +10,10 @@ DOC_MAIN_SGML_FILE=$(DOC_MODULE)-docs.xml
 SCAN_OPTIONS=--deprecated-guards="XFCONF_DISABLE_DEPRECATED"
 
 # The directory containing the source code. Relative to $(srcdir)
-DOC_SOURCE_DIR=$(top_srcdir)
+DOC_SOURCE_DIR= \
+	$(top_srcdir)/common \
+	$(top_srcdir)/xfconf \
+	$(top_srcdir)/xfconfd
 
 # Extra options to supply to gtkdoc-mkdb
 MKDB_OPTIONS=--xml-mode --output-format=xml
@@ -23,7 +26,15 @@ HFILE_GLOB =
 CFILE_GLOB =
 
 # Header files to ignore when scanning
-IGNORE_HFILES=
+IGNORE_HFILES= \
+	xfconf-gdbus-bindings.h \
+	xfconf-cache.h \
+	xfconf-private.h \
+	xfconf-backend-factory.h \
+	xfconf-backend-perchannel-xml.h \
+	xfconf-daemon.h \
+	xfconf-lifecycle-manager.h \
+	xfconf-locking-utils.h
 
 # Extra files to add when scanning (relative to $srcdir)
 EXTRA_HFILES =
@@ -37,11 +48,11 @@ content_files =
 # CFLAGS and LDFLAGS for compiling scan program. Only needed
 # if $(DOC_MODULE).types is non-empty.
 GTKDOC_CFLAGS = \
-       -I$(top_srcdir) \
-       -I$(top_builddir)
+	-I$(top_srcdir) \
+	-I$(top_builddir)
 
 GTKDOC_LIBS = \
-       $(top_builddir)/xfconf/libxfconf-$(LIBXFCONF_VERSION_API).la
+	$(top_builddir)/xfconf/libxfconf-$(LIBXFCONF_VERSION_API).la
 
 include $(top_srcdir)/gtk-doc.make
 
