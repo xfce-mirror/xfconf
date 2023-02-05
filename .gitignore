@@ -50,6 +50,7 @@ docs/reference/xfconf*
 !docs/reference/xfconf-docs.xml
 !docs/reference/xfconf-overrides.txt
 !docs/reference/xfconf-sections.txt
+!docs/reference/xfconf.types
 m4/*
 po/POTFILES
 po/Makefile.in.in

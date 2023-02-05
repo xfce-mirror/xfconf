@@ -168,7 +168,7 @@ xfconf_channel_class_init(XfconfChannelClass *klass)
                                                  G_TYPE_VALUE);
 
     /**
-     * XfconfChannel::channel-name:
+     * XfconfChannel:channel-name:
      *
      * The string identifier used for this channel.
      **/
@@ -184,7 +184,7 @@ xfconf_channel_class_init(XfconfChannelClass *klass)
                                                         | G_PARAM_STATIC_BLURB));
 
     /**
-     * XfconfChannel::property-base:
+     * XfconfChannel:property-base:
      *
      * The string identifier used for the property base inside a channel.
      * This can be used to restrict a channel to a subset of properties.
@@ -201,7 +201,7 @@ xfconf_channel_class_init(XfconfChannelClass *klass)
                                                         | G_PARAM_STATIC_BLURB));
 
     /**
-     * XfconfChannel::is-singleton:
+     * XfconfChannel:is-singleton:
      *
      * Identifies the instance of the class as a singleton instance
      * or not.  This is mainly used internally by #XfconfChannel
