@@ -522,7 +522,7 @@ xfconf_transform_array(GPtrArray *arr_src,
  *
  * The reference count of the returned channel is owned by libxfconf.
  *
- * Returns: (transfer full): An #XfconfChannel singleton.
+ * Returns: (transfer none): An #XfconfChannel singleton.
  *
  * Since: 4.5.91
  */
