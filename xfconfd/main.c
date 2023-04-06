@@ -124,7 +124,7 @@ xfconf_dbus_name_lost (GDBusConnection *connection,
                        gpointer         user_data) {
     GMainLoop *main_loop;
 
-    g_critical (_("Name %s lost on the message dbus, exiting."), name);
+    g_warning("Name %s lost on the message dbus, exiting.", name);
     main_loop = (GMainLoop*)user_data;
     g_main_loop_quit(main_loop);
 }
