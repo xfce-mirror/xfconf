@@ -11,17 +11,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-20 00:48+0200\n"
-"PO-Revision-Date: 2021-07-20 09:04+0000\n"
-"Last-Translator: Kiril Kirilov <cybercop_montana@abv.bg>\n"
-"Language-Team: Bulgarian (http://www.transifex.com/xfce/xfconf/language/bg/)\n"
+"POT-Creation-Date: 2023-04-06 12:53+0200\n"
+"PO-Revision-Date: 2013-07-02 20:48+0000\n"
+"Last-Translator: Kiril Kirilov <cybercop_montana@abv.bg>, 2014,2017,2021\n"
+"Language-Team: Bulgarian (http://app.transifex.com/xfce/xfconf/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:985
+#: ../xfconf/xfconf-cache.c:987
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Неуспешно изпълнение на ResetProperty чрез DBus"
@@ -40,7 +40,7 @@ msgstr "Недостатъчно права за промяна на свойс�
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:386
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:468
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:633
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:653 ../xfconf-query/main.c:344
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:653 ../xfconf-query/main.c:335
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Свойството „%s“ не съществува за канала „%s“"
@@ -72,12 +72,12 @@ msgid "Invalid type for <value>: \"%s\""
 msgstr "Неправилен тип за <стойност>: „%s“"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1654
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1903
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "Каналът „%s“ не существува"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1961
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1966
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Неуспешно записване на канал „%s“: %s"
@@ -134,22 +134,17 @@ msgid ""
 "specified"
 msgstr "Името на свойството може да бъде празно или „/“, само ако е зададено рекурсивно анулиране"
 
-#: ../xfconfd/main.c:127
-#, c-format
-msgid "Name %s lost on the message dbus, exiting."
-msgstr "Името %s е изгубено от съобщението на dbus, излизане."
-
-#: ../xfconfd/main.c:151
+#: ../xfconfd/main.c:152
 msgid "Prints the xfconfd version."
 msgstr "Отпечатване на версията на Xfconf."
 
-#: ../xfconfd/main.c:153
+#: ../xfconfd/main.c:154
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
 msgstr "Конфигурация за полването на back-end. Първите указания на back-end са отворени за четене/запис, а следващите - само за четене."
 
-#: ../xfconfd/main.c:156
+#: ../xfconfd/main.c:157
 msgid "Fork into background after starting; only useful for testing purposes"
 msgstr "Изпълнение във фонов режим след стартиране (подходящо единствено за тестове)"
 
@@ -175,172 +170,172 @@ msgstr "Опции за грешка при анализ: %s\n"
 msgid "GType transformation failed \"%s\""
 msgstr "GType трансформацията \"%s\" е неуспешна"
 
-#: ../xfconfd/xfconf-daemon.c:483
+#: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "No backends could be started"
 msgstr "Неуспех при стартиране на фоновият режим"
 
-#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
+#: ../xfconf-query/main.c:84 ../xfconf-query/main.c:89
 msgid "set"
 msgstr "задаване"
 
-#: ../xfconf-query/main.c:100
+#: ../xfconf-query/main.c:94
 msgid "reset"
 msgstr "рестартиране"
 
-#: ../xfconf-query/main.c:176
+#: ../xfconf-query/main.c:170
 msgid "Version information"
 msgstr "Сведения за изданието"
 
-#: ../xfconf-query/main.c:180
+#: ../xfconf-query/main.c:174
 msgid "The channel to query/modify"
 msgstr "Канал за заявка/промяна"
 
-#: ../xfconf-query/main.c:184
+#: ../xfconf-query/main.c:178
 msgid "The property to query/modify"
 msgstr "Свойства на заявка/промяна"
 
-#: ../xfconf-query/main.c:188
+#: ../xfconf-query/main.c:182
 msgid "The new value to set for the property"
 msgstr "Нова стойност, зададена за свойството"
 
-#: ../xfconf-query/main.c:192
+#: ../xfconf-query/main.c:186
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Списък на свойствата (или каналите, когато не са оказани свойства)"
 
-#: ../xfconf-query/main.c:196
+#: ../xfconf-query/main.c:190
 msgid "Print property and value in combination with -l or -m"
 msgstr "Отпечатване на свойство и стойност в комбинация с -l или -m"
 
-#: ../xfconf-query/main.c:200
+#: ../xfconf-query/main.c:194
 msgid "Create a new property if it does not already exist"
 msgstr "Създаване на ново свойство, ако все още не съществува"
 
-#: ../xfconf-query/main.c:204
+#: ../xfconf-query/main.c:198
 msgid "Specify the property value type"
 msgstr "Определя типът стойност на свойството"
 
-#: ../xfconf-query/main.c:208
+#: ../xfconf-query/main.c:202
 msgid "Reset property"
 msgstr "Рестартиране на свойство"
 
-#: ../xfconf-query/main.c:212
+#: ../xfconf-query/main.c:206
 msgid "Recursive (use with -r)"
 msgstr "Рекурсивно (използва се с -r)"
 
-#: ../xfconf-query/main.c:216
+#: ../xfconf-query/main.c:210
 msgid "Force array even if only one element"
 msgstr "Използване на масив дори когато се състои само от един елемент"
 
-#: ../xfconf-query/main.c:220
+#: ../xfconf-query/main.c:214
 msgid "Invert an existing boolean property"
 msgstr "Преобразуване на значението на съществуващо логическо свойство"
 
-#: ../xfconf-query/main.c:224
+#: ../xfconf-query/main.c:218
 msgid "Monitor a channel for property changes"
 msgstr "Наблюдение за изменението на свойствата на канала"
 
-#: ../xfconf-query/main.c:243
+#: ../xfconf-query/main.c:234
 msgid "- Xfconf commandline utility"
 msgstr "- Xfconf помощтна програма за работа в команден ред"
 
-#: ../xfconf-query/main.c:248
+#: ../xfconf-query/main.c:239
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr "Неуспешeн вариант на синтаксиса: %s"
 
-#: ../xfconf-query/main.c:258
+#: ../xfconf-query/main.c:249
 msgid "The Xfce development team. All rights reserved."
 msgstr "Екипът по разработка на Xfce. Всички права са запазени."
 
-#: ../xfconf-query/main.c:259
+#: ../xfconf-query/main.c:250
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Моля, докладвайте грешки на <%s>."
 
-#: ../xfconf-query/main.c:268
+#: ../xfconf-query/main.c:259
 msgid "No property specified"
 msgstr "Не е указано свойство"
 
-#: ../xfconf-query/main.c:274
+#: ../xfconf-query/main.c:265
 msgid "--create and --reset options can not be used together"
 msgstr "параметрите --създаване и --рестартиране не могат да се използват заедно"
 
-#: ../xfconf-query/main.c:280
+#: ../xfconf-query/main.c:271
 msgid "--create and --reset options can not be used together with --list"
 msgstr "параметрите --създаване и --рестартиране на могат да се използват заедно с --list"
 
-#: ../xfconf-query/main.c:286
+#: ../xfconf-query/main.c:277
 #, c-format
 msgid "Failed to init libxfconf: %s"
 msgstr "Грешка при инициализацията на libxfconf: %s"
 
-#: ../xfconf-query/main.c:297
+#: ../xfconf-query/main.c:288
 msgid "Channels:"
 msgstr "Канали:"
 
-#: ../xfconf-query/main.c:322
+#: ../xfconf-query/main.c:313
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "Стартиране на наблюдението на канал „%s“:"
 
-#: ../xfconf-query/main.c:360 ../xfconf-query/main.c:471
-#: ../xfconf-query/main.c:544
+#: ../xfconf-query/main.c:351 ../xfconf-query/main.c:462
+#: ../xfconf-query/main.c:535
 msgid "Failed to set property"
 msgstr "Не може да бъде зададено свойство"
 
-#: ../xfconf-query/main.c:364
+#: ../xfconf-query/main.c:355
 msgid "--toggle only works with boolean values"
 msgstr "--toggle работи само с логически значения"
 
-#: ../xfconf-query/main.c:373 ../xfconf-query/main.c:392
+#: ../xfconf-query/main.c:364 ../xfconf-query/main.c:383
 msgid "(unknown)"
 msgstr "(неизвестно)"
 
-#: ../xfconf-query/main.c:382
+#: ../xfconf-query/main.c:373
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr "Стойността представлява масив с %d елемента:"
 
-#: ../xfconf-query/main.c:406
+#: ../xfconf-query/main.c:397
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr "Свойството „%s“ не съществува за канала „%s“. Ако трябва да бъде създадено ново свойство, използвайте аргумента --create"
 
-#: ../xfconf-query/main.c:415
+#: ../xfconf-query/main.c:406
 msgid "When creating a new property, the value type must be specified"
 msgstr "При създаване на нова опция, посочвайте типа стойност"
 
-#: ../xfconf-query/main.c:426
+#: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
 msgstr "Неуспех при получаване на съществуващ тип за стойност"
 
-#: ../xfconf-query/main.c:445
+#: ../xfconf-query/main.c:436
 msgid "Unable to determine the type of the value"
 msgstr "Не може да бъде определен типът на значение"
 
-#: ../xfconf-query/main.c:452
+#: ../xfconf-query/main.c:443
 msgid "A value type must be specified to change an array into a single value"
 msgstr "За преобразуване стойността на масива, трябва да бъде зададен типът стойност"
 
-#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:528
+#: ../xfconf-query/main.c:454 ../xfconf-query/main.c:519
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "Неуспешно преобразуване на „%s“ в тип „%s“"
 
-#: ../xfconf-query/main.c:497
+#: ../xfconf-query/main.c:488
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr "Налице са %d нови стойности, но определени могат да бъдат само %d типа"
 
-#: ../xfconf-query/main.c:519
+#: ../xfconf-query/main.c:510
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr "Не може да бъде определен типът стойност в индекс %d"
 
-#: ../xfconf-query/main.c:572
+#: ../xfconf-query/main.c:563
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Каналът „%s“ не съдържа свойства"
