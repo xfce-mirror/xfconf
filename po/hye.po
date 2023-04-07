@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-20 00:48+0200\n"
-"PO-Revision-Date: 2021-07-19 22:48+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
-"Language-Team: Eastern Armenian (http://www.transifex.com/xfce/xfconf/language/hye/)\n"
+"POT-Creation-Date: 2023-04-06 12:53+0200\n"
+"PO-Revision-Date: 2013-07-02 20:48+0000\n"
+"Last-Translator: Arman Harutyunyan <arman.harut468@gmail.com>, 2020\n"
+"Language-Team: Eastern Armenian (http://app.transifex.com/xfce/xfconf/language/hye/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hye\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../xfconf/xfconf-cache.c:985
+#: ../xfconf/xfconf-cache.c:987
 #, c-format
 msgid "Failed to make ResetProperty DBus call"
 msgstr "Չյաջողուեց ստեղծել ResetProperty DBus"
@@ -38,7 +38,7 @@ msgstr "Թոյլտուութիւնը մերժուել է «%s» ալիքում �
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:386
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:468
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:633
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:653 ../xfconf-query/main.c:344
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:653 ../xfconf-query/main.c:335
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "«%s» յատկութիւնը գոյութիւն չունի «%s» ալիքում"
@@ -70,12 +70,12 @@ msgid "Invalid type for <value>: \"%s\""
 msgstr "Անվաւեր տիպ <value>֊ի համար․ «%s»"
 
 #: ../xfconfd/xfconf-backend-perchannel-xml.c:1654
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1903
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1904
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "«%s» ալիքը գոյութիւն չունի"
 
-#: ../xfconfd/xfconf-backend-perchannel-xml.c:1961
+#: ../xfconfd/xfconf-backend-perchannel-xml.c:1966
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "Հնարաւոր չէ գրառել «%s» ալիքը․ %s"
@@ -132,22 +132,17 @@ msgid ""
 "specified"
 msgstr "Յատկութեան անունը կարող է լինել դատարկ կամ \"/\" եթէ նշուի ինքնադարձուն վերատեղադրումը"
 
-#: ../xfconfd/main.c:127
-#, c-format
-msgid "Name %s lost on the message dbus, exiting."
-msgstr "Անուն %s ֊ը կորել է dbus հաղորդագրութիւնում, ելք։"
-
-#: ../xfconfd/main.c:151
+#: ../xfconfd/main.c:152
 msgid "Prints the xfconfd version."
 msgstr "Ցուցադրել Xfconf֊ի տարբերակը։"
 
-#: ../xfconfd/main.c:153
+#: ../xfconfd/main.c:154
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
 msgstr "Կազմաձեւման աւգտագործվող ետնաբեմերը։ Սահմանված առաջին յետնաբեմը բացուել է կարդալ/գրելու, մնացածը՝ սոսկ ընթեռնելի տարբերակով։"
 
-#: ../xfconfd/main.c:156
+#: ../xfconfd/main.c:157
 msgid "Fork into background after starting; only useful for testing purposes"
 msgstr "Անցնել յետնաշերտային եղանակին մեկնարկից յետոյ՝ աւգտատակար է միայն փորձարկային նպատակների դէպքում"
 
@@ -173,172 +168,172 @@ msgstr "Սխալի վերլուծման ընտրանքներ․ %s\n"
 msgid "GType transformation failed \"%s\""
 msgstr "GType փոխակերպումը չյաջողուեց «%s»"
 
-#: ../xfconfd/xfconf-daemon.c:483
+#: ../xfconfd/xfconf-daemon.c:482
 #, c-format
 msgid "No backends could be started"
 msgstr "Ոչ մի յետնաբեմ չի գործարկուել"
 
-#: ../xfconf-query/main.c:90 ../xfconf-query/main.c:95
+#: ../xfconf-query/main.c:84 ../xfconf-query/main.c:89
 msgid "set"
 msgstr "տեղադրել"
 
-#: ../xfconf-query/main.c:100
+#: ../xfconf-query/main.c:94
 msgid "reset"
 msgstr "վերատեղադրել"
 
-#: ../xfconf-query/main.c:176
+#: ../xfconf-query/main.c:170
 msgid "Version information"
 msgstr "Տարբերակի վերաբերեալ տեղեկոյթ"
 
-#: ../xfconf-query/main.c:180
+#: ../xfconf-query/main.c:174
 msgid "The channel to query/modify"
 msgstr "Ալիք՝ հարցման/փոփոխման համար"
 
-#: ../xfconf-query/main.c:184
+#: ../xfconf-query/main.c:178
 msgid "The property to query/modify"
 msgstr "Յատկութիւն՝ հարցման/փոփոխման համար"
 
-#: ../xfconf-query/main.c:188
+#: ../xfconf-query/main.c:182
 msgid "The new value to set for the property"
 msgstr "Նոր արժէք, յատկութեան սահմանման համար"
 
-#: ../xfconf-query/main.c:192
+#: ../xfconf-query/main.c:186
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Ցուցակի յատկութիւններ (կամ ալիքներ, եթե -c֊ն նշուած չէ)"
 
-#: ../xfconf-query/main.c:196
+#: ../xfconf-query/main.c:190
 msgid "Print property and value in combination with -l or -m"
 msgstr ""
 
-#: ../xfconf-query/main.c:200
+#: ../xfconf-query/main.c:194
 msgid "Create a new property if it does not already exist"
 msgstr "Ստեղծել նոր յատկութիւն, եթէ այն արդէն գոյութիւն չունի"
 
-#: ../xfconf-query/main.c:204
+#: ../xfconf-query/main.c:198
 msgid "Specify the property value type"
 msgstr "Նշել յատկութեան արժէքի տիպը"
 
-#: ../xfconf-query/main.c:208
+#: ../xfconf-query/main.c:202
 msgid "Reset property"
 msgstr "Վերատեղադրել յատկութիւնը"
 
-#: ../xfconf-query/main.c:212
+#: ../xfconf-query/main.c:206
 msgid "Recursive (use with -r)"
 msgstr "Ինքնադարձուն (աւգտագործուում է -r֊ով)"
 
-#: ../xfconf-query/main.c:216
+#: ../xfconf-query/main.c:210
 msgid "Force array even if only one element"
 msgstr "Աւգտագործել զանգուածը, նոյնիսկ մեկ տարրի առկայութեան դէպքում"
 
-#: ../xfconf-query/main.c:220
+#: ../xfconf-query/main.c:214
 msgid "Invert an existing boolean property"
 msgstr "Հակադարձել գոյութիւն ունեցող տրամաբանական յատկութիւնը"
 
-#: ../xfconf-query/main.c:224
+#: ../xfconf-query/main.c:218
 msgid "Monitor a channel for property changes"
 msgstr "Վերահսկել ալիքը յատկութիւնների փոփոխման համար"
 
-#: ../xfconf-query/main.c:243
+#: ../xfconf-query/main.c:234
 msgid "- Xfconf commandline utility"
 msgstr "- Xfconf հրամանային տողի աւժանդակ ծրագիր"
 
-#: ../xfconf-query/main.c:248
+#: ../xfconf-query/main.c:239
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr "Ընտրանքի վերլուծման ձախողում․ %s"
 
-#: ../xfconf-query/main.c:258
+#: ../xfconf-query/main.c:249
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce֊ի մշակման խումբ։ Բոլոր իրաւունքները պաշտպանուած են։"
 
-#: ../xfconf-query/main.c:259
+#: ../xfconf-query/main.c:250
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Սխալների մասին կարող էք զեկուցել <%s> հասցէով։"
 
-#: ../xfconf-query/main.c:268
+#: ../xfconf-query/main.c:259
 msgid "No property specified"
 msgstr "Յատկութիւնը սահմանուած չէ"
 
-#: ../xfconf-query/main.c:274
+#: ../xfconf-query/main.c:265
 msgid "--create and --reset options can not be used together"
 msgstr "--create եւ --reset ընտրանքները չեն կարող գործածուել միասին"
 
-#: ../xfconf-query/main.c:280
+#: ../xfconf-query/main.c:271
 msgid "--create and --reset options can not be used together with --list"
 msgstr "--create եւ --reset ընտրանքները չեն կարող աւգտագործուել --list֊ի հետ միասին"
 
-#: ../xfconf-query/main.c:286
+#: ../xfconf-query/main.c:277
 #, c-format
 msgid "Failed to init libxfconf: %s"
 msgstr "Չյաջողուեց սկզբնաւորել libxfconf֊ը․ %s"
 
-#: ../xfconf-query/main.c:297
+#: ../xfconf-query/main.c:288
 msgid "Channels:"
 msgstr "Ալիքներ․"
 
-#: ../xfconf-query/main.c:322
+#: ../xfconf-query/main.c:313
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "Սկսել «%s» ալիքի վերահսկումը․"
 
-#: ../xfconf-query/main.c:360 ../xfconf-query/main.c:471
-#: ../xfconf-query/main.c:544
+#: ../xfconf-query/main.c:351 ../xfconf-query/main.c:462
+#: ../xfconf-query/main.c:535
 msgid "Failed to set property"
 msgstr "Չյաջողուեց տեղադրել յատկութիւնը"
 
-#: ../xfconf-query/main.c:364
+#: ../xfconf-query/main.c:355
 msgid "--toggle only works with boolean values"
 msgstr "--toggle֊ն աշխատում է միայն տրամաբանական արժէքների հետ"
 
-#: ../xfconf-query/main.c:373 ../xfconf-query/main.c:392
+#: ../xfconf-query/main.c:364 ../xfconf-query/main.c:383
 msgid "(unknown)"
 msgstr "(անյայտ)"
 
-#: ../xfconf-query/main.c:382
+#: ../xfconf-query/main.c:373
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr "Զանգվածը %d տարրերի հետ միասին արժեք է․"
 
-#: ../xfconf-query/main.c:406
+#: ../xfconf-query/main.c:397
 #, c-format
 msgid ""
 "Property \"%s\" does not exist on channel \"%s\". If a new property should "
 "be created, use the --create option"
 msgstr "«%s» յատկութիւնը գոյութիւն չունի «%s» ալիքում։ Նոր յատկութիւն ստեղծելու համար աւգտագործէք --create ընտրանքը"
 
-#: ../xfconf-query/main.c:415
+#: ../xfconf-query/main.c:406
 msgid "When creating a new property, the value type must be specified"
 msgstr "Երբ ստեղծուում է նոր յատկութիւն, արժէքի տիպը պէտք է սահմանուած լինի"
 
-#: ../xfconf-query/main.c:426
+#: ../xfconf-query/main.c:417
 msgid "Failed to get the existing type for the value"
 msgstr "Չյաջողուեց ստանալ գոյութիւն ունեցող տիպը՝ արժէքի համար"
 
-#: ../xfconf-query/main.c:445
+#: ../xfconf-query/main.c:436
 msgid "Unable to determine the type of the value"
 msgstr "Հնարաւոր չէ որոշել արժէքի տիպը"
 
-#: ../xfconf-query/main.c:452
+#: ../xfconf-query/main.c:443
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Արժեքի տիպը պէտք է սահմանուած լինի, զանգուածը մեկ արժէքի փոխելու համար"
 
-#: ../xfconf-query/main.c:463 ../xfconf-query/main.c:528
+#: ../xfconf-query/main.c:454 ../xfconf-query/main.c:519
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "Հնարաւոր չէ փոխարկել «%s»֊ը «%s» տիպի"
 
-#: ../xfconf-query/main.c:497
+#: ../xfconf-query/main.c:488
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr "Կան %d նոր արժէքներ, բայց միայն %d տիպերը կարող են որոշուել"
 
-#: ../xfconf-query/main.c:519
+#: ../xfconf-query/main.c:510
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr "Հնարաւոր չէ որոշել արժէքի տիպը %d դասիչում"
 
-#: ../xfconf-query/main.c:572
+#: ../xfconf-query/main.c:563
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "«%s» ալիքը չի պարունակում յատկութիւններ"
