@@ -48,8 +48,6 @@ AC_PROG_MAKE_SET
 AC_PROG_LN_S
 AC_PROG_SED
 
-IT_PROG_INTLTOOL([0.35.0])
-
 LT_PREREQ([2.2.6])
 LT_INIT([disable-static])
 
@@ -70,7 +68,11 @@ AC_SUBST(LIBXFCONF_VERSION_API)
 AC_SUBST(LIBXFCONF_VERINFO)
 
 dnl Check for i18n support
-XDT_I18N([])
+GETTEXT_PACKAGE="$PACKAGE"
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Name of default gettext domain])
+AC_SUBST([GETTEXT_PACKAGE])
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.19.8])
 
 dnl Check for gdbus-codegen 
 AC_ARG_VAR([GDBUS_CODEGEN], [D-Bus code and documentation generator from XML D-Bus interface definitions])
