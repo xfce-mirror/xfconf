@@ -9,21 +9,14 @@ dnl
 dnl version info
 m4_define([libxfconf_verinfo], [3:0:0])
 m4_define([libxfconf_version_api], [0])
-m4_define([xfconf_version_major], [4])
-m4_define([xfconf_version_minor], [18])
-m4_define([xfconf_version_micro], [0])
-m4_define([xfconf_version_nano], [])
-m4_define([xfconf_version_build], [@REVISION@])
-m4_define([xfconf_version_tag], [git])
-m4_define([xfconf_version], [xfconf_version_major().xfconf_version_minor().xfconf_version_micro()ifelse(xfconf_version_nano(), [], [], [.xfconf_version_nano()])ifelse(xfconf_version_tag(), [git], [xfconf_version_tag()-xfconf_version_build()], [xfconf_version_tag()])])
-
-m4_define([xfconf_default_debug], [ifelse(xfconf_version_tag(), [git], [yes], [minimum])])
+XDT_VERSION_INIT([4.18.0], [git])
 
 dnl init autoconf
 AC_COPYRIGHT([Copyright (c) 2007-2022 The Xfce development team])
-AC_INIT([xfconf], [xfconf_version], [https://gitlab.xfce.org/xfce/xfconf])
+AC_INIT([xfconf], [xdt_version], [https://gitlab.xfce.org/xfce/xfconf])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_PREREQ([2.69])
+AC_REVISION([xdt_version_build])
 
 dnl init automake
 AM_INIT_AUTOMAKE([1.11 dist-bzip2 tar-ustar no-dist-gzip foreign subdir-objects])
@@ -60,7 +53,7 @@ dnl AC_CHECK_FUNCS([fdwalk getdtablesize setlocale setsid sysconf])
 AC_CHECK_FUNCS([fdatasync fsync setlocale])
 
 dnl version information
-XFCONF_VERSION=xfconf_version
+XFCONF_VERSION=xdt_version
 LIBXFCONF_VERSION_API=libxfconf_version_api
 LIBXFCONF_VERINFO=libxfconf_verinfo
 AC_SUBST(XFCONF_VERSION)
@@ -169,7 +162,8 @@ dnl check for Vala support
 VAPIGEN_CHECK()
 
 dnl check for debugging support
-XDT_FEATURE_DEBUG([xfconf_default_debug])
+XDT_FEATURE_DEBUG([xdt_debug_default])
+
 dnl gtk-doc is broken
 XDT_SUPPORTED_FLAGS([GTK_DOC_EXTRA_CFLAGS], [-Wno-sign-compare])
 AC_SUBST([GTK_DOC_EXTRA_CFLAGS])

@@ -22,7 +22,6 @@ config.h
 config.rpath
 config.sub
 ltmain.sh
-configure.ac
 ABOUT-NLS
 INSTALL
 mkinstalldirs
