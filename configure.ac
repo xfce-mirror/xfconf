@@ -11,6 +11,10 @@ m4_define([libxfconf_verinfo], [3:0:0])
 m4_define([libxfconf_version_api], [0])
 XDT_VERSION_INIT([4.18.0], [git])
 
+dnl minimum required versions
+m4_define([glib_min_version], [2.66.0])
+m4_define([libxfce4util_min_version], [4.17.3])
+
 dnl init autoconf
 AC_COPYRIGHT([Copyright (c) 2007-2022 The Xfce development team])
 AC_INIT([xfconf], [xdt_version], [https://gitlab.xfce.org/xfce/xfconf])
@@ -84,15 +88,12 @@ AC_DEFINE_UNQUOTED(XFCONF_SERVICE_NAME_PREFIX, "$XFCONF_SERVICE_NAME_PREFIX",
 AC_DEFINE_UNQUOTED(XFCONF_SERVICE_PATH_PREFIX, "$XFCONF_SERVICE_PATH_PREFIX",
                    Path prefix for the Xfconf service)
 
-dnl Check for X11 installed
-dnl XDT_CHECK_LIBX11_REQUIRE
-
 dnl required
-XDT_CHECK_PACKAGE([GLIB], [gobject-2.0], [2.66.0])
-XDT_CHECK_PACKAGE([GIO], [gio-2.0], [2.66.0])
-XDT_CHECK_PACKAGE([GIO_UNIX], [gio-unix-2.0], [2.66.0])
-XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.66.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.17.3])
+XDT_CHECK_PACKAGE([GLIB], [gobject-2.0], [glib_min_version])
+XDT_CHECK_PACKAGE([GIO], [gio-2.0], [glib_min_version])
+XDT_CHECK_PACKAGE([GIO_UNIX], [gio-unix-2.0], [glib_min_version])
+XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [glib_min_version])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [libxfce4util_min_version])
 
 dnl check for make-exo-alias.pl
 AC_PATH_PROGS([PERL], [perl5.8 perl5.6 perl5 perl])
@@ -144,9 +145,9 @@ AC_MSG_RESULT([$ac_gsettings_backend])
 
 dnl GModule is required in order to build the GSettings backend module
 if test "x$ac_gsettings_backend"; then
-	XDT_CHECK_PACKAGE([GMODULE], [gmodule-2.0], [2.66.0])
-	GIO_MODULE_DIR=$libdir/gio/modules
-    AC_SUBST(GIO_MODULE_DIR)
+  XDT_CHECK_PACKAGE([GMODULE], [gmodule-2.0], [glib_min_version])
+  GIO_MODULE_DIR=$libdir/gio/modules
+  AC_SUBST(GIO_MODULE_DIR)
 fi
 
 dnl check for GObject Introspection
