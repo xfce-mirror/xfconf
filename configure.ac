@@ -67,14 +67,8 @@ AC_SUBST([GETTEXT_PACKAGE])
 AM_GNU_GETTEXT([external])
 AM_GNU_GETTEXT_VERSION([0.19.8])
 
-dnl Check for gdbus-codegen 
-AC_ARG_VAR([GDBUS_CODEGEN], [D-Bus code and documentation generator from XML D-Bus interface definitions])
-AC_PATH_PROG([GDBUS_CODEGEN], [gdbus-codegen], [no])
-if test x"$GDBUS_CODEGEN" = x"no"; then
-  AC_MSG_ERROR([could not find gdbus-codegen in \$PATH. You can run
-  ./configure GDBUS_CODEGEN=/path/to/gdbus-codegen to define 
-  a custom location for it.])
-fi
+dnl Check for gdbus-codegen
+XDT_CHECK_PACKAGE_BINARY([GDBUS_CODEGEN], [gio-2.0], [gdbus_codegen], [gdbus-codegen])
 
 dnl ******************************************************************
 dnl *** Alternative service name prefix for e.g. Flatpak packaging ***
