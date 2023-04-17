@@ -245,7 +245,7 @@ main(int argc, char **argv)
     {
         g_print("xfconf-query");
         g_print(" %s\n\n", PACKAGE_VERSION);
-        g_print("%s\n", "Copyright (c) 2008-2022");
+        g_print("%s\n", "Copyright (c) 2008-2023");
         g_print("\t%s\n\n", _("The Xfce development team. All rights reserved."));
         g_print(_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
         g_print("\n");
