@@ -16,7 +16,7 @@ m4_define([glib_min_version], [2.66.0])
 m4_define([libxfce4util_min_version], [4.17.3])
 
 dnl init autoconf
-AC_COPYRIGHT([Copyright (c) 2007-2022 The Xfce development team])
+AC_COPYRIGHT([Copyright (c) 2007-2023 The Xfce development team])
 AC_INIT([xfconf], [xdt_version], [https://gitlab.xfce.org/xfce/xfconf])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_PREREQ([2.69])
