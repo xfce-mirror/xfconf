@@ -1,3 +1,24 @@
+4.18.1 (2023-04-17)
+======
+- Update copyright year
+- xfconfd: Lower warning level
+- docs: Fix xfconf_channel_get() transfer annotation
+- Update bug report address
+- docs: Fix unused declarations warning
+- docs: Properly enable GI docs
+- xfconfd: Fix check for "/" when building property name
+- xfconfd: Make xml backend case sensitive for channel names
+- Translation Updates:
+  Albanian, Armenian (Armenia), Basque, Belarusian, Bulgarian, Catalan,
+  Chinese (China), Chinese (Hong Kong), Chinese (Taiwan), Croatian,
+  Czech, Danish, Dutch, Eastern Armenian, English (Australia), English
+  (Canada), English (United Kingdom), Finnish, French, Galician,
+  German, Greek, Hebrew, Hindi, Hungarian, Icelandic, Indonesian,
+  Italian, Japanese, Kazakh, Korean, Lithuanian, Malay, Norwegian
+  Bokmål, Occitan (post 1500), Polish, Portuguese, Portuguese
+  (Brazil), Romanian, Russian, Serbian, Slovak, Slovenian, Spanish,
+  Swedish, Thai, Turkish, Ukrainian
+
 4.18.0 (2022-12-15)
 ======
 - build: Bump requirements for Xfce 4.18
