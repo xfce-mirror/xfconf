@@ -458,7 +458,9 @@ _xfconf_g_bindings_shutdown(void)
  *
  * Binds an Xfconf property to a #GObject property.  If the property
  * is changed via either the #GObject or Xfconf, the corresponding
- * property will also be updated.
+ * property will also be updated. The binding is initialized from the
+ * Xfconf property, i.e. the initial value of the #GObject property is
+ * overwritten.
  *
  * Note that @xfconf_property_type is required since @xfconf_property
  * may or may not already exist in the Xfconf store.  The type of
@@ -526,7 +528,9 @@ xfconf_g_property_bind(XfconfChannel *channel,
  * Binds an Xfconf property to a #GObject property of type
  * GDK_TYPE_COLOR (aka a #GdkColor struct).  If the property
  * is changed via either the #GObject or Xfconf, the corresponding
- * property will also be updated.
+ * property will also be updated. The binding is initialized from the
+ * Xfconf property, i.e. the initial value of the #GObject property is
+ * overwritten.
  *
  * This is a special-case binding; the GdkColor struct is not
  * ideal as-is for binding to a property, so it is stored in the
@@ -590,7 +594,9 @@ xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
  * Binds an Xfconf property to a #GObject property of type
  * GDK_TYPE_RGBA (aka a #GdkRGBA struct).  If the property
  * is changed via either the #GObject or Xfconf, the corresponding
- * property will also be updated.
+ * property will also be updated. The binding is initialized from the
+ * Xfconf property, i.e. the initial value of the #GObject property is
+ * overwritten.
  *
  * This is a special-case binding; the GdkRGBA struct is not
  * ideal as-is for binding to a property, so it is stored in the
