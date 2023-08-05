@@ -164,6 +164,16 @@ xfconf_query_printerr(const gchar *message,
     g_free(str);
 }
 
+static gint
+xfconf_query_compare_func(gconstpointer a,
+                          gconstpointer b,
+                          gpointer user_data)
+{
+    gchar **s = (gchar **)a;
+    gchar **t = (gchar **)b;
+    return g_strcmp0(*s, *t);
+}
+
 static GOptionEntry entries[] =
 {
      {   "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
@@ -289,15 +299,16 @@ main(int argc, char **argv)
 
         channels = xfconf_list_channels();
         if(G_LIKELY(channels)) {
+            g_qsort_with_data(channels, g_strv_length(channels), sizeof(gchar *), xfconf_query_compare_func, NULL);
             for(i = 0; channels[i]; ++i)
                 g_print("  %s\n", channels[i]);
             g_strfreev(channels);
         }
         else
         {
-	        xfconf_shutdown ();
+            xfconf_shutdown ();
             return EXIT_FAILURE;
-		}
+        }
         xfconf_shutdown ();
         return EXIT_SUCCESS;
     }
