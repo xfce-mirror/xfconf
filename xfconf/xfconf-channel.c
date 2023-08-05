@@ -2219,7 +2219,7 @@ out:
  *
  * Lists all channels known in the Xfconf configuration store.
  *
- * Returns: (transfer none) (array zero-terminated=1) (type utf8): A newly-allocated array of strings.
+ * Returns: (transfer full) (array zero-terminated=1) (type utf8): A newly-allocated array of strings.
  *                                                                 Free with g_strfreev() when no longer needed.
  */
 gchar **
