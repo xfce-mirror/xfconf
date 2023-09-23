@@ -992,14 +992,13 @@ static void
 xfconf_backend_perchannel_xml_schedule_save(XfconfBackendPerchannelXml *xbpx,
                                             XfconfChannel *channel)
 {
-    if(xbpx->save_id)
-        g_source_remove(xbpx->save_id);
-
     channel->dirty = TRUE;
 
-    xbpx->save_id = g_timeout_add_seconds(WRITE_TIMEOUT,
-                                          xfconf_backend_perchannel_xml_save_timeout,
-                                          xbpx);
+    if(xbpx->save_id == 0) {
+        xbpx->save_id = g_timeout_add_seconds(WRITE_TIMEOUT,
+                                              xfconf_backend_perchannel_xml_save_timeout,
+                                              xbpx);
+    }
 }
 
 static XfconfChannel *
