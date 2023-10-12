@@ -75,14 +75,12 @@ xfconf_cache_item_new(const GValue *value,
 {
     XfconfCacheItem *item;
 
-    g_return_val_if_fail(value, NULL);
-
     item = g_slice_new0(XfconfCacheItem);
 #if 0
     item->last_used = g_get_monotonic_time ();
 #endif
 
-    if(G_LIKELY(steal)) {
+    if(G_LIKELY(steal) || value == NULL) {
         item->value = (GValue *) value;
     } else {
 
@@ -112,7 +110,12 @@ xfconf_cache_item_update(XfconfCacheItem *item,
 #endif
 
     if(value) {
-        g_value_unset(item->value);
+        if (item->value == NULL) {
+            item->value = g_new0(GValue, 1);
+        } else {
+            g_value_unset(item->value);
+        }
+
         g_value_init(item->value, G_VALUE_TYPE(value));
 
         /* We need to dup the array */
@@ -133,8 +136,10 @@ xfconf_cache_item_free(XfconfCacheItem *item)
 {
     g_return_if_fail(item);
 
-    g_value_unset(item->value);
-    g_free(item->value);
+    if (item->value != NULL) {
+        g_value_unset(item->value);
+        g_free(item->value);
+    }
     g_slice_free(XfconfCacheItem, item);
 }
 
@@ -540,12 +545,19 @@ xfconf_cache_handle_property_removed (XfconfCache *cache, GVariant *parameters)
     const gchar *channel_name, *property;
     GValue value = G_VALUE_INIT;
     if (g_variant_is_of_type(parameters, G_VARIANT_TYPE ("(ss)"))) {
+        XfconfCacheItem *item;
+
         g_variant_get(parameters, "(&s&s)", &channel_name, &property);
 
         if(strcmp(channel_name, cache->channel_name))
             return;
 
-        g_tree_remove(cache->properties, property);
+        item = g_tree_lookup(cache->properties, property);
+        if (item != NULL && item->value != NULL) {
+            g_value_unset(item->value);
+            g_free(item->value);
+            item->value = NULL;
+        }
 
         g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED], 0,
                       cache->channel_name, property, &value);
@@ -643,7 +655,7 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
         g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED],
                       g_quark_from_string(old_item->property),
                       cache->channel_name, old_item->property,
-                      item ? item->value : &empty_val);
+                      item && item->value ? item->value : &empty_val);
         xfconf_cache_mutex_lock(cache);
     }
 
@@ -763,12 +775,35 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
             g_tree_insert(cache->properties, g_strdup(property), item);
             g_variant_unref (variant);
             /* TODO: check tree for evictions */
-        } else
+        } else {
+            if (g_dbus_error_is_remote_error(tmp_error)) {
+                gchar *error_name = g_dbus_error_get_remote_error(tmp_error);
+                XfconfError xfconf_error;
+
+                if (_xfconf_error_from_dbus_error_name(error_name, &xfconf_error) &&
+                    xfconf_error == XFCONF_ERROR_PROPERTY_NOT_FOUND)
+                {
+                    // Cache a property-not-found response
+                    item = xfconf_cache_item_new(NULL, TRUE);
+                    g_tree_insert(cache->properties, g_strdup(property), item);
+                }
+
+                g_free(error_name);
+            }
+
             g_propagate_error(error, tmp_error);
+        }
     }
 
     if(item) {
-        if(value) {
+        if (item->value == NULL) {
+            g_set_error(error,
+                        XFCONF_ERROR,
+                        XFCONF_ERROR_PROPERTY_NOT_FOUND,
+                        _("Property \"%s\" does not exist on channel \"%s\""),
+                        property,
+                        cache->channel_name);
+        } else if(value) {
             if(!G_VALUE_TYPE(value))
                 g_value_init(value, G_VALUE_TYPE(item->value));
 
@@ -798,7 +833,7 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
 #endif
     }
 
-    return !!item;
+    return item != NULL && item->value != NULL;
 }
 
 gboolean

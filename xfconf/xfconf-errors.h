@@ -48,7 +48,7 @@ G_BEGIN_DECLS
  * An enumeration listing the different kinds of errors under the XFCONF_ERROR domain.
  *
  **/
-typedef enum
+typedef enum _XfconfError
 {
     XFCONF_ERROR_UNKNOWN = 0,
     XFCONF_ERROR_CHANNEL_NOT_FOUND,
