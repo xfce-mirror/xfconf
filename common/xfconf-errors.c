@@ -26,6 +26,7 @@
 
 #include "xfconf/xfconf-errors.h"
 #include "xfconf-alias.h"
+#include "xfconf-common-private.h"
 
 /**
  * SECTION:xfconf-errors
@@ -110,6 +111,22 @@ xfconf_error_get_type(void)
 }
 
 
+gboolean
+_xfconf_error_from_dbus_error_name(const gchar *error_name,
+                                   XfconfError *xfconf_error)
+{
+    g_return_val_if_fail(error_name != NULL, FALSE);
+    g_return_val_if_fail(xfconf_error != NULL, FALSE);
+
+    for (gsize i = 0; i < G_N_ELEMENTS(xfconf_daemon_dbus_error_entries); ++i) {
+        if (g_strcmp0(error_name, xfconf_daemon_dbus_error_entries[i].dbus_error_name) == 0) {
+            *xfconf_error = xfconf_daemon_dbus_error_entries[i].error_code;
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
 
 #define __XFCONF_ERRORS_C__
 #include "xfconf-aliasdef.c"
