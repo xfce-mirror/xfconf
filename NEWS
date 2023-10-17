@@ -1,3 +1,15 @@
+4.19.1 (2023-10-17)
+======
+- Cache property-not-found responses in XfconfCache
+- Don't reset scheduled save timer on every write
+- xfconf-query: Sort channel list (-l or -m alone)
+- docs: Fix transfer type of xfconf_list_channels()
+- docs: Add clarification about bindings
+- I18n: Update po/LINGUAS list
+- I18n: Update po/LINGUAS list
+- Translation Updates:
+  Catalan
+
 4.19.0 (2023-04-17)
 ======
 - Update copyright year

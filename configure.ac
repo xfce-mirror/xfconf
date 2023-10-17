@@ -9,7 +9,7 @@ dnl
 dnl version info
 m4_define([libxfconf_verinfo], [3:0:0])
 m4_define([libxfconf_version_api], [0])
-XDT_VERSION_INIT([4.19.0], [git])
+XDT_VERSION_INIT([4.19.1])
 
 dnl minimum required versions
 m4_define([glib_min_version], [2.66.0])
