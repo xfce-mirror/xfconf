@@ -791,18 +791,23 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
                 g_free(error_name);
             }
 
-            g_propagate_error(error, tmp_error);
+            if (!item) {
+                g_propagate_error(error, tmp_error);
+            } else {
+                g_error_free(tmp_error);
+            }
         }
     }
 
     if(item) {
         if (item->value == NULL) {
-            g_set_error(error,
-                        XFCONF_ERROR,
-                        XFCONF_ERROR_PROPERTY_NOT_FOUND,
-                        _("Property \"%s\" does not exist on channel \"%s\""),
-                        property,
-                        cache->channel_name);
+            gchar *message = g_strdup_printf(_("Property \"%s\" does not exist on channel \"%s\""),
+                                             property, cache->channel_name);
+            g_dbus_error_set_dbus_error(error,
+                                        XFCONF_SERVICE_NAME_PREFIX ".Xfconf.Error.PropertyNotFound",
+                                        message,
+                                        NULL);
+            g_free(message);
         } else if(value) {
             if(!G_VALUE_TYPE(value))
                 g_value_init(value, G_VALUE_TYPE(item->value));
