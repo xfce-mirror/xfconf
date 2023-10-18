@@ -947,9 +947,7 @@ xfconf_cache_set(XfconfCache *cache,
         g_hash_table_insert(cache->pending_calls, old_item->cancellable, old_item);
 
         if(item) {
-            if (item->value != NULL) {
-                xfconf_cache_item_update(item, value);
-            }
+            xfconf_cache_item_update(item, value);
         } else {
             item = xfconf_cache_item_new(value, FALSE);
             g_tree_insert(cache->properties, g_strdup(property), item);
