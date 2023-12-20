@@ -520,7 +520,7 @@ xfconf_cache_handle_property_changed (XfconfCache *cache, GVariant *parameters)
             changed = xfconf_cache_item_update(item, prop_value);
         }
         else {
-            item = xfconf_cache_item_new(prop_value, TRUE);
+            item = xfconf_cache_item_new(prop_value, FALSE);
             g_tree_insert(cache->properties, g_strdup(property), item);
         }
 
@@ -529,6 +529,8 @@ xfconf_cache_handle_property_changed (XfconfCache *cache, GVariant *parameters)
                           cache->channel_name, property, prop_value);
         }
         g_variant_unref(prop_variant);
+        g_value_unset(prop_value);
+        g_free(prop_value);
     }
     else {
         g_warning("property changed handler expects (ssv) type, but %s received",
