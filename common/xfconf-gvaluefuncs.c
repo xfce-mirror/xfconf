@@ -602,7 +602,7 @@ GValue * xfconf_gvariant_to_gvalue (GVariant *in_variant)
     if (g_variant_is_of_type(in_variant, G_VARIANT_TYPE ("v")))
         variant = g_variant_get_variant (in_variant);
     else
-        variant = in_variant;
+        variant = g_variant_ref(in_variant);
 
     if (g_variant_is_of_type (variant, G_VARIANT_TYPE("av"))) {
         GPtrArray *arr;
@@ -640,9 +640,12 @@ GValue * xfconf_gvariant_to_gvalue (GVariant *in_variant)
     else {/* Should be a basic type */
       if (!xfconf_basic_gvariant_to_gvalue(variant, value)) {
         g_free(value);
+        g_variant_unref(variant);
         return NULL;
       }
     }
+
+    g_variant_unref(variant);
 
     return value;
 }
