@@ -573,15 +573,12 @@ static void xfonf_free_array_elem_val (gpointer data) {
 
 
 GPtrArray *
-xfconf_dup_value_array (GPtrArray *arr, gboolean auto_destroy_value) {
+xfconf_dup_value_array (GPtrArray *arr) {
 
     GPtrArray *retArr;
     uint i;
 
-    if (auto_destroy_value)
-        retArr = g_ptr_array_new_full(arr->len, (GDestroyNotify)xfonf_free_array_elem_val);
-    else
-        retArr = g_ptr_array_sized_new(arr->len);
+    retArr = g_ptr_array_new_full(arr->len, xfonf_free_array_elem_val);
 
     for (i = 0; i< arr->len; i++) {
         GValue *v, *vi;

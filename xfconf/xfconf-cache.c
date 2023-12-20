@@ -88,7 +88,7 @@ xfconf_cache_item_new(const GValue *value,
         g_value_init(item->value, G_VALUE_TYPE(value));
         /* We need to dup the array */
         if (G_VALUE_TYPE(value) == G_TYPE_PTR_ARRAY) {
-            GPtrArray *arr = xfconf_dup_value_array(g_value_get_boxed(value), TRUE);
+            GPtrArray *arr = xfconf_dup_value_array(g_value_get_boxed(value));
             g_value_take_boxed(item->value, arr);
         } else {
             g_value_copy(value, item->value);
@@ -120,7 +120,7 @@ xfconf_cache_item_update(XfconfCacheItem *item,
 
         /* We need to dup the array */
         if (G_VALUE_TYPE(value) == G_TYPE_PTR_ARRAY) {
-            GPtrArray *arr = xfconf_dup_value_array(g_value_get_boxed(value), TRUE);
+            GPtrArray *arr = xfconf_dup_value_array(g_value_get_boxed(value));
             g_value_take_boxed(item->value, arr);
         } else {
             g_value_copy(value, item->value);
@@ -819,7 +819,7 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
                 }
                 else {
                     GPtrArray *arr;
-                    arr = xfconf_dup_value_array (g_value_get_boxed(item->value), FALSE);
+                    arr = xfconf_dup_value_array(g_value_get_boxed(item->value));
                     g_value_take_boxed(value, arr);
                 }
             }
