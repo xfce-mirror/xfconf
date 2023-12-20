@@ -246,7 +246,10 @@ xfconf_array_free(GPtrArray *arr)
         g_free(val);
     }
 
-    g_ptr_array_free(arr, TRUE);
+    /* we can't do g_ptr_array_free(arr, TRUE) here, because if the array has a
+     * destroy function (typically xfonf_free_array_elem_val()) this causes a
+     * double free with the above */
+    g_free(g_ptr_array_free(arr, FALSE));
 }
 
 

@@ -88,7 +88,7 @@ xfconf_cache_item_new(const GValue *value,
         g_value_init(item->value, G_VALUE_TYPE(value));
         /* We need to dup the array */
         if (G_VALUE_TYPE(value) == G_TYPE_PTR_ARRAY) {
-            GPtrArray *arr = xfconf_dup_value_array(g_value_get_boxed(value), TRUE);
+            GPtrArray *arr = xfconf_dup_value_array(g_value_get_boxed(value));
             g_value_take_boxed(item->value, arr);
         } else {
             g_value_copy(value, item->value);
@@ -120,7 +120,7 @@ xfconf_cache_item_update(XfconfCacheItem *item,
 
         /* We need to dup the array */
         if (G_VALUE_TYPE(value) == G_TYPE_PTR_ARRAY) {
-            GPtrArray *arr = xfconf_dup_value_array(g_value_get_boxed(value), TRUE);
+            GPtrArray *arr = xfconf_dup_value_array(g_value_get_boxed(value));
             g_value_take_boxed(item->value, arr);
         } else {
             g_value_copy(value, item->value);
@@ -520,7 +520,7 @@ xfconf_cache_handle_property_changed (XfconfCache *cache, GVariant *parameters)
             changed = xfconf_cache_item_update(item, prop_value);
         }
         else {
-            item = xfconf_cache_item_new(prop_value, TRUE);
+            item = xfconf_cache_item_new(prop_value, FALSE);
             g_tree_insert(cache->properties, g_strdup(property), item);
         }
 
@@ -529,6 +529,8 @@ xfconf_cache_handle_property_changed (XfconfCache *cache, GVariant *parameters)
                           cache->channel_name, property, prop_value);
         }
         g_variant_unref(prop_variant);
+        g_value_unset(prop_value);
+        g_free(prop_value);
     }
     else {
         g_warning("property changed handler expects (ssv) type, but %s received",
@@ -819,7 +821,7 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
                 }
                 else {
                     GPtrArray *arr;
-                    arr = xfconf_dup_value_array (g_value_get_boxed(item->value), FALSE);
+                    arr = xfconf_dup_value_array(g_value_get_boxed(item->value));
                     g_value_take_boxed(value, arr);
                 }
             }
