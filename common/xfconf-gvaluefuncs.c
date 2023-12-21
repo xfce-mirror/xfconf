@@ -573,15 +573,12 @@ static void xfonf_free_array_elem_val (gpointer data) {
 
 
 GPtrArray *
-xfconf_dup_value_array (GPtrArray *arr, gboolean auto_destroy_value) {
+xfconf_dup_value_array (GPtrArray *arr) {
 
     GPtrArray *retArr;
     uint i;
 
-    if (auto_destroy_value)
-        retArr = g_ptr_array_new_full(arr->len, (GDestroyNotify)xfonf_free_array_elem_val);
-    else
-        retArr = g_ptr_array_sized_new(arr->len);
+    retArr = g_ptr_array_new_full(arr->len, xfonf_free_array_elem_val);
 
     for (i = 0; i< arr->len; i++) {
         GValue *v, *vi;
@@ -605,7 +602,7 @@ GValue * xfconf_gvariant_to_gvalue (GVariant *in_variant)
     if (g_variant_is_of_type(in_variant, G_VARIANT_TYPE ("v")))
         variant = g_variant_get_variant (in_variant);
     else
-        variant = in_variant;
+        variant = g_variant_ref(in_variant);
 
     if (g_variant_is_of_type (variant, G_VARIANT_TYPE("av"))) {
         GPtrArray *arr;
@@ -643,9 +640,12 @@ GValue * xfconf_gvariant_to_gvalue (GVariant *in_variant)
     else {/* Should be a basic type */
       if (!xfconf_basic_gvariant_to_gvalue(variant, value)) {
         g_free(value);
+        g_variant_unref(variant);
         return NULL;
       }
     }
+
+    g_variant_unref(variant);
 
     return value;
 }

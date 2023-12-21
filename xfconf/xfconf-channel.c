@@ -1481,7 +1481,7 @@ out:
  * a #GPtrArray, which can be freed with xfconf_array_free()
  * when no longer needed.
  *
- * Returns: (transfer container) (element-type GValue) (nullable): A newly-allocated #GPtrArray on success,
+ * Returns: (transfer full) (element-type GValue) (nullable): A newly-allocated #GPtrArray on success,
  * or %NULL on failure.
  **/
 GPtrArray *
