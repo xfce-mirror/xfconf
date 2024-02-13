@@ -1692,15 +1692,21 @@ xfconf_format_xml_tag(GString *elem_str,
                       gchar spaces[MAX_PROP_PATH],
                       gboolean *is_array)
 {
-    gchar *tmp;
     gchar buf[G_ASCII_DTOSTR_BUF_SIZE];
 
     switch(G_VALUE_TYPE(value)) {
-        case G_TYPE_STRING:
-            tmp = g_markup_escape_text(g_value_get_string(value), -1);
-            g_string_append_printf(elem_str, " type=\"string\" value=\"%s\"",
-                                   tmp);
-            g_free(tmp);
+        case G_TYPE_STRING: {
+                const gchar *blanks[3] = { "\r", "\n", "\t" };
+                const gchar *escaped_blanks[3] = { "&#xD;", "&#xA;", "&#x9;" };
+                gchar *escaped = g_markup_escape_text(g_value_get_string(value), -1);
+                for (guint n = 0; n < G_N_ELEMENTS(blanks); n++) {
+                    gchar *tmp = xfce_str_replace(escaped, blanks[n], escaped_blanks[n]);
+                    g_free(escaped);
+                    escaped = tmp;
+                }
+                g_string_append_printf(elem_str, " type=\"string\" value=\"%s\"", escaped);
+                g_free(escaped);
+            }
             break;
 
         case G_TYPE_UCHAR:
@@ -1916,7 +1922,7 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
     if(!fp)
         goto out;
 
-    if(fputs("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n", fp) == EOF
+    if(fputs("<?xml version=\"1.1\" encoding=\"UTF-8\"?>\n\n", fp) == EOF
        || fprintf(fp, "<channel name=\"%s\" version=\"%s.%s\">\n", channel_name,
                   FILE_VERSION_MAJOR, FILE_VERSION_MINOR) < 0)
     {
