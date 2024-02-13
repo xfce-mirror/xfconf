@@ -1922,7 +1922,7 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
     if(!fp)
         goto out;
 
-    if(fputs("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n", fp) == EOF
+    if(fputs("<?xml version=\"1.1\" encoding=\"UTF-8\"?>\n\n", fp) == EOF
        || fprintf(fp, "<channel name=\"%s\" version=\"%s.%s\">\n", channel_name,
                   FILE_VERSION_MAJOR, FILE_VERSION_MINOR) < 0)
     {
