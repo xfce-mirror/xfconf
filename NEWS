@@ -1,3 +1,16 @@
+4.19.2 (2024-02-29)
+======
+- Update copyright year
+- xml-backend: Bump XML version to 1.1 in written files
+- xml-backend: Escape whitespaces when writing file to disk
+- I18n: Update po/LINGUAS list
+- Fix memory leaks around xfconf_gvariant_to_gvalue()
+- Fix memory management of xfconf arrays
+- cache: Fix overwritten error
+- cache: Fix uncached value
+- Translation Updates:
+  Estonian
+
 4.19.1 (2023-10-17)
 ======
 - Cache property-not-found responses in XfconfCache
