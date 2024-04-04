@@ -513,7 +513,7 @@ xfconf_transform_array(GPtrArray *arr_src,
 
 
 /**
- * xfconf_channel_get:
+ * xfconf_channel_get: (constructor)
  * @channel_name: A channel name.
  *
  * Either creates a new channel, or fetches a singleton object for
@@ -535,7 +535,7 @@ xfconf_channel_get(const gchar *channel_name)
 }
 
 /**
- * xfconf_channel_new:
+ * xfconf_channel_new: (constructor)
  * @channel_name: A channel name.
  *
  * Creates a new channel using @name as the channel's identifier.
@@ -757,13 +757,15 @@ xfconf_channel_get_properties(XfconfChannel *channel,
  * xfconf_channel_get_string:
  * @channel: An #XfconfChannel.
  * @property: A property name.
- * @default_value: A fallback value.
+ * @default_value: (nullable): A fallback value.
  *
  * Retrieves the string value associated with @property on @channel.
  *
- * Returns: A newly-allocated string which should be freed with g_free()
- *          when no longer needed.  If @property is not in @channel,
- *          a g_strdup()ed copy of @default_value is returned.
+ * Returns: (transfer full) (nullable): A newly-allocated string which should
+ *                                      be freed with g_free() when no longer
+ *                                      needed.  If @property is not in
+ *                                      @channel, a g_strdup()ed copy of
+ *                                      @default_value is returned.
  **/
 gchar *
 xfconf_channel_get_string(XfconfChannel *channel,
