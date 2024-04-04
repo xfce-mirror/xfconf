@@ -450,10 +450,10 @@ _xfconf_g_bindings_shutdown(void)
 
 /**
  * xfconf_g_property_bind:
- * @channel: An #XfconfChannel.
+ * @channel: (not nullable): An #XfconfChannel.
  * @xfconf_property: A property on @channel.
  * @xfconf_property_type: The type of @xfconf_property.
- * @object: A #GObject.
+ * @object: (not nullable): A #GObject.
  * @object_property: A valid property on @object.
  *
  * Binds an Xfconf property to a #GObject property.  If the property
@@ -520,9 +520,9 @@ xfconf_g_property_bind(XfconfChannel *channel,
 
 /**
  * xfconf_g_property_bind_gdkcolor:
- * @channel: An #XfconfChannel.
+ * @channel: (not nullable): An #XfconfChannel.
  * @xfconf_property: A property on @channel.
- * @object: A #GObject.
+ * @object: (not nullable): A #GObject.
  * @object_property: A valid property on @object.
  *
  * Binds an Xfconf property to a #GObject property of type
@@ -586,9 +586,9 @@ xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
 
 /**
  * xfconf_g_property_bind_gdkrgba:
- * @channel: An #XfconfChannel.
+ * @channel: (not nullable): An #XfconfChannel.
  * @xfconf_property: A property on @channel.
- * @object: A #GObject.
+ * @object: (not nullable): A #GObject.
  * @object_property: A valid property on @object.
  *
  * Binds an Xfconf property to a #GObject property of type
@@ -681,9 +681,9 @@ xfconf_g_property_unbind(gulong id)
 
 /**
  * xfconf_g_property_unbind_by_property:
- * @channel: An #XfconfChannel.
+ * @channel: (not nullable): An #XfconfChannel.
  * @xfconf_property: A bound property on @channel.
- * @object: A #GObject.
+ * @object: (not nullable): A #GObject.
  * @object_property: A bound property on @object.
  *
  * Causes an Xfconf channel previously bound to a #GObject property
@@ -725,7 +725,7 @@ xfconf_g_property_unbind_by_property(XfconfChannel *channel,
 
 /**
  * xfconf_g_property_unbind_all:
- * @channel_or_object: A #GObject or #XfconfChannel.
+ * @channel_or_object: (not nullable): A #GObject or #XfconfChannel.
  *
  * Unbinds all Xfconf channel bindings (see xfconf_g_property_bind())
  * to @object.  If @object is an #XfconfChannel, it will unbind all
