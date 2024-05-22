@@ -764,7 +764,8 @@ xfconf_channel_get_properties(XfconfChannel *channel,
  * Returns: (transfer full) (nullable): A newly-allocated string which should
  *                                      be freed with g_free() when no longer
  *                                      needed.  If @property is not in
- *                                      @channel, a g_strdup()ed copy of
+ *                                      @channel or its type is not convertible,
+ *                                      a g_strdup()ed copy of
  *                                      @default_value is returned.
  **/
 gchar *
@@ -777,11 +778,11 @@ xfconf_channel_get_string(XfconfChannel *channel,
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, NULL);
 
+    g_value_init(&val, G_TYPE_STRING);
     if(xfconf_channel_get_internal(channel, property, &val)) {
-        if(G_VALUE_TYPE(&val) == G_TYPE_STRING)
-            value = g_value_dup_string(&val);
-        g_value_unset(&val);
+        value = g_value_dup_string(&val);
     }
+    g_value_unset(&val);
 
     if(!value)
         value = g_strdup(default_value);
@@ -840,7 +841,7 @@ xfconf_channel_get_string_list(XfconfChannel *channel,
  *
  * Retrieves the int value associated with @property on @channel.
  *
- * Returns: The int value, or, if @property is not in @channel,
+ * Returns: The int value, or, if @property is not in @channel or its type is not convertible,
  *          @default_value is returned.
  **/
 gint
@@ -853,11 +854,11 @@ xfconf_channel_get_int(XfconfChannel *channel,
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, value);
 
+    g_value_init(&val, G_TYPE_INT);
     if(xfconf_channel_get_internal(channel, property, &val)) {
-        if(G_VALUE_TYPE(&val) == G_TYPE_INT)
-            value = g_value_get_int(&val);
-        g_value_unset(&val);
+        value = g_value_get_int(&val);
     }
+    g_value_unset(&val);
 
     return value;
 }
@@ -870,7 +871,7 @@ xfconf_channel_get_int(XfconfChannel *channel,
  *
  * Retrieves the unsigned int value associated with @property on @channel.
  *
- * Returns: The uint value, or, if @property is not in @channel,
+ * Returns: The uint value, or, if @property is not in @channel or its type is not convertible,
  *          @default_value is returned.
  **/
 guint32
@@ -883,11 +884,11 @@ xfconf_channel_get_uint(XfconfChannel *channel,
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, value);
 
+    g_value_init(&val, G_TYPE_UINT);
     if(xfconf_channel_get_internal(channel, property, &val)) {
-        if(G_VALUE_TYPE(&val) == G_TYPE_UINT)
-            value = g_value_get_uint(&val);
-        g_value_unset(&val);
+        value = g_value_get_uint(&val);
     }
+    g_value_unset(&val);
 
     return value;
 }
@@ -900,7 +901,7 @@ xfconf_channel_get_uint(XfconfChannel *channel,
  *
  * Retrieves the 64-bit int value associated with @property on @channel.
  *
- * Returns: The uint64 value, or, if @property is not in @channel,
+ * Returns: The uint64 value, or, if @property is not in @channel or its type is not convertible,
  *          @default_value is returned.
  **/
 guint64
@@ -913,11 +914,11 @@ xfconf_channel_get_uint64(XfconfChannel *channel,
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, value);
 
+    g_value_init(&val, G_TYPE_UINT64);
     if(xfconf_channel_get_internal(channel, property, &val)) {
-        if(G_VALUE_TYPE(&val) == G_TYPE_UINT64)
-            value = g_value_get_uint64(&val);
-        g_value_unset(&val);
+        value = g_value_get_uint64(&val);
     }
+    g_value_unset(&val);
 
     return value;
 }
@@ -930,7 +931,7 @@ xfconf_channel_get_uint64(XfconfChannel *channel,
  *
  * Retrieves the double value associated with @property on @channel.
  *
- * Returns: The double value, or, if @property is not in @channel,
+ * Returns: The double value, or, if @property is not in @channel or its type is not convertible,
  *          @default_value is returned.
  **/
 gdouble
@@ -943,11 +944,11 @@ xfconf_channel_get_double(XfconfChannel *channel,
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, value);
 
+    g_value_init(&val, G_TYPE_DOUBLE);
     if(xfconf_channel_get_internal(channel, property, &val)) {
-        if(G_VALUE_TYPE(&val) == G_TYPE_DOUBLE)
-            value = g_value_get_double(&val);
-        g_value_unset(&val);
+        value = g_value_get_double(&val);
     }
+    g_value_unset(&val);
 
     return value;
 }
@@ -960,7 +961,7 @@ xfconf_channel_get_double(XfconfChannel *channel,
  *
  * Retrieves the boolean value associated with @property on @channel.
  *
- * Returns: The boolean value, or, if @property is not in @channel,
+ * Returns: The boolean value, or, if @property is not in @channel or its type is not convertible,
  *          @default_value is returned.
  **/
 gboolean
@@ -973,11 +974,11 @@ xfconf_channel_get_bool(XfconfChannel *channel,
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, value);
 
+    g_value_init(&val, G_TYPE_BOOLEAN);
     if(xfconf_channel_get_internal(channel, property, &val)) {
-        if(G_VALUE_TYPE(&val) == G_TYPE_BOOLEAN)
-            value = g_value_get_boolean(&val);
-        g_value_unset(&val);
+        value = g_value_get_boolean(&val);
     }
+    g_value_unset(&val);
 
     return value;
 }
