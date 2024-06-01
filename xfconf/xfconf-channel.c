@@ -700,7 +700,7 @@ xfconf_channel_reset_property(XfconfChannel *channel,
 /**
  * xfconf_channel_get_properties:
  * @channel: An #XfconfChannel.
- * @property_base: The base property name of properties to retrieve.
+ * @property_base: (nullable): The base property name of properties to retrieve.
  *
  * Retrieves multiple properties from @channel and stores
  * them in a #GHashTable in which the keys correspond to
@@ -725,6 +725,8 @@ xfconf_channel_get_properties(XfconfChannel *channel,
     gchar *real_property_base;
     ERROR_DEFINE;
 
+    g_return_val_if_fail(XFCONF_IS_CHANNEL(channel), NULL);
+
     if(!property_base || (property_base[0] == '/' && !property_base[1]))
         real_property_base = channel->property_base;
     else
@@ -742,6 +744,8 @@ xfconf_channel_get_properties(XfconfChannel *channel,
     if (variant) {
         properties = xfconf_gvariant_to_hash (variant);
         g_variant_unref (variant);
+    } else {
+        properties = g_hash_table_new(g_str_hash, g_str_equal);
     }
         
     if(real_property_base != property_base
