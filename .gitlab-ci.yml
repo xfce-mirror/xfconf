@@ -8,6 +8,7 @@ distcheck:
   extends: .distcheck
   stage: distcheck
   script:
+    - !reference [.configure, script]
     - xvfb-run -a make distcheck
   artifacts:
     when: on_failure
@@ -17,4 +18,5 @@ release:
   extends: .distcheck
   stage: release
   script:
+    - !reference [.configure, script]
     - xvfb-run -a make distcheck
