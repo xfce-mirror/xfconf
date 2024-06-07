@@ -177,8 +177,6 @@ xfconf_cache_old_item_new(XfconfCache *cache, const gchar *property)
 {
     XfconfCacheOldItem *old_item;
 
-    g_return_val_if_fail(property, NULL);
-
     old_item = g_slice_new0(XfconfCacheOldItem);
     old_item->property = g_strdup(property);
     old_item->cancellable = g_cancellable_new ();
