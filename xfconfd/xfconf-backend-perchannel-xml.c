@@ -1223,7 +1223,9 @@ xfconf_xml_handle_property(XmlParserState *state,
             GNode *pnode = xfconf_proptree_add_property(state->channel->properties,
                                                         fullpath, NULL, NULL,
                                                         TRUE);
-            prop = pnode->data;
+            if (pnode != NULL) {
+                prop = pnode->data;
+            }
         }
     } else {
         if(prop && prop->locked && !state->is_system_file) {
@@ -1248,7 +1250,9 @@ xfconf_xml_handle_property(XmlParserState *state,
             GNode *pnode = xfconf_proptree_add_property(state->channel->properties,
                                                         fullpath, NULL, NULL,
                                                         FALSE);
-            prop = pnode->data;
+            if (pnode != NULL) {
+                prop = pnode->data;
+            }
         }
     }
 
