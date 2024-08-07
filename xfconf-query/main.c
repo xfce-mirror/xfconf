@@ -113,7 +113,7 @@ xfconf_query_list_contents(GSList *sorted_contents, GHashTable *channel_contents
     GSList *li;
     gchar *format = verbose ? g_strdup_printf("%%-%ds%%s\n", size + 2) : NULL;
     GValue *property_value;
-    gchar *string;
+    gchar *string = NULL;
 
     for (li = sorted_contents; li != NULL; li = li->next) {
         if (verbose) {
@@ -122,7 +122,31 @@ xfconf_query_list_contents(GSList *sorted_contents, GHashTable *channel_contents
             if (G_TYPE_PTR_ARRAY != G_VALUE_TYPE(property_value)) {
                 string = _xfconf_string_from_gvalue(property_value);
             } else {
-                string = g_strdup("<<UNSUPPORTED>>");
+                GPtrArray *arr = g_value_get_boxed(property_value);
+                guint ai;
+
+                for (ai = 0; ai < arr->len; ++ai) {
+                    GValue *item_value = g_ptr_array_index(arr, ai);
+                    gchar *str_val = NULL;
+
+                    if (item_value) {
+                        str_val = _xfconf_string_from_gvalue(item_value);
+                    }
+                    if (!str_val) {
+                        str_val = g_strdup("??");
+                    }
+                    if (!ai) {
+                        string = str_val;
+                    } else {
+                        gchar *tofree = string;
+                        string = g_strconcat(string, ", ", str_val, NULL);
+                        g_free(str_val);
+                        g_free(tofree);
+                    }
+                }
+                if(!arr->len) {
+                    string = g_strdup("<empty>");
+                }
             }
 
             g_print(format, (gchar *)li->data, string);
