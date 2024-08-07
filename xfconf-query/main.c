@@ -136,9 +136,8 @@ xfconf_query_list_contents (GSList *sorted_contents, GHashTable *channel_content
             {
 
                 GPtrArray *arr = g_value_get_boxed(property_value);
-                guint ai;
 
-                for(ai = 0; ai < arr->len; ++ai)
+                for(guint ai = 0; ai < arr->len; ++ai)
                 {
                     GValue *item_value = g_ptr_array_index(arr, ai);
                     gchar *str_val = NULL;
@@ -147,19 +146,21 @@ xfconf_query_list_contents (GSList *sorted_contents, GHashTable *channel_content
                     {
                         str_val = _xfconf_string_from_gvalue(item_value);
                     }
-                    if(!str_val) {
+                    if(!str_val)
+                    {
                         str_val = g_strdup("??");
                     }
-                    if(!ai) {
-                        string = str_val;
-                    } else {
+                    if(ai)
+                    {
                         gchar *tofree=string;
                         string = g_strconcat(string,", ",str_val,NULL);
                         g_free(str_val);
                         g_free(tofree);
                     }
+                    else string = str_val;
                 }
-                if(!arr->len) {
+                if(!arr->len)
+                {
                     string = g_strdup("<empty>");
                 }
             }
