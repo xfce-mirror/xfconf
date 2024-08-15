@@ -739,6 +739,7 @@ xfconf_cache_prefetch(XfconfCache *cache,
             GValue *gvalue = xfconf_gvariant_to_gvalue (value);
             item = xfconf_cache_item_new(gvalue, TRUE);
             g_tree_insert(cache->properties, key, item);
+            g_variant_unref(value);
         }
         /* TODO: honor max entries */
         ret = TRUE;
