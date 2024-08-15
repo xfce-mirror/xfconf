@@ -248,8 +248,10 @@ main(int argc, char **argv)
     {
         xfconf_query_printerr(_("Option parsing failed: %s"), error->message);
         g_error_free(error);
+        g_option_context_free(context);
         return EXIT_FAILURE;
     }
+    g_option_context_free(context);
 
     if(version)
     {
