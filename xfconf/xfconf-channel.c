@@ -779,12 +779,14 @@ xfconf_channel_get_string(XfconfChannel *channel,
 {
     gchar *value = NULL;
     GValue val = { 0, };
+    gboolean value_set = FALSE;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, NULL);
 
     if(xfconf_channel_get_internal(channel, property, &val)) {
         if(G_VALUE_TYPE(&val) == G_TYPE_STRING) {
             value = g_value_dup_string(&val);
+            value_set = TRUE;
         } else {
             g_warning("Type %s does not match type %s of property %s",
                       g_type_name(G_TYPE_STRING), G_VALUE_TYPE_NAME(&val), property);
@@ -792,7 +794,7 @@ xfconf_channel_get_string(XfconfChannel *channel,
         g_value_unset(&val);
     }
 
-    if(!value)
+    if(!value_set)
         value = g_strdup(default_value);
 
     return value;
