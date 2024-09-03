@@ -1021,6 +1021,8 @@ xfconf_channel_get_bool(XfconfChannel *channel,
  *
  * Sets @value for @property on @channel in the configuration store.
  *
+ * If @value is %NULL, the empty string ("") will be stored.
+ *
  * Returns: %TRUE on success, %FALSE if an error occured.
  **/
 gboolean
