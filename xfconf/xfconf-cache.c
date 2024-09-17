@@ -20,7 +20,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #ifdef HAVE_STRING_H
@@ -29,19 +29,20 @@
 
 #include <libxfce4util/libxfce4util.h>
 
+#include "common/xfconf-common-private.h"
+#include "common/xfconf-gdbus-bindings.h"
+#include "common/xfconf-gvaluefuncs.h"
+#include "common/xfconf-marshal.h"
+
 #include "xfconf-cache.h"
 #include "xfconf-channel.h"
 #include "xfconf-errors.h"
-#include "common/xfconf-gdbus-bindings.h"
-#include "common/xfconf-gvaluefuncs.h"
 #include "xfconf-private.h"
-#include "common/xfconf-marshal.h"
-#include "common/xfconf-common-private.h"
 #include "xfconf-types.h"
 
 #if 0
-#include "xfconf.h"
 #include "xfconf-alias.h"
+#include "xfconf.h"
 #endif
 
 #if 0

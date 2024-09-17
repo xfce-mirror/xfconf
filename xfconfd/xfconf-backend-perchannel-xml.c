@@ -18,10 +18,8 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#include <stdio.h>
 
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
@@ -52,13 +50,15 @@
 #endif
 
 #include <libxfce4util/libxfce4util.h>
+#include <stdio.h>
+
+#include "common/xfconf-common-private.h"
+#include "common/xfconf-gvaluefuncs.h"
+#include "xfconf/xfconf-types.h"
 
 #include "xfconf-backend-perchannel-xml.h"
 #include "xfconf-backend.h"
 #include "xfconf-locking-utils.h"
-#include "common/xfconf-gvaluefuncs.h"
-#include "xfconf/xfconf-types.h"
-#include "common/xfconf-common-private.h"
 
 #define FILE_VERSION_MAJOR  "1"
 #define FILE_VERSION_MINOR  "0"

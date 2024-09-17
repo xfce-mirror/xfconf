@@ -17,10 +17,8 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#include <stdio.h>
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
@@ -47,11 +45,11 @@
 #endif
 
 #include <glib.h>
-
 #include <libxfce4util/libxfce4util.h>
+#include <stdio.h>
 
-#include "common/xfconf-gvaluefuncs.h"
 #include "common/xfconf-common-private.h"
+#include "common/xfconf-gvaluefuncs.h"
 #include "xfconf/xfconf.h"
 
 static gboolean version = FALSE;

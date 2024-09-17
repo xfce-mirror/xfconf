@@ -19,20 +19,20 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
 
-#include <glib.h>
 #include <gio/gio.h>
 #include <glib-object.h>
 
-#include "xfconf.h"
 #include "common/xfconf-marshal.h"
+
 #include "xfconf-private.h"
+#include "xfconf.h"
 #include "common/xfconf-alias.h"
 
 static guint xfconf_refcnt = 0;

@@ -17,17 +17,14 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
+#include <gio/gio.h>
 #include <stdlib.h>
 
-#include <glib.h>
-
-#include "xfconf/xfconf.h"
-#include "xfconf/xfconf-private.h"
-
 #include "common/xfconf-gvaluefuncs.h"
+#include "xfconf/xfconf.h"
 
 #include "xfconf-gsettings-backend.h"
 

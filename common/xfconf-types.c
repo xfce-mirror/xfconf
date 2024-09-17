@@ -19,17 +19,18 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
 
-#include "xfconf/xfconf-types.h"
-#include "xfconf-alias.h"
-
 #include <gobject/gvaluecollector.h>
+
+#include "xfconf/xfconf-types.h"
+
+#include "xfconf-alias.h"
 
 /**
  * SECTION:xfconf-types

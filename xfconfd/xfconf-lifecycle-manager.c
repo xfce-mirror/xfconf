@@ -14,13 +14,12 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #include <gio/gio.h>
 
-#include <xfconf-lifecycle-manager.h>
-
+#include "xfconf-lifecycle-manager.h"
 
 
 #define SHUTDOWN_TIMEOUT_SECONDS 300
