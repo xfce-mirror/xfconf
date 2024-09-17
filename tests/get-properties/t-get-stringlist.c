@@ -28,45 +28,46 @@ main(int argc,
      char **argv)
 {
     XfconfChannel *channel;
-    
-    if(!xfconf_tests_start())
+
+    if (!xfconf_tests_start()) {
         return 1;
-    
+    }
+
     channel = xfconf_channel_new(TEST_CHANNEL_NAME);
-    
+
     {
         gchar **strlist = xfconf_channel_get_string_list(channel,
                                                          test_strlist_property);
         gint i;
-        
-        if(!strlist) {
+
+        if (!strlist) {
             g_critical("Test failed: xfconf_channel_get_string_list() returned NULL");
             xfconf_tests_end();
             return 1;
         }
-        
-        for(i = 0; strlist[i] && test_strlist[i]; ++i) {
-            if(strcmp(strlist[i], test_strlist[i])) {
+
+        for (i = 0; strlist[i] && test_strlist[i]; ++i) {
+            if (strcmp(strlist[i], test_strlist[i])) {
                 g_critical("Test failed: string list values don't match (%s != %s)",
                            strlist[i], test_strlist[i]);
                 xfconf_tests_end();
                 return 1;
             }
         }
-        
-        if(strlist[i] || test_strlist[i]) {
+
+        if (strlist[i] || test_strlist[i]) {
             g_critical("Test failed: in string list, element %d should be NULL (0x%p, 0x%p)",
                        i, strlist[i], test_strlist[i]);
             xfconf_tests_end();
             return 1;
         }
-        
+
         g_strfreev(strlist);
     }
-    
+
     g_object_unref(G_OBJECT(channel));
-    
+
     xfconf_tests_end();
-    
+
     return 0;
 }

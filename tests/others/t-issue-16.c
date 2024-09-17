@@ -22,25 +22,27 @@
 int
 main(int argc, char **argv)
 {
-  XfconfChannel *channel;
+    XfconfChannel *channel;
 
-  if(!xfconf_tests_start())
-    return 1;
+    if (!xfconf_tests_start()) {
+        return 1;
+    }
 
-  /* Generate at least one asynchronous set_property call to trigger
-   * asynchronous callback execution. Because removal of the channel directly
-   * follows and callback will only be invoked after control returns to main
-   * loop - callback will be executed with dangling pointer to
-   * XfconfCacheOldItem. */
-  channel = xfconf_channel_new(TEST_CHANNEL_NAME);
-  xfconf_channel_reset_property (channel, test_int_property, FALSE);
-  TEST_OPERATION(xfconf_channel_set_int(channel, test_int_property, test_int));
-  g_object_unref(G_OBJECT(channel));
+    /* Generate at least one asynchronous set_property call to trigger
+     * asynchronous callback execution. Because removal of the channel directly
+     * follows and callback will only be invoked after control returns to main
+     * loop - callback will be executed with dangling pointer to
+     * XfconfCacheOldItem. */
+    channel = xfconf_channel_new(TEST_CHANNEL_NAME);
+    xfconf_channel_reset_property(channel, test_int_property, FALSE);
+    TEST_OPERATION(xfconf_channel_set_int(channel, test_int_property, test_int));
+    g_object_unref(G_OBJECT(channel));
 
-  while (g_main_context_pending(NULL))
-    g_main_context_iteration(NULL, FALSE);
+    while (g_main_context_pending(NULL)) {
+        g_main_context_iteration(NULL, FALSE);
+    }
 
-  xfconf_tests_end();
+    xfconf_tests_end();
 
-  return 0;
+    return 0;
 }

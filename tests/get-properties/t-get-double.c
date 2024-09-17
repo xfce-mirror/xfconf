@@ -28,18 +28,19 @@ main(int argc,
      char **argv)
 {
     XfconfChannel *channel;
-    
-    if(!xfconf_tests_start())
+
+    if (!xfconf_tests_start()) {
         return 1;
-    
+    }
+
     channel = xfconf_channel_new(TEST_CHANNEL_NAME);
-    
+
     /* FIXME: will this work everywhere? */
     TEST_OPERATION(xfconf_channel_get_double(channel, test_double_property, 0.0) == test_double);
-    
+
     g_object_unref(G_OBJECT(channel));
-    
+
     xfconf_tests_end();
-    
+
     return 0;
 }

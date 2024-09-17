@@ -27,8 +27,8 @@
 
 #include <glib-object.h>
 
-#define XFCONF_TYPE_ERROR  (xfconf_error_get_type())
-#define XFCONF_ERROR       (xfconf_get_error_quark())
+#define XFCONF_TYPE_ERROR (xfconf_error_get_type())
+#define XFCONF_ERROR (xfconf_get_error_quark())
 
 G_BEGIN_DECLS
 
@@ -67,4 +67,4 @@ GQuark xfconf_get_error_quark(void);
 
 G_END_DECLS
 
-#endif  /* __XFCONF_ERRORS_H__ */
+#endif /* __XFCONF_ERRORS_H__ */

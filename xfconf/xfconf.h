@@ -47,4 +47,4 @@ gchar **xfconf_list_channels(void) G_GNUC_WARN_UNUSED_RESULT;
 
 G_END_DECLS
 
-#endif  /* __XFCONF_H__ */
+#endif /* __XFCONF_H__ */
