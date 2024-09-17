@@ -19,12 +19,13 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #include <gio/gio.h>
 
 #include "xfconf/xfconf-errors.h"
+
 #include "xfconf-alias.h"
 #include "xfconf-common-private.h"
 

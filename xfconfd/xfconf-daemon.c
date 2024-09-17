@@ -19,21 +19,22 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <string.h>
 
 #include <libxfce4util/libxfce4util.h>
+#include <string.h>
 
-#include "xfconf-daemon.h"
-#include "xfconf-backend-factory.h"
-#include "xfconf-backend.h"
-#include "common/xfconf-marshal.h"
-#include "common/xfconf-gvaluefuncs.h"
-#include "xfconf/xfconf-errors.h"
 #include "common/xfconf-common-private.h"
 #include "common/xfconf-gdbus-bindings.h"
+#include "common/xfconf-gvaluefuncs.h"
+#include "common/xfconf-marshal.h"
+#include "xfconf/xfconf-errors.h"
+
+#include "xfconf-backend-factory.h"
+#include "xfconf-backend.h"
+#include "xfconf-daemon.h"
 
 struct _XfconfDaemon
 {

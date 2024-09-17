@@ -28,7 +28,8 @@
 #include <glib/gi18n.h>
 #endif
 
-#include <xfconf/xfconf-errors.h>
+#include "xfconf/xfconf-errors.h"
+
 #include "xfconf-daemon.h"
 
 #define XFCONF_TYPE_BACKEND                (xfconf_backend_get_type())

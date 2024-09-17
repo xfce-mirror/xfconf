@@ -20,7 +20,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #ifdef HAVE_STDLIB_H
@@ -43,9 +43,10 @@
 
 #include <gio/gio.h>
 
-#include "xfconf-gvaluefuncs.h"
 #include "xfconf/xfconf-types.h"
+
 #include "xfconf-common-private.h"
+#include "xfconf-gvaluefuncs.h"
 
 #ifdef CHAR_MIN
 #define XFCONF_MINCHAR  CHAR_MIN

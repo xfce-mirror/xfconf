@@ -21,7 +21,7 @@
 #define __XFCONF_TESTS_COMMON_H__
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #ifdef HAVE_SYS_TYPES_H
@@ -40,9 +40,10 @@
 #include <unistd.h>
 #endif
 
-#include <glib.h>
 #include <gio/gio.h>
-#include <xfconf/xfconf.h>
+#include <glib.h>
+
+#include "xfconf/xfconf.h"
 
 #define TEST_CHANNEL_NAME  "test-channel"
 #define WAIT_TIMEOUT       15

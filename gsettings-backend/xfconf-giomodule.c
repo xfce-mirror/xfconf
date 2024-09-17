@@ -17,7 +17,7 @@
  *
  */
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #ifdef HAVE_STRING_H
@@ -26,8 +26,9 @@
 
 #include <gio/gio.h>
 
-#include "xfconf-gsettings-backend.h"
 #include "xfconf/xfconf.h"
+
+#include "xfconf-gsettings-backend.h"
 
 G_MODULE_EXPORT XFCONF_EXPORT void g_io_module_load (GIOModule *module)
 {
@@ -52,4 +53,3 @@ G_MODULE_EXPORT XFCONF_EXPORT gchar** g_io_module_query (void)
   };
   return g_strdupv (eps);
 }
-

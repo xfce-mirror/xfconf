@@ -23,6 +23,8 @@
 
 #include <gio/gio.h>
 
+#include "xfconf-channel.h"
+
 #ifdef XFCONF_ENABLE_CHECKS
 
 #define ERROR_DEFINE  GError *___error = NULL

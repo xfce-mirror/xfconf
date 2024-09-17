@@ -19,10 +19,8 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#include <stdio.h>
 
 #ifdef HAVE_SIGNAL_H
 #include <signal.h>
@@ -48,11 +46,12 @@
 #include <errno.h>
 #endif
 
-#include <libxfce4util/libxfce4util.h>
 #include <gio/gio.h>
+#include <libxfce4util/libxfce4util.h>
+#include <stdio.h>
 
-#include "xfconf-daemon.h"
 #include "xfconf-backend-factory.h"
+#include "xfconf-daemon.h"
 
 #define DEFAULT_BACKEND  "xfce-perchannel-xml"
 #define XFCONF_DBUS_NAME XFCONF_SERVICE_NAME_PREFIX ".Xfconf"
