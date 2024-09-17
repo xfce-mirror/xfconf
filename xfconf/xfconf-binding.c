@@ -95,12 +95,10 @@ static void xfconf_g_property_channel_disconnect(gpointer user_data,
                                                  GClosure *closure);
 
 
-
 G_LOCK_DEFINE_STATIC(__bindings);
 static GSList *__bindings = NULL;
-static GType   __gdkcolor_gtype = 0;
-static GType   __gdkrgba_gtype = 0;
-
+static GType __gdkcolor_gtype = 0;
+static GType __gdkrgba_gtype = 0;
 
 
 static void
@@ -228,12 +226,14 @@ xfconf_g_property_channel_notify_gdkcolor(XfconfGBinding *binding,
     GPtrArray *arr;
     FakeGdkColor color = { 0 };
 
-    if(G_VALUE_TYPE(value) == G_TYPE_INVALID)
+    if(G_VALUE_TYPE(value) == G_TYPE_INVALID) {
         return;
+    }
 
     arr = g_value_get_boxed(value);
-    if(G_UNLIKELY(!arr || arr->len < 3))
+    if(G_UNLIKELY(!arr || arr->len < 3)) {
         return;
+    }
 
     color.red = g_value_get_uint(g_ptr_array_index(arr, 0));
     color.green = g_value_get_uint(g_ptr_array_index(arr, 1));
@@ -254,12 +254,14 @@ xfconf_g_property_channel_notify_gdkrgba(XfconfGBinding *binding,
     GPtrArray *arr;
     FakeGdkRGBA color = { 0 };
 
-    if(G_VALUE_TYPE(value) == G_TYPE_INVALID)
+    if(G_VALUE_TYPE(value) == G_TYPE_INVALID) {
         return;
+    }
 
     arr = g_value_get_boxed(value);
-    if(G_UNLIKELY(!arr || arr->len < 4))
+    if(G_UNLIKELY(!arr || arr->len < 4)) {
         return;
+    }
 
     color.red = g_value_get_double(g_ptr_array_index(arr, 0));
     color.green = g_value_get_double(g_ptr_array_index(arr, 1));
@@ -288,14 +290,14 @@ xfconf_g_property_channel_notify(XfconfChannel *channel,
     g_return_if_fail(binding->channel == channel);
     g_return_if_fail(G_IS_OBJECT(binding->object));
 
-   if(__gdkcolor_gtype == binding->xfconf_property_type) {
-       /* we need to handle this in a different way */
+    if(__gdkcolor_gtype == binding->xfconf_property_type) {
+        /* we need to handle this in a different way */
         xfconf_g_property_channel_notify_gdkcolor(binding, value);
         return;
     }
 
     if(__gdkrgba_gtype == binding->xfconf_property_type) {
-       /* we need to handle this in a different way */
+        /* we need to handle this in a different way */
         xfconf_g_property_channel_notify_gdkrgba(binding, value);
         return;
     }
@@ -442,7 +444,8 @@ _xfconf_g_bindings_shutdown(void)
 #ifndef NDEBUG
         /* scare the developer a bit */
         g_debug("%d xfconf binding(s) are still connected. Are you sure all xfconf "
-                "channels are released before calling xfconf_shutdown()?", n);
+                "channels are released before calling xfconf_shutdown()?",
+                n);
 #endif
 
         G_UNLOCK(__bindings);
@@ -495,18 +498,14 @@ xfconf_g_property_bind(XfconfChannel *channel,
         return 0UL;
     }
 
-    if(G_UNLIKELY(!g_value_type_transformable(xfconf_property_type,
-                                              G_PARAM_SPEC_VALUE_TYPE(pspec))))
-    {
+    if(G_UNLIKELY(!g_value_type_transformable(xfconf_property_type, G_PARAM_SPEC_VALUE_TYPE(pspec)))) {
         g_warning("Converting from type \"%s\" to type \"%s\" is not supported",
                   g_type_name(xfconf_property_type),
                   g_type_name(G_PARAM_SPEC_VALUE_TYPE(pspec)));
         return 0UL;
     }
 
-    if(G_UNLIKELY(!g_value_type_transformable(G_PARAM_SPEC_VALUE_TYPE(pspec),
-                                              xfconf_property_type)))
-    {
+    if(G_UNLIKELY(!g_value_type_transformable(G_PARAM_SPEC_VALUE_TYPE(pspec), xfconf_property_type))) {
         g_warning("Converting from type \"%s\" to type \"%s\" is not supported",
                   g_type_name(G_PARAM_SPEC_VALUE_TYPE(pspec)),
                   g_type_name(xfconf_property_type));
@@ -666,8 +665,9 @@ xfconf_g_property_unbind(gulong id)
     G_LOCK(__bindings);
     for(l = __bindings; l; l = g_slist_next(l)) {
         binding = l->data;
-        if(G_UNLIKELY(binding->channel_handler == id))
+        if(G_UNLIKELY(binding->channel_handler == id)) {
             break;
+        }
     }
     G_UNLOCK(__bindings);
 
@@ -711,7 +711,9 @@ xfconf_g_property_unbind_by_property(XfconfChannel *channel,
            && binding->channel == channel
            && !strcmp(xfconf_property, binding->xfconf_property)
            && !strcmp(object_property, binding->object_property))
+        {
             break;
+        }
     }
     G_UNLOCK(__bindings);
 
@@ -758,7 +760,6 @@ xfconf_g_property_unbind_all(gpointer channel_or_object)
                   XFCONF_IS_CHANNEL(channel_or_object) ? "channel" : "object");
     }
 }
-
 
 
 #define __XFCONF_BINDING_C__

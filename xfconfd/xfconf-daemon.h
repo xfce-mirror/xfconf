@@ -26,23 +26,23 @@
 
 #include "xfconf-lifecycle-manager.h"
 
-#define XFCONF_TYPE_DAEMON             (xfconf_daemon_get_type())
-#define XFCONF_DAEMON(obj)             (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_TYPE_DAEMON, XfconfDaemon))
-#define XFCONF_IS_DAEMON(obj)          (G_TYPE_CHECK_INSTANCE_TYPE((obj), XFCONF_TYPE_DAEMON))
-#define XFCONF_DAEMON_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST((klass), XFCONF_TYPE_DAEMON, XfconfDaemonClass))
-#define XFCONF_IS_DAEMON_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE((klass), XFCONF_TYPE_DAEMON))
-#define XFCONF_DAEMON_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS((obj), XFCONF_TYPE_DAEMON, XfconfDaemonClass))
+#define XFCONF_TYPE_DAEMON (xfconf_daemon_get_type())
+#define XFCONF_DAEMON(obj) (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_TYPE_DAEMON, XfconfDaemon))
+#define XFCONF_IS_DAEMON(obj) (G_TYPE_CHECK_INSTANCE_TYPE((obj), XFCONF_TYPE_DAEMON))
+#define XFCONF_DAEMON_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST((klass), XFCONF_TYPE_DAEMON, XfconfDaemonClass))
+#define XFCONF_IS_DAEMON_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass), XFCONF_TYPE_DAEMON))
+#define XFCONF_DAEMON_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS((obj), XFCONF_TYPE_DAEMON, XfconfDaemonClass))
 
 G_BEGIN_DECLS
 
-typedef struct _XfconfDaemon         XfconfDaemon;
+typedef struct _XfconfDaemon XfconfDaemon;
 
 GType xfconf_daemon_get_type(void) G_GNUC_CONST;
 
-XfconfDaemon *xfconf_daemon_new_unique(gchar * const *backend_ids,
+XfconfDaemon *xfconf_daemon_new_unique(gchar *const *backend_ids,
                                        XfconfLifecycleManager *manager,
                                        GError **error);
 
 G_END_DECLS
 
-#endif  /* __XFCONF_DAEMON_H__ */
+#endif /* __XFCONF_DAEMON_H__ */

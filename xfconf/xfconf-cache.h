@@ -23,16 +23,16 @@
 
 #include <glib-object.h>
 
-#define XFCONF_TYPE_CACHE             (xfconf_cache_get_type())
-#define XFCONF_CACHE(obj)             (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_TYPE_CACHE, XfconfCache))
-#define XFCONF_IS_CACHE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE((obj), XFCONF_TYPE_CACHE))
-#define XFCONF_CACHE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST((klass), XFCONF_TYPE_CACHE, XfconfCacheClass))
-#define XFCONF_IS_CACHE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE((klass), XFCONF_TYPE_CACHE))
-#define XFCONF_CACHE_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS((obj), XFCONF_TYPE_CACHE, XfconfCacheClass))
+#define XFCONF_TYPE_CACHE (xfconf_cache_get_type())
+#define XFCONF_CACHE(obj) (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_TYPE_CACHE, XfconfCache))
+#define XFCONF_IS_CACHE(obj) (G_TYPE_CHECK_INSTANCE_TYPE((obj), XFCONF_TYPE_CACHE))
+#define XFCONF_CACHE_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST((klass), XFCONF_TYPE_CACHE, XfconfCacheClass))
+#define XFCONF_IS_CACHE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass), XFCONF_TYPE_CACHE))
+#define XFCONF_CACHE_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS((obj), XFCONF_TYPE_CACHE, XfconfCacheClass))
 
 G_BEGIN_DECLS
 
-typedef struct _XfconfCache         XfconfCache;
+typedef struct _XfconfCache XfconfCache;
 
 G_GNUC_INTERNAL
 GType xfconf_cache_get_type(void) G_GNUC_CONST;
@@ -77,4 +77,4 @@ gint xfconf_cache_get_max_age(XfconfCache *cache);
 #endif
 G_END_DECLS
 
-#endif  /* __XFCONF_CACHE_H__ */
+#endif /* __XFCONF_CACHE_H__ */

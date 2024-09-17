@@ -46,17 +46,15 @@
 #endif
 
 #if 0
-#define DEFAULT_MAX_ENTRIES  -1  /* no limit */
-#define DEFAULT_MAX_AGE      (60*60)  /* 1 hour */
+#define DEFAULT_MAX_ENTRIES -1 /* no limit */
+#define DEFAULT_MAX_AGE (60 * 60) /* 1 hour */
 #endif
 
-#define ALIGN_VAL(val, align)  ( ((val) + ((align) -1)) & ~((align) - 1) )
+#define ALIGN_VAL(val, align) (((val) + ((align) - 1)) & ~((align) - 1))
 
 
-
-#define xfconf_cache_mutex_lock(cache)   g_mutex_lock (&(cache)->cache_lock)
-#define xfconf_cache_mutex_unlock(cache) g_mutex_unlock (&(cache)->cache_lock)
-
+#define xfconf_cache_mutex_lock(cache) g_mutex_lock(&(cache)->cache_lock)
+#define xfconf_cache_mutex_unlock(cache) g_mutex_unlock(&(cache)->cache_lock)
 
 
 /**************** XfconfCacheItem ****************/
@@ -82,13 +80,13 @@ xfconf_cache_item_new(const GValue *value,
 #endif
 
     if(G_LIKELY(steal) || value == NULL) {
-        item->value = (GValue *) value;
+        item->value = (GValue *)value;
     } else {
 
         item->value = g_new0(GValue, 1);
         g_value_init(item->value, G_VALUE_TYPE(value));
         /* We need to dup the array */
-        if (G_VALUE_TYPE(value) == G_TYPE_PTR_ARRAY) {
+        if(G_VALUE_TYPE(value) == G_TYPE_PTR_ARRAY) {
             GPtrArray *arr = xfconf_dup_value_array(g_value_get_boxed(value));
             g_value_take_boxed(item->value, arr);
         } else {
@@ -103,15 +101,16 @@ static gboolean
 xfconf_cache_item_update(XfconfCacheItem *item,
                          const GValue *value)
 {
-    if(value && _xfconf_gvalue_is_equal(item->value, value))
+    if(value && _xfconf_gvalue_is_equal(item->value, value)) {
         return FALSE;
+    }
 
 #if 0
     item->last_used = g_get_monotonic_time ();
 #endif
 
     if(value) {
-        if (item->value == NULL) {
+        if(item->value == NULL) {
             item->value = g_new0(GValue, 1);
         } else {
             g_value_unset(item->value);
@@ -120,7 +119,7 @@ xfconf_cache_item_update(XfconfCacheItem *item,
         g_value_init(item->value, G_VALUE_TYPE(value));
 
         /* We need to dup the array */
-        if (G_VALUE_TYPE(value) == G_TYPE_PTR_ARRAY) {
+        if(G_VALUE_TYPE(value) == G_TYPE_PTR_ARRAY) {
             GPtrArray *arr = xfconf_dup_value_array(g_value_get_boxed(value));
             g_value_take_boxed(item->value, arr);
         } else {
@@ -137,7 +136,7 @@ xfconf_cache_item_free(XfconfCacheItem *item)
 {
     g_return_if_fail(item);
 
-    if (item->value != NULL) {
+    if(item->value != NULL) {
         g_value_unset(item->value);
         g_free(item->value);
     }
@@ -180,7 +179,7 @@ xfconf_cache_old_item_new(XfconfCache *cache, const gchar *property)
 
     old_item = g_slice_new0(XfconfCacheOldItem);
     old_item->property = g_strdup(property);
-    old_item->cancellable = g_cancellable_new ();
+    old_item->cancellable = g_cancellable_new();
     old_item->cache = cache;
     old_item->variant = NULL;
     old_item->pending_calls_count = 0;
@@ -198,14 +197,16 @@ xfconf_cache_old_item_free(XfconfCacheOldItem *old_item)
      * it to finish */
     g_return_if_fail(g_cancellable_is_cancelled(old_item->cancellable) == TRUE);
 
-    g_object_unref (old_item->cancellable);
+    g_object_unref(old_item->cancellable);
     g_free(old_item->property);
 
-    if (old_item->variant)
-        g_variant_unref (old_item->variant);
+    if(old_item->variant) {
+        g_variant_unref(old_item->variant);
+    }
 
-    if(old_item->item)
+    if(old_item->item) {
         xfconf_cache_item_free(old_item->item);
+    }
 
     g_slice_free(XfconfCacheOldItem, old_item);
 }
@@ -223,18 +224,18 @@ xfconf_cache_old_item_end_call(gpointer key,
 
     g_return_val_if_fail(g_cancellable_is_cancelled(old_item->cancellable) == FALSE, TRUE);
 
-    variant = g_variant_new_variant (old_item->variant);
+    variant = g_variant_new_variant(old_item->variant);
 
     g_cancellable_cancel(old_item->cancellable);
 
-    xfconf_exported_call_set_property_sync ((XfconfExported *)gproxy,
-                                            channel_name,
-                                            old_item->property,
-                                            variant,
-                                            NULL,
-                                            &error);
+    xfconf_exported_call_set_property_sync((XfconfExported *)gproxy,
+                                           channel_name,
+                                           old_item->property,
+                                           variant,
+                                           NULL,
+                                           &error);
 
-    if (error) {
+    if(error) {
         g_warning("Failed to set property \"%s::%s\": %s",
                   channel_name, old_item->property, error->message);
         g_error_free(error);
@@ -310,10 +311,10 @@ static void xfconf_cache_get_g_property(GObject *object,
 static void xfconf_cache_finalize(GObject *obj);
 
 static void xfconf_cache_proxy_signal_received_cb(GDBusProxy *proxy,
-                                                  gchar      *sender_name,
-                                                  gchar      *signal_name,
-                                                  GVariant   *parameters,
-                                                  gpointer    user_data);
+                                                  gchar *sender_name,
+                                                  gchar *signal_name,
+                                                  GVariant *parameters,
+                                                  gpointer user_data);
 
 
 static guint signals[N_SIGS] = { 0 };
@@ -334,7 +335,7 @@ xfconf_cache_class_init(XfconfCacheClass *klass)
     signals[SIG_PROPERTY_CHANGED] = g_signal_new(I_("property-changed"),
                                                  XFCONF_TYPE_CACHE,
                                                  G_SIGNAL_RUN_LAST
-                                                 | G_SIGNAL_DETAILED,
+                                                     | G_SIGNAL_DETAILED,
                                                  G_STRUCT_OFFSET(XfconfCacheClass,
                                                                  property_changed),
                                                  NULL,
@@ -351,10 +352,10 @@ xfconf_cache_class_init(XfconfCacheClass *klass)
                                                         "The name of the channel managed by the cache",
                                                         NULL,
                                                         G_PARAM_READWRITE
-                                                        | G_PARAM_CONSTRUCT_ONLY
-                                                        | G_PARAM_STATIC_NAME
-                                                        | G_PARAM_STATIC_NICK
-                                                        | G_PARAM_STATIC_BLURB));
+                                                            | G_PARAM_CONSTRUCT_ONLY
+                                                            | G_PARAM_STATIC_NAME
+                                                            | G_PARAM_STATIC_NICK
+                                                            | G_PARAM_STATIC_BLURB));
 #if 0
     g_object_class_install_property(object_class, PROP_MAX_ENTRIES,
                                     g_param_spec_int("max-entries",
@@ -390,7 +391,7 @@ xfconf_cache_init(XfconfCache *cache)
     cache->g_signal_id = g_signal_connect(gproxy, "g-signal",
                                           G_CALLBACK(xfconf_cache_proxy_signal_received_cb), cache);
 
-    cache->properties = g_tree_new_full((GCompareDataFunc) (void (*)(void)) strcmp, NULL,
+    cache->properties = g_tree_new_full((GCompareDataFunc)(void (*)(void))strcmp, NULL,
                                         (GDestroyNotify)g_free,
                                         (GDestroyNotify)xfconf_cache_item_free);
 
@@ -399,7 +400,7 @@ xfconf_cache_init(XfconfCache *cache)
     cache->old_properties = g_hash_table_new_full(g_str_hash, g_str_equal,
                                                   NULL, NULL);
 
-    g_mutex_init (&cache->cache_lock);
+    g_mutex_init(&cache->cache_lock);
 }
 
 static void
@@ -465,7 +466,7 @@ xfconf_cache_finalize(GObject *obj)
 
     proxy = _xfconf_get_gdbus_proxy();
 
-    g_signal_handler_disconnect(proxy,cache->g_signal_id);
+    g_signal_handler_disconnect(proxy, cache->g_signal_id);
 
     /* Finish pending calls with synchronous requests (without emitting
      * signals, therefore we cancel the cancellable on old_item).
@@ -491,7 +492,7 @@ xfconf_cache_finalize(GObject *obj)
 
 
 static void
-xfconf_cache_handle_property_changed (XfconfCache *cache, GVariant *parameters)
+xfconf_cache_handle_property_changed(XfconfCache *cache, GVariant *parameters)
 {
 
     XfconfCacheItem *item;
@@ -499,26 +500,26 @@ xfconf_cache_handle_property_changed (XfconfCache *cache, GVariant *parameters)
     GVariant *prop_variant;
     GValue *prop_value;
     gboolean changed = TRUE;
-    if (g_variant_is_of_type(parameters, G_VARIANT_TYPE ("(ssv)"))) {
+    if(g_variant_is_of_type(parameters, G_VARIANT_TYPE("(ssv)"))) {
         g_variant_get(parameters, "(&s&sv)", &channel_name, &property, &prop_variant);
 
         if(strcmp(channel_name, cache->channel_name)) {
             return;
         }
-        prop_value = xfconf_gvariant_to_gvalue (prop_variant);
+        prop_value = xfconf_gvariant_to_gvalue(prop_variant);
 
         /* if a call was cancelled, we still receive a property-changed from
          * that value, in that case, abort the emission of the signal. we can
          * detect this because the new reply is not processed yet and thus
          * there is still an old_prop in the hash table */
-        if(g_hash_table_lookup(cache->old_properties, property))
+        if(g_hash_table_lookup(cache->old_properties, property)) {
             return;
+        }
 
         item = g_tree_lookup(cache->properties, property);
         if(item) {
             changed = xfconf_cache_item_update(item, prop_value);
-        }
-        else {
+        } else {
             item = xfconf_cache_item_new(prop_value, FALSE);
             g_tree_insert(cache->properties, g_strdup(property), item);
         }
@@ -530,31 +531,30 @@ xfconf_cache_handle_property_changed (XfconfCache *cache, GVariant *parameters)
         g_variant_unref(prop_variant);
         g_value_unset(prop_value);
         g_free(prop_value);
-    }
-    else {
+    } else {
         g_warning("property changed handler expects (ssv) type, but %s received",
                   g_variant_get_type_string(parameters));
     }
-
 }
 
 
 static void
-xfconf_cache_handle_property_removed (XfconfCache *cache, GVariant *parameters)
+xfconf_cache_handle_property_removed(XfconfCache *cache, GVariant *parameters)
 {
 
     const gchar *channel_name, *property;
     GValue value = G_VALUE_INIT;
-    if (g_variant_is_of_type(parameters, G_VARIANT_TYPE ("(ss)"))) {
+    if(g_variant_is_of_type(parameters, G_VARIANT_TYPE("(ss)"))) {
         XfconfCacheItem *item;
 
         g_variant_get(parameters, "(&s&s)", &channel_name, &property);
 
-        if(strcmp(channel_name, cache->channel_name))
+        if(strcmp(channel_name, cache->channel_name)) {
             return;
+        }
 
         item = g_tree_lookup(cache->properties, property);
-        if (item != NULL && item->value != NULL) {
+        if(item != NULL && item->value != NULL) {
             g_value_unset(item->value);
             g_free(item->value);
             item->value = NULL;
@@ -563,32 +563,31 @@ xfconf_cache_handle_property_removed (XfconfCache *cache, GVariant *parameters)
         g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED], 0,
                       cache->channel_name, property, &value);
 
-    }
-    else {
+    } else {
         g_warning("property removed handler expects (ss) type, but %s received",
                   g_variant_get_type_string(parameters));
     }
-
 }
 
 
 static void
 xfconf_cache_proxy_signal_received_cb(GDBusProxy *proxy,
-                                      gchar      *sender_name,
-                                      gchar      *signal_name,
-                                      GVariant   *parameters,
-                                      gpointer    user_data)
+                                      gchar *sender_name,
+                                      gchar *signal_name,
+                                      GVariant *parameters,
+                                      gpointer user_data)
 {
-    XfconfCache *cache=(XfconfCache*)user_data;
+    XfconfCache *cache = (XfconfCache *)user_data;
 
     g_return_if_fail(XFCONF_IS_CACHE(cache));
 
-    if (g_strcmp0(signal_name, "PropertyChanged") == 0)
-        xfconf_cache_handle_property_changed (cache, parameters);
-    else if (g_strcmp0(signal_name, "PropertyRemoved") == 0)
+    if(g_strcmp0(signal_name, "PropertyChanged") == 0) {
+        xfconf_cache_handle_property_changed(cache, parameters);
+    } else if(g_strcmp0(signal_name, "PropertyRemoved") == 0) {
         xfconf_cache_handle_property_removed(cache, parameters);
-    else
-        g_warning ("Unhandled signal name :%s\n", signal_name);
+    } else {
+        g_warning("Unhandled signal name :%s\n", signal_name);
+    }
 }
 
 
@@ -598,36 +597,36 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
                                         gpointer user_data)
 {
     XfconfCache *cache;
-    XfconfCacheOldItem *old_item = (XfconfCacheOldItem*) user_data;
+    XfconfCacheOldItem *old_item = (XfconfCacheOldItem *)user_data;
     XfconfCacheItem *item;
     GError *error = NULL;
     gboolean result;
 
     old_item->pending_calls_count--;
-    if(old_item->pending_calls_count > 0)
+    if(old_item->pending_calls_count > 0) {
         return;
+    }
 
     /* cancellable is cancelled in xfconf_cache_old_item_end_call to inform that
      * XconfCache finalization started. That means the last value of
      * property has been set synchronously, invalidating the need to run this
      * handler for any previously started, unfinished asynchronous calls. */
-    if (g_cancellable_is_cancelled(old_item->cancellable) == TRUE)
-    {
+    if(g_cancellable_is_cancelled(old_item->cancellable) == TRUE) {
         xfconf_cache_old_item_free(old_item);
         return;
     }
 
     cache = old_item->cache;
     xfconf_cache_mutex_lock(cache);
-/*
-    old_item = g_hash_table_lookup(cache->pending_calls, call);
-    if(G_UNLIKELY(!old_item)) {
-#ifndef NDEBUG
-        g_debug("Couldn't find old cache item based on pending call (libxfconf bug?)");
-#endif
-        goto out;
-    }
-*/
+    /*
+        old_item = g_hash_table_lookup(cache->pending_calls, call);
+        if(G_UNLIKELY(!old_item)) {
+    #ifndef NDEBUG
+            g_debug("Couldn't find old cache item based on pending call (libxfconf bug?)");
+    #endif
+            goto out;
+        }
+    */
     g_hash_table_remove(cache->old_properties, old_item->property);
     g_hash_table_remove(cache->pending_calls, old_item->cancellable);
     item = g_tree_lookup(cache->properties, old_item->property);
@@ -638,15 +637,15 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
         goto out;
     }
 
-    result = xfconf_exported_call_set_property_finish ((XfconfExported*)proxy, res, &error);
-    if (!result) {
+    result = xfconf_exported_call_set_property_finish((XfconfExported *)proxy, res, &error);
+    if(!result) {
         GValue empty_val = G_VALUE_INIT;
         g_warning("Failed to set property \"%s::%s\": %s",
                   cache->channel_name, old_item->property, error->message);
         g_error_free(error);
-        if(old_item->item)
+        if(old_item->item) {
             xfconf_cache_item_update(item, old_item->item->value);
-        else {
+        } else {
             g_tree_remove(cache->properties, old_item->property);
             item = NULL;
         }
@@ -666,7 +665,6 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
 out:
     xfconf_cache_mutex_unlock(cache);
 }
-
 
 
 #if 0
@@ -702,7 +700,6 @@ out:
 #endif
 
 
-
 XfconfCache *
 xfconf_cache_new(const gchar *channel_name)
 {
@@ -720,7 +717,7 @@ xfconf_cache_prefetch(XfconfCache *cache,
     GVariantIter *iter;
     gchar *key;
     gboolean ret = FALSE;
-    GDBusProxy *proxy = _xfconf_get_gdbus_proxy ();
+    GDBusProxy *proxy = _xfconf_get_gdbus_proxy();
     GError *tmp_error = NULL;
 
     g_return_val_if_fail(g_tree_nnodes(cache->properties) == 0, FALSE);
@@ -728,26 +725,26 @@ xfconf_cache_prefetch(XfconfCache *cache,
     xfconf_cache_mutex_lock(cache);
 
     if(xfconf_exported_call_get_all_properties_sync((XfconfExported *)proxy, cache->channel_name,
-                                                  property_base ? property_base : "/",
-                                                  &props_variant, NULL, &tmp_error))
+                                                    property_base ? property_base : "/",
+                                                    &props_variant, NULL, &tmp_error))
     {
-        g_variant_get (props_variant, "a{sv}", &iter);
+        g_variant_get(props_variant, "a{sv}", &iter);
 
-        while (g_variant_iter_next (iter, "{sv}", &key, &value))
-        {
+        while(g_variant_iter_next(iter, "{sv}", &key, &value)) {
             XfconfCacheItem *item;
 
-            GValue *gvalue = xfconf_gvariant_to_gvalue (value);
+            GValue *gvalue = xfconf_gvariant_to_gvalue(value);
             item = xfconf_cache_item_new(gvalue, TRUE);
             g_tree_insert(cache->properties, key, item);
             g_variant_unref(value);
         }
         /* TODO: honor max entries */
         ret = TRUE;
-        g_variant_iter_free (iter);
+        g_variant_iter_free(iter);
         g_variant_unref(props_variant);
-    } else
+    } else {
         g_propagate_error(error, tmp_error);
+    }
 
     xfconf_cache_mutex_unlock(cache);
 
@@ -768,22 +765,22 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
         GDBusProxy *proxy = _xfconf_get_gdbus_proxy();
         GError *tmp_error = NULL;
         /* blocking, ugh */
-        if(xfconf_exported_call_get_property_sync ((XfconfExported *)proxy, cache->channel_name,
-                                                 property, &variant, NULL, &tmp_error))
+        if(xfconf_exported_call_get_property_sync((XfconfExported *)proxy, cache->channel_name,
+                                                  property, &variant, NULL, &tmp_error))
         {
             GValue *tmpval;
             tmpval = xfconf_gvariant_to_gvalue(variant);
             item = xfconf_cache_item_new(tmpval, TRUE);
             g_tree_insert(cache->properties, g_strdup(property), item);
-            g_variant_unref (variant);
+            g_variant_unref(variant);
             /* TODO: check tree for evictions */
         } else {
-            if (g_dbus_error_is_remote_error(tmp_error)) {
+            if(g_dbus_error_is_remote_error(tmp_error)) {
                 gchar *error_name = g_dbus_error_get_remote_error(tmp_error);
                 XfconfError xfconf_error;
 
-                if (_xfconf_error_from_dbus_error_name(error_name, &xfconf_error) &&
-                    xfconf_error == XFCONF_ERROR_PROPERTY_NOT_FOUND)
+                if(_xfconf_error_from_dbus_error_name(error_name, &xfconf_error)
+                   && xfconf_error == XFCONF_ERROR_PROPERTY_NOT_FOUND)
                 {
                     // Cache a property-not-found response
                     item = xfconf_cache_item_new(NULL, TRUE);
@@ -793,7 +790,7 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
                 g_free(error_name);
             }
 
-            if (!item) {
+            if(!item) {
                 g_propagate_error(error, tmp_error);
             } else {
                 g_error_free(tmp_error);
@@ -802,7 +799,7 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
     }
 
     if(item) {
-        if (item->value == NULL) {
+        if(item->value == NULL) {
             gchar *message = g_strdup_printf(_("Property \"%s\" does not exist on channel \"%s\""),
                                              property, cache->channel_name);
             g_dbus_error_set_dbus_error(error,
@@ -811,26 +808,26 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
                                         NULL);
             g_free(message);
         } else if(value) {
-            if(!G_VALUE_TYPE(value))
+            if(!G_VALUE_TYPE(value)) {
                 g_value_init(value, G_VALUE_TYPE(item->value));
+            }
 
-            if (G_VALUE_TYPE(item->value) == G_TYPE_PTR_ARRAY) {
-                if (G_VALUE_TYPE(value) != G_TYPE_PTR_ARRAY) {
+            if(G_VALUE_TYPE(item->value) == G_TYPE_PTR_ARRAY) {
+                if(G_VALUE_TYPE(value) != G_TYPE_PTR_ARRAY) {
                     g_warning("Given value is not of type G_TYPE_PTR_ARRAY");
                     item = NULL;
-                }
-                else {
+                } else {
                     GPtrArray *arr;
                     arr = xfconf_dup_value_array(g_value_get_boxed(item->value));
                     g_value_take_boxed(value, arr);
                 }
-            }
-            else {
-                if(G_VALUE_TYPE(value) == G_VALUE_TYPE(item->value))
+            } else {
+                if(G_VALUE_TYPE(value) == G_VALUE_TYPE(item->value)) {
                     g_value_copy(item->value, value);
-                else {
-                    if(!g_value_transform(item->value, value))
+                } else {
+                    if(!g_value_transform(item->value, value)) {
                         item = NULL;
+                    }
                 }
             }
         }
@@ -851,8 +848,7 @@ xfconf_cache_lookup(XfconfCache *cache,
 {
     gboolean ret;
 
-    g_return_val_if_fail(XFCONF_IS_CACHE(cache) && property
-                         && (!error || !*error), FALSE);
+    g_return_val_if_fail(XFCONF_IS_CACHE(cache) && property && (!error || !*error), FALSE);
 
     xfconf_cache_mutex_lock(cache);
     ret = xfconf_cache_lookup_locked(cache, property, value, error);
@@ -882,8 +878,9 @@ xfconf_cache_set(XfconfCache *cache,
         if(!xfconf_cache_lookup_locked(cache, property, &tmp_val, &tmp_error)) {
             gchar *dbus_error_name = NULL;
 
-            if(G_LIKELY(g_dbus_error_is_remote_error (tmp_error)))
-                dbus_error_name = g_dbus_error_get_remote_error (tmp_error);
+            if(G_LIKELY(g_dbus_error_is_remote_error(tmp_error))) {
+                dbus_error_name = g_dbus_error_get_remote_error(tmp_error);
+            }
 
             if(g_strcmp0(dbus_error_name, XFCONF_SERVICE_NAME_PREFIX ".Xfconf.Error.PropertyNotFound") != 0
                && g_strcmp0(dbus_error_name, XFCONF_SERVICE_NAME_PREFIX ".Xfconf.Error.ChannelNotFound") != 0)
@@ -891,12 +888,12 @@ xfconf_cache_set(XfconfCache *cache,
                 /* this is bad... */
                 g_propagate_error(error, tmp_error);
                 xfconf_cache_mutex_unlock(cache);
-                g_free (dbus_error_name);
+                g_free(dbus_error_name);
                 return FALSE;
             }
             /* prop just doesn't exist; continue */
             g_error_free(tmp_error);
-            g_free (dbus_error_name);
+            g_free(dbus_error_name);
         } else {
             g_value_unset(&tmp_val);
             item = g_tree_lookup(cache->properties, property);
@@ -918,35 +915,36 @@ xfconf_cache_set(XfconfCache *cache,
          * the property.
          * we also remove the old_item from the pending_calls table
          * so there is no pending item left. */
-        if(!g_cancellable_is_cancelled (old_item->cancellable)) {
+        if(!g_cancellable_is_cancelled(old_item->cancellable)) {
             g_cancellable_cancel(old_item->cancellable);
             g_hash_table_remove(cache->pending_calls, old_item->cancellable);
-            g_object_unref (old_item->cancellable);
+            g_object_unref(old_item->cancellable);
             old_item->cancellable = g_cancellable_new();
         }
 
-        if(old_item->variant){
+        if(old_item->variant) {
             g_variant_unref(old_item->variant);
             old_item->variant = NULL;
         }
     } else {
         old_item = xfconf_cache_old_item_new(cache, property);
-        if(item && item->value)
+        if(item && item->value) {
             old_item->item = xfconf_cache_item_new(item->value, FALSE);
+        }
         g_hash_table_insert(cache->old_properties, old_item->property, old_item);
     }
 
-    val = xfconf_gvalue_to_gvariant (value);
-    if (val) {
-        variant = g_variant_new_variant (val);
+    val = xfconf_gvalue_to_gvariant(value);
+    if(val) {
+        variant = g_variant_new_variant(val);
 
-        xfconf_exported_call_set_property ((XfconfExported *)proxy,
-                                           cache->channel_name,
-                                           property,
-                                           variant,
-                                           old_item->cancellable,
-                                           (GAsyncReadyCallback) xfconf_cache_set_property_reply_handler,
-                                           old_item);
+        xfconf_exported_call_set_property((XfconfExported *)proxy,
+                                          cache->channel_name,
+                                          property,
+                                          variant,
+                                          old_item->cancellable,
+                                          (GAsyncReadyCallback)xfconf_cache_set_property_reply_handler,
+                                          old_item);
 
         old_item->variant = val;
         old_item->pending_calls_count++;
@@ -985,8 +983,9 @@ xfconf_cache_collect_properties_recursive(gpointer key,
     gchar *property_name = key;
     XfconfCacheRecurseData *rdata = user_data;
 
-    if(!g_ascii_strncasecmp(rdata->property_base, property_name, rdata->property_base_len))
+    if(!g_ascii_strncasecmp(rdata->property_base, property_name, rdata->property_base_len)) {
         rdata->matches = g_slist_prepend(rdata->matches, property_name);
+    }
 
     return FALSE;
 }
@@ -1035,8 +1034,8 @@ xfconf_cache_reset(XfconfCache *cache,
      * this point if a reset is going to remove the property or reset
      * it to a default.  so, we have to do this sync.  sad. */
 
-    ret = xfconf_exported_call_reset_property_sync ((XfconfExported*)proxy, cache->channel_name,
-                                                  property_base, recursive, NULL, error);
+    ret = xfconf_exported_call_reset_property_sync((XfconfExported *)proxy, cache->channel_name,
+                                                   property_base, recursive, NULL, error);
 
     if(ret) {
         /* here we just evict the entry from the cache if we have one.
@@ -1058,8 +1057,9 @@ xfconf_cache_reset(XfconfCache *cache,
                            xfconf_cache_collect_properties_recursive,
                            &rdata);
 
-            for(l = rdata.matches; l; l = l->next)
+            for(l = rdata.matches; l; l = l->next) {
                 g_tree_remove(cache->properties, l->data);
+            }
 
             g_free(rdata.property_base);
             g_slist_free(rdata.matches);

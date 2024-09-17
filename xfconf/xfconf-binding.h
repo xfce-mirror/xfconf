@@ -57,4 +57,4 @@ void xfconf_g_property_unbind_all(gpointer channel_or_object);
 
 G_END_DECLS
 
-#endif  /* __XFCONF_BINDING_H__ */
+#endif /* __XFCONF_BINDING_H__ */

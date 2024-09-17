@@ -28,28 +28,29 @@ main(int argc,
      char **argv)
 {
     XfconfChannel *channel;
-    
-    if(!xfconf_tests_start())
+
+    if(!xfconf_tests_start()) {
         return 1;
-    
+    }
+
     channel = xfconf_channel_new(TEST_CHANNEL_NAME);
-    
+
     {
         GPtrArray *arr = xfconf_channel_get_arrayv(channel, test_array_property);
         GValue *val;
-        
+
         if(!arr) {
             g_critical("Test failed: returned array is NULL");
             xfconf_tests_end();
             return 1;
         }
-        
+
         if(arr->len != 3) {
             g_critical("Test failed: array len should be %d, is %d", 3, arr->len);
             xfconf_tests_end();
             return 1;
         }
-        
+
         val = g_ptr_array_index(arr, 0);
         if(G_VALUE_TYPE(val) != G_TYPE_BOOLEAN) {
             g_critical("Test failed: array elem 0 is not G_TYPE_BOOLEAN");
@@ -61,7 +62,7 @@ main(int argc,
             xfconf_tests_end();
             return 1;
         }
-        
+
         val = g_ptr_array_index(arr, 1);
         if(G_VALUE_TYPE(val) != G_TYPE_INT64) {
             g_critical("Test failed: array elem 1 is not G_TYPE_INT64");
@@ -73,7 +74,7 @@ main(int argc,
             xfconf_tests_end();
             return 1;
         }
-        
+
         val = g_ptr_array_index(arr, 2);
         if(G_VALUE_TYPE(val) != G_TYPE_STRING) {
             g_critical("Test failed: array elem 2 is not G_TYPE_STRING");
@@ -86,13 +87,13 @@ main(int argc,
             xfconf_tests_end();
             return 1;
         }
-        
+
         xfconf_array_free(arr);
     }
-    
+
     g_object_unref(G_OBJECT(channel));
-    
+
     xfconf_tests_end();
-    
+
     return 0;
 }
