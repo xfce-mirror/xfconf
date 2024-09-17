@@ -316,7 +316,7 @@ static void xfconf_cache_proxy_signal_received_cb(GDBusProxy *proxy,
                                                   gpointer    user_data);
 
 
-static guint signals[N_SIGS] = { 0, };
+static guint signals[N_SIGS] = { 0 };
 
 
 G_DEFINE_TYPE(XfconfCache, xfconf_cache, G_TYPE_OBJECT)
@@ -640,7 +640,7 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
 
     result = xfconf_exported_call_set_property_finish ((XfconfExported*)proxy, res, &error);
     if (!result) {
-        GValue empty_val = { 0, };
+        GValue empty_val = G_VALUE_INIT;
         g_warning("Failed to set property \"%s::%s\": %s",
                   cache->channel_name, old_item->property, error->message);
         g_error_free(error);
@@ -877,7 +877,7 @@ xfconf_cache_set(XfconfCache *cache,
     if(!item) {
         /* this is really quite the opposite of what we want here,
          * but i can't think of a better way yet. */
-        GValue tmp_val = { 0, };
+        GValue tmp_val = G_VALUE_INIT;
         GError *tmp_error = NULL;
         if(!xfconf_cache_lookup_locked(cache, property, &tmp_val, &tmp_error)) {
             gchar *dbus_error_name = NULL;

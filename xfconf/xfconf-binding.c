@@ -152,8 +152,8 @@ xfconf_g_property_object_notify(GObject *object,
                                 gpointer user_data)
 {
     XfconfGBinding *binding = user_data;
-    GValue src_val = { 0, };
-    GValue dst_val = { 0, };
+    GValue src_val = G_VALUE_INIT;
+    GValue dst_val = G_VALUE_INIT;
 
     g_return_if_fail(G_IS_OBJECT(object));
     g_return_if_fail(binding->object == object);
@@ -226,7 +226,7 @@ xfconf_g_property_channel_notify_gdkcolor(XfconfGBinding *binding,
                                           const GValue *value)
 {
     GPtrArray *arr;
-    FakeGdkColor color = { 0, };
+    FakeGdkColor color = { 0 };
 
     if(G_VALUE_TYPE(value) == G_TYPE_INVALID)
         return;
@@ -252,7 +252,7 @@ xfconf_g_property_channel_notify_gdkrgba(XfconfGBinding *binding,
                                          const GValue *value)
 {
     GPtrArray *arr;
-    FakeGdkRGBA color = { 0, };
+    FakeGdkRGBA color = { 0 };
 
     if(G_VALUE_TYPE(value) == G_TYPE_INVALID)
         return;
@@ -282,7 +282,7 @@ xfconf_g_property_channel_notify(XfconfChannel *channel,
 {
     XfconfGBinding *binding = user_data;
     GParamSpec *pspec;
-    GValue dst_val = { 0, };
+    GValue dst_val = G_VALUE_INIT;
 
     g_return_if_fail(XFCONF_IS_CHANNEL(channel));
     g_return_if_fail(binding->channel == channel);
@@ -373,7 +373,7 @@ xfconf_g_property_init(XfconfChannel *channel,
 {
     XfconfGBinding *binding;
     gchar *detailed_signal;
-    GValue value = { 0, };
+    GValue value = G_VALUE_INIT;
 
     binding = g_slice_new(XfconfGBinding);
     binding->channel = channel;

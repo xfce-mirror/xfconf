@@ -124,7 +124,7 @@ static void xfconf_channel_property_changed(XfconfCache *cache,
 
 
 G_LOCK_DEFINE_STATIC(__singletons);
-static guint signals[N_SIGS] = { 0, };
+static guint signals[N_SIGS] = { 0 };
 static GHashTable *__channel_singletons = NULL;
 
 
@@ -436,7 +436,7 @@ xfconf_channel_get_internal(XfconfChannel *channel,
                             const gchar *property,
                             GValue *value)
 {
-    GValue tmp_val = { 0, }, *val;
+    GValue tmp_val = G_VALUE_INIT, *val;
     gboolean ret;
     gchar *real_property = REAL_PROP(channel, property);
     ERROR_DEFINE;
@@ -779,7 +779,7 @@ xfconf_channel_get_string(XfconfChannel *channel,
                           const gchar *default_value)
 {
     gchar *value = NULL;
-    GValue val = { 0, };
+    GValue val = G_VALUE_INIT;
     gboolean value_set = FALSE;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, NULL);
@@ -861,7 +861,7 @@ xfconf_channel_get_int(XfconfChannel *channel,
                        gint default_value)
 {
     gint value = default_value;
-    GValue val = { 0, };
+    GValue val = G_VALUE_INIT;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, value);
 
@@ -895,7 +895,7 @@ xfconf_channel_get_uint(XfconfChannel *channel,
                         guint32 default_value)
 {
     gint value = default_value;
-    GValue val = { 0, };
+    GValue val = G_VALUE_INIT;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, value);
 
@@ -929,7 +929,7 @@ xfconf_channel_get_uint64(XfconfChannel *channel,
                           guint64 default_value)
 {
     gint64 value = default_value;
-    GValue val = { 0, };
+    GValue val = G_VALUE_INIT;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, value);
 
@@ -963,7 +963,7 @@ xfconf_channel_get_double(XfconfChannel *channel,
                           gdouble default_value)
 {
     gdouble value = default_value;
-    GValue val = { 0, };
+    GValue val = G_VALUE_INIT;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, value);
 
@@ -997,7 +997,7 @@ xfconf_channel_get_bool(XfconfChannel *channel,
                         gboolean default_value)
 {
     gboolean value = default_value;
-    GValue val = { 0, };
+    GValue val = G_VALUE_INIT;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, value);
 
@@ -1031,7 +1031,7 @@ xfconf_channel_set_string(XfconfChannel *channel,
                           const gchar *property,
                           const gchar *value)
 {
-    GValue val = { 0, };
+    GValue val = G_VALUE_INIT;
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, FALSE);
@@ -1104,7 +1104,7 @@ xfconf_channel_set_int(XfconfChannel *channel,
                        const gchar *property,
                        gint value)
 {
-    GValue val = { 0, };
+    GValue val = G_VALUE_INIT;
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, FALSE);
@@ -1134,7 +1134,7 @@ xfconf_channel_set_uint(XfconfChannel *channel,
                         const gchar *property,
                         guint32 value)
 {
-    GValue val = { 0, };
+    GValue val = G_VALUE_INIT;
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, FALSE);
@@ -1164,7 +1164,7 @@ xfconf_channel_set_uint64(XfconfChannel *channel,
                           const gchar *property,
                           guint64 value)
 {
-    GValue val = { 0, };
+    GValue val = G_VALUE_INIT;
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, FALSE);
@@ -1194,7 +1194,7 @@ xfconf_channel_set_double(XfconfChannel *channel,
                           const gchar *property,
                           gdouble value)
 {
-    GValue val = { 0, };
+    GValue val = G_VALUE_INIT;
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, FALSE);
@@ -1224,7 +1224,7 @@ xfconf_channel_set_bool(XfconfChannel *channel,
                         const gchar *property,
                         gboolean value)
 {
-    GValue val = { 0, };
+    GValue val = G_VALUE_INIT;
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, FALSE);
@@ -1265,7 +1265,7 @@ xfconf_channel_get_property(XfconfChannel *channel,
                             const gchar *property,
                             GValue *value)
 {
-    GValue val1 = { 0, };
+    GValue val1 = G_VALUE_INIT;
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && value,
@@ -1333,7 +1333,7 @@ xfconf_channel_set_property(XfconfChannel *channel,
                             const gchar *property,
                             const GValue *value)
 {
-    GValue val = { 0, };
+    GValue val = G_VALUE_INIT;
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel)
@@ -1524,7 +1524,7 @@ GPtrArray *
 xfconf_channel_get_arrayv(XfconfChannel *channel,
                           const gchar *property)
 {
-    GValue val = { 0, };
+    GValue val = G_VALUE_INIT;
     GPtrArray *arr = NULL;
     gboolean ret;
 
@@ -1703,7 +1703,7 @@ xfconf_channel_set_arrayv(XfconfChannel *channel,
                           const gchar *property,
                           GPtrArray *values)
 {
-    GValue val = { 0, };
+    GValue val = G_VALUE_INIT;
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property && values,
