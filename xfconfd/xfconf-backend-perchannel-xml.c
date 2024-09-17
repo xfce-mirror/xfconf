@@ -513,9 +513,7 @@ xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
     }
 
     prop = xfconf_proptree_lookup(channel->properties, property);
-    *exists = (prop && (G_VALUE_TYPE(&prop->value)
-                        || G_VALUE_TYPE(&prop->system_value))
-               ? TRUE : FALSE);
+    *exists = (prop && (G_VALUE_TYPE(&prop->value) || G_VALUE_TYPE(&prop->system_value)));
 
     return TRUE;
 }

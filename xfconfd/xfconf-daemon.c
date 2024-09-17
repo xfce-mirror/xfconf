@@ -100,7 +100,7 @@ static gboolean
 xfconf_daemon_emit_property_changed_idled(gpointer data)
 {
     XfconfPropChangedData *pdata = data;
-    GValue value = { 0, };
+    GValue value = G_VALUE_INIT;
     xfconf_backend_get(pdata->backend, pdata->channel, pdata->property,
                        &value, NULL);
     if(G_VALUE_TYPE(&value)) {
@@ -205,7 +205,7 @@ xfconf_get_property(XfconfExported *skeleton,
                     XfconfDaemon *xfconfd)
 {
     GList *l;
-    GValue value = { 0, };
+    GValue value = G_VALUE_INIT;
     GError *error = NULL;
 
     /* check each backend until we find a value */

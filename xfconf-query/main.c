@@ -339,7 +339,7 @@ main(int argc, char **argv)
         /** Read value */
         else if(set_value == NULL || set_value[0] == NULL)
         {
-            GValue value = { 0, };
+            GValue value = G_VALUE_INIT;
 
             if(!xfconf_channel_get_property(channel, property_name, &value))
             {
@@ -399,7 +399,7 @@ main(int argc, char **argv)
         }
         /* Write value */
         else {
-            GValue value = { 0, };
+            GValue value = G_VALUE_INIT;
             gint i;
 
             prop_exists = xfconf_channel_has_property(channel, property_name);
