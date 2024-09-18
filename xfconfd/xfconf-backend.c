@@ -18,7 +18,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #include "xfconf-backend.h"
@@ -79,8 +79,8 @@ GType
 xfconf_backend_get_type(void)
 {
     static GType backend_type = 0;
-    
-    if(!backend_type) {
+
+    if (!backend_type) {
         static const GTypeInfo backend_info = {
             sizeof(XfconfBackendInterface),
             xfconf_backend_base_init,
@@ -92,27 +92,25 @@ xfconf_backend_get_type(void)
             0,
             NULL,
         };
-        
-        backend_type = g_type_register_static(G_TYPE_INTERFACE,"XfconfBackend",
+
+        backend_type = g_type_register_static(G_TYPE_INTERFACE, "XfconfBackend",
                                               &backend_info, 0);
         g_type_interface_add_prerequisite(backend_type, G_TYPE_OBJECT);
     }
-    
+
     return backend_type;
 }
-
 
 
 static void
 xfconf_backend_base_init(gpointer g_class)
 {
     static gboolean _inited = FALSE;
-    
-    if(!_inited) {
+
+    if (!_inited) {
         _inited = TRUE;
     }
 }
-
 
 
 static gboolean
@@ -121,8 +119,8 @@ xfconf_property_is_valid(const gchar *property,
 {
     const gchar *p = property;
 
-    if(!p || *p != '/') {
-        if(error) {
+    if (!p || *p != '/') {
+        if (error) {
             g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_INVALID_PROPERTY,
                         _("Property names must start with a '/' character"));
         }
@@ -130,22 +128,22 @@ xfconf_property_is_valid(const gchar *property,
     }
 
     p++;
-    if(!*p) {
-        if(error) {
+    if (!*p) {
+        if (error) {
             g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_INVALID_PROPERTY,
                         _("The root element ('/') is not a valid property name"));
         }
         return FALSE;
     }
 
-    while(*p) {
-        if(!(*p >= 'A' && *p <= 'Z') && !(*p >= 'a' && *p <= 'z')
-           && !(*p >= '0' && *p <= '9')
-           && *p != '_' && *p != '-' && *p != '/' && *p != '{' && *p != '}'
-           && !(*p == '<' || *p == '>') && *p != '|' && *p != ','
-           && *p != '[' && *p != ']' && *p != '.' && *p != ':')
+    while (*p) {
+        if (!(*p >= 'A' && *p <= 'Z') && !(*p >= 'a' && *p <= 'z')
+            && !(*p >= '0' && *p <= '9')
+            && *p != '_' && *p != '-' && *p != '/' && *p != '{' && *p != '}'
+            && !(*p == '<' || *p == '>') && *p != '|' && *p != ','
+            && *p != '[' && *p != ']' && *p != '.' && *p != ':')
         {
-            if(error) {
+            if (error) {
                 g_set_error(error, XFCONF_ERROR,
                             XFCONF_ERROR_INVALID_PROPERTY,
                             _("Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a separator"));
@@ -153,8 +151,8 @@ xfconf_property_is_valid(const gchar *property,
             return FALSE;
         }
 
-        if('/' == *p && '/' == *(p-1)) {
-            if(error) {
+        if ('/' == *p && '/' == *(p - 1)) {
+            if (error) {
                 g_set_error(error, XFCONF_ERROR,
                             XFCONF_ERROR_INVALID_PROPERTY,
                             _("Property names cannot have two or more consecutive '/' characters"));
@@ -165,8 +163,8 @@ xfconf_property_is_valid(const gchar *property,
         p++;
     }
 
-    if(*(p-1) == '/') {
-        if(error) {
+    if (*(p - 1) == '/') {
+        if (error) {
             g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_INVALID_PROPERTY,
                         _("Property names cannot end with a '/' character"));
         }
@@ -182,22 +180,22 @@ xfconf_channel_is_valid(const gchar *channel,
 {
     const gchar *p = channel;
 
-    if(!p || !*p) {
-        if(error) {
+    if (!p || !*p) {
+        if (error) {
             g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_INVALID_CHANNEL,
                         _("Channel name cannot be an empty string"));
         }
         return FALSE;
     }
 
-    while(*p) {
-        if(!(*p >= 'A' && *p <= 'Z') && !(*p >= 'a' && *p <= 'z')
-           && !(*p >= '0' && *p <= '9')
-           && *p != '_' && *p != '-' && *p != '{' && *p != '}'
-           && *p != '|' && *p != ','
-           && *p != '[' && *p != ']' && *p != '.' && *p != ':')
+    while (*p) {
+        if (!(*p >= 'A' && *p <= 'Z') && !(*p >= 'a' && *p <= 'z')
+            && !(*p >= '0' && *p <= '9')
+            && *p != '_' && *p != '-' && *p != '{' && *p != '}'
+            && *p != '|' && *p != ','
+            && *p != '[' && *p != ']' && *p != '.' && *p != ':')
         {
-            if(error) {
+            if (error) {
                 g_set_error(error, XFCONF_ERROR,
                             XFCONF_ERROR_INVALID_CHANNEL,
                             _("Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', and '-'"));
@@ -209,7 +207,6 @@ xfconf_channel_is_valid(const gchar *channel,
 
     return TRUE;
 }
-
 
 
 /**
@@ -228,10 +225,9 @@ xfconf_backend_initialize(XfconfBackend *backend,
                           GError **error)
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
-    
-    xfconf_backend_return_val_if_fail(iface && iface->initialize
-                                      && (!error || !*error), FALSE);
-    
+
+    xfconf_backend_return_val_if_fail(iface && iface->initialize && (!error || !*error), FALSE);
+
     return iface->initialize(backend, error);
 }
 
@@ -257,15 +253,18 @@ xfconf_backend_set(XfconfBackend *backend,
                    GError **error)
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
-    
+
     xfconf_backend_return_val_if_fail(iface && iface->set && channel && *channel
-                                      && property && *property
-                                      && value && (!error || !*error), FALSE);
-    if(!xfconf_channel_is_valid(channel, error))
+                                          && property && *property
+                                          && value && (!error || !*error),
+                                      FALSE);
+    if (!xfconf_channel_is_valid(channel, error)) {
         return FALSE;
-    if(!xfconf_property_is_valid(property, error))
+    }
+    if (!xfconf_property_is_valid(property, error)) {
         return FALSE;
-    
+    }
+
     return iface->set(backend, channel, property, value, error);
 }
 
@@ -291,15 +290,18 @@ xfconf_backend_get(XfconfBackend *backend,
                    GError **error)
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
-    
+
     xfconf_backend_return_val_if_fail(iface && iface->get && channel && *channel
-                                      && property && *property
-                                      && value && (!error || !*error), FALSE);
-    if(!xfconf_channel_is_valid(channel, error))
+                                          && property && *property
+                                          && value && (!error || !*error),
+                                      FALSE);
+    if (!xfconf_channel_is_valid(channel, error)) {
         return FALSE;
-    if(!xfconf_property_is_valid(property, error))
+    }
+    if (!xfconf_property_is_valid(property, error)) {
         return FALSE;
-    
+    }
+
     return iface->get(backend, channel, property, value, error);
 }
 
@@ -331,15 +333,17 @@ xfconf_backend_get_all(XfconfBackend *backend,
                        GError **error)
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
-    
+
     xfconf_backend_return_val_if_fail(iface && iface->get_all && channel
-                                      && *channel && property_base
-                                      && properties
-                                      && (!error || !*error), FALSE);
-    if(!xfconf_channel_is_valid(channel, error))
+                                          && *channel && property_base
+                                          && properties
+                                          && (!error || !*error),
+                                      FALSE);
+    if (!xfconf_channel_is_valid(channel, error)) {
         return FALSE;
-    if(*property_base && !(property_base[0] == '/' && !property_base[1])
-       && !xfconf_property_is_valid(property_base, error))
+    }
+    if (*property_base && !(property_base[0] == '/' && !property_base[1])
+        && !xfconf_property_is_valid(property_base, error))
     {
         return FALSE;
     }
@@ -370,16 +374,19 @@ xfconf_backend_exists(XfconfBackend *backend,
                       GError **error)
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
-    
+
     xfconf_backend_return_val_if_fail(iface && iface->exists && channel
-                                      && *channel && property && *property
-                                      && exists
-                                      && (!error || !*error), FALSE);
-    if(!xfconf_channel_is_valid(channel, error))
+                                          && *channel && property && *property
+                                          && exists
+                                          && (!error || !*error),
+                                      FALSE);
+    if (!xfconf_channel_is_valid(channel, error)) {
         return FALSE;
-    if(!xfconf_property_is_valid(property, error))
+    }
+    if (!xfconf_property_is_valid(property, error)) {
         return FALSE;
- 
+    }
+
     return iface->exists(backend, channel, property, exists, error);
 }
 
@@ -412,22 +419,24 @@ xfconf_backend_reset(XfconfBackend *backend,
                      GError **error)
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
-    
-    xfconf_backend_return_val_if_fail(iface && iface->reset && channel
-                                      && *channel && property && *property
-                                      && (!error || !*error), FALSE);
-    if(!xfconf_channel_is_valid(channel, error))
-        return FALSE;
 
-    if(!recursive && (!*property || (property[0] == '/' && !property[1]))) {
-        if(error) {
+    xfconf_backend_return_val_if_fail(iface && iface->reset && channel
+                                          && *channel && property && *property
+                                          && (!error || !*error),
+                                      FALSE);
+    if (!xfconf_channel_is_valid(channel, error)) {
+        return FALSE;
+    }
+
+    if (!recursive && (!*property || (property[0] == '/' && !property[1]))) {
+        if (error) {
             g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_INVALID_PROPERTY,
                         _("The property name can only be empty or \"/\" if a recursive reset was specified"));
         }
         return FALSE;
     }
-    if(*property && !(property[0] == '/' && !property[1])
-       && !xfconf_property_is_valid(property, error))
+    if (*property && !(property[0] == '/' && !property[1])
+        && !xfconf_property_is_valid(property, error))
     {
         return FALSE;
     }
@@ -455,8 +464,7 @@ xfconf_backend_list_channels(XfconfBackend *backend,
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
 
-    xfconf_backend_return_val_if_fail(iface && iface->list_channels
-                                      && (!error || !*error), FALSE);
+    xfconf_backend_return_val_if_fail(iface && iface->list_channels && (!error || !*error), FALSE);
 
     return iface->list_channels(backend, channels, error);
 }
@@ -485,12 +493,13 @@ xfconf_backend_is_property_locked(XfconfBackend *backend,
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
 
-    xfconf_backend_return_val_if_fail(iface && iface->is_property_locked
-                                      && (!error || !*error), FALSE);
-    if(!xfconf_channel_is_valid(channel, error))
+    xfconf_backend_return_val_if_fail(iface && iface->is_property_locked && (!error || !*error), FALSE);
+    if (!xfconf_channel_is_valid(channel, error)) {
         return FALSE;
-    if(!xfconf_property_is_valid(property, error))
+    }
+    if (!xfconf_property_is_valid(property, error)) {
         return FALSE;
+    }
 
     return iface->is_property_locked(backend, channel, property, locked, error);
 }
@@ -512,10 +521,9 @@ xfconf_backend_flush(XfconfBackend *backend,
                      GError **error)
 {
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
-    
-    xfconf_backend_return_val_if_fail(iface && iface->flush
-                                      && (!error || !*error), FALSE);
-    
+
+    xfconf_backend_return_val_if_fail(iface && iface->flush && (!error || !*error), FALSE);
+
     return iface->flush(backend, error);
 }
 
@@ -537,8 +545,9 @@ xfconf_backend_register_property_changed_func(XfconfBackend *backend,
     XfconfBackendInterface *iface = XFCONF_BACKEND_GET_INTERFACE(backend);
 
     g_return_if_fail(iface);
-    if(!iface->register_property_changed_func)
+    if (!iface->register_property_changed_func) {
         return;
+    }
 
     iface->register_property_changed_func(backend, func, user_data);
 }

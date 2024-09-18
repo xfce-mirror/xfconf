@@ -18,7 +18,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #include <libxfce4util/libxfce4util.h>
@@ -43,12 +43,13 @@ static GHashTable *backends = NULL;
 static void
 xfconf_backend_factory_ensure_backends(void)
 {
-    if(backends)
+    if (backends) {
         return;
-    
+    }
+
     backends = g_hash_table_new_full(g_str_hash, g_str_equal,
                                      NULL, (GDestroyNotify)g_free);
-    
+
 #ifdef BUILD_XFCONF_BACKEND_PERCHANNEL_XML
     {
         GType *gtype = g_new(GType, 1);
@@ -67,34 +68,34 @@ xfconf_backend_factory_get_backend(const gchar *type,
 {
     XfconfBackend *backend = NULL;
     GType *backend_gtype;
-    
+
     xfconf_backend_factory_ensure_backends();
-    
+
     backend_gtype = g_hash_table_lookup(backends, type);
-    if(!backend_gtype) {
-        if(error) {
+    if (!backend_gtype) {
+        if (error) {
             g_set_error(error, XFCONF_ERROR, 0,
                         _("Unable to find Xfconf backend of type \"%s\""),
                         type);
         }
         return NULL;
     }
-    
+
     backend = g_object_new(*backend_gtype, NULL);
-    if(!xfconf_backend_initialize(backend, error)) {
+    if (!xfconf_backend_initialize(backend, error)) {
         g_object_unref(G_OBJECT(backend));
         return NULL;
     }
-    
+
     return backend;
 }
 
 
 void
-xfconf_backend_factory_cleanup (void)
+xfconf_backend_factory_cleanup(void)
 {
-  if(backends) {
-      g_hash_table_destroy(backends);
-      backends = NULL;
-  }
+    if (backends) {
+        g_hash_table_destroy(backends);
+        backends = NULL;
+    }
 }

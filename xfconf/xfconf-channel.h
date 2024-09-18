@@ -27,16 +27,16 @@
 
 #include <glib-object.h>
 
-#define XFCONF_TYPE_CHANNEL             (xfconf_channel_get_type())
-#define XFCONF_CHANNEL(obj)             (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_TYPE_CHANNEL, XfconfChannel))
-#define XFCONF_IS_CHANNEL(obj)          (G_TYPE_CHECK_INSTANCE_TYPE((obj), XFCONF_TYPE_CHANNEL))
-#define XFCONF_CHANNEL_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST((klass), XFCONF_TYPE_CHANNEL, XfconfChannelClass))
-#define XFCONF_IS_CHANNEL_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE((klass), XFCONF_TYPE_CHANNEL))
-#define XFCONF_CHANNEL_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS((obj), XFCONF_TYPE_CHANNEL, XfconfChannelClass))
+#define XFCONF_TYPE_CHANNEL (xfconf_channel_get_type())
+#define XFCONF_CHANNEL(obj) (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_TYPE_CHANNEL, XfconfChannel))
+#define XFCONF_IS_CHANNEL(obj) (G_TYPE_CHECK_INSTANCE_TYPE((obj), XFCONF_TYPE_CHANNEL))
+#define XFCONF_CHANNEL_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST((klass), XFCONF_TYPE_CHANNEL, XfconfChannelClass))
+#define XFCONF_IS_CHANNEL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass), XFCONF_TYPE_CHANNEL))
+#define XFCONF_CHANNEL_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS((obj), XFCONF_TYPE_CHANNEL, XfconfChannelClass))
 
 G_BEGIN_DECLS
 
-typedef struct _XfconfChannel         XfconfChannel;
+typedef struct _XfconfChannel XfconfChannel;
 
 GType xfconf_channel_get_type(void) G_GNUC_CONST;
 
@@ -110,7 +110,7 @@ gchar **xfconf_channel_get_string_list(XfconfChannel *channel,
                                        const gchar *property) G_GNUC_WARN_UNUSED_RESULT;
 gboolean xfconf_channel_set_string_list(XfconfChannel *channel,
                                         const gchar *property,
-                                        const gchar * const *values);
+                                        const gchar *const *values);
 
 /* really generic API - can set some value types that aren't
  * supported by the basic type API, e.g., char, signed short,
@@ -192,7 +192,7 @@ gboolean xfconf_channel_set_structv(XfconfChannel *channel,
                                     guint n_members,
                                     GType *member_types);
 
-#if 0  /* future (maybe) */
+#if 0 /* future (maybe) */
 
 //gboolean xfconf_channel_begin_transaction(XfconfChannel *channel);
 //gboolean xfconf_channel_commit_transaction(XfconfChannel *channel);
@@ -202,4 +202,4 @@ gboolean xfconf_channel_set_structv(XfconfChannel *channel,
 
 G_END_DECLS
 
-#endif  /* __XFCONF_CHANNEL_H__ */
+#endif /* __XFCONF_CHANNEL_H__ */

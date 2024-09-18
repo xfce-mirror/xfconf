@@ -28,30 +28,34 @@
 #include <glib/gi18n.h>
 #endif
 
-#include <xfconf/xfconf-errors.h>
+#include "xfconf/xfconf-errors.h"
+
 #include "xfconf-daemon.h"
 
-#define XFCONF_TYPE_BACKEND                (xfconf_backend_get_type())
-#define XFCONF_BACKEND(obj)                (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_TYPE_BACKEND, XfconfBackend))
-#define XFCONF_IS_BACKEND(obj)             (G_TYPE_CHECK_INSTANCE_TYPE((obj), XFCONF_TYPE_BACKEND))
-#define XFCONF_BACKEND_GET_INTERFACE(obj)  (G_TYPE_INSTANCE_GET_INTERFACE((obj), XFCONF_TYPE_BACKEND, XfconfBackendInterface))
+#define XFCONF_TYPE_BACKEND (xfconf_backend_get_type())
+#define XFCONF_BACKEND(obj) (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_TYPE_BACKEND, XfconfBackend))
+#define XFCONF_IS_BACKEND(obj) (G_TYPE_CHECK_INSTANCE_TYPE((obj), XFCONF_TYPE_BACKEND))
+#define XFCONF_BACKEND_GET_INTERFACE(obj) (G_TYPE_INSTANCE_GET_INTERFACE((obj), XFCONF_TYPE_BACKEND, XfconfBackendInterface))
 
-#define xfconf_backend_return_val_if_fail(cond, val)  G_STMT_START{ \
-    if(!(cond)) { \
-        if(error) { \
-            g_set_error(error, XFCONF_ERROR, \
-                        XFCONF_ERROR_INTERNAL_ERROR, \
-                        _("An internal error occurred; this is probably a bug")); \
+#define xfconf_backend_return_val_if_fail(cond, val) \
+    G_STMT_START \
+    { \
+        if (!(cond)) { \
+            if (error) { \
+                g_set_error(error, XFCONF_ERROR, \
+                            XFCONF_ERROR_INTERNAL_ERROR, \
+                            _("An internal error occurred; this is probably a bug")); \
+            } \
+            g_return_val_if_fail((cond), (val)); \
+            return (val); /* ensure return even if G_DISABLE_CHECKS */ \
         } \
-        g_return_val_if_fail((cond), (val)); \
-        return (val);  /* ensure return even if G_DISABLE_CHECKS */ \
     } \
-}G_STMT_END
+    G_STMT_END
 
 G_BEGIN_DECLS
 
-typedef struct _XfconfBackend           XfconfBackend;
-typedef struct _XfconfBackendInterface  XfconfBackendInterface;
+typedef struct _XfconfBackend XfconfBackend;
+typedef struct _XfconfBackendInterface XfconfBackendInterface;
 
 typedef void (*XfconfPropertyChangedFunc)(XfconfBackend *backend,
                                           const gchar *channel,
@@ -61,34 +65,34 @@ typedef void (*XfconfPropertyChangedFunc)(XfconfBackend *backend,
 struct _XfconfBackendInterface
 {
     GTypeInterface parent;
-    
+
     gboolean (*initialize)(XfconfBackend *backend,
                            GError **error);
-    
+
     gboolean (*set)(XfconfBackend *backend,
                     const gchar *channel,
                     const gchar *property,
                     const GValue *value,
                     GError **error);
-    
+
     gboolean (*get)(XfconfBackend *backend,
                     const gchar *channel,
                     const gchar *property,
                     GValue *value,
                     GError **error);
-    
+
     gboolean (*get_all)(XfconfBackend *backend,
                         const gchar *channel,
                         const gchar *property_base,
                         GHashTable *properties,
                         GError **error);
-    
+
     gboolean (*exists)(XfconfBackend *backend,
                        const gchar *channel,
                        const gchar *property,
                        gboolean *exists,
                        GError **error);
-    
+
     gboolean (*reset)(XfconfBackend *backend,
                       const gchar *channel,
                       const gchar *property,
@@ -104,14 +108,14 @@ struct _XfconfBackendInterface
                                    const gchar *property,
                                    gboolean *locked,
                                    GError **error);
-    
+
     gboolean (*flush)(XfconfBackend *backend,
                       GError **error);
 
     void (*register_property_changed_func)(XfconfBackend *backend,
                                            XfconfPropertyChangedFunc func,
                                            gpointer user_data);
-    
+
     /*< reserved for future expansion >*/
     void (*_xb_reserved0)();
     void (*_xb_reserved1)();
@@ -173,4 +177,4 @@ void xfconf_backend_register_property_changed_func(XfconfBackend *backend,
 
 G_END_DECLS
 
-#endif  /* __XFCONF_BACKEND_H__ */
+#endif /* __XFCONF_BACKEND_H__ */

@@ -17,7 +17,7 @@
  *
  */
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #ifdef HAVE_STRING_H
@@ -26,30 +26,33 @@
 
 #include <gio/gio.h>
 
-#include "xfconf-gsettings-backend.h"
 #include "xfconf/xfconf.h"
 
-G_MODULE_EXPORT XFCONF_EXPORT void g_io_module_load (GIOModule *module)
-{
-  g_type_module_use(G_TYPE_MODULE(module));
+#include "xfconf-gsettings-backend.h"
 
-  g_io_extension_point_implement(G_SETTINGS_BACKEND_EXTENSION_POINT_NAME,
-                                 xfconf_gsettings_backend_get_type(),
-                                 "xfconf",
-                                 -1);
+G_MODULE_EXPORT XFCONF_EXPORT void
+g_io_module_load(GIOModule *module)
+{
+    g_type_module_use(G_TYPE_MODULE(module));
+
+    g_io_extension_point_implement(G_SETTINGS_BACKEND_EXTENSION_POINT_NAME,
+                                   xfconf_gsettings_backend_get_type(),
+                                   "xfconf",
+                                   -1);
 }
 
-G_MODULE_EXPORT XFCONF_EXPORT void g_io_module_unload (GIOModule *module)
+G_MODULE_EXPORT XFCONF_EXPORT void
+g_io_module_unload(GIOModule *module)
 {
 }
 
 /* Module query */
-G_MODULE_EXPORT XFCONF_EXPORT gchar** g_io_module_query (void)
+G_MODULE_EXPORT XFCONF_EXPORT gchar **
+g_io_module_query(void)
 {
-  char *eps[] = {
-    G_SETTINGS_BACKEND_EXTENSION_POINT_NAME,
-    NULL
-  };
-  return g_strdupv (eps);
+    char *eps[] = {
+        G_SETTINGS_BACKEND_EXTENSION_POINT_NAME,
+        NULL
+    };
+    return g_strdupv(eps);
 }
-

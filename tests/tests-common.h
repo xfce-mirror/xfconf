@@ -21,7 +21,7 @@
 #define __XFCONF_TESTS_COMMON_H__
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #ifdef HAVE_SYS_TYPES_H
@@ -40,20 +40,24 @@
 #include <unistd.h>
 #endif
 
-#include <glib.h>
 #include <gio/gio.h>
-#include <xfconf/xfconf.h>
+#include <glib.h>
 
-#define TEST_CHANNEL_NAME  "test-channel"
-#define WAIT_TIMEOUT       15
+#include "xfconf/xfconf.h"
 
-#define TEST_OPERATION(x) G_STMT_START{ \
-    if(!(x)) { \
-        g_critical("Test failed: " # x); \
-        xfconf_tests_end(); \
-        return 1; \
+#define TEST_CHANNEL_NAME "test-channel"
+#define WAIT_TIMEOUT 15
+
+#define TEST_OPERATION(x) \
+    G_STMT_START \
+    { \
+        if (!(x)) { \
+            g_critical("Test failed: " #x); \
+            xfconf_tests_end(); \
+            return 1; \
+        } \
     } \
-}G_STMT_END
+    G_STMT_END
 
 /* don't use static to avoid compiler warnings in tests that don't use
  * all of them */
@@ -82,10 +86,10 @@ xfconf_tests_start(void)
     GError *error = NULL;
 
     /* wait until xfconfd finishes starting */
-    conn = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
-    if(!conn) {
+    conn = g_bus_get_sync(G_BUS_TYPE_SESSION, NULL, &error);
+    if (!conn) {
         g_critical("Failed to connect to D-Bus: %s", error->message);
-        g_error_free (error);
+        g_error_free(error);
         xfconf_tests_end();
         return FALSE;
     }
@@ -93,38 +97,37 @@ xfconf_tests_start(void)
                                          XFCONF_SERVICE_PATH_PREFIX "/Xfconf",
                                          "org.freedesktop.DBus.Peer",
                                          "Ping");
-    start = g_get_monotonic_time ();
-    while(!(ret = g_dbus_connection_send_message_with_reply_sync(conn,
-                                                                 msg, 
-                                                                 G_DBUS_SEND_MESSAGE_FLAGS_NONE,
-                                                                 -1, NULL, NULL, NULL)))
+    start = g_get_monotonic_time();
+    while (!(ret = g_dbus_connection_send_message_with_reply_sync(conn,
+                                                                  msg,
+                                                                  G_DBUS_SEND_MESSAGE_FLAGS_NONE,
+                                                                  -1, NULL, NULL, NULL)))
     {
-        now = g_get_monotonic_time ();
-        if(now - start > WAIT_TIMEOUT * G_USEC_PER_SEC) {
+        now = g_get_monotonic_time();
+        if (now - start > WAIT_TIMEOUT * G_USEC_PER_SEC) {
             g_critical("xfconfd failed to start after %d seconds", WAIT_TIMEOUT);
-            g_object_unref (msg);
+            g_object_unref(msg);
             xfconf_tests_end();
             return FALSE;
         }
     }
-    if (g_dbus_message_get_message_type(ret) != G_DBUS_MESSAGE_TYPE_METHOD_RETURN)
-    {
+    if (g_dbus_message_get_message_type(ret) != G_DBUS_MESSAGE_TYPE_METHOD_RETURN) {
         g_critical("xfconfd is not running and can not be autostarted");
-        g_object_unref (msg);
-        g_object_unref (ret);
+        g_object_unref(msg);
+        g_object_unref(ret);
         xfconf_tests_end();
         return FALSE;
     }
-    g_object_unref (msg);
-    g_object_unref (ret);
+    g_object_unref(msg);
+    g_object_unref(ret);
 
-    if(!xfconf_init(&error)) {
+    if (!xfconf_init(&error)) {
         g_critical("Failed to init libxfconf: %s", error->message);
         g_error_free(error);
         xfconf_tests_end();
         return FALSE;
     }
-    
+
     return TRUE;
 }
 
@@ -134,4 +137,4 @@ xfconf_tests_end(void)
     xfconf_shutdown();
 }
 
-#endif  /* __XFCONF_TESTS_COMMON_H__ */
+#endif /* __XFCONF_TESTS_COMMON_H__ */

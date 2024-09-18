@@ -27,8 +27,8 @@
 
 #include <glib-object.h>
 
-#define XFCONF_TYPE_UINT16  (xfconf_uint16_get_type())
-#define XFCONF_TYPE_INT16   (xfconf_int16_get_type())
+#define XFCONF_TYPE_UINT16 (xfconf_uint16_get_type())
+#define XFCONF_TYPE_INT16 (xfconf_int16_get_type())
 
 G_BEGIN_DECLS
 

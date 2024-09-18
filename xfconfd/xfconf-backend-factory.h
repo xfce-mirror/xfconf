@@ -29,8 +29,8 @@ G_BEGIN_DECLS
 XfconfBackend *xfconf_backend_factory_get_backend(const gchar *type,
                                                   GError **error);
 
-void xfconf_backend_factory_cleanup (void);
+void xfconf_backend_factory_cleanup(void);
 
 G_END_DECLS
 
-#endif  /* __XFCONF_BACKEND_FACTORY_H__ */
+#endif /* __XFCONF_BACKEND_FACTORY_H__ */

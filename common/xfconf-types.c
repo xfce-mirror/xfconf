@@ -19,17 +19,18 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
 
-#include "xfconf/xfconf-types.h"
-#include "xfconf-alias.h"
-
 #include <gobject/gvaluecollector.h>
+
+#include "xfconf/xfconf-types.h"
+
+#include "xfconf-alias.h"
 
 /**
  * SECTION:xfconf-types
@@ -58,44 +59,44 @@ gvalue_from_short(const GValue *src_value,
                   GValue *dest_value)
 {
 #define HANDLE_TYPE(gtype_s, getter) \
-    case G_TYPE_ ## gtype_s: \
-        dest = (guint64)g_value_get_ ## getter(src_value); \
+    case G_TYPE_##gtype_s: \
+        dest = (guint64)g_value_get_##getter(src_value); \
         break;
 
-    guint64 dest;  /* use larger type so we can handle int16 & uint16 */
+    guint64 dest; /* use larger type so we can handle int16 & uint16 */
 
-    switch(G_VALUE_TYPE(src_value)) {
+    switch (G_VALUE_TYPE(src_value)) {
         case G_TYPE_STRING:
             dest = atoi(g_value_get_string(src_value));
             break;
         case G_TYPE_BOOLEAN:
             dest = g_value_get_boolean(src_value) == TRUE ? 1 : 0;
             break;
-        HANDLE_TYPE(CHAR, schar)
-        HANDLE_TYPE(UCHAR, uchar)
-        HANDLE_TYPE(INT, int)
-        HANDLE_TYPE(UINT, uint)
-        HANDLE_TYPE(LONG, long)
-        HANDLE_TYPE(ULONG, ulong)
-        HANDLE_TYPE(INT64, int64)
-        HANDLE_TYPE(UINT64, uint64)
-        HANDLE_TYPE(ENUM, enum)
-        HANDLE_TYPE(FLAGS, flags)
-        HANDLE_TYPE(FLOAT, float)
-        HANDLE_TYPE(DOUBLE, double)
+            HANDLE_TYPE(CHAR, schar)
+            HANDLE_TYPE(UCHAR, uchar)
+            HANDLE_TYPE(INT, int)
+            HANDLE_TYPE(UINT, uint)
+            HANDLE_TYPE(LONG, long)
+            HANDLE_TYPE(ULONG, ulong)
+            HANDLE_TYPE(INT64, int64)
+            HANDLE_TYPE(UINT64, uint64)
+            HANDLE_TYPE(ENUM, enum)
+            HANDLE_TYPE(FLAGS, flags)
+            HANDLE_TYPE(FLOAT, float)
+            HANDLE_TYPE(DOUBLE, double)
         default:
             return;
     }
 
-    if(G_VALUE_TYPE(dest_value) == XFCONF_TYPE_UINT16) {
-        if(dest > USHRT_MAX) {
+    if (G_VALUE_TYPE(dest_value) == XFCONF_TYPE_UINT16) {
+        if (dest > USHRT_MAX) {
             g_warning("Converting type \"%s\" to \"%s\" results in overflow",
                       G_VALUE_TYPE_NAME(src_value),
                       G_VALUE_TYPE_NAME(dest_value));
         }
         xfconf_g_value_set_uint16(dest_value, (guint16)dest);
-    } else if(G_VALUE_TYPE(dest_value) == XFCONF_TYPE_INT16) {
-        if(dest > (guint64) SHRT_MAX || dest < (guint64) SHRT_MIN) {
+    } else if (G_VALUE_TYPE(dest_value) == XFCONF_TYPE_INT16) {
+        if (dest > (guint64)SHRT_MAX || dest < (guint64)SHRT_MIN) {
             g_warning("Converting type \"%s\" to \"%s\" results in overflow",
                       G_VALUE_TYPE_NAME(src_value),
                       G_VALUE_TYPE_NAME(dest_value));
@@ -110,22 +111,23 @@ short_from_gvalue(const GValue *src_value,
                   GValue *dest_value)
 {
 #define HANDLE_TYPE(gtype_s, setter) \
-    case G_TYPE_ ## gtype_s: \
-        g_value_set_ ## setter(dest_value, src); \
+    case G_TYPE_##gtype_s: \
+        g_value_set_##setter(dest_value, src); \
         break;
 
     guint16 src;
     gboolean is_signed = FALSE;
 
-    if(G_VALUE_TYPE(src_value) == XFCONF_TYPE_UINT16)
+    if (G_VALUE_TYPE(src_value) == XFCONF_TYPE_UINT16) {
         src = xfconf_g_value_get_uint16(src_value);
-    else if(G_VALUE_TYPE(src_value) == XFCONF_TYPE_INT16) {
+    } else if (G_VALUE_TYPE(src_value) == XFCONF_TYPE_INT16) {
         src = xfconf_g_value_get_int16(src_value);
         is_signed = TRUE;
-    } else
+    } else {
         return;
+    }
 
-    switch(G_VALUE_TYPE(dest_value)) {
+    switch (G_VALUE_TYPE(dest_value)) {
         case G_TYPE_STRING: {
             gchar *str = g_strdup_printf(is_signed ? "%d" : "%u",
                                          is_signed ? (gint16)src : src);
@@ -136,18 +138,18 @@ short_from_gvalue(const GValue *src_value,
         case G_TYPE_BOOLEAN:
             g_value_set_boolean(dest_value, src ? TRUE : FALSE);
             break;
-        HANDLE_TYPE(CHAR, schar)
-        HANDLE_TYPE(UCHAR, uchar)
-        HANDLE_TYPE(INT, int)
-        HANDLE_TYPE(UINT, uint)
-        HANDLE_TYPE(LONG, long)
-        HANDLE_TYPE(ULONG, ulong)
-        HANDLE_TYPE(INT64, int64)
-        HANDLE_TYPE(UINT64, uint64)
-        HANDLE_TYPE(ENUM, enum)
-        HANDLE_TYPE(FLAGS, flags)
-        HANDLE_TYPE(FLOAT, float)
-        HANDLE_TYPE(DOUBLE, double)
+            HANDLE_TYPE(CHAR, schar)
+            HANDLE_TYPE(UCHAR, uchar)
+            HANDLE_TYPE(INT, int)
+            HANDLE_TYPE(UINT, uint)
+            HANDLE_TYPE(LONG, long)
+            HANDLE_TYPE(ULONG, ulong)
+            HANDLE_TYPE(INT64, int64)
+            HANDLE_TYPE(UINT64, uint64)
+            HANDLE_TYPE(ENUM, enum)
+            HANDLE_TYPE(FLAGS, flags)
+            HANDLE_TYPE(FLOAT, float)
+            HANDLE_TYPE(DOUBLE, double)
         default:
             return;
     }
@@ -161,11 +163,11 @@ register_transforms(GType gtype)
         G_TYPE_CHAR, G_TYPE_UCHAR, G_TYPE_BOOLEAN, G_TYPE_INT, G_TYPE_UINT,
         G_TYPE_LONG, G_TYPE_ULONG, G_TYPE_INT64, G_TYPE_UINT64,
         G_TYPE_ENUM, G_TYPE_FLAGS, G_TYPE_FLOAT, G_TYPE_DOUBLE,
-        G_TYPE_STRING, G_TYPE_INVALID,
+        G_TYPE_STRING, G_TYPE_INVALID
     };
     gint i;
 
-    for(i = 0; types[i] != G_TYPE_INVALID; ++i) {
+    for (i = 0; types[i] != G_TYPE_INVALID; ++i) {
         g_value_register_transform_func(gtype, types[i], gvalue_from_short);
         g_value_register_transform_func(types[i], gtype, short_from_gvalue);
     }
@@ -202,7 +204,7 @@ ushort_value_lcopy(const GValue *value,
 {
     guint16 *uint16_p = collect_values[0].v_pointer;
 
-    if(!uint16_p) {
+    if (!uint16_p) {
         return g_strdup_printf("value location for `%s' passed as NULL",
                                G_VALUE_TYPE_NAME(value));
     }
@@ -218,7 +220,7 @@ xfconf_uint16_get_type(void)
 {
     static GType uint16_type = 0;
     GTypeFundamentalInfo finfo = { 0 };
-    GTypeInfo info = { 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, };
+    GTypeInfo info = { 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL };
     static const GTypeValueTable value_table = {
         ushort_value_init,
         NULL,
@@ -230,11 +232,11 @@ xfconf_uint16_get_type(void)
         ushort_value_lcopy
     };
 
-    if(!uint16_type) {
+    if (!uint16_type) {
         info.value_table = &value_table;
         uint16_type = g_type_register_fundamental(g_type_fundamental_next(),
                                                   "XfconfUint16", &info,
-                                                   &finfo, 0);
+                                                  &finfo, 0);
         register_transforms(uint16_type);
     }
 
@@ -276,7 +278,7 @@ xfconf_int16_get_type(void)
 {
     static GType int16_type = 0;
     GTypeFundamentalInfo finfo = { 0 };
-    GTypeInfo info = { 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, };
+    GTypeInfo info = { 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL };
     static const GTypeValueTable value_table = {
         ushort_value_init,
         NULL,
@@ -288,11 +290,11 @@ xfconf_int16_get_type(void)
         ushort_value_lcopy
     };
 
-    if(!int16_type) {
+    if (!int16_type) {
         info.value_table = &value_table;
         int16_type = g_type_register_fundamental(g_type_fundamental_next(),
                                                  "XfconfInt16", &info,
-                                                  &finfo, 0);
+                                                 &finfo, 0);
         register_transforms(int16_type);
     }
 

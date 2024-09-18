@@ -84,7 +84,7 @@ test_object_get_property(GObject *object,
 {
     TestObject *test = (TestObject *)object;
 
-    switch(prop_id) {
+    switch (prop_id) {
         case PROP_TEST:
             g_value_set_boolean(value, test->test);
             break;
@@ -102,7 +102,7 @@ test_object_set_property(GObject *object,
 {
     TestObject *test = (TestObject *)object;
 
-    switch(prop_id) {
+    switch (prop_id) {
         case PROP_TEST:
             test->test = g_value_get_boolean(value);
             was_set = TRUE;
@@ -124,8 +124,9 @@ main(int argc,
     gboolean initial_property_was_set;
     gboolean property_was_changed;
 
-    if(!xfconf_tests_start())
+    if (!xfconf_tests_start()) {
         return 1;
+    }
 
     channel = xfconf_channel_new(TEST_CHANNEL_NAME);
 

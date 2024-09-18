@@ -17,9 +17,9 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include "tests-common.h"
-
 #include <string.h>
+
+#include "tests-common.h"
 
 typedef struct
 {
@@ -34,10 +34,11 @@ test_signal_changed(XfconfChannel *channel,
                     gpointer user_data)
 {
     SignalTestData *std = user_data;
-    if(!strcmp(property, test_string_property))
+    if (!strcmp(property, test_string_property)) {
         std->got_signal = TRUE;
-    else
+    } else {
         std->got_signal = FALSE;
+    }
     g_main_loop_quit(std->mloop);
 }
 
@@ -56,31 +57,32 @@ main(int argc,
     XfconfChannel *channel;
     SignalTestData std = { NULL, FALSE };
     gchar detailed_signal[512];
-    
+
     std.mloop = g_main_loop_new(NULL, FALSE);
 
-    if(!xfconf_tests_start())
+    if (!xfconf_tests_start()) {
         return 1;
-    
+    }
+
     channel = xfconf_channel_new(TEST_CHANNEL_NAME);
-    xfconf_channel_reset_property (channel, test_string_property, FALSE);
-    xfconf_channel_reset_property (channel, test_int_property, FALSE);
-    
+    xfconf_channel_reset_property(channel, test_string_property, FALSE);
+    xfconf_channel_reset_property(channel, test_int_property, FALSE);
+
     g_snprintf(detailed_signal, sizeof(detailed_signal),
                "property-changed::%s", test_string_property);
     g_signal_connect(G_OBJECT(channel), detailed_signal,
                      G_CALLBACK(test_signal_changed), &std);
-    
+
     TEST_OPERATION(xfconf_channel_set_string(channel, test_string_property, test_string));
     TEST_OPERATION(xfconf_channel_set_int(channel, test_int_property, test_int));
-    
+
     g_timeout_add(2000, test_watchdog, &std);
     g_main_loop_run(std.mloop);
 
     g_main_loop_unref(std.mloop);
     g_object_unref(G_OBJECT(channel));
-    
+
     xfconf_tests_end();
-    
+
     return std.got_signal ? 0 : 1;
 }

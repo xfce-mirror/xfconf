@@ -38,20 +38,20 @@ G_GNUC_INTERNAL gboolean _xfconf_gvalue_is_equal(const GValue *value1,
 
 G_GNUC_INTERNAL void _xfconf_gvalue_free(GValue *value);
 
-G_GNUC_INTERNAL GPtrArray *xfconf_dup_value_array (GPtrArray *arr);
+G_GNUC_INTERNAL GPtrArray *xfconf_dup_value_array(GPtrArray *arr);
 
-G_GNUC_INTERNAL GVariant *xfconf_basic_gvalue_to_gvariant (const GValue *value);
+G_GNUC_INTERNAL GVariant *xfconf_basic_gvalue_to_gvariant(const GValue *value);
 
-G_GNUC_INTERNAL GVariant *xfconf_gvalue_to_gvariant (const GValue *value);
+G_GNUC_INTERNAL GVariant *xfconf_gvalue_to_gvariant(const GValue *value);
 
-G_GNUC_INTERNAL gboolean xfconf_basic_gvariant_to_gvalue (GVariant *variant, GValue *value);
+G_GNUC_INTERNAL gboolean xfconf_basic_gvariant_to_gvalue(GVariant *variant, GValue *value);
 
-G_GNUC_INTERNAL GValue * xfconf_gvariant_to_gvalue (GVariant *variant);
+G_GNUC_INTERNAL GValue *xfconf_gvariant_to_gvalue(GVariant *variant);
 
-G_GNUC_INTERNAL GVariant *xfconf_hash_to_gvariant (GHashTable *hash);
+G_GNUC_INTERNAL GVariant *xfconf_hash_to_gvariant(GHashTable *hash);
 
-G_GNUC_INTERNAL GHashTable *xfconf_gvariant_to_hash (GVariant *variant);
+G_GNUC_INTERNAL GHashTable *xfconf_gvariant_to_hash(GVariant *variant);
 
 G_END_DECLS
 
-#endif  /* __XFCONF_GVALUEFUNCS_H__ */
+#endif /* __XFCONF_GVALUEFUNCS_H__ */
