@@ -124,8 +124,9 @@ main(int argc,
     gboolean initial_property_was_set;
     gboolean property_was_changed;
 
-    if(!xfconf_tests_start())
+    if(!xfconf_tests_start()) {
         return 1;
+    }
 
     channel = xfconf_channel_new(TEST_CHANNEL_NAME);
 

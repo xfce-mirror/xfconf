@@ -18,10 +18,8 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
-
-#include <stdio.h>
 
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
@@ -52,24 +50,26 @@
 #endif
 
 #include <libxfce4util/libxfce4util.h>
+#include <stdio.h>
+
+#include "common/xfconf-common-private.h"
+#include "common/xfconf-gvaluefuncs.h"
+#include "xfconf/xfconf-types.h"
 
 #include "xfconf-backend-perchannel-xml.h"
 #include "xfconf-backend.h"
 #include "xfconf-locking-utils.h"
-#include "common/xfconf-gvaluefuncs.h"
-#include "xfconf/xfconf-types.h"
-#include "common/xfconf-common-private.h"
 
-#define FILE_VERSION_MAJOR  "1"
-#define FILE_VERSION_MINOR  "0"
+#define FILE_VERSION_MAJOR "1"
+#define FILE_VERSION_MINOR "0"
 
-#define PROP_NAME_IS_VALID(name) ( (name) && (name)[0] == '/' && (name)[1] != 0 && !strstr((name), "//") )
+#define PROP_NAME_IS_VALID(name) ((name) && (name)[0] == '/' && (name)[1] != 0 && !strstr((name), "//"))
 
-#define CONFIG_DIR_STEM  "xfce4/xfconf/" XFCONF_BACKEND_PERCHANNEL_XML_TYPE_ID "/"
-#define CONFIG_FILE_FMT  CONFIG_DIR_STEM "%s.xml"
-#define CACHE_TIMEOUT    (20*60*1000)  /* 20 minutes */
-#define WRITE_TIMEOUT    (5)  /* 5 seconds */
-#define MAX_PROP_PATH    (4096)
+#define CONFIG_DIR_STEM "xfce4/xfconf/" XFCONF_BACKEND_PERCHANNEL_XML_TYPE_ID "/"
+#define CONFIG_FILE_FMT CONFIG_DIR_STEM "%s.xml"
+#define CACHE_TIMEOUT (20 * 60 * 1000) /* 20 minutes */
+#define WRITE_TIMEOUT (5) /* 5 seconds */
+#define MAX_PROP_PATH (4096)
 
 struct _XfconfBackendPerchannelXml
 {
@@ -224,7 +224,7 @@ xfconf_backend_perchannel_xml_init(XfconfBackendPerchannelXml *instance)
 {
     instance->channels = g_hash_table_new_full(g_str_hash, g_str_equal,
                                                (GDestroyNotify)g_free,
-                                                (GDestroyNotify)xfconf_channel_destroy);
+                                               (GDestroyNotify)xfconf_channel_destroy);
 }
 
 static void
@@ -325,24 +325,28 @@ xfconf_backend_perchannel_xml_set(XfconfBackend *backend,
         }
 
         if(_xfconf_gvalue_is_equal(G_VALUE_TYPE(&cur_prop->value)
-                                   ? &cur_prop->value
-                                   : &cur_prop->system_value, value))
+                                       ? &cur_prop->value
+                                       : &cur_prop->system_value,
+                                   value))
         {
             return TRUE;
         }
 
-        if(G_VALUE_TYPE(&cur_prop->value))
+        if(G_VALUE_TYPE(&cur_prop->value)) {
             g_value_unset(&cur_prop->value);
+        }
         g_value_copy(value, g_value_init(&cur_prop->value,
                                          G_VALUE_TYPE(value)));
 
-        if(xbpx->prop_changed_func)
+        if(xbpx->prop_changed_func) {
             xbpx->prop_changed_func(backend, channel_name, property, xbpx->prop_changed_data);
+        }
     } else {
         xfconf_proptree_add_property(channel->properties, property, value,
                                      NULL, FALSE);
-        if(xbpx->prop_changed_func)
+        if(xbpx->prop_changed_func) {
             xbpx->prop_changed_func(backend, channel_name, property, xbpx->prop_changed_data);
+        }
     }
 
     xfconf_backend_perchannel_xml_schedule_save(xbpx, channel);
@@ -367,16 +371,18 @@ xfconf_backend_perchannel_xml_get(XfconfBackend *backend,
     if(!channel) {
         channel = xfconf_backend_perchannel_xml_load_channel(xbpx, channel_name,
                                                              error);
-        if(!channel)
+        if(!channel) {
             return FALSE;
+        }
     }
 
     cur_prop = xfconf_proptree_lookup(channel->properties, property);
     if(cur_prop) {
-        if(G_VALUE_TYPE(&cur_prop->value))
+        if(G_VALUE_TYPE(&cur_prop->value)) {
             value_to_get = &cur_prop->value;
-        else if(G_VALUE_TYPE(&cur_prop->system_value))
+        } else if(G_VALUE_TYPE(&cur_prop->system_value)) {
             value_to_get = &cur_prop->system_value;
+        }
     }
 
     if(!value_to_get) {
@@ -402,10 +408,11 @@ xfconf_proptree_node_to_hash_table(GNode *node,
     XfconfProperty *prop = node->data;
     GValue *value_to_get = NULL;
 
-    if(G_VALUE_TYPE(&prop->value))
+    if(G_VALUE_TYPE(&prop->value)) {
         value_to_get = &prop->value;
-    else if(G_VALUE_TYPE(&prop->system_value))
+    } else if(G_VALUE_TYPE(&prop->system_value)) {
         value_to_get = &prop->system_value;
+    }
 
     if(value_to_get) {
         GValue *value = g_new0(GValue, 1);
@@ -434,8 +441,9 @@ xfconf_proptree_node_to_hash_table(GNode *node,
         }
 
         p = strrchr(cur_path, '/');
-        if(p)
+        if(p) {
             *p = 0;
+        }
     }
 }
 
@@ -454,8 +462,9 @@ xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
     if(!channel) {
         channel = xfconf_backend_perchannel_xml_load_channel(xbpx, channel_name,
                                                              error);
-        if(!channel)
+        if(!channel) {
             return FALSE;
+        }
     }
 
     if(property_base[0] && property_base[1]) {
@@ -465,14 +474,14 @@ xfconf_backend_perchannel_xml_get_all(XfconfBackend *backend,
         if(!props_tree) {
             if(error) {
                 g_set_error(error, XFCONF_ERROR, XFCONF_ERROR_PROPERTY_NOT_FOUND,
-                             _("Property \"%s\" does not exist on channel \"%s\""),
-                             property_base, channel_name);
+                            _("Property \"%s\" does not exist on channel \"%s\""),
+                            property_base, channel_name);
             }
             return FALSE;
         }
 
         g_strlcpy(cur_path, property_base, sizeof(cur_path));
-        p = g_strrstr(cur_path, "/");  /* guaranteed to succeed */
+        p = g_strrstr(cur_path, "/"); /* guaranteed to succeed */
         *p = 0;
     } else {
         props_tree = channel->properties;
@@ -513,9 +522,7 @@ xfconf_backend_perchannel_xml_exists(XfconfBackend *backend,
     }
 
     prop = xfconf_proptree_lookup(channel->properties, property);
-    *exists = (prop && (G_VALUE_TYPE(&prop->value)
-                        || G_VALUE_TYPE(&prop->system_value))
-               ? TRUE : FALSE);
+    *exists = (prop && (G_VALUE_TYPE(&prop->value) || G_VALUE_TYPE(&prop->system_value)));
 
     return TRUE;
 }
@@ -621,8 +628,9 @@ xfconf_backend_perchannel_xml_reset(XfconfBackend *backend,
     if(!channel) {
         channel = xfconf_backend_perchannel_xml_load_channel(xbpx, channel_name,
                                                              error);
-        if(!channel)
+        if(!channel) {
             return FALSE;
+        }
     }
 
     if(!recursive) {
@@ -636,11 +644,13 @@ xfconf_backend_perchannel_xml_reset(XfconfBackend *backend,
             return FALSE;
         }
 
-        if(xbpx->prop_changed_func)  /* FIXME: this could fire spuriously */
+        if(xbpx->prop_changed_func) /* FIXME: this could fire spuriously */
+        {
             xbpx->prop_changed_func(backend, channel_name, property, xbpx->prop_changed_data);
+        }
     } else {
         GNode *top;
-        
+
         if(property[0] && property[1]) {
             PropChangeData pdata;
 
@@ -689,20 +699,20 @@ xfconf_backend_perchannel_xml_list_channels(XfconfBackend *backend,
     dirs = xfce_resource_lookup_all(XFCE_RESOURCE_CONFIG, CONFIG_DIR_STEM);
     for(i = 0; dirs[i]; ++i) {
         dir = g_dir_open(dirs[i], 0, 0);
-        if(!dir)
+        if(!dir) {
             continue;
+        }
 
         while((name = g_dir_read_name(dir))) {
             if(g_str_has_suffix(name, ".xml")) {
                 /* FIXME: maybe validate the files' contents a bit? */
                 /* FIXME: maybe temp use a hash table or gtree to avoid search */
                 gchar *channel_name = g_strndup(name, strlen(name) - 4);
-                if(!g_slist_find_custom(*channels, channel_name,
-                                        (GCompareFunc)strcmp))
-                {
+                if(!g_slist_find_custom(*channels, channel_name, (GCompareFunc)strcmp)) {
                     *channels = g_slist_prepend(*channels, channel_name);
-                } else
+                } else {
                     g_free(channel_name);
+                }
             }
         }
 
@@ -727,12 +737,14 @@ xfconf_backend_perchannel_xml_is_property_locked(XfconfBackend *backend,
     if(!channel) {
         channel = xfconf_backend_perchannel_xml_load_channel(xbpx, channel_name,
                                                              error);
-        if(!channel)
+        if(!channel) {
             return FALSE;
+        }
     }
 
-    if(!channel->locked)
+    if(!channel->locked) {
         prop = xfconf_proptree_lookup(channel->properties, property);
+    }
     *locked = (channel->locked || (prop ? prop->locked : FALSE));
     return TRUE;
 }
@@ -744,8 +756,9 @@ xfconf_backend_perchannel_xml_flush_get_dirty(gpointer key,
 {
     XfconfChannel *channel = value;
     GSList **dirty = user_data;
-    if(channel->dirty)
+    if(channel->dirty) {
         *dirty = g_slist_prepend(*dirty, key);
+    }
 }
 
 static gboolean
@@ -757,8 +770,9 @@ xfconf_backend_perchannel_xml_flush(XfconfBackend *backend,
 
     g_hash_table_foreach(xbpx->channels, xfconf_backend_perchannel_xml_flush_get_dirty, &dirty);
 
-    for(l = dirty; l; l = l->next)
+    for(l = dirty; l; l = l->next) {
         xfconf_backend_perchannel_xml_flush_channel(xbpx, l->data, error);
+    }
     g_slist_free(dirty);
 
     TRACE("exiting, flushed all channels");
@@ -778,7 +792,6 @@ xfconf_backend_perchannel_xml_register_property_changed_func(XfconfBackend *back
 }
 
 
-
 static GNode *
 xfconf_proptree_lookup_node(GNode *proptree,
                             const gchar *name)
@@ -790,7 +803,7 @@ xfconf_proptree_lookup_node(GNode *proptree,
 
     g_return_val_if_fail(PROP_NAME_IS_VALID(name), NULL);
 
-    parts = g_strsplit(name+1, "/", -1);
+    parts = g_strsplit(name + 1, "/", -1);
     parent = proptree;
 
     for(i = 0; parts[i]; ++i) {
@@ -799,16 +812,18 @@ xfconf_proptree_lookup_node(GNode *proptree,
             node = g_node_next_sibling(node))
         {
             if(!strcmp(((XfconfProperty *)node->data)->name, parts[i])) {
-                if(!parts[i+1])
+                if(!parts[i + 1]) {
                     found_node = node;
-                else
+                } else {
                     parent = node;
+                }
                 break;
             }
         }
 
-        if(found_node || !node)
+        if(found_node || !node) {
             break;
+        }
     }
 
     g_strfreev(parts);
@@ -824,8 +839,9 @@ xfconf_proptree_lookup(GNode *proptree,
     XfconfProperty *prop = NULL;
 
     node = xfconf_proptree_lookup_node(proptree, name);
-    if(node)
+    if(node) {
         prop = node->data;
+    }
 
     return prop;
 }
@@ -847,17 +863,18 @@ xfconf_proptree_add_property(GNode *proptree,
 
     g_strlcpy(tmp, name, MAX_PROP_PATH);
     p = g_strrstr(tmp, "/");
-    if(p == tmp)
+    if(p == tmp) {
         parent = proptree;
-    else {
+    } else {
         *p = 0;
         parent = xfconf_proptree_lookup_node(proptree, tmp);
-        if(!parent)
+        if(!parent) {
             parent = xfconf_proptree_add_property(proptree, tmp, NULL, NULL, FALSE);
+        }
     }
 
     prop = g_slice_new0(XfconfProperty);
-    prop->name = g_strdup(strrchr(name, '/')+1);
+    prop->name = g_strdup(strrchr(name, '/') + 1);
     if(value) {
         g_value_init(&prop->value, G_VALUE_TYPE(value));
         g_value_copy(value, &prop->value);
@@ -887,7 +904,7 @@ xfconf_proptree_reset(GNode *proptree,
                 g_node_unlink(node);
                 xfconf_proptree_destroy(node);
 
-                /* remove parents without values until we find the root node or 
+                /* remove parents without values until we find the root node or
                  * a parent with a value or any children */
                 while(parent) {
                     prop = parent->data;
@@ -902,8 +919,9 @@ xfconf_proptree_reset(GNode *proptree,
 
                         g_node_unlink(tmp);
                         xfconf_proptree_destroy(tmp);
-                    } else
+                    } else {
                         parent = NULL;
+                    }
                 }
             }
 
@@ -942,8 +960,9 @@ xfconf_proptree_build_propname(GNode *prop_node,
 
     for(cur = prop_node; cur; cur = cur->parent) {
         XfconfProperty *prop = cur->data;
-        if(prop->name[0] == '/')
+        if(prop->name[0] == '/') {
             break;
+        }
         components = g_slist_prepend(components, prop->name);
     }
 
@@ -960,7 +979,6 @@ xfconf_proptree_build_propname(GNode *prop_node,
 }
 
 
-
 static void
 xfconf_channel_destroy(XfconfChannel *channel)
 {
@@ -972,10 +990,12 @@ static void
 xfconf_property_free(XfconfProperty *property)
 {
     g_free(property->name);
-    if(G_VALUE_TYPE(&property->value))
+    if(G_VALUE_TYPE(&property->value)) {
         g_value_unset(&property->value);
-    if(G_VALUE_TYPE(&property->system_value))
+    }
+    if(G_VALUE_TYPE(&property->system_value)) {
         g_value_unset(&property->system_value);
+    }
     g_slice_free(XfconfProperty, property);
 }
 
@@ -1037,15 +1057,15 @@ xfconf_xml_handle_channel(XmlParserState *state,
     gchar *p;
 
     for(i = 0; attribute_names[i]; ++i) {
-        if(!strcmp(attribute_names[i], "name"))
+        if(!strcmp(attribute_names[i], "name")) {
             name = attribute_values[i];
-        else if(!strcmp(attribute_names[i], "version"))
+        } else if(!strcmp(attribute_names[i], "version")) {
             version = attribute_values[i];
-        else if(!strcmp(attribute_names[i], "locked"))
+        } else if(!strcmp(attribute_names[i], "locked")) {
             locked = attribute_values[i];
-        else if(!strcmp(attribute_names[i], "unlocked"))
+        } else if(!strcmp(attribute_names[i], "unlocked")) {
             unlocked = attribute_values[i];
-        else {
+        } else {
             if(error) {
                 g_set_error(error, G_MARKUP_ERROR,
                             G_MARKUP_ERROR_UNKNOWN_ATTRIBUTE,
@@ -1093,10 +1113,11 @@ xfconf_xml_handle_channel(XmlParserState *state,
             return FALSE;
         }
 
-        if(unlocked && *unlocked)
+        if(unlocked && *unlocked) {
             locked_state = !xfconf_user_is_in_list(unlocked);
-        else if(locked && *locked)
+        } else if(locked && *locked) {
             locked_state = xfconf_user_is_in_list(locked);
+        }
 
         /* Policy:
          *   + If the channel was locked by a previous file, and this file
@@ -1152,17 +1173,17 @@ xfconf_xml_handle_property(XmlParserState *state,
     GValue *value_to_set = NULL;
 
     for(i = 0; attribute_names[i]; ++i) {
-        if(!strcmp(attribute_names[i], "name"))
+        if(!strcmp(attribute_names[i], "name")) {
             name = attribute_values[i];
-        else if(!strcmp(attribute_names[i], "type"))
+        } else if(!strcmp(attribute_names[i], "type")) {
             type = attribute_values[i];
-        else if(!strcmp(attribute_names[i], "value"))
+        } else if(!strcmp(attribute_names[i], "value")) {
             value = attribute_values[i];
-        else if(!strcmp(attribute_names[i], "locked"))
+        } else if(!strcmp(attribute_names[i], "locked")) {
             locked = attribute_values[i];
-        else if(!strcmp(attribute_names[i], "unlocked"))
+        } else if(!strcmp(attribute_names[i], "unlocked")) {
             unlocked = attribute_values[i];
-        else {
+        } else {
             if(error) {
                 g_set_error(error, G_MARKUP_ERROR,
                             G_MARKUP_ERROR_UNKNOWN_ATTRIBUTE,
@@ -1215,15 +1236,17 @@ xfconf_xml_handle_property(XmlParserState *state,
         if(prop) {
             /* when the channel is locked and we're in a system file, a new
              * property will always "win", even if it's "empty" */
-            if(G_VALUE_TYPE(&prop->value))  /* shouldn't be set, but... */
+            if(G_VALUE_TYPE(&prop->value)) /* shouldn't be set, but... */ {
                 g_value_unset(&prop->value);
-            if(G_VALUE_TYPE(&prop->system_value))
+            }
+            if(G_VALUE_TYPE(&prop->system_value)) {
                 g_value_unset(&prop->system_value);
+            }
         } else {
             GNode *pnode = xfconf_proptree_add_property(state->channel->properties,
                                                         fullpath, NULL, NULL,
                                                         TRUE);
-            if (pnode != NULL) {
+            if(pnode != NULL) {
                 prop = pnode->data;
             }
         }
@@ -1237,20 +1260,22 @@ xfconf_xml_handle_property(XmlParserState *state,
 
         if(prop) {
             /* new prop wins, regardless of previous state */
-            if(G_VALUE_TYPE(&prop->value))
+            if(G_VALUE_TYPE(&prop->value)) {
                 g_value_unset(&prop->value);
+            }
             if(state->is_system_file) {
                 /* we only clear this if we're in a system file.  if we're
                  * not, we want to remember the system value for reset
                  * purposes. */
-                if(G_VALUE_TYPE(&prop->system_value))
+                if(G_VALUE_TYPE(&prop->system_value)) {
                     g_value_unset(&prop->system_value);
+                }
             }
         } else {
             GNode *pnode = xfconf_proptree_add_property(state->channel->properties,
                                                         fullpath, NULL, NULL,
                                                         FALSE);
-            if (pnode != NULL) {
+            if(pnode != NULL) {
                 prop = pnode->data;
             }
         }
@@ -1279,10 +1304,11 @@ xfconf_xml_handle_property(XmlParserState *state,
             prop->locked = TRUE;
         } else {
             /* not locked already, but we have a lock/unlock directive */
-            if(unlocked && *unlocked)
+            if(unlocked && *unlocked) {
                 prop->locked = !xfconf_user_is_in_list(unlocked);
-            else if(locked && *locked)
+            } else if(locked && *locked) {
                 prop->locked = xfconf_user_is_in_list(locked);
+            }
         }
     }
 
@@ -1302,10 +1328,11 @@ xfconf_xml_handle_property(XmlParserState *state,
         return FALSE;
     }
 
-    if(state->is_system_file)
+    if(state->is_system_file) {
         value_to_set = &prop->system_value;
-    else
+    } else {
         value_to_set = &prop->value;
+    }
 
     if(G_TYPE_NONE != value_type) {
         g_value_init(value_to_set, value_type);
@@ -1325,10 +1352,12 @@ xfconf_xml_handle_property(XmlParserState *state,
             state->list_value = value_to_set;
         }
 
-        if(prop)
+        if(prop) {
             DBG("property '%s' has value type %s", fullpath, G_VALUE_TYPE_NAME(value_to_set));
-    } else
+        }
+    } else {
         DBG("empty property (branch)");
+    }
 
     g_strlcpy(state->cur_path, fullpath, MAX_PROP_PATH);
     state->cur_elem = ELEM_PROPERTY;
@@ -1349,11 +1378,11 @@ xfconf_xml_handle_value(XmlParserState *state,
     GType value_type = G_TYPE_INVALID;
 
     for(i = 0; attribute_names[i]; ++i) {
-        if(!strcmp(attribute_names[i], "type"))
+        if(!strcmp(attribute_names[i], "type")) {
             type = attribute_values[i];
-        else if(!strcmp(attribute_names[i], "value"))
+        } else if(!strcmp(attribute_names[i], "value")) {
             value = attribute_values[i];
-        else {
+        } else {
             if(error) {
                 g_set_error(error, G_MARKUP_ERROR,
                             G_MARKUP_ERROR_UNKNOWN_ATTRIBUTE,
@@ -1426,7 +1455,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 }
                 return;
             }
-            
+
             xfconf_xml_handle_channel(state, attribute_names,
                                       attribute_values, error);
             break;
@@ -1437,8 +1466,8 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                 xfconf_xml_handle_property(state, attribute_names,
                                            attribute_values, error);
             } else if(ELEM_PROPERTY == state->cur_elem
-                      && state->list_property  /* FIXME: use stack */
-                      && state->list_value  /* FIXME: use stack */
+                      && state->list_property /* FIXME: use stack */
+                      && state->list_value /* FIXME: use stack */
                       && !strcmp(element_name, "value"))
             {
                 xfconf_xml_handle_value(state, attribute_names,
@@ -1448,8 +1477,8 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
                     g_set_error(error, G_MARKUP_ERROR,
                                 G_MARKUP_ERROR_UNKNOWN_ELEMENT,
                                 "Element <%s> not allowed inside <%s>",
-                                element_name, ELEM_CHANNEL == state->cur_elem
-                                              ? "channel" : "property");
+                                element_name,
+                                ELEM_CHANNEL == state->cur_elem ? "channel" : "property");
                 }
                 return;
             }
@@ -1491,10 +1520,11 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
 
             if(p) {
                 *p = 0;
-                if(!*(state->cur_path))
+                if(!*(state->cur_path)) {
                     state->cur_elem = ELEM_CHANNEL;
-                else
+                } else {
                     state->cur_elem = ELEM_PROPERTY;
+                }
             } else {
                 g_warning("Missing '/' char: I don't think this should happen");
                 state->cur_elem = ELEM_CHANNEL;
@@ -1602,7 +1632,7 @@ xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
     state->cur_elem = ELEM_NONE;
     state->is_system_file = is_system_file;
 
-    DBG("got file(size=%"G_GSIZE_FORMAT"): %s", length, file_contents);
+    DBG("got file(size=%" G_GSIZE_FORMAT "): %s", length, file_contents);
 
     context = g_markup_parse_context_new(&parser, 0, state, NULL);
     if(g_markup_parse_context_parse(context, file_contents, length, &error2)
@@ -1611,23 +1641,26 @@ xfconf_backend_perchannel_xml_merge_file(XfconfBackendPerchannelXml *xbpx,
     } else {
         g_warning("Error parsing xfconf config file \"%s\": %s", filename,
                   error2 ? error2->message : "(?)");
-        if(error)
-          *error = error2;
-        else
-          g_error_free(error2);
+        if(error) {
+            *error = error2;
+        } else {
+            g_error_free(error2);
+        }
     }
 
     TRACE("exiting");
 
     g_slice_free(XmlParserState, state);
 
-    if(context)
+    if(context) {
         g_markup_parse_context_free(context);
+    }
 
-    if(mmap_file)
+    if(mmap_file) {
         g_mapped_file_unref(mmap_file);
-    else
+    } else {
         g_free(file_contents);
+    }
 
     return ret;
 }
@@ -1664,12 +1697,13 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
     prop->name = g_strdup("/");
     channel->properties = g_node_new(prop);
 
-    /* read in system files, we do this in reversed order to properly 
+    /* read in system files, we do this in reversed order to properly
      * follow the xdg spec, see bug #6079 for more information */
     length = filenames ? g_strv_length(filenames) : 0;
     for(i = length - 1; i >= 0; --i) {
-        if(!g_strcmp0(user_file, filenames[i]))
+        if(!g_strcmp0(user_file, filenames[i])) {
             continue;
+        }
         xfconf_backend_perchannel_xml_merge_file(xbpx, filenames[i], TRUE,
                                                  channel, NULL);
     }
@@ -1700,18 +1734,17 @@ xfconf_format_xml_tag(GString *elem_str,
 
     switch(G_VALUE_TYPE(value)) {
         case G_TYPE_STRING: {
-                const gchar *blanks[3] = { "\r", "\n", "\t" };
-                const gchar *escaped_blanks[3] = { "&#xD;", "&#xA;", "&#x9;" };
-                gchar *escaped = g_markup_escape_text(g_value_get_string(value), -1);
-                for (guint n = 0; n < G_N_ELEMENTS(blanks); n++) {
-                    gchar *tmp = xfce_str_replace(escaped, blanks[n], escaped_blanks[n]);
-                    g_free(escaped);
-                    escaped = tmp;
-                }
-                g_string_append_printf(elem_str, " type=\"string\" value=\"%s\"", escaped);
+            const gchar *blanks[3] = { "\r", "\n", "\t" };
+            const gchar *escaped_blanks[3] = { "&#xD;", "&#xA;", "&#x9;" };
+            gchar *escaped = g_markup_escape_text(g_value_get_string(value), -1);
+            for(guint n = 0; n < G_N_ELEMENTS(blanks); n++) {
+                gchar *tmp = xfce_str_replace(escaped, blanks[n], escaped_blanks[n]);
                 g_free(escaped);
+                escaped = tmp;
             }
-            break;
+            g_string_append_printf(elem_str, " type=\"string\" value=\"%s\"", escaped);
+            g_free(escaped);
+        } break;
 
         case G_TYPE_UCHAR:
             g_string_append_printf(elem_str, " type=\"uchar\" value=\"%hhu\"",
@@ -1766,8 +1799,9 @@ xfconf_format_xml_tag(GString *elem_str,
                 /* we shouldn't get here anymore, i think */
                 g_critical("Got G_TYPE_STRV.  Shouldn't happen anymore, right?");
 
-                if(is_array_value)
+                if(is_array_value) {
                     return FALSE;
+                }
 
                 g_string_append(elem_str, " type=\"array\">\n");
 
@@ -1784,9 +1818,10 @@ xfconf_format_xml_tag(GString *elem_str,
             } else if(G_TYPE_PTR_ARRAY == G_VALUE_TYPE(value)) {
                 GPtrArray *arr;
                 guint i;
-                
-                if(is_array_value)
+
+                if(is_array_value) {
                     return FALSE;
+                }
 
                 g_string_append(elem_str, " type=\"array\">\n");
 
@@ -1796,9 +1831,7 @@ xfconf_format_xml_tag(GString *elem_str,
                     gboolean dummy;
 
                     g_string_append_printf(elem_str, "%s  <value", spaces);
-                    if(!xfconf_format_xml_tag(elem_str, value1, TRUE, spaces,
-                                              &dummy))
-                    {
+                    if(!xfconf_format_xml_tag(elem_str, value1, TRUE, spaces, &dummy)) {
                         return FALSE;
                     }
                     g_string_append(elem_str, "/>\n");
@@ -1806,8 +1839,9 @@ xfconf_format_xml_tag(GString *elem_str,
 
                 *is_array = TRUE;
             } else {
-                if(is_array_value)
+                if(is_array_value) {
                     return FALSE;
+                }
 
                 if(G_VALUE_TYPE(value) != G_TYPE_INVALID) {
                     g_warning("Unknown value type %d (\"%s\"), treating as branch",
@@ -1838,9 +1872,10 @@ xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
     GNode *child;
     gchar *escaped_name;
     gboolean is_array = FALSE;
-    
-    if(depth * 2 > (gint) sizeof(spaces) + 1)
+
+    if(depth * 2 > (gint)sizeof(spaces) + 1) {
         depth = sizeof(spaces) / 2 - 1;
+    }
 
     memset(spaces, ' ', depth * 2);
     spaces[depth * 2] = 0;
@@ -1851,7 +1886,7 @@ xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
     g_string_append_printf(elem_str, "%s<property name=\"%s\"", spaces,
                            escaped_name);
 
-    g_free (escaped_name);
+    g_free(escaped_name);
 
     if(!xfconf_format_xml_tag(elem_str, value, FALSE, spaces, &is_array)) {
         /* _flush_channel() will handle |error| */
@@ -1861,10 +1896,11 @@ xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
 
     child = g_node_first_child(node);
     if(!is_array) {
-        if(child)
+        if(child) {
             g_string_append(elem_str, ">\n");
-        else
+        } else {
             g_string_append(elem_str, "/>\n");
+        }
     }
 
     if(fputs(elem_str->str, fp) == EOF) {
@@ -1875,9 +1911,7 @@ xfconf_backend_perchannel_xml_write_node(XfconfBackendPerchannelXml *xbpx,
     g_string_free(elem_str, TRUE);
 
     for(; child; child = g_node_next_sibling(child)) {
-        if(!xfconf_backend_perchannel_xml_write_node(xbpx, fp, child,
-                                                     depth + 1, error))
-        {
+        if(!xfconf_backend_perchannel_xml_write_node(xbpx, fp, child, depth + 1, error)) {
             /* _flush_channel() will handle |error| */
             return FALSE;
         }
@@ -1919,16 +1953,19 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
     filename_tmp = g_strconcat(filename, ".new", NULL);
 
     /* ensure the config directory exists */
-    if (g_mkdir_with_parents(xbpx->config_save_path, 0755) != 0)
+    if(g_mkdir_with_parents(xbpx->config_save_path, 0755) != 0) {
         goto out;
+    }
 
     fp = fopen(filename_tmp, "w");
-    if(!fp)
+    if(!fp) {
         goto out;
+    }
 
     if(fputs("<?xml version=\"1.1\" encoding=\"UTF-8\"?>\n\n", fp) == EOF
        || fprintf(fp, "<channel name=\"%s\" version=\"%s.%s\">\n", channel_name,
-                  FILE_VERSION_MAJOR, FILE_VERSION_MINOR) < 0)
+                  FILE_VERSION_MAJOR, FILE_VERSION_MINOR)
+              < 0)
     {
         goto out;
     }
@@ -1937,22 +1974,27 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
         child;
         child = g_node_next_sibling(child))
     {
-        if(!xfconf_backend_perchannel_xml_write_node(xbpx, fp, child, 1, error))
+        if(!xfconf_backend_perchannel_xml_write_node(xbpx, fp, child, 1, error)) {
             goto out;
+        }
     }
 
-    if(fputs("</channel>\n", fp) == EOF)
+    if(fputs("</channel>\n", fp) == EOF) {
         goto out;
+    }
 
-    if(fflush(fp))
+    if(fflush(fp)) {
         goto out;
+    }
 
 #if defined(HAVE_FDATASYNC)
-    if(fdatasync(fileno(fp)))
+    if(fdatasync(fileno(fp))) {
         goto out;
+    }
 #elif defined(HAVE_FSYNC)
-    if(fsync(fileno(fp)))
+    if(fsync(fileno(fp))) {
         goto out;
+    }
 #else
     sync();
 #endif
@@ -1963,8 +2005,9 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
     }
     fp = NULL;
 
-    if(rename(filename_tmp, filename))
+    if(rename(filename_tmp, filename)) {
         goto out;
+    }
 
     ret = TRUE;
 
@@ -1976,8 +2019,9 @@ out:
                     channel_name, strerror(errno));
     }
 
-    if(fp)
+    if(fp) {
         fclose(fp);
+    }
 
     g_free(filename);
     g_free(filename_tmp);

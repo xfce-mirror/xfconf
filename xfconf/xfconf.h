@@ -25,8 +25,8 @@
 
 #define __XFCONF_IN_XFCONF_H__
 
-#include <xfconf/xfconf-channel.h>
 #include <xfconf/xfconf-binding.h>
+#include <xfconf/xfconf-channel.h>
 #include <xfconf/xfconf-errors.h>
 #include <xfconf/xfconf-types.h>
 
@@ -47,4 +47,4 @@ gchar **xfconf_list_channels(void) G_GNUC_WARN_UNUSED_RESULT;
 
 G_END_DECLS
 
-#endif  /* __XFCONF_H__ */
+#endif /* __XFCONF_H__ */

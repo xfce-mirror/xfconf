@@ -19,12 +19,13 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #include <gio/gio.h>
 
 #include "xfconf/xfconf-errors.h"
+
 #include "xfconf-alias.h"
 #include "xfconf-common-private.h"
 
@@ -37,8 +38,7 @@
  **/
 
 
-static const GDBusErrorEntry xfconf_daemon_dbus_error_entries[] = 
-{
+static const GDBusErrorEntry xfconf_daemon_dbus_error_entries[] = {
     { XFCONF_ERROR_UNKNOWN, XFCONF_SERVICE_NAME_PREFIX ".Xfconf.Error.Unknown" },
     { XFCONF_ERROR_CHANNEL_NOT_FOUND, XFCONF_SERVICE_NAME_PREFIX ".Xfconf.Error.ChannelNotFound" },
     { XFCONF_ERROR_PROPERTY_NOT_FOUND, XFCONF_SERVICE_NAME_PREFIX ".Xfconf.Error.PropertyNotFound" },
@@ -58,7 +58,6 @@ static const GDBusErrorEntry xfconf_daemon_dbus_error_entries[] =
  **/
 
 
-
 /**
  * XFCONF_TYPE_ERROR:
  *
@@ -70,12 +69,12 @@ GQuark
 xfconf_get_error_quark(void)
 {
     static volatile gsize quark_volatile = 0;
-    
-    g_dbus_error_register_error_domain ("xfconf_daemon_error",
-                                        &quark_volatile,
-                                        xfconf_daemon_dbus_error_entries,
-                                        G_N_ELEMENTS (xfconf_daemon_dbus_error_entries));
-    
+
+    g_dbus_error_register_error_domain("xfconf_daemon_error",
+                                       &quark_volatile,
+                                       xfconf_daemon_dbus_error_entries,
+                                       G_N_ELEMENTS(xfconf_daemon_dbus_error_entries));
+
     return quark_volatile;
 }
 
@@ -88,7 +87,7 @@ GType
 xfconf_error_get_type(void)
 {
     static GType type = 0;
-    
+
     if(!type) {
         static const GEnumValue values[] = {
             { XFCONF_ERROR_UNKNOWN, "XFCONF_ERROR_UNKNOWN", "Unknown" },
@@ -103,10 +102,10 @@ xfconf_error_get_type(void)
             { XFCONF_ERROR_INVALID_CHANNEL, "XFCONF_ERROR_INVALID_CHANNEL", "InvalidChannel" },
             { 0, NULL, NULL }
         };
-        
+
         type = g_enum_register_static("XfconfError", values);
     }
-    
+
     return type;
 }
 
@@ -118,8 +117,8 @@ _xfconf_error_from_dbus_error_name(const gchar *error_name,
     g_return_val_if_fail(error_name != NULL, FALSE);
     g_return_val_if_fail(xfconf_error != NULL, FALSE);
 
-    for (gsize i = 0; i < G_N_ELEMENTS(xfconf_daemon_dbus_error_entries); ++i) {
-        if (g_strcmp0(error_name, xfconf_daemon_dbus_error_entries[i].dbus_error_name) == 0) {
+    for(gsize i = 0; i < G_N_ELEMENTS(xfconf_daemon_dbus_error_entries); ++i) {
+        if(g_strcmp0(error_name, xfconf_daemon_dbus_error_entries[i].dbus_error_name) == 0) {
             *xfconf_error = xfconf_daemon_dbus_error_entries[i].error_code;
             return TRUE;
         }

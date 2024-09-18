@@ -19,20 +19,20 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
 
-#include <glib.h>
 #include <gio/gio.h>
 #include <glib-object.h>
 
-#include "xfconf.h"
 #include "common/xfconf-marshal.h"
+
 #include "xfconf-private.h"
+#include "xfconf.h"
 #include "common/xfconf-alias.h"
 
 static guint xfconf_refcnt = 0;
@@ -118,12 +118,13 @@ xfconf_init(GError **error)
         return TRUE;
     }
 
-    gdbus = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, error);
+    gdbus = g_bus_get_sync(G_BUS_TYPE_SESSION, NULL, error);
 
-    if (!gdbus)
+    if(!gdbus) {
         return FALSE;
+    }
 
-    is_test_mode = g_getenv ("XFCONF_RUN_IN_TEST_MODE");
+    is_test_mode = g_getenv("XFCONF_RUN_IN_TEST_MODE");
     gproxy = g_dbus_proxy_new_sync(gdbus,
                                    G_DBUS_PROXY_FLAGS_NONE,
                                    NULL,
@@ -157,7 +158,7 @@ xfconf_shutdown(void)
     }
 
     /* Flush pending dbus calls */
-    g_dbus_connection_flush_sync (gdbus, NULL, NULL);
+    g_dbus_connection_flush_sync(gdbus, NULL, NULL);
 
     _xfconf_channel_shutdown();
     _xfconf_g_bindings_shutdown();
@@ -189,14 +190,15 @@ xfconf_named_struct_register(const gchar *struct_name,
     g_return_if_fail(struct_name && *struct_name && n_members && member_types);
 
     /* lazy initialize the hash table */
-    if(named_structs == NULL)
+    if(named_structs == NULL) {
         named_structs = g_hash_table_new_full(g_str_hash, g_str_equal,
                                               (GDestroyNotify)g_free,
                                               (GDestroyNotify)_xfconf_named_struct_free);
+    }
 
-    if(G_UNLIKELY(g_hash_table_lookup(named_structs, struct_name)))
+    if(G_UNLIKELY(g_hash_table_lookup(named_structs, struct_name))) {
         g_critical("The struct '%s' is already registered", struct_name);
-    else {
+    } else {
         ns = g_slice_new(XfconfNamedStruct);
         ns->n_members = n_members;
         ns->member_types = g_new(GType, n_members);
@@ -237,8 +239,9 @@ xfconf_array_free(GPtrArray *arr)
 {
     guint i;
 
-    if(!arr)
+    if(!arr) {
         return;
+    }
 
     for(i = 0; i < arr->len; ++i) {
         GValue *val = g_ptr_array_index(arr, i);
@@ -251,7 +254,6 @@ xfconf_array_free(GPtrArray *arr)
      * double free with the above */
     g_free(g_ptr_array_free(arr, FALSE));
 }
-
 
 
 #define __XFCONF_C__
