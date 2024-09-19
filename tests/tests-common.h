@@ -113,6 +113,13 @@ xfconf_tests_start(void)
     }
     if (g_dbus_message_get_message_type(ret) != G_DBUS_MESSAGE_TYPE_METHOD_RETURN) {
         g_critical("xfconfd is not running and can not be autostarted");
+
+        GError *dbus_error = NULL;
+        if (g_dbus_message_to_gerror(msg, &dbus_error)) {
+            g_critical("D-Bus error: %s", error->message);
+            g_error_free(dbus_error);
+        }
+
         g_object_unref(msg);
         g_object_unref(ret);
         xfconf_tests_end();
