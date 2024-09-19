@@ -504,17 +504,20 @@ xfconf_cache_handle_property_changed(XfconfCache *cache, GVariant *parameters)
         g_variant_get(parameters, "(&s&sv)", &channel_name, &property, &prop_variant);
 
         if (strcmp(channel_name, cache->channel_name)) {
+            g_variant_unref(prop_variant);
             return;
         }
-        prop_value = xfconf_gvariant_to_gvalue(prop_variant);
 
         /* if a call was cancelled, we still receive a property-changed from
          * that value, in that case, abort the emission of the signal. we can
          * detect this because the new reply is not processed yet and thus
          * there is still an old_prop in the hash table */
         if (g_hash_table_lookup(cache->old_properties, property)) {
+            g_variant_unref(prop_variant);
             return;
         }
+
+        prop_value = xfconf_gvariant_to_gvalue(prop_variant);
 
         item = g_tree_lookup(cache->properties, property);
         if (item) {
