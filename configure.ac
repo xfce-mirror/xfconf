@@ -12,7 +12,7 @@ m4_define([libxfconf_version_api], [0])
 XDT_VERSION_INIT([4.19.2], [git])
 
 dnl minimum required versions
-m4_define([glib_min_version], [2.66.0])
+m4_define([glib_min_version], [2.72.0])
 m4_define([libxfce4util_min_version], [4.17.3])
 
 dnl init autoconf
@@ -151,7 +151,7 @@ if test "x$ac_gsettings_backend"; then
 fi
 
 dnl check for GObject Introspection
-GOBJECT_INTROSPECTION_CHECK([1.66.0])
+GOBJECT_INTROSPECTION_CHECK([1.72.0])
 
 dnl check for Vala support
 VAPIGEN_CHECK()
