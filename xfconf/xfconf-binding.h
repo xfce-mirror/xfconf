@@ -36,11 +36,13 @@ gulong xfconf_g_property_bind(XfconfChannel *channel,
                               gpointer object,
                               const gchar *object_property);
 
+G_GNUC_DEPRECATED_FOR(xfconf_g_property_bind)
 gulong xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
                                        const gchar *xfconf_property,
                                        gpointer object,
                                        const gchar *object_property);
 
+G_GNUC_DEPRECATED_FOR(xfconf_g_property_bind)
 gulong xfconf_g_property_bind_gdkrgba(XfconfChannel *channel,
                                       const gchar *xfconf_property,
                                       gpointer object,

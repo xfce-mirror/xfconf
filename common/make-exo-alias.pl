@@ -130,7 +130,9 @@ while (<>)
     if (!$option_def)
       {
         print <<EOF
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 extern __typeof ($symbol) $alias __attribute((visibility("hidden")))$attributes;
+G_GNUC_END_IGNORE_DEPRECATIONS
 \#define $symbol $alias
 
 EOF
@@ -139,7 +141,9 @@ EOF
       {
         print <<EOF
 \#undef $symbol 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 extern __typeof ($symbol) $symbol __attribute((alias("$alias"), visibility("default")));
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 EOF
       }
