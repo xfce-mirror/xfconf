@@ -100,6 +100,30 @@ static GSList *__bindings = NULL;
 static GType __gdkcolor_gtype = 0;
 static GType __gdkrgba_gtype = 0;
 
+static gpointer
+do_init_gtypes(gpointer data)
+{
+    __gdkrgba_gtype = g_type_from_name("GdkRGBA");
+    if (G_UNLIKELY(__gdkrgba_gtype == 0)) {
+        g_critical("Unable to look up GType for GdkRGBA: something is very wrong");
+        return "failed gdkrgba";
+    }
+
+    __gdkcolor_gtype = g_type_from_name("GdkColor");
+    if (G_UNLIKELY(__gdkcolor_gtype == 0)) {
+        g_critical("Unable to look up GType for GdkColor: something is very wrong");
+        return "failed gdkcolor";
+    }
+
+    return NULL;
+}
+
+static gboolean
+init_gtypes(void)
+{
+    static GOnce init_gtypes_once = G_ONCE_INIT;
+    return g_once(&init_gtypes_once, do_init_gtypes, NULL) == NULL;
+}
 
 static void
 xfconf_g_property_object_notify_gdkcolor(XfconfGBinding *binding)
@@ -156,6 +180,8 @@ xfconf_g_property_object_notify(GObject *object,
     g_return_if_fail(G_IS_OBJECT(object));
     g_return_if_fail(binding->object == object);
     g_return_if_fail(XFCONF_IS_CHANNEL(binding->channel));
+
+    init_gtypes();
 
     if (G_PARAM_SPEC_VALUE_TYPE(pspec) == __gdkcolor_gtype) {
         /* we need to handle this in a different way */
@@ -289,6 +315,8 @@ xfconf_g_property_channel_notify(XfconfChannel *channel,
     g_return_if_fail(XFCONF_IS_CHANNEL(channel));
     g_return_if_fail(binding->channel == channel);
     g_return_if_fail(G_IS_OBJECT(binding->object));
+
+    init_gtypes();
 
     if (__gdkcolor_gtype == binding->xfconf_property_type) {
         /* we need to handle this in a different way */
@@ -490,6 +518,8 @@ xfconf_g_property_bind(XfconfChannel *channel,
     g_return_val_if_fail(G_IS_OBJECT(object), 0UL);
     g_return_val_if_fail(object_property && *object_property != '\0', 0UL);
 
+    init_gtypes();
+
     pspec = g_object_class_find_property(G_OBJECT_GET_CLASS(object),
                                          object_property);
     if (G_UNLIKELY(!pspec)) {
@@ -555,12 +585,8 @@ xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
     g_return_val_if_fail(G_IS_OBJECT(object), 0UL);
     g_return_val_if_fail(object_property && *object_property != '\0', 0UL);
 
-    if (!__gdkcolor_gtype) {
-        __gdkcolor_gtype = g_type_from_name("GdkColor");
-        if (G_UNLIKELY(__gdkcolor_gtype == 0)) {
-            g_critical("Unable to look up GType for GdkColor: something is very wrong");
-            return 0UL;
-        }
+    if (!init_gtypes()) {
+        return 0UL;
     }
 
     pspec = g_object_class_find_property(G_OBJECT_GET_CLASS(object),
@@ -620,12 +646,8 @@ xfconf_g_property_bind_gdkrgba(XfconfChannel *channel,
     g_return_val_if_fail(G_IS_OBJECT(object), 0UL);
     g_return_val_if_fail(object_property && *object_property != '\0', 0UL);
 
-    if (!__gdkrgba_gtype) {
-        __gdkrgba_gtype = g_type_from_name("GdkRGBA");
-        if (G_UNLIKELY(__gdkrgba_gtype == 0)) {
-            g_critical("Unable to look up GType for GdkRGBA: something is very wrong");
-            return 0UL;
-        }
+    if (!init_gtypes()) {
+        return 0UL;
     }
 
     pspec = g_object_class_find_property(G_OBJECT_GET_CLASS(object),
