@@ -578,6 +578,9 @@ xfconf_g_property_bind(XfconfChannel *channel,
  * Returns: an ID number that can be used to later remove the
  *          binding.
  *
+ * Deprecated: 4.19.3: Use #xfconf_g_property_bind() with #G_TYPE_PTR_ARRAY
+ * instead.
+ *
  **/
 gulong
 xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
@@ -639,6 +642,9 @@ xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
  *          binding.
  *
  * Since: 4.12.1
+ *
+ * Deprecated: 4.19.3: Use #xfconf_g_property_bind() with #G_TYPE_PTR_ARRAY
+ * instead.
  **/
 gulong
 xfconf_g_property_bind_gdkrgba(XfconfChannel *channel,
