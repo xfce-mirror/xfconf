@@ -499,6 +499,9 @@ _xfconf_g_bindings_shutdown(void)
  * @object_property will be determined automatically.  If the two
  * types do not match, a conversion will be attempted.
  *
+ * If you are binding a #GdkColor or #GdkRGBA property, pass #G_TYPE_PTR_ARRAY
+ * for @xfconf_property_type.
+ *
  * Returns: an ID number that can be used to later remove the
  *          binding.
  **/
@@ -526,26 +529,30 @@ xfconf_g_property_bind(XfconfChannel *channel,
         g_warning("Property \"%s\" is not valid for GObject type \"%s\"",
                   object_property, G_OBJECT_TYPE_NAME(object));
         return 0UL;
-    }
-
-    if (G_UNLIKELY(!g_value_type_transformable(xfconf_property_type, G_PARAM_SPEC_VALUE_TYPE(pspec)))) {
+    } else if (xfconf_property_type == G_TYPE_PTR_ARRAY && G_PARAM_SPEC_VALUE_TYPE(pspec) == __gdkrgba_gtype) {
+        G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+        return xfconf_g_property_bind_gdkrgba(channel, xfconf_property, object, object_property);
+        G_GNUC_END_IGNORE_DEPRECATIONS
+    } else if (xfconf_property_type == G_TYPE_PTR_ARRAY && G_PARAM_SPEC_VALUE_TYPE(pspec) == __gdkcolor_gtype) {
+        G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+        return xfconf_g_property_bind_gdkcolor(channel, xfconf_property, object, object_property);
+        G_GNUC_END_IGNORE_DEPRECATIONS
+    } else if (G_UNLIKELY(!g_value_type_transformable(xfconf_property_type, G_PARAM_SPEC_VALUE_TYPE(pspec)))) {
         g_warning("Converting from type \"%s\" to type \"%s\" is not supported",
                   g_type_name(xfconf_property_type),
                   g_type_name(G_PARAM_SPEC_VALUE_TYPE(pspec)));
         return 0UL;
-    }
-
-    if (G_UNLIKELY(!g_value_type_transformable(G_PARAM_SPEC_VALUE_TYPE(pspec), xfconf_property_type))) {
+    } else if (G_UNLIKELY(!g_value_type_transformable(G_PARAM_SPEC_VALUE_TYPE(pspec), xfconf_property_type))) {
         g_warning("Converting from type \"%s\" to type \"%s\" is not supported",
                   g_type_name(G_PARAM_SPEC_VALUE_TYPE(pspec)),
                   g_type_name(xfconf_property_type));
         return 0UL;
+    } else {
+        return xfconf_g_property_init(channel, xfconf_property,
+                                      xfconf_property_type, G_OBJECT(object),
+                                      object_property,
+                                      G_PARAM_SPEC_VALUE_TYPE(pspec));
     }
-
-    return xfconf_g_property_init(channel, xfconf_property,
-                                  xfconf_property_type, G_OBJECT(object),
-                                  object_property,
-                                  G_PARAM_SPEC_VALUE_TYPE(pspec));
 }
 
 /**
