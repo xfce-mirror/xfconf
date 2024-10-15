@@ -100,29 +100,22 @@ static GSList *__bindings = NULL;
 static GType __gdkcolor_gtype = 0;
 static GType __gdkrgba_gtype = 0;
 
-static gpointer
-do_init_gtypes(gpointer data)
+static gboolean
+ensure_gdk_color_type(void)
 {
-    __gdkrgba_gtype = g_type_from_name("GdkRGBA");
-    if (G_UNLIKELY(__gdkrgba_gtype == 0)) {
-        g_critical("Unable to look up GType for GdkRGBA: something is very wrong");
-        return "failed gdkrgba";
+    if (__gdkcolor_gtype == 0) {
+        __gdkcolor_gtype = g_type_from_name("GdkColor");
     }
-
-    __gdkcolor_gtype = g_type_from_name("GdkColor");
-    if (G_UNLIKELY(__gdkcolor_gtype == 0)) {
-        g_critical("Unable to look up GType for GdkColor: something is very wrong");
-        return "failed gdkcolor";
-    }
-
-    return NULL;
+    return __gdkcolor_gtype != 0;
 }
 
 static gboolean
-init_gtypes(void)
+ensure_gdk_rgba_type(void)
 {
-    static GOnce init_gtypes_once = G_ONCE_INIT;
-    return g_once(&init_gtypes_once, do_init_gtypes, NULL) == NULL;
+    if (__gdkrgba_gtype == 0) {
+        __gdkrgba_gtype = g_type_from_name("GdkRGBA");
+    }
+    return __gdkrgba_gtype != 0;
 }
 
 static void
@@ -180,8 +173,6 @@ xfconf_g_property_object_notify(GObject *object,
     g_return_if_fail(G_IS_OBJECT(object));
     g_return_if_fail(binding->object == object);
     g_return_if_fail(XFCONF_IS_CHANNEL(binding->channel));
-
-    init_gtypes();
 
     if (G_PARAM_SPEC_VALUE_TYPE(pspec) == __gdkcolor_gtype) {
         /* we need to handle this in a different way */
@@ -315,8 +306,6 @@ xfconf_g_property_channel_notify(XfconfChannel *channel,
     g_return_if_fail(XFCONF_IS_CHANNEL(channel));
     g_return_if_fail(binding->channel == channel);
     g_return_if_fail(G_IS_OBJECT(binding->object));
-
-    init_gtypes();
 
     if (__gdkcolor_gtype == binding->xfconf_property_type) {
         /* we need to handle this in a different way */
@@ -521,32 +510,36 @@ xfconf_g_property_bind(XfconfChannel *channel,
     g_return_val_if_fail(G_IS_OBJECT(object), 0UL);
     g_return_val_if_fail(object_property && *object_property != '\0', 0UL);
 
-    init_gtypes();
-
     pspec = g_object_class_find_property(G_OBJECT_GET_CLASS(object),
                                          object_property);
     if (G_UNLIKELY(!pspec)) {
         g_warning("Property \"%s\" is not valid for GObject type \"%s\"",
                   object_property, G_OBJECT_TYPE_NAME(object));
         return 0UL;
-    } else if (xfconf_property_type == G_TYPE_PTR_ARRAY && G_PARAM_SPEC_VALUE_TYPE(pspec) == __gdkrgba_gtype) {
-        G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-        return xfconf_g_property_bind_gdkrgba(channel, xfconf_property, object, object_property);
-        G_GNUC_END_IGNORE_DEPRECATIONS
-    } else if (xfconf_property_type == G_TYPE_PTR_ARRAY && G_PARAM_SPEC_VALUE_TYPE(pspec) == __gdkcolor_gtype) {
-        G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-        return xfconf_g_property_bind_gdkcolor(channel, xfconf_property, object, object_property);
-        G_GNUC_END_IGNORE_DEPRECATIONS
-    } else if (G_UNLIKELY(!g_value_type_transformable(xfconf_property_type, G_PARAM_SPEC_VALUE_TYPE(pspec)))) {
-        g_warning("Converting from type \"%s\" to type \"%s\" is not supported",
-                  g_type_name(xfconf_property_type),
-                  g_type_name(G_PARAM_SPEC_VALUE_TYPE(pspec)));
-        return 0UL;
-    } else if (G_UNLIKELY(!g_value_type_transformable(G_PARAM_SPEC_VALUE_TYPE(pspec), xfconf_property_type))) {
-        g_warning("Converting from type \"%s\" to type \"%s\" is not supported",
-                  g_type_name(G_PARAM_SPEC_VALUE_TYPE(pspec)),
-                  g_type_name(xfconf_property_type));
-        return 0UL;
+    } else if (G_UNLIKELY(!g_value_type_transformable(xfconf_property_type, G_PARAM_SPEC_VALUE_TYPE(pspec)))
+               || G_UNLIKELY(!g_value_type_transformable(G_PARAM_SPEC_VALUE_TYPE(pspec), xfconf_property_type)))
+    {
+        gboolean is_ptr_array = xfconf_property_type == G_TYPE_PTR_ARRAY;
+
+        if (is_ptr_array && ensure_gdk_color_type() && G_PARAM_SPEC_VALUE_TYPE(pspec) == __gdkcolor_gtype) {
+            G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+            return xfconf_g_property_bind_gdkcolor(channel, xfconf_property, object, object_property);
+            G_GNUC_END_IGNORE_DEPRECATIONS
+        } else if (is_ptr_array && ensure_gdk_rgba_type() && G_PARAM_SPEC_VALUE_TYPE(pspec) == __gdkrgba_gtype) {
+            G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+            return xfconf_g_property_bind_gdkrgba(channel, xfconf_property, object, object_property);
+            G_GNUC_END_IGNORE_DEPRECATIONS
+        } else if (!g_value_type_transformable(xfconf_property_type, G_PARAM_SPEC_VALUE_TYPE(pspec))) {
+            g_warning("Converting from type \"%s\" to type \"%s\" is not supported",
+                      g_type_name(xfconf_property_type),
+                      g_type_name(G_PARAM_SPEC_VALUE_TYPE(pspec)));
+            return 0UL;
+        } else {
+            g_warning("Converting from type \"%s\" to type \"%s\" is not supported",
+                      g_type_name(G_PARAM_SPEC_VALUE_TYPE(pspec)),
+                      g_type_name(xfconf_property_type));
+            return 0UL;
+        }
     } else {
         return xfconf_g_property_init(channel, xfconf_property,
                                       xfconf_property_type, G_OBJECT(object),
@@ -595,7 +588,8 @@ xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
     g_return_val_if_fail(G_IS_OBJECT(object), 0UL);
     g_return_val_if_fail(object_property && *object_property != '\0', 0UL);
 
-    if (!init_gtypes()) {
+    if (!ensure_gdk_color_type()) {
+        g_critical("Unable to look up GType for GdkColor: something is very wrong");
         return 0UL;
     }
 
@@ -659,7 +653,8 @@ xfconf_g_property_bind_gdkrgba(XfconfChannel *channel,
     g_return_val_if_fail(G_IS_OBJECT(object), 0UL);
     g_return_val_if_fail(object_property && *object_property != '\0', 0UL);
 
-    if (!init_gtypes()) {
+    if (!ensure_gdk_rgba_type()) {
+        g_critical("Unable to look up GType for GdkRGBA: something is very wrong");
         return 0UL;
     }
 
