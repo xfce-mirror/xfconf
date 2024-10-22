@@ -113,7 +113,7 @@ xfconf_query_list_contents(GSList *sorted_contents, GHashTable *channel_contents
     GSList *li;
     gchar *format = verbose ? g_strdup_printf("%%-%ds%%s\n", size + 2) : NULL;
     GValue *property_value;
-    gchar *string = NULL;
+    gchar *string;
 
     for (li = sorted_contents; li != NULL; li = li->next) {
         if (verbose) {
@@ -123,29 +123,17 @@ xfconf_query_list_contents(GSList *sorted_contents, GHashTable *channel_contents
                 string = _xfconf_string_from_gvalue(property_value);
             } else {
                 GPtrArray *arr = g_value_get_boxed(property_value);
+                gchar **strv = g_new0(gchar *, arr->len + 1);
+                gchar *str;
 
-                for (guint ai = 0; ai < arr->len; ++ai) {
-                    GValue *item_value = g_ptr_array_index(arr, ai);
-                    gchar *str_val = NULL;
-
-                    if (item_value) {
-                        str_val = _xfconf_string_from_gvalue(item_value);
-                    }
-                    if (!str_val) {
-                        str_val = g_strdup("??");
-                    }
-                    if (ai) {
-                        gchar *tofree = string;
-                        string = g_strconcat(string, ", ", str_val, NULL);
-                        g_free(str_val);
-                        g_free(tofree);
-                    } else {
-                        string = str_val;
-                    }
+                for (guint i = 0; i < arr->len; ++i) {
+                    GValue *item_value = g_ptr_array_index(arr, i);
+                    strv[i] = _xfconf_string_from_gvalue(item_value);
                 }
-                if(!arr->len) {
-                    string = g_strdup("<empty>");
-                }
+                str = g_strjoinv(",", strv);
+                string = g_strdup_printf("[%s]", str);
+                g_free(str);
+                g_strfreev(strv);
             }
 
             g_print(format, (gchar *)li->data, string);
