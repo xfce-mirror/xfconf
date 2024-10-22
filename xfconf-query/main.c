@@ -122,7 +122,18 @@ xfconf_query_list_contents(GSList *sorted_contents, GHashTable *channel_contents
             if (G_TYPE_PTR_ARRAY != G_VALUE_TYPE(property_value)) {
                 string = _xfconf_string_from_gvalue(property_value);
             } else {
-                string = g_strdup("<<UNSUPPORTED>>");
+                GPtrArray *arr = g_value_get_boxed(property_value);
+                gchar **strv = g_new0(gchar *, arr->len + 1);
+                gchar *str;
+
+                for (guint i = 0; i < arr->len; ++i) {
+                    GValue *item_value = g_ptr_array_index(arr, i);
+                    strv[i] = _xfconf_string_from_gvalue(item_value);
+                }
+                str = g_strjoinv(",", strv);
+                string = g_strdup_printf("[%s]", str);
+                g_free(str);
+                g_strfreev(strv);
             }
 
             g_print(format, (gchar *)li->data, string);
