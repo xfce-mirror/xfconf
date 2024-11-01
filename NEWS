@@ -1,3 +1,8 @@
+4.19.4 (2024-11-01)
+======
+- xfconf-query: print array property values when -lv
+
+
 4.19.3 (2024-10-18)
 ======
 - Safer/better way to find GdkColor/GdkRGBA GTypes in the unified API
