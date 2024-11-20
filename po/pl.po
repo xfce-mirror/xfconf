@@ -156,7 +156,7 @@ msgstr "Błąd przetwarzania opcji: %s\n"
 #: xfconfd/xfconf-daemon.c:222
 #, c-format
 msgid "GType transformation failed \"%s\""
-msgstr "Transformacja GType nie powiodła się \"%s\""
+msgstr "Transformacja GType nie powiodła się „%s”"
 
 #: xfconfd/xfconf-daemon.c:482
 msgid "No backends could be started"
