@@ -115,8 +115,8 @@ xfconf_tests_start(void)
         g_critical("xfconfd is not running and can not be autostarted");
 
         GError *dbus_error = NULL;
-        if (g_dbus_message_to_gerror(msg, &dbus_error)) {
-            g_critical("D-Bus error: %s", error->message);
+        if (g_dbus_message_to_gerror(ret, &dbus_error)) {
+            g_critical("D-Bus error: %s", dbus_error->message);
             g_error_free(dbus_error);
         }
 
