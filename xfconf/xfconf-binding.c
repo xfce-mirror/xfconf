@@ -159,6 +159,7 @@ xfconf_g_property_object_notify_gdkrgba(XfconfGBinding *binding)
                              G_TYPE_DOUBLE, &color->alpha,
                              G_TYPE_INVALID);
     g_signal_handler_unblock(G_OBJECT(binding->channel), binding->channel_handler);
+    g_slice_free(FakeGdkRGBA, color);
 }
 
 static void
