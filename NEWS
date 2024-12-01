@@ -1,3 +1,10 @@
+4.19.5 (2024-12-01)
+======
+- Fix FakeGdkRGBA and FakeGdkColor leaks
+- tests: Fix D-Bus error reporting when xfconfd is not auto-started
+- Translation Updates:
+  Czech, Galician, Polish
+
 4.19.4 (2024-11-01)
 ======
 - xfconf-query: print array property values when -lv
