@@ -838,6 +838,7 @@ xfconf_channel_get_string_list(XfconfChannel *channel,
         GValue *val = g_ptr_array_index(arr, i);
 
         if (G_VALUE_TYPE(val) != G_TYPE_STRING) {
+            g_warning("Unexpected value type %s", G_VALUE_TYPE_NAME(val));
             xfconf_array_free(arr);
             g_strfreev(values);
             return NULL;
