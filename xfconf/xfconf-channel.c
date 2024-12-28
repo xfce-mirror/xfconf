@@ -1534,7 +1534,6 @@ xfconf_channel_get_arrayv(XfconfChannel *channel,
                           const gchar *property)
 {
     GValue val = G_VALUE_INIT;
-    GPtrArray *arr = NULL;
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, NULL);
@@ -1551,13 +1550,7 @@ xfconf_channel_get_arrayv(XfconfChannel *channel,
         return NULL;
     }
 
-    /* Do not free it, it is owned by the GValue in cache */
-    arr = g_value_get_boxed(&val);
-    if (!arr->len) {
-        g_ptr_array_free(arr, TRUE);
-        return NULL;
-    }
-    return arr;
+    return g_value_get_boxed(&val);
 }
 
 /**
