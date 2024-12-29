@@ -814,9 +814,10 @@ xfconf_channel_get_string(XfconfChannel *channel,
  *
  * Retrieves the string list value associated with @property on @channel.
  *
- * Returns: (transfer full) (element-type utf8) (array zero-terminated=1): A newly-allocated string list which should be freed with
+ * Returns: (transfer full) (element-type utf8) (array zero-terminated=1) (nullable):
+ *          A newly-allocated string list which should be freed with
  *          g_strfreev() when no longer needed.  If @property is not in
- *          @channel, %NULL is returned.
+ *          @channel, or in case of failure, %NULL is returned.
  */
 gchar **
 xfconf_channel_get_string_list(XfconfChannel *channel,
@@ -838,6 +839,7 @@ xfconf_channel_get_string_list(XfconfChannel *channel,
         GValue *val = g_ptr_array_index(arr, i);
 
         if (G_VALUE_TYPE(val) != G_TYPE_STRING) {
+            g_warning("Unexpected value type %s", G_VALUE_TYPE_NAME(val));
             xfconf_array_free(arr);
             g_strfreev(values);
             return NULL;
@@ -1526,15 +1528,14 @@ out:
  * a #GPtrArray, which can be freed with xfconf_array_free()
  * when no longer needed.
  *
- * Returns: (transfer full) (element-type GValue) (nullable): A newly-allocated #GPtrArray on success,
- * or %NULL on failure.
+ * Returns: (transfer full) (element-type GValue) (nullable): A newly-allocated #GPtrArray.
+ *          If @property is not in @channel, or in case of failure, %NULL is returned.
  **/
 GPtrArray *
 xfconf_channel_get_arrayv(XfconfChannel *channel,
                           const gchar *property)
 {
     GValue val = G_VALUE_INIT;
-    GPtrArray *arr = NULL;
     gboolean ret;
 
     g_return_val_if_fail(XFCONF_IS_CHANNEL(channel) && property, NULL);
@@ -1551,13 +1552,7 @@ xfconf_channel_get_arrayv(XfconfChannel *channel,
         return NULL;
     }
 
-    /* Do not free it, it is owned by the GValue in cache */
-    arr = g_value_get_boxed(&val);
-    if (!arr->len) {
-        g_ptr_array_free(arr, TRUE);
-        return NULL;
-    }
-    return arr;
+    return g_value_get_boxed(&val);
 }
 
 /**
