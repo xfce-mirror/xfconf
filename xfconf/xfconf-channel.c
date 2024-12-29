@@ -814,9 +814,10 @@ xfconf_channel_get_string(XfconfChannel *channel,
  *
  * Retrieves the string list value associated with @property on @channel.
  *
- * Returns: (transfer full) (element-type utf8) (array zero-terminated=1): A newly-allocated string list which should be freed with
+ * Returns: (transfer full) (element-type utf8) (array zero-terminated=1) (nullable):
+ *          A newly-allocated string list which should be freed with
  *          g_strfreev() when no longer needed.  If @property is not in
- *          @channel, %NULL is returned.
+ *          @channel, or in case of failure, %NULL is returned.
  */
 gchar **
 xfconf_channel_get_string_list(XfconfChannel *channel,
@@ -1527,8 +1528,8 @@ out:
  * a #GPtrArray, which can be freed with xfconf_array_free()
  * when no longer needed.
  *
- * Returns: (transfer full) (element-type GValue) (nullable): A newly-allocated #GPtrArray on success,
- * or %NULL on failure.
+ * Returns: (transfer full) (element-type GValue) (nullable): A newly-allocated #GPtrArray.
+ *          If @property is not in @channel, or in case of failure, %NULL is returned.
  **/
 GPtrArray *
 xfconf_channel_get_arrayv(XfconfChannel *channel,
