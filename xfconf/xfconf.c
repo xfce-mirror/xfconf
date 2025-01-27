@@ -33,7 +33,7 @@
 
 #include "xfconf-private.h"
 #include "xfconf.h"
-#include "common/xfconf-alias.h"
+#include "common/xfconf-visibility.h"
 
 static guint xfconf_refcnt = 0;
 
@@ -257,4 +257,4 @@ xfconf_array_free(GPtrArray *arr)
 
 
 #define __XFCONF_C__
-#include "common/xfconf-aliasdef.c"
+#include "common/xfconf-visibility.c"

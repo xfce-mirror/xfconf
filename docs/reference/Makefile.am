@@ -34,7 +34,9 @@ IGNORE_HFILES= \
 	xfconf-backend-perchannel-xml.h \
 	xfconf-daemon.h \
 	xfconf-lifecycle-manager.h \
-	xfconf-locking-utils.h
+	xfconf-locking-utils.h \
+	xfconf-visibility.h \
+	$(NULL)
 
 # Extra files to add when scanning (relative to $srcdir)
 EXTRA_HFILES =
