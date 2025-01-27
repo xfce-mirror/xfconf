@@ -95,8 +95,8 @@ XDT_CHECK_PACKAGE([GIO_UNIX], [gio-unix-2.0], [glib_min_version])
 XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [glib_min_version])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [libxfce4util_min_version])
 
-dnl check for make-exo-alias.pl
-AC_PATH_PROGS([PERL], [perl5.8 perl5.6 perl5 perl])
+dnl check for xdt-gen-visibility
+AC_PATH_PROG([XDT_GEN_VISIBILITY], [xdt-gen-visibility])
 
 dnl check alignment for struct returns
 AC_DEFUN([BT_GLIB_CHECK_ALIGNOF],
@@ -173,14 +173,43 @@ if test "x$enable_checks" = "xyes"; then
 fi
 
 dnl check whether the compiler supports the visibility attribute
-XDT_FEATURE_VISIBILITY
-
+AC_ARG_ENABLE([visibility],
+              AS_HELP_STRING([--disable-visibility],
+                             [Do not use ELF visibility attributes]),
+              [enable_visibility=$enableval], [enable_visibility=yes])
+have_gnuc_visibility=no
+if test "x$enable_visibility" != "xno"; then
+  XDT_SUPPORTED_FLAGS([xdt_vis_test_cflags], [-Wall -Werror -Wno-unused-parameter -fvisibility=hidden])
+  saved_CFLAGS="$CFLAGS"
+  CFLAGS="$CFLAGS $xdt_vis_test_cflags"
+  AC_MSG_CHECKING([whether $CC supports the GNUC visibility attribute])
+  AC_COMPILE_IFELSE([AC_LANG_SOURCE(
+  [
+    void test_default(void);
+    void test_hidden(void);
+    void __attribute__((visibility("default"))) test_default(void) {}
+    void __attribute__((visibility("hidden"))) test_hidden(void) {}
+    int main(int argc, char **argv) {
+      test_default();
+      test_hidden();
+      return 0;
+    }
+  ])],
+  [
+    have_gnuc_visibility=yes
+    AC_MSG_RESULT([yes])
+  ], 
+  [
+    AC_MSG_RESULT([no])
+  ]) 
+  CFLAGS="$saved_CFLAGS"
+fi
 if test "x$have_gnuc_visibility" = "xyes"; then
-AC_DEFINE([XFCONF_EXPORT], [__attribute__((visibility("default")))],
-  [defines how to decorate public symbols while building])
+  CPPFLAGS="$CPPFLAGS -DENABLE_SYMBOL_VISIBILITY=1"
+  CFLAGS="$CFLAGS -fvisibility=hidden"
+  AC_DEFINE([XFCONF_EXPORT], [__attribute__((visibility("default")))], [defines how to decorate public symbols while building])
 else
-AC_DEFINE([XFCONF_EXPORT], [],
-  [defines how to decorate public symbols while building])
+  AC_DEFINE([XFCONF_EXPORT], [], [defines how to decorate public symbols while building])
 fi
 
 dnl add -O1 and --as-needed to LDFLAGS if supported

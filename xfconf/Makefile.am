@@ -55,7 +55,6 @@ pkgconfig_DATA = libxfconf-0.pc
 
 
 EXTRA_DIST = \
-	abicheck.sh \
 	xfconf.symbols \
 	libxfconf-0.deps
 
@@ -110,8 +109,4 @@ libxfconf_0_vapi_FILES = Xfconf-0.gir
 
 vapidir = $(datadir)/vala/vapi
 vapi_DATA = $(VAPIGEN_VAPIS) $(VAPIGEN_VAPIS:.vapi=.deps)
-endif
-
-if HAVE_GNUC_VISIBILITY
-TESTS = abicheck.sh
 endif

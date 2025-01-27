@@ -40,8 +40,8 @@ common/.dirstamp
 common/stamp-xfconf-marshal.h
 common/xfconf-marshal.c
 common/xfconf-marshal.h
-common/xfconf-alias.h
-common/xfconf-aliasdef.c
+common/xfconf-visibility.h
+common/xfconf-visibility.c
 common/xfconf-dbus.xml
 common/xfconf-gdbus-bindings.c
 common/xfconf-gdbus-bindings.h
@@ -53,6 +53,8 @@ docs/reference/xfconf*
 !docs/reference/xfconf-sections.txt
 !docs/reference/xfconf.types
 m4/*
+!m4/introspection.m4
+!m4/vapigen.m4
 po/POTFILES
 po/Makefile.in.in
 po/stamp-*

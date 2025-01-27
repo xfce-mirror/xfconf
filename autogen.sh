@@ -10,4 +10,4 @@ EOF
   exit 1
 }
 
-XDT_AUTOGEN_REQUIRED_VERSION=4.19.0 xdt-autogen "$@"
+XDT_AUTOGEN_REQUIRED_VERSION="4.19.2" xdt-autogen "$@"

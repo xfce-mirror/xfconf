@@ -39,7 +39,7 @@
 #include "xfconf-private.h"
 #include "xfconf-types.h"
 #include "xfconf.h"
-#include "common/xfconf-alias.h"
+#include "common/xfconf-visibility.h"
 
 #define IS_SINGLETON_DEFAULT TRUE
 
@@ -2307,4 +2307,4 @@ xfconf_list_channels(void)
 
 
 #define __XFCONF_CHANNEL_C__
-#include "common/xfconf-aliasdef.c"
+#include "common/xfconf-visibility.c"
