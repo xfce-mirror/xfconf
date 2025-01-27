@@ -31,7 +31,7 @@
 
 #include "xfconf-private.h"
 #include "xfconf.h"
-#include "common/xfconf-alias.h"
+#include "common/xfconf-visibility.h"
 
 
 /**
@@ -795,4 +795,4 @@ xfconf_g_property_unbind_all(gpointer channel_or_object)
 
 
 #define __XFCONF_BINDING_C__
-#include "common/xfconf-aliasdef.c"
+#include "common/xfconf-visibility.c"

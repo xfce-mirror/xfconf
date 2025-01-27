@@ -26,8 +26,8 @@
 
 #include "xfconf/xfconf-errors.h"
 
-#include "xfconf-alias.h"
 #include "xfconf-common-private.h"
+#include "xfconf-visibility.h"
 
 /**
  * SECTION:xfconf-errors
@@ -128,4 +128,4 @@ _xfconf_error_from_dbus_error_name(const gchar *error_name,
 }
 
 #define __XFCONF_ERRORS_C__
-#include "xfconf-aliasdef.c"
+#include "xfconf-visibility.c"

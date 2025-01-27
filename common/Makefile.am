@@ -26,8 +26,8 @@ libxfconf_common_la_LIBADD = \
 	$(GLIB_LIBS)
 
 libxfconf_built_sources = \
-	xfconf-alias.h \
-	xfconf-aliasdef.c
+	xfconf-visibility.h \
+	xfconf-visibility.c
 
 libxfconf_gvaluefuncs_la_SOURCES = \
 	xfconf-gvaluefuncs.c \
@@ -80,10 +80,6 @@ xfconf-gdbus-bindings.c: xfconf-dbus.xml Makefile
 	--generate-c-code xfconf-gdbus-bindings \
 	$<
 
-CLEANFILES = \
-	actual-abi \
-	expected-abi
-
 DISTCLEANFILES = \
 	$(libxfconf_built_sources) \
 	$(BUILT_SOURCES) \
@@ -92,17 +88,16 @@ DISTCLEANFILES = \
 BUILT_SOURCES += \
 	$(libxfconf_built_sources)
 
-xfconf-alias.h: make-exo-alias.pl $(top_srcdir)/xfconf/xfconf.symbols
-	$(AM_V_GEN) $(PERL) $(srcdir)/make-exo-alias.pl <$(top_srcdir)/xfconf/xfconf.symbols >xfconf-alias.h
+xfconf-visibility.h: $(top_srcdir)/xfconf/xfconf.symbols Makefile
+	$(AM_V_GEN) $(XDT_GEN_VISIBILITY) --kind=header $< $@
 
-xfconf-aliasdef.c: make-exo-alias.pl $(top_srcdir)/xfconf/xfconf.symbols
-	$(AM_V_GEN) $(PERL) $(srcdir)/make-exo-alias.pl -def <$(top_srcdir)/xfconf/xfconf.symbols >xfconf-aliasdef.c
+xfconf-visibility.c: $(top_srcdir)/xfconf/xfconf.symbols Makefile
+	$(AM_V_GEN) $(XDT_GEN_VISIBILITY) --kind=source $< $@
 
 
 EXTRA_DIST = \
-	make-exo-alias.pl \
-	xfconf-alias.h \
-	xfconf-aliasdef.c \
+	xfconf-visibility.h \
+	xfconf-visibility.c \
 	xfconf-common-private.h \
 	xfconf-dbus.xml.in \
 	xfconf-marshal.list \

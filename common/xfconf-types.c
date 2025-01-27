@@ -30,7 +30,7 @@
 
 #include "xfconf/xfconf-types.h"
 
-#include "xfconf-alias.h"
+#include "xfconf-visibility.h"
 
 /**
  * SECTION:xfconf-types
@@ -334,5 +334,5 @@ xfconf_g_value_set_int16(GValue *value,
 
 #ifdef LIBXFCONF_COMPILATION
 #define __XFCONF_TYPES_C__
-#include "xfconf-aliasdef.c"
+#include "xfconf-visibility.c"
 #endif

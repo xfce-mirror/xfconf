@@ -41,7 +41,7 @@
 #include "xfconf-types.h"
 
 #if 0
-#include "xfconf-alias.h"
+#include "xfconf-visibility.h"
 #include "xfconf.h"
 #endif
 

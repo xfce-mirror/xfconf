@@ -8,7 +8,7 @@ IncludeCategories:
   - Regex: '<.*>'
     Priority: -2
     CaseSensitive: true
-  - Regex: '"common/xfconf-alias\.h"'
+  - Regex: '"common/xfconf-visibility\.h"'
     Priority: 0
     SortPriority: 2
     CaseSensitive: true
