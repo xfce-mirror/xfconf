@@ -1,0 +1,69 @@
+option(
+  'gtk-doc',
+  type: 'boolean',
+  value: false,
+  description: 'Build gtk-doc HTML',
+)
+
+option(
+  'introspection',
+  type: 'boolean',
+  value: true,
+  description: 'Build gobject-introspection files',
+)
+
+option(
+  'vala',
+  type: 'feature',
+  value: 'auto',
+  description: 'Build Vala language bindings',
+)
+
+option(
+  'visibility',
+  type: 'boolean',
+  value: true,
+  description: 'Build with GNU symbol visibility',
+)
+
+option(
+  'helper-path-prefix',
+  type: 'string',
+  value: '',
+  description: 'Path prefix under which helper executables will be installed (default: $libdir)',
+)
+
+option(
+  'service-name-prefix',
+  type: 'string',
+  value: '',
+  description: 'Alternative prefix to org.xfce for Xfconf services',
+)
+
+option(
+  'bash-completion-dir',
+  type: 'string',
+  value: '',
+  description: 'Install the bash-completion script in this directory (default: autodetect)',
+)
+
+option(
+  'gsettings-backend',
+  type: 'boolean',
+  value: true,
+  description: 'Build GSettings backend module',
+)
+
+option(
+  'runtime-checks',
+  type: 'boolean',
+  value: false,
+  description: 'Enables some runtime checks for libxfconf that print debugging information at a slight cost to library code size and speed',
+)
+
+option(
+  'profiling',
+  type: 'boolean',
+  value: false,
+  description: 'Enable gprof profiling support',
+)

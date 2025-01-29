@@ -56,7 +56,9 @@ pkgconfig_DATA = libxfconf-0.pc
 
 EXTRA_DIST = \
 	xfconf.symbols \
-	libxfconf-0.deps
+	libxfconf-0.deps \
+	meson.build \
+	$(NULL)
 
 # required for gtk-doc
 dist-hook: all

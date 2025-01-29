@@ -3,7 +3,6 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-DG_LOG_DOMAIN=\"xfconfd\" \
 	-DLIBXFCONF_COMPILATION \
-	-DBINDIR=\"$(bindir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	$(PLATFORM_CPPFLAGS)
 
@@ -80,7 +79,9 @@ EXTRA_DIST = \
 	xfconf-backend-perchannel-xml.c \
 	xfconf-backend-perchannel-xml.h \
 	$(service_in_files) \
-	$(systemd_user_in_files)
+	$(systemd_user_in_files) \
+	meson.build \
+	$(NULL)
 
 # required for gtk-doc
 dist-hook: all

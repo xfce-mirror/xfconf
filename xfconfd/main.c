@@ -21,6 +21,9 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
+#ifdef HAVE_XFCE_REVISION_H
+#include "xfce-revision.h"
+#endif
 
 #ifdef HAVE_SIGNAL_H
 #include <signal.h>
@@ -189,7 +192,7 @@ main(int argc,
     g_option_context_free(opt_ctx);
 
     if (print_version) {
-        g_print("Xfconfd " VERSION "\n");
+        g_print("Xfconfd " VERSION_FULL "\n");
         return EXIT_SUCCESS;
     }
 
