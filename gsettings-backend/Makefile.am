@@ -25,3 +25,6 @@ libxfconfgsettingsbackend_la_LIBADD =		\
 	$(GIO_LDFLAGS)				\
 	$(GMODULE_LDFLAGS)
 
+EXTRA_DIST = \
+	meson.build \
+	$(NULL)

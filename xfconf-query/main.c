@@ -19,6 +19,9 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
+#ifdef HAVE_XFCE_REVISION_H
+#include "xfce-revision.h"
+#endif
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
@@ -243,7 +246,7 @@ main(int argc, char **argv)
 
     if (version) {
         g_print("xfconf-query");
-        g_print(" %s\n\n", PACKAGE_VERSION);
+        g_print(" %s\n\n", VERSION_FULL);
         g_print("%s\n", "Copyright (c) 2008-2024");
         g_print("\t%s\n\n", _("The Xfce development team. All rights reserved."));
         g_print(_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
