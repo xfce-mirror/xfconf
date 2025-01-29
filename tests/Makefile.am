@@ -12,4 +12,6 @@ SUBDIRS = \
 
 EXTRA_DIST = \
 	tests-driver.sh \
-	tests-common.h
+	tests-common.h \
+	meson.build \
+	$(NULL)
