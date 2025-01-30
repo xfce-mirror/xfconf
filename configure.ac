@@ -261,6 +261,7 @@ tests/reset-properties/Makefile
 tests/object-bindings/Makefile
 tests/property-changed-signal/Makefile
 tests/others/Makefile
+tests/list-channels/Makefile
 tests/tests-end/Makefile
 xfconf/Makefile
 xfconf/libxfconf-0.pc

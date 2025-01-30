@@ -35,7 +35,7 @@ main(int argc,
     for (i = 0; channels[i]; ++i) {
         g_print("Channel %d: %s\n", i, channels[i]);
     }
-    TEST_OPERATION((i == 1));
+    TEST_OPERATION((i >= 1));
 
     xfconf_tests_end();
 
