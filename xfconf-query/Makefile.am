@@ -2,8 +2,6 @@
 AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-DG_LOG_DOMAIN=\"xfconf-query\" \
-	-DDATADIR=\"$(datadir)\" \
-	-DSRCDIR=\"$(top_srcdir)\" \
 	-DLOCALEDIR=\"$(localedir)\" \
 	$(PLATFORM_CPPFLAGS)
 
@@ -27,3 +25,7 @@ xfconf_query_LDADD = \
 	$(GLIB_LIBS) \
 	$(LIBXFCE4UTIL_LIBS) \
 	$(GIO_UNIX_LIBS)
+
+EXTRA_DIST = \
+	meson.build \
+	$(NULL)

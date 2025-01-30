@@ -28,7 +28,12 @@ dist-hook: ChangeLog
 
 EXTRA_DIST = \
 	m4/introspection.m4 \
-	m4/vapigen.m4
+	m4/vapigen.m4 \
+	meson.build \
+	meson_options.txt \
+	po/meson.build \
+	xfce-revision.h.in \
+	$(NULL)
 
 AM_DISTCHECK_CONFIGURE_FLAGS = \
 	--enable-gtk-doc \

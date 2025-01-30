@@ -101,7 +101,9 @@ EXTRA_DIST = \
 	xfconf-common-private.h \
 	xfconf-dbus.xml.in \
 	xfconf-marshal.list \
-	xfconf-types.c
+	xfconf-types.c \
+	meson.build \
+	$(NULL)
 
 # required for make distcheck
 dist-hook: all

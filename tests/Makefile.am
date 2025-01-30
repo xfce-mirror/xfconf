@@ -7,9 +7,11 @@ SUBDIRS = \
 	property-changed-signal \
 	object-bindings \
 	others \
+	list-channels \
 	tests-end
-#	list-channels
 
 EXTRA_DIST = \
 	tests-driver.sh \
-	tests-common.h
+	tests-common.h \
+	meson.build \
+	$(NULL)

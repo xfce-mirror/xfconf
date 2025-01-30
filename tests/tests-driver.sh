@@ -97,8 +97,7 @@ prepare
 
 $TEST
 ret=$?
-# Test failed, cleanup
-if [ $ret -ne 0 ]; then
-  cleanup
-fi
+
+cleanup
+
 exit $ret

@@ -21,6 +21,7 @@ AC_INIT([xfconf], [xdt_version], [https://gitlab.xfce.org/xfce/xfconf])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_PREREQ([2.69])
 AC_REVISION([xdt_version_build])
+AC_DEFINE([VERSION_FULL], [PACKAGE_VERSION], [Alias for VERSION and PACKAGE_VERSION for meson compatibility])
 
 dnl init automake
 AM_INIT_AUTOMAKE([1.11 dist-bzip2 tar-ustar no-dist-gzip foreign subdir-objects])
@@ -261,6 +262,7 @@ tests/reset-properties/Makefile
 tests/object-bindings/Makefile
 tests/property-changed-signal/Makefile
 tests/others/Makefile
+tests/list-channels/Makefile
 tests/tests-end/Makefile
 xfconf/Makefile
 xfconf/libxfconf-0.pc

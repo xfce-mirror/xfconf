@@ -101,8 +101,23 @@ xfconf_tests_start(void)
     while (!(ret = g_dbus_connection_send_message_with_reply_sync(conn,
                                                                   msg,
                                                                   G_DBUS_SEND_MESSAGE_FLAGS_NONE,
-                                                                  -1, NULL, NULL, NULL)))
+                                                                  -1, NULL, NULL, NULL))
+           || g_dbus_message_get_message_type(ret) != G_DBUS_MESSAGE_TYPE_METHOD_RETURN)
     {
+        if (ret != NULL) {
+            GError *dbus_error = NULL;
+            if (g_dbus_message_to_gerror(ret, &dbus_error)) {
+                g_critical("D-Bus error: %s", dbus_error->message);
+                g_error_free(dbus_error);
+            }
+            g_object_unref(ret);
+            g_object_unref(msg);
+            msg = g_dbus_message_new_method_call(XFCONF_SERVICE_NAME_PREFIX ".XfconfTest",
+                                                 XFCONF_SERVICE_PATH_PREFIX "/Xfconf",
+                                                 "org.freedesktop.DBus.Peer",
+                                                 "Ping");
+        }
+
         now = g_get_monotonic_time();
         if (now - start > WAIT_TIMEOUT * G_USEC_PER_SEC) {
             g_critical("xfconfd failed to start after %d seconds", WAIT_TIMEOUT);
@@ -110,21 +125,10 @@ xfconf_tests_start(void)
             xfconf_tests_end();
             return FALSE;
         }
-    }
-    if (g_dbus_message_get_message_type(ret) != G_DBUS_MESSAGE_TYPE_METHOD_RETURN) {
-        g_critical("xfconfd is not running and can not be autostarted");
 
-        GError *dbus_error = NULL;
-        if (g_dbus_message_to_gerror(ret, &dbus_error)) {
-            g_critical("D-Bus error: %s", dbus_error->message);
-            g_error_free(dbus_error);
-        }
-
-        g_object_unref(msg);
-        g_object_unref(ret);
-        xfconf_tests_end();
-        return FALSE;
+        g_usleep(10000);
     }
+
     g_object_unref(msg);
     g_object_unref(ret);
 
