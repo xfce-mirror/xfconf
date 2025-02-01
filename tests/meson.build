@@ -12,10 +12,10 @@ dirs = [
 ]
 
 foreach dir : dirs
-  sources = run_command('sh', '-c', 'echo @0@/*.c'.format(dir), check: true)
+  sources = run_command('sh', '-c', 'echo @0@'.format(dir) / '*.c', check: true)
 
   foreach source : sources.stdout().strip().split(' ')
-    bin = source.split('/')[-1].substring(0, -2)
+    bin = fs.stem(source)
 
     e = executable(
       bin,
