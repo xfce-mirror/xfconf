@@ -91,6 +91,8 @@ if get_option('introspection')
       'Xfconf',
     ],
     symbol_prefix: [
+      'xfconf_get',
+      'xfconf_g',
       'xfconf',
     ],
     export_packages: 'lib@0@'.format(xfconf_pkgname),
