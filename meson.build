@@ -15,6 +15,7 @@ cc = meson.get_compiler('c')
 pkgconfig = import('pkgconfig')
 gnome = import('gnome')
 i18n = import('i18n')
+fs = import('fs')
 
 dependency_versions = {
   'glib': '>= 2.72.0',
