@@ -22,9 +22,9 @@ if get_option('gsettings-backend')
       xfconf,
     ],
     install: true,
-    install_dir: gio.get_variable(pkgconfig: 'giomoduledir').replace(
-      gio.get_variable(pkgconfig: 'libdir'),
-      get_option('prefix') / get_option('libdir'),
+    install_dir: gio.get_variable(
+      pkgconfig: 'giomoduledir',
+      pkgconfig_define: ['libdir', get_option('prefix') / get_option('libdir')]
     ),
   )
 endif

@@ -3,7 +3,7 @@ project(
   'c',
 version : '4.20.0-dev',
   license : 'GPL-2',
-  meson_version : '>= 0.58.0',
+  meson_version : '>= 0.54.0',
   default_options : ['c_std=gnu11', 'buildtype=debugoptimized', 'warning_level=2']
 )
 
@@ -69,9 +69,9 @@ bash_completion_dir = get_option('bash-completion-dir')
 if bash_completion_dir == ''
   bash_completion = dependency('bash-completion', required: false)
   if bash_completion.found()
-    bash_completion_dir = bash_completion.get_variable(pkgconfig: 'completionsdir').replace(
-      bash_completion.get_variable(pkgconfig: 'datadir'),
-      get_option('prefix') / get_option('datadir'),
+    bash_completion_dir = bash_completion.get_variable(
+      pkgconfig: 'completionsdir',
+      pkgconfig_define: ['datadir', get_option('prefix') / get_option('datadir')]
     )
   else
     bash_completion_dir = get_option('prefix') / get_option('datadir') / 'bash-completion' / 'completions'
@@ -100,18 +100,12 @@ types = [
   'gboolean',
   'gpointer',
 ]
-glib_cflags = run_command(
-  find_program('pkg-config', required: true),
-  '--cflags',
-  'glib-2.0',
-  check: true
-).stdout().strip().split(' ')
 foreach type : types
   feature_cflags += '-DALIGNOF_@0@=@1@'.format(
     type.to_upper(),
     cc.alignment(
       type,
-      args: glib_cflags,
+      dependencies: glib,
       prefix: '#include <glib.h>'
     )
   )
