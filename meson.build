@@ -100,18 +100,13 @@ types = [
   'gboolean',
   'gpointer',
 ]
-glib_cflags = run_command(
-  find_program('pkg-config', required: true),
-  '--cflags',
-  'glib-2.0',
-  check: true
-).stdout().strip().split(' ')
+
 foreach type : types
   feature_cflags += '-DALIGNOF_@0@=@1@'.format(
     type.to_upper(),
     cc.alignment(
       type,
-      args: glib_cflags,
+      dependencies: glib,
       prefix: '#include <glib.h>'
     )
   )
