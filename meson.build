@@ -69,9 +69,9 @@ bash_completion_dir = get_option('bash-completion-dir')
 if bash_completion_dir == ''
   bash_completion = dependency('bash-completion', required: false)
   if bash_completion.found()
-    bash_completion_dir = bash_completion.get_variable(pkgconfig: 'completionsdir').replace(
-      bash_completion.get_variable(pkgconfig: 'datadir'),
-      get_option('prefix') / get_option('datadir'),
+    bash_completion_dir = bash_completion.get_variable(
+      pkgconfig: 'completionsdir',
+      pkgconfig_define: ['datadir', get_option('prefix') / get_option('datadir')]
     )
   else
     bash_completion_dir = get_option('prefix') / get_option('datadir') / 'bash-completion' / 'completions'
