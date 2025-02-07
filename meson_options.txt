@@ -67,3 +67,10 @@ option(
   value: false,
   description: 'Enable gprof profiling support',
 )
+
+option(
+  'tests',
+  type: 'boolean',
+  value: true,
+  description: 'Whether or not to build test programs',
+)
