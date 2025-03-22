@@ -9,6 +9,7 @@ dnl
 dnl version info
 m4_define([libxfconf_verinfo], [3:0:0])
 m4_define([libxfconf_version_api], [0])
+m4_define([copyright_year], [2025])
 XDT_VERSION_INIT([4.20.0], [git])
 
 dnl minimum required versions
@@ -16,12 +17,15 @@ m4_define([glib_min_version], [2.72.0])
 m4_define([libxfce4util_min_version], [4.17.3])
 
 dnl init autoconf
-AC_COPYRIGHT([Copyright (c) 2007-2024 The Xfce development team])
+AC_COPYRIGHT([Copyright (c) 2007-copyright_year() The Xfce development team])
 AC_INIT([xfconf], [xdt_version], [https://gitlab.xfce.org/xfce/xfconf])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_PREREQ([2.69])
 AC_REVISION([xdt_version_build])
 AC_DEFINE([VERSION_FULL], [PACKAGE_VERSION], [Alias for VERSION and PACKAGE_VERSION for meson compatibility])
+COPYRIGHT_YEAR=copyright_year()
+AC_DEFINE_UNQUOTED([COPYRIGHT_YEAR], ["$COPYRIGHT_YEAR"], [Copyright year])
+AC_SUBST([COPYRIGHT_YEAR])
 
 dnl init automake
 AM_INIT_AUTOMAKE([1.11 dist-bzip2 tar-ustar no-dist-gzip foreign subdir-objects])

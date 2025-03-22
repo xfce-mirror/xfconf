@@ -3,12 +3,13 @@ project(
   'c',
 version : '4.20.0-dev',
   license : 'GPL-2.0-or-later',
-  meson_version : '>= 0.54.0',
+  meson_version : '>= 0.56.0',
   default_options : ['c_std=gnu11', 'buildtype=debugoptimized', 'warning_level=2']
 )
 
 project_namespace = 'xfce'
 pkgdatadir = get_option('prefix') / get_option('datadir') / meson.project_name()
+copyright_year = '2025'
 libxfconf_version_api = '0'
 
 cc = meson.get_compiler('c')
@@ -200,6 +201,7 @@ extra_cflags += [
   '-DVERSION_SHORT="@0@"'.format(version_short),
   '-DPACKAGE_STRING="@0@ @1@"'.format(meson.project_name(), meson.project_version()),
   '-DPACKAGE_DATADIR="@0@"'.format(pkgdatadir),
+  '-DCOPYRIGHT_YEAR="@0@"'.format(copyright_year),
   '-DPACKAGE_LOCALE_DIR="@0@"'.format(get_option('prefix') / get_option('localedir')),
   '-DPACKAGE_BUGREPORT="https://gitlab.xfce.org/@0@/@1@/-/issues"'.format(project_namespace, meson.project_name()),
   '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
