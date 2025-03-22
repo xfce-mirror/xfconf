@@ -12,6 +12,15 @@ if get_option('gtk-doc')
     configuration: conf_data,
   )
 
+  configure_file(
+    configuration: configuration_data({
+      'COPYRIGHT_YEAR': copyright_year,
+    }),
+    input: 'xfconf-docs.xml.in',
+    output: 'xfconf-docs.xml',
+    install: false,
+  )
+
   gnome.gtkdoc(
     xfconf_doc_name,
     src_dir: [
@@ -30,7 +39,7 @@ if get_option('gtk-doc')
       'xfconf-lifecycle-manager.h',
       'xfconf-locking-utils.h',
     ],
-    main_xml: 'xfconf-docs.xml',
+    main_xml: meson.project_build_root() / 'docs' / 'reference' / 'xfconf-docs.xml',
     dependencies: xfconf_dep,
     gobject_typesfile: 'xfconf.types',
     install: true,
