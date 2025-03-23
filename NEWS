@@ -1,3 +1,25 @@
+4.21.0 (2025-03-23)
+======
+- build: Automate copyright year management
+- meson-build: Add missing function checks
+- meson-build: Use SPDX license expression
+- meson-build: Add tests option
+- meson-build: Use 'pkgconfig_define' in dep.get_variable()
+- meson-build: Use 'dependencies' in cc.alignment()
+- meson-build: Update debug/optimization flag management
+- meson-build: Add missing gir prefixes
+- meson-build: Use path builder and fs instead of literal '/'
+- Add meson build
+- tests: Always cleanup xfconfd process
+- tests: Enable t-list-channels test
+- tests: Fix test failure because of xfconfd not running
+- Migrate to xdt-gen-visibility and xdt-check-abi
+- channel: Complete and harmonize docs of get_string_list()/get_arrayv()
+- channel: Warn in case of failure in get_string_list()
+- channel: Fix get_arrayv() return value
+- Translation Updates:
+  Albanian, Slovak
+
 4.20.0 (2024-12-15)
 ======
 
