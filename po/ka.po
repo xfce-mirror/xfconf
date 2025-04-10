@@ -1,0 +1,326 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfconf.master package.
+# 
+# Translators:
+# ზურაბი დავითაშვილი <zurabi@tuta.io>, 2020
+# ზურაბი დავითაშვილი <zurabi@tuta.io>, 2020
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfconf\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2023-05-30 00:55+0200\n"
+"PO-Revision-Date: 2013-07-02 20:48+0000\n"
+"Last-Translator: ზურაბი დავითაშვილი <zurabi@tuta.io>, 2020\n"
+"Language-Team: Georgian (http://app.transifex.com/xfce/xfconf/language/ka/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ka\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: xfconf/xfconf-cache.c:987
+msgid "Failed to make ResetProperty DBus call"
+msgstr "DBus-დან ResetProperty ფუნქციის გამოძახება ჩავარდა"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:276
+#, c-format
+msgid "Unable to create configuration directory \"%s\""
+msgstr "ვერ შევქმენი კონფიგურაციის საქაღალდე \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:321 xfconfd/xfconf-daemon.c:167
+#, c-format
+msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
+msgstr "თვისების \"%s\" არხზე \"%s\" შეცვლისას წვდომა აკრძალულია"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:386
+#: xfconfd/xfconf-backend-perchannel-xml.c:468
+#: xfconfd/xfconf-backend-perchannel-xml.c:633
+#: xfconfd/xfconf-backend-perchannel-xml.c:653 xfconf-query/main.c:335
+#, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\""
+msgstr "თვისება \"%s\" არ არსებობს არხზე \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:600
+#, c-format
+msgid "Unable to remove channel \"%s\": %s"
+msgstr "წაშლის შეცდომა არხისთვის \"%s\": %s"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1297
+#, c-format
+msgid "Invalid type for <property>: \"%s\""
+msgstr "არასწორი ტიპი <თვისებისთვის>: \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1313
+#: xfconfd/xfconf-backend-perchannel-xml.c:1389
+#, c-format
+msgid "Unable to parse value of type \"%s\" from \"%s\""
+msgstr "ვერ დავამუშავე მნიშვნელობა ტიპით \"%s\" \"%s'-დან"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1369
+msgid "The type attribute of <value> cannot be an array"
+msgstr "<მნიშვნელობის> ტიპის ატრიბუტი მასივი არ უნდა იყოს"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1378
+#, c-format
+msgid "Invalid type for <value>: \"%s\""
+msgstr "არასწორი ტიპი <მნიშვნელობისთვის>: \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1654
+#: xfconfd/xfconf-backend-perchannel-xml.c:1904
+#, c-format
+msgid "Channel \"%s\" does not exist"
+msgstr "არხი \"%s\" არ არსებობს"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1966
+#, c-format
+msgid "Unable to write channel \"%s\": %s"
+msgstr "ჩაწერის შეცდომა არხში \"%s\": %s"
+
+#: xfconfd/xfconf-backend-factory.c:77
+#, c-format
+msgid "Unable to find Xfconf backend of type \"%s\""
+msgstr "ვერ ვიპოვე Xfconf-ის უკანაბოლო ტიპით \"%s\""
+
+#: xfconfd/xfconf-backend.c:127
+msgid "Property names must start with a '/' character"
+msgstr "თვისება უნდა იწყებოდეს სიმბოლოთი '/'"
+
+#: xfconfd/xfconf-backend.c:136
+msgid "The root element ('/') is not a valid property name"
+msgstr "ძირითადი ელემენტი (\"/\") არასწორი თვისების სახელია"
+
+#: xfconfd/xfconf-backend.c:151
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
+"separator"
+msgstr "თვისების სახელები, მხოლოდ, შეიძლება, შეიცავდეს ASCII სიმბოლოებს A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' და'>', ასევე'/', როგორც გამყოფი"
+
+#: xfconfd/xfconf-backend.c:160
+msgid "Property names cannot have two or more consecutive '/' characters"
+msgstr "თვისების სახელები არ შეიძლება, ორი '/'-ით იწყებოდეს"
+
+#: xfconfd/xfconf-backend.c:171
+msgid "Property names cannot end with a '/' character"
+msgstr "თვისების სახელები არ შეიძლება, '/'-ით მთავრდებოდეს"
+
+#: xfconfd/xfconf-backend.c:188
+msgid "Channel name cannot be an empty string"
+msgstr "არხის სახელი ცარიელი სტრიქონი ვერ იქნება"
+
+#: xfconfd/xfconf-backend.c:203
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
+" '|', ']', '[', ':', ',', '.', '_', and '-'"
+msgstr "არხის სახელები შეიძლება, მხოლოდ, შეიცავდეს ASCII სიმბოლოებს A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', და '-'-ს"
+
+#: xfconfd/xfconf-backend.c:425
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr "თვისების სახელი, მხოლოდ, შეიძლება ცარიელი, ან '/' იყოს, თუ მითითებულია რეკურსიული ჩამოყრა"
+
+#: xfconfd/main.c:152
+msgid "Prints the xfconfd version."
+msgstr "გამოიტანს xfconfd-ის ვერსიას."
+
+#: xfconfd/main.c:154
+msgid ""
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "გამოსაყენებელი კონფიგურაციის უკანაბოლოები.  პირველი უკანაბოლო, რომელიც მითითებულია, გაიხსნება ჩაწერა-წაკითხვის რეჟიმში, დანარჩენები კი - მხოლოდ-წაკითხვადში."
+
+#: xfconfd/main.c:157
+msgid "Fork into background after starting; only useful for testing purposes"
+msgstr "ფონში გადატანა გაშვების შემდეგ. გამოსადეგია, მხოლოდ შემოწმების მიზნით"
+
+#: xfconfd/main.c:176
+msgid "Xfce Configuration Daemon"
+msgstr "Xfce-ის კონფიგურაციის დემონი"
+
+#: xfconfd/main.c:181
+msgid "Xfce configuration daemon"
+msgstr "Xfce-ის კონფიგურაციის დემონი"
+
+#: xfconfd/main.c:183
+msgid "Report bugs to http://bugs.xfce.org/\n"
+msgstr "შეცდომებზე მოგვწერეთ http://bugs.xfce.org/\n"
+
+#: xfconfd/main.c:186
+#, c-format
+msgid "Error parsing options: %s\n"
+msgstr "პარამეტრების დამუშავების შეცდომა: %s\n"
+
+#: xfconfd/xfconf-daemon.c:222
+#, c-format
+msgid "GType transformation failed \"%s\""
+msgstr "GType-ის გარდაქმნა ჩავარდა \"%s\""
+
+#: xfconfd/xfconf-daemon.c:482
+msgid "No backends could be started"
+msgstr "უკანაბოლოების გაშვება შეუძლებელია"
+
+#: xfconf-query/main.c:84 xfconf-query/main.c:89
+msgid "set"
+msgstr "დაყენება"
+
+#: xfconf-query/main.c:94
+msgid "reset"
+msgstr "ჩამოყრა"
+
+#: xfconf-query/main.c:170
+msgid "Version information"
+msgstr "ვერსიის შესახებ ინფორმაცია"
+
+#: xfconf-query/main.c:174
+msgid "The channel to query/modify"
+msgstr "არხი მოთხოვნისთვის/შესაცვლელად"
+
+#: xfconf-query/main.c:178
+msgid "The property to query/modify"
+msgstr "თვისება მოთხოვნისთვის/შესაცვლელად"
+
+#: xfconf-query/main.c:182
+msgid "The new value to set for the property"
+msgstr "ახალი მნიშვნელობა ამ თვისებისთვის"
+
+#: xfconf-query/main.c:186
+msgid "List properties (or channels if -c is not specified)"
+msgstr "თვისებების სია (ან არხების, თუ -c მითითებული არაა)"
+
+#: xfconf-query/main.c:190
+msgid "Print property and value in combination with -l or -m"
+msgstr "თვისების და მნიშვნელობის გამოტანა -l ან -m-თან ერთად"
+
+#: xfconf-query/main.c:194
+msgid "Create a new property if it does not already exist"
+msgstr "ახალი თვისების შექმნა, თუ ის უკვე არ არსებობს"
+
+#: xfconf-query/main.c:198
+msgid "Specify the property value type"
+msgstr "მიუთითეთ თვისების მნიშვნელობის ტიპი"
+
+#: xfconf-query/main.c:202
+msgid "Reset property"
+msgstr "თვისების ჩამოყრა"
+
+#: xfconf-query/main.c:206
+msgid "Recursive (use with -r)"
+msgstr "რეკურსიული (გამოიყენეთ -r-სთან ერთად)"
+
+#: xfconf-query/main.c:210
+msgid "Force array even if only one element"
+msgstr "მასივი ნაძალადევად მაშინაც კი, თუ ელემენტების რაოდენობა ერთია"
+
+#: xfconf-query/main.c:214
+msgid "Invert an existing boolean property"
+msgstr "არსებული ლოგიკური თვისების გადართვა"
+
+#: xfconf-query/main.c:218
+msgid "Monitor a channel for property changes"
+msgstr "არხის მონიტორინგი თვისების ცვლილებებისთვის"
+
+#: xfconf-query/main.c:234
+msgid "- Xfconf commandline utility"
+msgstr "- Xfconf ბრძანების სტრიქონის პროგრამა"
+
+#: xfconf-query/main.c:239
+#, c-format
+msgid "Option parsing failed: %s"
+msgstr "პარამეტრების დამუშავების შეცდომა: %s"
+
+#: xfconf-query/main.c:249
+msgid "The Xfce development team. All rights reserved."
+msgstr "Xfce-ის განვითარების ჯგუფი. ყველა უფლება დაცულია."
+
+#: xfconf-query/main.c:250
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr "გთხოვთ, შეცდომების შესახებ გვაცნობეთ აქ <%s>."
+
+#: xfconf-query/main.c:259
+msgid "No property specified"
+msgstr "თვისება მითითებული არაა"
+
+#: xfconf-query/main.c:265
+msgid "--create and --reset options can not be used together"
+msgstr "პარამეტრებს --create და --reset ერთად ვერ გამოიყენებთ"
+
+#: xfconf-query/main.c:271
+msgid "--create and --reset options can not be used together with --list"
+msgstr "პარამეტრებს --create და --reset ვერ გამოიყენებთ პარამეტრით --list"
+
+#: xfconf-query/main.c:277
+#, c-format
+msgid "Failed to init libxfconf: %s"
+msgstr "libxfconf-ის ინიციალიზაციის შეცდომა: %s"
+
+#: xfconf-query/main.c:288
+msgid "Channels:"
+msgstr "არხები:"
+
+#: xfconf-query/main.c:313
+#, c-format
+msgid "Start monitoring channel \"%s\":"
+msgstr "მონიტორინგის გაშვება არხისთვის \"%s\":"
+
+#: xfconf-query/main.c:351 xfconf-query/main.c:462 xfconf-query/main.c:535
+msgid "Failed to set property"
+msgstr "თვისების დაყენების შეცდომა"
+
+#: xfconf-query/main.c:355
+msgid "--toggle only works with boolean values"
+msgstr "--toggle მხოლოდ, ლოგიკურ მნიშვნელობებთან მუშაობს"
+
+#: xfconf-query/main.c:364 xfconf-query/main.c:383
+msgid "(unknown)"
+msgstr "(უცნობი)"
+
+#: xfconf-query/main.c:373
+#, c-format
+msgid "Value is an array with %d items:"
+msgstr "მნიშვნელობა მასივია %d ელემენტით:"
+
+#: xfconf-query/main.c:397
+#, c-format
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\". If a new property should "
+"be created, use the --create option"
+msgstr "თვისება \"%s\" არ არსებობს არხზე \"%s\". თუ გნებავთ, ახალი თვისება შექმნათ, გამოიყენეთ პარამეტრი --create"
+
+#: xfconf-query/main.c:406
+msgid "When creating a new property, the value type must be specified"
+msgstr "ახალი თვისების შექმნისას მნიშვნელობის ტიპის მითითება აუცილებელია"
+
+#: xfconf-query/main.c:417
+msgid "Failed to get the existing type for the value"
+msgstr "მნიშვნელობისთვის არსებული ტიპის მიღება შეუძლებელია"
+
+#: xfconf-query/main.c:436
+msgid "Unable to determine the type of the value"
+msgstr "მნიშვნელობის ტიპის დადგენა შეუძლებელია"
+
+#: xfconf-query/main.c:443
+msgid "A value type must be specified to change an array into a single value"
+msgstr "მნიშვნელობის ტიპის მითითება აუცილებელია მასივის ერთ მნიშვნელობაში გადაყვანისას"
+
+#: xfconf-query/main.c:454 xfconf-query/main.c:519
+#, c-format
+msgid "Unable to convert \"%s\" to type \"%s\""
+msgstr "\"%s\" ტიპის \"%s\" ტიპში გადაყვანა შეუძლებელია"
+
+#: xfconf-query/main.c:488
+#, c-format
+msgid "There are %d new values, but only %d types could be determined"
+msgstr "არსებობს %d ახალი მნიშვნელობა, მაგრამ დადგენილია, მხოლოდ, %d-ის ტიპი"
+
+#: xfconf-query/main.c:510
+#, c-format
+msgid "Unable to determine type of value at index %d"
+msgstr "ვერ დავადგინე მნიშვნელობის ტიპი ინდექსით %d"
+
+#: xfconf-query/main.c:563
+#, c-format
+msgid "Channel \"%s\" contains no properties"
+msgstr "არხს \"%s\" თვისებები არ გააჩნია"
