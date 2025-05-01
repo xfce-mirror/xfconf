@@ -59,7 +59,8 @@ executable(
   ],
   c_args: c_args,
   include_directories: [
-    include_directories('..'),
+    '..',
+    '..' / 'common',
   ],
   dependencies: [
     glib,

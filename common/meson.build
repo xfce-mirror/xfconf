@@ -11,14 +11,12 @@ xfconf_common_sources += gnome.genmarshal(
 )
 
 xfconf_visibility_sources = []
-xfconf_visibility_sources += custom_target(
-  'xfconf-visibility.h',
+xfconf_visibility_sources += configure_file(
   input: '..' / 'xfconf' / 'xfconf.symbols',
   output: 'xfconf-visibility.h',
   command: [xdt_gen_visibility, '--kind=header', '@INPUT@', '@OUTPUT@'],
 )
-xfconf_visibility_sources += custom_target(
-  'xfconf-visibility.c',
+xfconf_visibility_sources += configure_file(
   input: '..' / 'xfconf' / 'xfconf.symbols',
   output: 'xfconf-visibility.c',
   command: [xdt_gen_visibility, '--kind=source', '@INPUT@', '@OUTPUT@'],

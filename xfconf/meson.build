@@ -47,7 +47,8 @@ xfconf = library(
     '-DLIBXFCONF_COMPILATION=1',
   ],
   include_directories: [
-    include_directories('..'),
+    '..',
+    '..' / 'common',
   ],
   gnu_symbol_visibility: gnu_symbol_visibility,
   dependencies: xfconf_deps,
