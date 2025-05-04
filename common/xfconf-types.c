@@ -96,7 +96,7 @@ gvalue_from_short(const GValue *src_value,
         }
         xfconf_g_value_set_uint16(dest_value, (guint16)dest);
     } else if (G_VALUE_TYPE(dest_value) == XFCONF_TYPE_INT16) {
-        if (dest > (guint64)SHRT_MAX || dest < (guint64)SHRT_MIN) {
+        if (dest > (guint64)SHRT_MAX && dest < (guint64)SHRT_MIN) {
             g_warning("Converting type \"%s\" to \"%s\" results in overflow",
                       G_VALUE_TYPE_NAME(src_value),
                       G_VALUE_TYPE_NAME(dest_value));
