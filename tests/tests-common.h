@@ -20,10 +20,6 @@
 #ifndef __XFCONF_TESTS_COMMON_H__
 #define __XFCONF_TESTS_COMMON_H__
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #ifdef HAVE_SYS_TYPES_H
 #include <sys/types.h>
 #endif
