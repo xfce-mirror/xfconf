@@ -33,17 +33,17 @@ See [NEWS](https://gitlab.xfce.org/xfce/xfconf/-/blob/master/NEWS) for details o
 From source: 
 
     % cd xfconf
-    % ./autogen.sh
-    % make
-    % make install
+    % meson setup build
+    % meson compile -C build
+    % meson install -C build
 
 From release tarball:
 
-    % tar xf xfconf-<version>.tar.bz2
+    % tar xf xfconf-<version>.tar.xz
     % cd xfconf-<version>
-    % ./configure
-    % make
-    % make install
+    % meson setup build
+    % meson compile -C build
+    % meson install -C build
 
 ### Reporting Bugs
 
