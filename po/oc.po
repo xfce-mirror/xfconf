@@ -233,7 +233,7 @@ msgstr "L'analisi de l'opcion a fracassat : %s"
 
 #: xfconf-query/main.c:249
 msgid "The Xfce development team. All rights reserved."
-msgstr "L'equipa de desvolopament de XFCE. Totes los dreches reservats."
+msgstr "L'equipa de desvolopament de XFCE. Totes los dreits reservats."
 
 #: xfconf-query/main.c:250
 #, c-format
