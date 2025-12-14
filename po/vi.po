@@ -1,0 +1,325 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfconf.master package.
+# 
+# Translators:
+# Loc Huynh <https://github.com/hthienloc>, 2025
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfconf\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2023-05-30 00:55+0200\n"
+"PO-Revision-Date: 2013-07-02 20:48+0000\n"
+"Last-Translator: Loc Huynh <https://github.com/hthienloc>, 2025\n"
+"Language-Team: Vietnamese (http://app.transifex.com/xfce/xfconf/language/vi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: xfconf/xfconf-cache.c:987
+msgid "Failed to make ResetProperty DBus call"
+msgstr "Không thực hiện được lệnh gọi ResetProperty DBus"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:276
+#, c-format
+msgid "Unable to create configuration directory \"%s\""
+msgstr "Không thể tạo thư mục cấu hình \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:321 xfconfd/xfconf-daemon.c:167
+#, c-format
+msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
+msgstr "Quyền bị từ chối khi sửa đổi thuộc tính \"%s\" trên kênh \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:386
+#: xfconfd/xfconf-backend-perchannel-xml.c:468
+#: xfconfd/xfconf-backend-perchannel-xml.c:633
+#: xfconfd/xfconf-backend-perchannel-xml.c:653 xfconf-query/main.c:335
+#, c-format
+msgid "Property \"%s\" does not exist on channel \"%s\""
+msgstr "Thuộc tính \"%s\" không tồn tại trên kênh \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:600
+#, c-format
+msgid "Unable to remove channel \"%s\": %s"
+msgstr "Không thể xóa kênh \"%s\": %s"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1297
+#, c-format
+msgid "Invalid type for <property>: \"%s\""
+msgstr "Loại không hợp lệ cho <property>: \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1313
+#: xfconfd/xfconf-backend-perchannel-xml.c:1389
+#, c-format
+msgid "Unable to parse value of type \"%s\" from \"%s\""
+msgstr "Không thể phân tích giá trị của loại \"%s\" từ \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1369
+msgid "The type attribute of <value> cannot be an array"
+msgstr "Thuộc tính type của <value> không thể là mảng"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1378
+#, c-format
+msgid "Invalid type for <value>: \"%s\""
+msgstr "Loại không hợp lệ cho <value>: \"%s\""
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1654
+#: xfconfd/xfconf-backend-perchannel-xml.c:1904
+#, c-format
+msgid "Channel \"%s\" does not exist"
+msgstr "Kênh \"%s\" không tồn tại"
+
+#: xfconfd/xfconf-backend-perchannel-xml.c:1966
+#, c-format
+msgid "Unable to write channel \"%s\": %s"
+msgstr "Không thể ghi kênh \"%s\": %s"
+
+#: xfconfd/xfconf-backend-factory.c:77
+#, c-format
+msgid "Unable to find Xfconf backend of type \"%s\""
+msgstr "Không thể tìm thấy phần phụ trợ Xfconf loại \"%s\""
+
+#: xfconfd/xfconf-backend.c:127
+msgid "Property names must start with a '/' character"
+msgstr "Tên thuộc tính phải bắt đầu bằng ký tự '/'"
+
+#: xfconfd/xfconf-backend.c:136
+msgid "The root element ('/') is not a valid property name"
+msgstr "Phần tử gốc ('/') không phải là tên thuộc tính hợp lệ"
+
+#: xfconfd/xfconf-backend.c:151
+msgid ""
+"Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
+"'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
+"separator"
+msgstr "Tên thuộc tính chỉ có thể bao gồm các ký tự ASCII A-Z, a-z, 0-9, '_', '-', ':', '.', ',', '[', ']', '{', '}', '<' và '>', cũng như '/' làm dấu phân cách"
+
+#: xfconfd/xfconf-backend.c:160
+msgid "Property names cannot have two or more consecutive '/' characters"
+msgstr "Tên thuộc tính không thể có hai hoặc nhiều ký tự '/' liên tiếp"
+
+#: xfconfd/xfconf-backend.c:171
+msgid "Property names cannot end with a '/' character"
+msgstr "Tên thuộc tính không thể kết thúc bằng ký tự '/'"
+
+#: xfconfd/xfconf-backend.c:188
+msgid "Channel name cannot be an empty string"
+msgstr "Tên kênh không thể là một chuỗi trống"
+
+#: xfconfd/xfconf-backend.c:203
+msgid ""
+"Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
+" '|', ']', '[', ':', ',', '.', '_', and '-'"
+msgstr "Tên kênh chỉ có thể bao gồm các ký tự ASCII A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_' và '-'"
+
+#: xfconfd/xfconf-backend.c:425
+msgid ""
+"The property name can only be empty or \"/\" if a recursive reset was "
+"specified"
+msgstr "Tên thuộc tính chỉ có thể để trống hoặc \"/\" nếu đặt lại đệ quy được chỉ định"
+
+#: xfconfd/main.c:152
+msgid "Prints the xfconfd version."
+msgstr "In phiên bản xfconfd."
+
+#: xfconfd/main.c:154
+msgid ""
+"Configuration backends to use.  The first backend specified is opened "
+"read/write; the others, read-only."
+msgstr "Cấu hình phụ trợ để sử dụng.  Phần phụ trợ đầu tiên được chỉ định sẽ được mở đọc/ghi; những cái khác, chỉ đọc."
+
+#: xfconfd/main.c:157
+msgid "Fork into background after starting; only useful for testing purposes"
+msgstr "Chuyển sang nền sau khi bắt đầu; chỉ hữu ích cho mục đích thử nghiệm"
+
+#: xfconfd/main.c:176
+msgid "Xfce Configuration Daemon"
+msgstr "Trình nền cấu hình Xfce"
+
+#: xfconfd/main.c:181
+msgid "Xfce configuration daemon"
+msgstr "Trình nền cấu hình Xfce"
+
+#: xfconfd/main.c:183
+msgid "Report bugs to http://bugs.xfce.org/\n"
+msgstr "Báo cáo lỗi tới http://bugs.xfce.org/\n"
+
+#: xfconfd/main.c:186
+#, c-format
+msgid "Error parsing options: %s\n"
+msgstr "Tùy chọn phân tích cú pháp lỗi: %s\n"
+
+#: xfconfd/xfconf-daemon.c:222
+#, c-format
+msgid "GType transformation failed \"%s\""
+msgstr "Chuyển đổi GType không thành công \"%s\""
+
+#: xfconfd/xfconf-daemon.c:482
+msgid "No backends could be started"
+msgstr "Không có chương trình phụ trợ nào có thể được bắt đầu"
+
+#: xfconf-query/main.c:84 xfconf-query/main.c:89
+msgid "set"
+msgstr "cài"
+
+#: xfconf-query/main.c:94
+msgid "reset"
+msgstr "cài lại"
+
+#: xfconf-query/main.c:170
+msgid "Version information"
+msgstr "Thông tin phiên bản"
+
+#: xfconf-query/main.c:174
+msgid "The channel to query/modify"
+msgstr "Kênh để truy vấn/sửa đổi"
+
+#: xfconf-query/main.c:178
+msgid "The property to query/modify"
+msgstr "Thuộc tính để truy vấn/sửa đổi"
+
+#: xfconf-query/main.c:182
+msgid "The new value to set for the property"
+msgstr "Giá trị mới để đặt cho thuộc tính"
+
+#: xfconf-query/main.c:186
+msgid "List properties (or channels if -c is not specified)"
+msgstr "Liệt kê các thuộc tính (hoặc kênh nếu -c không được chỉ định)"
+
+#: xfconf-query/main.c:190
+msgid "Print property and value in combination with -l or -m"
+msgstr "In thuộc tính và giá trị kết hợp với -l hoặc -m"
+
+#: xfconf-query/main.c:194
+msgid "Create a new property if it does not already exist"
+msgstr "Tạo một thuộc tính mới nếu nó chưa tồn tại"
+
+#: xfconf-query/main.c:198
+msgid "Specify the property value type"
+msgstr "Chỉ định loại giá trị thuộc tính"
+
+#: xfconf-query/main.c:202
+msgid "Reset property"
+msgstr "Đặt lại thuộc tính"
+
+#: xfconf-query/main.c:206
+msgid "Recursive (use with -r)"
+msgstr "Đệ quy (sử dụng với -r)"
+
+#: xfconf-query/main.c:210
+msgid "Force array even if only one element"
+msgstr "Buộc mảng ngay cả khi chỉ có một phần tử"
+
+#: xfconf-query/main.c:214
+msgid "Invert an existing boolean property"
+msgstr "Đảo ngược một thuộc tính boolean hiện có"
+
+#: xfconf-query/main.c:218
+msgid "Monitor a channel for property changes"
+msgstr "Giám sát kênh để thay đổi thuộc tính"
+
+#: xfconf-query/main.c:234
+msgid "- Xfconf commandline utility"
+msgstr "- Tiện ích dòng lệnh Xfconf"
+
+#: xfconf-query/main.c:239
+#, c-format
+msgid "Option parsing failed: %s"
+msgstr "Phân tích cú pháp tùy chọn không thành công: %s"
+
+#: xfconf-query/main.c:249
+msgid "The Xfce development team. All rights reserved."
+msgstr "Nhóm phát triển Xfce. Tất cả các quyền được bảo lưu."
+
+#: xfconf-query/main.c:250
+#, c-format
+msgid "Please report bugs to <%s>."
+msgstr "Vui lòng thông báo lỗi đến <%s>."
+
+#: xfconf-query/main.c:259
+msgid "No property specified"
+msgstr "Không có thuộc tính nào được chỉ định"
+
+#: xfconf-query/main.c:265
+msgid "--create and --reset options can not be used together"
+msgstr "Các tùy chọn --create và --reset không thể được sử dụng cùng nhau"
+
+#: xfconf-query/main.c:271
+msgid "--create and --reset options can not be used together with --list"
+msgstr "Các tùy chọn --create và --reset không thể được sử dụng cùng với --list"
+
+#: xfconf-query/main.c:277
+#, c-format
+msgid "Failed to init libxfconf: %s"
+msgstr "Không thể khởi tạo libxfconf: %s"
+
+#: xfconf-query/main.c:288
+msgid "Channels:"
+msgstr "Kênh:"
+
+#: xfconf-query/main.c:313
+#, c-format
+msgid "Start monitoring channel \"%s\":"
+msgstr "Bắt đầu theo dõi kênh \"%s\":"
+
+#: xfconf-query/main.c:351 xfconf-query/main.c:462 xfconf-query/main.c:535
+msgid "Failed to set property"
+msgstr "Không thể đặt thuộc tính"
+
+#: xfconf-query/main.c:355
+msgid "--toggle only works with boolean values"
+msgstr "--toggle chỉ hoạt động với các giá trị boolean"
+
+#: xfconf-query/main.c:364 xfconf-query/main.c:383
+msgid "(unknown)"
+msgstr "(không rõ)"
+
+#: xfconf-query/main.c:373
+#, c-format
+msgid "Value is an array with %d items:"
+msgstr "Giá trị là một mảng có các mục %d:"
+
+#: xfconf-query/main.c:397
+#, c-format
+msgid ""
+"Property \"%s\" does not exist on channel \"%s\". If a new property should "
+"be created, use the --create option"
+msgstr "Thuộc tính \"%s\" không tồn tại trên kênh \"%s\". Nếu cần tạo một thuộc tính mới, hãy sử dụng tùy chọn --create"
+
+#: xfconf-query/main.c:406
+msgid "When creating a new property, the value type must be specified"
+msgstr "Khi tạo thuộc tính mới, loại giá trị phải được chỉ định"
+
+#: xfconf-query/main.c:417
+msgid "Failed to get the existing type for the value"
+msgstr "Không thể lấy loại hiện tại cho giá trị"
+
+#: xfconf-query/main.c:436
+msgid "Unable to determine the type of the value"
+msgstr "Không thể xác định loại giá trị"
+
+#: xfconf-query/main.c:443
+msgid "A value type must be specified to change an array into a single value"
+msgstr "Một loại giá trị phải được chỉ định để thay đổi một mảng thành một giá trị duy nhất"
+
+#: xfconf-query/main.c:454 xfconf-query/main.c:519
+#, c-format
+msgid "Unable to convert \"%s\" to type \"%s\""
+msgstr "Không thể chuyển đổi \"%s\" thành loại \"%s\""
+
+#: xfconf-query/main.c:488
+#, c-format
+msgid "There are %d new values, but only %d types could be determined"
+msgstr "Có %d giá trị mới, nhưng chỉ có thể xác định loại %d"
+
+#: xfconf-query/main.c:510
+#, c-format
+msgid "Unable to determine type of value at index %d"
+msgstr "Không thể xác định loại giá trị tại chỉ mục %d"
+
+#: xfconf-query/main.c:563
+#, c-format
+msgid "Channel \"%s\" contains no properties"
+msgstr "Kênh \"%s\" không chứa thuộc tính nào"
