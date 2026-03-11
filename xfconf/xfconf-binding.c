@@ -23,6 +23,9 @@
 #include <string.h>
 #endif
 
+#include <stdatomic.h>
+#include <threads.h>
+
 #include "common/xfconf-common-private.h"
 
 #include "xfconf-private.h"
@@ -91,27 +94,30 @@ static void xfconf_g_property_channel_disconnect(gpointer user_data,
                                                  GClosure *closure);
 
 
-G_LOCK_DEFINE_STATIC(__bindings);
-static GSList *__bindings = NULL;
-static GType __gdkcolor_gtype = 0;
-static GType __gdkrgba_gtype = 0;
+static thread_local GSList *__bindings = NULL;
+static atomic_size_t __gdkcolor_gtype = G_TYPE_INVALID;
+static atomic_size_t __gdkrgba_gtype = G_TYPE_INVALID;
 
-static gboolean
+static GType
 ensure_gdk_color_type(void)
 {
-    if (__gdkcolor_gtype == 0) {
-        __gdkcolor_gtype = g_type_from_name("GdkColor");
+    GType type = atomic_load_explicit(&__gdkcolor_gtype, memory_order_acquire);
+    if (type == 0) {
+        type = g_type_from_name("GdkColor");
+        atomic_store_explicit(&__gdkcolor_gtype, type, memory_order_release);
     }
-    return __gdkcolor_gtype != 0;
+    return type;
 }
 
-static gboolean
+static GType
 ensure_gdk_rgba_type(void)
 {
-    if (__gdkrgba_gtype == 0) {
-        __gdkrgba_gtype = g_type_from_name("GdkRGBA");
+    GType type = atomic_load_explicit(&__gdkrgba_gtype, memory_order_acquire);
+    if (type == 0) {
+        type = g_type_from_name("GdkRGBA");
+        atomic_store_explicit(&__gdkrgba_gtype, type, memory_order_release);
     }
-    return __gdkrgba_gtype != 0;
+    return type;
 }
 
 static void
@@ -172,13 +178,13 @@ xfconf_g_property_object_notify(GObject *object,
     g_return_if_fail(binding->object == object);
     g_return_if_fail(XFCONF_IS_CHANNEL(binding->channel));
 
-    if (G_PARAM_SPEC_VALUE_TYPE(pspec) == __gdkcolor_gtype) {
+    if (G_PARAM_SPEC_VALUE_TYPE(pspec) == atomic_load_explicit(&__gdkcolor_gtype, memory_order_acquire)) {
         /* we need to handle this in a different way */
         xfconf_g_property_object_notify_gdkcolor(binding);
         return;
     }
 
-    if (G_PARAM_SPEC_VALUE_TYPE(pspec) == __gdkrgba_gtype) {
+    if (G_PARAM_SPEC_VALUE_TYPE(pspec) == atomic_load_explicit(&__gdkrgba_gtype, memory_order_acquire)) {
         /* we need to handle this in a different way */
         xfconf_g_property_object_notify_gdkrgba(binding);
         return;
@@ -215,9 +221,7 @@ xfconf_g_property_object_disconnect(gpointer user_data,
 
     /* remove the binding from the internal list */
     if (G_LIKELY(__bindings)) {
-        G_LOCK(__bindings);
         __bindings = g_slist_remove(__bindings, binding);
-        G_UNLOCK(__bindings);
     }
 
     /* unset the prevent recursing in channel_disconnect */
@@ -305,13 +309,13 @@ xfconf_g_property_channel_notify(XfconfChannel *channel,
     g_return_if_fail(binding->channel == channel);
     g_return_if_fail(G_IS_OBJECT(binding->object));
 
-    if (__gdkcolor_gtype == binding->xfconf_property_type) {
+    if (atomic_load_explicit(&__gdkcolor_gtype, memory_order_acquire) == binding->xfconf_property_type) {
         /* we need to handle this in a different way */
         xfconf_g_property_channel_notify_gdkcolor(binding, value);
         return;
     }
 
-    if (__gdkrgba_gtype == binding->xfconf_property_type) {
+    if (atomic_load_explicit(&__gdkrgba_gtype, memory_order_acquire) == binding->xfconf_property_type) {
         /* we need to handle this in a different way */
         xfconf_g_property_channel_notify_gdkrgba(binding, value);
         return;
@@ -426,9 +430,7 @@ xfconf_g_property_init(XfconfChannel *channel,
     g_free(detailed_signal);
 
     /* add binding to internal list */
-    G_LOCK(__bindings);
     __bindings = g_slist_prepend(__bindings, binding);
-    G_UNLOCK(__bindings);
 
     /* we use the channel signal id as binding id  */
     return binding->channel_handler;
@@ -442,7 +444,6 @@ _xfconf_g_bindings_shutdown(void)
     XfconfGBinding *binding;
 
     if (G_UNLIKELY(__bindings)) {
-        G_LOCK(__bindings);
         bindings = __bindings;
 
         /* don't remove bindings in object disconnect */
@@ -462,8 +463,6 @@ _xfconf_g_bindings_shutdown(void)
                 "channels are released before calling xfconf_shutdown()?",
                 n);
 #endif
-
-        G_UNLOCK(__bindings);
     }
 }
 
@@ -519,11 +518,11 @@ xfconf_g_property_bind(XfconfChannel *channel,
     {
         gboolean is_ptr_array = xfconf_property_type == G_TYPE_PTR_ARRAY;
 
-        if (is_ptr_array && ensure_gdk_color_type() && G_PARAM_SPEC_VALUE_TYPE(pspec) == __gdkcolor_gtype) {
+        if (is_ptr_array && ensure_gdk_color_type() == G_PARAM_SPEC_VALUE_TYPE(pspec)) {
             G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             return xfconf_g_property_bind_gdkcolor(channel, xfconf_property, object, object_property);
             G_GNUC_END_IGNORE_DEPRECATIONS
-        } else if (is_ptr_array && ensure_gdk_rgba_type() && G_PARAM_SPEC_VALUE_TYPE(pspec) == __gdkrgba_gtype) {
+        } else if (is_ptr_array && ensure_gdk_rgba_type() == G_PARAM_SPEC_VALUE_TYPE(pspec)) {
             G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             return xfconf_g_property_bind_gdkrgba(channel, xfconf_property, object, object_property);
             G_GNUC_END_IGNORE_DEPRECATIONS
@@ -586,7 +585,8 @@ xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
     g_return_val_if_fail(G_IS_OBJECT(object), 0UL);
     g_return_val_if_fail(object_property && *object_property != '\0', 0UL);
 
-    if (!ensure_gdk_color_type()) {
+    GType gdkcolor_gtype = ensure_gdk_color_type();
+    if (gdkcolor_gtype == G_TYPE_INVALID) {
         g_critical("Unable to look up GType for GdkColor: something is very wrong");
         return 0UL;
     }
@@ -599,17 +599,17 @@ xfconf_g_property_bind_gdkcolor(XfconfChannel *channel,
         return 0UL;
     }
 
-    if (G_UNLIKELY(G_PARAM_SPEC_VALUE_TYPE(pspec) != __gdkcolor_gtype)) {
+    if (G_UNLIKELY(G_PARAM_SPEC_VALUE_TYPE(pspec) != gdkcolor_gtype)) {
         g_warning("Property \"%s\" for GObject type \"%s\" is not \"%s\", it's \"%s\"",
                   object_property, G_OBJECT_TYPE_NAME(object),
-                  g_type_name(__gdkcolor_gtype),
+                  g_type_name(gdkcolor_gtype),
                   g_type_name(G_PARAM_SPEC_VALUE_TYPE(pspec)));
         return 0UL;
     }
 
     return xfconf_g_property_init(channel, xfconf_property,
-                                  __gdkcolor_gtype, G_OBJECT(object),
-                                  object_property, __gdkcolor_gtype);
+                                  gdkcolor_gtype, G_OBJECT(object),
+                                  object_property, gdkcolor_gtype);
 }
 
 /**
@@ -651,7 +651,8 @@ xfconf_g_property_bind_gdkrgba(XfconfChannel *channel,
     g_return_val_if_fail(G_IS_OBJECT(object), 0UL);
     g_return_val_if_fail(object_property && *object_property != '\0', 0UL);
 
-    if (!ensure_gdk_rgba_type()) {
+    GType gdkrgba_gtype = ensure_gdk_rgba_type();
+    if (gdkrgba_gtype == G_TYPE_INVALID) {
         g_critical("Unable to look up GType for GdkRGBA: something is very wrong");
         return 0UL;
     }
@@ -664,17 +665,17 @@ xfconf_g_property_bind_gdkrgba(XfconfChannel *channel,
         return 0UL;
     }
 
-    if (G_UNLIKELY(G_PARAM_SPEC_VALUE_TYPE(pspec) != __gdkrgba_gtype)) {
+    if (G_UNLIKELY(G_PARAM_SPEC_VALUE_TYPE(pspec) != gdkrgba_gtype)) {
         g_warning("Property \"%s\" for GObject type \"%s\" is not \"%s\", it's \"%s\"",
                   object_property, G_OBJECT_TYPE_NAME(object),
-                  g_type_name(__gdkrgba_gtype),
+                  g_type_name(gdkrgba_gtype),
                   g_type_name(G_PARAM_SPEC_VALUE_TYPE(pspec)));
         return 0UL;
     }
 
     return xfconf_g_property_init(channel, xfconf_property,
-                                  __gdkrgba_gtype, G_OBJECT(object),
-                                  object_property, __gdkrgba_gtype);
+                                  gdkrgba_gtype, G_OBJECT(object),
+                                  object_property, gdkrgba_gtype);
 }
 
 /**
@@ -690,14 +691,12 @@ xfconf_g_property_unbind(gulong id)
     GSList *l;
     XfconfGBinding *binding;
 
-    G_LOCK(__bindings);
     for (l = __bindings; l; l = g_slist_next(l)) {
         binding = l->data;
         if (G_UNLIKELY(binding->channel_handler == id)) {
             break;
         }
     }
-    G_UNLOCK(__bindings);
 
     if (G_LIKELY(l)) {
         binding = l->data;
@@ -732,7 +731,6 @@ xfconf_g_property_unbind_by_property(XfconfChannel *channel,
     g_return_if_fail(G_IS_OBJECT(object));
     g_return_if_fail(object_property && *object_property != '\0');
 
-    G_LOCK(__bindings);
     for (l = __bindings; l; l = g_slist_next(l)) {
         binding = l->data;
         if (binding->object == object
@@ -743,7 +741,6 @@ xfconf_g_property_unbind_by_property(XfconfChannel *channel,
             break;
         }
     }
-    G_UNLOCK(__bindings);
 
     if (G_LIKELY(l)) {
         binding = l->data;
