@@ -24,6 +24,8 @@
 
 #include <gio/gio.h>
 #include <glib-object.h>
+#include <stdatomic.h>
+#include <threads.h>
 
 #include "common/xfconf-marshal.h"
 
@@ -31,10 +33,12 @@
 #include "xfconf.h"
 #include "common/xfconf-visibility.h"
 
-static guint xfconf_refcnt = 0;
+static thread_local guint xfconf_refcnt = 0;
+static thread_local GDBusConnection *gdbus = NULL;
+static thread_local GDBusProxy *gproxy = NULL;
 
-static GDBusConnection *gdbus = NULL;
-static GDBusProxy *gproxy = NULL;
+static atomic_uint xfconf_global_refcnt = 0;
+G_LOCK_DEFINE(named_structs);
 static GHashTable *named_structs = NULL;
 
 #define XFCONF_DBUS_NAME XFCONF_SERVICE_NAME_PREFIX ".Xfconf"
@@ -69,7 +73,10 @@ _xfconf_get_gdbus_proxy(void)
 XfconfNamedStruct *
 _xfconf_named_struct_lookup(const gchar *struct_name)
 {
-    return named_structs ? g_hash_table_lookup(named_structs, struct_name) : NULL;
+    G_LOCK(named_structs);
+    XfconfNamedStruct *ret = named_structs ? g_hash_table_lookup(named_structs, struct_name) : NULL;
+    G_UNLOCK(named_structs);
+    return ret;
 }
 
 static void
@@ -101,6 +108,9 @@ _xfconf_named_struct_free(XfconfNamedStruct *ns)
  * Initializes the Xfconf library.  Can be called multiple times with no
  * adverse effects.
  *
+ * If using xfconf from multiple threads, you must call this at least once on
+ * each thread where it is used.
+ *
  * Returns: %TRUE if the library was initialized succesfully, %FALSE on
  *          error.  If there is an error @error will be set.
  **/
@@ -109,7 +119,9 @@ xfconf_init(GError **error)
 {
     const gchar *is_test_mode;
 
+
     if (xfconf_refcnt) {
+        atomic_fetch_add(&xfconf_global_refcnt, 1);
         ++xfconf_refcnt;
         return TRUE;
     }
@@ -130,6 +142,7 @@ xfconf_init(GError **error)
                                    NULL,
                                    NULL);
 
+    atomic_fetch_add(&xfconf_global_refcnt, 1);
     ++xfconf_refcnt;
     return TRUE;
 }
@@ -149,6 +162,7 @@ xfconf_shutdown(void)
     }
 
     if (xfconf_refcnt > 1) {
+        atomic_fetch_sub(&xfconf_global_refcnt, 1);
         --xfconf_refcnt;
         return;
     }
@@ -159,12 +173,16 @@ xfconf_shutdown(void)
     _xfconf_channel_shutdown();
     _xfconf_g_bindings_shutdown();
 
-    if (named_structs) {
-        g_hash_table_destroy(named_structs);
-        named_structs = NULL;
-    }
-
     --xfconf_refcnt;
+
+    if (atomic_fetch_sub(&xfconf_global_refcnt, 1) == 1) {
+        G_LOCK(named_structs);
+        if (named_structs) {
+            g_hash_table_destroy(named_structs);
+            named_structs = NULL;
+        }
+        G_UNLOCK(named_structs);
+    }
 }
 
 /**
@@ -185,6 +203,8 @@ xfconf_named_struct_register(const gchar *struct_name,
 
     g_return_if_fail(struct_name && *struct_name && n_members && member_types);
 
+    G_LOCK(named_structs);
+
     /* lazy initialize the hash table */
     if (named_structs == NULL) {
         named_structs = g_hash_table_new_full(g_str_hash, g_str_equal,
@@ -202,6 +222,8 @@ xfconf_named_struct_register(const gchar *struct_name,
 
         g_hash_table_insert(named_structs, g_strdup(struct_name), ns);
     }
+
+    G_UNLOCK(named_structs);
 }
 
 #if 0

@@ -23,6 +23,8 @@
 #include <string.h>
 #endif
 
+#include <threads.h>
+
 #include "common/xfconf-common-private.h"
 
 #include "xfconf-private.h"
@@ -91,8 +93,7 @@ static void xfconf_g_property_channel_disconnect(gpointer user_data,
                                                  GClosure *closure);
 
 
-G_LOCK_DEFINE_STATIC(__bindings);
-static GSList *__bindings = NULL;
+static thread_local GSList *__bindings = NULL;
 static GType __gdkcolor_gtype = 0;
 static GType __gdkrgba_gtype = 0;
 
@@ -215,9 +216,7 @@ xfconf_g_property_object_disconnect(gpointer user_data,
 
     /* remove the binding from the internal list */
     if (G_LIKELY(__bindings)) {
-        G_LOCK(__bindings);
         __bindings = g_slist_remove(__bindings, binding);
-        G_UNLOCK(__bindings);
     }
 
     /* unset the prevent recursing in channel_disconnect */
@@ -426,9 +425,7 @@ xfconf_g_property_init(XfconfChannel *channel,
     g_free(detailed_signal);
 
     /* add binding to internal list */
-    G_LOCK(__bindings);
     __bindings = g_slist_prepend(__bindings, binding);
-    G_UNLOCK(__bindings);
 
     /* we use the channel signal id as binding id  */
     return binding->channel_handler;
@@ -442,7 +439,6 @@ _xfconf_g_bindings_shutdown(void)
     XfconfGBinding *binding;
 
     if (G_UNLIKELY(__bindings)) {
-        G_LOCK(__bindings);
         bindings = __bindings;
 
         /* don't remove bindings in object disconnect */
@@ -462,8 +458,6 @@ _xfconf_g_bindings_shutdown(void)
                 "channels are released before calling xfconf_shutdown()?",
                 n);
 #endif
-
-        G_UNLOCK(__bindings);
     }
 }
 
@@ -690,14 +684,12 @@ xfconf_g_property_unbind(gulong id)
     GSList *l;
     XfconfGBinding *binding;
 
-    G_LOCK(__bindings);
     for (l = __bindings; l; l = g_slist_next(l)) {
         binding = l->data;
         if (G_UNLIKELY(binding->channel_handler == id)) {
             break;
         }
     }
-    G_UNLOCK(__bindings);
 
     if (G_LIKELY(l)) {
         binding = l->data;
@@ -732,7 +724,6 @@ xfconf_g_property_unbind_by_property(XfconfChannel *channel,
     g_return_if_fail(G_IS_OBJECT(object));
     g_return_if_fail(object_property && *object_property != '\0');
 
-    G_LOCK(__bindings);
     for (l = __bindings; l; l = g_slist_next(l)) {
         binding = l->data;
         if (binding->object == object
@@ -743,7 +734,6 @@ xfconf_g_property_unbind_by_property(XfconfChannel *channel,
             break;
         }
     }
-    G_UNLOCK(__bindings);
 
     if (G_LIKELY(l)) {
         binding = l->data;
