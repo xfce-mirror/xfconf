@@ -49,10 +49,6 @@
 #define ALIGN_VAL(val, align) (((val) + ((align) - 1)) & ~((align) - 1))
 
 
-#define xfconf_cache_mutex_lock(cache) g_mutex_lock(&(cache)->cache_lock)
-#define xfconf_cache_mutex_unlock(cache) g_mutex_unlock(&(cache)->cache_lock)
-
-
 /**************** XfconfCacheItem ****************/
 
 
@@ -266,8 +262,6 @@ struct _XfconfCache
     GHashTable *old_properties;
 
     gint g_signal_id;
-
-    GMutex cache_lock;
 };
 
 typedef struct _XfconfCacheClass
@@ -395,8 +389,6 @@ xfconf_cache_init(XfconfCache *cache)
                                                  NULL, NULL);
     cache->old_properties = g_hash_table_new_full(g_str_hash, g_str_equal,
                                                   NULL, NULL);
-
-    g_mutex_init(&cache->cache_lock);
 }
 
 static void
@@ -616,7 +608,6 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
     }
 
     cache = old_item->cache;
-    xfconf_cache_mutex_lock(cache);
     /*
         old_item = g_hash_table_lookup(cache->pending_calls, call);
         if(G_UNLIKELY(!old_item)) {
@@ -633,7 +624,7 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
 #ifndef NDEBUG
         g_debug("Couldn't find current cache item based on pending call (libxfconf bug?)");
 #endif
-        goto out;
+        return;
     }
 
     result = xfconf_exported_call_set_property_finish((XfconfExported *)proxy, res, &error);
@@ -649,20 +640,15 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
             item = NULL;
         }
 
-        /* we need to drop the lock when running the signal handlers */
-        xfconf_cache_mutex_unlock(cache);
         g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED],
                       g_quark_from_string(old_item->property),
                       cache->channel_name, old_item->property,
                       item && item->value ? item->value : &empty_val);
-        xfconf_cache_mutex_lock(cache);
     }
 
     /* we handled the call */
     g_cancellable_cancel(old_item->cancellable);
     xfconf_cache_old_item_free(old_item);
-out:
-    xfconf_cache_mutex_unlock(cache);
 }
 
 
@@ -675,8 +661,6 @@ xfconf_cache_reset_property_reply_handler(DBusGProxy *proxy,
     XfconfCache *cache = user_data;
     XfconfCacheOldItem *old_item;
     GError *error = NULL;
-
-    xfconf_cache_mutex_lock(cache);
 
     old_item = g_hash_table_lookup(cache->pending_calls, call);
     if(G_UNLIKELY(!old_item)) {
@@ -693,8 +677,6 @@ xfconf_cache_reset_property_reply_handler(DBusGProxy *proxy,
 out:
     if(old_item)
         g_hash_table_remove(cache->pending_calls, old_item->call);
-
-    xfconf_cache_mutex_unlock(cache);
 }
 #endif
 
@@ -721,8 +703,6 @@ xfconf_cache_prefetch(XfconfCache *cache,
 
     g_return_val_if_fail(g_tree_nnodes(cache->properties) == 0, FALSE);
 
-    xfconf_cache_mutex_lock(cache);
-
     if (xfconf_exported_call_get_all_properties_sync((XfconfExported *)proxy, cache->channel_name,
                                                      property_base ? property_base : "/",
                                                      &props_variant, NULL, &tmp_error))
@@ -745,18 +725,19 @@ xfconf_cache_prefetch(XfconfCache *cache,
         g_propagate_error(error, tmp_error);
     }
 
-    xfconf_cache_mutex_unlock(cache);
-
     return ret;
 }
 
-static gboolean
-xfconf_cache_lookup_locked(XfconfCache *cache,
-                           const gchar *property,
-                           GValue *value,
-                           GError **error)
+gboolean
+xfconf_cache_lookup(XfconfCache *cache,
+                    const gchar *property,
+                    GValue *value,
+                    GError **error)
 {
     XfconfCacheItem *item = NULL;
+
+    g_return_val_if_fail(XFCONF_IS_CACHE(cache) && property && (!error || !*error), FALSE);
+
     item = g_tree_lookup(cache->properties, property);
 
     if (!item) {
@@ -840,23 +821,6 @@ xfconf_cache_lookup_locked(XfconfCache *cache,
 }
 
 gboolean
-xfconf_cache_lookup(XfconfCache *cache,
-                    const gchar *property,
-                    GValue *value,
-                    GError **error)
-{
-    gboolean ret;
-
-    g_return_val_if_fail(XFCONF_IS_CACHE(cache) && property && (!error || !*error), FALSE);
-
-    xfconf_cache_mutex_lock(cache);
-    ret = xfconf_cache_lookup_locked(cache, property, value, error);
-    xfconf_cache_mutex_unlock(cache);
-
-    return ret;
-}
-
-gboolean
 xfconf_cache_set(XfconfCache *cache,
                  const gchar *property,
                  const GValue *value,
@@ -866,7 +830,6 @@ xfconf_cache_set(XfconfCache *cache,
     GDBusProxy *proxy = _xfconf_get_gdbus_proxy();
     XfconfCacheItem *item = NULL;
     XfconfCacheOldItem *old_item = NULL;
-    xfconf_cache_mutex_lock(cache);
 
     item = g_tree_lookup(cache->properties, property);
     if (!item) {
@@ -874,7 +837,7 @@ xfconf_cache_set(XfconfCache *cache,
          * but i can't think of a better way yet. */
         GValue tmp_val = G_VALUE_INIT;
         GError *tmp_error = NULL;
-        if (!xfconf_cache_lookup_locked(cache, property, &tmp_val, &tmp_error)) {
+        if (!xfconf_cache_lookup(cache, property, &tmp_val, &tmp_error)) {
             gchar *dbus_error_name = NULL;
 
             if (G_LIKELY(g_dbus_error_is_remote_error(tmp_error))) {
@@ -886,7 +849,6 @@ xfconf_cache_set(XfconfCache *cache,
             {
                 /* this is bad... */
                 g_propagate_error(error, tmp_error);
-                xfconf_cache_mutex_unlock(cache);
                 g_free(dbus_error_name);
                 return FALSE;
             }
@@ -902,7 +864,6 @@ xfconf_cache_set(XfconfCache *cache,
     if (item) {
         /* if the value isn't changing, there's no reason to continue */
         if (_xfconf_gvalue_is_equal(item->value, value)) {
-            xfconf_cache_mutex_unlock(cache);
             return TRUE;
         }
     }
@@ -957,13 +918,12 @@ xfconf_cache_set(XfconfCache *cache,
             g_tree_insert(cache->properties, g_strdup(property), item);
         }
 
-        xfconf_cache_mutex_unlock(cache);
         g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED], 0,
                       cache->channel_name, property, value);
 
         return TRUE;
     }
-    xfconf_cache_mutex_unlock(cache);
+
     return FALSE;
 }
 
@@ -1000,8 +960,6 @@ xfconf_cache_reset(XfconfCache *cache,
 #if 0
     XfconfCacheOldItem *old_item = NULL;
 #endif
-
-    xfconf_cache_mutex_lock(cache);
 
 #if 0
     /* it's not really feasible here to look up all the old/new values
@@ -1066,8 +1024,6 @@ xfconf_cache_reset(XfconfCache *cache,
     }
 #endif
 
-    xfconf_cache_mutex_unlock(cache);
-
     return ret;
 }
 
@@ -1076,10 +1032,8 @@ void
 xfconf_cache_set_max_entries(XfconfCache *cache,
                              gint max_entries)
 {
-    xfconf_cache_mutex_lock(cache);
     cache->max_entries = max_entries;
     /* TODO: check tree for eviction */
-    xfconf_cache_mutex_unlock(cache);
 }
 
 gint
@@ -1092,10 +1046,8 @@ void
 xfconf_cache_set_max_age(XfconfCache *cache,
                          gint max_age)
 {
-    xfconf_cache_mutex_lock(cache);
     cache->max_age = max_age;
     /* TODO: check tree for eviction */
-    xfconf_cache_mutex_unlock(cache);
 }
 
 gint
