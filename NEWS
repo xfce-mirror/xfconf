@@ -1,3 +1,19 @@
+4.21.1 (2026-03-13)
+======
+- Make libxfconf multithread-safe
+- I18n: Update po/LINGUAS list
+- build: Fix typo in optimization level
+- README.md: Add uninstall info
+- Update README after switchover to meson
+- Update also .gitlab-ci.yml
+- Remove autotools build
+- common: Fix -Wlogical-op warning
+- meson-build: Use configure_file() to generate GNU visibility files
+- I18n: Update po/LINGUAS list
+- Translation Updates:
+  Arabic, Estonian, Georgian, Occitan (post 1500), Polish, Slovenian,
+  Thai, Uyghur, Vietnamese
+
 4.21.0 (2025-03-23)
 ======
 - build: Automate copyright year management
