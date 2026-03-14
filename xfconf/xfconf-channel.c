@@ -24,7 +24,6 @@
 #endif
 
 #include <libxfce4util/libxfce4util.h>
-#include <threads.h>
 
 #include "common/xfconf-common-private.h"
 #include "common/xfconf-gdbus-bindings.h"
@@ -120,8 +119,9 @@ static void xfconf_channel_property_changed(XfconfCache *cache,
                                             gpointer user_data);
 
 
+G_LOCK_DEFINE_STATIC(__singletons);
 static guint signals[N_SIGS] = { 0 };
-static thread_local GHashTable *__channel_singletons = NULL;
+static GHashTable *__channel_singletons = NULL;
 
 
 G_DEFINE_TYPE(XfconfChannel, xfconf_channel, G_TYPE_OBJECT)
@@ -245,6 +245,8 @@ xfconf_channel_constructor(GType type,
     }
 
     if (is_singleton) {
+        G_LOCK(__singletons);
+
         if (!__channel_singletons) {
             __channel_singletons = g_hash_table_new_full(g_str_hash, g_str_equal,
                                                          (GDestroyNotify)g_free,
@@ -258,6 +260,8 @@ xfconf_channel_constructor(GType type,
             g_hash_table_insert(__channel_singletons, g_strdup(channel_name),
                                 channel);
         }
+
+        G_UNLOCK(__singletons);
     } else {
         channel = XFCONF_CHANNEL(G_OBJECT_CLASS(xfconf_channel_parent_class)->constructor(type, n_construct_properties, construct_properties));
     }
@@ -363,10 +367,12 @@ xfconf_channel_finalize(GObject *obj)
 void
 _xfconf_channel_shutdown(void)
 {
+    G_LOCK(__singletons);
     if (G_LIKELY(__channel_singletons)) {
         g_hash_table_destroy(__channel_singletons);
         __channel_singletons = NULL;
     }
+    G_UNLOCK(__singletons);
 }
 
 
