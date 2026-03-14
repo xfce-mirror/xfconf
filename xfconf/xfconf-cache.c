@@ -269,6 +269,9 @@ struct _XfconfCache
 
     GMutex cache_lock;
 
+    // In a program where xfconf is being used by more than oe thread, we need
+    // to ensure that callbacks are dispatched on the GMainContext of the
+    // thread where the channel was created.
     GMainContext *context;
 };
 
@@ -603,7 +606,6 @@ xfconf_cache_handle_property_removed(XfconfCache *cache, GVariant *parameters)
         }
 
         GValue *value = g_new0(GValue, 1);
-        g_value_init(value, G_TYPE_INVALID);
         xfconf_cache_emit_property_changed(cache, property, value);
     } else {
         g_warning("property removed handler expects (ss) type, but %s received",
@@ -698,8 +700,6 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
         if (item != NULL && item->value != NULL) {
             g_value_init(value, G_VALUE_TYPE(item->value));
             g_value_copy(item->value, value);
-        } else {
-            g_value_init(value, G_TYPE_INVALID);
         }
         xfconf_cache_emit_property_changed(cache, old_item->property, value);
 
