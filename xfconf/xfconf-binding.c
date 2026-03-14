@@ -58,6 +58,9 @@ typedef struct
     GType object_property_type;
     gulong object_handler;
 
+    // In a program where xfconf is being used by more than oe thread, we need
+    // to ensure that callbacks are dispatched on the GMainContext of the
+    // thread where the binding was created.
     GMainContext *context;
 } XfconfGBinding;
 
