@@ -269,6 +269,9 @@ struct _XfconfCache
 
     GMutex cache_lock;
 
+    // In a program where xfconf is being used by more than oe thread, we need
+    // to ensure that callbacks are dispatched on the GMainContext of the
+    // thread where the channel was created.
     GMainContext *context;
 };
 
