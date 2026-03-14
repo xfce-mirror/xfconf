@@ -268,6 +268,8 @@ struct _XfconfCache
     gint g_signal_id;
 
     GMutex cache_lock;
+
+    GMainContext *context;
 };
 
 typedef struct _XfconfCacheClass
@@ -279,6 +281,13 @@ typedef struct _XfconfCacheClass
                              const gchar *property,
                              const GValue *value);
 } XfconfCacheClass;
+
+typedef struct
+{
+    XfconfCache *cache;
+    gchar *property_name;
+    GValue *value;
+} PropertyNotifyData;
 
 enum
 {
@@ -330,8 +339,7 @@ xfconf_cache_class_init(XfconfCacheClass *klass)
 
     signals[SIG_PROPERTY_CHANGED] = g_signal_new(I_("property-changed"),
                                                  XFCONF_TYPE_CACHE,
-                                                 G_SIGNAL_RUN_LAST
-                                                     | G_SIGNAL_DETAILED,
+                                                 G_SIGNAL_RUN_LAST,
                                                  G_STRUCT_OFFSET(XfconfCacheClass,
                                                                  property_changed),
                                                  NULL,
@@ -397,6 +405,8 @@ xfconf_cache_init(XfconfCache *cache)
                                                   NULL, NULL);
 
     g_mutex_init(&cache->cache_lock);
+
+    cache->context = g_main_context_ref_thread_default();
 }
 
 static void
@@ -483,7 +493,40 @@ xfconf_cache_finalize(GObject *obj)
     g_tree_destroy(cache->properties);
     g_hash_table_destroy(cache->old_properties);
 
+    g_main_context_unref(cache->context);
+
     G_OBJECT_CLASS(xfconf_cache_parent_class)->finalize(obj);
+}
+
+
+static gboolean
+xfconf_cache_real_emit_property_changed(gpointer data)
+{
+    PropertyNotifyData *pndata = data;
+
+    g_signal_emit(G_OBJECT(pndata->cache), signals[SIG_PROPERTY_CHANGED], 0,
+                  pndata->cache->channel_name, pndata->property_name, pndata->value);
+
+    g_object_unref(pndata->cache);
+    g_free(pndata->property_name);
+    g_value_unset(pndata->value);
+    g_free(pndata->value);
+    g_free(pndata);
+
+    return G_SOURCE_REMOVE;
+}
+
+
+static void
+xfconf_cache_emit_property_changed(XfconfCache *cache,
+                                   const gchar *property_name,
+                                   GValue *value)
+{
+    PropertyNotifyData *pndata = g_new0(PropertyNotifyData, 1);
+    pndata->cache = g_object_ref(cache);
+    pndata->property_name = g_strdup(property_name);
+    pndata->value = value;
+    g_main_context_invoke(cache->context, xfconf_cache_real_emit_property_changed, pndata);
 }
 
 
@@ -514,6 +557,7 @@ xfconf_cache_handle_property_changed(XfconfCache *cache, GVariant *parameters)
         }
 
         prop_value = xfconf_gvariant_to_gvalue(prop_variant);
+        g_variant_unref(prop_variant);
 
         item = g_tree_lookup(cache->properties, property);
         if (item) {
@@ -524,12 +568,11 @@ xfconf_cache_handle_property_changed(XfconfCache *cache, GVariant *parameters)
         }
 
         if (changed) {
-            g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED], 0,
-                          cache->channel_name, property, prop_value);
+            xfconf_cache_emit_property_changed(cache, property, prop_value);
+        } else {
+            g_value_unset(prop_value);
+            g_free(prop_value);
         }
-        g_variant_unref(prop_variant);
-        g_value_unset(prop_value);
-        g_free(prop_value);
     } else {
         g_warning("property changed handler expects (ssv) type, but %s received",
                   g_variant_get_type_string(parameters));
@@ -542,7 +585,7 @@ xfconf_cache_handle_property_removed(XfconfCache *cache, GVariant *parameters)
 {
 
     const gchar *channel_name, *property;
-    GValue value = G_VALUE_INIT;
+
     if (g_variant_is_of_type(parameters, G_VARIANT_TYPE("(ss)"))) {
         XfconfCacheItem *item;
 
@@ -559,9 +602,9 @@ xfconf_cache_handle_property_removed(XfconfCache *cache, GVariant *parameters)
             item->value = NULL;
         }
 
-        g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED], 0,
-                      cache->channel_name, property, &value);
-
+        GValue *value = g_new0(GValue, 1);
+        g_value_init(value, G_TYPE_INVALID);
+        xfconf_cache_emit_property_changed(cache, property, value);
     } else {
         g_warning("property removed handler expects (ss) type, but %s received",
                   g_variant_get_type_string(parameters));
@@ -638,7 +681,6 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
 
     result = xfconf_exported_call_set_property_finish((XfconfExported *)proxy, res, &error);
     if (!result) {
-        GValue empty_val = G_VALUE_INIT;
         g_warning("Failed to set property \"%s::%s\": %s",
                   cache->channel_name, old_item->property, error->message);
         g_error_free(error);
@@ -651,10 +693,16 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
 
         /* we need to drop the lock when running the signal handlers */
         xfconf_cache_mutex_unlock(cache);
-        g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED],
-                      g_quark_from_string(old_item->property),
-                      cache->channel_name, old_item->property,
-                      item && item->value ? item->value : &empty_val);
+
+        GValue *value = g_new0(GValue, 1);
+        if (item != NULL && item->value != NULL) {
+            g_value_init(value, G_VALUE_TYPE(item->value));
+            g_value_copy(item->value, value);
+        } else {
+            g_value_init(value, G_TYPE_INVALID);
+        }
+        xfconf_cache_emit_property_changed(cache, old_item->property, value);
+
         xfconf_cache_mutex_lock(cache);
     }
 
@@ -958,8 +1006,11 @@ xfconf_cache_set(XfconfCache *cache,
         }
 
         xfconf_cache_mutex_unlock(cache);
-        g_signal_emit(G_OBJECT(cache), signals[SIG_PROPERTY_CHANGED], 0,
-                      cache->channel_name, property, value);
+
+        GValue *emit_value = g_new0(GValue, 1);
+        g_value_init(emit_value, G_VALUE_TYPE(value));
+        g_value_copy(value, emit_value);
+        xfconf_cache_emit_property_changed(cache, property, emit_value);
 
         return TRUE;
     }

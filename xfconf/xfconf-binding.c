@@ -57,7 +57,17 @@ typedef struct
     gchar *object_property;
     GType object_property_type;
     gulong object_handler;
+
+    GMainContext *context;
 } XfconfGBinding;
+
+typedef struct
+{
+    GObject *object;
+    gulong handler_id;
+    gchar *property_name;
+    GValue *value;
+} PropertyNotifyData;
 
 /* same structure as in gdk, but we don't link to gdk */
 typedef struct
@@ -228,10 +238,56 @@ xfconf_g_property_object_disconnect(gpointer user_data,
                                     binding->channel_handler);
     } else {
         /* only release the binding if channel_disconnect() has run */
+        g_main_context_unref(binding->context);
         g_free(binding->xfconf_property);
         g_free(binding->object_property);
         g_slice_free(XfconfGBinding, binding);
     }
+}
+
+static gboolean
+xfconf_g_property_real_update_property_value(gpointer data)
+{
+    PropertyNotifyData *pndata = data;
+    gboolean needs_unblock = FALSE;
+
+    if (g_signal_handler_is_connected(pndata->object, pndata->handler_id)) {
+        g_signal_handler_block(G_OBJECT(pndata->object),
+                               pndata->handler_id);
+        needs_unblock = TRUE;
+    }
+
+    g_object_set_property(G_OBJECT(pndata->object),
+                          pndata->property_name, pndata->value);
+
+    if (needs_unblock) {
+        g_signal_handler_unblock(G_OBJECT(pndata->object),
+                                 pndata->handler_id);
+    }
+
+    g_object_unref(pndata->object);
+    g_free(pndata->property_name);
+    g_value_unset(pndata->value);
+    g_free(pndata->value);
+    g_free(pndata);
+
+    return G_SOURCE_REMOVE;
+}
+
+static void
+xfconf_g_property_update_property_value(XfconfGBinding *binding,
+                                        GValue *value)
+{
+    PropertyNotifyData *data = g_new0(PropertyNotifyData, 1);
+    data->object = g_object_ref(binding->object);
+    data->handler_id = binding->object_handler;
+    data->property_name = g_strdup(binding->object_property);
+    data->value = value;
+
+    g_message("invoking property-set on main context %p (default is %p)\n",
+              binding->context, g_main_context_default());
+
+    g_main_context_invoke(binding->context, xfconf_g_property_real_update_property_value, data);
 }
 
 static void
@@ -254,12 +310,11 @@ xfconf_g_property_channel_notify_gdkcolor(XfconfGBinding *binding,
     color.green = g_value_get_uint(g_ptr_array_index(arr, 1));
     color.blue = g_value_get_uint(g_ptr_array_index(arr, 2));
 
-    g_signal_handler_block(G_OBJECT(binding->object),
-                           binding->object_handler);
-    g_object_set(G_OBJECT(binding->object),
-                 binding->object_property, &color, NULL);
-    g_signal_handler_unblock(G_OBJECT(binding->object),
-                             binding->object_handler);
+    GValue *dst_val = g_new0(GValue, 1);
+    g_value_init(dst_val, __gdkcolor_gtype);
+    g_value_set_boxed(dst_val, &color);
+
+    xfconf_g_property_update_property_value(binding, dst_val);
 }
 
 static void
@@ -283,12 +338,11 @@ xfconf_g_property_channel_notify_gdkrgba(XfconfGBinding *binding,
     color.blue = g_value_get_double(g_ptr_array_index(arr, 2));
     color.alpha = g_value_get_double(g_ptr_array_index(arr, 3));
 
-    g_signal_handler_block(G_OBJECT(binding->object),
-                           binding->object_handler);
-    g_object_set(G_OBJECT(binding->object),
-                 binding->object_property, &color, NULL);
-    g_signal_handler_unblock(G_OBJECT(binding->object),
-                             binding->object_handler);
+    GValue *dst_val = g_new0(GValue, 1);
+    g_value_init(dst_val, __gdkrgba_gtype);
+    g_value_set_boxed(dst_val, &color);
+
+    xfconf_g_property_update_property_value(binding, dst_val);
 }
 
 static void
@@ -299,7 +353,7 @@ xfconf_g_property_channel_notify(XfconfChannel *channel,
 {
     XfconfGBinding *binding = user_data;
     GParamSpec *pspec;
-    GValue dst_val = G_VALUE_INIT;
+    GValue *dst_val = NULL;
 
     g_return_if_fail(XFCONF_IS_CHANNEL(channel));
     g_return_if_fail(binding->channel == channel);
@@ -317,13 +371,15 @@ xfconf_g_property_channel_notify(XfconfChannel *channel,
         return;
     }
 
-    g_value_init(&dst_val, binding->object_property_type);
+    dst_val = g_new0(GValue, 1);
+    g_value_init(dst_val, binding->object_property_type);
 
     if (G_VALUE_TYPE(value) == G_TYPE_INVALID) {
         /* try to reset to the object property to the default value.
          * boxed types don't have default, so bail if that's the case. */
         if (g_type_is_a(binding->object_property_type, G_TYPE_BOXED)) {
-            g_value_unset(&dst_val);
+            g_value_unset(dst_val);
+            g_free(dst_val);
             return;
         }
 
@@ -333,13 +389,15 @@ xfconf_g_property_channel_notify(XfconfChannel *channel,
             g_warning("Unable to find property \"%s\" on object of type \"%s\".",
                       binding->object_property,
                       G_OBJECT_TYPE_NAME(binding->object));
-            g_value_unset(&dst_val);
+            g_value_unset(dst_val);
+            g_free(dst_val);
             return;
         }
 
-        g_param_value_set_default(pspec, &dst_val);
-    } else if (!g_value_transform(value, &dst_val)) {
-        g_value_unset(&dst_val);
+        g_param_value_set_default(pspec, dst_val);
+    } else if (!g_value_transform(value, dst_val)) {
+        g_value_unset(dst_val);
+        g_free(dst_val);
         g_warning("Unable to transform the value of property \"%s\" from type \"%s\" to \"%s\".",
                   binding->object_property,
                   G_VALUE_TYPE_NAME(value),
@@ -347,14 +405,7 @@ xfconf_g_property_channel_notify(XfconfChannel *channel,
         return;
     }
 
-    g_signal_handler_block(G_OBJECT(binding->object),
-                           binding->object_handler);
-    g_object_set_property(G_OBJECT(binding->object),
-                          binding->object_property, &dst_val);
-    g_signal_handler_unblock(G_OBJECT(binding->object),
-                             binding->object_handler);
-
-    g_value_unset(&dst_val);
+    xfconf_g_property_update_property_value(binding, dst_val);
 }
 
 static void
@@ -374,6 +425,7 @@ xfconf_g_property_channel_disconnect(gpointer user_data,
                                     binding->object_handler);
     } else {
         /* only release the binding if object_disconnect() has run */
+        g_main_context_unref(binding->context);
         g_free(binding->xfconf_property);
         g_free(binding->object_property);
         g_slice_free(XfconfGBinding, binding);
@@ -399,6 +451,7 @@ xfconf_g_property_init(XfconfChannel *channel,
     binding->object = object;
     binding->object_property = g_strdup(object_property);
     binding->object_property_type = object_property_type;
+    binding->context = g_main_context_ref_thread_default();
 
     /* monitor object for property changes */
     detailed_signal = g_strconcat("notify::", object_property, NULL);
