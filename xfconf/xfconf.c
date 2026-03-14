@@ -31,6 +31,8 @@
 #include "xfconf.h"
 #include "common/xfconf-visibility.h"
 
+G_LOCK_DEFINE(xfconf);
+
 static guint xfconf_refcnt = 0;
 
 static GDBusConnection *gdbus = NULL;
@@ -69,7 +71,10 @@ _xfconf_get_gdbus_proxy(void)
 XfconfNamedStruct *
 _xfconf_named_struct_lookup(const gchar *struct_name)
 {
-    return named_structs ? g_hash_table_lookup(named_structs, struct_name) : NULL;
+    G_LOCK(xfconf);
+    XfconfNamedStruct *named = named_structs ? g_hash_table_lookup(named_structs, struct_name) : NULL;
+    G_UNLOCK(xfconf);
+    return named;
 }
 
 static void
@@ -107,31 +112,37 @@ _xfconf_named_struct_free(XfconfNamedStruct *ns)
 gboolean
 xfconf_init(GError **error)
 {
+    gboolean ret = FALSE;
     const gchar *is_test_mode;
 
-    if (xfconf_refcnt) {
-        ++xfconf_refcnt;
-        return TRUE;
+    G_LOCK(xfconf);
+
+    if (xfconf_refcnt == 0) {
+        gdbus = g_bus_get_sync(G_BUS_TYPE_SESSION, NULL, error);
+        if (gdbus == NULL) {
+            goto out;
+        }
+
+        is_test_mode = g_getenv("XFCONF_RUN_IN_TEST_MODE");
+        gproxy = g_dbus_proxy_new_sync(gdbus,
+                                       G_DBUS_PROXY_FLAGS_NONE,
+                                       NULL,
+                                       is_test_mode == NULL ? XFCONF_DBUS_NAME : XFCONF_DBUS_NAME_TEST,
+                                       XFCONF_SERVICE_PATH_PREFIX "/Xfconf",
+                                       XFCONF_SERVICE_NAME_PREFIX ".Xfconf",
+                                       NULL,
+                                       error);
+        if (gproxy == NULL) {
+            goto out;
+        }
     }
-
-    gdbus = g_bus_get_sync(G_BUS_TYPE_SESSION, NULL, error);
-
-    if (!gdbus) {
-        return FALSE;
-    }
-
-    is_test_mode = g_getenv("XFCONF_RUN_IN_TEST_MODE");
-    gproxy = g_dbus_proxy_new_sync(gdbus,
-                                   G_DBUS_PROXY_FLAGS_NONE,
-                                   NULL,
-                                   is_test_mode == NULL ? XFCONF_DBUS_NAME : XFCONF_DBUS_NAME_TEST,
-                                   XFCONF_SERVICE_PATH_PREFIX "/Xfconf",
-                                   XFCONF_SERVICE_NAME_PREFIX ".Xfconf",
-                                   NULL,
-                                   NULL);
 
     ++xfconf_refcnt;
-    return TRUE;
+    ret = TRUE;
+
+out:
+    G_UNLOCK(xfconf);
+    return ret;
 }
 
 /**
@@ -144,27 +155,26 @@ xfconf_init(GError **error)
 void
 xfconf_shutdown(void)
 {
-    if (xfconf_refcnt <= 0) {
-        return;
+    G_LOCK(xfconf);
+
+    if (xfconf_refcnt == 1) {
+        /* Flush pending dbus calls */
+        g_dbus_connection_flush_sync(gdbus, NULL, NULL);
+
+        _xfconf_channel_shutdown();
+        _xfconf_g_bindings_shutdown();
+
+        if (named_structs) {
+            g_hash_table_destroy(named_structs);
+            named_structs = NULL;
+        }
     }
 
-    if (xfconf_refcnt > 1) {
+    if (xfconf_refcnt > 0) {
         --xfconf_refcnt;
-        return;
     }
 
-    /* Flush pending dbus calls */
-    g_dbus_connection_flush_sync(gdbus, NULL, NULL);
-
-    _xfconf_channel_shutdown();
-    _xfconf_g_bindings_shutdown();
-
-    if (named_structs) {
-        g_hash_table_destroy(named_structs);
-        named_structs = NULL;
-    }
-
-    --xfconf_refcnt;
+    G_UNLOCK(xfconf);
 }
 
 /**
@@ -185,6 +195,8 @@ xfconf_named_struct_register(const gchar *struct_name,
 
     g_return_if_fail(struct_name && *struct_name && n_members && member_types);
 
+    G_LOCK(xfconf);
+
     /* lazy initialize the hash table */
     if (named_structs == NULL) {
         named_structs = g_hash_table_new_full(g_str_hash, g_str_equal,
@@ -202,6 +214,8 @@ xfconf_named_struct_register(const gchar *struct_name,
 
         g_hash_table_insert(named_structs, g_strdup(struct_name), ns);
     }
+
+    G_UNLOCK(xfconf);
 }
 
 #if 0
