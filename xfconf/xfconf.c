@@ -168,6 +168,9 @@ xfconf_shutdown(void)
             g_hash_table_destroy(named_structs);
             named_structs = NULL;
         }
+
+        g_clear_object(&gproxy);
+        g_clear_object(&gdbus);
     }
 
     --xfconf_refcnt;
