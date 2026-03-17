@@ -1,3 +1,11 @@
+4.21.2 (2026-03-16)
+======
+- Destroy GDBusProxy and GDBusConnection on library shutdown
+- Make xfconf_init()/xfconf_shutdown() multithread-safe
+- Emit signals on the thread that "owns" the channel or binding
+- Revert "Make libxfconf multithread-safe"
+
+
 4.21.1 (2026-03-13)
 ======
 - Make libxfconf multithread-safe
