@@ -56,6 +56,7 @@ executable(
   sources: [
     xfce_revision_h,
     xfconf_visibility_sources,
+    xfconf_gdbus_sources,
   ],
   c_args: c_args,
   include_directories: [
