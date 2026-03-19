@@ -39,7 +39,10 @@ xfconf_version = '@0@.0.0'.format(xfconf_so_version)
 xfconf = library(
   xfconf_pkgname,
   xfconf_sources,
-  sources: xfconf_visibility_sources,
+  sources: [
+    xfconf_visibility_sources,
+    xfconf_gdbus_sources,
+  ],
   version: xfconf_version,
   soversion: xfconf_so_version,
   c_args: [
