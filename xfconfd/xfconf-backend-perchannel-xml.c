@@ -1728,6 +1728,10 @@ xfconf_format_xml_tag(GString *elem_str,
 {
     gchar buf[G_ASCII_DTOSTR_BUF_SIZE];
 
+    if (is_array != NULL) {
+        *is_array = FALSE;
+    }
+
     switch (G_VALUE_TYPE(value)) {
         case G_TYPE_STRING: {
             const gchar *blanks[3] = { "\r", "\n", "\t" };
@@ -1810,7 +1814,9 @@ xfconf_format_xml_tag(GString *elem_str,
                     g_free(value_str);
                 }
 
-                *is_array = TRUE;
+                if (is_array != NULL) {
+                    *is_array = TRUE;
+                }
             } else if (G_TYPE_PTR_ARRAY == G_VALUE_TYPE(value)) {
                 GPtrArray *arr;
                 guint i;
@@ -1824,16 +1830,17 @@ xfconf_format_xml_tag(GString *elem_str,
                 arr = g_value_get_boxed(value);
                 for (i = 0; i < arr->len; ++i) {
                     GValue *value1 = g_ptr_array_index(arr, i);
-                    gboolean dummy;
 
                     g_string_append_printf(elem_str, "%s  <value", spaces);
-                    if (!xfconf_format_xml_tag(elem_str, value1, TRUE, spaces, &dummy)) {
+                    if (!xfconf_format_xml_tag(elem_str, value1, TRUE, spaces, NULL)) {
                         return FALSE;
                     }
                     g_string_append(elem_str, "/>\n");
                 }
 
-                *is_array = TRUE;
+                if (is_array != NULL) {
+                    *is_array = TRUE;
+                }
             } else {
                 if (is_array_value) {
                     return FALSE;
@@ -1845,7 +1852,6 @@ xfconf_format_xml_tag(GString *elem_str,
                     g_value_unset(value);
                 }
 
-                is_array = FALSE;
                 g_string_append(elem_str, " type=\"empty\"");
             }
             break;
