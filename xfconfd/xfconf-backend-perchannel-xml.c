@@ -1728,6 +1728,10 @@ xfconf_format_xml_tag(GString *elem_str,
 {
     gchar buf[G_ASCII_DTOSTR_BUF_SIZE];
 
+    g_return_val_if_fail(is_array != NULL, FALSE);
+
+    *is_array = FALSE;
+
     switch (G_VALUE_TYPE(value)) {
         case G_TYPE_STRING: {
             const gchar *blanks[3] = { "\r", "\n", "\t" };
@@ -1845,7 +1849,6 @@ xfconf_format_xml_tag(GString *elem_str,
                     g_value_unset(value);
                 }
 
-                is_array = FALSE;
                 g_string_append(elem_str, " type=\"empty\"");
             }
             break;
