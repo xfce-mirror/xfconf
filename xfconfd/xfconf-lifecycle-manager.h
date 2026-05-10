@@ -20,15 +20,6 @@
 
 G_BEGIN_DECLS
 
-/* avoid deprecation warnings coming from GLIB_VERSION_MAX_ALLOWED added by
- * xfce4-dev-tools >= 4.17.1 in config.h: to be removed when glib min required >= 2.68 */
-#if GLIB_CHECK_VERSION(2, 68, 0)
-#undef G_DBUS_METHOD_INVOCATION_HANDLED
-#undef G_DBUS_METHOD_INVOCATION_UNHANDLED
-#endif
-#define G_DBUS_METHOD_INVOCATION_HANDLED TRUE
-#define G_DBUS_METHOD_INVOCATION_UNHANDLED FALSE
-
 #define XFCONF_TYPE_LIFECYCLE_MANAGER xfconf_lifecycle_manager_get_type()
 G_DECLARE_FINAL_TYPE(XfconfLifecycleManager, xfconf_lifecycle_manager, XFCONF, LIFECYCLE_MANAGER, GObject)
 
