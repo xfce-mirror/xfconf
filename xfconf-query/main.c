@@ -190,7 +190,7 @@ static GOptionEntry entries[] = {
     { "verbose", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &verbose,
       N_("Print property and value in combination with -l or -m"),
       NULL },
-    { "create", 'n', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &create,
+    { "create", 'n', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE, &create,
       N_("Create a new property if it does not already exist"),
       NULL },
     { "type", 't', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING_ARRAY, &type,
@@ -258,14 +258,18 @@ main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    if (create && reset) {
-        xfconf_query_printerr(_("--create and --reset options can not be used together"));
+    if (set_value != NULL && reset) {
+        xfconf_query_printerr(_("--set and --reset options can not be used together"));
         return EXIT_FAILURE;
     }
 
-    if ((create || reset) && (list)) {
-        xfconf_query_printerr(_("--create and --reset options can not be used together with --list"));
+    if ((set_value != NULL || reset) && (list)) {
+        xfconf_query_printerr(_("--set and --reset options can not be used together with --list"));
         return EXIT_FAILURE;
+    }
+
+    if (create) {
+        g_warning("--create option is deprecated and will be removed in a future release; --set now automatically creates the property if necessary");
     }
 
     if (!xfconf_init(&error)) {
@@ -369,13 +373,6 @@ main(int argc, char **argv)
             gint i;
 
             prop_exists = xfconf_channel_has_property(channel, property_name);
-            if (!prop_exists && !create) {
-                xfconf_query_printerr(_("Property \"%s\" does not exist on channel \"%s\". If a new "
-                                        "property should be created, use the --create option"),
-                                      property_name, channel_name);
-                xfconf_shutdown();
-                return EXIT_FAILURE;
-            }
 
             if (!prop_exists && (!type || !type[0])) {
                 xfconf_query_printerr(_("When creating a new property, the value type must be specified"));
