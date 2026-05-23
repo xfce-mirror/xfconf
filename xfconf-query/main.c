@@ -61,6 +61,7 @@ static gboolean recursive = FALSE;
 static gboolean force_array = FALSE;
 static gboolean monitor = FALSE;
 static gboolean toggle = FALSE;
+static gboolean formatted = FALSE;
 static gchar *channel_name = NULL;
 static gchar *property_name = NULL;
 static gchar **set_value = NULL;
@@ -107,6 +108,43 @@ xfconf_query_list_sorted(gpointer key, gpointer value, gpointer user_data)
     *listp = g_slist_insert_sorted(*listp, key, (GCompareFunc)g_utf8_collate);
 }
 
+static gchar *
+xfconf_query_g_strescape(gchar *str)
+{
+    /* we escape spaces and single quotes too, g_strcompress() will restore them on its own */
+    gchar *escaped = g_strescape(str, NULL);
+    GString *string = g_string_new_take(escaped);
+    g_string_replace(string, " ", "\\040", 0);
+    g_string_replace(string, "'", "\\047", 0);
+    return g_string_free_and_steal(string);
+}
+
+static gboolean
+xfconf_query_gvalue_from_string(GValue *value,
+                                const gchar *string)
+{
+    if (formatted) {
+        gchar *compressed = g_strcompress(string);
+        gboolean success = _xfconf_gvalue_from_string(value, compressed);
+        g_free(compressed);
+        return success;
+    } else {
+        return _xfconf_gvalue_from_string(value, string);
+    }
+}
+
+static gchar *
+xfconf_query_string_from_gvalue(GValue *value)
+{
+    gchar *string = _xfconf_string_from_gvalue(value);
+    if (formatted) {
+        gchar *temp = xfconf_query_g_strescape(string);
+        g_free(string);
+        string = temp;
+    }
+    return string;
+}
+
 static void
 xfconf_query_list_contents(GSList *sorted_contents, GHashTable *channel_contents, gint size)
 {
@@ -116,28 +154,49 @@ xfconf_query_list_contents(GSList *sorted_contents, GHashTable *channel_contents
     gchar *string;
 
     for (li = sorted_contents; li != NULL; li = li->next) {
-        if (verbose) {
+        if (verbose || formatted) {
             property_value = g_hash_table_lookup(channel_contents, li->data);
 
             if (G_TYPE_PTR_ARRAY != G_VALUE_TYPE(property_value)) {
-                string = _xfconf_string_from_gvalue(property_value);
+                string = xfconf_query_string_from_gvalue(property_value);
+                if (formatted) {
+                    format = g_strdup_printf("xfconf-query -f -c %s -p %%s -t %s -s '%%s'\n",
+                                             channel_name,
+                                             _xfconf_string_from_gtype(G_VALUE_TYPE(property_value)));
+                }
             } else {
                 GPtrArray *arr = g_value_get_boxed(property_value);
                 gchar **strv = g_new0(gchar *, arr->len + 1);
-                gchar *str;
+                if (formatted) {
+                    format = g_strdup_printf("xfconf-query -f -c %s -p %%s -a %%s\n", channel_name);
+                }
 
                 for (guint i = 0; i < arr->len; ++i) {
                     GValue *item_value = g_ptr_array_index(arr, i);
-                    strv[i] = _xfconf_string_from_gvalue(item_value);
+                    strv[i] = xfconf_query_string_from_gvalue(item_value);
+                    if (formatted) {
+                        gchar *temp = g_strdup_printf("-t %s -s '%s'",
+                                                      _xfconf_string_from_gtype(G_VALUE_TYPE(item_value)),
+                                                      strv[i]);
+                        g_free(strv[i]);
+                        strv[i] = temp;
+                    }
                 }
-                str = g_strjoinv(",", strv);
-                string = g_strdup_printf("[%s]", str);
-                g_free(str);
+
+                string = g_strjoinv(verbose ? "," : " ", strv);
+                if (verbose) {
+                    gchar *temp = g_strdup_printf("[%s]", string);
+                    g_free(string);
+                    string = temp;
+                }
                 g_strfreev(strv);
             }
 
             g_print(format, (gchar *)li->data, string);
             g_free(string);
+            if (formatted) {
+                g_clear_pointer(&format, g_free);
+            }
         } else {
             g_print("%s\n", (gchar *)li->data);
         }
@@ -189,6 +248,9 @@ static GOptionEntry entries[] = {
       NULL },
     { "verbose", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &verbose,
       N_("Print property and value in combination with -l or -m"),
+      NULL },
+    { "formatted", 'f', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &formatted,
+      N_("Print xfconf-query commands with escaped arguments, that can then be used directly to restore the settings"),
       NULL },
     { "create", 'n', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE, &create,
       N_("Create a new property if it does not already exist"),
@@ -265,6 +327,11 @@ main(int argc, char **argv)
 
     if ((set_value != NULL || reset) && (list)) {
         xfconf_query_printerr(_("--set and --reset options can not be used together with --list"));
+        return EXIT_FAILURE;
+    }
+
+    if (verbose && formatted) {
+        xfconf_query_printerr(_("--verbose and --formatted options can not be used together"));
         return EXIT_FAILURE;
     }
 
@@ -346,25 +413,50 @@ main(int argc, char **argv)
             }
 
             if (G_TYPE_PTR_ARRAY != G_VALUE_TYPE(&value)) {
-                gchar *str_val = _xfconf_string_from_gvalue(&value);
-                g_print("%s\n", str_val ? str_val : _("(unknown)"));
+                gchar *str_val = xfconf_query_string_from_gvalue(&value);
+                if (formatted) {
+                    g_print("xfconf-query -f -c %s -p %s -t %s -s '%s'\n",
+                            channel_name,
+                            property_name,
+                            _xfconf_string_from_gtype(G_VALUE_TYPE(&value)),
+                            str_val);
+                } else {
+                    g_print("%s\n", str_val ? str_val : _("(unknown)"));
+                }
                 g_free(str_val);
                 g_value_unset(&value);
             } else {
                 GPtrArray *arr = g_value_get_boxed(&value);
+                gchar **strv = NULL;
                 guint i;
 
-                g_print(_("Value is an array with %d items:"), arr->len);
-                g_print("\n\n");
+                if (formatted) {
+                    strv = g_new0(gchar *, arr->len + 1);
+                } else {
+                    g_print(_("Value is an array with %d items:"), arr->len);
+                    g_print("\n\n");
+                }
 
                 for (i = 0; i < arr->len; ++i) {
                     GValue *item_value = g_ptr_array_index(arr, i);
 
                     if (item_value) {
-                        gchar *str_val = _xfconf_string_from_gvalue(item_value);
-                        g_print("%s\n", str_val ? str_val : _("(unknown)"));
+                        gchar *str_val = xfconf_query_string_from_gvalue(item_value);
+                        if (formatted) {
+                            strv[i] = g_strdup_printf("-t %s -s '%s'",
+                                                      _xfconf_string_from_gtype(G_VALUE_TYPE(item_value)),
+                                                      str_val);
+                        } else {
+                            g_print("%s\n", str_val ? str_val : _("(unknown)"));
+                        }
                         g_free(str_val);
                     }
+                }
+                if (formatted) {
+                    gchar *string = g_strjoinv(" ", strv);
+                    g_print("xfconf-query -f -c %s -p %s -a %s\n", channel_name, property_name, string);
+                    g_free(string);
+                    g_strfreev(strv);
                 }
             }
         } else {
@@ -419,7 +511,7 @@ main(int argc, char **argv)
                 }
 
                 g_value_init(&value, gtype);
-                if (!_xfconf_gvalue_from_string(&value, set_value[0])) {
+                if (!xfconf_query_gvalue_from_string(&value, set_value[0])) {
                     xfconf_query_printerr(_("Unable to convert \"%s\" to type \"%s\""),
                                           set_value[0], g_type_name(gtype));
                     xfconf_shutdown();
@@ -474,7 +566,7 @@ main(int argc, char **argv)
 
                     value_new = g_new0(GValue, 1);
                     g_value_init(value_new, gtype);
-                    if (!_xfconf_gvalue_from_string(value_new, set_value[i])) {
+                    if (!xfconf_query_gvalue_from_string(value_new, set_value[i])) {
                         xfconf_query_printerr(_("Unable to convert \"%s\" to type \"%s\""),
                                               set_value[i], g_type_name(gtype));
                         xfconf_shutdown();
