@@ -259,6 +259,11 @@ main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
+    if (property_name != NULL && !g_str_has_prefix(property_name, "/")) {
+        xfconf_query_printerr(_("The property name should start with '/'"));
+        return EXIT_FAILURE;
+    }
+
     if (set_value != NULL && reset) {
         xfconf_query_printerr(_("--set and --reset options can not be used together"));
         return EXIT_FAILURE;
