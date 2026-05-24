@@ -54,7 +54,6 @@
 
 static gboolean version = FALSE;
 static gboolean list = FALSE;
-static gboolean verbose = FALSE;
 static gboolean create = FALSE;
 static gboolean reset = FALSE;
 static gboolean recursive = FALSE;
@@ -65,25 +64,68 @@ static gchar *channel_name = NULL;
 static gchar *property_name = NULL;
 static gchar **set_value = NULL;
 static gchar **type = NULL;
+static guint verbose = 0;
+static gboolean
+xfconf_query_parse_option(const gchar *option_name,
+                          const gchar *value,
+                          gpointer data,
+                          GError **error)
+{
+    if (g_strcmp0(option_name, "-v") == 0 || g_strcmp0(option_name, "--verbose") == 0) {
+        verbose++;
+    } else {
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+static gchar *
+xfconf_query_string_from_gvalue(GValue *value)
+{
+    if (G_VALUE_TYPE(value) != G_TYPE_PTR_ARRAY) {
+        return _xfconf_string_from_gvalue(value);
+    } else {
+        GPtrArray *arr = g_value_get_boxed(value);
+        gchar **strv = g_new0(gchar *, arr->len + 1);
+
+        for (guint i = 0; i < arr->len; ++i) {
+            GValue *item_value = g_ptr_array_index(arr, i);
+            strv[i] = _xfconf_string_from_gvalue(item_value);
+        }
+        gchar *temp = g_strjoinv(",", strv);
+        gchar *string = g_strdup_printf("[%s]", temp);
+        g_free(temp);
+        g_strfreev(strv);
+
+        return string;
+    }
+}
 
 static void
 xfconf_query_monitor(XfconfChannel *channel, const gchar *changed_property, GValue *property_value)
 {
-    gchar *string;
-
     if (property_name && !g_str_has_prefix(changed_property, property_name)) {
         return;
     }
 
     if (property_value && G_IS_VALUE(property_value)) {
-        if (verbose) {
-            string = _xfconf_string_from_gvalue(property_value);
-            g_print("%s: %s (%s)\n", _("set"), changed_property, string);
+        // TRANSLATORS: This refers to: "A property has been set"
+        const gchar *prefix = _("set");
+        if (verbose > 0) {
+            gchar *string = xfconf_query_string_from_gvalue(property_value);
+            if (verbose > 1) {
+                const gchar *str_type = _xfconf_string_from_gtype(G_VALUE_TYPE(property_value));
+                g_print("%s: %s [%s] (%s)\n", prefix, changed_property, str_type, string);
+            } else {
+                g_print("%s: %s (%s)\n", prefix, changed_property, string);
+            }
             g_free(string);
         } else {
-            g_print("%s: %s\n", _("set"), changed_property);
+            g_print("%s: %s\n", prefix, changed_property);
         }
     } else {
+        // TRANSLATORS: This refers to: "A property has been reset"
         g_print("%s: %s\n", _("reset"), changed_property);
     }
 }
@@ -92,10 +134,11 @@ static void
 xfconf_query_get_propname_size(gpointer key, gpointer value, gpointer user_data)
 {
     gint *size = user_data;
-    gchar *propname = (gchar *)key;
 
-    if ((gint)strlen(propname) > *size) {
-        *size = strlen(propname);
+    size[0] = MAX(size[0], (gint)strlen(key));
+    if (verbose > 1) {
+        const gchar *str_type = _xfconf_string_from_gtype(G_VALUE_TYPE(value));
+        size[1] = MAX(size[1], (gint)strlen(str_type));
     }
 }
 
@@ -108,35 +151,28 @@ xfconf_query_list_sorted(gpointer key, gpointer value, gpointer user_data)
 }
 
 static void
-xfconf_query_list_contents(GSList *sorted_contents, GHashTable *channel_contents, gint size)
+xfconf_query_list_contents(GSList *sorted_contents, GHashTable *channel_contents, gint prop_size, gint type_size)
 {
     GSList *li;
-    gchar *format = verbose ? g_strdup_printf("%%-%ds%%s\n", size + 2) : NULL;
+    gchar *format = NULL;
     GValue *property_value;
     gchar *string;
+    if (verbose == 1) {
+        format = g_strdup_printf("%%-%ds%%s\n", prop_size + 2);
+    } else if (verbose > 1) {
+        format = g_strdup_printf("%%-%ds%%-%ds%%s\n", prop_size + 2, type_size + 2);
+    }
 
     for (li = sorted_contents; li != NULL; li = li->next) {
-        if (verbose) {
+        if (verbose > 0) {
             property_value = g_hash_table_lookup(channel_contents, li->data);
-
-            if (G_TYPE_PTR_ARRAY != G_VALUE_TYPE(property_value)) {
-                string = _xfconf_string_from_gvalue(property_value);
+            string = xfconf_query_string_from_gvalue(property_value);
+            if (verbose > 1) {
+                const gchar *str_type = _xfconf_string_from_gtype(G_VALUE_TYPE(property_value));
+                g_print(format, (gchar *)li->data, str_type, string);
             } else {
-                GPtrArray *arr = g_value_get_boxed(property_value);
-                gchar **strv = g_new0(gchar *, arr->len + 1);
-                gchar *str;
-
-                for (guint i = 0; i < arr->len; ++i) {
-                    GValue *item_value = g_ptr_array_index(arr, i);
-                    strv[i] = _xfconf_string_from_gvalue(item_value);
-                }
-                str = g_strjoinv(",", strv);
-                string = g_strdup_printf("[%s]", str);
-                g_free(str);
-                g_strfreev(strv);
+                g_print(format, (gchar *)li->data, string);
             }
-
-            g_print(format, (gchar *)li->data, string);
             g_free(string);
         } else {
             g_print("%s\n", (gchar *)li->data);
@@ -187,8 +223,8 @@ static GOptionEntry entries[] = {
     { "list", 'l', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &list,
       N_("List properties (or channels if -c is not specified)"),
       NULL },
-    { "verbose", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &verbose,
-      N_("Print property and value in combination with -l or -m"),
+    { "verbose", 'v', G_OPTION_FLAG_IN_MAIN | G_OPTION_FLAG_OPTIONAL_ARG | G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, xfconf_query_parse_option,
+      N_("Print also the value in combination with -l or -m (use twice to print also the type)"),
       NULL },
     { "create", 'n', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &create,
       N_("Create a new property if it does not already exist"),
@@ -343,7 +379,12 @@ main(int argc, char **argv)
 
             if (G_TYPE_PTR_ARRAY != G_VALUE_TYPE(&value)) {
                 gchar *str_val = _xfconf_string_from_gvalue(&value);
-                g_print("%s\n", str_val ? str_val : _("(unknown)"));
+                if (verbose > 0) {
+                    const gchar *str_type = _xfconf_string_from_gtype(G_VALUE_TYPE(&value));
+                    g_print("[%s] %s\n", str_type, str_val ? str_val : _("(unknown)"));
+                } else {
+                    g_print("%s\n", str_val ? str_val : _("(unknown)"));
+                }
                 g_free(str_val);
                 g_value_unset(&value);
             } else {
@@ -358,7 +399,12 @@ main(int argc, char **argv)
 
                     if (item_value) {
                         gchar *str_val = _xfconf_string_from_gvalue(item_value);
-                        g_print("%s\n", str_val ? str_val : _("(unknown)"));
+                        if (verbose > 0) {
+                            const gchar *str_type = _xfconf_string_from_gtype(G_VALUE_TYPE(item_value));
+                            g_print("[%s] %s\n", str_type, str_val ? str_val : _("(unknown)"));
+                        } else {
+                            g_print("%s\n", str_val ? str_val : _("(unknown)"));
+                        }
                         g_free(str_val);
                     }
                 }
@@ -505,17 +551,18 @@ main(int argc, char **argv)
     if (list) {
         GHashTable *channel_contents = xfconf_channel_get_properties(channel, property_name);
         if (channel_contents) {
-            gint size = 0;
+            gint *size = g_new0(gint, 2);
             GSList *sorted_contents = NULL;
 
             if (verbose) {
-                g_hash_table_foreach(channel_contents, (GHFunc)xfconf_query_get_propname_size, &size);
+                g_hash_table_foreach(channel_contents, (GHFunc)xfconf_query_get_propname_size, size);
             }
 
             g_hash_table_foreach(channel_contents, (GHFunc)xfconf_query_list_sorted, &sorted_contents);
 
-            xfconf_query_list_contents(sorted_contents, channel_contents, size);
+            xfconf_query_list_contents(sorted_contents, channel_contents, size[0], size[1]);
 
+            g_free(size);
             g_slist_free(sorted_contents);
             g_hash_table_destroy(channel_contents);
         } else {
