@@ -65,6 +65,39 @@ static gchar *channel_name = NULL;
 static gchar *property_name = NULL;
 static gchar **set_value = NULL;
 static gchar **type = NULL;
+static gboolean list_types = FALSE;
+static gboolean
+xfconf_query_parse_option(const gchar *option_name,
+                          const gchar *value,
+                          gpointer data,
+                          GError **error)
+{
+    if (g_strcmp0(option_name, "-t") == 0 || g_strcmp0(option_name, "--type")) {
+        if (value != NULL) {
+            /* build type array if --type is specified at least once with an argument */
+            if (type == NULL) {
+                type = g_new0(gchar *, 2);
+                type[0] = g_strdup(value);
+            } else {
+                guint length = g_strv_length(type);
+                gchar **strv = g_new0(gchar *, length + 2);
+                for (guint n = 0; n < length; n++) {
+                    strv[n] = g_strdup(type[n]);
+                }
+                strv[length] = g_strdup(value);
+                g_strfreev(type);
+                type = strv;
+            }
+        } else {
+            /* if it's specified at least once without argument, we'll list types anyway */
+            list_types = TRUE;
+        }
+    } else {
+        return FALSE;
+    }
+
+    return TRUE;
+}
 
 static void
 xfconf_query_monitor(XfconfChannel *channel, const gchar *changed_property, GValue *property_value)
@@ -171,6 +204,31 @@ xfconf_query_compare_func(gconstpointer a,
     return g_strcmp0(*s, *t);
 }
 
+static void
+xfconf_query_list_types(gboolean on_stderr)
+{
+    void (*print_func)(const gchar *, ...) = on_stderr ? g_printerr : g_print;
+    GType gtypes[] = {
+        G_TYPE_STRING,
+        G_TYPE_BOOLEAN,
+        G_TYPE_UCHAR,
+        G_TYPE_CHAR,
+        XFCONF_TYPE_UINT16,
+        XFCONF_TYPE_INT16,
+        G_TYPE_UINT,
+        G_TYPE_INT,
+        G_TYPE_UINT64,
+        G_TYPE_INT64,
+        G_TYPE_FLOAT,
+        G_TYPE_DOUBLE,
+        G_TYPE_INVALID,
+    };
+    print_func("Possible types:\n");
+    for (guint n = 0; gtypes[n] != G_TYPE_INVALID; n++) {
+        print_func("%s\n", _xfconf_string_from_gtype(gtypes[n]));
+    }
+}
+
 static GOptionEntry entries[] = {
     { "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
       N_("Version information"),
@@ -190,8 +248,8 @@ static GOptionEntry entries[] = {
     { "verbose", 'v', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &verbose,
       N_("Print property and value in combination with -l or -m"),
       NULL },
-    { "type", 't', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_STRING_ARRAY, &type,
-      N_("Specify the property value type (multiple uses for an array)"),
+    { "type", 't', G_OPTION_FLAG_IN_MAIN | G_OPTION_FLAG_OPTIONAL_ARG, G_OPTION_ARG_CALLBACK, xfconf_query_parse_option,
+      N_("Specify the property value type (multiple uses for an array; list possible types if none is specified)"),
       NULL },
     { "reset", 'r', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &reset,
       N_("Reset property"),
@@ -250,6 +308,11 @@ main(int argc, char **argv)
         g_print(_("Please report bugs to <%s>."), PACKAGE_BUGREPORT);
         g_print("\n");
 
+        return EXIT_SUCCESS;
+    }
+
+    if (list_types) {
+        xfconf_query_list_types(FALSE);
         return EXIT_SUCCESS;
     }
 
@@ -381,6 +444,7 @@ main(int argc, char **argv)
             prop_exists = xfconf_channel_has_property(channel, property_name);
             if (!prop_exists && (!type || !type[0])) {
                 xfconf_query_printerr(_("When creating a new property, the value type must be specified"));
+                xfconf_query_list_types(TRUE);
                 xfconf_shutdown();
                 return EXIT_FAILURE;
             }
@@ -409,12 +473,14 @@ main(int argc, char **argv)
 
                 if (G_TYPE_INVALID == gtype || G_TYPE_NONE == gtype) {
                     xfconf_query_printerr(_("Unable to determine the type of the value"));
+                    xfconf_query_list_types(TRUE);
                     xfconf_shutdown();
                     return EXIT_FAILURE;
                 }
 
                 if (G_TYPE_PTR_ARRAY == gtype) {
                     xfconf_query_printerr(_("A value type must be specified to change an array into a single value"));
+                    xfconf_query_list_types(TRUE);
                     xfconf_shutdown();
                     return EXIT_FAILURE;
                 }
@@ -427,6 +493,7 @@ main(int argc, char **argv)
                 if (!_xfconf_gvalue_from_string(&value, set_value[0])) {
                     xfconf_query_printerr(_("Unable to convert \"%s\" to type \"%s\""),
                                           set_value[0], g_type_name(gtype));
+                    xfconf_query_list_types(TRUE);
                     xfconf_shutdown();
                     return EXIT_FAILURE;
                 }
@@ -473,6 +540,7 @@ main(int argc, char **argv)
 
                     if (G_TYPE_INVALID == gtype || G_TYPE_NONE == gtype) {
                         xfconf_query_printerr(_("Unable to determine type of value at index %d"), i);
+                        xfconf_query_list_types(TRUE);
                         xfconf_shutdown();
                         return EXIT_FAILURE;
                     }
@@ -482,6 +550,7 @@ main(int argc, char **argv)
                     if (!_xfconf_gvalue_from_string(value_new, set_value[i])) {
                         xfconf_query_printerr(_("Unable to convert \"%s\" to type \"%s\""),
                                               set_value[i], g_type_name(gtype));
+                        xfconf_query_list_types(TRUE);
                         xfconf_shutdown();
                         return EXIT_FAILURE;
                     }
