@@ -1,0 +1,2 @@
+# if type is NULL it exits early + type and set_value have same length
+xfconf-query/main.c:[0-9]+:[0-9]+: warning: dereference of NULL .+0.+ \[CWE-476\] \[-Wanalyzer-null-dereference\]
