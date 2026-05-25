@@ -66,6 +66,10 @@ static gchar *property_name = NULL;
 static gchar **set_value = NULL;
 static gchar **type = NULL;
 static guint verbose = 0;
+static gboolean export = FALSE;
+static gchar *export_filename = NULL;
+static gboolean import = FALSE;
+static gchar *import_filename = NULL;
 static gboolean
 xfconf_query_parse_option(const gchar *option_name,
                           const gchar *value,
@@ -74,6 +78,12 @@ xfconf_query_parse_option(const gchar *option_name,
 {
     if (g_strcmp0(option_name, "-v") == 0 || g_strcmp0(option_name, "--verbose") == 0) {
         verbose++;
+    } else if (g_strcmp0(option_name, "--export") == 0) {
+        export = TRUE;
+        export_filename = g_strdup(value);
+    } else if (g_strcmp0(option_name, "--import") == 0) {
+        import = TRUE;
+        import_filename = g_strdup(value);
     }
 
     return TRUE;
@@ -232,6 +242,242 @@ xfconf_query_list_types(gboolean on_stderr)
     }
 }
 
+static gchar *
+xfconf_query_g_strescape(gchar *str)
+{
+    /*
+     * Escape spaces too, in order to bluid space-separated arguments: g_strcompress()
+     * will restore them on its own. On the other hand, don't escape double quotes and
+     * non-ASCII characters below, to keep the output as unchanged and human-readable
+     * as possible.
+     */
+    const gchar *excluded =
+        "\""
+        "\x80\x81\x82\x83\x84\x85\x86\x87\x88\x89\x8a\x8b\x8c\x8d\x8e\x8f"
+        "\x90\x91\x92\x93\x94\x95\x96\x97\x98\x99\x9a\x9b\x9c\x9d\x9e\x9f"
+        "\xa0\xa1\xa2\xa3\xa4\xa5\xa6\xa7\xa8\xa9\xaa\xab\xac\xad\xae\xaf"
+        "\xb0\xb1\xb2\xb3\xb4\xb5\xb6\xb7\xb8\xb9\xba\xbb\xbc\xbd\xbe\xbf"
+        "\xc0\xc1\xc2\xc3\xc4\xc5\xc6\xc7\xc8\xc9\xca\xcb\xcc\xcd\xce\xcf"
+        "\xd0\xd1\xd2\xd3\xd4\xd5\xd6\xd7\xd8\xd9\xda\xdb\xdc\xdd\xde\xdf"
+        "\xe0\xe1\xe2\xe3\xe4\xe5\xe6\xe7\xe8\xe9\xea\xeb\xec\xed\xee\xef"
+        "\xf0\xf1\xf2\xf3\xf4\xf5\xf6\xf7\xf8\xf9\xfa\xfb\xfc\xfd\xfe\xff";
+    gchar *escaped = g_strescape(str, excluded);
+    GString *string = g_string_new_take(escaped);
+    g_string_replace(string, " ", "\\040", 0);
+    return g_string_free_and_steal(string);
+}
+
+static gchar *
+xfconf_query_export_string_from_gvalue(GValue *value)
+{
+    gchar *string;
+
+    if (G_VALUE_TYPE(value) != G_TYPE_PTR_ARRAY) {
+        gchar *value_str = _xfconf_string_from_gvalue(value);
+        gchar *escaped = xfconf_query_g_strescape(value_str);
+        const gchar *type_str = _xfconf_string_from_gtype(G_VALUE_TYPE(value));
+        string = g_strdup_printf("0 %s %s", type_str, escaped);
+        g_free(escaped);
+        g_free(value_str);
+    } else {
+        GPtrArray *arr = g_value_get_boxed(value);
+        gchar **strv = g_new0(gchar *, arr->len + 1);
+
+        for (guint i = 0; i < arr->len; ++i) {
+            GValue *item_value = g_ptr_array_index(arr, i);
+            gchar *value_str = _xfconf_string_from_gvalue(item_value);
+            gchar *escaped = xfconf_query_g_strescape(value_str);
+            const gchar *type_str = _xfconf_string_from_gtype(G_VALUE_TYPE(item_value));
+            strv[i] = g_strdup_printf("%s %s", type_str, escaped);
+            g_free(escaped);
+            g_free(value_str);
+        }
+        gchar *value_str = g_strjoinv(" ", strv);
+        string = g_strdup_printf("%d %s", arr->len, value_str);
+        g_free(value_str);
+        g_strfreev(strv);
+    }
+
+    return string;
+}
+
+/*
+ * One line per property to be exported, in the following format:
+ *   channel property n type_0 escaped_value_0 … type_(n-1) escaped_value_(n-1)
+ * where n is the array size (n == 0 for non-array properties).
+ */
+static gchar *
+xfconf_query_export_channel(const gchar *_channel_name,
+                            const gchar *_property_name)
+{
+    XfconfChannel *channel = xfconf_channel_get(_channel_name);
+    GHashTable *channel_contents = xfconf_channel_get_properties(channel, _property_name);
+    GHashTableIter iter;
+    gpointer property, value;
+    GString *string = g_string_new(NULL);
+
+    g_hash_table_iter_init(&iter, channel_contents);
+    while (g_hash_table_iter_next(&iter, &property, &value)) {
+        gchar *value_str = xfconf_query_export_string_from_gvalue(value);
+        g_string_append_printf(string, "%s %s %s\n", _channel_name, (gchar *)property, value_str);
+        g_free(value_str);
+    }
+
+    g_hash_table_destroy(channel_contents);
+    return g_string_free_and_steal(string);
+}
+
+static gboolean
+xfconf_query_export(void)
+{
+    GError *error = NULL;
+    gchar *contents = NULL;
+
+    if (channel_name != NULL) {
+        contents = xfconf_query_export_channel(channel_name, property_name);
+    } else {
+        gchar **channels = xfconf_list_channels();
+        if (channels != NULL) {
+            GString *string = g_string_new(NULL);
+            for (guint i = 0; channels[i] != NULL; i++) {
+                gchar *channel_export = xfconf_query_export_channel(channels[i], property_name);
+                g_string_append(string, channel_export);
+                g_free(channel_export);
+            }
+            contents = g_string_free_and_steal(string);
+            g_strfreev(channels);
+        }
+    }
+
+    if (contents != NULL) {
+        if (export_filename != NULL) {
+            if (!g_file_set_contents(export_filename, contents, -1, &error)) {
+                xfconf_query_printerr(_("Failed to write contents: %s"), error->message);
+                g_error_free(error);
+                g_free(contents);
+                g_free(export_filename);
+                return FALSE;
+            }
+        } else {
+            g_print("%s", contents);
+        }
+        g_free(contents);
+    }
+
+    g_free(export_filename);
+    return TRUE;
+}
+
+static void
+xfconf_query_gvalue_free(gpointer data)
+{
+    if (data != NULL) {
+        GValue *value = data;
+        g_value_unset(value);
+        g_free(value);
+    }
+}
+
+static gboolean
+xfconf_query_import(void)
+{
+    GFile *file = g_file_new_for_path(import_filename != NULL ? import_filename : "/dev/stdin");
+    GError *error = NULL;
+    gchar *contents;
+    if (!g_file_load_contents(file, NULL, &contents, NULL, NULL, &error)) {
+        xfconf_query_printerr(_("Failed to read contents: %s"), error->message);
+        g_error_free(error);
+        g_object_unref(file);
+        g_free(import_filename);
+        return FALSE;
+    }
+
+    gchar **lines = g_strsplit(contents, "\n", 0);
+    gboolean skipped_lines = FALSE;
+    for (guint i = 0; !xfce_str_is_empty(lines[i]); i++) {
+        gchar **words = g_strsplit(lines[i], " ", 0);
+        guint n_words = g_strv_length(words);
+        guint64 array_size;
+
+        /* expected line format: channel property n type_0 escaped_value_0 … type_(n-1) escaped_value_(n-1) */
+        if (n_words < 5
+            || !g_ascii_string_to_unsigned(words[2], 10, 0, G_MAXUINT, &array_size, NULL)
+            || n_words != 3 + 2 * (MAX(1, array_size)))
+        {
+            xfconf_query_printerr(_("Skipped import of line %d: corrupted format"), i + 1);
+            skipped_lines = TRUE;
+            continue;
+        }
+
+        /* non-array property value */
+        if (array_size == 0) {
+            GType gtype = _xfconf_gtype_from_string(words[3]);
+            if (gtype == G_TYPE_INVALID || gtype == G_TYPE_NONE) {
+                xfconf_query_printerr(_("Skipped import of line %d: wrong type %s"), i + 1, words[3]);
+            } else {
+                gchar *str_value = g_strcompress(words[4]);
+                GValue value = G_VALUE_INIT;
+                g_value_init(&value, gtype);
+                if (!_xfconf_gvalue_from_string(&value, str_value)) {
+                    xfconf_query_printerr(_("Skipped import of line %d: type and value do not match"), i + 1);
+                    skipped_lines = TRUE;
+                } else {
+                    XfconfChannel *channel = xfconf_channel_get(words[0]);
+                    if (!xfconf_channel_set_property(channel, words[1], &value)) {
+                        xfconf_query_printerr(_("Skipped import of line %d: failed to set property"), i + 1);
+                        skipped_lines = TRUE;
+                    }
+                }
+                g_value_unset(&value);
+                g_free(str_value);
+            }
+        } else {
+            GPtrArray *array = g_ptr_array_new_full(array_size, xfconf_query_gvalue_free);
+            for (guint j = 0; j < array_size; j++) {
+                const gchar *str_type = words[2 + 2 * j + 1];
+                GType gtype = _xfconf_gtype_from_string(str_type);
+                if (gtype == G_TYPE_INVALID || gtype == G_TYPE_NONE) {
+                    xfconf_query_printerr(_("Skipped import of line %d: wrong type %s"), i + 1, str_type);
+                    skipped_lines = TRUE;
+                    g_clear_pointer(&array, g_ptr_array_unref);
+                    break;
+                } else {
+                    gchar *str_value = g_strcompress(words[2 + 2 * j + 2]);
+                    GValue *value = g_new0(GValue, 1);
+                    g_value_init(value, gtype);
+                    if (!_xfconf_gvalue_from_string(value, str_value)) {
+                        xfconf_query_printerr(_("Skipped import of line %d: type and value do not match"), i + 1);
+                        skipped_lines = TRUE;
+                        g_ptr_array_add(array, value);
+                        g_clear_pointer(&array, g_ptr_array_unref);
+                        g_free(str_value);
+                        break;
+                    }
+                    g_ptr_array_add(array, value);
+                    g_free(str_value);
+                }
+            }
+
+            if (array != NULL) {
+                XfconfChannel *channel = xfconf_channel_get(words[0]);
+                GValue value = G_VALUE_INIT;
+                g_value_init(&value, G_TYPE_PTR_ARRAY);
+                g_value_set_boxed(&value, array);
+                if (!xfconf_channel_set_property(channel, words[1], &value)) {
+                    xfconf_query_printerr(_("Skipped import of line %d: failed to set property"), i + 1);
+                    skipped_lines = TRUE;
+                }
+                g_value_unset(&value);
+            }
+        }
+    }
+
+    g_free(contents);
+    g_object_unref(file);
+    g_free(import_filename);
+    return !skipped_lines;
+}
+
 static GOptionEntry entries[] = {
     { "version", 'V', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &version,
       N_("Version information"),
@@ -271,6 +517,12 @@ static GOptionEntry entries[] = {
       NULL },
     { "list-types", '\0', G_OPTION_FLAG_IN_MAIN, G_OPTION_ARG_NONE, &list_types,
       N_("List types that can be specified using the --type option"),
+      NULL },
+    { "export", '\0', G_OPTION_FLAG_IN_MAIN | G_OPTION_FLAG_OPTIONAL_ARG | G_OPTION_FLAG_FILENAME, G_OPTION_ARG_CALLBACK, xfconf_query_parse_option,
+      N_("Export all or part of the settings to an optional file or standard output, in a format suitable for the --import option"),
+      NULL },
+    { "import", '\0', G_OPTION_FLAG_IN_MAIN | G_OPTION_FLAG_OPTIONAL_ARG | G_OPTION_FLAG_FILENAME, G_OPTION_ARG_CALLBACK, xfconf_query_parse_option,
+      N_("Import settings exported using the --export option from an optional file or standard input"),
       NULL },
     /* deprecated */
     { "create", 'n', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE, &create,
@@ -317,7 +569,7 @@ main(int argc, char **argv)
     }
 
     /** Check if the property is specified */
-    if (!property_name && !list && !monitor) {
+    if (!property_name && !list && !monitor && !export && !import) {
         xfconf_query_printerr(_("No property specified"));
         return EXIT_FAILURE;
     }
@@ -337,6 +589,11 @@ main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
+    if (export && import) {
+        xfconf_query_printerr(_("--export and --import options can not be used together"));
+        return EXIT_FAILURE;
+    }
+
     if (create) {
         g_warning("--create option is deprecated and will be removed in a future release; --set now automatically creates the property if necessary");
     }
@@ -345,6 +602,14 @@ main(int argc, char **argv)
         xfconf_query_printerr(_("Failed to init libxfconf: %s"), error->message);
         g_error_free(error);
         return EXIT_FAILURE;
+    }
+
+    if (export) {
+        return xfconf_query_export() ? EXIT_SUCCESS : EXIT_FAILURE;
+    }
+
+    if (import) {
+        return xfconf_query_import() ? EXIT_SUCCESS : EXIT_FAILURE;
     }
 
     /** Check if the channel is specified */
