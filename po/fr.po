@@ -326,4 +326,4 @@ msgstr "Impossible de déterminer le type de valeur à l’index %d"
 #: xfconf-query/main.c:563
 #, c-format
 msgid "Channel \"%s\" contains no properties"
-msgstr "Le canal « %s » ne contient pas de propriété."
+msgstr "Le canal « %s » ne contient pas de propriété"
