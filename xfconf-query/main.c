@@ -541,7 +541,7 @@ main(int argc, char **argv)
 
     if (list) {
         GHashTable *channel_contents = xfconf_channel_get_properties(channel, property_name);
-        if (channel_contents) {
+        if (g_hash_table_size(channel_contents) > 0) {
             gint size = 0;
             GSList *sorted_contents = NULL;
 
@@ -554,11 +554,11 @@ main(int argc, char **argv)
             xfconf_query_list_contents(sorted_contents, channel_contents, size);
 
             g_slist_free(sorted_contents);
-            g_hash_table_destroy(channel_contents);
         } else {
             g_print(_("Channel \"%s\" contains no properties"), channel_name);
             g_print(".\n");
         }
+        g_hash_table_destroy(channel_contents);
     }
 
     xfconf_shutdown();
