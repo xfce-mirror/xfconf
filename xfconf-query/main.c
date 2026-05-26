@@ -378,22 +378,11 @@ xfconf_query_gvalue_free(gpointer data)
     }
 }
 
-static gboolean
-xfconf_query_import(void)
+static GHashTable *
+xfconf_query_import_check(const gchar *contents)
 {
-    GFile *file = g_file_new_for_path(import_filename != NULL ? import_filename : "/dev/stdin");
-    GError *error = NULL;
-    gchar *contents;
-    if (!g_file_load_contents(file, NULL, &contents, NULL, NULL, &error)) {
-        xfconf_query_printerr(_("Failed to read contents: %s"), error->message);
-        g_error_free(error);
-        g_object_unref(file);
-        g_free(import_filename);
-        return FALSE;
-    }
-
+    GHashTable *channels = g_hash_table_new_full(g_direct_hash, g_direct_equal, NULL, (GDestroyNotify)g_hash_table_destroy);
     gchar **lines = g_strsplit(contents, "\n", 0);
-    gboolean skipped_lines = FALSE;
     for (guint i = 0; lines[i] != NULL; i++) {
         if (xfce_str_is_empty(lines[i])) {
             continue;
@@ -408,32 +397,45 @@ xfconf_query_import(void)
             || !g_ascii_string_to_unsigned(words[2], 10, 0, G_MAXUINT, &array_size, NULL)
             || n_words != 3 + 2 * (MAX(1, array_size)))
         {
-            xfconf_query_printerr(_("Skipped import of line %d: corrupted format"), i + 1);
-            skipped_lines = TRUE;
-            continue;
+            xfconf_query_printerr(_("Aborted on line %d: corrupted format"), i + 1);
+            g_clear_pointer(&channels, g_hash_table_destroy);
+            g_strfreev(words);
+            break;
+        }
+
+        XfconfChannel *channel = xfconf_channel_get(words[0]);
+        GHashTable *properties = g_hash_table_lookup(channels, channel);
+        if (properties == NULL) {
+            properties = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, xfconf_query_gvalue_free);
+            g_hash_table_insert(channels, channel, properties);
         }
 
         if (array_size == 0) {
             /* non-array property value */
             GType gtype = _xfconf_gtype_from_string(words[3]);
             if (gtype == G_TYPE_INVALID || gtype == G_TYPE_NONE) {
-                xfconf_query_printerr(_("Skipped import of line %d: wrong type %s"), i + 1, words[3]);
-                skipped_lines = TRUE;
+                xfconf_query_printerr(_("Aborted on line %d: wrong type %s"), i + 1, words[3]);
+                g_clear_pointer(&channels, g_hash_table_destroy);
+                g_strfreev(words);
+                break;
             } else {
                 gchar *str_value = g_strcompress(words[4]);
-                GValue value = G_VALUE_INIT;
-                g_value_init(&value, gtype);
-                if (!_xfconf_gvalue_from_string(&value, str_value)) {
-                    xfconf_query_printerr(_("Skipped import of line %d: type and value do not match"), i + 1);
-                    skipped_lines = TRUE;
-                } else {
-                    XfconfChannel *channel = xfconf_channel_get(words[0]);
-                    if (!xfconf_channel_set_property(channel, words[1], &value)) {
-                        xfconf_query_printerr(_("Skipped import of line %d: failed to set property"), i + 1);
-                        skipped_lines = TRUE;
-                    }
+                GValue *value = g_new0(GValue, 1);
+                g_value_init(value, gtype);
+                if (!_xfconf_gvalue_from_string(value, str_value)) {
+                    xfconf_query_printerr(_("Aborted on line %d: type and value do not match"), i + 1);
+                    g_clear_pointer(&channels, g_hash_table_destroy);
+                    xfconf_query_gvalue_free(value);
+                    g_free(str_value);
+                    g_strfreev(words);
+                    break;
+                } else if (!g_hash_table_insert(properties, g_strdup(words[1]), value)) {
+                    xfconf_query_printerr(_("Aborted on line %d: duplicate property %s"), i + 1, words[1]);
+                    g_clear_pointer(&channels, g_hash_table_destroy);
+                    g_free(str_value);
+                    g_strfreev(words);
+                    break;
                 }
-                g_value_unset(&value);
                 g_free(str_value);
             }
         } else {
@@ -443,8 +445,7 @@ xfconf_query_import(void)
                 const gchar *str_type = words[2 + 2 * j + 1];
                 GType gtype = _xfconf_gtype_from_string(str_type);
                 if (gtype == G_TYPE_INVALID || gtype == G_TYPE_NONE) {
-                    xfconf_query_printerr(_("Skipped import of line %d: wrong type %s"), i + 1, str_type);
-                    skipped_lines = TRUE;
+                    xfconf_query_printerr(_("Aborted on line %d: wrong type %s"), i + 1, str_type);
                     g_clear_pointer(&array, g_ptr_array_unref);
                     break;
                 } else {
@@ -452,8 +453,7 @@ xfconf_query_import(void)
                     GValue *value = g_new0(GValue, 1);
                     g_value_init(value, gtype);
                     if (!_xfconf_gvalue_from_string(value, str_value)) {
-                        xfconf_query_printerr(_("Skipped import of line %d: type and value do not match"), i + 1);
-                        skipped_lines = TRUE;
+                        xfconf_query_printerr(_("Aborted on line %d: type and value do not match"), i + 1);
                         g_ptr_array_add(array, value);
                         g_clear_pointer(&array, g_ptr_array_unref);
                         g_free(str_value);
@@ -465,23 +465,72 @@ xfconf_query_import(void)
             }
 
             if (array != NULL) {
-                XfconfChannel *channel = xfconf_channel_get(words[0]);
-                GValue value = G_VALUE_INIT;
-                g_value_init(&value, G_TYPE_PTR_ARRAY);
-                g_value_set_boxed(&value, array);
-                if (!xfconf_channel_set_property(channel, words[1], &value)) {
-                    xfconf_query_printerr(_("Skipped import of line %d: failed to set property"), i + 1);
-                    skipped_lines = TRUE;
+                GValue *value = g_new0(GValue, 1);
+                g_value_init(value, G_TYPE_PTR_ARRAY);
+                g_value_set_boxed(value, array);
+                if (!g_hash_table_insert(properties, g_strdup(words[1]), value)) {
+                    xfconf_query_printerr(_("Aborted on line %d: duplicate property %s"), i + 1, words[1]);
+                    g_clear_pointer(&channels, g_hash_table_destroy);
+                    g_strfreev(words);
+                    break;
                 }
-                g_value_unset(&value);
+            } else {
+                g_clear_pointer(&channels, g_hash_table_destroy);
+                g_strfreev(words);
+                break;
+            }
+        }
+
+        g_strfreev(words);
+    }
+
+    g_strfreev(lines);
+    return channels;
+}
+
+static gboolean
+xfconf_query_import(void)
+{
+    GFile *file = g_file_new_for_path(import_filename != NULL ? import_filename : "/dev/stdin");
+    g_free(import_filename);
+    GError *error = NULL;
+    gchar *contents;
+    if (!g_file_load_contents(file, NULL, &contents, NULL, NULL, &error)) {
+        xfconf_query_printerr(_("Failed to read contents: %s"), error->message);
+        g_error_free(error);
+        g_object_unref(file);
+        return FALSE;
+    }
+
+    g_object_unref(file);
+    GHashTable *channels = xfconf_query_import_check(contents);
+    if (channels == NULL) {
+        g_free(contents);
+        return FALSE;
+    }
+
+    g_free(contents);
+    gboolean success = TRUE;
+    GHashTableIter channel_iter;
+    gpointer channel, properties;
+    g_hash_table_iter_init(&channel_iter, channels);
+    while (g_hash_table_iter_next(&channel_iter, &channel, &properties)) {
+        GHashTableIter property_iter;
+        gpointer property, value;
+        g_hash_table_iter_init(&property_iter, properties);
+        while (g_hash_table_iter_next(&property_iter, &property, &value)) {
+            if (!xfconf_channel_set_property(channel, property, value)) {
+                gchar *_channel_name;
+                g_object_get(channel, "channel-name", &_channel_name, NULL);
+                xfconf_query_printerr(_("Failed to set property %s in channel %s"), property, _channel_name);
+                success = FALSE;
+                g_free(_channel_name);
             }
         }
     }
 
-    g_free(contents);
-    g_object_unref(file);
-    g_free(import_filename);
-    return !skipped_lines;
+    g_hash_table_destroy(channels);
+    return success;
 }
 
 static GOptionEntry entries[] = {
