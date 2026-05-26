@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-05-25 13:01+0200\n"
+"POT-Creation-Date: 2026-05-26 01:03+0200\n"
 "PO-Revision-Date: 2013-07-02 20:48+0000\n"
 "Last-Translator: Moo, 2026\n"
 "Language-Team: Lithuanian (http://app.transifex.com/xfce/xfconf/language/lt/)\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: xfconf/xfconf-cache.c:850 xfconfd/xfconf-backend-perchannel-xml.c:388
 #: xfconfd/xfconf-backend-perchannel-xml.c:473
 #: xfconfd/xfconf-backend-perchannel-xml.c:637
-#: xfconfd/xfconf-backend-perchannel-xml.c:659 xfconf-query/main.c:362
+#: xfconfd/xfconf-backend-perchannel-xml.c:659 xfconf-query/main.c:396
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Savybės „%s“ kanale „%s“ nėra"
@@ -162,171 +162,176 @@ msgstr "GType tranformacija patyrė nesėkmę „%s“"
 msgid "No backends could be started"
 msgstr "Neįmanoma paleisti posistemių"
 
-#: xfconf-query/main.c:82 xfconf-query/main.c:85
+#. TRANSLATORS: This refers to: "A property has been set"
+#: xfconf-query/main.c:113
 msgid "set"
 msgstr "nustatyti"
 
-#: xfconf-query/main.c:88
+#. TRANSLATORS: This refers to: "A property has been reset"
+#: xfconf-query/main.c:128
 msgid "reset"
 msgstr "atstatyti"
 
-#: xfconf-query/main.c:194
+#: xfconf-query/main.c:228
 msgid "Possible types:"
 msgstr "Galimi tipai:"
 
-#: xfconf-query/main.c:203
+#: xfconf-query/main.c:237
 msgid "Version information"
 msgstr "Versijos informacija"
 
-#: xfconf-query/main.c:206
+#: xfconf-query/main.c:240
 msgid "The channel to query/modify"
 msgstr "Kanalas užklausimui/keitimui"
 
-#: xfconf-query/main.c:209
+#: xfconf-query/main.c:243
 msgid "The property to query/modify"
 msgstr "Savybė užklausimui/keitimui"
 
-#: xfconf-query/main.c:212
+#: xfconf-query/main.c:246
 msgid "The new value to set for the property (multiple uses for an array)"
 msgstr "Nauja reikšmė, kurią nustatyti savybei (keli masyvo naudojimo būdai)"
 
-#: xfconf-query/main.c:215
+#: xfconf-query/main.c:249
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Savybių sąrašas (ar kanalai jei -c nenurodyta)"
 
-#: xfconf-query/main.c:218
-msgid "Print property and value in combination with -l or -m"
-msgstr "Parodyti savybę ir reikšmę kombinacijoje su -l ar -m"
+#: xfconf-query/main.c:252
+msgid ""
+"Print also the value in combination with -l or -m (use twice to print also "
+"the type)"
+msgstr ""
 
-#: xfconf-query/main.c:221
+#: xfconf-query/main.c:255
 msgid "Specify the property value type (multiple uses for an array)"
 msgstr "Nurodyti savybės reikšmės tipą (keli masyvo naudojimo būdai)"
 
-#: xfconf-query/main.c:224
+#: xfconf-query/main.c:258
 msgid "Reset property"
 msgstr "Atstatyti savybę"
 
-#: xfconf-query/main.c:227
+#: xfconf-query/main.c:261
 msgid "Recursive (use with -r)"
 msgstr "Rekursyviai (naudoti su -r)"
 
-#: xfconf-query/main.c:230
+#: xfconf-query/main.c:264
 msgid "Force array even if only one element"
 msgstr "Priverstinai masyvas, net jei tik vienas elementas"
 
-#: xfconf-query/main.c:233
+#: xfconf-query/main.c:267
 msgid "Invert an existing boolean property"
 msgstr "Pakeisti esamą savybės loginę reikšmę"
 
-#: xfconf-query/main.c:236
+#: xfconf-query/main.c:270
 msgid "Monitor a channel for property changes"
 msgstr "Stebėti kanalą savybių pasikeitimams"
 
-#: xfconf-query/main.c:239
+#: xfconf-query/main.c:273
 msgid "List types that can be specified using the --type option"
 msgstr "Išvardyti tipus, kurie gali būti nurodyti naudojant --type parametrą"
 
-#: xfconf-query/main.c:243
+#: xfconf-query/main.c:277
 msgid "Create a new property if it does not already exist"
 msgstr "Sukurti naują savybę jei jos dar nėra"
 
-#: xfconf-query/main.c:258
+#: xfconf-query/main.c:292
 msgid "- Xfconf commandline utility"
 msgstr "- Xfce komandinės eilutės programa"
 
-#: xfconf-query/main.c:262
+#: xfconf-query/main.c:296
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr "Nepavyko apdoroti parametrų: %s"
 
-#: xfconf-query/main.c:273
+#: xfconf-query/main.c:307
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce kūrėjų komanda. Visos teisės saugomos."
 
-#: xfconf-query/main.c:274
+#: xfconf-query/main.c:308
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Apie klaidas pranešti <%s>."
 
-#: xfconf-query/main.c:287
+#: xfconf-query/main.c:321
 msgid "No property specified"
 msgstr "Nenurodyta savybė"
 
-#: xfconf-query/main.c:292
+#: xfconf-query/main.c:326
 msgid "The property name should start with '/'"
 msgstr "Savybės pavadinimas turėtų prasidėti '/'"
 
-#: xfconf-query/main.c:297
+#: xfconf-query/main.c:331
 msgid "--set and --reset options can not be used together"
 msgstr "--set ir --reset parametrai negali būti naudojami kartu"
 
-#: xfconf-query/main.c:302
+#: xfconf-query/main.c:336
 msgid "--set and --reset options can not be used together with --list"
 msgstr "--set ir --reset parametrai negali būti naudojami kartu su --list"
 
-#: xfconf-query/main.c:311
+#: xfconf-query/main.c:345
 #, c-format
 msgid "Failed to init libxfconf: %s"
 msgstr "Nepavyko inicijuoti libxfconf: %s"
 
-#: xfconf-query/main.c:321
+#: xfconf-query/main.c:355
 msgid "Channels:"
 msgstr "Kanalai:"
 
-#: xfconf-query/main.c:345
+#: xfconf-query/main.c:379
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "Pradėti stebėti kanalą „%s“:"
 
-#: xfconf-query/main.c:374 xfconf-query/main.c:468 xfconf-query/main.c:534
+#: xfconf-query/main.c:408 xfconf-query/main.c:512 xfconf-query/main.c:578
 msgid "Failed to set property"
 msgstr "Nepavyko nustatyti savybės"
 
-#: xfconf-query/main.c:377
+#: xfconf-query/main.c:411
 msgid "--toggle only works with boolean values"
 msgstr "--toggle veikia tik su loginėmis reikšmėmis"
 
-#: xfconf-query/main.c:385 xfconf-query/main.c:400
+#: xfconf-query/main.c:421 xfconf-query/main.c:423 xfconf-query/main.c:441
+#: xfconf-query/main.c:443
 msgid "(unknown)"
 msgstr "(nežinoma)"
 
-#: xfconf-query/main.c:392
+#: xfconf-query/main.c:431
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr "Reikšmė yra masyvas su %d elementais:"
 
-#: xfconf-query/main.c:412
+#: xfconf-query/main.c:456
 msgid "When creating a new property, the value type must be specified"
 msgstr "Kuriant naują savybę, turi būti nurodyta reikšmė"
 
-#: xfconf-query/main.c:422
+#: xfconf-query/main.c:466
 msgid "Failed to get the existing type for the value"
 msgstr "Nepavyko gauti reikšmės tipo"
 
-#: xfconf-query/main.c:441
+#: xfconf-query/main.c:485
 msgid "Unable to determine the type of the value"
 msgstr "Nepavyko nustatyti reikšmės tipo"
 
-#: xfconf-query/main.c:448
+#: xfconf-query/main.c:492
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Norint pakeisti masyvą į vieną reikšmę turi būti nurodyta reikšmė"
 
-#: xfconf-query/main.c:460 xfconf-query/main.c:517
+#: xfconf-query/main.c:504 xfconf-query/main.c:561
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "Nepavyko konvertuoti „%s“ į tipą „%s“"
 
-#: xfconf-query/main.c:488
+#: xfconf-query/main.c:532
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr "Yra %d naujos reikšmės, bet tik %d tipai atpažinti"
 
-#: xfconf-query/main.c:508
+#: xfconf-query/main.c:552
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr "Nepavyko nustatyti tipo indekse %d"
 
-#: xfconf-query/main.c:558
+#: xfconf-query/main.c:603
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanalas „%s“ neturi savybių"
