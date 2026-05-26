@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the xfconf.master package.
 # 
 # Translators:
-# Besnik Bleta <besnik@programeshqip.org>, 2020-2021,2023
+# Besnik Bleta <besnik@programeshqip.org>, 2020-2021,2023,2026
 # Besnik Bleta <besnik@programeshqip.org>, 2024
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-05-25 13:01+0200\n"
+"POT-Creation-Date: 2026-05-26 01:03+0200\n"
 "PO-Revision-Date: 2013-07-02 20:48+0000\n"
-"Last-Translator: Besnik Bleta <besnik@programeshqip.org>, 2024\n"
+"Last-Translator: Besnik Bleta <besnik@programeshqip.org>, 2020-2021,2023,2026\n"
 "Language-Team: Albanian (http://app.transifex.com/xfce/xfconf/language/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: xfconf/xfconf-cache.c:850 xfconfd/xfconf-backend-perchannel-xml.c:388
 #: xfconfd/xfconf-backend-perchannel-xml.c:473
 #: xfconfd/xfconf-backend-perchannel-xml.c:637
-#: xfconfd/xfconf-backend-perchannel-xml.c:659 xfconf-query/main.c:362
+#: xfconfd/xfconf-backend-perchannel-xml.c:659 xfconf-query/main.c:396
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Vetia “%s” s’ekziston në kanalin “%s”"
@@ -161,171 +161,176 @@ msgstr "Shndërrimi GType dështoi “%s”"
 msgid "No backends could be started"
 msgstr "S’u nisën dot backend-e"
 
-#: xfconf-query/main.c:82 xfconf-query/main.c:85
+#. TRANSLATORS: This refers to: "A property has been set"
+#: xfconf-query/main.c:113
 msgid "set"
 msgstr "caktoje"
 
-#: xfconf-query/main.c:88
+#. TRANSLATORS: This refers to: "A property has been reset"
+#: xfconf-query/main.c:128
 msgid "reset"
 msgstr "riktheje te parazgjedhjet"
 
-#: xfconf-query/main.c:194
+#: xfconf-query/main.c:228
 msgid "Possible types:"
-msgstr ""
+msgstr "Lloje të mundshëm:"
 
-#: xfconf-query/main.c:203
+#: xfconf-query/main.c:237
 msgid "Version information"
 msgstr "Hollësi versioni"
 
-#: xfconf-query/main.c:206
+#: xfconf-query/main.c:240
 msgid "The channel to query/modify"
 msgstr "Kanali për t’u kërkuar/ndryshuar"
 
-#: xfconf-query/main.c:209
+#: xfconf-query/main.c:243
 msgid "The property to query/modify"
 msgstr "Vetia për t’u kërkuar/ndryshuar"
 
-#: xfconf-query/main.c:212
+#: xfconf-query/main.c:246
 msgid "The new value to set for the property (multiple uses for an array)"
-msgstr ""
+msgstr "Vlera e re për t’u vendosur për vetinë (përdorime të shumtë për një matricë)"
 
-#: xfconf-query/main.c:215
+#: xfconf-query/main.c:249
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Radhit vetitë (ose kanale, nëse s’është specifikuar -c)"
 
-#: xfconf-query/main.c:218
-msgid "Print property and value in combination with -l or -m"
-msgstr "Shtyp veti dhe vlerë në ndërthurje me -l ose -m"
+#: xfconf-query/main.c:252
+msgid ""
+"Print also the value in combination with -l or -m (use twice to print also "
+"the type)"
+msgstr "Shtyp gjithashtu vlerën në ndërthurje me -l ose -m (përdoreni dy herë rresht që të shtypë edhe llojin)"
 
-#: xfconf-query/main.c:221
+#: xfconf-query/main.c:255
 msgid "Specify the property value type (multiple uses for an array)"
-msgstr ""
+msgstr "Specifikoni lloj vlere vetie (përdorime të shumtë për një matricë)"
 
-#: xfconf-query/main.c:224
+#: xfconf-query/main.c:258
 msgid "Reset property"
 msgstr "Riktheje vetinë te parazgjedhje"
 
-#: xfconf-query/main.c:227
+#: xfconf-query/main.c:261
 msgid "Recursive (use with -r)"
 msgstr "Rekursive (përdoreni me -r)"
 
-#: xfconf-query/main.c:230
+#: xfconf-query/main.c:264
 msgid "Force array even if only one element"
 msgstr "Apliko detyrimisht matricë, edhe sikur të ketë vetëm një element"
 
-#: xfconf-query/main.c:233
+#: xfconf-query/main.c:267
 msgid "Invert an existing boolean property"
 msgstr "Përmbysni një veti buleane ekzistuese"
 
-#: xfconf-query/main.c:236
+#: xfconf-query/main.c:270
 msgid "Monitor a channel for property changes"
 msgstr "Mbikëqyr një kanal për ndryshime vetie"
 
-#: xfconf-query/main.c:239
+#: xfconf-query/main.c:273
 msgid "List types that can be specified using the --type option"
-msgstr ""
+msgstr "Paraqit lloje që mund të specifikohen duke përdorur mundësinë --type"
 
-#: xfconf-query/main.c:243
+#: xfconf-query/main.c:277
 msgid "Create a new property if it does not already exist"
 msgstr "Krijo një veti të re, nëse s’ekziston tashmë"
 
-#: xfconf-query/main.c:258
+#: xfconf-query/main.c:292
 msgid "- Xfconf commandline utility"
 msgstr "Mjeti - Xfconf për rresht urdhrash"
 
-#: xfconf-query/main.c:262
+#: xfconf-query/main.c:296
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr "Përtypja e mundësisë dështoi: %s"
 
-#: xfconf-query/main.c:273
+#: xfconf-query/main.c:307
 msgid "The Xfce development team. All rights reserved."
 msgstr "Ekipi i zhvillimit të Xfce-së. Tërë të drejtat të rezervuara."
 
-#: xfconf-query/main.c:274
+#: xfconf-query/main.c:308
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Ju lutemi, njoftoni të meta te <%s>."
 
-#: xfconf-query/main.c:287
+#: xfconf-query/main.c:321
 msgid "No property specified"
 msgstr "S’është specifikuar veti"
 
-#: xfconf-query/main.c:292
+#: xfconf-query/main.c:326
 msgid "The property name should start with '/'"
-msgstr ""
+msgstr "Emri i vetisë duhet të fillojë me '/'"
 
-#: xfconf-query/main.c:297
+#: xfconf-query/main.c:331
 msgid "--set and --reset options can not be used together"
-msgstr ""
+msgstr "Mundësitë --set dhe --reset s’mund të përdoren tok"
 
-#: xfconf-query/main.c:302
+#: xfconf-query/main.c:336
 msgid "--set and --reset options can not be used together with --list"
-msgstr ""
+msgstr "Mundësitë --set dhe --reset s’mund të përdoren tok me atë --list"
 
-#: xfconf-query/main.c:311
+#: xfconf-query/main.c:345
 #, c-format
 msgid "Failed to init libxfconf: %s"
 msgstr "S’u arrit të gatitet libxfconf: %s"
 
-#: xfconf-query/main.c:321
+#: xfconf-query/main.c:355
 msgid "Channels:"
 msgstr "Kanale:"
 
-#: xfconf-query/main.c:345
+#: xfconf-query/main.c:379
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "Fillo mbikëqyrje kanali “%s”:"
 
-#: xfconf-query/main.c:374 xfconf-query/main.c:468 xfconf-query/main.c:534
+#: xfconf-query/main.c:408 xfconf-query/main.c:512 xfconf-query/main.c:578
 msgid "Failed to set property"
 msgstr "S’u arrit të caktohet veti"
 
-#: xfconf-query/main.c:377
+#: xfconf-query/main.c:411
 msgid "--toggle only works with boolean values"
 msgstr "--toggle funksionon vetëm me vlera buelane"
 
-#: xfconf-query/main.c:385 xfconf-query/main.c:400
+#: xfconf-query/main.c:421 xfconf-query/main.c:423 xfconf-query/main.c:441
+#: xfconf-query/main.c:443
 msgid "(unknown)"
 msgstr "(e panjohur)"
 
-#: xfconf-query/main.c:392
+#: xfconf-query/main.c:431
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr "Vlera është një matricë me %d elementë:"
 
-#: xfconf-query/main.c:412
+#: xfconf-query/main.c:456
 msgid "When creating a new property, the value type must be specified"
 msgstr "Kur krijohet një veti e re, lloji i vlerës duhet specifikuar"
 
-#: xfconf-query/main.c:422
+#: xfconf-query/main.c:466
 msgid "Failed to get the existing type for the value"
 msgstr "S’u arrit të merrej lloji ekzistues për vlerën"
 
-#: xfconf-query/main.c:441
+#: xfconf-query/main.c:485
 msgid "Unable to determine the type of the value"
 msgstr "S’arrihet të përcaktohet lloji i vlerës"
 
-#: xfconf-query/main.c:448
+#: xfconf-query/main.c:492
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Një lloj vlere duhet specifikuar për të ndryshuar një matricë në një vlerë njëshe"
 
-#: xfconf-query/main.c:460 xfconf-query/main.c:517
+#: xfconf-query/main.c:504 xfconf-query/main.c:561
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "S’arrihet të shndërrohet “%s” në llojin “%s”"
 
-#: xfconf-query/main.c:488
+#: xfconf-query/main.c:532
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr "Ka %d vlera të reja, por vetëm %d lloje mund të përcaktohen"
 
-#: xfconf-query/main.c:508
+#: xfconf-query/main.c:552
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr "S’arrihet të përcaktohet lloj i vlerë në tregues %d"
 
-#: xfconf-query/main.c:558
+#: xfconf-query/main.c:603
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanali “%s” s’përmban veti"
