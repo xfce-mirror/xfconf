@@ -200,7 +200,7 @@ msgstr "Savybių sąrašas (ar kanalai jei -c nenurodyta)"
 msgid ""
 "Print also the value in combination with -l or -m (use twice to print also "
 "the type)"
-msgstr ""
+msgstr "Parodyti taip pat reikšmę derinyje su -l ar -m (naudokite du kartus norėdami parodyti taip pat ir tipą)"
 
 #: xfconf-query/main.c:255
 msgid "Specify the property value type (multiple uses for an array)"
