@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-05-25 13:01+0200\n"
+"POT-Creation-Date: 2026-05-26 01:03+0200\n"
 "PO-Revision-Date: 2013-07-02 20:48+0000\n"
 "Last-Translator: beriain, 2021\n"
 "Language-Team: Basque (http://app.transifex.com/xfce/xfconf/language/eu/)\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: xfconf/xfconf-cache.c:850 xfconfd/xfconf-backend-perchannel-xml.c:388
 #: xfconfd/xfconf-backend-perchannel-xml.c:473
 #: xfconfd/xfconf-backend-perchannel-xml.c:637
-#: xfconfd/xfconf-backend-perchannel-xml.c:659 xfconf-query/main.c:362
+#: xfconfd/xfconf-backend-perchannel-xml.c:659 xfconf-query/main.c:396
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "\"%s\" propietatea ez dago \"%s\" kanalean"
@@ -163,171 +163,176 @@ msgstr "GType eraldaketak huts egin du \"%s\""
 msgid "No backends could be started"
 msgstr "Ezin da interfazerik abiarazi"
 
-#: xfconf-query/main.c:82 xfconf-query/main.c:85
+#. TRANSLATORS: This refers to: "A property has been set"
+#: xfconf-query/main.c:113
 msgid "set"
 msgstr "ezarri"
 
-#: xfconf-query/main.c:88
+#. TRANSLATORS: This refers to: "A property has been reset"
+#: xfconf-query/main.c:128
 msgid "reset"
 msgstr "berrezarri"
 
-#: xfconf-query/main.c:194
+#: xfconf-query/main.c:228
 msgid "Possible types:"
 msgstr ""
 
-#: xfconf-query/main.c:203
+#: xfconf-query/main.c:237
 msgid "Version information"
 msgstr "Bertsio argibideak"
 
-#: xfconf-query/main.c:206
+#: xfconf-query/main.c:240
 msgid "The channel to query/modify"
 msgstr "Galdezkatu/eraldatzeko kanala"
 
-#: xfconf-query/main.c:209
+#: xfconf-query/main.c:243
 msgid "The property to query/modify"
 msgstr "Galdezkatu/eraldatzeko propietatea"
 
-#: xfconf-query/main.c:212
+#: xfconf-query/main.c:246
 msgid "The new value to set for the property (multiple uses for an array)"
 msgstr ""
 
-#: xfconf-query/main.c:215
+#: xfconf-query/main.c:249
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Zerrendatu propietateak (edo kanalak -c zehazten ez bada)"
 
-#: xfconf-query/main.c:218
-msgid "Print property and value in combination with -l or -m"
-msgstr "Propietatea eta balio inprimatu -l edo -m konbinazioarekin"
+#: xfconf-query/main.c:252
+msgid ""
+"Print also the value in combination with -l or -m (use twice to print also "
+"the type)"
+msgstr ""
 
-#: xfconf-query/main.c:221
+#: xfconf-query/main.c:255
 msgid "Specify the property value type (multiple uses for an array)"
 msgstr ""
 
-#: xfconf-query/main.c:224
+#: xfconf-query/main.c:258
 msgid "Reset property"
 msgstr "Berezarri propietatea"
 
-#: xfconf-query/main.c:227
+#: xfconf-query/main.c:261
 msgid "Recursive (use with -r)"
 msgstr "Errekurtsiboa (-r-rekin erabili)"
 
-#: xfconf-query/main.c:230
+#: xfconf-query/main.c:264
 msgid "Force array even if only one element"
 msgstr "Behartu array nahiz elementu bakarra izan"
 
-#: xfconf-query/main.c:233
+#: xfconf-query/main.c:267
 msgid "Invert an existing boolean property"
 msgstr "Alderanztu dagoen propietate boolearra"
 
-#: xfconf-query/main.c:236
+#: xfconf-query/main.c:270
 msgid "Monitor a channel for property changes"
 msgstr "Monitorizatu kanal bat propietate aldaketa bila"
 
-#: xfconf-query/main.c:239
+#: xfconf-query/main.c:273
 msgid "List types that can be specified using the --type option"
 msgstr ""
 
-#: xfconf-query/main.c:243
+#: xfconf-query/main.c:277
 msgid "Create a new property if it does not already exist"
 msgstr "Sortu propietate berri bat berau ez bada existitzen"
 
-#: xfconf-query/main.c:258
+#: xfconf-query/main.c:292
 msgid "- Xfconf commandline utility"
 msgstr "- Xfconf komando-lerro lanabesa"
 
-#: xfconf-query/main.c:262
+#: xfconf-query/main.c:296
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr "Aukera analisiak huts egin du: %s"
 
-#: xfconf-query/main.c:273
+#: xfconf-query/main.c:307
 msgid "The Xfce development team. All rights reserved."
 msgstr "Xfce garapen taldea. Eskubide guztiak erreserbaturik"
 
-#: xfconf-query/main.c:274
+#: xfconf-query/main.c:308
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Mesedez programa-erroren berri eman: <%s>."
 
-#: xfconf-query/main.c:287
+#: xfconf-query/main.c:321
 msgid "No property specified"
 msgstr "Ez da propietatea zehaztu"
 
-#: xfconf-query/main.c:292
+#: xfconf-query/main.c:326
 msgid "The property name should start with '/'"
 msgstr ""
 
-#: xfconf-query/main.c:297
+#: xfconf-query/main.c:331
 msgid "--set and --reset options can not be used together"
 msgstr ""
 
-#: xfconf-query/main.c:302
+#: xfconf-query/main.c:336
 msgid "--set and --reset options can not be used together with --list"
 msgstr ""
 
-#: xfconf-query/main.c:311
+#: xfconf-query/main.c:345
 #, c-format
 msgid "Failed to init libxfconf: %s"
 msgstr "Huts libxfconf abiaraztean: %s"
 
-#: xfconf-query/main.c:321
+#: xfconf-query/main.c:355
 msgid "Channels:"
 msgstr "Kateak:"
 
-#: xfconf-query/main.c:345
+#: xfconf-query/main.c:379
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "Hasi \"%s\" kanala monitorizatzen:"
 
-#: xfconf-query/main.c:374 xfconf-query/main.c:468 xfconf-query/main.c:534
+#: xfconf-query/main.c:408 xfconf-query/main.c:512 xfconf-query/main.c:578
 msgid "Failed to set property"
 msgstr "Huts propietatea ezartzean"
 
-#: xfconf-query/main.c:377
+#: xfconf-query/main.c:411
 msgid "--toggle only works with boolean values"
 msgstr "--toggle balio boolearrekin bakarrik erabili daiteke"
 
-#: xfconf-query/main.c:385 xfconf-query/main.c:400
+#: xfconf-query/main.c:421 xfconf-query/main.c:423 xfconf-query/main.c:441
+#: xfconf-query/main.c:443
 msgid "(unknown)"
 msgstr "(ezezaguna)"
 
-#: xfconf-query/main.c:392
+#: xfconf-query/main.c:431
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr "Balioa %d elementu dituen array bat da:"
 
-#: xfconf-query/main.c:412
+#: xfconf-query/main.c:456
 msgid "When creating a new property, the value type must be specified"
 msgstr "Propietate berri bat sortzean balio mota zehaztu behar duzu"
 
-#: xfconf-query/main.c:422
+#: xfconf-query/main.c:466
 msgid "Failed to get the existing type for the value"
 msgstr "Huts balioaren motak eskuratzerakoan"
 
-#: xfconf-query/main.c:441
+#: xfconf-query/main.c:485
 msgid "Unable to determine the type of the value"
 msgstr "Ezin da jakin balioaren mota"
 
-#: xfconf-query/main.c:448
+#: xfconf-query/main.c:492
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Balio mota bar zehaztu behar duzu, array bat balio soil batetara bihurtzeko"
 
-#: xfconf-query/main.c:460 xfconf-query/main.c:517
+#: xfconf-query/main.c:504 xfconf-query/main.c:561
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "Ezin da\"%s\" \"%s\" motara bihurtu"
 
-#: xfconf-query/main.c:488
+#: xfconf-query/main.c:532
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr "%d balio berri ditu, baina %d mota bakarrik antzeman daitezke"
 
-#: xfconf-query/main.c:508
+#: xfconf-query/main.c:552
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr "Ezin da %d indizeko balioaren mota antzeman"
 
-#: xfconf-query/main.c:558
+#: xfconf-query/main.c:603
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "'%s' kanalak ez du propietaterik"
