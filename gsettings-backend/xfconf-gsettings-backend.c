@@ -36,7 +36,7 @@ struct _XfconfGsettingsBackend
     gint nhandled_tree_node;
 };
 
-G_DEFINE_TYPE(XfconfGsettingsBackend, xfconf_gsettings_backend, G_TYPE_SETTINGS_BACKEND);
+G_DEFINE_FINAL_TYPE(XfconfGsettingsBackend, xfconf_gsettings_backend, G_TYPE_SETTINGS_BACKEND);
 
 static void
 xfconf_gsettings_backend_property_changed_cb(XfconfGsettingsBackend *self,

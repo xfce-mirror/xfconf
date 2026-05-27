@@ -43,7 +43,7 @@ struct _XfconfDaemon
 
 static void xfconf_daemon_finalize(GObject *obj);
 
-G_DEFINE_TYPE(XfconfDaemon, xfconf_daemon, XFCONF_TYPE_EXPORTED_SKELETON)
+G_DEFINE_FINAL_TYPE(XfconfDaemon, xfconf_daemon, XFCONF_TYPE_EXPORTED_SKELETON)
 
 static void
 xfconf_daemon_class_init(XfconfDaemonClass *klass)

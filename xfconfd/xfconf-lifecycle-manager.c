@@ -44,7 +44,7 @@ struct _XfconfLifecycleManagerPrivate
 static guint lifecycle_manager_signals[N_SIGNALS];
 
 
-G_DEFINE_TYPE_WITH_PRIVATE(XfconfLifecycleManager, xfconf_lifecycle_manager, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE_WITH_PRIVATE(XfconfLifecycleManager, xfconf_lifecycle_manager, G_TYPE_OBJECT)
 
 
 static void

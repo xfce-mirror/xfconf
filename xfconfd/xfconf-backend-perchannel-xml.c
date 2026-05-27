@@ -197,9 +197,9 @@ static void xfconf_channel_destroy(XfconfChannel *channel);
 static void xfconf_property_free(XfconfProperty *property);
 
 
-G_DEFINE_TYPE_WITH_CODE(XfconfBackendPerchannelXml, xfconf_backend_perchannel_xml, G_TYPE_OBJECT,
-                        G_IMPLEMENT_INTERFACE(XFCONF_TYPE_BACKEND,
-                                              xfconf_backend_perchannel_xml_backend_init))
+G_DEFINE_FINAL_TYPE_WITH_CODE(XfconfBackendPerchannelXml, xfconf_backend_perchannel_xml, G_TYPE_OBJECT,
+                              G_IMPLEMENT_INTERFACE(XFCONF_TYPE_BACKEND,
+                                                    xfconf_backend_perchannel_xml_backend_init))
 
 
 static void
