@@ -662,22 +662,11 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
 
     cache = old_item->cache;
     xfconf_cache_mutex_lock(cache);
-    /*
-        old_item = g_hash_table_lookup(cache->pending_calls, call);
-        if(G_UNLIKELY(!old_item)) {
-    #ifndef NDEBUG
-            g_debug("Couldn't find old cache item based on pending call (libxfconf bug?)");
-    #endif
-            goto out;
-        }
-    */
+
     g_hash_table_remove(cache->old_properties, old_item->property);
     g_hash_table_remove(cache->pending_calls, old_item->cancellable);
     item = g_tree_lookup(cache->properties, old_item->property);
     if (G_UNLIKELY(!item)) {
-#ifndef NDEBUG
-        g_debug("Couldn't find current cache item based on pending call (libxfconf bug?)");
-#endif
         goto out;
     }
 

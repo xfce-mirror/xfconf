@@ -65,8 +65,6 @@ GDBusProxy *_xfconf_get_gdbus_proxy(void);
 XfconfNamedStruct *_xfconf_named_struct_lookup(const gchar *struct_name);
 
 void _xfconf_channel_shutdown(void);
-const gchar *_xfconf_channel_get_name(XfconfChannel *channel);
-const gchar *_xfconf_channel_get_property_base(XfconfChannel *channel);
 
 void _xfconf_g_bindings_shutdown(void);
 

@@ -491,7 +491,6 @@ void
 _xfconf_g_bindings_shutdown(void)
 {
     GSList *bindings, *l;
-    guint n;
     XfconfGBinding *binding;
 
     if (G_UNLIKELY(__bindings)) {
@@ -502,19 +501,12 @@ _xfconf_g_bindings_shutdown(void)
         __bindings = NULL;
 
         /* remove all the remaining bindings */
-        for (l = bindings, n = 0; l; l = g_slist_next(l), n++) {
+        for (l = bindings; l != NULL; l = g_slist_next(l)) {
             binding = l->data;
             g_signal_handler_disconnect(G_OBJECT(binding->object),
                                         binding->object_handler);
         }
         g_slist_free(bindings);
-
-#ifndef NDEBUG
-        /* scare the developer a bit */
-        g_debug("%d xfconf binding(s) are still connected. Are you sure all xfconf "
-                "channels are released before calling xfconf_shutdown()?",
-                n);
-#endif
 
         G_UNLOCK(__bindings);
     }
