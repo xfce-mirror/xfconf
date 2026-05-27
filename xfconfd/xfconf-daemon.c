@@ -444,7 +444,7 @@ xfconf_daemon_start(XfconfDaemon *xfconfd,
                                            XFCONF_SERVICE_PATH_PREFIX "/Xfconf",
                                            error);
 
-    if (ret == FALSE) {
+    if (!ret) {
         return FALSE;
     }
 

@@ -191,7 +191,7 @@ xfconf_cache_old_item_free(XfconfCacheOldItem *old_item)
     /* debug check to make sure the call is properly handled before
      * freeing the item. it should either been cancelled or we wait for
      * it to finish */
-    g_return_if_fail(g_cancellable_is_cancelled(old_item->cancellable) == TRUE);
+    g_return_if_fail(g_cancellable_is_cancelled(old_item->cancellable));
 
     g_object_unref(old_item->cancellable);
     g_free(old_item->property);
@@ -218,7 +218,7 @@ xfconf_cache_old_item_end_call(gpointer key,
     const gchar *channel_name = user_data;
     GVariant *variant;
 
-    g_return_val_if_fail(g_cancellable_is_cancelled(old_item->cancellable) == FALSE, TRUE);
+    g_return_val_if_fail(!g_cancellable_is_cancelled(old_item->cancellable), TRUE);
 
     variant = g_variant_new_variant(old_item->variant);
 
@@ -655,7 +655,7 @@ xfconf_cache_set_property_reply_handler(GDBusProxy *proxy,
      * XconfCache finalization started. That means the last value of
      * property has been set synchronously, invalidating the need to run this
      * handler for any previously started, unfinished asynchronous calls. */
-    if (g_cancellable_is_cancelled(old_item->cancellable) == TRUE) {
+    if (g_cancellable_is_cancelled(old_item->cancellable)) {
         xfconf_cache_old_item_free(old_item);
         return;
     }

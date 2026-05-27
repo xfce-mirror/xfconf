@@ -66,7 +66,7 @@ gvalue_from_short(const GValue *src_value,
             dest = atoi(g_value_get_string(src_value));
             break;
         case G_TYPE_BOOLEAN:
-            dest = g_value_get_boolean(src_value) == TRUE ? 1 : 0;
+            dest = g_value_get_boolean(src_value) ? 1 : 0;
             break;
             HANDLE_TYPE(CHAR, schar)
             HANDLE_TYPE(UCHAR, uchar)

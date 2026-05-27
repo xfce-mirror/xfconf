@@ -180,7 +180,7 @@ xfconf_gsettings_backend_write_full(GSettingsBackend *backend,
     }
 
     ret_val = xfconf_channel_set_property(self->channel, key, value);
-    if (ret_val == FALSE && add_sig_changed) {
+    if (!ret_val && add_sig_changed) {
         g_hash_table_remove(self->changed_prop, key);
     }
 
