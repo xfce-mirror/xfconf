@@ -92,7 +92,7 @@ enum
 
 enum
 {
-    PROP0 = 0,
+    PROP_0 = 0,
     PROP_CHANNEL_NAME,
     PROP_PROPERTY_BASE,
     PROP_IS_SINGLETON,

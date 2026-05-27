@@ -300,7 +300,7 @@ enum
 
 enum
 {
-    PROP0 = 0,
+    PROP_0 = 0,
     PROP_CHANNEL_NAME,
 #if 0
     PROP_MAX_ENTRIES,
