@@ -32,11 +32,6 @@
 
 #include "xfconf-daemon.h"
 
-#define XFCONF_TYPE_BACKEND (xfconf_backend_get_type())
-#define XFCONF_BACKEND(obj) (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_TYPE_BACKEND, XfconfBackend))
-#define XFCONF_IS_BACKEND(obj) (G_TYPE_CHECK_INSTANCE_TYPE((obj), XFCONF_TYPE_BACKEND))
-#define XFCONF_BACKEND_GET_INTERFACE(obj) (G_TYPE_INSTANCE_GET_INTERFACE((obj), XFCONF_TYPE_BACKEND, XfconfBackendInterface))
-
 #define xfconf_backend_return_val_if_fail(cond, val) \
     G_STMT_START \
     { \
@@ -54,8 +49,9 @@
 
 G_BEGIN_DECLS
 
-typedef struct _XfconfBackend XfconfBackend;
-typedef struct _XfconfBackendInterface XfconfBackendInterface;
+#define XFCONF_TYPE_BACKEND (xfconf_backend_get_type())
+#define XFCONF_BACKEND_GET_INTERFACE(backend) (XFCONF_BACKEND_GET_IFACE(backend))
+G_DECLARE_INTERFACE(XfconfBackend, xfconf_backend, XFCONF, BACKEND, GObject)
 
 typedef void (*XfconfPropertyChangedFunc)(XfconfBackend *backend,
                                           const gchar *channel,
@@ -122,8 +118,6 @@ struct _XfconfBackendInterface
     void (*_xb_reserved2)();
     void (*_xb_reserved3)();
 };
-
-GType xfconf_backend_get_type(void) G_GNUC_CONST;
 
 gboolean xfconf_backend_initialize(XfconfBackend *backend,
                                    GError **error);

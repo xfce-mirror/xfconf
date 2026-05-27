@@ -81,11 +81,6 @@ struct _XfconfBackendPerchannelXml
     gpointer prop_changed_data;
 };
 
-typedef struct _XfconfBackendPerchannelXmlClass
-{
-    GObjectClass parent;
-} XfconfBackendPerchannelXmlClass;
-
 typedef struct
 {
     GNode *properties;

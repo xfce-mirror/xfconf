@@ -347,6 +347,6 @@ xfconf_gsettings_backend_class_init(XfconfGsettingsBackendClass *klass)
 XfconfGsettingsBackend *
 xfconf_gsettings_backend_new(void)
 {
-    XfconfGsettingsBackend *xfconf_gsettings = g_object_new(XFCONF_GSETTINGS_BACKEND_TYPE, NULL);
+    XfconfGsettingsBackend *xfconf_gsettings = g_object_new(XFCONF_TYPE_GSETTINGS_BACKEND, NULL);
     return xfconf_gsettings;
 }

@@ -20,8 +20,6 @@
 #include "xfconf-backend.h"
 
 
-static void xfconf_backend_base_init(gpointer g_class);
-
 static gboolean xfconf_property_is_valid(const gchar *property,
                                          GError **error);
 static gboolean xfconf_channel_is_valid(const gchar *channel,
@@ -70,36 +68,10 @@ static gboolean xfconf_channel_is_valid(const gchar *channel,
  * An instance of a class implementing a #XfconfBackendInterface.
  **/
 
-
-GType
-xfconf_backend_get_type(void)
-{
-    static GType backend_type = 0;
-
-    if (!backend_type) {
-        static const GTypeInfo backend_info = {
-            sizeof(XfconfBackendInterface),
-            xfconf_backend_base_init,
-            NULL,
-            NULL,
-            NULL,
-            NULL,
-            0,
-            0,
-            NULL,
-        };
-
-        backend_type = g_type_register_static(G_TYPE_INTERFACE, "XfconfBackend",
-                                              &backend_info, 0);
-        g_type_interface_add_prerequisite(backend_type, G_TYPE_OBJECT);
-    }
-
-    return backend_type;
-}
-
+G_DEFINE_INTERFACE(XfconfBackend, xfconf_backend, G_TYPE_OBJECT);
 
 static void
-xfconf_backend_base_init(gpointer g_class)
+xfconf_backend_default_init(XfconfBackendInterface *iface)
 {
     static gboolean _inited = FALSE;
 

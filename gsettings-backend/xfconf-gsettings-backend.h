@@ -23,24 +23,10 @@
 #define G_SETTINGS_ENABLE_BACKEND
 #include <gio/gsettingsbackend.h>
 
-#define XFCONF_GSETTINGS_BACKEND_TYPE (xfconf_gsettings_backend_get_type())
-#define XFCONF_GSETTINGS_BACKEND(obj) (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_GSETTINGS_BACKEND_TYPE, XfconfGsettingsBackend))
-#define XFCONF_GSETTINGS_BACKEND_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST((klass), XFCONF_GSETTINGS_BACKEND_TYPE, XfconfGsettingsBackendClass))
-#define IS_XFCONF_GSETTINGS_BACKEND(obj) (G_TYPE_CHECK_INSTANCE_TYPE((obj), XFCONF_GSETTINGS_BACKEND_TYPE))
-#define IS_XFCONF_GSETTINGS_BACKEND_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass), XFCONF_GSETTINGS_BACKEND_TYPE))
-#define XFCONF_GSETTINGS_BACKEND_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS((obj), XFCONF_GSETTINGS_BACKEND_TYPE, XfconfGsettingsBackendClass))
-
 G_BEGIN_DECLS
 
-typedef struct _XfconfGsettingsBackend XfconfGsettingsBackend;
-
-typedef struct
-{
-    GSettingsBackendClass parent_class;
-
-} XfconfGsettingsBackendClass;
-
-GType xfconf_gsettings_backend_get_type(void) G_GNUC_CONST;
+#define XFCONF_TYPE_GSETTINGS_BACKEND (xfconf_gsettings_backend_get_type())
+G_DECLARE_FINAL_TYPE(XfconfGsettingsBackend, xfconf_gsettings_backend, XFCONF, GSETTINGS_BACKEND, GSettingsBackend)
 
 XfconfGsettingsBackend *xfconf_gsettings_backend_new(void);
 

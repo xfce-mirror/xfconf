@@ -23,7 +23,6 @@
 #include <string.h>
 
 #include "common/xfconf-common-private.h"
-#include "common/xfconf-gdbus-bindings.h"
 #include "common/xfconf-gvaluefuncs.h"
 #include "common/xfconf-marshal.h"
 #include "xfconf/xfconf-errors.h"
@@ -41,11 +40,6 @@ struct _XfconfDaemon
 
     GList *backends;
 };
-
-typedef struct _XfconfDaemonClass
-{
-    XfconfExportedSkeletonClass parent;
-} XfconfDaemonClass;
 
 static void xfconf_daemon_finalize(GObject *obj);
 

@@ -27,16 +27,17 @@
 
 #include <glib-object.h>
 
+G_BEGIN_DECLS
+
+typedef struct _XfconfChannel XfconfChannel;
+
 #define XFCONF_TYPE_CHANNEL (xfconf_channel_get_type())
 #define XFCONF_CHANNEL(obj) (G_TYPE_CHECK_INSTANCE_CAST((obj), XFCONF_TYPE_CHANNEL, XfconfChannel))
 #define XFCONF_IS_CHANNEL(obj) (G_TYPE_CHECK_INSTANCE_TYPE((obj), XFCONF_TYPE_CHANNEL))
 #define XFCONF_CHANNEL_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST((klass), XFCONF_TYPE_CHANNEL, XfconfChannelClass))
 #define XFCONF_IS_CHANNEL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass), XFCONF_TYPE_CHANNEL))
 #define XFCONF_CHANNEL_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS((obj), XFCONF_TYPE_CHANNEL, XfconfChannelClass))
-
-G_BEGIN_DECLS
-
-typedef struct _XfconfChannel XfconfChannel;
+G_DEFINE_AUTOPTR_CLEANUP_FUNC(XfconfChannel, g_object_unref)
 
 GType xfconf_channel_get_type(void) G_GNUC_CONST;
 
