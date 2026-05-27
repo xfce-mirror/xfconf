@@ -23,9 +23,10 @@
 
 #include <glib.h>
 
-enum _XfconfError;
+/* fwd decl */
+typedef enum _XfconfError XfconfError;
 
 gboolean _xfconf_error_from_dbus_error_name(const gchar *error_name,
-                                            enum _XfconfError *xfconf_error);
+                                            XfconfError *xfconf_error);
 
 #endif /* __XFCONF_COMMON_PRIVATE_H__ */

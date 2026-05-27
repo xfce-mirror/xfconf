@@ -860,10 +860,10 @@ xfconf_channel_get_string_list(XfconfChannel *channel,
  * Returns: The int value, or, if @property is not in @channel or if its type does not match,
  *          @default_value is returned.
  **/
-gint
+gint32
 xfconf_channel_get_int(XfconfChannel *channel,
                        const gchar *property,
-                       gint default_value)
+                       gint32 default_value)
 {
     gint value = default_value;
     GValue val = G_VALUE_INIT;
@@ -1107,7 +1107,7 @@ xfconf_channel_set_string_list(XfconfChannel *channel,
 gboolean
 xfconf_channel_set_int(XfconfChannel *channel,
                        const gchar *property,
-                       gint value)
+                       gint32 value)
 {
     GValue val = G_VALUE_INIT;
     gboolean ret;
