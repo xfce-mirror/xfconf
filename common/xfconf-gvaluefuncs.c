@@ -66,33 +66,33 @@ GType
 _xfconf_gtype_from_string(const gchar *type)
 {
     /* note: move the most frequently used types to the top */
-    if (!strcmp(type, "empty")) {
+    if (strcmp(type, "empty") == 0) {
         return G_TYPE_NONE;
-    } else if (!strcmp(type, "string")) {
+    } else if (strcmp(type, "string") == 0) {
         return G_TYPE_STRING;
-    } else if (!strcmp(type, "int")) {
+    } else if (strcmp(type, "int") == 0) {
         return G_TYPE_INT;
-    } else if (!strcmp(type, "double")) {
+    } else if (strcmp(type, "double") == 0) {
         return G_TYPE_DOUBLE;
-    } else if (!strcmp(type, "bool")) {
+    } else if (strcmp(type, "bool") == 0) {
         return G_TYPE_BOOLEAN;
-    } else if (!strcmp(type, "array")) {
+    } else if (strcmp(type, "array") == 0) {
         return G_TYPE_PTR_ARRAY;
-    } else if (!strcmp(type, "uint")) {
+    } else if (strcmp(type, "uint") == 0) {
         return G_TYPE_UINT;
-    } else if (!strcmp(type, "uchar")) {
+    } else if (strcmp(type, "uchar") == 0) {
         return G_TYPE_UCHAR;
-    } else if (!strcmp(type, "char")) {
+    } else if (strcmp(type, "char") == 0) {
         return G_TYPE_CHAR;
-    } else if (!strcmp(type, "uint16")) {
+    } else if (strcmp(type, "uint16") == 0) {
         return XFCONF_TYPE_UINT16;
-    } else if (!strcmp(type, "int16")) {
+    } else if (strcmp(type, "int16") == 0) {
         return XFCONF_TYPE_INT16;
-    } else if (!strcmp(type, "uint64")) {
+    } else if (strcmp(type, "uint64") == 0) {
         return G_TYPE_UINT64;
-    } else if (!strcmp(type, "int64")) {
+    } else if (strcmp(type, "int64") == 0) {
         return G_TYPE_INT64;
-    } else if (!strcmp(type, "float")) {
+    } else if (strcmp(type, "float") == 0) {
         return G_TYPE_FLOAT;
     }
 
@@ -230,10 +230,10 @@ _xfconf_gvalue_from_string(GValue *value,
             return TRUE;
 
         case G_TYPE_BOOLEAN:
-            if (!strcmp(str, "true")) {
+            if (strcmp(str, "true") == 0) {
                 g_value_set_boolean(value, TRUE);
                 return TRUE;
-            } else if (!strcmp(str, "false")) {
+            } else if (strcmp(str, "false") == 0) {
                 g_value_set_boolean(value, FALSE);
                 return TRUE;
             } else {

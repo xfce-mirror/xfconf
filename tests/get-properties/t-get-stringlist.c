@@ -47,7 +47,7 @@ main(int argc,
         }
 
         for (i = 0; strlist[i] && test_strlist[i]; ++i) {
-            if (strcmp(strlist[i], test_strlist[i])) {
+            if (strcmp(strlist[i], test_strlist[i]) != 0) {
                 g_critical("Test failed: string list values don't match (%s != %s)",
                            strlist[i], test_strlist[i]);
                 xfconf_tests_end();

@@ -807,7 +807,7 @@ xfconf_proptree_lookup_node(GNode *proptree,
              node;
              node = g_node_next_sibling(node))
         {
-            if (!strcmp(((XfconfProperty *)node->data)->name, parts[i])) {
+            if (strcmp(((XfconfProperty *)node->data)->name, parts[i]) == 0) {
                 if (!parts[i + 1]) {
                     found_node = node;
                 } else {
@@ -906,7 +906,7 @@ xfconf_proptree_reset(GNode *proptree,
                     prop = parent->data;
                     if (!G_IS_VALUE(&prop->value)
                         && !G_IS_VALUE(&prop->system_value)
-                        && !parent->children && strcmp(prop->name, "/"))
+                        && !parent->children && strcmp(prop->name, "/") != 0)
                     {
                         GNode *tmp = parent;
                         parent = parent->parent;
@@ -1053,13 +1053,13 @@ xfconf_xml_handle_channel(XmlParserState *state,
     gchar *p;
 
     for (i = 0; attribute_names[i]; ++i) {
-        if (!strcmp(attribute_names[i], "name")) {
+        if (strcmp(attribute_names[i], "name") == 0) {
             name = attribute_values[i];
-        } else if (!strcmp(attribute_names[i], "version")) {
+        } else if (strcmp(attribute_names[i], "version") == 0) {
             version = attribute_values[i];
-        } else if (!strcmp(attribute_names[i], "locked")) {
+        } else if (strcmp(attribute_names[i], "locked") == 0) {
             locked = attribute_values[i];
-        } else if (!strcmp(attribute_names[i], "unlocked")) {
+        } else if (strcmp(attribute_names[i], "unlocked") == 0) {
             unlocked = attribute_values[i];
         } else {
             if (error) {
@@ -1169,15 +1169,15 @@ xfconf_xml_handle_property(XmlParserState *state,
     GValue *value_to_set = NULL;
 
     for (i = 0; attribute_names[i]; ++i) {
-        if (!strcmp(attribute_names[i], "name")) {
+        if (strcmp(attribute_names[i], "name") == 0) {
             name = attribute_values[i];
-        } else if (!strcmp(attribute_names[i], "type")) {
+        } else if (strcmp(attribute_names[i], "type") == 0) {
             type = attribute_values[i];
-        } else if (!strcmp(attribute_names[i], "value")) {
+        } else if (strcmp(attribute_names[i], "value") == 0) {
             value = attribute_values[i];
-        } else if (!strcmp(attribute_names[i], "locked")) {
+        } else if (strcmp(attribute_names[i], "locked") == 0) {
             locked = attribute_values[i];
-        } else if (!strcmp(attribute_names[i], "unlocked")) {
+        } else if (strcmp(attribute_names[i], "unlocked") == 0) {
             unlocked = attribute_values[i];
         } else {
             if (error) {
@@ -1374,9 +1374,9 @@ xfconf_xml_handle_value(XmlParserState *state,
     GType value_type = G_TYPE_INVALID;
 
     for (i = 0; attribute_names[i]; ++i) {
-        if (!strcmp(attribute_names[i], "type")) {
+        if (strcmp(attribute_names[i], "type") == 0) {
             type = attribute_values[i];
-        } else if (!strcmp(attribute_names[i], "value")) {
+        } else if (strcmp(attribute_names[i], "value") == 0) {
             value = attribute_values[i];
         } else {
             if (error) {
@@ -1442,7 +1442,7 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
 
     switch (state->cur_elem) {
         case ELEM_NONE:
-            if (strcmp(element_name, "channel")) {
+            if (strcmp(element_name, "channel") != 0) {
                 if (error) {
                     g_set_error(error, G_MARKUP_ERROR,
                                 G_MARKUP_ERROR_UNKNOWN_ELEMENT,
@@ -1458,13 +1458,13 @@ xfconf_backend_perchannel_xml_start_elem(GMarkupParseContext *context,
 
         case ELEM_CHANNEL:
         case ELEM_PROPERTY:
-            if (!strcmp(element_name, "property")) {
+            if (strcmp(element_name, "property") == 0) {
                 xfconf_xml_handle_property(state, attribute_names,
                                            attribute_values, error);
             } else if (ELEM_PROPERTY == state->cur_elem
                        && state->list_property /* FIXME: use stack */
                        && state->list_value /* FIXME: use stack */
-                       && !strcmp(element_name, "value"))
+                       && strcmp(element_name, "value") == 0)
             {
                 xfconf_xml_handle_value(state, attribute_names,
                                         attribute_values, error);
@@ -1697,7 +1697,7 @@ xfconf_backend_perchannel_xml_load_channel(XfconfBackendPerchannelXml *xbpx,
      * follow the xdg spec, see bug #6079 for more information */
     length = filenames ? g_strv_length(filenames) : 0;
     for (i = length - 1; i >= 0; --i) {
-        if (!g_strcmp0(user_file, filenames[i])) {
+        if (g_strcmp0(user_file, filenames[i]) == 0) {
             continue;
         }
         xfconf_backend_perchannel_xml_merge_file(xbpx, filenames[i], TRUE,

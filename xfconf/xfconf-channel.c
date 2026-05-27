@@ -232,9 +232,9 @@ xfconf_channel_constructor(GType type,
     XfconfChannel *channel = NULL;
 
     for (i = 0; i < n_construct_properties; ++i) {
-        if (!strcmp(g_param_spec_get_name(construct_properties[i].pspec), "channel-name")) {
+        if (strcmp(g_param_spec_get_name(construct_properties[i].pspec), "channel-name") == 0) {
             channel_name = g_value_get_string(construct_properties[i].value);
-        } else if (!strcmp(g_param_spec_get_name(construct_properties[i].pspec), "is-singleton")) {
+        } else if (strcmp(g_param_spec_get_name(construct_properties[i].pspec), "is-singleton") == 0) {
             is_singleton = g_value_get_boolean(construct_properties[i].value);
         }
     }
@@ -385,7 +385,7 @@ xfconf_channel_property_changed(XfconfCache *cache,
 {
     XfconfChannel *channel = XFCONF_CHANNEL(user_data);
 
-    if (strcmp(channel_name, channel->channel_name)
+    if (strcmp(channel_name, channel->channel_name) != 0
         || (channel->property_base
             && !g_str_has_prefix(property, channel->property_base)))
     {

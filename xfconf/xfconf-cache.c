@@ -545,7 +545,7 @@ xfconf_cache_handle_property_changed(XfconfCache *cache, GVariant *parameters)
     if (g_variant_is_of_type(parameters, G_VARIANT_TYPE("(ssv)"))) {
         g_variant_get(parameters, "(&s&sv)", &channel_name, &property, &prop_variant);
 
-        if (strcmp(channel_name, cache->channel_name)) {
+        if (strcmp(channel_name, cache->channel_name) != 0) {
             g_variant_unref(prop_variant);
             return;
         }
@@ -594,7 +594,7 @@ xfconf_cache_handle_property_removed(XfconfCache *cache, GVariant *parameters)
 
         g_variant_get(parameters, "(&s&s)", &channel_name, &property);
 
-        if (strcmp(channel_name, cache->channel_name)) {
+        if (strcmp(channel_name, cache->channel_name) != 0) {
             return;
         }
 

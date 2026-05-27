@@ -790,8 +790,8 @@ xfconf_g_property_unbind_by_property(XfconfChannel *channel,
         binding = l->data;
         if (binding->object == object
             && binding->channel == channel
-            && !strcmp(xfconf_property, binding->xfconf_property)
-            && !strcmp(object_property, binding->object_property))
+            && strcmp(xfconf_property, binding->xfconf_property) == 0
+            && strcmp(object_property, binding->object_property) == 0)
         {
             break;
         }

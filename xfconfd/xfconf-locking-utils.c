@@ -120,7 +120,7 @@ xfconf_user_is_in_list(const gchar *list)
                 break;
             }
         } else {
-            if (!strcmp(user_name, tokens[i])) {
+            if (strcmp(user_name, tokens[i]) == 0) {
                 ret = TRUE;
                 break;
             }

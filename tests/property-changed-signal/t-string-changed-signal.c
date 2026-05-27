@@ -34,7 +34,7 @@ test_signal_changed(XfconfChannel *channel,
                     gpointer user_data)
 {
     SignalTestData *std = user_data;
-    if (!strcmp(property, test_string_property)) {
+    if (strcmp(property, test_string_property) == 0) {
         std->got_signal = TRUE;
     }
     g_main_loop_quit(std->mloop);

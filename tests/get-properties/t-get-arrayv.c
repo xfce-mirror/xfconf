@@ -81,7 +81,7 @@ main(int argc,
             xfconf_tests_end();
             return 1;
         }
-        if (strcmp(g_value_get_string(val), "test string")) {
+        if (strcmp(g_value_get_string(val), "test string") != 0) {
             g_critical("Test failed: array elem 2 value should be \"test string\", but it's \"%s\"",
                        g_value_get_string(val));
             xfconf_tests_end();
