@@ -35,7 +35,7 @@ msgstr "Нисам успео да направим позив Д-сабирни
 #: xfconfd/xfconf-backend-perchannel-xml.c:272
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Не могу да направим директоријум подешавања „%s“"
+msgstr "Нисам успео створити директоријум поставки „%s“"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:317 xfconfd/xfconf-daemon.c:164
 #, c-format
@@ -45,7 +45,7 @@ msgstr "Одбијено је овлашћење за време измене с
 #: xfconfd/xfconf-backend-perchannel-xml.c:603
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr "Не могу да уклоним канал „%s“: %s"
+msgstr "Нисам успео уклонити канал „%s“: %s"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1322
 #, c-format
@@ -56,16 +56,16 @@ msgstr "Неисправна врста за <својство>: „%s“"
 #: xfconfd/xfconf-backend-perchannel-xml.c:1417
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "Не могу да обрадим вредност врсте „%s“ из „%s“"
+msgstr "Нисам успео обрадити вредност врсте „%s“ из „%s“"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1397
 msgid "The type attribute of <value> cannot be an array"
-msgstr "Атрибут врсте <вредности> не може бити низ"
+msgstr "Својство врсте <value> не може бити низ"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1406
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
-msgstr "Неисправна врста за <вредност>: „%s“"
+msgstr "Неисправна врста за <value>: „%s“"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1686
 #: xfconfd/xfconf-backend-perchannel-xml.c:1949
@@ -76,12 +76,12 @@ msgstr "Канал „%s“ не постоји"
 #: xfconfd/xfconf-backend-perchannel-xml.c:2020
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
-msgstr "Не могу да запишем канал „%s“: %s"
+msgstr "Нисам успео записати канал „%s“: %s"
 
 #: xfconfd/xfconf-backend-factory.c:74
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Не могу да пронађем Иксфконф позадинца врсте „%s“"
+msgstr "Нисам успео пронаћи позадинца врсте „%s“ Иксфконфа"
 
 #: xfconfd/xfconf-backend.c:121
 msgid "Property names must start with a '/' character"
@@ -89,7 +89,7 @@ msgstr "Називи својстава морају почињати знако
 
 #: xfconfd/xfconf-backend.c:130
 msgid "The root element ('/') is not a valid property name"
-msgstr "Корени елемент („/“) није исправан назив својства"
+msgstr "Корени чинилац („/“) није исправан назив својства"
 
 #: xfconfd/xfconf-backend.c:145
 msgid ""
@@ -165,7 +165,7 @@ msgstr "Ни један позадинац не може бити покрену
 #. TRANSLATORS: This refers to: "A property has been set"
 #: xfconf-query/main.c:113
 msgid "set"
-msgstr "постављено"
+msgstr "постави"
 
 #. TRANSLATORS: This refers to: "A property has been reset"
 #: xfconf-query/main.c:128
@@ -174,7 +174,7 @@ msgstr "врати"
 
 #: xfconf-query/main.c:228
 msgid "Possible types:"
-msgstr ""
+msgstr "Могуће врсте:"
 
 #: xfconf-query/main.c:237
 msgid "Version information"
@@ -190,21 +190,21 @@ msgstr "Својство за пропитивање/измену"
 
 #: xfconf-query/main.c:246
 msgid "The new value to set for the property (multiple uses for an array)"
-msgstr ""
+msgstr "Нова вредност за постављање својства (вишеструка употреба за низ)"
 
 #: xfconf-query/main.c:249
 msgid "List properties (or channels if -c is not specified)"
-msgstr "Списак својстава (или канала ако „-c“ није наведено)"
+msgstr "Списак својстава (или канала ако -c није наведено)"
 
 #: xfconf-query/main.c:252
 msgid ""
 "Print also the value in combination with -l or -m (use twice to print also "
 "the type)"
-msgstr ""
+msgstr "Испиши и вредност у пару са -l или -m (користи двапут за исписивање и врсте)"
 
 #: xfconf-query/main.c:255
 msgid "Specify the property value type (multiple uses for an array)"
-msgstr ""
+msgstr "Означи својство врсте вредности (вишеструка употреба за низ)"
 
 #: xfconf-query/main.c:258
 msgid "Reset property"
@@ -216,7 +216,7 @@ msgstr "Дубински (користи се са „-r“)"
 
 #: xfconf-query/main.c:264
 msgid "Force array even if only one element"
-msgstr "Присиљава низ чак и ако је само један елемент"
+msgstr "Присиљава низ чак и ако је само једног чиниоца"
 
 #: xfconf-query/main.c:267
 msgid "Invert an existing boolean property"
@@ -228,7 +228,7 @@ msgstr "Надгледа канал за изменама својства"
 
 #: xfconf-query/main.c:273
 msgid "List types that can be specified using the --type option"
-msgstr ""
+msgstr "Излистај врсте које могу бити одређене користећи могућност --type"
 
 #: xfconf-query/main.c:277
 msgid "Create a new property if it does not already exist"
@@ -236,16 +236,16 @@ msgstr "Ствара ново својство ако већ не постоји
 
 #: xfconf-query/main.c:292
 msgid "- Xfconf commandline utility"
-msgstr "— Иксф конф алатка линије наредби"
+msgstr "- Xfconf алатка линије наредби"
 
 #: xfconf-query/main.c:296
 #, c-format
 msgid "Option parsing failed: %s"
-msgstr "Није успела обрада опције: %s"
+msgstr "Није успела обрада могућности: %s"
 
 #: xfconf-query/main.c:307
 msgid "The Xfce development team. All rights reserved."
-msgstr "ИксФЦЕ-ova развојна дружина. Сва права су задржана."
+msgstr "ИксФЦЕ-ова развојна дружина. Сва права су задржана."
 
 #: xfconf-query/main.c:308
 #, c-format
@@ -258,15 +258,15 @@ msgstr "Није наведено својство"
 
 #: xfconf-query/main.c:326
 msgid "The property name should start with '/'"
-msgstr ""
+msgstr "Име својства треба почињати са „/“"
 
 #: xfconf-query/main.c:331
 msgid "--set and --reset options can not be used together"
-msgstr ""
+msgstr "Могућности --set и --reset се не могу употребљавати заједно"
 
 #: xfconf-query/main.c:336
 msgid "--set and --reset options can not be used together with --list"
-msgstr ""
+msgstr "Могућности --set и --reset се не могу користити заједно са --list"
 
 #: xfconf-query/main.c:345
 #, c-format
