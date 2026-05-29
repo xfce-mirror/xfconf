@@ -201,7 +201,7 @@ msgstr "Elenca le proprietà (o i canali se non è specificato -c)"
 msgid ""
 "Print also the value in combination with -l or -m (use twice to print also "
 "the type)"
-msgstr ""
+msgstr "Stampa anche il valore in combinazione con -l o -m (usare due volte per stampare anche il tipo)"
 
 #: xfconf-query/main.c:255
 msgid "Specify the property value type (multiple uses for an array)"
