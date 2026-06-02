@@ -368,16 +368,6 @@ xfconf_query_export(void)
     return TRUE;
 }
 
-static void
-xfconf_query_gvalue_free(gpointer data)
-{
-    if (data != NULL) {
-        GValue *value = data;
-        g_value_unset(value);
-        g_free(value);
-    }
-}
-
 static GHashTable *
 xfconf_query_import_check(const gchar *contents)
 {
@@ -406,7 +396,7 @@ xfconf_query_import_check(const gchar *contents)
         XfconfChannel *channel = xfconf_channel_get(words[0]);
         GHashTable *properties = g_hash_table_lookup(channels, channel);
         if (properties == NULL) {
-            properties = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, xfconf_query_gvalue_free);
+            properties = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, (GDestroyNotify)_xfconf_gvalue_free);
             g_hash_table_insert(channels, channel, properties);
         }
 
@@ -425,7 +415,7 @@ xfconf_query_import_check(const gchar *contents)
                 if (!_xfconf_gvalue_from_string(value, str_value)) {
                     xfconf_query_printerr(_("Aborted on line %d: type and value do not match"), i + 1);
                     g_clear_pointer(&channels, g_hash_table_destroy);
-                    xfconf_query_gvalue_free(value);
+                    _xfconf_gvalue_free(value);
                     g_free(str_value);
                     g_strfreev(words);
                     break;
@@ -440,7 +430,7 @@ xfconf_query_import_check(const gchar *contents)
             }
         } else {
             /* array property value */
-            GPtrArray *array = g_ptr_array_new_full(array_size, xfconf_query_gvalue_free);
+            GPtrArray *array = g_ptr_array_new_full(array_size, (GDestroyNotify)_xfconf_gvalue_free);
             for (guint j = 0; j < array_size; j++) {
                 const gchar *str_type = words[2 + 2 * j + 1];
                 GType gtype = _xfconf_gtype_from_string(str_type);

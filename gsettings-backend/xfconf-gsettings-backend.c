@@ -184,8 +184,7 @@ xfconf_gsettings_backend_write_full(GSettingsBackend *backend,
         g_hash_table_remove(self->changed_prop, key);
     }
 
-    g_value_unset(value);
-    g_free(value);
+    _xfconf_gvalue_free(value);
 
     return ret_val;
 }

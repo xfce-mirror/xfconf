@@ -24,6 +24,7 @@
 #endif
 
 #include "common/xfconf-common-private.h"
+#include "common/xfconf-gvaluefuncs.h"
 
 #include "xfconf-private.h"
 #include "xfconf.h"
@@ -270,8 +271,7 @@ xfconf_g_property_real_update_property_value(gpointer data)
 
     g_object_unref(pndata->object);
     g_free(pndata->property_name);
-    g_value_unset(pndata->value);
-    g_free(pndata->value);
+    _xfconf_gvalue_free(pndata->value);
     g_free(pndata);
 
     return G_SOURCE_REMOVE;

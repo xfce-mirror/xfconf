@@ -131,11 +131,7 @@ static void
 xfconf_cache_item_free(XfconfCacheItem *item)
 {
     g_return_if_fail(item);
-
-    if (item->value != NULL) {
-        g_value_unset(item->value);
-        g_free(item->value);
-    }
+    _xfconf_gvalue_free(item->value);
     g_slice_free(XfconfCacheItem, item);
 }
 
@@ -512,8 +508,7 @@ xfconf_cache_real_emit_property_changed(gpointer data)
 
     g_object_unref(pndata->cache);
     g_free(pndata->property_name);
-    g_value_unset(pndata->value);
-    g_free(pndata->value);
+    _xfconf_gvalue_free(pndata->value);
     g_free(pndata);
 
     return G_SOURCE_REMOVE;
@@ -573,8 +568,7 @@ xfconf_cache_handle_property_changed(XfconfCache *cache, GVariant *parameters)
         if (changed) {
             xfconf_cache_emit_property_changed(cache, property, prop_value);
         } else {
-            g_value_unset(prop_value);
-            g_free(prop_value);
+            _xfconf_gvalue_free(prop_value);
         }
     } else {
         g_warning("property changed handler expects (ssv) type, but %s received",
@@ -599,10 +593,8 @@ xfconf_cache_handle_property_removed(XfconfCache *cache, GVariant *parameters)
         }
 
         item = g_tree_lookup(cache->properties, property);
-        if (item != NULL && item->value != NULL) {
-            g_value_unset(item->value);
-            g_free(item->value);
-            item->value = NULL;
+        if (item != NULL) {
+            g_clear_pointer(&item->value, _xfconf_gvalue_free);
         }
 
         GValue *value = g_new0(GValue, 1);

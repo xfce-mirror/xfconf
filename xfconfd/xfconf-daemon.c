@@ -177,8 +177,7 @@ xfconf_set_property(XfconfExported *skeleton,
         g_error_free(error);
     }
 
-    g_value_unset(value);
-    g_free(value);
+    _xfconf_gvalue_free(value);
     return G_DBUS_METHOD_INVOCATION_UNHANDLED;
 }
 
