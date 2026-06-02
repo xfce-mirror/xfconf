@@ -164,11 +164,7 @@ xfconf_shutdown(void)
         _xfconf_channel_shutdown();
         _xfconf_g_bindings_shutdown();
 
-        if (named_structs) {
-            g_hash_table_destroy(named_structs);
-            named_structs = NULL;
-        }
-
+        g_clear_pointer(&named_structs, g_hash_table_destroy);
         g_clear_object(&gproxy);
         g_clear_object(&gdbus);
     }

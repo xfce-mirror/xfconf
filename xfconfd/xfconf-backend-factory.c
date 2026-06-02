@@ -90,8 +90,5 @@ xfconf_backend_factory_get_backend(const gchar *type,
 void
 xfconf_backend_factory_cleanup(void)
 {
-    if (backends) {
-        g_hash_table_destroy(backends);
-        backends = NULL;
-    }
+    g_clear_pointer(&backends, g_hash_table_destroy);
 }

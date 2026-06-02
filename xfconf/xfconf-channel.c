@@ -368,10 +368,7 @@ void
 _xfconf_channel_shutdown(void)
 {
     G_LOCK(__singletons);
-    if (G_LIKELY(__channel_singletons)) {
-        g_hash_table_destroy(__channel_singletons);
-        __channel_singletons = NULL;
-    }
+    g_clear_pointer(&__channel_singletons, g_hash_table_destroy);
     G_UNLOCK(__singletons);
 }
 

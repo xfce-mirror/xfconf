@@ -950,10 +950,7 @@ xfconf_cache_set(XfconfCache *cache,
             old_item->cancellable = g_cancellable_new();
         }
 
-        if (old_item->variant) {
-            g_variant_unref(old_item->variant);
-            old_item->variant = NULL;
-        }
+        g_clear_pointer(&old_item->variant, g_variant_unref);
     } else {
         old_item = xfconf_cache_old_item_new(cache, property);
         if (item && item->value) {

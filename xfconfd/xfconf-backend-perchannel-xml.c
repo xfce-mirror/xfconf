@@ -224,8 +224,7 @@ xfconf_backend_perchannel_xml_finalize(GObject *obj)
     XfconfBackendPerchannelXml *xbpx = XFCONF_BACKEND_PERCHANNEL_XML(obj);
 
     if (xbpx->save_id) {
-        g_source_remove(xbpx->save_id);
-        xbpx->save_id = 0;
+        g_clear_handle_id(&xbpx->save_id, g_source_remove);
         xfconf_backend_perchannel_xml_flush(XFCONF_BACKEND(xbpx), NULL);
     }
 
@@ -1501,8 +1500,7 @@ xfconf_backend_perchannel_xml_end_elem(GMarkupParseContext *context,
 
         case ELEM_PROPERTY:
             /* FIXME: use stacks here */
-            g_free(state->list_property);
-            state->list_property = NULL;
+            g_clear_pointer(&state->list_property, g_free);
             state->list_value = NULL;
 
             p = g_strrstr(state->cur_path, "/");
