@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfconf\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2026-05-26 01:03+0200\n"
+"POT-Creation-Date: 2026-06-02 13:02+0200\n"
 "PO-Revision-Date: 2013-07-02 20:48+0000\n"
 "Last-Translator: Andreas Eitel <github-aneitel@online.de>, 2021,2026\n"
 "Language-Team: German (http://app.transifex.com/xfce/xfconf/language/de/)\n"
@@ -23,60 +23,60 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: xfconf/xfconf-cache.c:850 xfconfd/xfconf-backend-perchannel-xml.c:388
-#: xfconfd/xfconf-backend-perchannel-xml.c:473
-#: xfconfd/xfconf-backend-perchannel-xml.c:637
-#: xfconfd/xfconf-backend-perchannel-xml.c:659 xfconf-query/main.c:396
+#: xfconf/xfconf-cache.c:831 xfconfd/xfconf-backend-perchannel-xml.c:382
+#: xfconfd/xfconf-backend-perchannel-xml.c:467
+#: xfconfd/xfconf-backend-perchannel-xml.c:631
+#: xfconfd/xfconf-backend-perchannel-xml.c:653 xfconf-query/main.c:710
 #, c-format
 msgid "Property \"%s\" does not exist on channel \"%s\""
 msgstr "Eigenschaft »%s« ist für den Kanal »%s« nicht vorhanden"
 
-#: xfconf/xfconf-cache.c:1078
+#: xfconf/xfconf-cache.c:1056
 msgid "Failed to make ResetProperty DBus call"
 msgstr "D-Bus-Aufruf »ResetProperty« konnte nicht ausgeführt werden"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:272
+#: xfconfd/xfconf-backend-perchannel-xml.c:266
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
 msgstr "Einstellungsordner »%s« konnte nicht angelegt werden"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:317 xfconfd/xfconf-daemon.c:164
+#: xfconfd/xfconf-backend-perchannel-xml.c:311 xfconfd/xfconf-daemon.c:156
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
 msgstr "Sie haben keine ausreichenden Rechte, um die Eigenschaft »%s« auf Kanal »%s« zu ändern"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:603
+#: xfconfd/xfconf-backend-perchannel-xml.c:597
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
 msgstr "Kanal »%s« kann nicht entfernt werden: %s"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1322
+#: xfconfd/xfconf-backend-perchannel-xml.c:1314
 #, c-format
 msgid "Invalid type for <property>: \"%s\""
 msgstr "Nicht gültiger Typ für <Eigenschaft>: »%s«"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1339
-#: xfconfd/xfconf-backend-perchannel-xml.c:1417
+#: xfconfd/xfconf-backend-perchannel-xml.c:1331
+#: xfconfd/xfconf-backend-perchannel-xml.c:1409
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
 msgstr "Wert vom Typ »%s« aus »%s« kann nicht eingelesen werden"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1397
+#: xfconfd/xfconf-backend-perchannel-xml.c:1389
 msgid "The type attribute of <value> cannot be an array"
 msgstr "Das Typattribut von <Wert> kann kein Feld sein"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1406
+#: xfconfd/xfconf-backend-perchannel-xml.c:1398
 #, c-format
 msgid "Invalid type for <value>: \"%s\""
 msgstr "Nicht gültiger Typ für <Wert>: »%s«"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:1686
-#: xfconfd/xfconf-backend-perchannel-xml.c:1949
+#: xfconfd/xfconf-backend-perchannel-xml.c:1677
+#: xfconfd/xfconf-backend-perchannel-xml.c:1940
 #, c-format
 msgid "Channel \"%s\" does not exist"
 msgstr "Der Kanal »%s« ist nicht vorhanden"
 
-#: xfconfd/xfconf-backend-perchannel-xml.c:2020
+#: xfconfd/xfconf-backend-perchannel-xml.c:2011
 #, c-format
 msgid "Unable to write channel \"%s\": %s"
 msgstr "In Kanal »%s« kann nicht geschrieben werden: %s"
@@ -86,40 +86,40 @@ msgstr "In Kanal »%s« kann nicht geschrieben werden: %s"
 msgid "Unable to find Xfconf backend of type \"%s\""
 msgstr "Kein Xfconf-Unterbau für Typ »%s« auffindbar"
 
-#: xfconfd/xfconf-backend.c:121
+#: xfconfd/xfconf-backend.c:93
 msgid "Property names must start with a '/' character"
 msgstr "Eigenschaftsnamen müssen mit »/« beginnen"
 
-#: xfconfd/xfconf-backend.c:130
+#: xfconfd/xfconf-backend.c:102
 msgid "The root element ('/') is not a valid property name"
 msgstr "Das Basiselement (»/«) ist kein gültiger Eigenschaftsname"
 
-#: xfconfd/xfconf-backend.c:145
+#: xfconfd/xfconf-backend.c:117
 msgid ""
 "Property names can only include the ASCII characters A-Z, a-z, 0-9, '_', "
 "'-', ':', '.', ',', '[', ']', '{', '}', '<' and '>', as well as '/' as a "
 "separator"
 msgstr "Eigenschaftsnamen können nur die ASCII-Zeichen A-Z, a-z, 0-9, »_«, »-«, »:«, ».«, »,«, »[«, »]«, »{«, »}«, »<« und »>«, sowie »/« als Trennzeichen enthalten"
 
-#: xfconfd/xfconf-backend.c:154
+#: xfconfd/xfconf-backend.c:126
 msgid "Property names cannot have two or more consecutive '/' characters"
 msgstr "Eigenschaftsnamen können nicht zwei oder mehr aufeinanderfolgende »/« Zeichen hintereinander enthalten"
 
-#: xfconfd/xfconf-backend.c:165
+#: xfconfd/xfconf-backend.c:137
 msgid "Property names cannot end with a '/' character"
 msgstr "Eigenschaftsnamen können nicht auf »/« enden"
 
-#: xfconfd/xfconf-backend.c:182
+#: xfconfd/xfconf-backend.c:154
 msgid "Channel name cannot be an empty string"
 msgstr "Kanalbezeichner können nicht leer sein"
 
-#: xfconfd/xfconf-backend.c:197
+#: xfconfd/xfconf-backend.c:169
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
 msgstr "Kanalnamen können nur die ASCII-Zeichen A-Z, a-z, 0-9, »{«, »}«, »|«, »]«, »[«, »:«, »,«, ».«, »_« und , »-« enthalten"
 
-#: xfconfd/xfconf-backend.c:430
+#: xfconfd/xfconf-backend.c:402
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
@@ -156,185 +156,236 @@ msgstr "Fehler können unter http://bugs.xfce.org/ gemeldet werden\n"
 msgid "Error parsing options: %s\n"
 msgstr "Die Optionen können nicht eingelesen werden: %s\n"
 
-#: xfconfd/xfconf-daemon.c:216
+#: xfconfd/xfconf-daemon.c:207
 #, c-format
 msgid "GType transformation failed \"%s\""
 msgstr "GType-transformierung ist fehlgeschlagen »%s«"
 
-#: xfconfd/xfconf-daemon.c:484
+#: xfconfd/xfconf-daemon.c:475
 msgid "No backends could be started"
 msgstr "Es konnte kein Unterbau gestartet werden"
 
 #. TRANSLATORS: This refers to: "A property has been set"
-#: xfconf-query/main.c:113
+#: xfconf-query/main.c:123
 msgid "set"
 msgstr "einstellen"
 
 #. TRANSLATORS: This refers to: "A property has been reset"
-#: xfconf-query/main.c:128
+#: xfconf-query/main.c:138
 msgid "reset"
 msgstr "zurücksetzen"
 
-#: xfconf-query/main.c:228
+#: xfconf-query/main.c:238
 msgid "Possible types:"
 msgstr "Mögliche Typen:"
 
-#: xfconf-query/main.c:237
+#: xfconf-query/main.c:355
+#, c-format
+msgid "Failed to write contents: %s"
+msgstr "Das Schreiben des Inhalts ist fehlgeschlagen: %s"
+
+#: xfconf-query/main.c:390
+#, c-format
+msgid "Aborted on line %d: corrupted format"
+msgstr "Abgebrochen in Zeile %d: Beschädigtes Format"
+
+#: xfconf-query/main.c:407 xfconf-query/main.c:438
+#, c-format
+msgid "Aborted on line %d: wrong type %s"
+msgstr "Abgebrochen in Zeile %d: Falscher Typ %s"
+
+#: xfconf-query/main.c:416 xfconf-query/main.c:446
+#, c-format
+msgid "Aborted on line %d: type and value do not match"
+msgstr "Abgebrochen in Zeile %d: Typ und Wert stimmen nicht überein"
+
+#: xfconf-query/main.c:423 xfconf-query/main.c:462
+#, c-format
+msgid "Aborted on line %d: duplicate property %s"
+msgstr "Abgebrochen in Zeile %d: Doppelte Eigenschaft %s"
+
+#: xfconf-query/main.c:489
+#, c-format
+msgid "Failed to read contents: %s"
+msgstr "Das Lesen des Inhalts ist fehlgeschlagen: %s"
+
+#: xfconf-query/main.c:515
+#, c-format
+msgid "Failed to set property %s in channel %s"
+msgstr "Fehler beim Einstellen der Eigenschaft %s in Kanal %s"
+
+#: xfconf-query/main.c:528
 msgid "Version information"
 msgstr "Versionsinformation"
 
-#: xfconf-query/main.c:240
+#: xfconf-query/main.c:531
 msgid "The channel to query/modify"
 msgstr "Kanal zum Abfragen/Bearbeiten"
 
-#: xfconf-query/main.c:243
+#: xfconf-query/main.c:534
 msgid "The property to query/modify"
 msgstr "Eigenschaft zum Abfragen/Bearbeiten"
 
-#: xfconf-query/main.c:246
+#: xfconf-query/main.c:537
 msgid "The new value to set for the property (multiple uses for an array)"
 msgstr "Der neue Wert für die Eigenschaft (vielfältige Einsatzmöglichkeiten für ein Feld)"
 
-#: xfconf-query/main.c:249
+#: xfconf-query/main.c:540
 msgid "List properties (or channels if -c is not specified)"
 msgstr "Eigenschaften auflisten (oder Kanäle, wenn »-c« nicht angegeben ist)"
 
-#: xfconf-query/main.c:252
+#: xfconf-query/main.c:543
 msgid ""
 "Print also the value in combination with -l or -m (use twice to print also "
 "the type)"
 msgstr "Zeige den Wert auch in Kombination mit -l oder -m an (verwende den Befehl zweimal, um auch den Typ anzuzeigen)"
 
-#: xfconf-query/main.c:255
+#: xfconf-query/main.c:546
 msgid "Specify the property value type (multiple uses for an array)"
 msgstr "Geben Sie den Typ des Eigenschaftswerts an (bei einem Feld sind mehrere Verwendungen möglich)"
 
-#: xfconf-query/main.c:258
+#: xfconf-query/main.c:549
 msgid "Reset property"
 msgstr "Eigenschaft zurücksetzen"
 
-#: xfconf-query/main.c:261
+#: xfconf-query/main.c:552
 msgid "Recursive (use with -r)"
 msgstr "Rekursiv (mit »-r« verwenden)"
 
-#: xfconf-query/main.c:264
+#: xfconf-query/main.c:555
 msgid "Force array even if only one element"
 msgstr "Feld erzwingen, auch bei nur einem Element"
 
-#: xfconf-query/main.c:267
+#: xfconf-query/main.c:558
 msgid "Invert an existing boolean property"
 msgstr "Eine existierende boolesche Eigenschaft (Wahrheitswert) umkehren"
 
-#: xfconf-query/main.c:270
+#: xfconf-query/main.c:561
 msgid "Monitor a channel for property changes"
 msgstr "Einen Kanal auf Änderungen hin überwachen"
 
-#: xfconf-query/main.c:273
+#: xfconf-query/main.c:564
 msgid "List types that can be specified using the --type option"
 msgstr "Liste der Typen, die mit der Option --type angegeben werden können"
 
-#: xfconf-query/main.c:277
+#: xfconf-query/main.c:567
+msgid ""
+"Export all or part of the settings to an optional file or standard output, "
+"in a format suitable for the --import option"
+msgstr "Exportiere alle oder einen Teil der Einstellungen in eine optionale Datei oder in die Standardausgabe, in einem Format, das für die Option --import geeignet ist"
+
+#: xfconf-query/main.c:570
+msgid ""
+"Import settings exported using the --export option from an optional file or "
+"standard input"
+msgstr "Importiere Einstellungen, die mit der Option --export aus einer beliebigen Datei oder der Standardeingabe exportiert wurden"
+
+#: xfconf-query/main.c:574
 msgid "Create a new property if it does not already exist"
 msgstr "Eine Eigenschaft neu anlegen, wenn sie noch nicht existiert."
 
-#: xfconf-query/main.c:292
+#: xfconf-query/main.c:589
 msgid "- Xfconf commandline utility"
 msgstr "- Xfconf Befehlszeilenwerkzeug"
 
-#: xfconf-query/main.c:296
+#: xfconf-query/main.c:593
 #, c-format
 msgid "Option parsing failed: %s"
 msgstr "Fehler beim Verarbeiten der Optionen: %s"
 
-#: xfconf-query/main.c:307
+#: xfconf-query/main.c:604
 msgid "The Xfce development team. All rights reserved."
 msgstr "Das Xfce-Entwicklungsmannschaft. Alle Rechte vorbehalten."
 
-#: xfconf-query/main.c:308
+#: xfconf-query/main.c:605
 #, c-format
 msgid "Please report bugs to <%s>."
 msgstr "Bitte Fehler an <%s> melden."
 
-#: xfconf-query/main.c:321
+#: xfconf-query/main.c:618
 msgid "No property specified"
 msgstr "Keine Eigenschaft ausgewählt"
 
-#: xfconf-query/main.c:326
+#: xfconf-query/main.c:623
 msgid "The property name should start with '/'"
 msgstr "Der Eigenschaftsname sollte mit '/' beginnen"
 
-#: xfconf-query/main.c:331
+#: xfconf-query/main.c:628
 msgid "--set and --reset options can not be used together"
 msgstr "Die Optionen --set und --reset können nicht zusammen verwendet werden"
 
-#: xfconf-query/main.c:336
+#: xfconf-query/main.c:633
 msgid "--set and --reset options can not be used together with --list"
 msgstr "Die Optionen --set und --reset können nicht zusammen mit --list verwendet werden"
 
-#: xfconf-query/main.c:345
+#: xfconf-query/main.c:638
+msgid "--export and --import options can not be used together"
+msgstr "Die Optionen --export und --import können nicht zusammen verwendet werden"
+
+#: xfconf-query/main.c:647
 #, c-format
 msgid "Failed to init libxfconf: %s"
 msgstr "Fehler beim Initialisieren von libxfconf: %s"
 
-#: xfconf-query/main.c:355
+#: xfconf-query/main.c:669
 msgid "Channels:"
 msgstr "Kanäle:"
 
-#: xfconf-query/main.c:379
+#: xfconf-query/main.c:693
 #, c-format
 msgid "Start monitoring channel \"%s\":"
 msgstr "Überwachung von Kanal »%s« wird gestartet:"
 
-#: xfconf-query/main.c:408 xfconf-query/main.c:512 xfconf-query/main.c:578
+#: xfconf-query/main.c:722 xfconf-query/main.c:826 xfconf-query/main.c:892
 msgid "Failed to set property"
 msgstr "Fehler beim Einstellen der Eigenschaft"
 
-#: xfconf-query/main.c:411
+#: xfconf-query/main.c:725
 msgid "--toggle only works with boolean values"
 msgstr "--toggle funktioniert nur mit booleschen Werten (Wahrheitswerten)"
 
-#: xfconf-query/main.c:421 xfconf-query/main.c:423 xfconf-query/main.c:441
-#: xfconf-query/main.c:443
+#: xfconf-query/main.c:735 xfconf-query/main.c:737 xfconf-query/main.c:755
+#: xfconf-query/main.c:757
 msgid "(unknown)"
 msgstr "(unbekannt)"
 
-#: xfconf-query/main.c:431
+#: xfconf-query/main.c:745
 #, c-format
 msgid "Value is an array with %d items:"
 msgstr "Wert ist ein Feld mit %d Einträgen:"
 
-#: xfconf-query/main.c:456
+#: xfconf-query/main.c:770
 msgid "When creating a new property, the value type must be specified"
 msgstr "Wenn Sie eine neue Eigenschaft anlegen, müssen Sie den Wertetyp angeben."
 
-#: xfconf-query/main.c:466
+#: xfconf-query/main.c:780
 msgid "Failed to get the existing type for the value"
 msgstr "Fehler beim Auslesen des vorhandenen Wertetyps"
 
-#: xfconf-query/main.c:485
+#: xfconf-query/main.c:799
 msgid "Unable to determine the type of the value"
 msgstr "Wertetyp kann nicht bestimmt werden"
 
-#: xfconf-query/main.c:492
+#: xfconf-query/main.c:806
 msgid "A value type must be specified to change an array into a single value"
 msgstr "Sie müssen einen Wertetyp angeben, um ein Feld in einen einzigen Wert umwandeln zu können."
 
-#: xfconf-query/main.c:504 xfconf-query/main.c:561
+#: xfconf-query/main.c:818 xfconf-query/main.c:875
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
 msgstr "»%s« konnte nicht in Typ »%s« umgewandelt werden"
 
-#: xfconf-query/main.c:532
+#: xfconf-query/main.c:846
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
 msgstr "Es gibt %d neue Werte, aber nur %d Typen konnten bestimmt werden"
 
-#: xfconf-query/main.c:552
+#: xfconf-query/main.c:866
 #, c-format
 msgid "Unable to determine type of value at index %d"
 msgstr "Wertetyp bei Index %d kann nicht bestimmt werden."
 
-#: xfconf-query/main.c:603
+#: xfconf-query/main.c:917
 #, c-format
 msgid "Channel \"%s\" contains no properties"
 msgstr "Kanal »%s« enthält keine Eigenschaften"
