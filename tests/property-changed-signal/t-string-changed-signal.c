@@ -40,12 +40,11 @@ test_signal_changed(XfconfChannel *channel,
     g_main_loop_quit(std->mloop);
 }
 
-static gboolean
+static void
 test_watchdog(gpointer data)
 {
     SignalTestData *std = data;
     g_main_loop_quit(std->mloop);
-    return FALSE;
 }
 
 int
@@ -69,7 +68,7 @@ main(int argc,
 
     TEST_OPERATION(xfconf_channel_set_string(channel, test_string_property, test_string));
 
-    g_timeout_add(1500, test_watchdog, &std);
+    g_timeout_add_once(1500, test_watchdog, &std);
     g_main_loop_run(std.mloop);
 
     g_main_loop_unref(std.mloop);

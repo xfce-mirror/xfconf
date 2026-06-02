@@ -990,13 +990,11 @@ xfconf_property_free(XfconfProperty *property)
     g_slice_free(XfconfProperty, property);
 }
 
-static gboolean
+static void
 xfconf_backend_perchannel_xml_save_timeout(gpointer data)
 {
     XFCONF_BACKEND_PERCHANNEL_XML(data)->save_id = 0;
     xfconf_backend_perchannel_xml_flush(XFCONF_BACKEND(data), NULL);
-
-    return FALSE;
 }
 
 static void
@@ -1006,9 +1004,9 @@ xfconf_backend_perchannel_xml_schedule_save(XfconfBackendPerchannelXml *xbpx,
     channel->dirty = TRUE;
 
     if (xbpx->save_id == 0) {
-        xbpx->save_id = g_timeout_add_seconds(WRITE_TIMEOUT,
-                                              xfconf_backend_perchannel_xml_save_timeout,
-                                              xbpx);
+        xbpx->save_id = g_timeout_add_seconds_once(WRITE_TIMEOUT,
+                                                   xfconf_backend_perchannel_xml_save_timeout,
+                                                   xbpx);
     }
 }
 

@@ -86,7 +86,7 @@ typedef struct
     gchar *property;
 } XfconfPropChangedData;
 
-static gboolean
+static void
 xfconf_daemon_emit_property_changed_idled(gpointer data)
 {
     XfconfPropChangedData *pdata = data;
@@ -112,8 +112,6 @@ xfconf_daemon_emit_property_changed_idled(gpointer data)
     g_free(pdata->property);
     g_object_unref(G_OBJECT(pdata->xfconfd));
     g_slice_free(XfconfPropChangedData, pdata);
-
-    return FALSE;
 }
 
 static void
@@ -127,7 +125,7 @@ xfconf_daemon_backend_property_changed(XfconfBackend *backend,
     pdata->backend = g_object_ref(XFCONF_BACKEND(backend));
     pdata->channel = g_strdup(channel);
     pdata->property = g_strdup(property);
-    g_idle_add(xfconf_daemon_emit_property_changed_idled, pdata);
+    g_idle_add_once(xfconf_daemon_emit_property_changed_idled, pdata);
 }
 
 static gboolean
