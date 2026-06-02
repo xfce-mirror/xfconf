@@ -68,7 +68,7 @@ test_object_class_init(TestObjectClass *klass)
                                     g_param_spec_boolean("test",
                                                          NULL, NULL,
                                                          FALSE,
-                                                         G_PARAM_READWRITE));
+                                                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 }
 
 static void
