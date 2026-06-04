@@ -189,7 +189,7 @@ main(int argc,
     g_option_context_free(opt_ctx);
 
     if (print_version) {
-        g_print("Xfconfd " VERSION_FULL "\n");
+        g_print("Xfconfd %s\n", VERSION_FULL);
         return EXIT_SUCCESS;
     }
 
