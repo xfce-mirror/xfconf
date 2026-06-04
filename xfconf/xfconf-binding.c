@@ -76,7 +76,6 @@ typedef struct
 /* same structure as in gdk, but we don't link to gdk */
 typedef struct
 {
-    guint32 pixel;
     guint16 red;
     guint16 green;
     guint16 blue;
