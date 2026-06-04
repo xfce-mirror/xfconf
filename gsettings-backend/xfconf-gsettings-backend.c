@@ -111,10 +111,11 @@ xfconf_gsettings_backend_read(GSettingsBackend *backend,
         g_variant_unref(variant);
         variant = g_variant_parse(expected_type, g_value_get_string(&value), NULL, NULL, &error);
 
-        if (error) {
+        if (variant == NULL) {
             g_critical("Failed to handle property '%s' with expected type '%s' => %s",
                        key, type_str, error->message);
             g_error_free(error);
+            g_free(type_str);
             return (NULL);
         }
         g_free(type_str);

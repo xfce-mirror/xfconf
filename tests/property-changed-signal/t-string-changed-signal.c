@@ -57,6 +57,7 @@ main(int argc,
     std.mloop = g_main_loop_new(NULL, FALSE);
 
     if (!xfconf_tests_start()) {
+        g_main_loop_unref(std.mloop);
         return 2;
     }
 

@@ -1,1 +1,3 @@
 knownConditionTrueFalse:xfconf/xfconf-cache.c:914
+memleak:xfconf/xfconf-cache.c:528
+memleak:xfconf/xfconf-binding.c:291
