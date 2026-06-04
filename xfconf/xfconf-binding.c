@@ -749,7 +749,7 @@ xfconf_g_property_unbind(gulong id)
         g_signal_handler_disconnect(G_OBJECT(binding->object),
                                     binding->object_handler);
     } else {
-        g_warning("No binding with id %ld was found", id);
+        g_warning("No binding with id %lu was found", id);
     }
 }
 

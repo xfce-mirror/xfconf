@@ -489,7 +489,7 @@ xfconf_transform_array(GPtrArray *arr_src,
         if (G_VALUE_TYPE(value_src) == gtype) {
             g_value_copy(value_src, value_dest);
         } else if (!g_value_transform(value_src, value_dest)) {
-            g_warning("Unable to convert array member %d from type \"%s\" to type \"%s\"",
+            g_warning("Unable to convert array member %u from type \"%s\" to type \"%s\"",
                       i, G_VALUE_TYPE_NAME(value_src), g_type_name(gtype));
             _xfconf_gvalue_free(value_dest);
             /* reuse i; we're returning anyway */
