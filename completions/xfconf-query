@@ -26,7 +26,7 @@ _xfconf-query() {
 
   long_options="--help --version --channel --property --set --list --verbose"
   long_options+=" --create --type --reset --recursive --force-array --toggle"
-  long_options+=" --monitor"
+  long_options+=" --monitor --list-types --export --import"
 
   options="$short_options $long_options"
 
@@ -45,6 +45,13 @@ _xfconf-query() {
         if [[ "$channel" ]]; then
           words="$(xfconf-query -c "$channel" -l)"
         fi
+        ;;
+      --export|--import)
+        # Enable pathname completion that descends into directories.
+        # Ensure shell will append a slash for directories.
+        compopt -o plusdirs 2>/dev/null || true
+        compgen -V COMPREPLY -f -- "$current"
+        return 0
         ;;
     esac
   fi
