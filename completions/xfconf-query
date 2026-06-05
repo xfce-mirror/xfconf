@@ -22,10 +22,10 @@ _xfconf-query() {
   COMPREPLY=()
   current="${COMP_WORDS[$COMP_CWORD]}"
   previous="${COMP_WORDS[$COMP_CWORD - 1]}"
-  short_options="-h -V -c -p -s -l -v -n -t -r -R -a -T -m"
+  short_options="-h -V -c -p -s -l -v -t -r -R -a -T -m"
 
   long_options="--help --version --channel --property --set --list --verbose"
-  long_options+=" --create --type --reset --recursive --force-array --toggle"
+  long_options+=" --type --reset --recursive --force-array --toggle"
   long_options+=" --monitor --list-types --export --import"
 
   options="$short_options $long_options"
@@ -45,6 +45,9 @@ _xfconf-query() {
         if [[ "$channel" ]]; then
           words="$(xfconf-query -c "$channel" -l)"
         fi
+        ;;
+      -t|--type)
+        words=$(xfconf-query --list-types | tail -n +2)
         ;;
       --export|--import)
         # Enable pathname completion that descends into directories.
