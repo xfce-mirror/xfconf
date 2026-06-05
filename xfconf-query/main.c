@@ -220,7 +220,7 @@ static void
 xfconf_query_list_types(gboolean on_stderr)
 {
     void (*print_func)(const gchar *, ...) = on_stderr ? g_printerr : g_print;
-    GType gtypes[] = {
+    const GType gtypes[] = {
         G_TYPE_STRING,
         G_TYPE_BOOLEAN,
         G_TYPE_UCHAR,
