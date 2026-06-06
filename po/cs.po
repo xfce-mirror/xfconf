@@ -35,7 +35,7 @@ msgstr "Volání DBus ResetProperty se nezdařilo"
 #: xfconfd/xfconf-backend-perchannel-xml.c:266
 #, c-format
 msgid "Unable to create configuration directory \"%s\""
-msgstr "Nedaří se vytvořit složku s nastaveními „%s“"
+msgstr "Nelze vytvořit konfigurační adresář „%s“"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:311 xfconfd/xfconf-daemon.c:156
 #, c-format
@@ -45,7 +45,7 @@ msgstr "Přístup při změně vlastnosti „%s“ na kanálu „%s“ byl zamí
 #: xfconfd/xfconf-backend-perchannel-xml.c:597
 #, c-format
 msgid "Unable to remove channel \"%s\": %s"
-msgstr "Nelze vyjmout kanál „%s“: %s"
+msgstr "Nelze odstranit kanál „%s“: %s"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1314
 #, c-format
@@ -56,7 +56,7 @@ msgstr "Neplatný typ pro <property>: „%s“"
 #: xfconfd/xfconf-backend-perchannel-xml.c:1409
 #, c-format
 msgid "Unable to parse value of type \"%s\" from \"%s\""
-msgstr "Nelze zpracovat hodnoty typu „%s“ z „%s“"
+msgstr "Nelze zpracovat hodnotu typu „%s“ z „%s“"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1389
 msgid "The type attribute of <value> cannot be an array"
@@ -81,15 +81,15 @@ msgstr "Nelze zapsat kanál „%s“: %s"
 #: xfconfd/xfconf-backend-factory.c:74
 #, c-format
 msgid "Unable to find Xfconf backend of type \"%s\""
-msgstr "Nedaří se nalézt podpůrnou vrstvu služby Xfconf typu „%s“"
+msgstr "Nelze najít backend Xfconf typu „%s“"
 
 #: xfconfd/xfconf-backend.c:93
 msgid "Property names must start with a '/' character"
-msgstr "Je třeba, aby názvy vlastností začínaly na znak „/“ (dopředné lomítko)"
+msgstr "Názvy vlastností musí začínat znakem „/“"
 
 #: xfconfd/xfconf-backend.c:102
 msgid "The root element ('/') is not a valid property name"
-msgstr "Kořenový element ('/') není platným názvem vlastnosti"
+msgstr "Kořenový prvek „/“ není platný název vlastnosti"
 
 #: xfconfd/xfconf-backend.c:117
 msgid ""
@@ -100,7 +100,7 @@ msgstr "Názvy vlastností mohou obsahovat pouze znaky ASCII A-Z, a-z, 0-9, '_',
 
 #: xfconfd/xfconf-backend.c:126
 msgid "Property names cannot have two or more consecutive '/' characters"
-msgstr "Názvy vlastností nemohou obsahovat dva nebo více po sobě jdoucích znaků '/"
+msgstr "Názvy vlastností nemohou obsahovat dva nebo více po sobě jdoucích znaků „/“"
 
 #: xfconfd/xfconf-backend.c:137
 msgid "Property names cannot end with a '/' character"
@@ -120,7 +120,7 @@ msgstr "Názvy kanálů mohou obsahovat pouze znaky kódování ASCII A-Z, a-z, 
 msgid ""
 "The property name can only be empty or \"/\" if a recursive reset was "
 "specified"
-msgstr "Název vlastnosti může být prázdný, nebo „/“ pouze pokud byl specifikován rekurzivní reset"
+msgstr "Název vlastnosti může být prázdný, nebo „/“ pouze pokud byl zadán rekurzivní reset"
 
 #: xfconfd/main.c:148
 msgid "Prints the xfconfd version."
@@ -130,7 +130,7 @@ msgstr "Zobrazí verzi xfconfd."
 msgid ""
 "Configuration backends to use.  The first backend specified is opened "
 "read/write; the others, read-only."
-msgstr "Konfigurovat backendy pro použití. První zadaný backend je otevřen pro čtení a zápis, ostatní pouze pro čtení."
+msgstr "Konfigurační backendy, které se mají použít. První zadaný backend je otevřen pro čtení a zápis, ostatní pouze pro čtení."
 
 #: xfconfd/main.c:154
 msgid "Fork into background after starting; only useful for testing purposes"
@@ -160,17 +160,17 @@ msgstr "Transformace GType se nezdařila „%s“"
 
 #: xfconfd/xfconf-daemon.c:475
 msgid "No backends could be started"
-msgstr "Nemohly být spuštěny žádné backendy "
+msgstr "Nepodařilo se spustit žádné backendy"
 
 #. TRANSLATORS: This refers to: "A property has been set"
 #: xfconf-query/main.c:123
 msgid "set"
-msgstr "nastavit"
+msgstr "nastaveno"
 
 #. TRANSLATORS: This refers to: "A property has been reset"
 #: xfconf-query/main.c:138
 msgid "reset"
-msgstr "obnovit"
+msgstr "resetováno"
 
 #: xfconf-query/main.c:238
 msgid "Possible types:"
@@ -217,11 +217,11 @@ msgstr "Informace o verzi"
 
 #: xfconf-query/main.c:531
 msgid "The channel to query/modify"
-msgstr "Kanál pro zaslání dotazu nebo modifikaci"
+msgstr "Kanál, který se má dotazovat nebo měnit"
 
 #: xfconf-query/main.c:534
 msgid "The property to query/modify"
-msgstr "Vlastnost pro zaslání dotazu nebo modifikaci"
+msgstr "Vlastnost, která se má dotazovat nebo měnit"
 
 #: xfconf-query/main.c:537
 msgid "The new value to set for the property (multiple uses for an array)"
@@ -251,11 +251,11 @@ msgstr "Rekurzivně (použijte s parametrem -r)"
 
 #: xfconf-query/main.c:555
 msgid "Force array even if only one element"
-msgstr "Vynutit pole pouze v případě jednoho prvku"
+msgstr "Vynutit pole i při jediném prvku"
 
 #: xfconf-query/main.c:558
 msgid "Invert an existing boolean property"
-msgstr "Invertovat existující hodnotu typu boolean"
+msgstr "Invertovat existující pravdivostní vlastnost"
 
 #: xfconf-query/main.c:561
 msgid "Monitor a channel for property changes"
@@ -263,13 +263,13 @@ msgstr "Sledovat změny vlastností kanálu"
 
 #: xfconf-query/main.c:564
 msgid "List types that can be specified using the --type option"
-msgstr "Vypíše typy, které mohou být zadány pomocí přeínače --type"
+msgstr "Vypsat typy, které lze zadat pomocí přepínače --type"
 
 #: xfconf-query/main.c:567
 msgid ""
 "Export all or part of the settings to an optional file or standard output, "
 "in a format suitable for the --import option"
-msgstr "Exportuje všechna nebo část nastavení to volitelného souboru nebo na standardní výstup, ve formátu vhodném pro přepínač --import"
+msgstr "Exportovat všechna nastavení nebo jejich část do volitelného souboru nebo na standardní výstup ve formátu vhodném pro volbu --import"
 
 #: xfconf-query/main.c:570
 msgid ""
@@ -301,11 +301,11 @@ msgstr "Chyby prosíme hlaste na <%s>."
 
 #: xfconf-query/main.c:618
 msgid "No property specified"
-msgstr "Nespecifikována žádná vlastnost"
+msgstr "Nebyla zadána žádná vlastnost"
 
 #: xfconf-query/main.c:623
 msgid "The property name should start with '/'"
-msgstr "Název vlastnosti by měl začínam znakem „/“"
+msgstr "Název vlastnosti by měl začínat znakem „/“"
 
 #: xfconf-query/main.c:628
 msgid "--set and --reset options can not be used together"
@@ -322,7 +322,7 @@ msgstr "přepínače --export a --import nelze použít současně"
 #: xfconf-query/main.c:647
 #, c-format
 msgid "Failed to init libxfconf: %s"
-msgstr "Inicializace konfigurátoru libxfconf se nezdařila: %s"
+msgstr "Inicializace libxfconf se nezdařila: %s"
 
 #: xfconf-query/main.c:669
 msgid "Channels:"
@@ -331,7 +331,7 @@ msgstr "Kanály:"
 #: xfconf-query/main.c:693
 #, c-format
 msgid "Start monitoring channel \"%s\":"
-msgstr "Zahájit sledování kanálu „%s“:"
+msgstr "Zahajuje se sledování kanálu „%s“:"
 
 #: xfconf-query/main.c:722 xfconf-query/main.c:826 xfconf-query/main.c:892
 msgid "Failed to set property"
@@ -339,7 +339,7 @@ msgstr "Nastavení vlastnosti se nezdařilo"
 
 #: xfconf-query/main.c:725
 msgid "--toggle only works with boolean values"
-msgstr "přepínač --toggle pracuje pouze s hodnotami typu boolean"
+msgstr "Přepínač --toggle funguje pouze s pravdivostními hodnotami"
 
 #: xfconf-query/main.c:735 xfconf-query/main.c:737 xfconf-query/main.c:755
 #: xfconf-query/main.c:757
@@ -375,7 +375,7 @@ msgstr "Nedaří se převést „%s“ na typ „%s“"
 #: xfconf-query/main.c:846
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "Existuje %d nových hodnot, ale je možné určit pouze %d typů"
+msgstr "Je zadáno %d nových hodnot, ale podařilo se určit pouze %d typů"
 
 #: xfconf-query/main.c:866
 #, c-format
