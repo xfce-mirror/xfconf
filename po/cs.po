@@ -30,7 +30,7 @@ msgstr "Vlastnost „%s“ na kanálu „%s“ neexistuje"
 
 #: xfconf/xfconf-cache.c:1056
 msgid "Failed to make ResetProperty DBus call"
-msgstr "Volání DBus ResetProperty se nezdařilo"
+msgstr "Volání metody ResetProperty přes D-Bus se nezdařilo"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:266
 #, c-format
@@ -40,7 +40,7 @@ msgstr "Nelze vytvořit konfigurační adresář „%s“"
 #: xfconfd/xfconf-backend-perchannel-xml.c:311 xfconfd/xfconf-daemon.c:156
 #, c-format
 msgid "Permission denied while modifying property \"%s\" on channel \"%s\""
-msgstr "Přístup při změně vlastnosti „%s“ na kanálu „%s“ byl zamítnut"
+msgstr "Při změně vlastnosti „%s“ na kanálu „%s“ byl odepřen přístup"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:597
 #, c-format
@@ -60,7 +60,7 @@ msgstr "Nelze zpracovat hodnotu typu „%s“ z „%s“"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1389
 msgid "The type attribute of <value> cannot be an array"
-msgstr "Typ atributu <hodnota> nemůže být pole"
+msgstr "Atribut type prvku <value> nemůže být pole"
 
 #: xfconfd/xfconf-backend-perchannel-xml.c:1398
 #, c-format
@@ -114,7 +114,7 @@ msgstr "Název kanálu nemůže být prázdný řetězec"
 msgid ""
 "Channel names can only include the ASCII characters A-Z, a-z, 0-9, '{', '}',"
 " '|', ']', '[', ':', ',', '.', '_', and '-'"
-msgstr "Názvy kanálů mohou obsahovat pouze znaky kódování ASCII A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', a '-'"
+msgstr "Názvy kanálů mohou obsahovat pouze znaky ASCII A-Z, a-z, 0-9, '{', '}', '|', ']', '[', ':', ',', '.', '_', a '-'"
 
 #: xfconfd/xfconf-backend.c:402
 msgid ""
@@ -138,11 +138,11 @@ msgstr "Po spuštění přenést proces na pozadí; tato volba je užitečná po
 
 #: xfconfd/main.c:174
 msgid "Xfce Configuration Daemon"
-msgstr "Proces služby nastavení Xfce"
+msgstr "Služba nastavení Xfce"
 
 #: xfconfd/main.c:179
 msgid "Xfce configuration daemon"
-msgstr "Proces služby nastavení Xfce"
+msgstr "Služba nastavení Xfce"
 
 #: xfconfd/main.c:181
 msgid "Report bugs to http://bugs.xfce.org/\n"
@@ -217,11 +217,11 @@ msgstr "Informace o verzi"
 
 #: xfconf-query/main.c:531
 msgid "The channel to query/modify"
-msgstr "Kanál, který se má dotazovat nebo měnit"
+msgstr "Kanál, na který se dotazovat nebo který měnit"
 
 #: xfconf-query/main.c:534
 msgid "The property to query/modify"
-msgstr "Vlastnost, která se má dotazovat nebo měnit"
+msgstr "Vlastnost, na kterou se dotazovat nebo kterou měnit"
 
 #: xfconf-query/main.c:537
 msgid "The new value to set for the property (multiple uses for an array)"
@@ -229,13 +229,13 @@ msgstr "Nová hodnota k nastavení vlastnosti (více použití pro pole)"
 
 #: xfconf-query/main.c:540
 msgid "List properties (or channels if -c is not specified)"
-msgstr "Seznam vlastností (nebo kanálů, pokud není zadán parametr -c)"
+msgstr "Vypsat vlastnosti (nebo kanály, pokud není zadán parametr -c)"
 
 #: xfconf-query/main.c:543
 msgid ""
 "Print also the value in combination with -l or -m (use twice to print also "
 "the type)"
-msgstr "Zobrazí také hodnotu společně s -l nebo -m (použijte dvakrát pro zobrazení včetně typu)"
+msgstr "Zobrazit také hodnotu společně s -l nebo -m (použijte dvakrát pro zobrazení včetně typu)"
 
 #: xfconf-query/main.c:546
 msgid "Specify the property value type (multiple uses for an array)"
@@ -275,7 +275,7 @@ msgstr "Exportovat všechna nastavení nebo jejich část do volitelného soubor
 msgid ""
 "Import settings exported using the --export option from an optional file or "
 "standard input"
-msgstr "Importuje nastavení exportované použitím přepínače --export z volitelného souboru nebo ze standardního vstupu"
+msgstr "Importovat nastavení exportované pomocí volby --export z volitelného souboru nebo ze standardního vstupu"
 
 #: xfconf-query/main.c:574
 msgid "Create a new property if it does not already exist"
@@ -353,7 +353,7 @@ msgstr "Hodnota je pole (počet položek: %d):"
 
 #: xfconf-query/main.c:770
 msgid "When creating a new property, the value type must be specified"
-msgstr "Při vytváření nové vlastnosti je nutné specifikovat typ hodnoty"
+msgstr "Při vytváření nové vlastnosti je nutné zadat typ hodnoty"
 
 #: xfconf-query/main.c:780
 msgid "Failed to get the existing type for the value"
@@ -370,12 +370,12 @@ msgstr "Pro změnu pole na hodnotu je nutné určit typ hodnoty"
 #: xfconf-query/main.c:818 xfconf-query/main.c:875
 #, c-format
 msgid "Unable to convert \"%s\" to type \"%s\""
-msgstr "Nedaří se převést „%s“ na typ „%s“"
+msgstr "Nelze převést „%s“ na typ „%s“"
 
 #: xfconf-query/main.c:846
 #, c-format
 msgid "There are %d new values, but only %d types could be determined"
-msgstr "Je zadáno %d nových hodnot, ale podařilo se určit pouze %d typů"
+msgstr "Počet nových hodnot je %d, ale počet určených typů pouze %d."
 
 #: xfconf-query/main.c:866
 #, c-format
