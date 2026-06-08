@@ -231,7 +231,6 @@ xfconf_query_list_types(gboolean on_stderr)
         G_TYPE_INT,
         G_TYPE_UINT64,
         G_TYPE_INT64,
-        G_TYPE_FLOAT,
         G_TYPE_DOUBLE,
         G_TYPE_INVALID,
     };
