@@ -92,8 +92,6 @@ _xfconf_gtype_from_string(const gchar *type)
         return G_TYPE_UINT64;
     } else if (strcmp(type, "int64") == 0) {
         return G_TYPE_INT64;
-    } else if (strcmp(type, "float") == 0) {
-        return G_TYPE_FLOAT;
     }
 
     return G_TYPE_INVALID;
@@ -117,8 +115,6 @@ _xfconf_string_from_gtype(GType gtype)
             return "uint64";
         case G_TYPE_INT64:
             return "int64";
-        case G_TYPE_FLOAT:
-            return "float";
         case G_TYPE_DOUBLE:
             return "double";
         case G_TYPE_BOOLEAN:
@@ -206,19 +202,6 @@ _xfconf_gvalue_from_string(GValue *value,
             g_value_set_int64(value, intval);
             return TRUE;
 
-        case G_TYPE_FLOAT:
-            errno = 0;
-            dval = g_ascii_strtod(str, &endptr);
-            if (0.0 == dval && ERANGE == errno) {
-                return FALSE;
-            }
-            CHECK_CONVERT_STATUS();
-            if (dval < G_MINFLOAT || dval > G_MAXFLOAT) {
-                return FALSE;
-            }
-            g_value_set_float(value, (gfloat)dval);
-            return TRUE;
-
         case G_TYPE_DOUBLE:
             errno = 0;
             dval = g_ascii_strtod(str, &endptr);
@@ -284,8 +267,6 @@ _xfconf_string_from_gvalue(GValue *val)
         case G_TYPE_INT64:
             return g_strdup_printf("%" G_GINT64_FORMAT,
                                    g_value_get_int64(val));
-        case G_TYPE_FLOAT:
-            return g_strdup_printf("%f", (gdouble)g_value_get_float(val));
         case G_TYPE_DOUBLE:
             return g_strdup_printf("%f", g_value_get_double(val));
         case G_TYPE_BOOLEAN:
@@ -334,7 +315,6 @@ _xfconf_gvalue_is_equal(const GValue *value1,
         HANDLE_CMP_GV(UINT, uint);
         HANDLE_CMP_GV(INT64, int64);
         HANDLE_CMP_GV(UINT64, uint64);
-        HANDLE_CMP_GV(FLOAT, float);
         HANDLE_CMP_GV(DOUBLE, double);
 
         case G_TYPE_STRING:
@@ -485,22 +465,25 @@ xfconf_gvalue_to_gvariant(const GValue *value)
             variant = g_variant_ref_sink(g_variant_new("av", NULL));
         } else {
             GVariantBuilder builder;
-            guint i = 0;
+            gboolean success = TRUE;
 
             g_variant_builder_init(&builder, G_VARIANT_TYPE_ARRAY);
 
-            for (i = 0; i < arr->len; ++i) {
+            for (guint i = 0; i < arr->len; ++i) {
                 GValue *v = g_ptr_array_index(arr, i);
-                GVariant *var = NULL;
-
-                var = xfconf_basic_gvalue_to_gvariant(v);
-                if (var) {
+                GVariant *var = xfconf_basic_gvalue_to_gvariant(v);
+                if (var == NULL) {
+                    success = FALSE;
+                    break;
+                } else {
                     g_variant_builder_add(&builder, "v", var, NULL);
                     g_variant_unref(var);
                 }
             }
 
-            variant = g_variant_ref_sink(g_variant_builder_end(&builder));
+            if (success) {
+                variant = g_variant_ref_sink(g_variant_builder_end(&builder));
+            }
         }
     } else if (G_VALUE_TYPE(value) == G_TYPE_STRV) {
         gchar **strlist;
