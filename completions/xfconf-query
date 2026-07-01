@@ -40,7 +40,7 @@ _xfconf-query() {
       -c|--channel) words="$(xfconf-query -l | sed -e '1d' -e 's/^  //')" ;;
       -p|--property)
         # Get given channel, if exists.
-        channel="$(echo "$COMP_LINE" | grep -oPe '(-c|--channel) \K([a-z]+)')"
+        channel="$(echo "$COMP_LINE" | grep -oPe '(-c|--channel) \K([A-Za-z0-9{}|\][:,._-]+)')"
 
         if [[ "$channel" ]]; then
           words="$(xfconf-query -c "$channel" -l)"
