@@ -62,7 +62,7 @@ typedef enum _XfconfError
     XFCONF_ERROR_INVALID_CHANNEL,
 } XfconfError;
 
-GType xfconf_error_get_type(void) G_GNUC_CONST;
+GType xfconf_error_get_type(void);
 GQuark xfconf_get_error_quark(void);
 
 G_END_DECLS

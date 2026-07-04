@@ -36,7 +36,7 @@ typedef struct _XfconfCache XfconfCache;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(XfconfCache, g_object_unref)
 
 G_GNUC_INTERNAL
-GType xfconf_cache_get_type(void) G_GNUC_CONST;
+GType xfconf_cache_get_type(void);
 
 G_GNUC_INTERNAL
 XfconfCache *xfconf_cache_new(const gchar *channel_name) G_GNUC_MALLOC;

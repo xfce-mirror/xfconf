@@ -40,7 +40,7 @@ struct _TestObject
     gboolean test;
 };
 
-GType test_object_get_type(void) G_GNUC_CONST;
+GType test_object_get_type(void);
 static void test_object_get_property(GObject *object,
                                      guint prop_id,
                                      GValue *value,

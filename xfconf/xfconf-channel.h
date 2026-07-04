@@ -39,7 +39,7 @@ typedef struct _XfconfChannel XfconfChannel;
 #define XFCONF_CHANNEL_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS((obj), XFCONF_TYPE_CHANNEL, XfconfChannelClass))
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(XfconfChannel, g_object_unref)
 
-GType xfconf_channel_get_type(void) G_GNUC_CONST;
+GType xfconf_channel_get_type(void);
 
 XfconfChannel *xfconf_channel_get(const gchar *channel_name);
 
