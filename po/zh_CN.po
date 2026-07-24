@@ -187,32 +187,32 @@ msgstr "写入内容失败： %s"
 #: xfconf-query/main.c:390
 #, c-format
 msgid "Aborted on line %d: corrupted format"
-msgstr ""
+msgstr "在第%d行中止：格式损坏"
 
 #: xfconf-query/main.c:407 xfconf-query/main.c:438
 #, c-format
 msgid "Aborted on line %d: wrong type %s"
-msgstr ""
+msgstr "在第%d行中止：错误类型%s"
 
 #: xfconf-query/main.c:416 xfconf-query/main.c:446
 #, c-format
 msgid "Aborted on line %d: type and value do not match"
-msgstr ""
+msgstr "在第%d行中止：类型和值不匹配"
 
 #: xfconf-query/main.c:423 xfconf-query/main.c:462
 #, c-format
 msgid "Aborted on line %d: duplicate property %s"
-msgstr ""
+msgstr "在第%d行中止：重复属性%s"
 
 #: xfconf-query/main.c:489
 #, c-format
 msgid "Failed to read contents: %s"
-msgstr ""
+msgstr "无法读取内容：%s"
 
 #: xfconf-query/main.c:515
 #, c-format
 msgid "Failed to set property %s in channel %s"
-msgstr ""
+msgstr "无法设置属性%s，在通道%s中"
 
 #: xfconf-query/main.c:528
 msgid "Version information"
@@ -308,19 +308,19 @@ msgstr "未指定属性"
 
 #: xfconf-query/main.c:623
 msgid "The property name should start with '/'"
-msgstr ""
+msgstr "属性名称应该以 '/' 开头"
 
 #: xfconf-query/main.c:628
 msgid "--set and --reset options can not be used together"
-msgstr ""
+msgstr "--set 和 --reset 选项不能同时使用"
 
 #: xfconf-query/main.c:633
 msgid "--set and --reset options can not be used together with --list"
-msgstr ""
+msgstr "--set 和 --reset 选项不能和 --list 一起使用"
 
 #: xfconf-query/main.c:638
 msgid "--export and --import options can not be used together"
-msgstr ""
+msgstr "--export 和 --import 选项不能同时使用"
 
 #: xfconf-query/main.c:647
 #, c-format
