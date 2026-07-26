@@ -686,6 +686,12 @@ xfconf_backend_perchannel_xml_list_channels(XfconfBackend *backend,
     GDir *dir;
     const gchar *name;
 
+    // sync the cache in case it contains a newly created channel
+    if (XFCONF_BACKEND_PERCHANNEL_XML(backend)->save_id != 0) {
+        g_clear_handle_id(&XFCONF_BACKEND_PERCHANNEL_XML(backend)->save_id, g_source_remove);
+        xfconf_backend_perchannel_xml_flush(backend, NULL);
+    }
+
     dirs = xfce_resource_lookup_all(XFCE_RESOURCE_CONFIG, CONFIG_DIR_STEM);
     for (i = 0; dirs[i]; ++i) {
         dir = g_dir_open(dirs[i], 0, 0);
