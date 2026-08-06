@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Andrei Stepanov, 2026
+# Andrei Stepanov, 2026
 # Artem Zolochevskiy <artem.zolochevskiy@gmail.com>, 2011
 # Denis Koryavov <dkoryavov@yandex.ru>, 2010
 # Igor <f2404@yandex.ru>, 2016-2017
@@ -15,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2026-06-02 13:02+0200\n"
 "PO-Revision-Date: 2013-07-02 20:48+0000\n"
-"Last-Translator: Andrei Stepanov, 2026\n"
+"Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>, 2014\n"
 "Language-Team: Russian (http://app.transifex.com/xfce/xfconf/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -159,7 +160,7 @@ msgstr "Ошибка разбора синтаксиса: %s\n"
 #: xfconfd/xfconf-daemon.c:207
 #, c-format
 msgid "GType transformation failed \"%s\""
-msgstr "Трансформация GType не удалась: «%s»"
+msgstr "Ошибка преобразования GType: «%s»"
 
 #: xfconfd/xfconf-daemon.c:475
 msgid "No backends could be started"
@@ -187,32 +188,32 @@ msgstr "Не удалось записать содержимое: %s"
 #: xfconf-query/main.c:390
 #, c-format
 msgid "Aborted on line %d: corrupted format"
-msgstr ""
+msgstr "Остановлено на строке %d: повреждённый формат"
 
 #: xfconf-query/main.c:407 xfconf-query/main.c:438
 #, c-format
 msgid "Aborted on line %d: wrong type %s"
-msgstr ""
+msgstr "Остановлено на строке %d: неверный тип %s"
 
 #: xfconf-query/main.c:416 xfconf-query/main.c:446
 #, c-format
 msgid "Aborted on line %d: type and value do not match"
-msgstr ""
+msgstr "Остановлено на строке %d: тип и значение не совпадают"
 
 #: xfconf-query/main.c:423 xfconf-query/main.c:462
 #, c-format
 msgid "Aborted on line %d: duplicate property %s"
-msgstr ""
+msgstr "Остановлено на строке %d: повторяющееся свойство %s"
 
 #: xfconf-query/main.c:489
 #, c-format
 msgid "Failed to read contents: %s"
-msgstr ""
+msgstr "Не удалось прочитать содержимое: %s"
 
 #: xfconf-query/main.c:515
 #, c-format
 msgid "Failed to set property %s in channel %s"
-msgstr ""
+msgstr "Не удалось установить свойство %s в канале %s"
 
 #: xfconf-query/main.c:528
 msgid "Version information"
@@ -228,7 +229,7 @@ msgstr "Свойство для запроса/изменения"
 
 #: xfconf-query/main.c:537
 msgid "The new value to set for the property (multiple uses for an array)"
-msgstr ""
+msgstr "Новое значение для свойства (можно указывать несколько раз для массива)"
 
 #: xfconf-query/main.c:540
 msgid "List properties (or channels if -c is not specified)"
@@ -238,11 +239,11 @@ msgstr "Список свойств (или каналов, если не ука
 msgid ""
 "Print also the value in combination with -l or -m (use twice to print also "
 "the type)"
-msgstr ""
+msgstr "Также выводить значение в сочетании с -l или -m (используйте дважды, чтобы также вывести тип)"
 
 #: xfconf-query/main.c:546
 msgid "Specify the property value type (multiple uses for an array)"
-msgstr ""
+msgstr "Указать тип значения свойства (можно использовать несколько раз для массива)"
 
 #: xfconf-query/main.c:549
 msgid "Reset property"
@@ -266,19 +267,19 @@ msgstr "Следить за изменением свойств на канал�
 
 #: xfconf-query/main.c:564
 msgid "List types that can be specified using the --type option"
-msgstr ""
+msgstr "Вывести список типов, которые можно указать с помощью параметра --type"
 
 #: xfconf-query/main.c:567
 msgid ""
 "Export all or part of the settings to an optional file or standard output, "
 "in a format suitable for the --import option"
-msgstr ""
+msgstr "Экспортировать все или часть настроек в файл или стандартный вывод в формате, подходящем для импорта через --import"
 
 #: xfconf-query/main.c:570
 msgid ""
 "Import settings exported using the --export option from an optional file or "
 "standard input"
-msgstr ""
+msgstr "Импортировать настройки, экспортированные с помощью --export, из файла или стандартного ввода"
 
 #: xfconf-query/main.c:574
 msgid "Create a new property if it does not already exist"
@@ -308,19 +309,19 @@ msgstr "Не указано свойство"
 
 #: xfconf-query/main.c:623
 msgid "The property name should start with '/'"
-msgstr ""
+msgstr "Имя свойства должно начинаться с «/»"
 
 #: xfconf-query/main.c:628
 msgid "--set and --reset options can not be used together"
-msgstr ""
+msgstr "Параметры --set и --reset нельзя использовать вместе"
 
 #: xfconf-query/main.c:633
 msgid "--set and --reset options can not be used together with --list"
-msgstr ""
+msgstr "Параметры --set и --reset нельзя использовать вместе с --list"
 
 #: xfconf-query/main.c:638
 msgid "--export and --import options can not be used together"
-msgstr ""
+msgstr "Параметры --export и --import нельзя использовать вместе"
 
 #: xfconf-query/main.c:647
 #, c-format
