@@ -266,7 +266,7 @@ msgstr "监视频道中的属性更改"
 
 #: xfconf-query/main.c:564
 msgid "List types that can be specified using the --type option"
-msgstr ""
+msgstr "可以使用 --type 选项指定的列表类型"
 
 #: xfconf-query/main.c:567
 msgid ""
