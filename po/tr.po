@@ -187,32 +187,32 @@ msgstr "İçerik yazılmadı: %s"
 #: xfconf-query/main.c:390
 #, c-format
 msgid "Aborted on line %d: corrupted format"
-msgstr ""
+msgstr "%d satırında işlem iptal edildi: bozuk biçim"
 
 #: xfconf-query/main.c:407 xfconf-query/main.c:438
 #, c-format
 msgid "Aborted on line %d: wrong type %s"
-msgstr ""
+msgstr "%d satırında işlem iptal edildi: %s türü hatalı"
 
 #: xfconf-query/main.c:416 xfconf-query/main.c:446
 #, c-format
 msgid "Aborted on line %d: type and value do not match"
-msgstr ""
+msgstr "%d satırında işlem iptal edildi: tür ve değer uyuşmuyor"
 
 #: xfconf-query/main.c:423 xfconf-query/main.c:462
 #, c-format
 msgid "Aborted on line %d: duplicate property %s"
-msgstr ""
+msgstr "%d satırında işlem iptal edildi: %s özelliğinde çakışma var"
 
 #: xfconf-query/main.c:489
 #, c-format
 msgid "Failed to read contents: %s"
-msgstr ""
+msgstr "İçerik okunamadı: %s"
 
 #: xfconf-query/main.c:515
 #, c-format
 msgid "Failed to set property %s in channel %s"
-msgstr ""
+msgstr "%s kanalında %s özelliğini ayarlayamadı"
 
 #: xfconf-query/main.c:528
 msgid "Version information"
@@ -228,7 +228,7 @@ msgstr "Sorgulanacak/değiştirilecek özellik"
 
 #: xfconf-query/main.c:537
 msgid "The new value to set for the property (multiple uses for an array)"
-msgstr ""
+msgstr "Özelliğe ayarlanacak yeni değer (bir dizi için birden fazla kullanım)"
 
 #: xfconf-query/main.c:540
 msgid "List properties (or channels if -c is not specified)"
@@ -238,11 +238,11 @@ msgstr "Özellikleri (veya eğer -c belirtilmemişse kanalları) listele"
 msgid ""
 "Print also the value in combination with -l or -m (use twice to print also "
 "the type)"
-msgstr ""
+msgstr "Değeri -l veya -m seçenekleriyle birlikte de yazdırın (türü de yazdırmak için iki kez kullanın)"
 
 #: xfconf-query/main.c:546
 msgid "Specify the property value type (multiple uses for an array)"
-msgstr ""
+msgstr "Özellik değerinin türünü belirtin (bir dizi için birden fazla kullanım)"
 
 #: xfconf-query/main.c:549
 msgid "Reset property"
@@ -266,7 +266,7 @@ msgstr "Özellik değişiklikleri için kanalı gözle"
 
 #: xfconf-query/main.c:564
 msgid "List types that can be specified using the --type option"
-msgstr ""
+msgstr "--type seçeneği kullanılarak belirtilebilen liste türleri"
 
 #: xfconf-query/main.c:567
 msgid ""
