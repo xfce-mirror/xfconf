@@ -1011,7 +1011,7 @@ xfconf_cache_collect_properties_recursive(gpointer key,
     gchar *property_name = key;
     XfconfCacheRecurseData *rdata = user_data;
 
-    if (!g_ascii_strncasecmp(rdata->property_base, property_name, rdata->property_base_len)) {
+    if (g_ascii_strncasecmp(rdata->property_base, property_name, rdata->property_base_len) == 0) {
         rdata->matches = g_slist_prepend(rdata->matches, property_name);
     }
 
