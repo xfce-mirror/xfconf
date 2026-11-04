@@ -458,7 +458,7 @@ xfconf_g_property_init(XfconfChannel *channel,
                                                     detailed_signal,
                                                     G_CALLBACK(xfconf_g_property_object_notify),
                                                     binding,
-                                                    xfconf_g_property_object_disconnect, 0);
+                                                    xfconf_g_property_object_disconnect, G_CONNECT_DEFAULT);
     g_free(detailed_signal);
 
     /* transfer channel property to the object */
@@ -474,7 +474,7 @@ xfconf_g_property_init(XfconfChannel *channel,
                                                      detailed_signal,
                                                      G_CALLBACK(xfconf_g_property_channel_notify),
                                                      binding,
-                                                     xfconf_g_property_channel_disconnect, 0);
+                                                     xfconf_g_property_channel_disconnect, G_CONNECT_DEFAULT);
     g_free(detailed_signal);
 
     /* add binding to internal list */
