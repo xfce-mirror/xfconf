@@ -1083,7 +1083,7 @@ xfconf_xml_handle_channel(XmlParserState *state,
     p = strstr(version, ".");
     maj_ver_len = p ? (gsize)(p - version) : strlen(version);
     if (maj_ver_len != strlen(FILE_VERSION_MAJOR)
-        || strncmp(version, FILE_VERSION_MAJOR, maj_ver_len))
+        || strncmp(version, FILE_VERSION_MAJOR, maj_ver_len) != 0)
     {
         if (error) {
             g_set_error(error, G_MARKUP_ERROR,
