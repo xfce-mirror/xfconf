@@ -115,6 +115,7 @@ endforeach
 functions = [
   'fdatasync',
   'fsync',
+  'realpath',
 ]
 foreach function : functions
   if cc.has_function(function)
