@@ -1949,13 +1949,22 @@ xfconf_backend_perchannel_xml_flush_channel(XfconfBackendPerchannelXml *xbpx,
     }
 
     filename = g_strdup_printf("%s/%s.xml", xbpx->config_save_path, channel_name);
-    filename_tmp = g_strconcat(filename, ".new", NULL);
+
+    if (g_file_test(filename, G_FILE_TEST_IS_SYMLINK)) {
+        char real_filename[PATH_MAX];
+        if (realpath(filename, real_filename) != NULL) {
+            g_free(filename);
+            filename = g_strdup(real_filename);
+        }
+    }
 
     /* ensure the config directory exists */
-    if (g_mkdir_with_parents(xbpx->config_save_path, 0755) != 0) {
+    gchar *parent_dir = g_path_get_dirname(filename);
+    if (g_mkdir_with_parents(parent_dir, 0755) != 0) {
         goto out;
     }
 
+    filename_tmp = g_strconcat(filename, ".new", NULL);
     fp = fopen(filename_tmp, "w");
     if (!fp) {
         goto out;
@@ -2022,6 +2031,7 @@ out:
         fclose(fp);
     }
 
+    g_free(parent_dir);
     g_free(filename);
     g_free(filename_tmp);
 
